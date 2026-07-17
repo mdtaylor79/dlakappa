@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Denton-Lewisville Alumni Chapter | Kappa Alpha Psi Fraternity, Inc.</title>
+<meta name="description" content="Official site of the Denton-Lewisville Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. — membership, Guide Right and Kappa League mentorship, and chapter events.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="diamond"></span>
+      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
+    </a>
+    <button class="nav-toggle">Menu</button>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="portal/login.html" class="nav-cta">Member Portal</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow"><span class="diamond diamond--gold"></span> Kappa Alpha Psi Fraternity, Inc. — Founded 1911</p>
+    <h1>Achievement in every field of human endeavor.</h1>
+    <p class="lead">The Denton-Lewisville Alumni Chapter carries that charge forward through mentorship, scholarship, and service across Denton and Lewisville, Texas.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="membership.html">Become a Member</a>
+      <a class="btn btn-outline" href="events.html">Upcoming Events</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="section-label"><span class="diamond"></span> Our Charge</p>
+    <blockquote class="pull-quote">
+      Legacy leadership leaves people better.
+      <cite>— Chapter guiding philosophy</cite>
+    </blockquote>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Character</h3>
+        <p>Grounded in the four cardinal principles, our brothers hold themselves to a standard of integrity in every room they enter.</p>
+      </div>
+      <div class="card">
+        <h3>Scholarship</h3>
+        <p>Achievement starts with the mind. We support education at every stage, from Kappa League scholars to graduate degrees.</p>
+      </div>
+      <div class="card">
+        <h3>Service</h3>
+        <p>Guide Right programming, community partnerships, and chapter-led initiatives that leave Denton-Lewisville better than we found it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--cream);">
+  <div class="container">
+    <div style="max-width:640px;">
+      <p class="section-label"><span class="diamond"></span> Guide Right</p>
+      <h2 class="section-title">Mentorship built for young men on the way up.</h2>
+      <p class="section-intro" style="margin-top:14px;">Kappa League gives young men in Denton and Lewisville a structured path of mentorship, leadership development, and exposure to brothers who've walked the road ahead of them.</p>
+      <a class="btn btn-dark" href="about.html#guide-right" style="margin-top:24px; display:inline-block;">Learn About Guide Right</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="section-label"><span class="diamond"></span> What's Next</p>
+    <h2 class="section-title">Upcoming chapter events</h2>
+    <div id="home-events" style="margin-top:24px;">
+      <p class="empty-state">Loading events…</p>
+    </div>
+    <a href="events.html" style="font-weight:600;">View all events and RSVP →</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>Denton-Lewisville Alumni Chapter</h4>
+      <p style="opacity:0.85; max-width:320px;">Kappa Alpha Psi Fraternity, Inc. — Denton &amp; Lewisville, Texas.</p>
+    </div>
+    <div>
+      <h4>Chapter</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#guide-right">Guide Right / Kappa League</a></li>
+        <li><a href="membership.html">Membership &amp; Dues</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul class="footer-links">
+        <li><a href="events.html">Events</a></li>
+        <li><a href="portal/login.html">Member Portal</a></li>
+        <li><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Denton-Lewisville Alumni Chapter, Kappa Alpha Psi Fraternity, Inc.</span>
+    <span>dlakappa.org</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  (async () => {
+    const holder = document.getElementById("home-events");
+    const { data: events, error } = await dlaSupabase
+      .from("events")
+      .select("*")
+      .gte("event_date", new Date().toISOString().slice(0, 10))
+      .order("event_date", { ascending: true })
+      .limit(3);
+
+    if (error || !events || events.length === 0) {
+      holder.innerHTML = '<p class="empty-state">No upcoming events posted yet. Check back soon.</p>';
+      return;
+    }
+    holder.innerHTML = "";
+    events.forEach((ev) => {
+      const d = new Date(ev.event_date + "T00:00:00");
+      const row = document.createElement("div");
+      row.className = "event-row";
+      row.innerHTML = `
+        <div class="event-date">
+          <div class="month">${MONTHS[d.getMonth()]}</div>
+          <div class="day">${d.getDate()}</div>
+        </div>
+        <div class="event-body">
+          <h3>${ev.title}</h3>
+          <p class="event-meta">${ev.location || "Location TBA"}</p>
+        </div>`;
+      holder.appendChild(row);
+    });
+  })();
+</script>
+</body>
+</html>
