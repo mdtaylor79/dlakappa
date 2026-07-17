@@ -1,157 +1,106 @@
--- ============================================================
--- Denton-Lewisville Alumni Chapter — Kappa Alpha Psi Fraternity, Inc.
--- Supabase schema
---
--- Run this once in: Supabase Dashboard > SQL Editor > New query
--- ============================================================
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership | Denton-Lewisville Alumni Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
--- ---------- members ----------
--- One row per member, keyed to Supabase Auth's own user id.
-create table if not exists public.members (
-  id uuid primary key references auth.users (id) on delete cascade,
-  first_name text,
-  last_name text,
-  email text,
-  phone text,
-  membership_tier text check (membership_tier in ('general', 'senior')),
-  dues_status text not null default 'unpaid' check (dues_status in ('unpaid', 'pending', 'paid')),
-  dues_paid_at timestamptz,
-  join_date date default current_date,
-  is_admin boolean not null default false,
-  created_at timestamptz not null default now()
-);
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="diamond"></span>
+      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
+    </a>
+    <button class="nav-toggle">Menu</button>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="portal/login.html" class="nav-cta">Member Portal</a></li>
+    </ul>
+  </nav>
+</header>
 
-alter table public.members enable row level security;
+<section class="hero" style="padding: 64px 0;">
+  <div class="container hero-inner">
+    <p class="eyebrow"><span class="diamond diamond--gold"></span> Membership</p>
+    <h1 style="font-size: clamp(1.9rem, 4vw, 2.8rem);">Join the chapter.</h1>
+    <p class="lead">Create a portal account to join as a Subscribing Member or a New Member, and get access to chapter programming, events, and communication.</p>
+  </div>
+</section>
 
--- ---------- events ----------
-create table if not exists public.events (
-  id uuid primary key default gen_random_uuid(),
-  title text not null,
-  description text,
-  event_date date not null,
-  event_time text,
-  location text,
-  created_by uuid references public.members (id),
-  created_at timestamptz not null default now()
-);
+<section>
+  <div class="container">
+    <p class="section-label"><span class="diamond"></span> Membership Types</p>
+    <h2 class="section-title">Choose your tier</h2>
 
-alter table public.events enable row level security;
+    <div class="tiers">
+      <div class="tier-card featured">
+        <div class="tier-name">Subscribing Member</div>
+        <p class="tier-note" style="margin-top: 6px;">For brothers who are established, active members of the chapter in good standing.</p>
+        <ul class="diamond-list" style="margin-bottom: 28px; margin-top: 20px;">
+          <li><span class="diamond"></span> Voting rights in chapter business</li>
+          <li><span class="diamond"></span> Full access to chapter programming and events</li>
+          <li><span class="diamond"></span> Member portal access</li>
+        </ul>
+        <a class="btn btn-primary btn-block" href="portal/signup.html">Sign Up as Subscribing Member</a>
+      </div>
 
--- ---------- rsvps ----------
-create table if not exists public.rsvps (
-  id uuid primary key default gen_random_uuid(),
-  event_id uuid not null references public.events (id) on delete cascade,
-  member_id uuid references public.members (id),
-  guest_name text,
-  guest_email text,
-  guest_count int not null default 1,
-  created_at timestamptz not null default now()
-);
+      <div class="tier-card">
+        <div class="tier-name">New Member</div>
+        <p class="tier-note" style="margin-top: 6px;">For brothers who are new to the chapter and getting oriented.</p>
+        <ul class="diamond-list" style="margin-bottom: 28px; margin-top: 20px;">
+          <li><span class="diamond"></span> Full access to chapter programming and events</li>
+          <li><span class="diamond"></span> Member portal access</li>
+          <li><span class="diamond"></span> Onboarding support from chapter officers</li>
+        </ul>
+        <a class="btn btn-dark btn-block" href="portal/signup.html">Sign Up as New Member</a>
+      </div>
+    </div>
 
-alter table public.rsvps enable row level security;
+    <p class="form-note" style="margin-top:24px;">
+      Already have a portal account? <a href="portal/login.html">Sign in here</a>.
+    </p>
+  </div>
+</section>
 
--- ============================================================
--- Helper: is_admin() — SECURITY DEFINER so it can read the
--- members table without recursing into its own RLS policy.
--- ============================================================
-create or replace function public.is_admin()
-returns boolean
-language sql
-security definer
-set search_path = public
-as $$
-  select coalesce((select is_admin from public.members where id = auth.uid()), false);
-$$;
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>Denton-Lewisville Alumni Chapter</h4>
+      <p style="opacity:0.85; max-width:320px;">Kappa Alpha Psi Fraternity, Inc. — Denton &amp; Lewisville, Texas.</p>
+    </div>
+    <div>
+      <h4>Chapter</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#guide-right">Guide Right / Kappa League</a></li>
+        <li><a href="membership.html">Membership</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul class="footer-links">
+        <li><a href="events.html">Events</a></li>
+        <li><a href="portal/login.html">Member Portal</a></li>
+        <li><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Denton-Lewisville Alumni Chapter, Kappa Alpha Psi Fraternity, Inc.</span>
+    <span>dlakappa.org</span>
+  </div>
+</footer>
 
--- ============================================================
--- Auto-create a members row whenever someone signs up via
--- Supabase Auth (email/password from portal/signup.html).
--- ============================================================
-create or replace function public.handle_new_user()
-returns trigger
-language plpgsql
-security definer
-set search_path = public
-as $$
-begin
-  insert into public.members (id, email)
-  values (new.id, new.email);
-  return new;
-end;
-$$;
-
-drop trigger if exists on_auth_user_created on auth.users;
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure public.handle_new_user();
-
--- ============================================================
--- Prevent members from setting their own dues_status /
--- dues_paid_at / is_admin — only an admin update can change them.
--- ============================================================
-create or replace function public.protect_admin_fields()
-returns trigger
-language plpgsql
-security definer
-set search_path = public
-as $$
-begin
-  if not public.is_admin() then
-    new.dues_status := old.dues_status;
-    new.dues_paid_at := old.dues_paid_at;
-    new.is_admin := old.is_admin;
-  end if;
-  return new;
-end;
-$$;
-
-drop trigger if exists protect_admin_fields_trigger on public.members;
-create trigger protect_admin_fields_trigger
-  before update on public.members
-  for each row execute procedure public.protect_admin_fields();
-
--- ============================================================
--- RLS policies — members
--- ============================================================
-create policy "members read own row"
-  on public.members for select
-  using (auth.uid() = id or public.is_admin());
-
-create policy "members update own row"
-  on public.members for update
-  using (auth.uid() = id or public.is_admin());
-
--- No public insert policy: rows are only created by the
--- handle_new_user trigger above.
-
--- ============================================================
--- RLS policies — events (public read, admin write)
--- ============================================================
-create policy "anyone can read events"
-  on public.events for select
-  using (true);
-
-create policy "admins manage events"
-  on public.events for all
-  using (public.is_admin())
-  with check (public.is_admin());
-
--- ============================================================
--- RLS policies — rsvps
--- ============================================================
-create policy "anyone can rsvp"
-  on public.rsvps for insert
-  with check (true);
-
-create policy "members read own rsvps, admins read all"
-  on public.rsvps for select
-  using (member_id = auth.uid() or public.is_admin());
-
-create policy "admins manage rsvps"
-  on public.rsvps for delete
-  using (public.is_admin());
-
--- ============================================================
--- Make the first admin manually after your own account signs up:
---   update public.members set is_admin = true where email = 'you@example.com';
--- ============================================================
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

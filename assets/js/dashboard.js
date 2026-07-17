@@ -20,26 +20,13 @@ async function loadDashboard() {
     member.first_name ? `${member.first_name} ${member.last_name || ""}`.trim() : member.email;
   document.getElementById("dash-email").textContent = member.email;
 
-  const tierLabel = member.membership_tier === "senior" ? "Senior Member" : "General Member";
+  const tierLabel = member.membership_tier === "new" ? "New Member" : "Subscribing Member";
   document.getElementById("dash-tier").textContent = tierLabel;
+  document.getElementById("dash-joined").textContent = member.join_date || "—";
 
   if (member.is_admin) {
     const adminLink = document.getElementById("nav-admin");
     if (adminLink) adminLink.style.display = "";
-  }
-
-  const statusPill = document.getElementById("dash-status");
-  statusPill.textContent = member.dues_status;
-  statusPill.className = `status-pill ${member.dues_status}`;
-
-  const amount = member.membership_tier === "senior" ? "$300" : "$360";
-  document.getElementById("dash-amount").textContent = amount;
-
-  const payLink = document.getElementById("dash-pay-link");
-  if (member.dues_status === "paid") {
-    payLink.style.display = "none";
-  } else {
-    payLink.href = member.membership_tier === "senior" ? STRIPE_LINK_SENIOR : STRIPE_LINK_GENERAL;
   }
 
   // Member's own upcoming RSVPs

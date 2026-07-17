@@ -178,7 +178,7 @@ async function loadMembersAdmin() {
 function renderMembers(members) {
   const body = document.getElementById("members-table-body");
   if (!members || members.length === 0) {
-    body.innerHTML = `<tr><td colspan="5">No members yet.</td></tr>`;
+    body.innerHTML = `<tr><td colspan="4">No members yet.</td></tr>`;
     return;
   }
 
@@ -186,44 +186,16 @@ function renderMembers(members) {
   members.forEach((m) => {
     const tr = document.createElement("tr");
     const name = m.first_name ? `${m.first_name} ${m.last_name || ""}`.trim() : "—";
-    const tier = m.membership_tier === "senior" ? "Senior ($300)" : m.membership_tier === "general" ? "General ($360)" : "—";
+    const tier = m.membership_tier === "new" ? "New Member" : m.membership_tier === "subscribing" ? "Subscribing Member" : "—";
 
     tr.innerHTML = `
       <td>${name}</td>
       <td>${m.email || "—"}</td>
       <td>${tier}</td>
-      <td>
-        <select data-member="${m.id}">
-          <option value="unpaid" ${m.dues_status === "unpaid" ? "selected" : ""}>Unpaid</option>
-          <option value="pending" ${m.dues_status === "pending" ? "selected" : ""}>Pending</option>
-          <option value="paid" ${m.dues_status === "paid" ? "selected" : ""}>Paid</option>
-        </select>
-      </td>
       <td>${m.join_date || "—"}</td>
     `;
     body.appendChild(tr);
-
-    tr.querySelector("select").addEventListener("change", (e) => updateDuesStatus(m.id, e.target.value, e.target));
   });
-}
-
-async function updateDuesStatus(memberId, status, selectEl) {
-  selectEl.disabled = true;
-  const { error } = await dlaSupabase
-    .from("members")
-    .update({
-      dues_status: status,
-      dues_paid_at: status === "paid" ? new Date().toISOString() : null,
-    })
-    .eq("id", memberId);
-  selectEl.disabled = false;
-
-  if (error) {
-    alert("Could not update: " + error.message);
-    return;
-  }
-  const m = allMembers.find((x) => x.id === memberId);
-  if (m) m.dues_status = status;
 }
 
 const memberSearch = document.getElementById("member-search");

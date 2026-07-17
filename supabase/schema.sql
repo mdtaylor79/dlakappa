@@ -13,9 +13,7 @@ create table if not exists public.members (
   last_name text,
   email text,
   phone text,
-  membership_tier text check (membership_tier in ('general', 'senior')),
-  dues_status text not null default 'unpaid' check (dues_status in ('unpaid', 'pending', 'paid')),
-  dues_paid_at timestamptz,
+  membership_tier text check (membership_tier in ('subscribing', 'new')),
   join_date date default current_date,
   is_admin boolean not null default false,
   created_at timestamptz not null default now()
@@ -86,8 +84,8 @@ create trigger on_auth_user_created
   for each row execute procedure public.handle_new_user();
 
 -- ============================================================
--- Prevent members from setting their own dues_status /
--- dues_paid_at / is_admin — only an admin update can change them.
+-- Prevent members from making themselves admin — only an
+-- existing admin's update can flip is_admin.
 -- ============================================================
 create or replace function public.protect_admin_fields()
 returns trigger
@@ -97,8 +95,6 @@ set search_path = public
 as $$
 begin
   if not public.is_admin() then
-    new.dues_status := old.dues_status;
-    new.dues_paid_at := old.dues_paid_at;
     new.is_admin := old.is_admin;
   end if;
   return new;
