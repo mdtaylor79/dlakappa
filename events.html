@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Member Account | Denton-Lewisville Alumni Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="../index.html">
+      <span class="diamond"></span>
+      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
+    </a>
+  </nav>
+</header>
+
+<div class="auth-shell">
+  <p class="eyebrow" style="color: var(--crimson);"><span class="diamond"></span> Member Portal</p>
+  <h1>Create your account</h1>
+  <form id="signup-form">
+    <div class="form-field">
+      <label for="signup-first">First name</label>
+      <input type="text" id="signup-first" required>
+    </div>
+    <div class="form-field">
+      <label for="signup-last">Last name</label>
+      <input type="text" id="signup-last" required>
+    </div>
+    <div class="form-field">
+      <label for="signup-tier">Membership tier</label>
+      <select id="signup-tier" required>
+        <option value="general">General Member — $360/yr</option>
+        <option value="senior">Senior Member — $300/yr</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" required>
+    </div>
+    <div class="form-field">
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" minlength="6" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Create account</button>
+    <div class="form-status" id="signup-status"></div>
+  </form>
+  <p class="auth-switch">Already have an account? <a href="login.html">Sign in</a></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+</body>
+</html>

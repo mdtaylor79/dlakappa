@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account | Denton-Lewisville Alumni Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="../index.html">
+      <span class="diamond"></span>
+      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
+    </a>
+    <ul class="nav-links" style="display:flex;">
+      <li><a href="../events.html">Events</a></li>
+      <li><a href="#" onclick="dlaLogout(); return false;">Sign out</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="dash-header">
+  <div class="container">
+    <h1 id="dash-name">Loading…</h1>
+    <p id="dash-email"></p>
+  </div>
+</div>
+
+<section>
+  <div class="container" style="display:grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+    <div class="card">
+      <h3>Membership</h3>
+      <p style="margin-bottom: 14px;">Tier: <strong id="dash-tier">—</strong></p>
+      <p style="margin-bottom: 14px;">Dues status: <span class="status-pill" id="dash-status">—</span></p>
+      <p style="margin-bottom: 20px;">Annual dues: <strong id="dash-amount">—</strong></p>
+      <a class="btn btn-primary" id="dash-pay-link" href="#" target="_blank" rel="noopener">Pay Dues</a>
+    </div>
+
+    <div class="card">
+      <h3>My Events</h3>
+      <div id="dash-rsvps">
+        <p class="empty-state">Loading…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

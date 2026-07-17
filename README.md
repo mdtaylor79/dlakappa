@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Denton-Lewisville Alumni Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="diamond"></span>
+      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
+    </a>
+    <button class="nav-toggle">Menu</button>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="portal/login.html" class="nav-cta">Member Portal</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" style="padding: 64px 0;">
+  <div class="container hero-inner">
+    <p class="eyebrow"><span class="diamond diamond--gold"></span> About the Chapter</p>
+    <h1 style="font-size: clamp(1.9rem, 4vw, 2.8rem);">Rooted in the Four Cardinal Principles</h1>
+    <p class="lead">Achievement, Leadership, Scholarship, and Citizenship — the standard Kappa Alpha Psi has carried since 1911, lived out locally by the Denton-Lewisville Alumni Chapter.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="section-label"><span class="diamond"></span> Our Chapter</p>
+    <h2 class="section-title">Alumni brotherhood, active service.</h2>
+    <p class="section-intro" style="margin-top:16px; max-width: 720px;">
+      The Denton-Lewisville Alumni Chapter is made up of initiated members of Kappa Alpha Psi Fraternity, Inc.
+      living and working across Denton and Lewisville, Texas. We govern our chapter through elected officers,
+      including the Polemarch and the Guide Right Director, and we hold ourselves to the fraternity's national
+      bylaws and standards of conduct alongside our own chapter governance.
+    </p>
+    <ul class="diamond-list" style="margin-top: 28px; max-width: 640px;">
+      <li><span class="diamond"></span> <span>Chapter meetings and governance for initiated alumni brothers</span></li>
+      <li><span class="diamond"></span> <span>Community service and civic engagement across Denton-Lewisville</span></li>
+      <li><span class="diamond"></span> <span>Guide Right mentorship for young men through Kappa League</span></li>
+      <li><span class="diamond"></span> <span>Scholarship support and educational programming</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="guide-right" style="background: var(--cream);">
+  <div class="container">
+    <p class="section-label"><span class="diamond"></span> Guide Right Program</p>
+    <h2 class="section-title">Kappa League: mentorship for young men</h2>
+    <p class="section-intro" style="margin-top:16px; max-width: 700px;">
+      Guide Right is Kappa Alpha Psi's national mentorship initiative. Locally, our chapter runs it through
+      <strong>Kappa League</strong> — structured programming that pairs young men with brothers of the chapter
+      for leadership development, academic support, and exposure to opportunity beyond their everyday circle.
+    </p>
+    <div class="grid-3" style="margin-top: 32px;">
+      <div class="card" style="background: var(--white);">
+        <h3>Leadership</h3>
+        <p>Workshops and real responsibility that build young men who can lead in any room.</p>
+      </div>
+      <div class="card" style="background: var(--white);">
+        <h3>Academics</h3>
+        <p>Support toward graduation and beyond, with brothers who've walked the path.</p>
+      </div>
+      <div class="card" style="background: var(--white);">
+        <h3>Brotherhood</h3>
+        <p>Consistent, trusted adult mentorship rooted in the fraternity's founding principles.</p>
+      </div>
+    </div>
+    <p style="margin-top: 32px;">Interested in Kappa League for a young man in your family? <a href="mailto:info@dlakappa.org"><strong>Reach out to the chapter →</strong></a></p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="section-label"><span class="diamond"></span> Contact</p>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="section-intro" style="margin-top:16px;">For membership inquiries, Guide Right / Kappa League questions, or chapter business, reach the chapter directly.</p>
+    <p style="margin-top: 20px; font-size: 1.05rem;"><strong>Email:</strong> <a href="mailto:info@dlakappa.org">info@dlakappa.org</a></p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>Denton-Lewisville Alumni Chapter</h4>
+      <p style="opacity:0.85; max-width:320px;">Kappa Alpha Psi Fraternity, Inc. — Denton &amp; Lewisville, Texas.</p>
+    </div>
+    <div>
+      <h4>Chapter</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#guide-right">Guide Right / Kappa League</a></li>
+        <li><a href="membership.html">Membership &amp; Dues</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul class="footer-links">
+        <li><a href="events.html">Events</a></li>
+        <li><a href="portal/login.html">Member Portal</a></li>
+        <li><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Denton-Lewisville Alumni Chapter, Kappa Alpha Psi Fraternity, Inc.</span>
+    <span>dlakappa.org</span>
+  </div>
+</footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
