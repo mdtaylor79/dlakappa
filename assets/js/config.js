@@ -5,8 +5,8 @@
    Row Level Security policies (see supabase/schema.sql) control
    what it's allowed to read or write.
    ============================================================ */
-const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR-ANON-PUBLIC-KEY";
+const SUPABASE_URL = "https://eithccduveikejdhvnmq.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_MP2MyuJCu5MDmRs-ELngKA_SGdTN1M8";
 
 /* Stripe Payment Links — create these in Stripe Dashboard > Payment Links
    (one for each dues tier), then paste the URLs here. */
