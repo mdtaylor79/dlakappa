@@ -1,158 +1,456 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Denton-Lewisville Alumni Chapter | Kappa Alpha Psi Fraternity, Inc.</title>
-<meta name="description" content="Official site of the Denton-Lewisville Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. — membership, Guide Right and Kappa League mentorship, and chapter events.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — DLA Kappa Alpha Psi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body data-page="home">
+<div id="site-nav-placeholder"></div>
+-->
 
-<header class="site-header">
-  <nav class="nav">
-    <a class="brand" href="index.html">
-      <span class="diamond"></span>
-      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
-    </a>
-    <button class="nav-toggle">Menu</button>
-    <ul class="nav-links">
-      <li><a href="about.html">About</a></li>
-      <li><a href="membership.html">Membership</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="portal/login.html" class="nav-cta">Member Portal</a></li>
-    </ul>
-  </nav>
-</header>
+  <section class="hero">
 
-<section class="hero">
-  <div class="container hero-inner">
-    <p class="eyebrow"><span class="diamond diamond--gold"></span> Kappa Alpha Psi Fraternity, Inc. — Founded 1911</p>
-    <h1>Achievement in every field of human endeavor.</h1>
-    <p class="lead">The Denton-Lewisville Alumni Chapter carries that charge forward through mentorship, scholarship, and service across Denton and Lewisville, Texas.</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="membership.html">Become a Member</a>
-      <a class="btn btn-outline" href="events.html">Upcoming Events</a>
-    </div>
-  </div>
-</section>
+  <div class="lattice"></div>
+  <div class="glow"></div>
 
-<section>
-  <div class="container">
-    <p class="section-label"><span class="diamond"></span> Our Charge</p>
-    <blockquote class="pull-quote">
-      Legacy leadership leaves people better.
-      <cite>— Chapter guiding philosophy</cite>
-    </blockquote>
+  <div class="wrap">
 
-    <div class="grid-3">
-      <div class="card">
-        <h3>Character</h3>
-        <p>Grounded in the four cardinal principles, our brothers hold themselves to a standard of integrity in every room they enter.</p>
+    <div class="hero-inner">
+      <div class="eyebrow">Kappa Alpha Psi Fraternity, Inc. &middot; Est. 1997</div>
+      <h1>Denton-Lewisville<span class="sub">(TX) Alumni Chapter</span></h1>
+      <p class="lede">We build men of culture, brotherhood, and leadership across North Texas through service, scholarship, and the uplift of humanity.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="#">Explore the Chapter</a>
+        <a class="btn btn-ghost" href="#">Member Login</a>
       </div>
-      <div class="card">
-        <h3>Scholarship</h3>
-        <p>Achievement starts with the mind. We support education at every stage, from Kappa League scholars to graduate degrees.</p>
-      </div>
-      <div class="card">
-        <h3>Service</h3>
-        <p>Guide Right programming, community partnerships, and chapter-led initiatives that leave Denton-Lewisville better than we found it.</p>
+      <div class="facts">
+        <div><b>1997</b><small>Chartered</small></div>
+        <div><b>North Texas</b><small>Denton &amp; Lewisville</small></div>
+        <div><b>Service</b><small>Scholarship &amp; Mentorship</small></div>
       </div>
     </div>
+
+    <!-- IMAGE CAROUSEL
+         To add your own photos, replace the <div class="slide-placeholder"> inside
+         each .slide with: <img src="your-photo.jpg" alt="description">
+         Add or remove <div class="slide"> blocks to change the number of images.
+    -->
+    <div class="hero-carousel" id="heroCarousel">
+
+      <div class="slide active">
+        <div class="slide-placeholder">Slide 1 — Add your photo here</div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-placeholder">Slide 2 — Add your photo here</div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-placeholder">Slide 3 — Add your photo here</div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-placeholder">Slide 4 — Add your photo here</div>
+      </div>
+
+      <button class="carousel-prev" aria-label="Previous">&#8592;</button>
+      <button class="carousel-next" aria-label="Next">&#8594;</button>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+
   </div>
+
 </section>
+  <section class="polemarch">
 
-<section style="background: var(--cream);">
-  <div class="container">
-    <div style="max-width:640px;">
-      <p class="section-label"><span class="diamond"></span> Guide Right</p>
-      <h2 class="section-title">Mentorship built for young men on the way up.</h2>
-      <p class="section-intro" style="margin-top:14px;">Kappa League gives young men in Denton and Lewisville a structured path of mentorship, leadership development, and exposure to brothers who've walked the road ahead of them.</p>
-      <a class="btn btn-dark" href="about.html#guide-right" style="margin-top:24px; display:inline-block;">Learn About Guide Right</a>
-    </div>
-  </div>
-</section>
+  <div class="wrap">
 
-<section>
-  <div class="container">
-    <p class="section-label"><span class="diamond"></span> What's Next</p>
-    <h2 class="section-title">Upcoming chapter events</h2>
-    <div id="home-events" style="margin-top:24px;">
-      <p class="empty-state">Loading events…</p>
-    </div>
-    <a href="events.html" style="font-weight:600;">View all events and RSVP →</a>
-  </div>
-</section>
+    <div class="grid">
 
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <h4>Denton-Lewisville Alumni Chapter</h4>
-      <p style="opacity:0.85; max-width:320px;">Kappa Alpha Psi Fraternity, Inc. — Denton &amp; Lewisville, Texas.</p>
-    </div>
-    <div>
-      <h4>Chapter</h4>
-      <ul class="footer-links">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="about.html#guide-right">Guide Right / Kappa League</a></li>
-        <li><a href="membership.html">Membership</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Connect</h4>
-      <ul class="footer-links">
-        <li><a href="events.html">Events</a></li>
-        <li><a href="portal/login.html">Member Portal</a></li>
-        <li><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container footer-bottom">
-    <span>© <span id="year"></span> Denton-Lewisville Alumni Chapter, Kappa Alpha Psi Fraternity, Inc.</span>
-    <span>dlakappa.org</span>
-  </div>
-</footer>
+      <div class="portrait">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/supabase-client.js"></script>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+        <div class="frame"><span>Polemarch Portrait</span></div>
 
-  const MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-  (async () => {
-    const holder = document.getElementById("home-events");
-    const { data: events, error } = await dlaSupabase
-      .from("events")
-      .select("*")
-      .gte("event_date", new Date().toISOString().slice(0, 10))
-      .order("event_date", { ascending: true })
-      .limit(3);
+        <div class="crest"><img src="/img/kappa-crest.png" alt="Denton-Lewisville (TX) Alumni Chapter crest"></div>
 
-    if (error || !events || events.length === 0) {
-      holder.innerHTML = '<p class="empty-state">No upcoming events posted yet. Check back soon.</p>';
-      return;
-    }
-    holder.innerHTML = "";
-    events.forEach((ev) => {
-      const d = new Date(ev.event_date + "T00:00:00");
-      const row = document.createElement("div");
-      row.className = "event-row";
-      row.innerHTML = `
-        <div class="event-date">
-          <div class="month">${MONTHS[d.getMonth()]}</div>
-          <div class="day">${d.getDate()}</div>
+      </div>
+
+      <div class="message">
+
+        <div class="eyebrow">From the Polemarch</div>
+
+        <h2>A word of welcome</h2>
+
+        <div class="body">
+
+          <p>Welcome to the official website of the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc.</p>
+
+          <p>It is our honor and privilege to welcome you to our digital home as we continue our commitment to service, achievement, and brotherhood throughout Denton and Lewisville, Texas. Our chapter proudly stands on the core tenets of Leadership, Mentorship, Engagement, and Legacy, which guide our mission and strengthen our impact within the communities we serve.</p>
+
+          <p>As members of Kappa Alpha Psi Fraternity, Inc., we remain dedicated to the fraternity&rsquo;s ultimate objective of <span class="objective">Achievement in Every Field of Human Endeavor</span>. Through scholarship initiatives, youth mentorship, civic involvement, community partnerships, and professional development, we strive to uplift individuals while building stronger and more connected communities across North Texas.</p>
+
+          <p>We extend our sincere appreciation to our local leaders, community organizations, educational institutions, businesses, and supporters for their continued collaboration and partnership throughout Denton and Lewisville. Together, we are creating opportunities, inspiring future generations, and making a lasting difference through unity and service.</p>
+
+          <p>We invite you to explore our website to learn more about our programs, upcoming events, community outreach efforts, and the impactful work being accomplished by the Denton-Lewisville (TX) Alumni Chapter. Be sure to stay connected by following us across all social media platforms as we continue to expand our vision and demonstrate that all roads lead to the Denton-Lewisville (TX) Alumni Chapter.</p>
+
+          <p>Thank you for visiting, and we look forward to engaging with you as we continue serving our communities with purpose, excellence, and commitment.</p>
+
         </div>
-        <div class="event-body">
-          <h3>${ev.title}</h3>
-          <p class="event-meta">${ev.location || "Location TBA"}</p>
-        </div>`;
-      holder.appendChild(row);
-    });
-  })();
-</script>
+
+        <p class="fraternally">Yours in the Bond,</p>
+
+        <div class="sign">
+
+          <i></i>
+
+          <div class="who">
+
+            <b>Duncan E. Brown</b>
+
+            <small>Polemarch &middot; Denton-Lewisville (TX) Alumni Chapter</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="programs">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Our work in the community</div>
+      <h2>What we do</h2>
+      <p>Comprehensive programs designed to develop men and uplift communities across North Texas.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="media"><span class="num">01</span><span class="pill"><i></i>Mentorship</span></div>
+        <div class="body">
+          <h3>Kappa League</h3>
+          <p>A distinguished mentoring initiative offering young men opportunities for growth in leadership, academic success, and community engagement.</p>
+          <a class="more" href="#">Learn more <span>&rarr;</span></a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media"><span class="num">02</span><span class="pill"><i></i>Flagship Program</span></div>
+        <div class="body">
+          <h3>Guide Right</h3>
+          <p>Our flagship character development and youth empowerment program designed to shape tomorrow's leaders through mentorship and discipline.</p>
+          <a class="more" href="#">Learn more <span>&rarr;</span></a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media"><span class="num">03</span><span class="pill"><i></i>Service</span></div>
+        <div class="body">
+          <h3>Community Engagement</h3>
+          <p>Year-round partnerships serving North Texas through mentorship, outreach, and collaborative impact with local organizations.</p>
+          <a class="more" href="#">Learn more <span>&rarr;</span></a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media"><span class="num">04</span><span class="pill"><i></i>Literacy</span></div>
+        <div class="body">
+          <h3>Room to Read</h3>
+          <p>Advancing literacy and educational opportunity through strategic partnerships and grassroots initiatives in underserved communities.</p>
+          <a class="more" href="#">Learn more <span>&rarr;</span></a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media"><span class="num">05</span><span class="pill"><i></i>Youth Development</span></div>
+        <div class="body">
+          <h3>Guide Right Foundation</h3>
+          <p>A structured youth development initiative focused on mentoring, academic preparation, and leadership growth.</p>
+          <a class="more" href="#">Learn more <span>&rarr;</span></a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="media"><span class="num">06</span><span class="pill"><i></i>Brotherhood</span></div>
+        <div class="body">
+          <h3>Serve the Bond</h3>
+          <p>A commitment to strengthening brotherhood through service, accountability, and shared responsibility.</p>
+          <a class="more" href="#">Learn more <span>&rarr;</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- OUR CHAPTER -->
+  <section class="our-chapter" style="background:#f2ebd7;padding:100px 0;">
+    <div class="wrap" style="max-width:960px;margin:0 auto;padding:0 2rem;">
+      <div class="eyebrow" style="font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;">
+        <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+        Our Chapter
+      </div>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:#70110c;margin-bottom:1.25rem;line-height:1.15;">Alumni brotherhood, active service.</h2>
+      <p style="max-width:660px;line-height:1.8;color:#3a2e28;margin-bottom:2rem;">The Denton-Lewisville Alumni Chapter is made up of initiated members of Kappa Alpha Psi Fraternity, Inc. living and working across Denton and Lewisville, Texas. We govern our chapter through elected officers, including the Polemarch and the Guide Right Director, and we hold ourselves to the fraternity's national bylaws and standards of conduct alongside our own chapter governance.</p>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.85rem;">
+        <li style="display:flex;align-items:center;gap:.75rem;color:#2a1a16;font-size:.95rem;">
+          <svg width="10" height="10" viewBox="0 0 10 10" style="flex:none;"><path d="M5 0L10 5L5 10L0 5Z" fill="#70110c"/></svg>
+          Chapter meetings and governance for initiated alumni brothers
+        </li>
+        <li style="display:flex;align-items:center;gap:.75rem;color:#2a1a16;font-size:.95rem;">
+          <svg width="10" height="10" viewBox="0 0 10 10" style="flex:none;"><path d="M5 0L10 5L5 10L0 5Z" fill="#70110c"/></svg>
+          Community service and civic engagement across Denton-Lewisville
+        </li>
+        <li style="display:flex;align-items:center;gap:.75rem;color:#2a1a16;font-size:.95rem;">
+          <svg width="10" height="10" viewBox="0 0 10 10" style="flex:none;"><path d="M5 0L10 5L5 10L0 5Z" fill="#70110c"/></svg>
+          Guide Right mentorship for young men through Kappa League
+        </li>
+        <li style="display:flex;align-items:center;gap:.75rem;color:#2a1a16;font-size:.95rem;">
+          <svg width="10" height="10" viewBox="0 0 10 10" style="flex:none;"><path d="M5 0L10 5L5 10L0 5Z" fill="#70110c"/></svg>
+          Scholarship support and educational programming
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GUIDE RIGHT PROGRAM -->
+  <section class="guideright-home" style="background:#ffffff;padding:100px 0;">
+    <div class="wrap" style="max-width:960px;margin:0 auto;padding:0 2rem;">
+      <div class="eyebrow" style="font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;">
+        <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+        Guide Right Program
+      </div>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:#70110c;margin-bottom:1.25rem;line-height:1.15;">Kappa League: mentorship for young men</h2>
+      <p style="max-width:660px;line-height:1.8;color:#3a2e28;margin-bottom:2.5rem;">Guide Right is Kappa Alpha Psi's national mentorship initiative. Locally, our chapter runs it through Kappa League — structured programming that pairs young men with brothers of the chapter for leadership development, academic support, and exposure to opportunity beyond their everyday circle.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-bottom:2.5rem;">
+        <div style="background:#faf6ec;border-top:3px solid #70110c;padding:1.75rem 1.5rem;">
+          <h3 style="font-family:'Cinzel',serif;font-size:1rem;color:#70110c;margin-bottom:.65rem;">Leadership</h3>
+          <p style="font-size:.88rem;line-height:1.7;color:#4a3c35;margin:0;">Workshops and real responsibility that build young men who can lead in any room.</p>
+        </div>
+        <div style="background:#faf6ec;border-top:3px solid #70110c;padding:1.75rem 1.5rem;">
+          <h3 style="font-family:'Cinzel',serif;font-size:1rem;color:#70110c;margin-bottom:.65rem;">Academics</h3>
+          <p style="font-size:.88rem;line-height:1.7;color:#4a3c35;margin:0;">Support toward graduation and beyond, with brothers who've walked the path.</p>
+        </div>
+        <div style="background:#faf6ec;border-top:3px solid #70110c;padding:1.75rem 1.5rem;">
+          <h3 style="font-family:'Cinzel',serif;font-size:1rem;color:#70110c;margin-bottom:.65rem;">Brotherhood</h3>
+          <p style="font-size:.88rem;line-height:1.7;color:#4a3c35;margin:0;">Consistent, trusted adult mentorship rooted in the fraternity's founding principles.</p>
+        </div>
+      </div>
+      <p style="font-size:.9rem;color:#3a2e28;">Interested in Kappa League for a young man in your family? <a onclick="window.location='/dla_guide_right.html'" href="#" style="color:#70110c;font-weight:600;text-decoration:none;border-bottom:1px solid #c69a3f;padding-bottom:1px;">Reach out to the chapter &rarr;</a></p>
+    </div>
+  </section>
+
+  <section class="pillars">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div class="eyebrow">What guides us</div>
+
+      <h2>Our four tenets</h2>
+
+      <p>Every program and partnership we pursue answers to the principles that have carried this chapter since its founding.</p>
+
+    </div>
+
+    <div class="pcards">
+
+      <div class="pcard">
+
+        <div class="mark"><b>L</b></div>
+
+        <h3>Leadership</h3>
+
+        <p>Developing men prepared to lead in their professions, families, and communities with conviction.</p>
+
+      </div>
+
+      <div class="pcard">
+
+        <div class="mark"><b>M</b></div>
+
+        <h3>Mentorship</h3>
+
+        <p>Guiding young men through Kappa League and Guide Right toward purpose and achievement.</p>
+
+      </div>
+
+      <div class="pcard">
+
+        <div class="mark"><b>E</b></div>
+
+        <h3>Engagement</h3>
+
+        <p>Showing up for North Texas with service projects, scholarships, and civic partnership.</p>
+
+      </div>
+
+      <div class="pcard">
+
+        <div class="mark"><b>L</b></div>
+
+        <h3>Legacy</h3>
+
+        <p>Honoring those who built this chapter and leaving the next generation better than we found them.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <section class="engage">
+  <div class="wrap">
+    <div class="grid">
+      <div class="panel">
+        <div class="eyebrow">On the calendar</div>
+        <h2>Upcoming events</h2>
+        <div class="event">
+          <div class="date"><b>14</b><small>Mar</small></div>
+          <div class="info"><b>Founders' Day Observance</b><small>Chapter fellowship &amp; recognition</small></div>
+        </div>
+        <div class="event">
+          <div class="date"><b>05</b><small>Apr</small></div>
+          <div class="info"><b>Kappa League Leadership Summit</b><small>Mentorship &amp; college readiness</small></div>
+        </div>
+        <div class="event">
+          <div class="date"><b>10</b><small>May</small></div>
+          <div class="info"><b>Community Day of Service</b><small>Denton &amp; Lewisville outreach</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">Get involved</div>
+        <h2>Ways to engage</h2>
+        <div class="ways">
+          <div class="way">
+            <i></i>
+            <div><b>Pursue Membership</b><small>Learn about the path to brotherhood in our alumni chapter.</small></div>
+          </div>
+          <div class="way">
+            <i></i>
+            <div><b>Mentor a Young Man</b><small>Volunteer with Kappa League and shape a future leader.</small></div>
+          </div>
+          <div class="way">
+            <i></i>
+            <div><b>Partner With Us</b><small>Bring your organization alongside our service work.</small></div>
+          </div>
+          <div class="way">
+            <i></i>
+            <div><b>Support Scholarships</b><small>Invest in students across North Texas.</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <button onclick="window.location='/events.html'" style="display:inline-flex;align-items:center;gap:.6rem;font-family:'Cinzel',serif;font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;background:transparent;border:1.5px solid #70110c;color:#70110c;cursor:pointer;transition:background .25s,color .25s;" onmouseover="this.style.background='#70110c';this.style.color='#f2ebd7';" onmouseout="this.style.background='transparent';this.style.color='#70110c';">View All Events &rarr;</button>
+    </div>
+  </div>
+</section>
+  <section class="values">
+
+  <div class="lattice"></div>
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div class="eyebrow">What we stand on</div>
+
+      <h2>Our values</h2>
+
+      <p>The principles that guide every brother and every decision.</p>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+
+        <div class="iconwrap">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+
+            <path d="M2 8 12 4l10 4-10 4z"/><path d="M6 10v4c0 1.6 2.7 3 6 3s6-1.4 6-3v-4"/><path d="M22 8v5"/>
+
+          </svg>
+
+        </div>
+
+        <h3>Scholarship</h3>
+
+        <div class="div"></div>
+
+        <p>Academic excellence and intellectual growth form the foundation of our brotherhood and service to others.</p>
+
+      </div>
+
+      <div class="card">
+
+        <div class="iconwrap">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+
+            <path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.8 5.8 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/>
+
+          </svg>
+
+        </div>
+
+        <h3>Fellowship</h3>
+
+        <div class="div"></div>
+
+        <p>Brotherhood is sacred. We build lasting bonds through shared purpose, mutual respect, and unwavering support.</p>
+
+      </div>
+
+      <div class="card">
+
+        <div class="iconwrap">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+
+            <path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/>
+
+          </svg>
+
+        </div>
+
+        <h3>Character</h3>
+
+        <div class="div"></div>
+
+        <p>Integrity, discipline, and ethical leadership define who we are and how we serve our communities.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <section class="join">
+  <div class="big-dmd"></div>
+  <div class="inner">
+    <div class="eyebrow">Brotherhood &amp; Achievement</div>
+    <h2>Carry the legacy forward</h2>
+    <p>If you are called to service, scholarship, and the uplift of humanity, there is a place for you here. Connect with the Denton-Lewisville Alumni Chapter today.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#">Inquire About Membership</a>
+      <a class="btn btn-cream" href="#">Member Portal</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer-placeholder"></div>
+<script src="/js/nav.js"></script>
+
 </body>
 </html>
