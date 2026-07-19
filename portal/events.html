@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Chapter Events — DLA Member Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min-height: 100vh; }
+
+/* ── NAV ── */
+.portal-nav {
+  background: #fff;
+  border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 1rem;
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
+.portal-nav .brand img { width: 52px; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #70110c;
+  line-height: 1.1;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #888;
+}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+.portal-nav .nav-links a {
+  font-size: .85rem;
+  font-weight: 600;
+  color: #70110c;
+  text-decoration: none;
+  letter-spacing: .03em;
+}
+.portal-nav .nav-links a:hover { text-decoration: underline; }
+.portal-nav .nav-links .signout { color: #555; }
+
+/* ── HERO BANNER ── */
+.events-hero {
+  background: #2a0604;
+  padding: 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.events-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px;
+}
+.events-hero .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.events-hero .hero-icon {
+  width: 52px; height: 52px;
+  background: rgba(198,154,63,.15);
+  border: 2px solid rgba(198,154,63,.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.events-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #f2ebd7;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.events-hero p {
+  font-size: .85rem;
+  color: rgba(242,235,215,.6);
+  margin-top: .25rem;
+}
+
+/* ── BODY ── */
+.events-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
+/* ── SECTION HEADER ── */
+.section-header { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.25rem; margin-top: 2rem; }
+.section-icon {
+  width: 40px; height: 40px; background: #2a0604; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.section-icon svg { width: 20px; height: 20px; }
+.section-title { font-size: 1.1rem; font-weight: 700; color: #1a1a1a; }
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, #c69a3f, #70110c 60%, transparent);
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+/* ── CALENDAR ── */
+.calendar-wrap {
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.calendar-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 680px;
+  border: none;
+}
+
+/* ── NOTICE ── */
+.member-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  background: #faf8f4;
+  border: 1px solid #e8e0d5;
+  border-radius: 6px;
+  padding: .85rem 1rem;
+  font-size: .82rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.member-notice svg { flex: none; margin-top: .1rem; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Crest">
+    <div class="brand-text">
+      <div class="chapter-name">Denton-Lewisville</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/portal/dashboard.html">Dashboard</a>
+    <a href="#" class="signout" id="signOutBtn">Sign out</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="events-hero">
+  <div class="inner">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+    </div>
+    <div>
+      <h1>Chapter Events</h1>
+      <p>Member-only calendar — not visible to the public</p>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="events-body">
+
+  <div class="member-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <span>This calendar is for active members only. Events, meeting dates, and chapter activities are listed here. Contact the chapter secretary to add or update events.</span>
+  </div>
+
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+    </div>
+    <div class="section-title">Chapter Calendar</div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="calendar-wrap">
+    <!-- PASTE YOUR GOOGLE CALENDAR EMBED SRC URL BELOW -->
+    <iframe
+      src="https://calendar.google.com/calendar/embed?src=dlakappa1911%40gmail.com&ctz=America%2FChicago"
+      title="DLA Chapter Calendar">
+    </iframe>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) window.location.href = '/portal/login.html';
+})();
+
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await sb.auth.signOut();
+  window.location.href = '/portal/login.html';
+});
+</script>
+</body>
+</html>
