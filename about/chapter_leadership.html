@@ -9,7 +9,115 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+  .sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}
+  .org-section { padding: 60px 0 40px; }
+  .org-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: #70110c;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+  .org-section h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.3rem,3vw,1.8rem);
+    color: #70110c;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+  }
+  /* Officer card */
+  .officer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .officer-card .role-label {
+    font-family: 'Cinzel', serif;
+    font-size: .6rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #c69a3f;
+    margin-bottom: .5rem;
+  }
+  .officer-photo {
+    width: 160px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    position: relative;
+  }
+  .officer-photo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .officer-photo .photo-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(160deg,#aaa,#777);
+    display: block;
+  }
+  .officer-photo .photo-label {
+    background: #70110c;
+    color: #f2ebd7;
+    font-family: 'Cinzel', serif;
+    font-size: .55rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: .4rem .5rem;
+  }
+  .officer-card .officer-name {
+    margin-top: .6rem;
+    font-family: 'Archivo', sans-serif;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #2a1a16;
+  }
+  .officer-card .officer-title {
+    font-size: .78rem;
+    color: #6a5a52;
+    margin-top: .15rem;
+  }
 
+  /* Polemarch centered */
+  .polemarch-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  .polemarch-row .officer-photo {
+    width: 160px;
+  }
+
+  /* Admin grid: 5 across */
+  .admin-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Board / Directors grid: 4 across */
+  .board-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .board-grid .officer-photo,
+  .board-grid .officer-photo img,
+  .board-grid .officer-photo .photo-placeholder {
+    width: 155px;
+  }
+</style>
 </head>
 <body data-page="about">
 <div id="site-nav-placeholder"></div>
@@ -23,44 +131,161 @@
     <a href="/about/chapter_leadership.html" class="active">Leadership</a>
   </div>
 </div>
-<style>.sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}</style>
+
 <div class="page-hero">
-      <div class="wrap">
-        <div class="eyebrow">About — Leadership</div>
-        <h1>Chapter Leadership</h1>
-        <div class="gold-bar"></div>
-        <p>Guided by dedicated brothers committed to service and achievement, our leadership drives the chapter's mission forward.</p>
-      </div>
+  <div class="wrap">
+    <div class="eyebrow">About — Leadership</div>
+    <h1>Chapter Leadership</h1>
+    <div class="gold-bar"></div>
+    <p>Guided by dedicated brothers committed to service and achievement, our leadership drives the chapter's mission forward.</p>
+  </div>
+</div>
+
+<div style="background:#fff;padding:60px 0 80px;">
+  <div class="wrap" style="max-width:960px;margin:0 auto;padding:0 2rem;">
+
+    <h1 style="font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.6rem);color:#70110c;text-align:center;margin-bottom:2.5rem;font-weight:700;">11th Chapter Administration &amp; Board of Directors</h1>
+
+    <!-- POLEMARCH -->
+    <div style="text-align:center;margin-bottom:.5rem;">
+      <div style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#70110c;margin-bottom:.75rem;">Polemarch</div>
     </div>
-    <div class="content-section">
-      <div class="wrap">
-        <h2>Elected Officers</h2>
-        <div class="card-grid">
-          <div class="card"><h3>Polemarch</h3><p>Duncan E. Brown — Chief executive officer of the chapter, responsible for overall leadership and strategic direction.</p></div>
-          <div class="card"><h3>Vice Polemarch</h3><p>Assists the Polemarch and assumes duties in his absence. Oversees chapter programs and initiatives.</p></div>
-          <div class="card"><h3>Keeper of Records</h3><p>Maintains all chapter records, correspondence, and official documentation.</p></div>
-          <div class="card"><h3>Keeper of Exchequer</h3><p>Manages chapter finances, budgets, and financial reporting.</p></div>
+    <div class="polemarch-row">
+      <div class="officer-card">
+        <div class="officer-photo">
+          <img src="/img/duncan_e_brown.jpg" alt="Duncan E. Brown">
+          <div class="photo-label">Polemarch</div>
         </div>
+        <div class="officer-name">Duncan E. Brown</div>
       </div>
     </div>
-    <div class="content-section alt">
-      <div class="wrap">
-        <h2>Committee Chairs</h2>
-        <div class="card-grid">
-          <div class="card"><h3>Programs Committee</h3><p>Coordinates all chapter community programs and service initiatives.</p></div>
-          <div class="card"><h3>Membership Committee</h3><p>Oversees membership intake, reclamation, and brother engagement.</p></div>
-          <div class="card"><h3>Guide Right Committee</h3><p>Leads youth mentorship programs and Kappa League activities.</p></div>
-          <div class="card"><h3>Scholarship Committee</h3><p>Administers scholarships and academic support initiatives.</p></div>
+
+    <!-- 11TH CHAPTER ADMINISTRATION -->
+    <h2 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#70110c;text-align:center;margin-bottom:1.75rem;font-weight:600;">11th Chapter Administration</h2>
+    <div class="admin-grid">
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+          <div class="photo-label">Vice Polemarch</div>
         </div>
+        <div class="officer-name">Kirk Nobles</div>
       </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+          <div class="photo-label">Keeper of Records</div>
+        </div>
+        <div class="officer-name">Duncan E. Brown</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+          <div class="photo-label">Keeper of Exchequer</div>
+        </div>
+        <div class="officer-name">Erick Mitchell</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+          <div class="photo-label">Strategus</div>
+        </div>
+        <div class="officer-name">—</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+          <div class="photo-label">Lt. Strategus</div>
+        </div>
+        <div class="officer-name">—</div>
+      </div>
+
     </div>
-    <div class="content-section">
-      <div class="wrap">
-        <h2>Board Members</h2>
-        <p>The chapter board provides strategic direction, governance, and accountability — ensuring the chapter fulfills its mission with excellence. Contact us at <a href="mailto:info@dlakappa.org" style="color:#70110c;">info@dlakappa.org</a> to connect with chapter leadership.</p>
+
+    <!-- BOARD OF DIRECTORS -->
+    <h2 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#70110c;text-align:center;margin:2.5rem 0 1.75rem;font-weight:600;">Board of Directors</h2>
+    <div class="board-grid">
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">—</div>
+        <div class="officer-title">Board of Directors</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">—</div>
+        <div class="officer-title">Board of Directors</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">—</div>
+        <div class="officer-title">Board of Directors</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">—</div>
+        <div class="officer-title">Board of Directors</div>
+      </div>
+
+    </div>
+
+    <!-- DIRECTORS -->
+    <h2 style="font-family:'Cinzel',serif;font-size:1.15rem;color:#70110c;text-align:center;margin:2.5rem 0 1.75rem;font-weight:600;">Directors</h2>
+    <div class="board-grid">
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">Rod Wilson</div>
+        <div class="officer-title">Parliamentarian &amp; Bylaws</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">Cedric Travis</div>
+        <div class="officer-title">Membership Training Academy Director</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">MD Taylor</div>
+        <div class="officer-title">Guide Right Director</div>
+      </div>
+
+      <div class="officer-card">
+        <div class="officer-photo">
+          <div class="photo-placeholder"></div>
+        </div>
+        <div class="officer-name">—</div>
+        <div class="officer-title">Long Range Planning Director</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
-
 </body>
 </html>
