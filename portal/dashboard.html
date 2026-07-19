@@ -126,6 +126,64 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
 .summary-card .no-events a { color: #70110c; font-weight: 600; text-decoration: none; }
 .summary-card .no-events a:hover { text-decoration: underline; }
 
+/* ── DUES ── */
+.dues-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: .75rem;
+}
+@media(max-width:900px){ .dues-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:480px){ .dues-grid { grid-template-columns: 1fr; } }
+.dues-card {
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 6px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+.dues-card .pay-logo {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto .6rem;
+  font-size: 1.5rem;
+}
+.dues-card h4 { font-size: .92rem; font-weight: 700; color: #1a1a1a; margin-bottom: .25rem; }
+.dues-card .pay-handle { font-size: .8rem; color: #666; margin-bottom: .75rem; }
+.dues-card .pay-desc { font-size: .82rem; color: #555; margin-bottom: .75rem; line-height: 1.5; }
+.dues-card .qr-img { width: 110px; height: 110px; object-fit: contain; margin: 0 auto .75rem; display: block; border: 1px solid #eee; border-radius: 4px; }
+.dues-card .check-info { font-size: .8rem; color: #444; line-height: 1.6; margin-bottom: .75rem; text-align: left; }
+.dues-card .check-info strong { color: #1a1a1a; }
+.btn-pay {
+  display: block; width: 100%;
+  padding: .6rem;
+  border: none; border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: .05em; cursor: pointer;
+  text-decoration: none; text-align: center;
+  transition: background .2s;
+}
+.btn-pay-red  { background: #70110c; color: #fff; }
+.btn-pay-red:hover  { background: #8a1510; }
+.btn-pay-gold { background: #c69a3f; color: #2a0604; }
+.btn-pay-gold:hover { background: #b38932; }
+.dues-note {
+  background: #faf8f4;
+  border: 1px solid #e8e0d5;
+  border-radius: 6px;
+  padding: .85rem 1rem;
+  font-size: .82rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+}
+.dues-note svg { flex: none; margin-top: .1rem; }
+.dues-note em { color: #70110c; font-style: normal; font-weight: 700; }
+
 /* ── DOCUMENTS ── */
 .section-header { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.25rem; }
 .section-icon {
@@ -222,6 +280,71 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
         <div class="no-events">No event RSVPs yet.&nbsp;<a href="/events.html">See what's coming up &rarr;</a></div>
       </div>
     </div>
+  </div>
+
+  <!-- Pay Chapter Dues -->
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+      </svg>
+    </div>
+    <div class="section-title">Pay Chapter Dues</div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="dues-grid">
+    <!-- Cash App -->
+    <div class="dues-card">
+      <div class="pay-logo" style="background:#00d632;">
+        <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#00d632"/><text x="24" y="34" text-anchor="middle" font-size="26" font-family="Arial" font-weight="bold" fill="#fff">$</text></svg>
+      </div>
+      <h4>Cash App</h4>
+      <div class="pay-handle">$DLAKappas</div>
+      <img class="qr-img" src="/img/qr-cashapp.png" alt="Cash App QR Code">
+      <a class="btn-pay btn-pay-red" href="https://cash.app/$DLAKappas" target="_blank" rel="noopener">Pay Now</a>
+    </div>
+
+    <!-- Venmo -->
+    <div class="dues-card">
+      <div class="pay-logo" style="background:#008cff;">
+        <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#008cff"/><text x="24" y="34" text-anchor="middle" font-size="20" font-family="Arial" font-weight="bold" fill="#fff">V</text></svg>
+      </div>
+      <h4>Venmo</h4>
+      <div class="pay-handle">@DLAKappas</div>
+      <img class="qr-img" src="/img/qr-venmo.png" alt="Venmo QR Code">
+      <a class="btn-pay btn-pay-red" href="https://venmo.com/DLAKappas" target="_blank" rel="noopener">Pay Now</a>
+    </div>
+
+    <!-- PayPal -->
+    <div class="dues-card">
+      <div class="pay-logo" style="background:#003087;">
+        <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#003087"/><text x="24" y="34" text-anchor="middle" font-size="20" font-family="Arial" font-weight="bold" fill="#fff">P</text></svg>
+      </div>
+      <h4>PayPal</h4>
+      <div class="pay-desc">Pay securely online with PayPal.</div>
+      <a class="btn-pay btn-pay-gold" href="https://www.paypal.com/paypalme/DLAKappas" target="_blank" rel="noopener">Pay Now</a>
+    </div>
+
+    <!-- Check -->
+    <div class="dues-card">
+      <div class="pay-logo" style="background:#70110c;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <h4>Pay by Check</h4>
+      <div class="check-info">
+        All checks are to be endorsed to the<br>
+        <strong>Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc.</strong><br>
+        and mailed to<br>
+        <strong>1501 S. Loop 288, Suite 104, PMB 190<br>Denton, TX 76205</strong>
+      </div>
+      <a class="btn-pay btn-pay-gold" href="/portal/check-instructions.html">View Instructions</a>
+    </div>
+  </div>
+
+  <div class="dues-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>In order to be given credit ensure your name is on the check and it is signed. For Memo add <em>"YYYY Chapter Dues"</em> i.e. <em>2026 Chapter Dues</em>.</span>
   </div>
 
   <!-- Documents -->
