@@ -9,7 +9,154 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+  .sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}
 
+  .history-body {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .history-body p {
+    font-family: 'Archivo', sans-serif;
+    font-size: .97rem;
+    line-height: 1.9;
+    color: #3a2e28;
+    margin-bottom: 1.5rem;
+  }
+
+  .history-body h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: #70110c;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0d8cc;
+  }
+
+  .history-body h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  /* Pull quote */
+  .history-quote {
+    border-left: 4px solid #c69a3f;
+    background: #f2ebd7;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .history-quote p {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #70110c;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* Stats */
+  .history-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .history-stat {
+    background: #2a0604;
+    color: #f2ebd7;
+    padding: .75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    min-width: 160px;
+  }
+  .history-stat .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #c69a3f;
+    font-weight: 700;
+  }
+  .history-stat .stat-label {
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #d4c8bc;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e0d8cc;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.75rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: .35rem;
+    width: 10px;
+    height: 10px;
+    background: #70110c;
+    border: 2px solid #c69a3f;
+    border-radius: 50%;
+  }
+  .timeline-item .t-year {
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: #c69a3f;
+    text-transform: uppercase;
+    margin-bottom: .25rem;
+  }
+  .timeline-item p {
+    margin: 0;
+    font-size: .92rem;
+  }
+
+  /* States list */
+  .states-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .state-chip {
+    background: #f2ebd7;
+    border: 1px solid #e0d8cc;
+    padding: .35rem .85rem;
+    font-size: .85rem;
+    color: #2a1a16;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+  }
+
+  .history-source {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0d8cc;
+    font-size: .78rem;
+    color: #8a7a72;
+  }
+  .history-source a { color: #70110c; }
+</style>
 </head>
 <body data-page="about">
 <div id="site-nav-placeholder"></div>
@@ -21,28 +168,112 @@
     <a href="/about/province.history.html" class="active">Province History</a>
     <a href="/about/chapter_history.html">Chapter History</a>
     <a href="/about/chapter_leadership.html">Leadership</a>
+    <a href="/about/chapter_committees.html">Committees</a>
   </div>
 </div>
-<style>.sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}</style>
+
 <div class="page-hero">
-      <div class="wrap">
-        <div class="eyebrow">About — Province History</div>
-        <h1>Province History</h1>
-        <div class="gold-bar"></div>
-        <p>The Southwestern Province encompasses Kappa Alpha Psi chapters across Texas and the surrounding region, united in service and achievement.</p>
-      </div>
-    </div>
-    <div class="content-section">
-      <div class="wrap">
-        <h2>The Southwestern Province</h2>
-        <p>The Southwestern Province of Kappa Alpha Psi Fraternity, Inc. represents one of the Fraternity's most active and impactful provinces. Spanning Texas and neighboring states, the province includes dozens of graduate and undergraduate chapters committed to the Fraternity's mission.</p>
-        <p>The Denton-Lewisville Alumni Chapter proudly serves as part of this distinguished province, contributing to provincial programs and initiatives while maintaining deep roots in our local North Texas communities.</p>
-      </div>
-    </div>
+  <div class="wrap">
+    <div class="eyebrow">About — Province History</div>
+    <h1>Southwestern Province</h1>
+    <div class="gold-bar"></div>
+    <p>The history of the Southwestern Province of Kappa Alpha Psi® — from the first proposal to divide the fraternity into supervisory districts to a thriving province spanning six states.</p>
   </div>
+</div>
+
+<div style="background:#fff; padding:72px 0 88px;">
+  <div class="history-body">
+
+    <!-- Stats -->
+    <div class="history-stats">
+      <div class="history-stat">
+        <span class="stat-num">Founded 1930</span>
+        <span class="stat-label">Southwestern Province Est.</span>
+      </div>
+      <div class="history-stat">
+        <span class="stat-num">6 States</span>
+        <span class="stat-label">Province Territory</span>
+      </div>
+      <div class="history-stat">
+        <span class="stat-num">10th Province</span>
+        <span class="stat-label">At Time of Founding</span>
+      </div>
+    </div>
+
+    <!-- Province states -->
+    <p style="font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-bottom:.5rem;">Province Territory</p>
+    <div class="states-grid">
+      <span class="state-chip">Texas</span>
+      <span class="state-chip">Arkansas</span>
+      <span class="state-chip">Louisiana</span>
+      <span class="state-chip">New Mexico</span>
+      <span class="state-chip">Southern Mississippi</span>
+      <span class="state-chip">Mexico</span>
+    </div>
+
+    <h2>The Groundwork: Division into Provinces</h2>
+
+    <p>Philadelphia, Pennsylvania was the Grand Chapter city from December 30, 1920 to January 1, 1921, with the Lambda and Epsilon Chapters as hosts. George F. David II, Grand Keeper of the Exchequer, became the first Grand Polemarch who had not been nurtured by the Alpha Chapter under the direct influence of the Founders. David's election was pivotal — his administration would reflect the thoroughness with which the fraternity's ideals had been transmitted to a new generation of leadership.</p>
+
+    <p>Grand Polemarch David proposed legislation to divide the fraternity into supervisory districts — an idea given to him by his father, then a presiding Elder of the A.M.E. Church and a member of the fraternity. This proposal laid the groundwork for what would eventually become the Southwestern Province.</p>
+
+    <h2>The Fifteenth Grand Chapter, 1925</h2>
+
+    <p>Columbia University was the seat of the Fifteenth Grand Chapter, held December 26–30, 1925. In his address to the convention, Grand Polemarch Earl B. Dickerson stressed that Kappa Alpha Psi was no longer a provincial organization of a few ambitious young men within a single community — it had grown into a national society of members who "walked the high road" in cities and towns throughout the nation.</p>
+
+    <div class="history-quote">
+      <p>"College fraternities must be active agents in helping to create better understanding among the nations and races of the world."</p>
+    </div>
+
+    <p>Delegates passed resolutions reflecting the Grand Polemarch's perspective. One resolution called for college fraternities to act as agents of better understanding among nations and races. Another favored extending Kappa Alpha Psi into Southern colleges. At this Grand Chapter, the official designations of "Region" and "Regional Director" were changed to <strong>"Province"</strong> and <strong>"Province Polemarch"</strong> — terminology the fraternity continues to use today.</p>
+
+    <h2>The Southwestern Province Is Born, 1930</h2>
+
+    <p>Detroit, Michigan hosted the Seventeenth Grand Chapter on December 25, 1927, where Archie A. Alexander succeeded Earl B. Dickerson as Grand Polemarch, holding that office through December 1930. In accepting the office, Alexander committed his administration to appointing Province Polemarchs who would bring energy to their work and extend the program of Kappa Alpha Psi throughout the country.</p>
+
+    <p>The <strong>Northeastern and Southwestern Provinces</strong> were established in 1930, bringing the total number of provinces to ten. The Southwestern Province was placed under the leadership of its first Province Polemarch, <strong>Dr. Oliver W. Phillips</strong> — a charter member of the Kappa Chapter at Meharry Medical College (1919), former member of the Guide Right Commission, and the chartering Polemarch of the Marshall (TX) Alumni Chapter.</p>
+
+    <p>Dr. Phillips was a dentist who graduated from Meharry Medical College in 1921. He was part of the dental staff of the T&amp;P Railroad Company and maintained a private practice. His appointment as the province's first leader signaled a commitment to principled, accomplished men at the helm of this new territory.</p>
+
+    <!-- Timeline -->
+    <h2>Province Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="t-year">1920–1921</div>
+        <p>Grand Chapter in Philadelphia. Grand Polemarch George F. David II proposes dividing the fraternity into supervisory districts — the foundational concept for provinces.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">December 1925</div>
+        <p>Fifteenth Grand Chapter at Columbia University. "Region" and "Regional Director" officially renamed to "Province" and "Province Polemarch."</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">December 1927</div>
+        <p>Seventeenth Grand Chapter in Detroit. Grand Polemarch Archie A. Alexander elected, committing to expanding Kappa Alpha Psi into new territories.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">1930</div>
+        <p>The Southwestern Province established as the 10th province of Kappa Alpha Psi. Dr. Oliver W. Phillips named inaugural Province Polemarch.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">Today</div>
+        <p>The Southwestern Province spans Texas, Arkansas, Louisiana, New Mexico, Southern Mississippi, and Mexico — home to the Denton-Lewisville (TX) Alumni Chapter.</p>
+      </div>
+    </div>
+
+    <h2>Our Place in the Province</h2>
+
+    <p>The Denton-Lewisville (TX) Alumni Chapter is proud to be a part of the Southwestern Province — a province rooted in a legacy of principled expansion, achievement, and service. As the North Texas community grows, the chapter continues the province's tradition of excellence in every field of human endeavor.</p>
+
+    <p>Learn more about the Southwestern Province at <a href="https://southwesternprovince1911.org" target="_blank" rel="noopener" style="color:#70110c;font-weight:600;">southwesternprovince1911.org</a>.</p>
+
+    <div class="history-source">
+      Content adapted from the official <a href="https://southwesternprovince1911.org/history/" target="_blank" rel="noopener">Southwestern Province of Kappa Alpha Psi® Province History</a>. All rights belong to the Southwestern Province of Kappa Alpha Psi® Fraternity, Inc.
+    </div>
+
+  </div>
+</div>
 
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
-
 </body>
 </html>

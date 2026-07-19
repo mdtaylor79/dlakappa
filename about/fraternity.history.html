@@ -9,7 +9,154 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+  .sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}
 
+  .history-body {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .history-body p {
+    font-family: 'Archivo', sans-serif;
+    font-size: .97rem;
+    line-height: 1.9;
+    color: #3a2e28;
+    margin-bottom: 1.5rem;
+  }
+
+  .history-body h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: #70110c;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0d8cc;
+  }
+
+  .history-body h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  /* Pull quote */
+  .history-quote {
+    border-left: 4px solid #c69a3f;
+    background: #f2ebd7;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .history-quote p {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #70110c;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* Stat chips */
+  .history-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .history-stat {
+    background: #2a0604;
+    color: #f2ebd7;
+    padding: .75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    min-width: 160px;
+  }
+  .history-stat .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #c69a3f;
+    font-weight: 700;
+  }
+  .history-stat .stat-label {
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #d4c8bc;
+  }
+
+  /* Timeline dots */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e0d8cc;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: .35rem;
+    width: 10px;
+    height: 10px;
+    background: #70110c;
+    border: 2px solid #c69a3f;
+    border-radius: 50%;
+  }
+  .timeline-item .t-year {
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: #c69a3f;
+    text-transform: uppercase;
+    margin-bottom: .2rem;
+  }
+  .timeline-item p {
+    margin: 0;
+    font-size: .92rem;
+  }
+
+  /* Notable members */
+  .notable-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .notable-chip {
+    background: #f2ebd7;
+    border: 1px solid #e0d8cc;
+    padding: .35rem .85rem;
+    font-size: .82rem;
+    color: #2a1a16;
+    font-family: 'Archivo', sans-serif;
+  }
+
+  /* Source attribution */
+  .history-source {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0d8cc;
+    font-size: .78rem;
+    color: #8a7a72;
+  }
+  .history-source a { color: #70110c; }
+</style>
 </head>
 <body data-page="about">
 <div id="site-nav-placeholder"></div>
@@ -21,28 +168,165 @@
     <a href="/about/province.history.html">Province History</a>
     <a href="/about/chapter_history.html">Chapter History</a>
     <a href="/about/chapter_leadership.html">Leadership</a>
+    <a href="/about/chapter_committees.html">Committees</a>
   </div>
 </div>
-<style>.sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}</style>
+
 <div class="page-hero">
-      <div class="wrap">
-        <div class="eyebrow">About — Fraternity History</div>
-        <h1>Fraternity History</h1>
-        <div class="gold-bar"></div>
-        <p>Kappa Alpha Psi Fraternity, Inc. was founded on January 5, 1911 at Indiana University — a legacy of achievement spanning more than a century.</p>
-      </div>
-    </div>
-    <div class="content-section">
-      <div class="wrap">
-        <h2>A Century of Achievement</h2>
-        <p>Kappa Alpha Psi Fraternity, Inc. was founded with one central purpose: Achievement. Since its founding in 1911, the Fraternity has never lost sight of its founding objective — "Achievement in Every Field of Human Endeavor."</p>
-        <p>From its roots at Indiana University, Kappa Alpha Psi has grown to encompass more than 700 chapters across the United States and internationally, uniting brothers in a shared commitment to scholarship, service, and the uplift of humanity.</p>
-      </div>
-    </div>
+  <div class="wrap">
+    <div class="eyebrow">About — Fraternity History</div>
+    <h1>Fraternity History</h1>
+    <div class="gold-bar"></div>
+    <p>From a racist Indiana campus in 1911 to a global brotherhood of over 250,000 — the story of Kappa Alpha Psi® is one of vision, courage, and achievement.</p>
   </div>
+</div>
+
+<div style="background:#fff; padding:72px 0 88px;">
+  <div class="history-body">
+
+    <!-- Stats -->
+    <div class="history-stats">
+      <div class="history-stat">
+        <span class="stat-num">January 5, 1911</span>
+        <span class="stat-label">Founding Date</span>
+      </div>
+      <div class="history-stat">
+        <span class="stat-num">250,000+</span>
+        <span class="stat-label">Members Worldwide</span>
+      </div>
+      <div class="history-stat">
+        <span class="stat-num">700+</span>
+        <span class="stat-label">Chapters</span>
+      </div>
+      <div class="history-stat">
+        <span class="stat-num">13</span>
+        <span class="stat-label">International Chapters</span>
+      </div>
+    </div>
+
+    <h2>Origins: Born in Resistance</h2>
+
+    <p>Kappa Alpha Psi®, a college fraternity, was born in an environment saturated with racism. The state of Indiana became the 19th state of the Union in 1816 and founded Indiana University in Bloomington four years later. The city was largely populated by settlers from below the Mason-Dixon line who harbored deep sympathies for the Southern cause. The few Black residents of Bloomington in those early years were socially ostracized and subjected to extreme acts of prejudice and discrimination. Indiana became a stronghold for the Ku Klux Klan, and vigilante lynchings of Black citizens were commonplace.</p>
+
+    <p>Despite this growing hostility, some Black students sought a college education at Indiana University — a tuition-free institution of the highest quality. Yet few Black students could remain longer than a year without withdrawing in search of employment. The university administration maintained an attitude of indifference. Blacks were not allowed to reside in on-campus dormitories, were denied the use of university facilities, and were barred from participating in contact sports. Track and Field was the only athletic outlet available to Black students.</p>
+
+    <h2>The Founding Vision</h2>
+
+    <p>In the school years of 1910–11, a small group of Black students at Indiana University — most working their way through school — recognized that they had no place in the university's social life. Drawn together by common interests and a shared sense of purpose, they resolved that a Greek letter fraternity would fill the missing link in their college existence.</p>
+
+    <p>Two of these men, Elder Watson Diggs and Byron Kenneth Armstrong, had previously attended Howard University and encountered men belonging to the only national Black Greek letter fraternity then in existence. Their experiences at Howard gave rise to the chief motivating spirits that sowed the seed for a new fraternity at Indiana University.</p>
+
+    <div class="history-quote">
+      <p>"These men of vision decided the fraternity would be more than another social organization. Reliance would be placed upon high Christian ideals and the purpose of Achievement."</p>
+    </div>
+
+    <p>Eight other men joined Diggs and Armstrong to organize the fraternity. The charter members were Elder Watson Diggs, Byron K. Armstrong, John M. Lee, Henry T. Asher, Marcus P. Blakemore, Guy L. Grant, Paul W. Caine, George W. Edmonds, Ezra D. Alexander, and Edward G. Irvin. They gave the organization the temporary name Alpha Omega while further developing its formation. Diggs presided as president; Irvin was assigned interim secretary.</p>
+
+    <p>The Founders were God-fearing, serious-minded young men with the imagination, ambition, courage, and determination to defy custom in pursuit of a college education and career. It was clear at the outset that the new fraternity would not seek its members from among the sons of wealthy or socially prominent families. These visionaries determined that the fraternity would seek to raise the sights of Black youth and stimulate them to accomplishments higher than might otherwise be imagined.</p>
+
+    <h2>January 5, 1911 — A Fraternity Is Born</h2>
+
+    <p>On January 5, 1911, the fraternity was originally known as Kappa Alpha Nu — possibly as a tribute to the Alpha Kappa Nu Fraternity students of 1903 who had preceded them at Indiana University. The fraternity's ritual and ceremonial forms, constitution, hymn, and motto were created through the combined labors of Diggs and Armstrong. Founder Diggs took courses in Greek heraldry and mythology to root the fraternity in authenticity. John Milton Lee also contributed significantly to the fledgling organization.</p>
+
+    <p>For their foundational work: Diggs was named permanent chairman, Lee was designated secretary, and Armstrong as sergeant-at-arms. These three Founders are credited with guiding the infant fraternity through the most perilous years of its life.</p>
+
+    <p>Kappa Alpha Nu became the <strong>first incorporated Black fraternity in the United States</strong> once granted a charter by the Indiana Secretary of State on <strong>May 15, 1911</strong>.</p>
+
+    <h2>From Kappa Alpha Nu to Kappa Alpha Psi®</h2>
+
+    <p>One day, as a fraternity member named Frank Summers was running the hurdles at a track meet, Founder Diggs overheard a White spectator refer to him with a racial slur derived from the fraternity's initials "KAN." Others confused the abbreviation with the state of Kansas. The name and image of the fraternity were of paramount importance, and these incidents prompted the Founders to act.</p>
+
+    <p>The Greek letter "Ψ" (Psi) was chosen in place of "N," giving the fraternity a distinctive Greek letter symbol that was unmistakably its own. The name was officially changed to <strong>Kappa Alpha Psi®</strong> by resolution at the Grand Chapter Meeting in December 1914, effective <strong>April 15, 1915</strong>.</p>
+
+    <h2>Growth &amp; Expansion</h2>
+
+    <p>From the beginning, every endeavor was directed toward building a strong foundation before expanding. Careful consideration was given to ensuring the organization was firmly rooted before new chapters were chartered. Five chapters were established from 1913–1915, centered in the Midwest; the first Eastern chapter followed in 1915. Except during World War I and II — when some Grand Chapter Meetings were suspended — Kappa Alpha Psi® has grown with unabating momentum.</p>
+
+    <p>Kappa Alpha Psi® was among the first Black Greek-lettered collegiate organizations to issue a monthly publication. The inaugural edition of <em>The Kappa Alpha Nu Journal</em> debuted in April 1914 and has been printed continuously — with the exception of 1918 and 1919 due to WWI.</p>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="t-year">January 5, 1911</div>
+        <p>Fraternity founded as Kappa Alpha Nu at Indiana University, Bloomington, IN.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">May 15, 1911</div>
+        <p>Granted charter by the Indiana Secretary of State — first incorporated Black fraternity in the United States.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">April 1914</div>
+        <p>Inaugural edition of <em>The Kappa Alpha Nu Journal</em> published.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">December 1914</div>
+        <p>Resolution adopted at Grand Chapter Meeting to rename the fraternity Kappa Alpha Psi®.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">April 15, 1915</div>
+        <p>Name change to Kappa Alpha Psi® becomes official.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">1913–1915</div>
+        <p>Five chapters chartered, centered in the Midwest; first Eastern chapter established 1915.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="t-year">Today</div>
+        <p>Over 250,000 members across 700+ undergraduate and alumni chapters in the U.S. and 13 international chapters worldwide.</p>
+      </div>
+    </div>
+
+    <h2>A Global Brotherhood</h2>
+
+    <p>Kappa Alpha Psi® is now comprised of functioning undergraduate and alumni chapters on major campuses and in cities throughout the country. It is the 2nd oldest existing collegiate historically Black Greek letter fraternity and the <strong>1st intercollegiate fraternity incorporated as a national body</strong>. It is also the first Greek letter organization to establish its Alpha Chapter on Indiana University's campus.</p>
+
+    <p>The fraternity has international chapters in Nigeria, South Africa, Bermuda, The Bahamas, U.S. Virgin Islands, Panama, United Kingdom, Germany, South Korea, Dominican Republic, Abu Dhabi, Canada, and Japan.</p>
+
+    <p>Locally, chapters of Kappa Alpha Psi® feed the homeless, award scholarships, mentor young men, host blood drives, and lead public health awareness seminars. Nationally, the fraternity has raised more than $1 Million for St. Jude Children's Research Center. Internationally, Kappa Alpha Psi® brothers have served in every U.S. military conflict since World War I and have answered the call of service following natural disasters across the globe.</p>
+
+    <p>Kappa Alpha Psi® proudly holds that its Constitution has never contained any clause that excluded — or suggested the exclusion of — a man from membership based on color, creed, or national origin.</p>
+
+    <h2>Achievement in Every Field of Human Endeavor</h2>
+
+    <p>Kappa Alpha Psi® proudly counts among its members men who exemplify achievement at the highest levels:</p>
+
+    <div class="notable-grid">
+      <span class="notable-chip">Ralph Abernathy</span>
+      <span class="notable-chip">Arthur Ashe</span>
+      <span class="notable-chip">Wilt Chamberlain</span>
+      <span class="notable-chip">Bill Russell</span>
+      <span class="notable-chip">Oscar Robertson</span>
+      <span class="notable-chip">Gayle Sayers</span>
+      <span class="notable-chip">Johnnie Cochran</span>
+      <span class="notable-chip">Tom Bradley</span>
+      <span class="notable-chip">John Conyers</span>
+      <span class="notable-chip">Alcee Hastings</span>
+      <span class="notable-chip">Bob Johnson</span>
+      <span class="notable-chip">Benjamin Jealous</span>
+      <span class="notable-chip">Lerone Bennett, Jr.</span>
+      <span class="notable-chip">Donald Byrd</span>
+      <span class="notable-chip">Smokie Norful</span>
+      <span class="notable-chip">Marvin Sapp</span>
+      <span class="notable-chip">Tavis Smiley</span>
+      <span class="notable-chip">John Singleton</span>
+      <span class="notable-chip">Cedric the Entertainer</span>
+      <span class="notable-chip">Montell Jordan</span>
+      <span class="notable-chip">Mike Tomlin</span>
+      <span class="notable-chip">Colin Kaepernick</span>
+      <span class="notable-chip">Adrian Fenty</span>
+      <span class="notable-chip">Robert S. Abbott</span>
+      <span class="notable-chip">Ed Gardner</span>
+      <span class="notable-chip">Kwame Jackson</span>
+    </div>
+
+    <div class="history-source">
+      Content adapted from the official <a href="https://www.kappaalphapsi1911.com/history/" target="_blank" rel="noopener">Kappa Alpha Psi® Fraternity, Inc. Historical Brief</a>. All rights belong to Kappa Alpha Psi® Fraternity, Inc.
+    </div>
+
+  </div>
+</div>
 
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
-
 </body>
 </html>
