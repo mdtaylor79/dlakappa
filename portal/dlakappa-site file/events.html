@@ -11,7 +11,6 @@
 </head>
 <body data-page="events">
 <div id="site-nav-placeholder"></div>
--->
 
   <div class="page-hero">
     <div class="wrap">
@@ -175,6 +174,77 @@ var CAL_EVENTS = {
   '2026-08-15': { title: "Back to School Drive",            desc: "School supply giveaway for students" },
   '2026-10-18': { title: "Achievement Scholarship Gala",    desc: "Annual fundraising gala" }
 }
+// ── CALENDAR RENDER ───────────────────────────────────────────────────────────
+var calYear, calMonth;
+var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function renderCal() {
+  var now = new Date();
+  if (calYear === undefined) { calYear = now.getFullYear(); calMonth = now.getMonth(); }
+  var grid    = document.getElementById('calGrid');
+  var title   = document.getElementById('calTitle');
+  title.textContent = MONTHS[calMonth] + ' ' + calYear;
+  grid.innerHTML = '';
+
+  var firstDay = new Date(calYear, calMonth, 1).getDay();
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  var todayStr = now.getFullYear() + '-' + pad(now.getMonth()+1) + '-' + pad(now.getDate());
+
+  // Blank cells before first day
+  for (var i = 0; i < firstDay; i++) {
+    var blank = document.createElement('div');
+    blank.style.cssText = 'border:1px solid #e0d8cc;min-height:52px;background:#fafafa;';
+    grid.appendChild(blank);
+  }
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var key = calYear + '-' + pad(calMonth+1) + '-' + pad(d);
+    var hasEvent = CAL_EVENTS[key];
+    var isToday  = key === todayStr;
+    var cell = document.createElement('div');
+    cell.style.cssText = 'border:1px solid #e0d8cc;min-height:52px;padding:.3rem .4rem;cursor:' + (hasEvent ? 'pointer' : 'default') + ';background:' + (isToday ? '#f2ebd7' : '#fff') + ';position:relative;';
+    var num = document.createElement('span');
+    num.textContent = d;
+    num.style.cssText = 'font-size:.75rem;font-weight:' + (isToday ? '700' : '400') + ';color:' + (isToday ? '#70110c' : '#333') + ';display:block;';
+    cell.appendChild(num);
+    if (hasEvent) {
+      var dot = document.createElement('span');
+      dot.style.cssText = 'display:block;width:6px;height:6px;border-radius:50%;background:#c69a3f;margin-top:3px;';
+      cell.appendChild(dot);
+      (function(k){ cell.addEventListener('click', function(){ showPopup(k); }); })(key);
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+function showPopup(key) {
+  var ev = CAL_EVENTS[key];
+  if (!ev) return;
+  var parts = key.split('-');
+  var dateStr = MONTHS[parseInt(parts[1])-1] + ' ' + parseInt(parts[2]) + ', ' + parts[0];
+  document.getElementById('popupDate').textContent  = dateStr;
+  document.getElementById('popupTitle').textContent = ev.title;
+  document.getElementById('popupDesc').textContent  = ev.desc;
+  document.getElementById('calEventPopup').style.display = 'block';
+}
+
+function attachCalNav() {
+  document.getElementById('calPrev').addEventListener('click', function(){
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    document.getElementById('calEventPopup').style.display = 'none';
+    renderCal();
+  });
+  document.getElementById('calNext').addEventListener('click', function(){
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    document.getElementById('calEventPopup').style.display = 'none';
+    renderCal();
+  });
+}
+
 // ── RSVP HANDLER ──────────────────────────────────────────────────────────────
 function handleRsvp(e){
   e.preventDefault();
@@ -184,10 +254,8 @@ function handleRsvp(e){
   var size  = document.getElementById('rsvpSize').value;
   if(!event){ alert('Please select an event.'); return; }
   if(!name || !email){ alert('Please fill in your name and email.'); return; }
-  // In production this would POST to a backend
   document.getElementById('rsvpForm').style.display = 'none';
   document.getElementById('rsvpSuccess').style.display = 'block';
-  console.log('RSVP submitted:', {event,name,email,size});
 }
 document.addEventListener("DOMContentLoaded",function(){renderCal();attachCalNav();});
 </script>
