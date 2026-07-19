@@ -25,10 +25,22 @@ body{background:#ffffff !important;min-height:100vh;}
   display:flex;align-items:center;height:58px;gap:0;
 }
 .nav-logo{
+  display:flex;align-items:center;gap:.6rem;
+  text-decoration:none;margin-right:auto;flex-shrink:0;cursor:pointer;
+}
+.nav-logo-crest{
+  height:38px;width:auto;object-fit:contain;flex-shrink:0;
+}
+.nav-logo-text{
+  display:flex;flex-direction:column;line-height:1.2;
+}
+.nav-logo-chapter{
   color:#c69a3f;font-family:'Cinzel',serif;
-  font-size:.82rem;font-weight:600;text-decoration:none;
-  letter-spacing:.05em;white-space:nowrap;margin-right:auto;
-  flex-shrink:0;cursor:pointer;
+  font-size:.78rem;font-weight:700;letter-spacing:.04em;white-space:nowrap;
+}
+.nav-logo-frat{
+  color:rgba(242,235,215,.7);font-family:'Archivo',sans-serif;
+  font-size:.65rem;font-weight:400;letter-spacing:.02em;white-space:nowrap;
 }
 .site-nav ul{
   list-style:none;display:flex;align-items:center;

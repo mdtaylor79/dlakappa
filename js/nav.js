@@ -2,7 +2,13 @@
   const NAV_HTML = `
 <nav class="site-nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="/">DLA&nbsp;Kappa&nbsp;&alpha;&psi;</a>
+    <a class="nav-logo" href="/">
+      <img src="/img/kappa-crest.png" alt="Kappa Alpha Psi crest" class="nav-logo-crest">
+      <span class="nav-logo-text">
+        <span class="nav-logo-chapter">Denton-Lewisville (TX) Alumni Chapter</span>
+        <span class="nav-logo-frat">Kappa Alpha Psi Fraternity, Inc.</span>
+      </span>
+    </a>
     <button class="nav-toggle" id="hamburger"><span></span><span></span><span></span></button>
     <ul id="main-menu">
       <li><a href="/" data-page="home">Home</a></li>
