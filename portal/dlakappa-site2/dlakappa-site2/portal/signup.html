@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Create Account — DLA Member Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .card {
+    background: #fff;
+    width: 100%;
+    max-width: 360px;
+    padding: 2.5rem 2rem 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,.10);
+    text-align: center;
+  }
+  .card img.crest { width: 72px; margin-bottom: 1rem; }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+    margin-bottom: 1.4rem;
+  }
+  .field { margin-bottom: 1rem; text-align: left; }
+  .field label {
+    display: block;
+    font-size: .78rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: .35rem;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: .65rem .8rem;
+    border: 1.5px solid #ddd;
+    border-radius: 4px;
+    background: #f0f0f0;
+    font-size: .95rem;
+    font-family: 'Archivo', sans-serif;
+    color: #222;
+    outline: none;
+    transition: border-color .2s;
+    appearance: auto;
+  }
+  .field input:focus, .field select:focus { border-color: #c69a3f; background: #fff; }
+  .error-msg {
+    display: none;
+    background: #fff0f0;
+    border: 1px solid #f0c0c0;
+    color: #a00;
+    font-size: .82rem;
+    padding: .6rem .8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  .success-msg {
+    display: none;
+    background: #f0fff4;
+    border: 1px solid #b2e6c8;
+    color: #1a6e3a;
+    font-size: .82rem;
+    padding: .6rem .8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  .btn-submit {
+    width: 100%;
+    padding: .85rem;
+    background: #c69a3f;
+    color: #2a0604;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Cinzel', serif;
+    font-size: .88rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    cursor: pointer;
+    margin-top: .5rem;
+    transition: background .2s;
+  }
+  .btn-submit:hover { background: #b38932; }
+  .btn-submit:disabled { background: #d4b96a; cursor: not-allowed; }
+  .switch { margin-top: 1.25rem; font-size: .82rem; color: #555; }
+  .switch a { color: #70110c; font-weight: 600; text-decoration: none; }
+  .switch a:hover { text-decoration: underline; }
+  .divider {
+    display: flex; align-items: center; gap: .75rem;
+    margin: 1.25rem 0; color: #aaa; font-size: .78rem;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: #e0e0e0;
+  }
+  .btn-google {
+    width: 100%; padding: .72rem;
+    background: #fff; color: #333;
+    border: 1.5px solid #ddd; border-radius: 4px;
+    font-family: 'Archivo', sans-serif;
+    font-size: .88rem; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center; gap: .6rem;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-google:hover { background: #f8f8f8; border-color: #bbb; }
+  .btn-google svg { width: 18px; height: 18px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="card">
+  <img class="crest" src="/img/kappa-crest.png" alt="DLA Kappa Crest">
+  <h1>Create your account</h1>
+  <div class="error-msg"   id="errorMsg"></div>
+  <div class="success-msg" id="successMsg"></div>
+  <form id="signupForm" onsubmit="handleSignup(event)">
+    <div class="field">
+      <label for="firstName">First name</label>
+      <input type="text" id="firstName" autocomplete="given-name" required>
+    </div>
+    <div class="field">
+      <label for="lastName">Last name</label>
+      <input type="text" id="lastName" autocomplete="family-name" required>
+    </div>
+    <div class="field">
+      <label for="tier">Membership tier</label>
+      <select id="tier">
+        <option value="Subscribing Member">Subscribing Member</option>
+        <option value="Life Member">Life Member</option>
+        <option value="Associate Member">Associate Member</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" autocomplete="email" required>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="new-password" minlength="6" required>
+    </div>
+    <button type="submit" class="btn-submit" id="submitBtn">Create account</button>
+  </form>
+
+  <div class="divider">or</div>
+
+  <button class="btn-google" onclick="signUpWithGoogle()">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+    </svg>
+    Sign up with Google
+  </button>
+
+  <div class="switch">Already have an account? <a href="/portal/login.html">Sign in</a></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/portal/supabase-config.js"></script>
+<script>
+// Redirect if already logged in
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) window.location.href = '/portal/dashboard.html';
+})();
+
+async function signUpWithGoogle() {
+  await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: 'https://dlakappa.org/portal/dashboard.html' }
+  });
+}
+
+async function handleSignup(e) {
+  e.preventDefault();
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName  = document.getElementById('lastName').value.trim();
+  const tier      = document.getElementById('tier').value;
+  const email     = document.getElementById('email').value.trim().toLowerCase();
+  const password  = document.getElementById('password').value;
+  const errEl     = document.getElementById('errorMsg');
+  const succEl    = document.getElementById('successMsg');
+  const btn       = document.getElementById('submitBtn');
+
+  errEl.style.display = 'none';
+  succEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Creating account…';
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { firstName, lastName, tier }
+    }
+  });
+
+  if (error) {
+    errEl.textContent = error.message;
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Create account';
+  } else {
+    // Supabase may require email confirmation — handle both cases
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      window.location.href = '/portal/dashboard.html';
+    } else {
+      succEl.textContent = 'Account created! Check your email to confirm, then sign in.';
+      succEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Create account';
+    }
+  }
+}
+</script>
+</body>
+</html>
