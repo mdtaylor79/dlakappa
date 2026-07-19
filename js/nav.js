@@ -21,6 +21,7 @@
           <a href="/about/province.history.html">Province History</a>
           <a href="/about/chapter_history.html">Chapter History</a>
           <a href="/about/chapter_leadership.html">Leadership</a>
+          <a href="/about/chapter_committees.html">Committees</a>
         </div>
       </li>
       <li><a href="/membership.html" data-page="membership">Membership</a></li>
