@@ -26,7 +26,13 @@
       <li><a href="/membership.html" data-page="membership">Membership</a></li>
       <li><a href="/programs.html" data-page="programs">Programs</a></li>
       <li><a href="/dla_guide_right.html" data-page="guideright">DLA Guide Right</a></li>
-      <li><a href="/events.html" data-page="events">Events</a></li>
+      <li class="has-drop">
+        <a href="/events.html" data-page="events">Events</a>
+        <div class="drop">
+          <a href="/events.html">Events &amp; Calendar</a>
+          <a href="/events/our_community.html">Our Community</a>
+        </div>
+      </li>
       <li><a href="/contact.html" data-page="contact">Contact</a></li>
       <li class="nav-members">
         <a href="/portal/login.html">Members Area</a>
