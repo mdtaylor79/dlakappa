@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Training | DLA Kappas Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Uses the same SUPABASE_URL / SUPABASE_ANON_KEY constants as the rest of the portal -->
+<script src="../assets/js/config.js"></script>
+<style>
+  :root {
+    --crimson: #7D110C;
+    --cream: #F2EBD7;
+    --text: #2A2A2A;
+    --pending: #C9971C;
+    --complete: #1E7145;
+    --expired: #A31F1F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+  }
+  header {
+    background: var(--crimson);
+    color: #fff;
+    padding: 20px 24px;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+  }
+  th {
+    background: var(--crimson);
+    color: #fff;
+    font-weight: 600;
+  }
+  tr:last-child td { border-bottom: none; }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .badge.Complete { background: var(--complete); }
+  .badge.Pending { background: var(--pending); }
+  .badge.Expired { background: var(--expired); }
+  .empty, .loading, .error {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    font-size: 0.95rem;
+  }
+  .error { color: var(--expired); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>My Training</h1>
+  <a href="dashboard.html">&larr; Back to Dashboard</a>
+</header>
+
+<main>
+  <div class="card">
+    <div id="content" class="loading">Loading your training records&hellip;</div>
+  </div>
+</main>
+
+<script>
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  function renderRows(rows) {
+    const content = document.getElementById('content');
+
+    if (!rows || rows.length === 0) {
+      content.innerHTML = '<div class="empty">No training records yet. Check back after your next session.</div>';
+      return;
+    }
+
+    const rowsHtml = rows.map(r => `
+      <tr>
+        <td>${escapeHtml(r.training_name)}</td>
+        <td>${r.completed_date ? formatDate(r.completed_date) : '—'}</td>
+        <td><span class="badge ${r.status}">${r.status}</span></td>
+        <td>${r.verified_by ? escapeHtml(r.verified_by) : '—'}</td>
+      </tr>
+    `).join('');
+
+    content.outerHTML = `
+      <table>
+        <thead>
+          <tr><th>Training</th><th>Completed</th><th>Status</th><th>Verified By</th></tr>
+        </thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+    `;
+  }
+
+  function formatDate(d) {
+    const date = new Date(d + 'T00:00:00');
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  async function loadTraining() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (!session) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const { data, error } = await supabaseClient
+      .from('member_training')
+      .select('*')
+      .eq('member_id', session.user.id)
+      .order('completed_date', { ascending: false, nullsFirst: false });
+
+    if (error) {
+      document.getElementById('content').innerHTML =
+        `<div class="error">Couldn't load training records: ${escapeHtml(error.message)}</div>`;
+      return;
+    }
+
+    renderRows(data);
+  }
+
+  loadTraining();
+</script>
+
+</body>
+</html>
