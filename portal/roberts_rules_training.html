@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parliamentary Procedure | Chapter Member Training</title>
+<style>
+:root{--crimson:#8B0000;--crimson-dark:#6B0000;--cream:#F6F0E4;--cream-dark:#EDE4CE;--white:#FFFFFF;--gray-50:#FAFAFA;--gray-100:#F4F4F4;--gray-200:#E8E8E8;--gray-400:#9E9E9E;--gray-600:#5A5A5A;--gray-800:#2A2A2A;--sidebar-w:280px;--font:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--radius:6px;--shadow-sm:0 1px 3px rgba(0,0,0,.10);--shadow-md:0 4px 12px rgba(0,0,0,.10)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--gray-100);color:var(--gray-800);font-size:15px;line-height:1.7;display:flex;min-height:100vh}
+#sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--crimson-dark);color:var(--white);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;overflow-y:auto;transition:transform .2s ease}
+.sb-brand{padding:28px 22px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
+.sb-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+.sb-title{font-size:1rem;font-weight:700;line-height:1.35;color:var(--white)}
+.sb-progress-wrap{padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.12)}
+.sb-progress-label{font-size:.75rem;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;justify-content:space-between}
+.sb-progress-bar{height:4px;background:rgba(255,255,255,.15);border-radius:2px}
+.sb-progress-fill{height:100%;background:var(--cream);border-radius:2px;transition:width .4s ease;width:0%}
+.sb-nav{flex:1;padding:12px 0}
+.sb-module-btn{display:flex;align-items:flex-start;gap:12px;width:100%;padding:12px 22px;background:none;border:none;color:rgba(255,255,255,.65);text-align:left;cursor:pointer;transition:background .2s,color .2s;font-family:var(--font);font-size:.83rem;line-height:1.4}
+.sb-module-btn:hover{background:rgba(255,255,255,.07);color:var(--white)}
+.sb-module-btn.active{background:rgba(255,255,255,.12);color:var(--white);border-left:3px solid var(--cream)}
+.sb-module-btn.completed{color:rgba(255,255,255,.8)}
+.sb-num{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:1px;transition:background .2s,border-color .2s}
+.sb-module-btn.active .sb-num{background:var(--cream);border-color:var(--cream);color:var(--crimson-dark)}
+.sb-module-btn.completed .sb-num{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4)}
+.sb-module-text{flex:1}
+.sb-module-tag{font-size:.67rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.38);display:block;margin-bottom:1px}
+#topbar{display:none;position:fixed;top:0;left:0;right:0;height:52px;background:var(--crimson-dark);color:var(--white);align-items:center;padding:0 16px;z-index:300;gap:14px}
+#topbar-title{font-size:.9rem;font-weight:700;flex:1}
+#menu-btn{background:none;border:none;color:var(--white);font-size:1.2rem;cursor:pointer;padding:4px}
+#main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;display:flex;flex-direction:column}
+section.module{display:none;flex:1;flex-direction:column;animation:fadeUp .3s ease}
+section.module.active{display:flex}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.module-hero{background:var(--crimson);color:var(--white);padding:52px 60px 44px}
+.module-hero .module-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px}
+.module-hero h1{font-size:1.9rem;font-weight:700;line-height:1.25;margin-bottom:14px}
+.module-hero .module-desc{font-size:1rem;color:rgba(255,255,255,.8);max-width:620px;line-height:1.6}
+.objectives-band{background:var(--cream);border-bottom:1px solid var(--cream-dark);padding:28px 60px}
+.objectives-band h2{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin-bottom:14px}
+.obj-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.obj-list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--gray-800)}
+.obj-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--crimson);flex-shrink:0;margin-top:8px}
+.module-body{padding:48px 60px;flex:1;max-width:820px}
+.block{margin-bottom:36px}
+.block-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--crimson);display:inline-block}
+.block p{color:var(--gray-600);margin-bottom:12px;font-size:.93rem}
+.callout{background:var(--cream);border-left:4px solid var(--crimson);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin:20px 0;font-size:.9rem;color:var(--gray-800)}
+.callout strong{color:var(--crimson);display:block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.callout-good{background:#F0F6EF;border-left-color:#2E7D32}.callout-good strong{color:#2E7D32}
+.callout-bad{background:#FDF3F3;border-left-color:#9B1C1C}.callout-bad strong{color:#9B1C1C}
+.callout-note{background:#FBF7EE;border-left-color:#B45309}.callout-note strong{color:#B45309}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:8px}
+.g-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+.g-card .g-term{font-weight:700;font-size:.88rem;color:var(--gray-800);margin-bottom:5px}
+.g-card .g-def{font-size:.82rem;color:var(--gray-600);line-height:1.5}
+.step-list{display:flex;flex-direction:column;gap:0}
+.step-item{display:flex;gap:0;position:relative}
+.step-item:not(:last-child) .step-line{width:1px;background:var(--cream-dark);position:absolute;left:16px;top:36px;bottom:0}
+.step-left{display:flex;flex-direction:column;align-items:center;padding-right:20px;flex-shrink:0}
+.step-circle{width:32px;height:32px;border-radius:50%;background:var(--crimson);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0;z-index:1;position:relative}
+.step-right{padding-bottom:28px;flex:1;padding-top:4px}
+.step-right h4{font-size:.93rem;font-weight:700;color:var(--gray-800);margin-bottom:4px}
+.step-right p{font-size:.88rem;color:var(--gray-600);margin-bottom:0}
+.step-quote{margin-top:8px;background:var(--gray-100);border-left:3px solid var(--crimson);padding:8px 14px;font-style:italic;font-size:.84rem;color:var(--gray-600);border-radius:0 var(--radius) var(--radius) 0}
+.data-table-wrap{overflow-x:auto;margin-top:8px}
+.data-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.data-table thead tr{background:var(--crimson);color:var(--white)}
+.data-table th{padding:11px 14px;text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.04em}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top}
+.data-table tbody tr:nth-child(even){background:var(--gray-50)}
+.data-table tbody tr:hover{background:var(--cream)}
+.cell-yes{color:#2E7D32;font-weight:700}.cell-no{color:#9B1C1C;font-weight:700}
+.accordion-set{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.acc-item{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;background:var(--white)}
+.acc-header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--gray-800);background:var(--white);user-select:none;transition:background .2s}
+.acc-header:hover{background:var(--gray-50)}
+.acc-header.open{background:var(--cream);color:var(--crimson);border-bottom:1px solid var(--cream-dark)}
+.acc-chevron{font-size:.75rem;color:var(--gray-400);transition:transform .2s}
+.acc-header.open .acc-chevron{transform:rotate(180deg);color:var(--crimson)}
+.acc-body{display:none;padding:18px 20px;font-size:.88rem;color:var(--gray-600);line-height:1.7;border-top:1px solid var(--gray-200)}
+.acc-body.open{display:block}
+.acc-body ul{margin-top:8px;margin-left:18px}
+.acc-body li{margin-bottom:6px}
+.scenario-block{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;background:var(--white);box-shadow:var(--shadow-sm)}
+.scenario-header{padding:14px 20px;background:var(--gray-50);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:12px}
+.scenario-badge{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:3px}
+.badge-violation{background:#FDF3F3;color:#9B1C1C;border:1px solid #FECACA}
+.badge-improper{background:#FBF7EE;color:#B45309;border:1px solid #FDE68A}
+.badge-proper{background:#F0F6EF;color:#2E7D32;border:1px solid #A7D7A8}
+.scenario-title{font-size:.88rem;font-weight:600;color:var(--gray-800)}
+.scenario-scene{padding:20px;font-size:.88rem;color:var(--gray-600);background:var(--white);border-bottom:1px solid var(--gray-200);line-height:1.75}
+.scenario-scene .sp{font-weight:700;color:var(--gray-800)}
+.reveal-btn{display:block;width:100%;padding:12px 20px;background:none;border:none;text-align:left;font-size:.82rem;font-weight:600;color:var(--crimson);cursor:pointer;font-family:var(--font);transition:background .2s}
+.reveal-btn:hover{background:var(--cream)}
+.scenario-ruling{display:none;padding:16px 20px;font-size:.86rem;color:var(--gray-700);border-top:1px solid var(--gray-200);line-height:1.65}
+.scenario-ruling.good{background:#F0F6EF}.scenario-ruling.bad{background:#FDF3F3}.scenario-ruling.note{background:#FBF7EE}
+.ruling-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.ruling-label.good{color:#2E7D32}.ruling-label.bad{color:#9B1C1C}.ruling-label.note{color:#B45309}
+.do-dont-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dd-panel{border-radius:var(--radius);overflow:hidden;border:1px solid var(--gray-200)}
+.dd-header{padding:14px 18px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.dd-header.do-h{background:#2E7D32;color:var(--white)}.dd-header.dont-h{background:#9B1C1C;color:var(--white)}
+.dd-list{list-style:none;padding:0;background:var(--white)}
+.dd-list li{display:flex;align-items:flex-start;gap:12px;padding:10px 18px;font-size:.86rem;color:var(--gray-600);border-bottom:1px solid var(--gray-100)}
+.dd-list li:last-child{border-bottom:none}
+.dd-icon{font-size:.8rem;font-weight:900;flex-shrink:0;margin-top:2px}
+.do-icon{color:#2E7D32}.dont-icon{color:#9B1C1C}
+.phrase-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.phrase-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px 16px}
+.phrase-label{font-size:.72rem;font-weight:700;color:var(--crimson);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.phrase-text{font-size:.85rem;color:var(--gray-600);font-style:italic;line-height:1.5}
+.role-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.role-card-title{font-size:.95rem;font-weight:700;color:var(--gray-800);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--gray-200)}
+.role-card ul{list-style:none;padding:0}
+.role-card li{display:flex;gap:10px;align-items:flex-start;padding:5px 0;font-size:.87rem;color:var(--gray-600);border-bottom:1px solid var(--gray-100)}
+.role-card li:last-child{border-bottom:none}
+.role-card li::before{content:'—';color:var(--crimson);font-weight:700;flex-shrink:0}
+/* VIDEO */
+.video-block{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;margin:24px 0;box-shadow:var(--shadow-sm)}
+.video-label{background:var(--crimson);color:var(--white);padding:10px 18px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;background:#000}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-caption{padding:12px 18px;font-size:.82rem;color:var(--gray-600);background:var(--gray-50);border-top:1px solid var(--gray-200);font-style:italic}
+/* KNOWLEDGE CHECK */
+.kc-section{background:var(--cream);border:2px solid var(--crimson);border-radius:var(--radius);padding:28px;margin-top:36px}
+.kc-section-header{margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--cream-dark)}
+.kc-section-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:4px}
+.kc-section-sub{font-size:.85rem;color:var(--gray-600)}
+.kc-q{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.kc-q-num{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--crimson);margin-bottom:8px}
+.kc-q-text{font-size:.95rem;font-weight:600;color:var(--gray-800);margin-bottom:16px;line-height:1.5}
+.kc-opts{list-style:none;display:flex;flex-direction:column;gap:8px}
+.kc-opts label{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--gray-200);border-radius:var(--radius);cursor:pointer;font-size:.87rem;color:var(--gray-600);transition:border-color .2s,background .2s;line-height:1.5}
+.kc-opts label:hover{border-color:var(--crimson);background:var(--cream)}
+.kc-opts input[type=radio]{margin-top:2px;flex-shrink:0;accent-color:var(--crimson)}
+.kc-btn{margin-top:14px;padding:9px 22px;background:var(--crimson);color:var(--white);border:none;border-radius:var(--radius);font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:background .2s}
+.kc-btn:hover{background:var(--crimson-dark)}
+.kc-btn:disabled{background:var(--gray-400);cursor:not-allowed}
+.kc-feedback{display:none;margin-top:14px;padding:12px 16px;border-radius:var(--radius);font-size:.86rem;line-height:1.6}
+.kc-correct{background:#F0F6EF;border:1px solid #A7D7A8;color:#1A5E1C}
+.kc-incorrect{background:#FDF3F3;border:1px solid #FECACA;color:#7F1D1D}
+.fb-label{font-weight:700;display:block;margin-bottom:4px}
+.kc-complete-msg{display:none;align-items:center;gap:12px;background:#F0F6EF;border:1px solid #A7D7A8;border-radius:var(--radius);padding:14px 18px;margin-top:8px;font-size:.88rem;color:#1A5E1C;font-weight:600}
+/* QUIZ */
+.quiz-q-block{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px;margin-bottom:20px;display:none;box-shadow:var(--shadow-sm)}
+.quiz-q-block.active{display:block}
+.quiz-q-num{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--crimson);margin-bottom:10px}
+.quiz-q-text{font-size:.97rem;font-weight:600;color:var(--gray-800);margin-bottom:20px;line-height:1.5}
+.quiz-opts{list-style:none;display:flex;flex-direction:column;gap:10px}
+.quiz-opts label{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:1px solid var(--gray-200);border-radius:var(--radius);cursor:pointer;font-size:.88rem;color:var(--gray-600);transition:border-color .2s,background .2s;line-height:1.5}
+.quiz-opts label:hover{border-color:var(--crimson);background:var(--cream)}
+.quiz-opts input[type=radio]{margin-top:2px;flex-shrink:0;accent-color:var(--crimson)}
+.quiz-submit{margin-top:18px;padding:10px 24px;background:var(--crimson);color:var(--white);border:none;border-radius:var(--radius);font-size:.87rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:background .2s}
+.quiz-submit:hover{background:var(--crimson-dark)}
+.quiz-submit:disabled{background:var(--gray-400);cursor:not-allowed}
+.quiz-feedback{display:none;margin-top:16px;padding:14px 18px;border-radius:var(--radius);font-size:.87rem;line-height:1.6}
+.fb-correct{background:#F0F6EF;border:1px solid #A7D7A8;color:#1A5E1C}
+.fb-incorrect{background:#FDF3F3;border:1px solid #FECACA;color:#7F1D1D}
+.quiz-tracker{font-size:.8rem;color:var(--gray-400);margin-bottom:20px;display:flex;justify-content:space-between}
+.score-panel{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:48px;text-align:center;display:none;box-shadow:var(--shadow-sm)}
+.score-ring{width:100px;height:100px;border-radius:50%;border:6px solid var(--crimson);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px}
+.score-ring .s-num{font-size:1.9rem;font-weight:700;color:var(--crimson);line-height:1}
+.score-ring .s-of{font-size:.72rem;color:var(--gray-400);margin-top:2px}
+.score-msg{font-size:1.1rem;font-weight:700;color:var(--gray-800);margin-bottom:6px}
+.score-sub{font-size:.88rem;color:var(--gray-600);margin-bottom:24px}
+.btn-retake{padding:10px 24px;background:var(--crimson);color:var(--white);border:none;border-radius:var(--radius);font-size:.87rem;font-weight:600;cursor:pointer;font-family:var(--font);margin-right:10px}
+.btn-back{padding:10px 24px;background:none;border:1px solid var(--gray-300);color:var(--gray-600);border-radius:var(--radius);font-size:.87rem;font-weight:600;cursor:pointer;font-family:var(--font)}
+.module-footer{border-top:1px solid var(--gray-200);padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:var(--white)}
+.btn-nav{padding:9px 20px;border-radius:var(--radius);font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s}
+.btn-nav-prev{background:none;border:1px solid var(--gray-300);color:var(--gray-600)}
+.btn-nav-prev:hover{border-color:var(--gray-600)}
+.btn-nav-next{background:var(--crimson);border:1px solid var(--crimson);color:var(--white)}
+.btn-nav-next:hover{background:var(--crimson-dark)}
+.btn-nav:disabled{opacity:.35;cursor:not-allowed}
+.footer-mid{font-size:.78rem;color:var(--gray-400);text-align:center}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:150}
+@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#topbar{display:flex}#main{margin-left:0;padding-top:52px}.module-hero{padding:32px 24px 28px}.module-hero h1{font-size:1.45rem}.objectives-band{padding:22px 24px}.module-body{padding:32px 24px}.module-footer{padding:16px 24px}.do-dont-grid{grid-template-columns:1fr}.phrase-grid{grid-template-columns:1fr}#overlay.open{display:block}}
+
+.sb-logo-wrap{display:flex;justify-content:center;align-items:center;padding:20px 16px 8px;border-bottom:1px solid rgba(255,255,255,.12)}
+.sb-logo{width:160px;height:auto;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+</style>
+</head>
+<body>
+<nav id="sidebar">
+  <div class="sb-logo-wrap">
+  <img src="kap-logo.png" alt="Denton-Lewisville Kappa Alpha Psi Alumni Chapter" class="sb-logo" onerror="this.style.display='none'">
+</div>
+<div class="sb-brand"><div class="sb-label">Chapter Training</div><div class="sb-title">Parliamentary Procedure &amp; Robert's Rules of Order</div></div>
+  <div class="sb-progress-wrap"><div class="sb-progress-label"><span>Course Progress</span><span id="pct-label">0%</span></div><div class="sb-progress-bar"><div class="sb-progress-fill" id="sb-fill"></div></div></div>
+  <div class="sb-nav" id="sb-nav"></div>
+</nav>
+<div id="overlay" onclick="closeSidebar()"></div>
+<header id="topbar"><button id="menu-btn" onclick="toggleSidebar()">&#9776;</button><span id="topbar-title">Parliamentary Procedure</span></header>
+<div id="main">
+
+<!-- MODULE 0: OVERVIEW -->
+<section class="module active" id="mod0">
+  <div class="module-hero"><div class="module-eyebrow">Chapter Training Program</div><h1>Conducting Chapter Meetings: Robert's Rules of Order</h1><p class="module-desc">A structured professional development course for chapter members on parliamentary procedure, meeting conduct, and effective participation.</p></div>
+  <div class="objectives-band"><h2>Course Learning Objectives</h2><p style="font-size:.85rem;color:var(--gray-600);margin-bottom:14px">Upon completing this course, you will be able to:</p>
+  <ul class="obj-list">
+    <li>Explain the purpose and founding principles of Robert's Rules of Order</li>
+    <li>Correctly make, second, amend, and dispose of motions in a chapter meeting</li>
+    <li>Navigate the standard order of business and apply appropriate voting methods</li>
+    <li>Distinguish between main, subsidiary, privileged, and incidental motions</li>
+    <li>Identify and respond appropriately to out-of-order conduct and improper motions</li>
+    <li>Describe the duties and limitations of the presiding officer</li>
+    <li>Apply proper parliamentary procedure across realistic chapter meeting scenarios</li>
+  </ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">About This Course</div>
+      <p>This course is for chapter members who want to participate effectively in formal meetings. Robert's Rules of Order has governed organizational meetings for nearly 150 years — and for good reason. When everyone follows the same rules, meetings are fair, efficient, and productive.</p>
+      <p>Each module ends with a knowledge check you must complete before advancing. A final ten-question assessment closes the course.</p>
+    </div>
+    <div class="block"><div class="block-title">Course Structure — 10 Modules</div>
+    <div class="accordion-set">
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 1 — Foundation: What Is Parliamentary Procedure? <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Covers the history, purpose, and core principles of Robert's Rules and why they matter for your chapter.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 2 — The Language of the Meeting <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Defines key vocabulary every member must know before participating in formal business.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 3 — The Motion Process <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Step-by-step walkthrough of how to introduce, second, debate, amend, and vote on a motion.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 4 — Types of Motions <span class="acc-chevron">&#9660;</span></div><div class="acc-body">The four categories of motions — main, subsidiary, privileged, and incidental — with a quick-reference chart.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 5 — The Order of Business <span class="acc-chevron">&#9660;</span></div><div class="acc-body">How a proper meeting agenda is structured, how minutes are approved, and how voting methods differ.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 6 — Order and Conduct <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Common procedural violations, how the Chair handles them, and what members should do instead.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 7 — Member Guidelines <span class="acc-chevron">&#9660;</span></div><div class="acc-body">A practical reference of dos and don'ts and standard parliamentary phrases.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 8 — The Presiding Officer <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Duties, authority, limitations, and language of the ranking member who chairs the meeting.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 9 — Applied Scenarios <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Six realistic chapter meeting situations requiring you to apply what you've learned.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Module 10 — Knowledge Assessment <span class="acc-chevron">&#9660;</span></div><div class="acc-body">A ten-question final assessment. A score of 80% or higher is the recommended passing threshold.</div></div>
+    </div></div>
+    <div class="callout"><strong>Estimated Time</strong>Allow 60–75 minutes to complete this course, including knowledge checks and the final assessment.</div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" disabled>Previous</button><div class="footer-mid">Overview</div><button class="btn-nav btn-nav-next" onclick="goTo(1)">Begin Course</button></div>
+</section>
+
+<!-- MODULE 1: FOUNDATION -->
+<section class="module" id="mod1">
+  <div class="module-hero"><div class="module-eyebrow">Module 1 of 10</div><h1>Foundation: What Is Parliamentary Procedure?</h1><p class="module-desc">Understanding the purpose and history of Robert's Rules and why structured procedure produces better outcomes for every member.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>State the origin and purpose of Robert's Rules of Order</li><li>Explain why parliamentary procedure benefits every chapter member</li><li>Identify the four core principles that govern parliamentary procedure</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">Background</div>
+      <p>Robert's Rules of Order was first published in 1876 by U.S. Army Brigadier General Henry Martyn Robert. Frustrated by the disorder he observed in meetings — people talking over each other, decisions made without proper consent, minority voices silenced — he adapted U.S. House of Representatives procedures into a rulebook any organization could use.</p>
+      <p>Today, Robert's Rules is the most widely adopted parliamentary authority in the United States, used by thousands of organizations including fraternal and civic chapters.</p>
+    </div>
+    <div class="block"><div class="block-title">Why It Matters for Your Chapter</div>
+      <p>Without shared procedure, meetings become chaotic. Members with the loudest voices dominate, ideas get lost, votes are disputed, and time is wasted. Parliamentary procedure gives every member — regardless of rank or tenure — an equal process for being heard.</p>
+      <div class="callout"><strong>Core Principle</strong>Parliamentary procedure exists to protect the rights of the majority to act, the rights of the minority to be heard, and the rights of individual members to participate fairly.</div>
+    </div>
+    <div class="block"><div class="block-title">The Four Governing Principles</div>
+    <div class="accordion-set">
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">1. Only one matter at a time <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Only one item of business may be on the floor at any given time. This keeps the meeting focused and prevents confusion about what is being decided.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">2. Every member has the right to be heard <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Every member has the right to speak to any debatable motion before a vote. The Chair ensures all voices have an opportunity to be recognized.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">3. The majority rules — with minority rights protected <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Decisions are made by majority vote. However, the minority always retains the right to debate and to raise the matter again at a future meeting.</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">4. All members are equal in the eyes of the Chair <span class="acc-chevron">&#9660;</span></div><div class="acc-body">The presiding officer must treat every member with equal impartiality. Seniority, rank, or personal relationships with the Chair do not grant special privileges.</div></div>
+    </div></div>
+    <div class="video-block">
+      <div class="video-label">Watch: Robert's Rules of Order Quickstart &mdash; Approx. 3 min</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/fm4hxh3_19o?rel=0&modestbranding=1" allowfullscreen></iframe></div>
+      <div class="video-caption">A quick overview of why Robert's Rules exist and the core concepts they address. Requires internet connection.</div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 1 Knowledge Check</span><span class="kc-section-sub">Answer both questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-1-1">
+        <div class="kc-q-num">Check 1 of 2</div>
+        <div class="kc-q-text">Who authored Robert's Rules of Order, and in what year was it first published?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-1-1" value="a"> Thomas Jefferson, 1789</label></li>
+          <li><label><input type="radio" name="kc-1-1" value="b"> Henry M. Robert, 1876</label></li>
+          <li><label><input type="radio" name="kc-1-1" value="c"> George Washington, 1797</label></li>
+          <li><label><input type="radio" name="kc-1-1" value="d"> Benjamin Franklin, 1865</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(1,1,'b','Henry Martyn Robert, a U.S. Army officer, published the first edition in 1876. He drew from procedures used by the U.S. House of Representatives to create a rulebook any organization could adopt.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-1-2">
+        <div class="kc-q-num">Check 2 of 2</div>
+        <div class="kc-q-text">Which core principle states that the majority decides while the minority retains the right to be heard?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-1-2" value="a"> Only one matter may be considered at a time</label></li>
+          <li><label><input type="radio" name="kc-1-2" value="b"> All members are equal in the eyes of the Chair</label></li>
+          <li><label><input type="radio" name="kc-1-2" value="c"> The majority rules, but minority rights are protected</label></li>
+          <li><label><input type="radio" name="kc-1-2" value="d"> Every member has the right to be heard</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(1,2,'c','Parliamentary procedure balances majority rule with minority rights — the majority decides, but the minority always retains the right to debate and to revisit the matter at a future meeting.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-1">Module 1 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(0)">Previous</button><div class="footer-mid">Module 1 of 10</div><button class="btn-nav btn-nav-next" id="next-1" onclick="goTo(2)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 2: KEY TERMS -->
+<section class="module" id="mod2">
+  <div class="module-hero"><div class="module-eyebrow">Module 2 of 10</div><h1>The Language of the Meeting</h1><p class="module-desc">Parliamentary procedure has its own vocabulary. Knowing these terms is the foundation for participating correctly in any chapter meeting.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>Define the core parliamentary terms used in chapter meetings</li><li>Use correct terminology when addressing the Chair or participating in business</li><li>Distinguish between commonly confused terms such as "table," "recess," and "adjourn"</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">Core Terminology</div>
+    <div class="glossary-grid">
+      <div class="g-card"><div class="g-term">Motion</div><div class="g-def">A formal proposal asking the group to take a specific action. All chapter business begins with a motion.</div></div>
+      <div class="g-card"><div class="g-term">Second</div><div class="g-def">A signal that another member wants the motion discussed. It does not mean agreement with the motion.</div></div>
+      <div class="g-card"><div class="g-term">The Floor</div><div class="g-def">Permission to speak. The member who "has the floor" is the only one authorized to speak at that moment.</div></div>
+      <div class="g-card"><div class="g-term">Chair / Presiding Officer</div><div class="g-def">The individual running the meeting — typically the Chapter President or, in their absence, the Vice President.</div></div>
+      <div class="g-card"><div class="g-term">Quorum</div><div class="g-def">The minimum number of members required to be present for the chapter to legally conduct binding business.</div></div>
+      <div class="g-card"><div class="g-term">Ayes / Nays</div><div class="g-def">Ayes = yes votes. Nays = no votes. Used in voice votes on motions.</div></div>
+      <div class="g-card"><div class="g-term">Table a Motion</div><div class="g-def">Set aside a motion temporarily. It may be taken up again. Not the same as killing the motion permanently.</div></div>
+      <div class="g-card"><div class="g-term">Point of Order</div><div class="g-def">Any member's right to flag a rules violation as it occurs. No second required — the Chair rules immediately.</div></div>
+      <div class="g-card"><div class="g-term">Point of Information</div><div class="g-def">A request for a factual clarification only — not an opportunity to offer opinions or extend speaking time.</div></div>
+      <div class="g-card"><div class="g-term">Amendment</div><div class="g-def">A proposed change to a pending motion's wording. Must be germane (related) to the original motion.</div></div>
+      <div class="g-card"><div class="g-term">Adjourn</div><div class="g-def">To formally end the meeting entirely. Requires a motion, second, and vote.</div></div>
+      <div class="g-card"><div class="g-term">Recess</div><div class="g-def">A temporary break. The meeting will resume after the recess period.</div></div>
+      <div class="g-card"><div class="g-term">Previous Question</div><div class="g-def">A motion to immediately end debate and force a vote. Requires a 2/3 majority to adopt.</div></div>
+      <div class="g-card"><div class="g-term">Unanimous Consent</div><div class="g-def">When no member objects, the group agrees without a formal vote. Chair asks: "Is there any objection?"</div></div>
+      <div class="g-card"><div class="g-term">Division of the House</div><div class="g-def">A demand by any member for a more accurate vote count. Call "Division!" from your seat — no recognition needed.</div></div>
+      <div class="g-card"><div class="g-term">Parliamentary Inquiry</div><div class="g-def">A question about the correct procedure to follow — distinct from Point of Information, which is about facts.</div></div>
+    </div></div>
+    <div class="block"><div class="block-title">Commonly Confused Terms</div>
+      <div class="callout callout-note"><strong>Table vs. Postpone Indefinitely</strong>Tabling sets a motion aside temporarily — it can return. Postponing indefinitely permanently kills the motion without a direct vote. These are not the same.</div>
+      <div class="callout callout-note"><strong>Recess vs. Adjourn</strong>A recess is a break — the meeting continues afterward. Adjourning ends the meeting entirely. Do not confuse these when making a motion.</div>
+      <div class="callout callout-note"><strong>Point of Order vs. Parliamentary Inquiry</strong>A Point of Order flags a violation that is happening. A Parliamentary Inquiry asks what the correct procedure is. Both require no second.</div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 2 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-2-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">When a member "seconds" a motion, what does that signal?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-2-1" value="a"> They agree with and will vote in favor of the motion</label></li>
+          <li><label><input type="radio" name="kc-2-1" value="b"> They believe the motion deserves discussion, regardless of whether they agree</label></li>
+          <li><label><input type="radio" name="kc-2-1" value="c"> They are co-making the motion with the original member</label></li>
+          <li><label><input type="radio" name="kc-2-1" value="d"> They will speak first in debate</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(2,1,'b','A second only signals that at least one other member wants the motion discussed. It is not an endorsement or a commitment to vote in favor of the motion.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-2-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">A motion is "tabled." What does this mean for that motion?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-2-2" value="a"> The motion is permanently defeated</label></li>
+          <li><label><input type="radio" name="kc-2-2" value="b"> The motion is sent to a committee for review</label></li>
+          <li><label><input type="radio" name="kc-2-2" value="c"> The motion is set aside temporarily and may be taken up again</label></li>
+          <li><label><input type="radio" name="kc-2-2" value="d"> The motion fails for lack of a second</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(2,2,'c','Tabling (laying on the table) temporarily suspends the motion. It can be taken from the table at the same or a future session. It does not kill the motion permanently.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-2-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">A member asks "Point of Information — what is the chapter's service fund balance?" Is this a correct use of Point of Information?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-2-3" value="a"> No — Point of Information is only for procedural questions</label></li>
+          <li><label><input type="radio" name="kc-2-3" value="b"> Yes — requesting a factual clarification is the correct use</label></li>
+          <li><label><input type="radio" name="kc-2-3" value="c"> No — the member must be recognized before raising it</label></li>
+          <li><label><input type="radio" name="kc-2-3" value="d"> Yes — but only if the motion currently on the floor relates to finances</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(2,3,'b','Point of Information is reserved for requesting factual clarification. Asking for the fund balance is appropriate. Using it to share opinions or extend speaking time is a violation.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-2">Module 2 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(1)">Previous</button><div class="footer-mid">Module 2 of 10</div><button class="btn-nav btn-nav-next" id="next-2" onclick="goTo(3)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 3: MOTION PROCESS -->
+<section class="module" id="mod3">
+  <div class="module-hero"><div class="module-eyebrow">Module 3 of 10</div><h1>The Motion Process</h1><p class="module-desc">Every action taken in a formal meeting begins with a motion. This module walks through the complete eight-step process from introduction to final announcement.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>Recite and execute the correct sequence for introducing a motion</li><li>Use proper parliamentary language when making, seconding, and debating a motion</li><li>Identify what happens at each stage if a procedural error occurs</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">The Eight Steps of a Motion</div>
+    <div class="step-list">
+      <div class="step-item"><div class="step-left"><div class="step-circle">1</div><div class="step-line"></div></div><div class="step-right"><h4>Address the Chair</h4><p>Rise or raise your hand and address the Chair by title. Do not begin speaking until recognized.</p><div class="step-quote">"Madam President…" / "Mister President…"</div></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">2</div><div class="step-line"></div></div><div class="step-right"><h4>The Chair Recognizes You</h4><p>The Chair grants you the floor by stating your name. Only after recognition may you speak.</p><div class="step-quote">"The Chair recognizes Brother Johnson."</div></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">3</div><div class="step-line"></div></div><div class="step-right"><h4>State Your Motion</h4><p>Begin with "I move that…" and state the action specifically. Vague motions cannot be properly voted on.</p><div class="step-quote">"I move that the chapter donate $200 to the campus food pantry from the community service fund."</div></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">4</div><div class="step-line"></div></div><div class="step-right"><h4>Another Member Seconds</h4><p>A member calls "Second!" from their seat — no recognition needed. This means they want it discussed, not that they agree with it. Without a second, the motion fails.</p><div class="step-quote">"Second." (from seat, no recognition required)</div></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">5</div><div class="step-line"></div></div><div class="step-right"><h4>The Chair Restates the Motion</h4><p>The Chair reads the motion back exactly as stated, placing it officially before the assembly and opening debate.</p><div class="step-quote">"It has been moved and seconded that the chapter donate $200 to the campus food pantry. Is there any discussion?"</div></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">6</div><div class="step-line"></div></div><div class="step-right"><h4>Debate</h4><p>Members are recognized one at a time. The maker of the motion speaks first. Each member may typically speak twice, within the chapter's time limits.</p></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">7</div><div class="step-line"></div></div><div class="step-right"><h4>The Vote Is Called</h4><p>When debate ends — or when the Previous Question is successfully moved — the Chair calls the vote.</p><div class="step-quote">"Those in favor say Aye… Those opposed say Nay… The Ayes have it."</div></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">8</div></div><div class="step-right"><h4>The Chair Announces the Result</h4><p>The Chair announces both the outcome and what it means for the chapter.</p><div class="step-quote">"The motion carries. The chapter will donate $200 to the campus food pantry."</div></div></div>
+    </div></div>
+    <div class="block"><div class="block-title">Key Debate Rules</div>
+      <div class="callout"><strong>Rule</strong>All remarks during debate must be directed to the Chair, not to other members directly. Say "Through the Chair…" when responding to another member's point.</div>
+      <div class="callout"><strong>Rule</strong>Debate must address the motion on the floor. Personal comments about other members are out of order.</div>
+      <div class="callout"><strong>Rule</strong>A motion may be amended during debate. An amendment must be germane — it must relate to the original motion.</div>
+    </div>
+    <div class="video-block">
+      <div class="video-label">Watch: Making a Motion Using Robert's Rules &mdash; Approx. 2 min</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/csZOina2_y4?rel=0&modestbranding=1" allowfullscreen></iframe></div>
+      <div class="video-caption">Watch the motion process demonstrated in sequence. Compare each step to the eight-step framework above. Requires internet connection.</div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 3 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-3-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">What is the correct opening phrase for making a formal motion?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-3-1" value="a"> "I propose that we…"</label></li>
+          <li><label><input type="radio" name="kc-3-1" value="b"> "I suggest the chapter consider…"</label></li>
+          <li><label><input type="radio" name="kc-3-1" value="c"> "I move that…"</label></li>
+          <li><label><input type="radio" name="kc-3-1" value="d"> "On behalf of the members, I ask that…"</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(3,1,'c','The formal parliamentary phrase is "I move that…" followed by a specific, actionable proposal. Informal suggestions cannot be voted on.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-3-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">During debate on a motion, who has the right to speak first?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-3-2" value="a"> The most senior member present</label></li>
+          <li><label><input type="radio" name="kc-3-2" value="b"> The member who made the motion</label></li>
+          <li><label><input type="radio" name="kc-3-2" value="c"> The presiding officer</label></li>
+          <li><label><input type="radio" name="kc-3-2" value="d"> The member who seconded the motion</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(3,2,'b','The maker of the motion has the right to be recognized first during debate. This allows them to explain their reasoning before others respond.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-3-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">After a vote is taken, what must the Chair always do?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-3-3" value="a"> Ask if anyone objects to the result</label></li>
+          <li><label><input type="radio" name="kc-3-3" value="b"> Allow the losing side to re-debate the motion</label></li>
+          <li><label><input type="radio" name="kc-3-3" value="c"> Immediately move to the next agenda item without comment</label></li>
+          <li><label><input type="radio" name="kc-3-3" value="d"> Announce both the outcome and what it means for the chapter</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(3,3,'d','The Chair must announce the result (carried or lost) AND state what action will follow. This ensures the assembly is clear on what was decided.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-3">Module 3 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(2)">Previous</button><div class="footer-mid">Module 3 of 10</div><button class="btn-nav btn-nav-next" id="next-3" onclick="goTo(4)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 4: MOTION TYPES -->
+<section class="module" id="mod4">
+  <div class="module-hero"><div class="module-eyebrow">Module 4 of 10</div><h1>Types of Motions</h1><p class="module-desc">Not all motions are equal. Robert's Rules categorizes motions by purpose and assigns each specific rules governing how they are handled.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>Classify motions into their correct category: main, subsidiary, privileged, or incidental</li><li>State whether a specific motion requires a second, is debatable, and what vote it requires</li><li>Use the quick-reference chart to look up motion rules during a meeting</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">The Four Categories</div>
+    <div class="accordion-set">
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Main Motions — Introduce New Business <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><p>Introduces a new item of business. Can only be made when no other business is pending.</p><div class="callout" style="margin-top:10px"><strong>Example</strong>"I move that the chapter co-host a community service event with the Alpha chapter on October 12th."</div></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Subsidiary Motions — Modify or Delay a Main Motion <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><ul><li><strong>Amend</strong> — Change the wording. Must be germane. Requires second; debatable; majority vote.</li><li><strong>Table</strong> — Set aside temporarily. Not debatable. Majority vote.</li><li><strong>Previous Question</strong> — End debate immediately. Not debatable. Requires 2/3 vote.</li><li><strong>Refer to Committee</strong> — Send to a smaller group. Debatable. Majority vote.</li><li><strong>Postpone to Definite Time</strong> — Delay to a specified date. Debatable. Majority vote.</li></ul></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Privileged Motions — Urgent, Highest Priority <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><ul><li><strong>Adjourn</strong> — End the meeting. Second required; not debatable; majority vote.</li><li><strong>Recess</strong> — Take a break. Second required; not debatable; majority vote.</li><li><strong>Fix the Time to Adjourn</strong> — Set when the meeting ends.</li></ul></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Incidental Motions — Handle Procedural Issues <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><ul><li><strong>Point of Order</strong> — Flag a rules violation. No second; Chair rules immediately.</li><li><strong>Appeal the Ruling of the Chair</strong> — Challenge a ruling. Requires second; assembly votes.</li><li><strong>Division of the House</strong> — Demand accurate recount. Call "Division!" from seat.</li><li><strong>Parliamentary Inquiry</strong> — Ask about correct procedure. No second needed.</li></ul></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Motion to Reconsider — Revisit a Vote <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><p>Allows the chapter to revisit a vote taken at the same meeting. Must be moved by someone who voted on the prevailing side. Requires a second and majority vote. Commonly misunderstood — it does not automatically reverse the vote; it reopens debate.</p></div></div>
+    </div></div>
+    <div class="block"><div class="block-title">Quick Reference Chart</div>
+    <div class="data-table-wrap"><table class="data-table">
+      <thead><tr><th>Motion</th><th>Category</th><th>Second?</th><th>Debatable?</th><th>Vote Required</th></tr></thead>
+      <tbody>
+        <tr><td>Main Motion</td><td>Main</td><td class="cell-yes">Yes</td><td class="cell-yes">Yes</td><td>Majority</td></tr>
+        <tr><td>Amend</td><td>Subsidiary</td><td class="cell-yes">Yes</td><td class="cell-yes">Yes</td><td>Majority</td></tr>
+        <tr><td>Refer to Committee</td><td>Subsidiary</td><td class="cell-yes">Yes</td><td class="cell-yes">Yes</td><td>Majority</td></tr>
+        <tr><td>Postpone to Definite Time</td><td>Subsidiary</td><td class="cell-yes">Yes</td><td class="cell-yes">Yes</td><td>Majority</td></tr>
+        <tr><td>Table (Lay on the Table)</td><td>Subsidiary</td><td class="cell-yes">Yes</td><td class="cell-no">No</td><td>Majority</td></tr>
+        <tr><td>Previous Question</td><td>Subsidiary</td><td class="cell-yes">Yes</td><td class="cell-no">No</td><td>Two-thirds</td></tr>
+        <tr><td>Adjourn</td><td>Privileged</td><td class="cell-yes">Yes</td><td class="cell-no">No</td><td>Majority</td></tr>
+        <tr><td>Recess</td><td>Privileged</td><td class="cell-yes">Yes</td><td class="cell-no">No</td><td>Majority</td></tr>
+        <tr><td>Point of Order</td><td>Incidental</td><td class="cell-no">No</td><td class="cell-no">No</td><td>Chair Rules</td></tr>
+        <tr><td>Appeal Chair's Ruling</td><td>Incidental</td><td class="cell-yes">Yes</td><td class="cell-yes">Yes</td><td>Majority</td></tr>
+        <tr><td>Division of the House</td><td>Incidental</td><td class="cell-no">No</td><td class="cell-no">No</td><td>No Vote</td></tr>
+        <tr><td>Motion to Reconsider</td><td>Main</td><td class="cell-yes">Yes</td><td class="cell-yes">Yes</td><td>Majority</td></tr>
+      </tbody>
+    </table></div></div>
+    <div class="video-block">
+      <div class="video-label">Watch: Voting on a Motion — Robert's Rules &mdash; Approx. 2 min</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/iZD4218DR8w?rel=0&modestbranding=1" allowfullscreen></iframe></div>
+      <div class="video-caption">Focuses on what happens after debate closes — calling the vote, announcing results, and handling unclear outcomes. Requires internet connection.</div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 4 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-4-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">Which type of motion introduces new business and can only be made when the floor is clear?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-4-1" value="a"> Subsidiary motion</label></li>
+          <li><label><input type="radio" name="kc-4-1" value="b"> Privileged motion</label></li>
+          <li><label><input type="radio" name="kc-4-1" value="c"> Main motion</label></li>
+          <li><label><input type="radio" name="kc-4-1" value="d"> Incidental motion</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(4,1,'c','A main motion is the vehicle for introducing new business. It can only be made when no other main motion is currently pending.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-4-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">Which motion requires a two-thirds vote to pass?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-4-2" value="a"> A motion to table</label></li>
+          <li><label><input type="radio" name="kc-4-2" value="b"> A motion to refer to committee</label></li>
+          <li><label><input type="radio" name="kc-4-2" value="c"> The Previous Question (to end debate)</label></li>
+          <li><label><input type="radio" name="kc-4-2" value="d"> A motion to adjourn</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(4,2,'c','The Previous Question requires a two-thirds vote because it cuts off the right to debate. The higher bar protects minority voices from being silenced prematurely.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-4-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">A member raises a "Point of Order." Does this require a second?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-4-3" value="a"> Yes — all procedural motions require a second</label></li>
+          <li><label><input type="radio" name="kc-4-3" value="b"> Yes — but only if the Chair does not act immediately</label></li>
+          <li><label><input type="radio" name="kc-4-3" value="c"> No — Points of Order require no second and may interrupt a speaker</label></li>
+          <li><label><input type="radio" name="kc-4-3" value="d"> No — but the Chair may choose to ignore it</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(4,3,'c','A Point of Order is an incidental motion that requires no second. It may interrupt a speaker if necessary, and the Chair must rule on it immediately.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-4">Module 4 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(3)">Previous</button><div class="footer-mid">Module 4 of 10</div><button class="btn-nav btn-nav-next" id="next-4" onclick="goTo(5)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 5: ORDER OF BUSINESS -->
+<section class="module" id="mod5">
+  <div class="module-hero"><div class="module-eyebrow">Module 5 of 10</div><h1>The Order of Business</h1><p class="module-desc">A well-run meeting follows a predictable sequence. This module covers the standard meeting agenda, how minutes are approved, and the voting methods available to your chapter.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>List the standard order of business and identify where each type of item belongs</li><li>Explain how meeting minutes are approved and corrected</li><li>Distinguish between the six voting methods and identify when each is appropriate</li><li>Explain when a member must recuse themselves due to a conflict of interest</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">The Standard Order of Business</div>
+      <p>Robert's Rules prescribes a standard sequence for meeting agenda items. Your chapter's bylaws may adjust this order, but the following is the default structure recognized by virtually all organizations.</p>
+      <div class="step-list">
+        <div class="step-item"><div class="step-left"><div class="step-circle">1</div><div class="step-line"></div></div><div class="step-right"><h4>Call to Order</h4><p>The Chair calls the meeting to order and confirms a quorum is present. No business may proceed without quorum.</p><div class="step-quote">"The meeting will come to order. A quorum is present."</div></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">2</div><div class="step-line"></div></div><div class="step-right"><h4>Reading and Approval of Minutes</h4><p>The Secretary reads the minutes from the previous meeting (or members read them in advance). Members may move to correct errors. Then the minutes are approved — by motion, vote, or unanimous consent.</p><div class="step-quote">"Are there any corrections to the minutes? Hearing none, the minutes are approved as read."</div></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">3</div><div class="step-line"></div></div><div class="step-right"><h4>Officer Reports</h4><p>The President, Treasurer, and other officers give brief updates. After each report, the Chair asks if there are any questions. Reports are received — not voted on — unless they contain a recommendation requiring action.</p></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">4</div><div class="step-line"></div></div><div class="step-right"><h4>Committee Reports</h4><p>Standing and special committees report their findings. If a committee recommends action, that recommendation becomes a motion on the floor.</p></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">5</div><div class="step-line"></div></div><div class="step-right"><h4>Unfinished Business</h4><p>Items carried over from a previous meeting — motions that were tabled, postponed, or not completed. These take priority over new proposals.</p></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">6</div><div class="step-line"></div></div><div class="step-right"><h4>New Business</h4><p>Any new proposals, motions, or items members wish to bring before the chapter. This is where most main motions originate.</p></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">7</div><div class="step-line"></div></div><div class="step-right"><h4>Announcements</h4><p>Informational items that do not require a vote — upcoming events, deadlines, chapter news. No motions are in order during announcements.</p></div></div>
+        <div class="step-item"><div class="step-left"><div class="step-circle">8</div></div><div class="step-right"><h4>Adjournment</h4><p>The Chair asks for a motion to adjourn, or declares the meeting adjourned if all business is complete.</p><div class="step-quote">"If there is no further business, the meeting is adjourned."</div></div></div>
+      </div>
+    </div>
+    <div class="block"><div class="block-title">Voting Methods</div>
+      <p>Robert's Rules recognizes six voting methods. The Chair selects the appropriate method based on the type of business, and the chapter's bylaws may require specific methods for certain votes.</p>
+      <div class="accordion-set">
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Voice Vote (Viva Voce) — Default Method <span class="acc-chevron">&#9660;</span></div><div class="acc-body">The Chair calls "Those in favor say Aye… Those opposed say Nay." The Chair judges the result by volume. Any member may call "Division!" if the outcome is unclear, demanding a more precise count.</div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Show of Hands — Common in Small Meetings <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Members raise their hands to vote. More accurate than a voice vote and easy to count in a small assembly. The Chair or tellers count the hands.</div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Rising Vote — Used When Accuracy Matters <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Members stand to indicate their vote. Used when a two-thirds threshold must be verified, or when a voice vote result was challenged via "Division!"</div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Secret Ballot — Required for Elections <span class="acc-chevron">&#9660;</span></div><div class="acc-body">Members write their vote on paper and submit it anonymously. Required by most bylaws for officer elections and votes where social pressure could affect the result. The Chair votes by ballot like all other members.</div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Roll Call — Creates a Recorded Vote <span class="acc-chevron">&#9660;</span></div><div class="acc-body">The Secretary calls each member's name; they respond "Aye," "Nay," or "Abstain." Each vote is recorded in the minutes. Used when accountability is important or required by bylaws.</div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">General Consent (Unanimous Consent) <span class="acc-chevron">&#9660;</span></div><div class="acc-body">The Chair asks "Is there any objection?" If no one objects, the motion carries without a formal vote. Used for routine, non-controversial business to save time.</div></div>
+      </div>
+    </div>
+    <div class="block"><div class="block-title">Conflict of Interest and Recusal</div>
+      <div class="callout callout-note"><strong>When a Member Must Recuse</strong>If a member has a direct personal or financial interest in the outcome of a vote — separate from the general interests of the chapter — they should disclose the conflict and abstain from voting. This is both an ethical obligation and, in many organizations, a bylaw requirement. The member may still participate in debate unless the assembly votes to exclude them.</div>
+      <div class="callout callout-note"><strong>Abstaining Is Not the Same as Voting No</strong>A member who abstains does not vote either way. Abstentions are not counted as votes and do not affect the majority calculation. However, abstaining without cause when a matter directly concerns the chapter is generally discouraged.</div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 5 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-5-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">In the standard order of business, which item comes immediately before New Business?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-5-1" value="a"> Officer Reports</label></li>
+          <li><label><input type="radio" name="kc-5-1" value="b"> Announcements</label></li>
+          <li><label><input type="radio" name="kc-5-1" value="c"> Unfinished Business</label></li>
+          <li><label><input type="radio" name="kc-5-1" value="d"> Committee Reports</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(5,1,'c','The standard sequence is: Call to Order → Minutes → Officer Reports → Committee Reports → Unfinished Business → New Business → Announcements → Adjournment. Unfinished (old) business always precedes new business.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-5-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">Which voting method is most appropriate for chapter officer elections?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-5-2" value="a"> Voice vote (Aye/Nay)</label></li>
+          <li><label><input type="radio" name="kc-5-2" value="b"> Show of hands</label></li>
+          <li><label><input type="radio" name="kc-5-2" value="c"> Secret ballot</label></li>
+          <li><label><input type="radio" name="kc-5-2" value="d"> General consent</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(5,2,'c','Officer elections should use a secret ballot to protect members’ privacy and prevent social pressure from influencing votes. Most chapter bylaws require this for contested elections.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-5-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">A member has a direct personal financial interest in the outcome of a vote. What should they do?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-5-3" value="a"> Vote as normal — all members have equal rights</label></li>
+          <li><label><input type="radio" name="kc-5-3" value="b"> Leave the room before the motion is introduced</label></li>
+          <li><label><input type="radio" name="kc-5-3" value="c"> Disclose the conflict and abstain from voting</label></li>
+          <li><label><input type="radio" name="kc-5-3" value="d"> Make the motion themselves so the conflict is on the record</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(5,3,'c','A member with a direct personal or financial interest in the outcome should disclose the conflict and abstain from voting. They may still participate in debate unless the assembly votes otherwise.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-5">Module 5 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(4)">Previous</button><div class="footer-mid">Module 5 of 10</div><button class="btn-nav btn-nav-next" id="next-5" onclick="goTo(6)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 6: ORDER AND CONDUCT -->
+<section class="module" id="mod6">
+  <div class="module-hero"><div class="module-eyebrow">Module 6 of 10</div><h1>Order and Conduct</h1><p class="module-desc">Being ruled out of order is not a personal judgment — it is the Chair doing their job. This module covers the most frequent violations, what triggers each ruling, and how members should respond.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>Identify the most common procedural violations in a chapter meeting</li><li>Explain what the Chair is required to do when each violation occurs</li><li>Describe the correct behavior that should have been taken in each case</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">Common Violations and Rulings</div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Violation</span><span class="scenario-title">Speaking Without Recognition</span></div><div class="scenario-scene"><p><span class="sp">Brother Davis</span> calls out from his seat: "That's way too much money — we spent less last year!"</p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">Out of Order</div>No member may speak without being recognized by the Chair. The Chair responds: <em>"Brother Davis, you are out of order. Please address the Chair and wait to be recognized."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Violation</span><span class="scenario-title">Making a New Main Motion While One Is Pending</span></div><div class="scenario-scene"><p>A motion on chapter apparel is being debated. <span class="sp">Sister Williams</span> says: "I move that we plan a road trip to the regional conference!"</p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">Out of Order</div>A new main motion cannot be introduced while another is on the floor. The Chair: <em>"That motion is out of order. There is a motion currently pending before the assembly."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Violation</span><span class="scenario-title">Debating a Non-Debatable Motion</span></div><div class="scenario-scene"><p>A motion to table is made and seconded. <span class="sp">Brother King</span> begins: "Wait — I want to explain why we shouldn't table this yet…"</p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">Out of Order</div>A motion to table is not debatable. The Chair must immediately call the vote: <em>"Brother King, the motion to lay on the table is not open to debate. We will proceed to the vote."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Violation</span><span class="scenario-title">Personal Attacks During Debate</span></div><div class="scenario-scene"><p><span class="sp">Sister Reeves</span> says during debate: "I can't believe Brother Thomas even suggested this. He never shows up to anything."</p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">Out of Order</div>Debate must address the motion, not other members. The Chair: <em>"Sister Reeves, remarks must be addressed to the motion, not to individual members. Please confine your comments to the matter before the assembly."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-improper">Improper Motion</span><span class="scenario-title">Vague or Unactionable Motion</span></div><div class="scenario-scene"><p><span class="sp">Sister Brown</span>: "I move that we do something about the chapter finances."</p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling note"><div class="ruling-label note">Improper — Must Be Restated</div>The motion lacks a specific actionable proposal. The Chair asks for a restatement. A corrected version: <em>"I move that the Treasurer provide a written financial report at each monthly chapter meeting."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Violation</span><span class="scenario-title">Non-Germane Amendment</span></div><div class="scenario-scene"><p>Motion on floor: "I move the chapter donate $100 to a food bank." <span class="sp">Brother Clay</span>: "I move to amend to instead use that $100 for a chapter social."</p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">Amendment Out of Order</div>An amendment must be germane — related to the original motion. Changing a donation into a social is a new idea. The Chair: <em>"The amendment is out of order. It is not germane to the original motion."</em></div></div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 6 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-6-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">A member makes a new main motion while another is already on the floor. What is the Chair's correct ruling?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-6-1" value="a"> Allow both motions to be debated simultaneously</label></li>
+          <li><label><input type="radio" name="kc-6-1" value="b"> Table the first motion automatically to hear the new one</label></li>
+          <li><label><input type="radio" name="kc-6-1" value="c"> Rule the new motion out of order — only one main motion at a time</label></li>
+          <li><label><input type="radio" name="kc-6-1" value="d"> Allow the second motion only if it is more urgent</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(6,1,'c','Only one main motion may be on the floor at a time. The new motion is out of order and must wait until the pending motion is resolved.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-6-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">What makes an amendment "out of order"?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-6-2" value="a"> It was not seconded within 30 seconds</label></li>
+          <li><label><input type="radio" name="kc-6-2" value="b"> It is not germane — it does not relate to the original motion</label></li>
+          <li><label><input type="radio" name="kc-6-2" value="c"> It changes the dollar amount of the original motion</label></li>
+          <li><label><input type="radio" name="kc-6-2" value="d"> It was made by someone who already spoke in debate</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(6,2,'b','An amendment must be germane — it must modify or relate to the original motion. A change that introduces a completely different idea is out of order.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-6-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">A member says "Point of Information" and then delivers a two-minute opinion on the pending motion. This is:</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-6-3" value="a"> Acceptable — members may use any tool to be heard</label></li>
+          <li><label><input type="radio" name="kc-6-3" value="b"> Acceptable if the Chair permits it</label></li>
+          <li><label><input type="radio" name="kc-6-3" value="c"> A violation — Point of Information is for factual clarification only</label></li>
+          <li><label><input type="radio" name="kc-6-3" value="d"> Acceptable only during the unfinished business portion</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(6,3,'c','Point of Information is strictly for requesting factual clarification — not for offering opinions or extending speaking time. Using it as a speech platform is itself a violation.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-6">Module 6 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(5)">Previous</button><div class="footer-mid">Module 6 of 10</div><button class="btn-nav btn-nav-next" id="next-6" onclick="goTo(7)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 7: MEMBER GUIDELINES -->
+<section class="module" id="mod7">
+  <div class="module-hero"><div class="module-eyebrow">Module 7 of 10</div><h1>Member Guidelines</h1><p class="module-desc">A practical reference of proper member conduct, standard parliamentary phrases, and behavioral expectations that apply to every member in every meeting.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>Apply the conduct standards expected of every chapter member during formal meetings</li><li>Correctly use the standard parliamentary phrases required for common meeting actions</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">Member Conduct Standards</div>
+    <div class="do-dont-grid">
+      <div class="dd-panel"><div class="dd-header do-h">Required Conduct</div><ul class="dd-list">
+        <li><span class="dd-icon do-icon">+</span>Wait to be recognized by the Chair before speaking</li>
+        <li><span class="dd-icon do-icon">+</span>Address all remarks to the Chair, not to other members directly</li>
+        <li><span class="dd-icon do-icon">+</span>State motions clearly beginning with "I move that…"</li>
+        <li><span class="dd-icon do-icon">+</span>Second motions you want discussed, even if undecided on your vote</li>
+        <li><span class="dd-icon do-icon">+</span>Keep debate relevant to the pending motion</li>
+        <li><span class="dd-icon do-icon">+</span>Raise a Point of Order when a violation occurs</li>
+        <li><span class="dd-icon do-icon">+</span>Accept and follow the Chair's rulings; appeal them properly if you disagree</li>
+        <li><span class="dd-icon do-icon">+</span>Remain attentive and seated during active business</li>
+        <li><span class="dd-icon do-icon">+</span>Respect the result of a majority vote, even if you voted against it</li>
+        <li><span class="dd-icon do-icon">+</span>Disclose any conflict of interest before a related vote</li>
+      </ul></div>
+      <div class="dd-panel"><div class="dd-header dont-h">Prohibited Conduct</div><ul class="dd-list">
+        <li><span class="dd-icon dont-icon">—</span>Speaking without recognition from the Chair</li>
+        <li><span class="dd-icon dont-icon">—</span>Interrupting a member who holds the floor</li>
+        <li><span class="dd-icon dont-icon">—</span>Making personal remarks about other members during debate</li>
+        <li><span class="dd-icon dont-icon">—</span>Introducing a new main motion while one is pending</li>
+        <li><span class="dd-icon dont-icon">—</span>Debating a non-debatable motion</li>
+        <li><span class="dd-icon dont-icon">—</span>Engaging in side conversations during business</li>
+        <li><span class="dd-icon dont-icon">—</span>Using "Point of Information" to make a speech or share an opinion</li>
+        <li><span class="dd-icon dont-icon">—</span>Raising procedural points as a delay tactic</li>
+        <li><span class="dd-icon dont-icon">—</span>Ignoring or defying the Chair's ruling</li>
+        <li><span class="dd-icon dont-icon">—</span>Voting when a conflict of interest exists</li>
+      </ul></div>
+    </div></div>
+    <div class="block"><div class="block-title">Standard Parliamentary Phrases</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><div class="phrase-label">To Make a Motion</div><div class="phrase-text">"I move that [specific proposed action]."</div></div>
+      <div class="phrase-card"><div class="phrase-label">To Second</div><div class="phrase-text">"Second." (from your seat — no recognition required)</div></div>
+      <div class="phrase-card"><div class="phrase-label">To Amend</div><div class="phrase-text">"I move to amend the motion by [inserting / striking / replacing] the words…"</div></div>
+      <div class="phrase-card"><div class="phrase-label">To Table</div><div class="phrase-text">"I move to lay the motion on the table."</div></div>
+      <div class="phrase-card"><div class="phrase-label">To End Debate</div><div class="phrase-text">"I move the previous question." (requires 2/3 vote)</div></div>
+      <div class="phrase-card"><div class="phrase-label">Point of Order</div><div class="phrase-text">"Point of Order!" (may interrupt a speaker if necessary)</div></div>
+      <div class="phrase-card"><div class="phrase-label">To Request Recount</div><div class="phrase-text">"Division!" (call from seat after a voice vote)</div></div>
+      <div class="phrase-card"><div class="phrase-label">To Appeal a Ruling</div><div class="phrase-text">"I appeal from the decision of the Chair." (immediately after the ruling)</div></div>
+      <div class="phrase-card"><div class="phrase-label">Parliamentary Inquiry</div><div class="phrase-text">"Parliamentary inquiry — what is the correct procedure for…?"</div></div>
+      <div class="phrase-card"><div class="phrase-label">To Adjourn</div><div class="phrase-text">"I move that we adjourn."</div></div>
+    </div></div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 7 Knowledge Check</span><span class="kc-section-sub">Answer both questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-7-1">
+        <div class="kc-q-num">Check 1 of 2</div>
+        <div class="kc-q-text">During debate, all remarks should be directed to whom?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-7-1" value="a"> The member who made the motion</label></li>
+          <li><label><input type="radio" name="kc-7-1" value="b"> The full assembly</label></li>
+          <li><label><input type="radio" name="kc-7-1" value="c"> The presiding officer (the Chair)</label></li>
+          <li><label><input type="radio" name="kc-7-1" value="d"> The secretary, to ensure accurate minutes</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(7,1,'c','All remarks during debate must be directed to the Chair, not to other members. If responding to another member, you say \"Through the Chair…\"')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-7-2">
+        <div class="kc-q-num">Check 2 of 2</div>
+        <div class="kc-q-text">Which of the following is the correct phrase to challenge an inaccurate voice vote?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-7-2" value="a"> "Point of Order!"</label></li>
+          <li><label><input type="radio" name="kc-7-2" value="b"> "I appeal from the decision of the Chair."</label></li>
+          <li><label><input type="radio" name="kc-7-2" value="c"> "Division!"</label></li>
+          <li><label><input type="radio" name="kc-7-2" value="d"> "Parliamentary Inquiry!"</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(7,2,'c','\"Division!\" demands a more accurate count after a voice vote. Any member may call it from their seat without being recognized. The Chair must then conduct a rising or hand-count vote.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-7">Module 7 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(6)">Previous</button><div class="footer-mid">Module 7 of 10</div><button class="btn-nav btn-nav-next" id="next-7" onclick="goTo(8)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 8: PRESIDING OFFICER -->
+<section class="module" id="mod8">
+  <div class="module-hero"><div class="module-eyebrow">Module 8 of 10</div><h1>The Presiding Officer</h1><p class="module-desc">The ranking member who chairs the meeting holds the most consequential procedural role in the chapter. This module covers their duties, limitations, language, and accountability.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>List the core duties and required actions of the presiding officer</li><li>Identify specific conduct prohibited for the Chair</li><li>Explain the procedure for challenging a ruling of the Chair</li><li>Describe what must happen before the Chair may participate in debate</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">Core Duties of the Chair</div>
+    <div class="role-card"><div class="role-card-title">Meeting Management</div><ul>
+      <li>Call the meeting to order and confirm quorum is present</li>
+      <li>Announce the agenda and move through each item in order</li>
+      <li>Recognize members who seek the floor — in the order they are recognized</li>
+      <li>Restate every motion after it is seconded, placing it before the assembly</li>
+      <li>Ensure the maker of the motion speaks first in debate</li>
+      <li>Rule on all Points of Order immediately and without debate</li>
+      <li>Call for the vote and announce the result and its meaning clearly</li>
+      <li>Declare the meeting adjourned once business is concluded</li>
+    </ul></div>
+    <div class="role-card"><div class="role-card-title">Impartiality Requirements</div><ul>
+      <li>The Chair does not vote except by secret ballot or to break/create a tie, per bylaws</li>
+      <li>The Chair does not participate in debate while presiding</li>
+      <li>The Chair does not show preference when recognizing speakers</li>
+      <li>The Chair does not offer personal opinions on pending motions</li>
+    </ul></div></div>
+    <div class="block"><div class="block-title">Standard Language of the Chair</div>
+    <div class="accordion-set">
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Opening the Meeting <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><em>"The meeting will come to order. A quorum is present. The first order of business is the approval of the minutes from the previous meeting."</em></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Placing a Motion Before the Assembly <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><em>"It has been moved and seconded that [restate motion exactly]. Is there any discussion?"</em></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Calling for the Vote <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><em>"Those in favor say Aye… Those opposed say Nay… The Ayes have it. The motion is adopted."</em> (or <em>"The Nays have it. The motion is lost."</em>)</div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Ruling a Member Out of Order <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><em>"[Member name] is out of order. [State the specific reason.] Please [state correct behavior]."</em></div></div>
+      <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)">Adjourning the Meeting <span class="acc-chevron">&#9660;</span></div><div class="acc-body"><em>"If there is no further business to come before the assembly, the meeting is adjourned."</em></div></div>
+    </div></div>
+    <div class="block"><div class="block-title">When the Chair Wants to Debate</div>
+      <p>The Chair must remain impartial. To speak in debate on a pending motion, the President must first yield the chair to the next ranking officer.</p>
+      <div class="callout"><strong>Procedure</strong><em>"I will temporarily yield the chair to Vice President [Name] so that I may speak to this motion."</em> After speaking, they may reclaim the chair — but their neutrality for that session has been compromised.</div>
+    </div>
+    <div class="block"><div class="block-title">Appealing a Ruling of the Chair</div>
+    <div class="step-list">
+      <div class="step-item"><div class="step-left"><div class="step-circle">1</div><div class="step-line"></div></div><div class="step-right"><h4>Immediately After the Ruling</h4><p>State: <em>"I appeal from the decision of the Chair."</em> This right lapses if other business intervenes.</p></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">2</div><div class="step-line"></div></div><div class="step-right"><h4>Another Member Seconds</h4><p>The appeal requires a second to proceed.</p></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">3</div><div class="step-line"></div></div><div class="step-right"><h4>The Chair States the Question</h4><p><em>"Shall the decision of the Chair be sustained?"</em> The Chair may briefly explain their ruling.</p></div></div>
+      <div class="step-item"><div class="step-left"><div class="step-circle">4</div></div><div class="step-right"><h4>The Assembly Votes</h4><p>A majority vote against the Chair overrules the ruling. The Chair is bound by the assembly's decision.</p></div></div>
+    </div></div>
+    <div class="video-block">
+      <div class="video-label">Watch: Robert's Rules in a Nutshell &mdash; Approx. 3 min</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/RwCeE9_xaR4?rel=0&modestbranding=1" allowfullscreen></iframe></div>
+      <div class="video-caption">A concise overview of how the Chair manages the full meeting flow — useful review before the applied scenarios module. Requires internet connection.</div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 8 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the next module.</span></div>
+      <div class="kc-q" id="kc-8-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">Under what circumstance may the presiding officer vote?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-8-1" value="a"> Never — the Chair is prohibited from voting in all circumstances</label></li>
+          <li><label><input type="radio" name="kc-8-1" value="b"> Only when the vote is by secret ballot or to break a tie, per the bylaws</label></li>
+          <li><label><input type="radio" name="kc-8-1" value="c"> Whenever they feel the outcome is important enough</label></li>
+          <li><label><input type="radio" name="kc-8-1" value="d"> On all motions, but their vote counts only in a tie</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(8,1,'b','The Chair generally does not vote on voice or show-of-hands votes. They may vote when the vote is by ballot or to break (or create) a tie, as permitted by the chapter bylaws.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-8-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">A member says "I appeal from the decision of the Chair." What happens next?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-8-2" value="a"> The Chair ignores the appeal and continues</label></li>
+          <li><label><input type="radio" name="kc-8-2" value="b"> The ruling is automatically overturned</label></li>
+          <li><label><input type="radio" name="kc-8-2" value="c"> The appeal requires a second; if seconded, the assembly votes to sustain or overturn the ruling</label></li>
+          <li><label><input type="radio" name="kc-8-2" value="d"> The next senior officer immediately takes over as Chair</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(8,2,'c','An appeal requires a second. The Chair may briefly explain the ruling, then the assembly votes on \"Shall the decision of the Chair be sustained?\" A majority against the ruling overrules it.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-8-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">The Chapter President wants to speak in debate on a pending motion. What must they do first?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-8-3" value="a"> Obtain a 2/3 vote to be permitted to speak</label></li>
+          <li><label><input type="radio" name="kc-8-3" value="b"> Wait until all other members have spoken</label></li>
+          <li><label><input type="radio" name="kc-8-3" value="c"> Temporarily yield the chair to the next ranking officer</label></li>
+          <li><label><input type="radio" name="kc-8-3" value="d"> Make a motion to suspend the rules</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(8,3,'c','The Chair must remain impartial. Before debating, the President must yield the chair to the Vice President or next ranking officer. After speaking, they may reclaim the chair.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-8">Module 8 complete. You may proceed.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(7)">Previous</button><div class="footer-mid">Module 8 of 10</div><button class="btn-nav btn-nav-next" id="next-8" onclick="goTo(9)" disabled>Next Module</button></div>
+</section>
+
+<!-- MODULE 9: APPLIED SCENARIOS -->
+<section class="module" id="mod9">
+  <div class="module-hero"><div class="module-eyebrow">Module 9 of 10</div><h1>Applied Scenarios</h1><p class="module-desc">Apply what you have learned. Read each scenario, determine the correct course of action, then reveal the ruling to compare your reasoning.</p></div>
+  <div class="objectives-band"><h2>Module Learning Objectives</h2><ul class="obj-list"><li>Apply parliamentary procedure rules to realistic chapter meeting situations</li><li>Determine whether a member's action is in order, out of order, or improper</li><li>Identify the correct response from both the Chair and the member involved</li></ul></div>
+  <div class="module-body">
+    <div class="block"><div class="block-title">Scenarios</div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Scenario 1</span><span class="scenario-title">The Budget Conflict</span></div><div class="scenario-scene"><p>A motion to allocate $500 for chapter apparel is on the floor. <span class="sp">Sister Patton</span> says: "I move that we instead use that $500 to fund our probate show." <em>What should the Chair do?</em></p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">Out of Order</div>A new main motion cannot be made while another is pending. The Chair: <em>"Sister Patton, the motion is out of order. There is a motion currently before the assembly. You may introduce your motion once this matter is resolved."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-improper">Scenario 2</span><span class="scenario-title">The Disputed Voice Vote</span></div><div class="scenario-scene"><p>A voice vote is taken and the Chair announces the Ayes have it. <span class="sp">Brother Hicks</span> calls out: "I couldn't hear a clear majority either way!" <em>What should Brother Hicks do and what must the Chair do?</em></p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling note"><div class="ruling-label note">Division Required</div>Brother Hicks should call "Division!" from his seat — no recognition required. The Chair must immediately conduct a rising or hand-count vote. This is a right, not a challenge to the Chair's authority.</div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-proper">Scenario 3</span><span class="scenario-title">Ending a Long Debate</span></div><div class="scenario-scene"><p>A motion has been debated for 45 minutes with the same arguments repeating. <span class="sp">Sister Lane</span> rises: "I move the previous question." <span class="sp">Brother Ellis</span> objects: "She can't do that — we're not done!" <em>Is Sister Lane's motion in order?</em></p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling good"><div class="ruling-label good">Proper — Motion Is in Order</div>Sister Lane is correct. Any member may move the previous question. It requires a second and a 2/3 vote to pass. Brother Ellis cannot block it — the assembly decides. The Chair calls for a second and votes immediately.</div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Scenario 4</span><span class="scenario-title">Conducting Business Without Quorum</span></div><div class="scenario-scene"><p>Only 8 of the required 15 members are present. The VP calls the meeting to order and a motion is made to spend $400 from the chapter fund. <em>May the chapter proceed to vote?</em></p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling bad"><div class="ruling-label bad">No — Quorum Not Present</div>Without quorum, the chapter cannot conduct binding business. Any vote taken is null and void. The presiding officer must announce: <em>"A quorum is not present. The chapter may not conduct business. We may recess and wait for additional members, or we may adjourn."</em></div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-proper">Scenario 5</span><span class="scenario-title">The President Wants to Speak</span></div><div class="scenario-scene"><p><span class="sp">President Hayes</span> has a strong opinion on a pending motion and wants to speak in favor of it. She is currently presiding. <em>What must she do before speaking?</em></p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling good"><div class="ruling-label good">Proper Procedure</div>President Hayes must temporarily yield the chair: <em>"I will temporarily yield the chair to Vice President [Name] so that I may address the assembly on this motion."</em> After speaking, she may reclaim the chair.</div></div>
+      <div class="scenario-block"><div class="scenario-header"><span class="scenario-badge badge-violation">Scenario 6</span><span class="scenario-title">Revisiting a Vote</span></div><div class="scenario-scene"><p>The chapter just voted to donate $300 to charity. An hour later, still in the same meeting, <span class="sp">Brother Mills</span> (who voted Yes) says: "I've changed my mind. I move to reconsider the donation vote." <em>Is this in order?</em></p></div><button class="reveal-btn" onclick="toggleRuling(this)">View Ruling</button><div class="scenario-ruling good"><div class="ruling-label good">Proper — Motion to Reconsider</div>Brother Mills may move to reconsider because he voted on the prevailing side (he voted Yes and the motion passed). The motion requires a second and a majority vote to reopen debate. It does not automatically reverse the decision — it reopens it.</div></div>
+    </div>
+    <div class="kc-section">
+      <div class="kc-section-header"><span class="kc-section-title">Module 9 Knowledge Check</span><span class="kc-section-sub">Answer all three questions to unlock the final assessment.</span></div>
+      <div class="kc-q" id="kc-9-1">
+        <div class="kc-q-num">Check 1 of 3</div>
+        <div class="kc-q-text">A voice vote result seems unclear. What is the correct immediate action for any member who doubts the outcome?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-9-1" value="a"> Raise a Point of Order flagging the Chair's error</label></li>
+          <li><label><input type="radio" name="kc-9-1" value="b"> Appeal the ruling of the Chair</label></li>
+          <li><label><input type="radio" name="kc-9-1" value="c"> Call "Division!" from their seat — no recognition needed</label></li>
+          <li><label><input type="radio" name="kc-9-1" value="d"> Move to reconsider the vote</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(9,1,'c','"Division!" demands a more accurate count. Any member may call it from their seat without recognition. The Chair must immediately conduct a rising or hand-count vote.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-9-2">
+        <div class="kc-q-num">Check 2 of 3</div>
+        <div class="kc-q-text">Who may make a motion to reconsider a vote?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-9-2" value="a"> Any member, regardless of how they voted</label></li>
+          <li><label><input type="radio" name="kc-9-2" value="b"> Only the member who originally made the motion</label></li>
+          <li><label><input type="radio" name="kc-9-2" value="c"> Only a member who voted on the prevailing side</label></li>
+          <li><label><input type="radio" name="kc-9-2" value="d"> Only the presiding officer</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(9,2,'c','A motion to reconsider must be made by someone who voted on the prevailing side — a Yes voter if the motion passed, or a No voter if it failed. This prevents the losing side from simply calling for a redo.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-q" id="kc-9-3">
+        <div class="kc-q-num">Check 3 of 3</div>
+        <div class="kc-q-text">During a meeting, only 7 of the required 15 quorum members remain. What is the correct course of action?</div>
+        <ul class="kc-opts">
+          <li><label><input type="radio" name="kc-9-3" value="a"> Continue — quorum only applies at the start of the meeting</label></li>
+          <li><label><input type="radio" name="kc-9-3" value="b"> Take the vote immediately before more members leave</label></li>
+          <li><label><input type="radio" name="kc-9-3" value="c"> The Chair must acknowledge the loss of quorum and suspend business until quorum is restored or the meeting adjourns</label></li>
+          <li><label><input type="radio" name="kc-9-3" value="d"> The Vice President automatically takes over and business continues</label></li>
+        </ul>
+        <button class="kc-btn" onclick="submitKC(9,3,'c','If quorum is lost during a meeting, the chapter may not continue binding business. The Chair must announce the loss of quorum. The proper options are to recess and wait for members to return, or to adjourn.')">Submit</button>
+        <div class="kc-feedback"></div>
+      </div>
+      <div class="kc-complete-msg" id="kc-done-9">Module 9 complete. Proceed to the final assessment.</div>
+    </div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(8)">Previous</button><div class="footer-mid">Module 9 of 10</div><button class="btn-nav btn-nav-next" id="next-9" onclick="goTo(10)" disabled>Proceed to Assessment</button></div>
+</section>
+
+<!-- MODULE 10: ASSESSMENT -->
+<section class="module" id="mod10">
+  <div class="module-hero"><div class="module-eyebrow">Module 10 of 10</div><h1>Knowledge Assessment</h1><p class="module-desc">This ten-question assessment covers the full course. A score of 80% or higher (8 of 10) is the recommended passing threshold.</p></div>
+  <div class="objectives-band"><h2>Assessment Criteria</h2><ul class="obj-list"><li>Demonstrates understanding of foundational parliamentary principles</li><li>Correctly identifies procedural requirements for common motions</li><li>Recognizes out-of-order conduct and applies correct responses</li><li>Understands the role and limitations of the presiding officer</li></ul></div>
+  <div class="module-body">
+    <div class="quiz-tracker"><span id="q-status">Question 1 of 10</span><span id="q-score">Score: 0 / 10</span></div>
+    <div class="quiz-q-block active" data-q="1"><div class="quiz-q-num">Question 1 of 10</div><div class="quiz-q-text">Before speaking in a formal chapter meeting, what is the first required action?</div><ul class="quiz-opts"><li><label><input type="radio" name="q1" value="a"> Begin speaking when you have something relevant to contribute</label></li><li><label><input type="radio" name="q1" value="b"> Address the Chair and wait to be recognized</label></li><li><label><input type="radio" name="q1" value="c"> Say "Second!" to signal your intent to speak</label></li><li><label><input type="radio" name="q1" value="d"> Raise a Point of Order</label></li></ul><button class="quiz-submit" onclick="checkQ(1,'b','You must address the Chair and wait to be formally recognized before speaking. Speaking without recognition is out of order regardless of urgency.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="2"><div class="quiz-q-num">Question 2 of 10</div><div class="quiz-q-text">A motion receives no second. What is the correct outcome?</div><ul class="quiz-opts"><li><label><input type="radio" name="q2" value="a"> The Chair seconds the motion on behalf of the assembly</label></li><li><label><input type="radio" name="q2" value="b"> Debate opens automatically</label></li><li><label><input type="radio" name="q2" value="c"> The motion fails for want of a second and is dropped</label></li><li><label><input type="radio" name="q2" value="d"> The motion is tabled until the next meeting</label></li></ul><button class="quiz-submit" onclick="checkQ(2,'c','Without a second, the motion fails for want of a second. No debate and no vote occur. The Chair announces this and moves to next business.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="3"><div class="quiz-q-num">Question 3 of 10</div><div class="quiz-q-text">In the standard order of business, what comes immediately before New Business?</div><ul class="quiz-opts"><li><label><input type="radio" name="q3" value="a"> Officer Reports</label></li><li><label><input type="radio" name="q3" value="b"> Announcements</label></li><li><label><input type="radio" name="q3" value="c"> Committee Reports</label></li><li><label><input type="radio" name="q3" value="d"> Unfinished Business</label></li></ul><button class="quiz-submit" onclick="checkQ(3,'d','The standard sequence is: Call to Order → Minutes → Officer Reports → Committee Reports → Unfinished Business → New Business → Announcements → Adjournment.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="4"><div class="quiz-q-num">Question 4 of 10</div><div class="quiz-q-text">Which vote threshold is required to adopt the Previous Question (end debate)?</div><ul class="quiz-opts"><li><label><input type="radio" name="q4" value="a"> Simple majority</label></li><li><label><input type="radio" name="q4" value="b"> Unanimous consent</label></li><li><label><input type="radio" name="q4" value="c"> Two-thirds majority</label></li><li><label><input type="radio" name="q4" value="d"> The Chair decides</label></li></ul><button class="quiz-submit" onclick="checkQ(4,'c','The Previous Question requires a two-thirds vote. The higher threshold protects the minority\'s right to be heard before debate is cut off.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="5"><div class="quiz-q-num">Question 5 of 10</div><div class="quiz-q-text">A member believes the Chair made an incorrect ruling. What is the correct procedure?</div><ul class="quiz-opts"><li><label><input type="radio" name="q5" value="a"> Verbally challenge the Chair in front of the assembly</label></li><li><label><input type="radio" name="q5" value="b"> Continue speaking and disregard the ruling</label></li><li><label><input type="radio" name="q5" value="c"> State "I appeal from the decision of the Chair," get a second, and let the assembly vote</label></li><li><label><input type="radio" name="q5" value="d"> Introduce a new main motion to overrule the Chair</label></li></ul><button class="quiz-submit" onclick="checkQ(5,'c','Appealing from the decision of the Chair is the formal mechanism. It requires a second and a majority vote against the ruling to overturn it. The appeal must be made immediately.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="6"><div class="quiz-q-num">Question 6 of 10</div><div class="quiz-q-text">Which voting method is most appropriate for officer elections?</div><ul class="quiz-opts"><li><label><input type="radio" name="q6" value="a"> Voice vote (Aye/Nay)</label></li><li><label><input type="radio" name="q6" value="b"> Show of hands</label></li><li><label><input type="radio" name="q6" value="c"> Secret ballot</label></li><li><label><input type="radio" name="q6" value="d"> General consent</label></li></ul><button class="quiz-submit" onclick="checkQ(6,'c','Officer elections should use a secret ballot to protect privacy and prevent social pressure from influencing votes. Most bylaws require this.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="7"><div class="quiz-q-num">Question 7 of 10</div><div class="quiz-q-text">Motion on the floor: "Donate $100 to a food bank." A member moves to amend it to "use $100 for a chapter social." How should the Chair rule?</div><ul class="quiz-opts"><li><label><input type="radio" name="q7" value="a"> Allow the amendment — any change is valid</label></li><li><label><input type="radio" name="q7" value="b"> Rule the amendment out of order — it is not germane</label></li><li><label><input type="radio" name="q7" value="c"> Table the original motion and debate the amendment</label></li><li><label><input type="radio" name="q7" value="d"> Put it to the assembly to decide whether to allow it</label></li></ul><button class="quiz-submit" onclick="checkQ(7,'b','Amendments must be germane. Changing a donation to a social event introduces a completely different purpose. The Chair rules the amendment out of order.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="8"><div class="quiz-q-num">Question 8 of 10</div><div class="quiz-q-text">The Chapter President wishes to speak in debate on a pending motion. What must occur first?</div><ul class="quiz-opts"><li><label><input type="radio" name="q8" value="a"> The President may speak at any time — presiding carries that privilege</label></li><li><label><input type="radio" name="q8" value="b"> The President must temporarily yield the chair to the Vice President</label></li><li><label><input type="radio" name="q8" value="c"> The President must obtain a 2/3 vote to be permitted to speak</label></li><li><label><input type="radio" name="q8" value="d"> The President may never speak during a meeting they preside over</label></li></ul><button class="quiz-submit" onclick="checkQ(8,'b','The Chair must remain impartial. The President must yield the chair to the Vice President or next ranking officer before participating in debate.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="9"><div class="quiz-q-num">Question 9 of 10</div><div class="quiz-q-text">Only 8 of the required 15 quorum members are present when a vote is called. Is this vote valid?</div><ul class="quiz-opts"><li><label><input type="radio" name="q9" value="a"> Yes — those present constitute a working quorum</label></li><li><label><input type="radio" name="q9" value="b"> Yes — the Vice President may waive quorum requirements</label></li><li><label><input type="radio" name="q9" value="c"> No — without quorum, no binding votes may be taken</label></li><li><label><input type="radio" name="q9" value="d"> It is valid only if the vote is unanimous</label></li></ul><button class="quiz-submit" onclick="checkQ(9,'c','Without a quorum, no binding business may be conducted. Any vote taken without quorum is null and void. The presiding officer must announce the lack of quorum.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="quiz-q-block" data-q="10"><div class="quiz-q-num">Question 10 of 10</div><div class="quiz-q-text">Which is the correctly stated motion to donate chapter funds to charity?</div><ul class="quiz-opts"><li><label><input type="radio" name="q10" value="a"> "I think we should give some money to a charity this semester."</label></li><li><label><input type="radio" name="q10" value="b"> "Can someone make a motion about donating to charity?"</label></li><li><label><input type="radio" name="q10" value="c"> "I move that the chapter donate $150 to the Denton Community Food Bank from the service fund."</label></li><li><label><input type="radio" name="q10" value="d"> "Let's vote — should we donate to charity?"</label></li></ul><button class="quiz-submit" onclick="checkQ(10,'c','A proper motion begins with "I move that…" and states a specific action: amount, recipient, and funding source. Vague suggestions cannot be voted on.')">Submit</button><div class="quiz-feedback"></div></div>
+    <div class="score-panel" id="score-panel"><div class="score-ring"><div class="s-num" id="final-num">0</div><div class="s-of">out of 10</div></div><div class="score-msg" id="score-msg"></div><div class="score-sub" id="score-sub"></div><button class="btn-retake" onclick="resetQuiz()">Retake Assessment</button><button class="btn-back" onclick="goTo(0)">Return to Course Overview</button></div>
+  </div>
+  <div class="module-footer"><button class="btn-nav btn-nav-prev" onclick="goTo(9)">Previous</button><div class="footer-mid">Module 10 of 10</div><button class="btn-nav btn-nav-next" disabled>Course Complete</button></div>
+</section>
+
+</div><!-- /main -->
+<script>
+const MODULES=[{tag:'Overview',title:'Course Overview'},{tag:'Module 1',title:'Foundation'},{tag:'Module 2',title:'The Language of the Meeting'},{tag:'Module 3',title:'The Motion Process'},{tag:'Module 4',title:'Types of Motions'},{tag:'Module 5',title:'The Order of Business'},{tag:'Module 6',title:'Order and Conduct'},{tag:'Module 7',title:'Member Guidelines'},{tag:'Module 8',title:'The Presiding Officer'},{tag:'Module 9',title:'Applied Scenarios'},{tag:'Module 10',title:'Knowledge Assessment'}];
+let current=0;const completed=new Set();
+function buildSidebar(){const nav=document.getElementById('sb-nav');nav.innerHTML=MODULES.map((m,i)=>`<button class="sb-module-btn ${i===0?'active':''}" id="sb-btn-${i}" onclick="goTo(${i})"><div class="sb-num" id="sb-num-${i}">${i}</div><div class="sb-module-text"><span class="sb-module-tag">${m.tag}</span>${m.title}</div></button>`).join('');}
+function goTo(n){if(n===current){closeSidebar();return;}completed.add(current);document.querySelectorAll('section.module').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.sb-module-btn').forEach((b,i)=>{b.classList.toggle('active',i===n);if(completed.has(i)&&i!==n)b.classList.add('completed');});document.getElementById(`mod${n}`).classList.add('active');document.getElementById('topbar-title').textContent=MODULES[n].title;current=n;updateProgress();closeSidebar();window.scrollTo({top:0,behavior:'instant'});}
+function updateProgress(){const pct=Math.round((completed.size/(MODULES.length-1))*100);document.getElementById('sb-fill').style.width=pct+'%';document.getElementById('pct-label').textContent=pct+'%';}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
+function toggleAcc(header){const body=header.nextElementSibling;const isOpen=body.classList.contains('open');header.classList.toggle('open',!isOpen);body.classList.toggle('open',!isOpen);}
+function toggleRuling(btn){const ruling=btn.nextElementSibling;const open=ruling.style.display==='block';ruling.style.display=open?'none':'block';btn.textContent=open?'View Ruling':'Hide Ruling';}
+/* KC SYSTEM */
+const kcAnswered={};
+function submitKC(modNum,qNum,correct,explanation){
+  const key=`${modNum}-${qNum}`;
+  if(kcAnswered[key])return;
+  const sel=document.querySelector(`input[name="kc-${modNum}-${qNum}"]:checked`);
+  if(!sel){alert('Please select an answer.');return;}
+  kcAnswered[key]=true;
+  document.querySelectorAll(`input[name="kc-${modNum}-${qNum}"]`).forEach(i=>i.disabled=true);
+  const btn=document.querySelector(`#kc-${modNum}-${qNum} .kc-btn`);
+  if(btn)btn.disabled=true;
+  const fb=document.querySelector(`#kc-${modNum}-${qNum} .kc-feedback`);
+  const isCorrect=sel.value===correct;
+  fb.style.display='block';
+  fb.className='kc-feedback '+(isCorrect?'kc-correct':'kc-incorrect');
+  fb.innerHTML=`<span class="fb-label">${isCorrect?'Correct':'Incorrect — Correct answer noted below'}</span>${explanation}`;
+  const modKCs=document.querySelectorAll(`#mod${modNum} .kc-q`).length;
+  const answered=Object.keys(kcAnswered).filter(k=>k.startsWith(`${modNum}-`)).length;
+  if(answered>=modKCs){
+    const done=document.getElementById(`kc-done-${modNum}`);
+    if(done)done.style.display='flex';
+    const nextBtn=document.getElementById(`next-${modNum}`);
+    if(nextBtn)nextBtn.disabled=false;
+  }
+}
+/* QUIZ */
+let qScore=0;const qAnswered={};
+function checkQ(num,correct,explanation){
+  if(qAnswered[num])return;
+  const sel=document.querySelector(`input[name="q${num}"]:checked`);
+  if(!sel){alert('Please select an answer.');return;}
+  qAnswered[num]=sel.value;
+  document.querySelectorAll(`input[name="q${num}"]`).forEach(i=>i.disabled=true);
+  document.querySelector(`.quiz-q-block[data-q="${num}"] .quiz-submit`).disabled=true;
+  const fb=document.querySelector(`.quiz-q-block[data-q="${num}"] .quiz-feedback`);
+  const isCorrect=sel.value===correct;
+  if(isCorrect)qScore++;
+  fb.style.display='block';
+  fb.className='quiz-feedback '+(isCorrect?'fb-correct':'fb-incorrect');
+  fb.innerHTML=`<span class="fb-label">${isCorrect?'Correct':'Incorrect'}</span>${explanation}`;
+  document.getElementById('q-score').textContent=`Score: ${qScore} / 10`;
+  setTimeout(()=>{
+    if(num<10){document.querySelector(`.quiz-q-block[data-q="${num}"]`).classList.remove('active');document.querySelector(`.quiz-q-block[data-q="${num+1}"]`).classList.add('active');document.getElementById('q-status').textContent=`Question ${num+1} of 10`;}
+    else{showScore();}
+  },1800);
+}
+function showScore(){
+  document.querySelectorAll('.quiz-q-block').forEach(q=>q.style.display='none');
+  document.getElementById('score-panel').style.display='block';
+  document.getElementById('final-num').textContent=qScore;
+  const rows=[[9,'Outstanding — Course Mastery Demonstrated','You have demonstrated a strong command of parliamentary procedure and are prepared to participate fully in any chapter meeting.'],[7,'Proficient — Recommended Passing Standard Met','You have met the recommended threshold. Review any uncertain areas before your next meeting.'],[5,'Developing — Additional Review Recommended','Review Modules 3 through 8 before your next chapter meeting, focusing on motion types, conduct, and the Chair\'s role.'],[0,'Foundational — Full Course Review Required','We recommend completing the full course again from Module 1. The rules will become clear with focused review and practice.']];
+  const [,msg,sub]=rows.find(([t])=>qScore>=t);
+  document.getElementById('score-msg').textContent=msg;
+  document.getElementById('score-sub').textContent=sub;
+}
+function resetQuiz(){
+  qScore=0;Object.keys(qAnswered).forEach(k=>delete qAnswered[k]);
+  document.querySelectorAll('.quiz-q-block').forEach((q,i)=>{q.style.display='';q.classList.toggle('active',i===0);q.querySelectorAll('input[type=radio]').forEach(r=>{r.checked=false;r.disabled=false;});q.querySelector('.quiz-submit').disabled=false;q.querySelector('.quiz-feedback').style.display='none';});
+  document.getElementById('score-panel').style.display='none';
+  document.getElementById('q-status').textContent='Question 1 of 10';
+  document.getElementById('q-score').textContent='Score: 0 / 10';
+}
+buildSidebar();
+</script>
+</body>
+</html>
