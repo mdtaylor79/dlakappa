@@ -169,20 +169,17 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ── SUPABASE CONFIG ──────────────────────────────
 const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-</script>
-<script>
-// Redirect if already logged in
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
 (async () => {
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await sb.auth.getSession();
   if (session) window.location.href = '/portal/dashboard.html';
 })();
 
 async function signInWithGoogle() {
-  await supabase.auth.signInWithOAuth({
+  await sb.auth.signInWithOAuth({
     provider: 'google',
     options: { redirectTo: 'https://dlakappa.org/portal/dashboard.html' }
   });
@@ -199,7 +196,7 @@ async function handleLogin(e) {
   btn.disabled = true;
   btn.textContent = 'Signing in…';
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { error } = await sb.auth.signInWithPassword({ email, password });
 
   if (error) {
     errEl.textContent = 'Invalid email or password. Please try again.';
