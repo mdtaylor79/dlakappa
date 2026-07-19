@@ -10,46 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
 </head>
-<script>
-(function() {
-  const carousel = document.getElementById('heroCarousel');
-  if (!carousel) return;
-  const slides = carousel.querySelectorAll('.slide');
-  const dotsWrap = document.getElementById('carouselDots');
-  let current = 0;
-  let timer;
-
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Slide ' + (i + 1));
-    d.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(d);
-  });
-
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    dotsWrap.children[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dotsWrap.children[current].classList.add('active');
-    resetTimer();
-  }
-
-  function resetTimer() {
-    clearInterval(timer);
-    timer = setInterval(() => goTo(current + 1), 3000);
-  }
-
-  carousel.querySelector('.carousel-prev').addEventListener('click', () => goTo(current - 1));
-  carousel.querySelector('.carousel-next').addEventListener('click', () => goTo(current + 1));
-
-  resetTimer();
-})();
-</script>
 <body data-page="home">
 <div id="site-nav-placeholder"></div>
--->
 
   <section class="hero">
 
@@ -73,30 +35,25 @@
       </div>
     </div>
 
-    <!-- IMAGE CAROUSEL
-         To add your own photos, replace the <div class="slide-placeholder"> inside
-         each .slide with: <img src="your-photo.jpg" alt="description">
-         Add or remove <div class="slide"> blocks to change the number of images.
-    -->
     <div class="hero-carousel" id="heroCarousel">
 
       <div class="slide active">
-  <img src="/img/brother_serving.jpg" alt="Brothers Serving the Community">
-</div>
+        <img src="/img/brother_serving.jpg" alt="Brothers Serving the Community">
+      </div>
 
-<div class="slide">
-  <a href="https://fundraising.stjude.org/site/TR?px=7183214&fr_id=164153&pg=personal" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;">
-    <img src="/img/ST_Jude_Banner.jpg" alt="St. Jude Fundraiser — Donate Now" style="width:100%;height:100%;object-fit:cover;">
-  </a>
-</div>
+      <div class="slide">
+        <a href="https://fundraising.stjude.org/site/TR?px=7183214&fr_id=164153&pg=personal" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;">
+          <img src="/img/ST_Jude_Banner.jpg" alt="St. Jude Fundraiser — Donate Now" style="width:100%;height:100%;object-fit:cover;">
+        </a>
+      </div>
 
-<div class="slide">
-  <img src="/img/25_26_chapter_photo.jpg" alt="2025-26 Chapter Photo">
-</div>
+      <div class="slide">
+        <img src="/img/25_26_chapter_photo.jpg" alt="2025-26 Chapter Photo">
+      </div>
 
-<div class="slide">
-  <img src="/img/Kappa_Silhouttes.jpg" alt="Kappa Silhouettes">
-</div>
+      <div class="slide">
+        <img src="/img/Kappa_Silhouttes.jpg" alt="Kappa Silhouettes">
+      </div>
 
       <button class="carousel-prev" aria-label="Previous">&#8592;</button>
       <button class="carousel-next" aria-label="Next">&#8594;</button>
@@ -175,7 +132,10 @@
     </div>
     <div class="grid">
       <article class="card">
-        <div class="media"><span class="num">01</span><span class="pill"><i></i>Mentorship</span></div>
+        <div class="media" style="position:relative;overflow:hidden;padding:0;">
+          <img src="/img/kappa_league_pose.jpg" alt="Kappa League" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <span class="pill" style="position:absolute;bottom:12px;left:12px;"><i></i>Mentorship</span>
+        </div>
         <div class="body">
           <h3>Kappa League</h3>
           <p>A distinguished mentoring initiative offering young men opportunities for growth in leadership, academic success, and community engagement.</p>
@@ -183,7 +143,10 @@
         </div>
       </article>
       <article class="card">
-        <div class="media"><span class="num">02</span><span class="pill"><i></i>Flagship Program</span></div>
+        <div class="media" style="position:relative;overflow:hidden;padding:0;">
+          <img src="/img/guide_right.jpg" alt="Guide Right" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <span class="pill" style="position:absolute;bottom:12px;left:12px;"><i></i>Flagship Program</span>
+        </div>
         <div class="body">
           <h3>Guide Right</h3>
           <p>Our flagship character development and youth empowerment program designed to shape tomorrow's leaders through mentorship and discipline.</p>
@@ -191,7 +154,10 @@
         </div>
       </article>
       <article class="card">
-        <div class="media"><span class="num">03</span><span class="pill"><i></i>Service</span></div>
+        <div class="media" style="position:relative;overflow:hidden;padding:0;">
+          <img src="/img/community_engagement.jpg" alt="Community Engagement" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <span class="pill" style="position:absolute;bottom:12px;left:12px;"><i></i>Service</span>
+        </div>
         <div class="body">
           <h3>Community Engagement</h3>
           <p>Year-round partnerships serving North Texas through mentorship, outreach, and collaborative impact with local organizations.</p>
@@ -199,7 +165,10 @@
         </div>
       </article>
       <article class="card">
-        <div class="media"><span class="num">04</span><span class="pill"><i></i>Literacy</span></div>
+        <div class="media" style="position:relative;overflow:hidden;padding:0;">
+          <img src="/img/room_2_read_event.jpg" alt="Room to Read" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <span class="pill" style="position:absolute;bottom:12px;left:12px;"><i></i>Literacy</span>
+        </div>
         <div class="body">
           <h3>Room to Read</h3>
           <p>Advancing literacy and educational opportunity through strategic partnerships and grassroots initiatives in underserved communities.</p>
@@ -207,7 +176,10 @@
         </div>
       </article>
       <article class="card">
-        <div class="media"><span class="num">05</span><span class="pill"><i></i>Youth Development</span></div>
+        <div class="media" style="position:relative;overflow:hidden;padding:0;">
+          <img src="/img/guide_right_foundation.jpg" alt="Guide Right Foundation" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <span class="pill" style="position:absolute;bottom:12px;left:12px;"><i></i>Youth Development</span>
+        </div>
         <div class="body">
           <h3>Guide Right Foundation</h3>
           <p>A structured youth development initiative focused on mentoring, academic preparation, and leadership growth.</p>
@@ -215,7 +187,10 @@
         </div>
       </article>
       <article class="card">
-        <div class="media"><span class="num">06</span><span class="pill"><i></i>Brotherhood</span></div>
+        <div class="media" style="position:relative;overflow:hidden;padding:0;">
+          <img src="/img/brotherhood_service.jpg" alt="Serve the Bond" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <span class="pill" style="position:absolute;bottom:12px;left:12px;"><i></i>Brotherhood</span>
+        </div>
         <div class="body">
           <h3>Serve the Bond</h3>
           <p>A commitment to strengthening brotherhood through service, accountability, and shared responsibility.</p>
@@ -225,8 +200,6 @@
     </div>
   </div>
 </section>
-
-
 
   <!-- OUR CHAPTER -->
   <section class="our-chapter" style="background:#f2ebd7;padding:100px 0;">
@@ -491,6 +464,43 @@
 
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
+<script>
+(function() {
+  const carousel = document.getElementById('heroCarousel');
+  if (!carousel) return;
+  const slides = carousel.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('carouselDots');
+  let current = 0;
+  let timer;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 3000);
+  }
+
+  carousel.querySelector('.carousel-prev').addEventListener('click', () => goTo(current - 1));
+  carousel.querySelector('.carousel-next').addEventListener('click', () => goTo(current + 1));
+
+  resetTimer();
+})();
+</script>
 
 </body>
 </html>
