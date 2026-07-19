@@ -28,11 +28,17 @@
     text-align: center;
   }
   .hl-card .hl-img {
-    width: 100%; height: 140px;
-    background: linear-gradient(135deg,#2a0604,#70110c);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.5rem;
+    width: 100%; height: 160px;
+    overflow: hidden;
+    display: block;
   }
+  .hl-card .hl-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .4s ease;
+  }
+  .hl-card:hover .hl-img img { transform: scale(1.04); }
+  .hl-card a.hl-link { text-decoration: none; color: inherit; display: block; }
+  .hl-card a.hl-link h4:hover { text-decoration: underline; }
   .hl-card .hl-body { padding: .85rem 1rem 1rem; }
   .hl-card h4 { font-family:'Cinzel',serif; font-size:.82rem; color:#70110c; margin-bottom:.3rem; font-weight:700; }
   .hl-card p { font-size:.78rem; color:#6a5a52; line-height:1.55; margin:0; }
@@ -111,11 +117,16 @@
   .explore-card {
     background: #fff;
     border: 1px solid #e0d8cc;
-    padding: 1.5rem 1.25rem;
-    border-top: 3px solid #c69a3f;
+    overflow: hidden;
   }
-  .explore-card h4 { font-family:'Cinzel',serif; font-size:.85rem; color:#70110c; margin-bottom:.5rem; }
-  .explore-card p { font-size:.82rem; color:#5a4a42; line-height:1.65; margin:0; }
+  .explore-card .ec-img { width:100%; height:160px; overflow:hidden; }
+  .explore-card .ec-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .explore-card:hover .ec-img img { transform:scale(1.04); }
+  .explore-card .ec-body { padding:1.1rem 1.25rem 1.25rem; border-top:3px solid #c69a3f; }
+  .explore-card h4 { font-family:'Cinzel',serif; font-size:.82rem; color:#70110c; margin-bottom:.4rem; }
+  .explore-card h4 a { color:#70110c; text-decoration:none; }
+  .explore-card h4 a:hover { text-decoration:underline; }
+  .explore-card p { font-size:.8rem; color:#5a4a42; line-height:1.65; margin:0; }
 
   /* ── WHY SECTION ── */
   .why-grid {
@@ -180,47 +191,57 @@
     <div class="highlight-grid">
 
       <div class="hl-card">
-        <div class="hl-img">🎓</div>
-        <div class="hl-body">
-          <h4>University of North Texas</h4>
-          <p>One of the nation's leading public research universities with over 46,000 students.</p>
-        </div>
+        <a class="hl-link" href="https://www.unt.edu/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/unt_denton.jpg" alt="University of North Texas"></div>
+          <div class="hl-body">
+            <h4>University of North Texas</h4>
+            <p>One of the nation's leading public research universities with over 46,000 students.</p>
+          </div>
+        </a>
       </div>
 
       <div class="hl-card">
-        <div class="hl-img">👩‍🎓</div>
-        <div class="hl-body">
-          <h4>Texas Woman's University</h4>
-          <p>The nation's largest university primarily for women, renowned for healthcare and leadership.</p>
-        </div>
+        <a class="hl-link" href="https://www.twu.edu/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/twu.jpg" alt="Texas Woman's University"></div>
+          <div class="hl-body">
+            <h4>Texas Woman's University</h4>
+            <p>The nation's largest university primarily for women, renowned for healthcare and leadership.</p>
+          </div>
+        </a>
       </div>
 
       <div class="hl-card">
-        <div class="hl-img">🚤</div>
-        <div class="hl-body">
-          <h4>Lewisville Lake</h4>
-          <p>29,000+ acres of boating, fishing, paddleboarding, camping, and waterfront recreation.</p>
-        </div>
+        <a class="hl-link" href="https://www.nctc.edu/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/nctc.jpg" alt="North Central Texas College"></div>
+          <div class="hl-body">
+            <h4>North Central Texas College</h4>
+            <p>A premier community college serving students across Denton County with affordable, quality education.</p>
+          </div>
+        </a>
       </div>
 
       <div class="hl-card">
-        <div class="hl-img">🎵</div>
-        <div class="hl-body">
-          <h4>Historic Downtown Denton</h4>
-          <p>A nationally recognized square with live music, festivals, restaurants, and historic architecture.</p>
-        </div>
+        <a class="hl-link" href="https://www.discoverdenton.com/visitor-guide" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/Old_Courthouse_Denton_TX-scaled.jpg" alt="Historic Downtown Denton"></div>
+          <div class="hl-body">
+            <h4>Historic Downtown Denton</h4>
+            <p>A nationally recognized square with live music, festivals, restaurants, and historic architecture.</p>
+          </div>
+        </a>
       </div>
 
       <div class="hl-card">
-        <div class="hl-img">🛍️</div>
-        <div class="hl-body">
-          <h4>Grandscape</h4>
-          <p>One of the largest mixed-use entertainment developments in America.</p>
-        </div>
+        <a class="hl-link" href="https://www.grandscape.com/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/Grandscape.jpg" alt="Grandscape"></div>
+          <div class="hl-body">
+            <h4>Grandscape</h4>
+            <p>One of the largest mixed-use entertainment developments in America.</p>
+          </div>
+        </a>
       </div>
 
       <div class="hl-card">
-        <div class="hl-img">🏡</div>
+        <div class="hl-img" style="background:linear-gradient(135deg,#2a0604,#70110c);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🏡</div>
         <div class="hl-body">
           <h4>Family &amp; Community</h4>
           <p>Top-rated schools, safe neighborhoods, parks, and expanding communities across Denton County.</p>
@@ -353,38 +374,71 @@
     <p style="color:#4a3c35;line-height:1.8;max-width:620px;margin-bottom:0;">From world-class attractions to family-friendly destinations, there's something for everyone.</p>
 
     <div class="explore-grid">
+
       <div class="explore-card">
-        <h4>🎵 Historic Downtown Denton</h4>
-        <p>Live music, independent dining, shopping, and festivals on a nationally recognized square.</p>
+        <div class="ec-img"><img src="/img/Old_Courthouse_Denton_TX-scaled.jpg" alt="Historic Downtown Denton"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.discoverdenton.com/visitor-guide" target="_blank" rel="noopener">Historic Downtown Denton</a></h4>
+          <p>Live music, independent dining, shopping, and festivals on a nationally recognized square.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🚤 Lewisville Lake</h4>
-        <p>Water recreation, marinas, beaches, and outdoor adventure across 29,000+ acres.</p>
+        <div class="ec-img"><img src="/img/lake_lewisville.jpg" alt="Lewisville Lake"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.visitlewisville.com/" target="_blank" rel="noopener">Lewisville Lake</a></h4>
+          <p>Water recreation, marinas, beaches, and outdoor adventure across 29,000+ acres.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🌿 LLELA Nature Preserve</h4>
-        <p>Nearly 2,600 acres of hiking, wildlife, camping, and environmental education.</p>
+        <div class="ec-img"><img src="/img/llea_nature_preserve.jpg" alt="LLELA Nature Preserve"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.llela.org/" target="_blank" rel="noopener">LLELA Nature Preserve</a></h4>
+          <p>Nearly 2,600 acres of hiking, wildlife, camping, and environmental education.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🏕️ Ray Roberts Lake State Park</h4>
-        <p>Camping, fishing, horseback riding, cycling, kayaking, and hiking.</p>
+        <div class="ec-img"><img src="/img/Ray-Roberts_lake.jpg" alt="Ray Roberts Lake State Park"></div>
+        <div class="ec-body">
+          <h4><a href="https://tpwd.texas.gov/state-parks/ray-roberts-lake" target="_blank" rel="noopener">Ray Roberts Lake State Park</a></h4>
+          <p>Camping, fishing, horseback riding, cycling, kayaking, and hiking.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🛍️ Grandscape</h4>
-        <p>Shopping, entertainment, dining, Ferris wheel, live events, and family attractions.</p>
+        <div class="ec-img"><img src="/img/Grandscape.jpg" alt="Grandscape"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.grandscape.com/" target="_blank" rel="noopener">Grandscape</a></h4>
+          <p>Shopping, entertainment, dining, Ferris wheel, live events, and family attractions.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🏛️ Old Town Lewisville</h4>
-        <p>Historic downtown district with restaurants, community events, and public art.</p>
+        <div class="ec-img"><img src="/img/Old_Town_lewisville.jpg" alt="Old Town Lewisville"></div>
+        <div class="ec-body">
+          <h4><a href="https://oldtownlewisville.com/" target="_blank" rel="noopener">Old Town Lewisville</a></h4>
+          <p>Historic downtown district with restaurants, community events, and public art.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🎭 MCL Grand Theater</h4>
-        <p>Arts performances, concerts, exhibits, and cultural programming.</p>
+        <div class="ec-img"><img src="/img/mcl_Grand_Theater.jpg" alt="MCL Grand Theater"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.lewisvillegrand.com/" target="_blank" rel="noopener">MCL Grand Theater</a></h4>
+          <p>Arts performances, concerts, exhibits, and cultural programming.</p>
+        </div>
       </div>
+
       <div class="explore-card">
-        <h4>🎷 Denton Arts &amp; Jazz Festival</h4>
-        <p>One of Texas' premier free music festivals attracting hundreds of thousands of visitors annually.</p>
+        <div class="ec-img"><img src="/img/denton_jazz_fest.jpg" alt="Denton Arts & Jazz Festival"></div>
+        <div class="ec-body">
+          <h4><a href="https://dentonjazzfest.com/" target="_blank" rel="noopener">Denton Arts &amp; Jazz Festival</a></h4>
+          <p>One of Texas' premier free music festivals attracting hundreds of thousands of visitors annually.</p>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
