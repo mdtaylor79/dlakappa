@@ -23,7 +23,7 @@
       <li><a href="/events.html" data-page="events">Events</a></li>
       <li><a href="/contact.html" data-page="contact">Contact</a></li>
       <li class="nav-members">
-        <a href="/membership.html">Members Area</a>
+        <a href="/portal/login.html">Members Area</a>
       </li>
     </ul>
   </div>
@@ -66,7 +66,7 @@
         <div class="line"><b>Mailing Address</b>1501 S. Loop 288, Suite 104, PMB 190<br>Denton, TX 76205</div>
         <div class="line"><b>Email</b><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></div>
         <div class="line"><b>Membership &amp; Partnerships</b>We welcome members, partners, and supporters.</div>
-        <a class="portal-btn" href="/membership.html">Member Portal</a>
+        <a class="portal-btn" href="/portal/login.html">Member Portal</a>
       </div>
     </div>
   </div>
