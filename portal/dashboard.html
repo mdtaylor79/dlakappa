@@ -21,12 +21,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
   height: 64px;
   gap: 1rem;
 }
-.portal-nav .brand {
-  display: flex;
-  align-items: center;
-  gap: .9rem;
-  flex: 1;
-}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
 .portal-nav .brand img { width: 52px; }
 .portal-nav .brand-text .chapter-name {
   font-family: 'Cinzel', serif;
@@ -42,11 +37,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
   text-transform: uppercase;
   color: #888;
 }
-.portal-nav .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.75rem; }
 .portal-nav .nav-links a {
   font-size: .85rem;
   font-weight: 600;
@@ -60,7 +51,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
 /* ── HERO BANNER ── */
 .member-hero {
   background: #2a0604;
-  padding: 2.5rem 2rem 2.5rem;
+  padding: 2.5rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -104,103 +95,52 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
   line-height: 1.1;
   margin-bottom: .5rem;
 }
-.member-hero .member-email-gold {
-  font-size: .92rem;
-  color: #c69a3f;
-  font-weight: 600;
-  margin-bottom: .2rem;
-}
-.member-hero .member-email-white {
-  font-size: .88rem;
-  color: rgba(242,235,215,.7);
-}
+.member-hero .member-email-gold { font-size: .92rem; color: #c69a3f; font-weight: 600; margin-bottom: .2rem; }
+.member-hero .member-email-white { font-size: .88rem; color: rgba(242,235,215,.7); }
 
 /* ── CONTENT ── */
-.dashboard-body {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 2rem 4rem;
-}
+.dashboard-body { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 
 /* ── SUMMARY CARDS ── */
-.summary-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2rem; }
 @media(max-width:600px){ .summary-grid { grid-template-columns: 1fr; } }
 .summary-card {
   background: #fff;
   border-radius: 6px;
   border: 1px solid #e8e0d5;
-  padding: 1.5rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   display: flex;
   align-items: flex-start;
   gap: 1rem;
 }
 .summary-card .icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 44px; height: 44px; border-radius: 50%;
   background: #f0ece6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
+  display: flex; align-items: center; justify-content: center; flex: none;
 }
 .summary-card .icon-wrap svg { width: 22px; height: 22px; }
-.summary-card h3 {
-  font-size: .95rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: .5rem;
-}
-.summary-card .tier {
-  font-size: .85rem;
-  color: #c69a3f;
-  font-weight: 700;
-  margin-bottom: .2rem;
-}
+.summary-card h3 { font-size: .95rem; font-weight: 700; color: #1a1a1a; margin-bottom: .5rem; }
+.summary-card .tier { font-size: .85rem; color: #c69a3f; font-weight: 700; margin-bottom: .2rem; }
 .summary-card .meta { font-size: .82rem; color: #666; }
 .summary-card .no-events { font-size: .85rem; color: #666; }
 .summary-card .no-events a { color: #70110c; font-weight: 600; text-decoration: none; }
 .summary-card .no-events a:hover { text-decoration: underline; }
 
 /* ── DOCUMENTS ── */
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: .85rem;
-  margin-bottom: 1.25rem;
-}
+.section-header { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.25rem; }
 .section-icon {
-  width: 40px;
-  height: 40px;
-  background: #2a0604;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
+  width: 40px; height: 40px; background: #2a0604; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex: none;
 }
 .section-icon svg { width: 20px; height: 20px; }
-.section-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1a1a1a;
-}
+.section-title { font-size: 1.1rem; font-weight: 700; color: #1a1a1a; }
 .section-divider {
   height: 2px;
   background: linear-gradient(90deg, #c69a3f, #70110c 60%, transparent);
   margin-bottom: 1.25rem;
   border-radius: 2px;
 }
-.docs-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
+.docs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 @media(max-width:900px){ .docs-grid { grid-template-columns: repeat(2,1fr); } }
 @media(max-width:480px){ .docs-grid { grid-template-columns: 1fr; } }
 .doc-card {
@@ -236,7 +176,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
   </div>
   <div class="nav-links">
     <a href="/events.html">Events</a>
-    <a href="#" class="signout" onclick="signOut(event)">Sign out</a>
+    <a href="#" class="signout" id="signOutBtn">Sign out</a>
   </div>
 </nav>
 
@@ -244,7 +184,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
 <div class="member-hero">
   <div class="inner">
     <div class="avatar">
-      <img src="/img/kappa-crest.png" alt="Member avatar" id="memberAvatar">
+      <img src="/img/kappa-crest.png" alt="Member avatar">
     </div>
     <div class="member-info">
       <div class="member-name" id="memberName">—</div>
@@ -279,7 +219,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
       </div>
       <div>
         <h3>My Events</h3>
-        <div class="no-events">No event RSVPs yet.&nbsp; <a href="/events.html">See what's coming up &rarr;</a></div>
+        <div class="no-events">No event RSVPs yet.&nbsp;<a href="/events.html">See what's coming up &rarr;</a></div>
       </div>
     </div>
   </div>
@@ -297,97 +237,70 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
 
   <div class="docs-grid">
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="9" r="3"/><path d="M21 21v-1.5a3 3 0 0 0-2-2.83"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="9" r="3"/><path d="M21 21v-1.5a3 3 0 0 0-2-2.83"/></svg></div>
       <div><h4>Chapter Minutes</h4><p>View and download chapter minutes.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
       <div><h4>Chapter By Laws</h4><p>View and download our chapter by laws.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
       <div><h4>Chapter Forms</h4><p>Access and submit chapter forms.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
       <div><h4>Chapter Flyers</h4><p>View and download chapter flyers.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <div><h4>Chapter Branding</h4><p>Access logos and branding assets.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
       <div><h4>Chapter Vendors</h4><p>View our trusted vendor partners.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
       <div><h4>Chapter Videos</h4><p>Watch chapter videos and replays.</p></div>
     </a>
     <a class="doc-card" href="#">
-      <div class="doc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
-        </svg>
-      </div>
+      <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
       <div><h4>Chapter Images</h4><p>View and download chapter images.</p></div>
     </a>
   </div>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/portal/supabase-config.js"></script>
 <script>
-// Auth guard
-const session = JSON.parse(localStorage.getItem('dla_session') || 'null');
-if (!session) { window.location.href = '/portal/login.html'; }
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
 
-// Populate member info
-function toTitle(str) {
-  return str.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
-}
-if (session) {
-  const fullName = toTitle(session.firstName + ' ' + session.lastName);
-  document.getElementById('memberName').textContent = fullName;
-  document.getElementById('memberEmailGold').textContent = session.email;
-  document.getElementById('memberEmailWhite').textContent = session.email;
-  document.getElementById('memberTier').textContent = 'Tier: ' + session.tier;
-  document.getElementById('memberJoined').textContent = 'Joined: ' + session.joined;
+  const meta = session.user.user_metadata || {};
+  function toTitle(s) { return (s||'').replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase()); }
+
+  const firstName = toTitle(meta.firstName || '');
+  const lastName  = toTitle(meta.lastName  || '');
+  const fullName  = (firstName + ' ' + lastName).trim() || session.user.email;
+  const tier      = meta.tier  || 'Member';
+  const joined    = (session.user.created_at || '').split('T')[0];
+
+  document.getElementById('memberName').textContent      = fullName;
+  document.getElementById('memberEmailGold').textContent = session.user.email;
+  document.getElementById('memberEmailWhite').textContent = session.user.email;
+  document.getElementById('memberTier').textContent      = 'Tier: ' + tier;
+  document.getElementById('memberJoined').textContent    = 'Joined: ' + joined;
   document.title = fullName + ' — DLA Member Portal';
-}
+})();
 
-function signOut(e) {
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
   e.preventDefault();
-  localStorage.removeItem('dla_session');
+  await supabase.auth.signOut();
   window.location.href = '/portal/login.html';
-}
+});
 </script>
 </body>
 </html>
