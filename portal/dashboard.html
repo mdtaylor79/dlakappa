@@ -457,13 +457,15 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
   const firstName = toTitle(meta.firstName || '');
   const lastName  = toTitle(meta.lastName  || '');
-  const fullName  = (firstName + ' ' + lastName).trim() || session.user.email;
+  // Google OAuth stores name in full_name or name; fall back to email
+  const fullName  = (firstName + ' ' + lastName).trim()
+                 || meta.full_name || meta.name || session.user.email;
   const tier      = meta.tier  || 'Member';
   const joined    = (session.user.created_at || '').split('T')[0];
 
   document.getElementById('memberName').textContent      = fullName;
   document.getElementById('memberEmailGold').textContent = session.user.email;
-  document.getElementById('memberEmailWhite').textContent = session.user.email;
+  document.getElementById('memberEmailWhite').style.display = 'none';
   document.getElementById('memberTier').textContent      = 'Tier: ' + tier;
   document.getElementById('memberJoined').textContent    = 'Joined: ' + joined;
   document.title = fullName + ' — DLA Member Portal';
