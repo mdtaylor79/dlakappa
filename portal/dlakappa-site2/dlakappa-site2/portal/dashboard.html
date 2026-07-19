@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Member Dashboard — DLA Kappa Alpha Psi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min-height: 100vh; }
+
+/* ── TOP NAV ── */
+.portal-nav {
+  background: #fff;
+  border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 1rem;
+}
+.portal-nav .brand {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  flex: 1;
+}
+.portal-nav .brand img { width: 52px; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #70110c;
+  line-height: 1.1;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #888;
+}
+.portal-nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+.portal-nav .nav-links a {
+  font-size: .85rem;
+  font-weight: 600;
+  color: #70110c;
+  text-decoration: none;
+  letter-spacing: .03em;
+}
+.portal-nav .nav-links a:hover { text-decoration: underline; }
+.portal-nav .nav-links .signout { color: #555; }
+
+/* ── HERO BANNER ── */
+.member-hero {
+  background: #2a0604;
+  padding: 2.5rem 2rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.member-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px;
+}
+.member-hero .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+.member-hero .avatar {
+  flex: none;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid rgba(198,154,63,.5);
+  overflow: hidden;
+  background: #3a0a06;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.member-hero .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.member-hero .member-info { flex: 1; }
+.member-hero .member-name {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #f2ebd7;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: .5rem;
+}
+.member-hero .member-email-gold {
+  font-size: .92rem;
+  color: #c69a3f;
+  font-weight: 600;
+  margin-bottom: .2rem;
+}
+.member-hero .member-email-white {
+  font-size: .88rem;
+  color: rgba(242,235,215,.7);
+}
+
+/* ── CONTENT ── */
+.dashboard-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
+/* ── SUMMARY CARDS ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+@media(max-width:600px){ .summary-grid { grid-template-columns: 1fr; } }
+.summary-card {
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #e8e0d5;
+  padding: 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.summary-card .icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f0ece6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.summary-card .icon-wrap svg { width: 22px; height: 22px; }
+.summary-card h3 {
+  font-size: .95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: .5rem;
+}
+.summary-card .tier {
+  font-size: .85rem;
+  color: #c69a3f;
+  font-weight: 700;
+  margin-bottom: .2rem;
+}
+.summary-card .meta { font-size: .82rem; color: #666; }
+.summary-card .no-events { font-size: .85rem; color: #666; }
+.summary-card .no-events a { color: #70110c; font-weight: 600; text-decoration: none; }
+.summary-card .no-events a:hover { text-decoration: underline; }
+
+/* ── DOCUMENTS ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  margin-bottom: 1.25rem;
+}
+.section-icon {
+  width: 40px;
+  height: 40px;
+  background: #2a0604;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.section-icon svg { width: 20px; height: 20px; }
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, #c69a3f, #70110c 60%, transparent);
+  margin-bottom: 1.25rem;
+  border-radius: 2px;
+}
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+@media(max-width:900px){ .docs-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:480px){ .docs-grid { grid-template-columns: 1fr; } }
+.doc-card {
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 6px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+  text-decoration: none;
+  color: inherit;
+}
+.doc-card:hover { border-color: #c69a3f; box-shadow: 0 2px 12px rgba(198,154,63,.15); }
+.doc-card .doc-icon { flex: none; width: 36px; }
+.doc-card .doc-icon svg { width: 36px; height: 36px; }
+.doc-card h4 { font-size: .85rem; font-weight: 700; color: #70110c; margin-bottom: .2rem; }
+.doc-card p  { font-size: .76rem; color: #666; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Crest">
+    <div class="brand-text">
+      <div class="chapter-name">Denton-Lewisville</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/events.html">Events</a>
+    <a href="#" class="signout" onclick="signOut(event)">Sign out</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="member-hero">
+  <div class="inner">
+    <div class="avatar">
+      <img src="/img/kappa-crest.png" alt="Member avatar" id="memberAvatar">
+    </div>
+    <div class="member-info">
+      <div class="member-name" id="memberName">—</div>
+      <div class="member-email-gold" id="memberEmailGold">—</div>
+      <div class="member-email-white" id="memberEmailWhite">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="dashboard-body">
+
+  <!-- Summary cards -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Membership</h3>
+        <div class="tier" id="memberTier">—</div>
+        <div class="meta" id="memberJoined">—</div>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div>
+        <h3>My Events</h3>
+        <div class="no-events">No event RSVPs yet.&nbsp; <a href="/events.html">See what's coming up &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents -->
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+      </svg>
+    </div>
+    <div class="section-title">Documents</div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="docs-grid">
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="9" r="3"/><path d="M21 21v-1.5a3 3 0 0 0-2-2.83"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Minutes</h4><p>View and download chapter minutes.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <div><h4>Chapter By Laws</h4><p>View and download our chapter by laws.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Forms</h4><p>Access and submit chapter forms.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Flyers</h4><p>View and download chapter flyers.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Branding</h4><p>Access logos and branding assets.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Vendors</h4><p>View our trusted vendor partners.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Videos</h4><p>Watch chapter videos and replays.</p></div>
+    </a>
+    <a class="doc-card" href="#">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
+      <div><h4>Chapter Images</h4><p>View and download chapter images.</p></div>
+    </a>
+  </div>
+
+</div>
+
+<script>
+// Auth guard
+const session = JSON.parse(localStorage.getItem('dla_session') || 'null');
+if (!session) { window.location.href = '/portal/login.html'; }
+
+// Populate member info
+function toTitle(str) {
+  return str.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+if (session) {
+  const fullName = toTitle(session.firstName + ' ' + session.lastName);
+  document.getElementById('memberName').textContent = fullName;
+  document.getElementById('memberEmailGold').textContent = session.email;
+  document.getElementById('memberEmailWhite').textContent = session.email;
+  document.getElementById('memberTier').textContent = 'Tier: ' + session.tier;
+  document.getElementById('memberJoined').textContent = 'Joined: ' + session.joined;
+  document.title = fullName + ' — DLA Member Portal';
+}
+
+function signOut(e) {
+  e.preventDefault();
+  localStorage.removeItem('dla_session');
+  window.location.href = '/portal/login.html';
+}
+</script>
+</body>
+</html>
