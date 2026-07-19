@@ -42,18 +42,18 @@
       <div class="links-col">
         <h4>Links</h4>
         <ul>
-          <li><a href="https://kappaalphapsi1911.com" target="_blank" rel="noopener">Kappa Alpha Psi International Headquarters</a></li>
-          <li><a href="#">Southwestern Province</a></li>
+          <li><a href="https://www.kappaalphapsi1911.com/" target="_blank" rel="noopener">Kappa Alpha Psi International Headquarters</a></li>
+          <li><a href="https://southwesternprovince1911.org/" target="_blank" rel="noopener">Southwestern Province</a></li>
         </ul>
         <h5>Local Chapters</h5>
         <ul>
-          <li><a href="#">Arlington - Grand Prairie (TX) Alumni Chapter</a></li>
-          <li><a href="#">Commerce - Greenville (TX) Alumni Chapter</a></li>
-          <li><a href="#">Dallas (TX) Alumni Chapter</a></li>
-          <li><a href="#">Frisco (TX) Alumni Chapter</a></li>
-          <li><a href="#">Fort Worth (TX) Alumni Chapter</a></li>
-          <li><a href="#">Mansfield - Cedar Hill (TX) Alumni Chapter</a></li>
-          <li><a href="#">Richardson - Plano (TX) Alumni Chapter</a></li>
+          <li><a href="https://www.agpkappas.com/" target="_blank" rel="noopener">Arlington - Grand Prairie (TX) Alumni Chapter</a></li>
+          <li><a href="https://cganupes.com/" target="_blank" rel="noopener">Commerce - Greenville (TX) Alumni Chapter</a></li>
+          <li><a href="https://www.dallasalumni.org/" target="_blank" rel="noopener">Dallas (TX) Alumni Chapter</a></li>
+          <li><a href="https://www.friscokappas.com/" target="_blank" rel="noopener">Frisco (TX) Alumni Chapter</a></li>
+          <li><a href="https://www.fortworthkappas.com/" target="_blank" rel="noopener">Fort Worth (TX) Alumni Chapter</a></li>
+          <li><a href="https://themacnupes.com/" target="_blank" rel="noopener">Mansfield - Cedar Hill (TX) Alumni Chapter</a></li>
+          <li><a href="https://www.rpakappas.com/" target="_blank" rel="noopener">Richardson - Plano (TX) Alumni Chapter</a></li>
         </ul>
       </div>
       <div class="brand-col">
