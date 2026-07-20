@@ -854,7 +854,7 @@ body{background:#ffffff !important;min-height:100vh;}
 
   .eyebrow::before{content:"";width:9px;height:9px;background:var(--gold);transform:rotate(45deg);display:inline-block;flex:none}
 
-  .portrait{position:relative;justify-self:center;position:sticky;top:48px}
+  .portrait{position:relative;justify-self:center;position:sticky;top:48px;max-width:100%;}
 
   .portrait .frame{width:320px;height:400px;background:linear-gradient(160deg,#8a1a13,var(--crimson) 55%,var(--crimson-deep));position:relative;display:grid;place-items:center;color:rgba(242,235,215,.5)}
 
@@ -894,9 +894,9 @@ body{background:#ffffff !important;min-height:100vh;}
 
   @media(max-width:560px){
 
-    .portrait .frame{width:520px;height:630px}
+    .portrait .frame{width:100%;max-width:320px;height:380px}
 
-    .portrait .crest{width:120px;height:120px;right:-14px;bottom:-22px}
+    .portrait .crest{width:100px;height:100px;right:-10px;bottom:-18px}
 
   }
 
