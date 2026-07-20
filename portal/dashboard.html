@@ -219,6 +219,40 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
 .doc-card .doc-icon svg { width: 36px; height: 36px; }
 .doc-card h4 { font-size: .85rem; font-weight: 700; color: #70110c; margin-bottom: .2rem; }
 .doc-card p  { font-size: .76rem; color: #666; line-height: 1.4; }
+
+/* ── MOBILE ── */
+@media(max-width:700px){
+  /* Nav */
+  .portal-nav {
+    height: auto;
+    min-height: 56px;
+    padding: .6rem 1rem;
+    flex-wrap: wrap;
+    gap: .5rem .75rem;
+  }
+  .portal-nav .brand { min-width: 0; }
+  .portal-nav .brand img { width: 40px; }
+  .portal-nav .brand-text .chapter-name { font-size: .82rem; }
+  .portal-nav .brand-text .frat-name { display: none; }
+  .portal-nav .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: .4rem 1.1rem;
+    padding-bottom: .3rem;
+  }
+  .portal-nav .nav-links a { font-size: .78rem; }
+
+  /* Hero banner */
+  .member-hero { padding: 1.75rem 1rem; }
+  .member-hero .inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .member-hero .avatar { width: 80px; height: 80px; }
+  .member-hero .member-name { font-size: 1.5rem; word-break: break-word; }
+  .member-hero .member-email-gold,
+  .member-hero .member-email-white { font-size: .78rem; overflow-wrap: break-word; word-break: break-all; }
+
+  /* Body */
+  .dashboard-body { padding: 1.25rem 1rem 3rem; }
+}
 </style>
 </head>
 <body>
