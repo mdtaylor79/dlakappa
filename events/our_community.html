@@ -20,6 +20,7 @@
     margin: 2.5rem 0;
   }
   @media(max-width:700px){ .highlight-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:480px){ .highlight-grid { grid-template-columns:1fr; } }
   .hl-card {
     border: 1px solid #e0d8cc;
     border-radius: 3px;
@@ -52,6 +53,7 @@
     padding: 72px 0;
   }
   @media(max-width:760px){ .split-section { grid-template-columns:1fr; } }
+  @media(max-width:760px){ .split-section .split-img { height:320px; } }
   .split-section .split-img {
     border-radius: 3px;
     overflow: hidden;
@@ -114,6 +116,7 @@
     gap: 1.25rem;
     margin-top: 2rem;
   }
+  @media(max-width:540px){ .explore-grid { grid-template-columns: 1fr; } }
   .explore-card {
     background: #fff;
     border: 1px solid #e0d8cc;
@@ -347,7 +350,7 @@
     </div>
 
     <!-- Two cards -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1060px;">
+    <div class="edu-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1060px;">
 
       <!-- Healthcare card -->
       <div style="background:rgba(255,255,255,.97);border-radius:3px;padding:1.75rem 1.75rem 1.5rem;">
@@ -401,7 +404,7 @@
     </div>
 
     <!-- Stats bar -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2rem;background:rgba(42,6,4,.85);border:1px solid rgba(198,154,63,.3);">
+    <div class="edu-stats-bar" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2rem;background:rgba(42,6,4,.85);border:1px solid rgba(198,154,63,.3);">
       <div style="padding:1.5rem;text-align:center;border-right:1px solid rgba(198,154,63,.25);">
         <div style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:#c69a3f;line-height:1;">150,000+</div>
         <div style="font-size:.72rem;color:#d4c8bc;margin-top:.35rem;letter-spacing:.05em;">College Students</div>

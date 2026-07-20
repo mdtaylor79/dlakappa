@@ -616,7 +616,7 @@ body{background:#ffffff !important;min-height:100vh;}
 
   *{margin:0;padding:0;box-sizing:border-box}
 
-  html,body{height:100%}
+  html,body{height:100%;overflow-x:hidden}
 
   body{background:var(--crimson-night)}
 
@@ -1235,4 +1235,50 @@ body{background:#ffffff !important;min-height:100vh;}
     footer .legal{justify-content:center;text-align:center}
 
   }
+
+/* ── GLOBAL MOBILE SAFETY NET ───────────────────────────────────────────── */
+html, body { overflow-x: hidden; }
+
+/* ── INDEX: Our Chapter two-column grid ──────────────────────────────────── */
+.our-chapter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media(max-width:900px) {
+  .our-chapter-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ── INDEX: Image collage bottom row ─────────────────────────────────────── */
+.collage-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  position: relative;
+}
+@media(max-width:480px) {
+  .collage-bottom-row { grid-template-columns: 1fr; }
+  .collage-bottom-row img { height: 200px !important; }
+}
+
+/* ── PORTAL NAV: mobile wrap ─────────────────────────────────────────────── */
+@media(max-width:700px) {
+  .portal-nav { flex-wrap: wrap; gap: .75rem; padding: .75rem 1rem; }
+  .portal-nav .nav-links { flex-wrap: wrap; gap: .75rem 1.25rem; width: 100%; justify-content: flex-start; }
+  .portal-nav .brand-text .chapter-name { font-size: .85rem; }
+  .portal-nav .brand-text .frat-name { display: none; }
+}
+
+/* ── OUR COMMUNITY: Education cards + stats bar ──────────────────────────── */
+@media(max-width:760px) {
+  .edu-two-col { grid-template-columns: 1fr !important; }
+}
+@media(max-width:640px) {
+  .edu-stats-bar { grid-template-columns: 1fr 1fr !important; }
+}
+@media(max-width:380px) {
+  .edu-stats-bar { grid-template-columns: 1fr !important; }
+  .edu-stats-bar > div { border-right: none !important; border-bottom: 1px solid rgba(198,154,63,.25); }
+}
 
