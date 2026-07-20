@@ -20,6 +20,195 @@
       <p>Guiding the next generation of achievers through mentorship, leadership development, and community engagement. Guide Right is Kappa Alpha Psi's signature youth program — and at DLA, it defines who we are.</p>
     </div>
   </div>
+  <!-- ── KAPPA LEAGUE IN ACTION ── -->
+  <section style="background:#f9f5ee;padding:80px 0 72px;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+
+      <!-- Section label -->
+      <div style="text-align:center;margin-bottom:40px;">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.9rem;">
+          <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Our Programs
+          <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+        </div>
+        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#70110c;margin:0;font-weight:700;">Kappa League &amp; Guide Right</h2>
+        <p style="font-family:'Archivo',sans-serif;font-size:.93rem;color:#5a4a42;margin:.75rem auto 0;max-width:520px;line-height:1.7;">Mentoring young men in grades 6–12, building responsible citizens and leaders in the North Texas community.</p>
+      </div>
+
+      <!-- Main gallery -->
+      <div style="display:grid;grid-template-columns:1fr;gap:0;margin-bottom:0;">
+
+        <!-- Featured image with caption -->
+        <div style="position:relative;overflow:hidden;background:#1a0403;" id="klGallery">
+          <div class="kl-slide kl-active" data-caption="DLA Kappa League — Youth Leadership Development">
+            <img src="/img/kappa_league_pose.jpg" alt="Kappa League" style="width:100%;height:460px;object-fit:cover;display:block;opacity:.92;">
+          </div>
+          <div class="kl-slide" data-caption="Guide Right — Building Tomorrow's Leaders">
+            <img src="/img/guide_right.jpg" alt="Guide Right" style="width:100%;height:460px;object-fit:cover;display:block;opacity:.92;">
+          </div>
+          <div class="kl-slide" data-caption="Community Service — Giving Back to North Texas">
+            <img src="/img/community_service.jpg" alt="Community Service" style="width:100%;height:460px;object-fit:cover;display:block;opacity:.92;">
+          </div>
+          <div class="kl-slide" data-caption="Guide Right Foundation — Structured Youth Development">
+            <img src="/img/guide_right_foundation.jpg" alt="Guide Right Foundation" style="width:100%;height:460px;object-fit:cover;display:block;opacity:.92;">
+          </div>
+          <div class="kl-slide" data-caption="Community Engagement — Partnerships Across North Texas">
+            <img src="/img/community_engagement.jpg" alt="Community Engagement" style="width:100%;height:460px;object-fit:cover;display:block;opacity:.92;">
+          </div>
+          <!-- Caption bar -->
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(20,4,4,.88));padding:2rem 1.5rem 1.25rem;">
+            <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.3rem;" id="klCounter">1 of 5</div>
+            <div style="font-family:'Cinzel',serif;font-size:.95rem;color:#f2ebd7;font-weight:600;" id="klCaption">DLA Kappa League — Youth Leadership Development</div>
+          </div>
+          <!-- Arrows -->
+          <button onclick="klNav(-1)" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(42,6,4,.6);border:1px solid rgba(198,154,63,.4);color:#c69a3f;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;backdrop-filter:blur(4px);" aria-label="Previous">&#8592;</button>
+          <button onclick="klNav(1)" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(42,6,4,.6);border:1px solid rgba(198,154,63,.4);color:#c69a3f;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;backdrop-filter:blur(4px);" aria-label="Next">&#8594;</button>
+        </div>
+
+        <!-- Thumbnail strip -->
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:4px;" id="klThumbs">
+          <div class="kl-thumb kl-thumb-active" onclick="klGoTo(0)" style="cursor:pointer;overflow:hidden;"><img src="/img/kappa_league_pose.jpg" alt="" style="width:100%;height:72px;object-fit:cover;display:block;transition:opacity .2s;"></div>
+          <div class="kl-thumb" onclick="klGoTo(1)" style="cursor:pointer;overflow:hidden;"><img src="/img/guide_right.jpg" alt="" style="width:100%;height:72px;object-fit:cover;display:block;opacity:.55;transition:opacity .2s;"></div>
+          <div class="kl-thumb" onclick="klGoTo(2)" style="cursor:pointer;overflow:hidden;"><img src="/img/community_service.jpg" alt="" style="width:100%;height:72px;object-fit:cover;display:block;opacity:.55;transition:opacity .2s;"></div>
+          <div class="kl-thumb" onclick="klGoTo(3)" style="cursor:pointer;overflow:hidden;"><img src="/img/guide_right_foundation.jpg" alt="" style="width:100%;height:72px;object-fit:cover;display:block;opacity:.55;transition:opacity .2s;"></div>
+          <div class="kl-thumb" onclick="klGoTo(4)" style="cursor:pointer;overflow:hidden;"><img src="/img/community_engagement.jpg" alt="" style="width:100%;height:72px;object-fit:cover;display:block;opacity:.55;transition:opacity .2s;"></div>
+        </div>
+      </div>
+
+      <!-- Tab nav -->
+      <div style="display:flex;border-bottom:2px solid #e0d4c0;margin-top:48px;gap:0;" id="klTabs">
+        <button class="kl-tab kl-tab-active" onclick="klTab(this,'klPanel0')" style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;background:none;border:none;border-bottom:2px solid #70110c;margin-bottom:-2px;color:#70110c;cursor:pointer;">Overview</button>
+        <button class="kl-tab" onclick="klTab(this,'klPanel1')" style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;color:#8a7a72;cursor:pointer;">Activities</button>
+        <button class="kl-tab" onclick="klTab(this,'klPanel2')" style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;color:#8a7a72;cursor:pointer;">Impact &amp; Service</button>
+      </div>
+
+      <!-- Tab panels -->
+      <div id="klPanel0" style="padding:2rem 0 0;">
+        <p style="font-family:'Archivo',sans-serif;font-size:.93rem;line-height:1.85;color:#4a3c35;max-width:700px;margin:0 auto 2rem;text-align:center;">Building responsible citizens and leaders through mentorship, academic support, and community service.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;" class="kl-pillars">
+          <div style="text-align:center;padding:1.5rem 1rem;background:#fff;border:1px solid #e8dfd4;">
+            <div style="width:44px;height:44px;background:#70110c;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Mentorship</div>
+            <p style="font-size:.82rem;color:#5a4a42;line-height:1.6;margin:0;">One-on-one guidance from experienced fraternity brothers.</p>
+          </div>
+          <div style="text-align:center;padding:1.5rem 1rem;background:#fff;border:1px solid #e8dfd4;">
+            <div style="width:44px;height:44px;background:#70110c;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Leadership Development</div>
+            <p style="font-size:.82rem;color:#5a4a42;line-height:1.6;margin:0;">Building confident leaders through structured programs.</p>
+          </div>
+          <div style="text-align:center;padding:1.5rem 1rem;background:#fff;border:1px solid #e8dfd4;">
+            <div style="width:44px;height:44px;background:#70110c;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Academic Excellence</div>
+            <p style="font-size:.82rem;color:#5a4a42;line-height:1.6;margin:0;">Scholarship support and educational achievement.</p>
+          </div>
+          <div style="text-align:center;padding:1.5rem 1rem;background:#fff;border:1px solid #e8dfd4;">
+            <div style="width:44px;height:44px;background:#70110c;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Life Skills Training</div>
+            <p style="font-size:.82rem;color:#5a4a42;line-height:1.6;margin:0;">Essential skills for success in life and career.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="klPanel1" style="padding:2rem 0 0;display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="kl-act-grid">
+          <div style="background:#fff;border:1px solid #e8dfd4;padding:1.5rem 1.75rem;">
+            <div style="font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.6rem;">Monthly Meetings</div>
+            <p style="font-size:.88rem;color:#4a3c35;line-height:1.7;margin:0;">Regular structured sessions covering character development, academic strategy, and career readiness for our Kappa League members.</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e8dfd4;padding:1.5rem 1.75rem;">
+            <div style="font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.6rem;">Kappa Kamp</div>
+            <p style="font-size:.88rem;color:#4a3c35;line-height:1.7;margin:0;">An intensive multi-day leadership and brotherhood experience where young men develop bonds, skills, and character through immersive programming.</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e8dfd4;padding:1.5rem 1.75rem;">
+            <div style="font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.6rem;">Community Service Projects</div>
+            <p style="font-size:.88rem;color:#4a3c35;line-height:1.7;margin:0;">Hands-on service opportunities that connect members to North Texas communities and instill a lifelong commitment to giving back.</p>
+          </div>
+          <div style="background:#fff;border:1px solid #e8dfd4;padding:1.5rem 1.75rem;">
+            <div style="font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#70110c;margin-bottom:.6rem;">College Prep &amp; Visits</div>
+            <p style="font-size:.88rem;color:#4a3c35;line-height:1.7;margin:0;">Campus visits, FAFSA workshops, and application support to prepare every Kappa League member for higher education success.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="klPanel2" style="padding:2rem 0 0;display:none;">
+        <div style="background:#2a0604;padding:2rem 2.5rem;display:flex;flex-wrap:wrap;gap:2rem;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#c69a3f"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <span style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;">Empowering Young Leaders</span>
+            </div>
+            <p style="font-size:.88rem;color:rgba(242,235,215,.8);line-height:1.7;max-width:440px;margin:0 0 1.25rem;">Your donations directly support our youth mentorship programs, providing resources for academic support, leadership training, and community service opportunities that shape tomorrow's leaders.</p>
+            <a href="#" style="display:inline-block;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:12px 28px;background:#c69a3f;color:#2a0604;text-decoration:none;border:2px solid #c69a3f;">Support Our Youth</a>
+          </div>
+          <div style="display:flex;gap:2.5rem;flex-wrap:wrap;">
+            <div style="text-align:center;">
+              <div style="font-family:'Cinzel',serif;font-size:2.2rem;font-weight:700;color:#fff;line-height:1;">25+</div>
+              <div style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-top:.3rem;">Youth Mentored</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Cinzel',serif;font-size:2.2rem;font-weight:700;color:#fff;line-height:1;">150+</div>
+              <div style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-top:.3rem;">Service Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .kl-slide{display:none;} .kl-active{display:block;}
+    .kl-thumb-active img{opacity:1!important;}
+    .kl-tab-active{color:#70110c!important;border-bottom-color:#70110c!important;}
+    .kl-tab:not(.kl-tab-active){color:#8a7a72!important;border-bottom-color:transparent!important;}
+    @media(max-width:700px){
+      .kl-pillars{grid-template-columns:1fr 1fr!important;}
+      .kl-act-grid{grid-template-columns:1fr!important;}
+    }
+    @media(max-width:420px){
+      .kl-pillars{grid-template-columns:1fr!important;}
+    }
+  </style>
+  <script>
+  (function(){
+    var slides=document.querySelectorAll('#klGallery .kl-slide');
+    var thumbs=document.querySelectorAll('#klThumbs .kl-thumb');
+    var counter=document.getElementById('klCounter');
+    var caption=document.getElementById('klCaption');
+    var cur=0;
+    function goTo(n){
+      slides[cur].classList.remove('kl-active');
+      thumbs[cur].classList.remove('kl-thumb-active');
+      thumbs[cur].querySelector('img').style.opacity='.55';
+      cur=(n+slides.length)%slides.length;
+      slides[cur].classList.add('kl-active');
+      thumbs[cur].classList.add('kl-thumb-active');
+      thumbs[cur].querySelector('img').style.opacity='1';
+      counter.textContent=(cur+1)+' of '+slides.length;
+      caption.textContent=slides[cur].getAttribute('data-caption');
+    }
+    window.klNav=function(d){goTo(cur+d);};
+    window.klGoTo=function(n){goTo(n);};
+    function klTab(btn,panelId){
+      document.querySelectorAll('.kl-tab').forEach(function(t){t.classList.remove('kl-tab-active');});
+      btn.classList.add('kl-tab-active');
+      ['klPanel0','klPanel1','klPanel2'].forEach(function(id){
+        document.getElementById(id).style.display='none';
+      });
+      document.getElementById(panelId).style.display='block';
+    }
+    window.klTab=klTab;
+  })();
+  </script>
+
   <section style="position:relative;background:#2a0604;padding:100px 2rem;text-align:center;overflow:hidden;">
     <!-- diamond lattice -->
     <div style="position:absolute;inset:0;opacity:.07;background-image:url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>&quot;);background-size:96px 96px;pointer-events:none;"></div>
