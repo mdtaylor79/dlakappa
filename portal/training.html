@@ -1,106 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>My Training | DLA Kappas Portal</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>My Training — DLA Member Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --crimson: #7D110C;
-    --cream: #F2EBD7;
-    --text: #2A2A2A;
-    --pending: #C9971C;
-    --complete: #1E7145;
-    --expired: #A31F1F;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-  }
-  header {
-    background: var(--crimson);
-    color: #fff;
-    padding: 20px 24px;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-  header a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.85rem;
-    opacity: 0.85;
-  }
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px 16px 60px;
-  }
-  .card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    overflow: hidden;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th, td {
-    text-align: left;
-    padding: 14px 16px;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #eee;
-  }
-  th {
-    background: var(--crimson);
-    color: #fff;
-    font-weight: 600;
-  }
-  tr:last-child td { border-bottom: none; }
-  .badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #fff;
-  }
-  .badge.Complete { background: var(--complete); }
-  .badge.Pending { background: var(--pending); }
-  .badge.Expired { background: var(--expired); }
-  .empty, .loading, .error {
-    padding: 30px;
-    text-align: center;
-    color: #666;
-    font-size: 0.95rem;
-  }
-  .error { color: var(--expired); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; min-height: 100vh; }
+
+/* ── PORTAL NAV ── */
+.portal-nav {
+  background: #fff; border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem; display: flex; align-items: center;
+  height: 64px; gap: 1rem; position: sticky; top: 0; z-index: 100;
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; min-width: 0; }
+.portal-nav .brand img { width: 44px; flex-shrink: 0; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700;
+  color: #70110c; line-height: 1.1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .6rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: #888;
+}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.5rem; flex-shrink: 0; }
+.portal-nav .nav-links a {
+  font-size: .82rem; font-weight: 600; color: #70110c;
+  text-decoration: none; letter-spacing: .03em; white-space: nowrap;
+}
+.portal-nav .nav-links a:hover { text-decoration: underline; }
+.portal-nav .nav-links .active { border-bottom: 2px solid #70110c; padding-bottom: 2px; }
+.portal-nav .nav-links .signout { color: #888; }
+
+/* ── HERO ── */
+.training-hero {
+  background: linear-gradient(110deg, #1a0303 0%, #70110c 60%, #8a1a13 100%);
+  padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
+}
+.training-hero::before {
+  content: ''; position: absolute; inset: 0; opacity: .06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px;
+}
+.training-hero .inner {
+  max-width: 1100px; margin: 0 auto; position: relative;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+.training-hero .eyebrow {
+  font-size: .62rem; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: #c69a3f; margin-bottom: .55rem;
+}
+.training-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700;
+  color: #f2ebd7; letter-spacing: .04em; margin-bottom: .4rem;
+}
+.training-hero p { font-size: .9rem; color: rgba(242,235,215,.7); max-width: 440px; line-height: 1.6; }
+.hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.hero-stat .num {
+  font-family: 'Cinzel', serif; font-size: 1.9rem; font-weight: 700;
+  color: #c69a3f; line-height: 1; display: block;
+}
+.hero-stat .lbl {
+  font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(242,235,215,.5); margin-top: .2rem; display: block;
+}
+
+/* ── QUICK TILES ── */
+.tiles-strip { background: #5a0e09; }
+.tiles-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; overflow-x: auto;
+  scrollbar-width: none;
+}
+.tiles-inner::-webkit-scrollbar { display: none; }
+.tile {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: .45rem;
+  padding: 1rem 1.6rem; min-width: 100px;
+  color: rgba(242,235,215,.65); border-bottom: 3px solid transparent;
+  transition: color .2s, border-color .2s, background .2s;
+  white-space: nowrap; cursor: pointer;
+  background: none; border-left: none; border-right: none; border-top: none;
+  font-family: 'Archivo', sans-serif; text-decoration: none;
+}
+.tile:hover { color: #f2ebd7; background: rgba(255,255,255,.06); }
+.tile.active { color: #c69a3f; border-bottom-color: #c69a3f; }
+.tile svg { width: 20px; height: 20px; }
+.tile span { font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+
+/* ── BODY ── */
+.training-body { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: 2rem 0 1rem;
+}
+.section-label h2 {
+  font-family: 'Cinzel', serif; font-size: .82rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: #70110c;
+  display: flex; align-items: center; gap: .55rem;
+}
+.section-label h2::before {
+  content: ''; width: 6px; height: 6px; background: #c69a3f;
+  transform: rotate(45deg); display: inline-block; flex-shrink: 0;
+}
+.section-label .count { font-size: .78rem; color: #999; }
+
+/* ── FEATURED BANNER ── */
+.featured-banner {
+  background: #2a0604; border-radius: 6px;
+  padding: 2rem 2.25rem;
+  display: flex; align-items: center; gap: 2rem;
+  position: relative; overflow: hidden;
+}
+.featured-banner::before {
+  content: ''; position: absolute; inset: 0; opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px;
+}
+.feat-icon {
+  width: 72px; height: 72px; flex-shrink: 0;
+  background: rgba(198,154,63,.12);
+  border: 1.5px solid rgba(198,154,63,.38);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.feat-icon svg { width: 34px; height: 34px; }
+.feat-content { flex: 1; position: relative; }
+.feat-tag {
+  font-size: .6rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: #c69a3f; margin-bottom: .4rem;
+}
+.featured-banner h3 {
+  font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700;
+  color: #f2ebd7; margin-bottom: .45rem; line-height: 1.3;
+}
+.featured-banner p { font-size: .85rem; color: rgba(242,235,215,.68); line-height: 1.65; max-width: 520px; }
+.feat-cta {
+  display: inline-block; margin-top: 1.1rem;
+  padding: .65rem 1.75rem;
+  font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  background: #c69a3f; color: #2a0604;
+  text-decoration: none; transition: background .2s;
+}
+.feat-cta:hover { background: #daa70f; }
+
+/* ── COURSE GRID ── */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.course-card {
+  background: #fff; border: 1px solid #e4ddd4;
+  border-radius: 6px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: box-shadow .2s, transform .2s;
+}
+.course-card:hover { box-shadow: 0 6px 24px rgba(112,17,12,.12); transform: translateY(-2px); }
+.course-thumb {
+  height: 140px;
+  background: linear-gradient(135deg, #1a0303, #70110c);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.thumb-icon {
+  width: 54px; height: 54px;
+  background: rgba(242,235,215,.1);
+  border: 1.5px solid rgba(198,154,63,.35);
+  display: flex; align-items: center; justify-content: center;
+}
+.thumb-icon svg { width: 26px; height: 26px; }
+.course-badge {
+  position: absolute; top: 10px; left: 10px;
+  font-size: .58rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: 3px 8px;
+}
+.badge-required { background: #70110c; color: #f2ebd7; }
+.badge-new { background: #c69a3f; color: #2a0604; }
+.badge-done { background: #2d6a2d; color: #fff; }
+.progress-bar { height: 3px; background: #e8dfd4; }
+.progress-fill { height: 100%; background: #c69a3f; transition: width .4s; }
+.course-body { padding: 1rem 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.course-type {
+  font-size: .62rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: #999; margin-bottom: .35rem;
+}
+.course-title {
+  font-family: 'Cinzel', serif; font-size: .86rem; font-weight: 700;
+  color: #1a1a1a; line-height: 1.35; margin-bottom: .35rem; flex: 1;
+}
+.course-meta { font-size: .74rem; color: #999; margin-bottom: .85rem; }
+.btn-course {
+  display: block; width: 100%; padding: .55rem;
+  font-family: 'Cinzel', serif; font-size: .7rem; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  border: none; border-radius: 3px; cursor: pointer;
+  text-align: center; text-decoration: none; transition: background .2s;
+}
+.btn-start { background: #70110c; color: #f2ebd7; }
+.btn-start:hover { background: #8a1a13; }
+.btn-continue { background: #c69a3f; color: #2a0604; }
+.btn-continue:hover { background: #b38932; }
+.btn-done { background: #e8f0e8; color: #2d6a2d; cursor: default; }
+.btn-soon { background: #f0ece6; color: #aaa; cursor: not-allowed; }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  background: #fff; border: 1px dashed #d0c8bc;
+  border-radius: 6px; padding: 2.5rem; text-align: center;
+  color: #999; font-size: .88rem; line-height: 1.7; display: none;
+}
+
+/* ── MOBILE ── */
+@media(max-width:700px){
+  .portal-nav { height:auto; min-height:56px; padding:.6rem 1rem; flex-wrap:wrap; gap:.4rem .75rem; }
+  .portal-nav .brand-text .frat-name { display:none; }
+  .portal-nav .nav-links { width:100%; gap:.75rem; padding-bottom:.25rem; flex-wrap:wrap; }
+  .training-hero { padding:2rem 1rem 1.75rem; }
+  .hero-stats { gap:1.5rem; }
+  .training-body { padding:1.25rem 1rem 3rem; }
+  .featured-banner { flex-direction:column; align-items:flex-start; gap:1.25rem; padding:1.5rem; }
+  .course-grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:420px){ .course-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>My Training</h1>
-  <a href="dashboard.html">&larr; Back to Dashboard</a>
-</header>
-
-<main>
-  <div class="card">
-    <div id="content" class="loading">Loading your training records&hellip;</div>
+<!-- NAV -->
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Crest">
+    <div class="brand-text">
+      <div class="chapter-name">Denton-Lewisville</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
   </div>
-</main>
+  <div class="nav-links">
+    <a href="/portal/dashboard.html">Home</a>
+    <a href="/portal/events.html">Events</a>
+    <a href="/portal/training.html" class="active">My Training</a>
+    <a href="#" class="signout" id="signOutBtn">Sign out</a>
+  </div>
+</nav>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../assets/js/config.js"></script>
-<script src="../assets/js/supabase-client.js"></script>
-<script src="../assets/js/training.js"></script>
+<!-- HERO -->
+<div class="training-hero">
+  <div class="inner">
+    <div>
+      <div class="eyebrow">Member Portal</div>
+      <h1>My Training</h1>
+      <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num" id="statAvail">1</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
+      <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TILES -->
+<div class="tiles-strip">
+  <div class="tiles-inner">
+    <button class="tile active" onclick="filterCourses(this,'all')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span>All Courses</span>
+    </button>
+    <button class="tile" onclick="filterCourses(this,'inprogress')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>In Progress</span>
+    </button>
+    <button class="tile" onclick="filterCourses(this,'completed')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>Completed</span>
+    </button>
+    <button class="tile" onclick="filterCourses(this,'required')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>Required</span>
+    </button>
+    <a class="tile" href="/portal/dashboard.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Dashboard</span>
+    </a>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="training-body">
+
+  <!-- Featured -->
+  <div class="section-label" style="margin-top:1.5rem;">
+    <h2>Featured Training</h2>
+  </div>
+  <div class="featured-banner">
+    <div class="feat-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </div>
+    <div class="feat-content">
+      <div class="feat-tag">Required &nbsp;·&nbsp; Chapter Governance</div>
+      <h3>Parliamentary Procedure: Robert's Rules of Order</h3>
+      <p>Master the rules that govern our chapter meetings. Learn motions, voting procedures, points of order, and how to conduct an effective meeting under Robert's Rules of Order.</p>
+      <a class="feat-cta" href="/portal/roberts_rules_training.html" target="_blank">Start Training &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Catalog -->
+  <div class="section-label">
+    <h2>Course Catalog</h2>
+    <span class="count" id="courseCount"></span>
+  </div>
+
+  <div class="course-grid" id="courseGrid">
+
+    <!-- Robert's Rules -->
+    <div class="course-card" data-filter="required all">
+      <div class="course-thumb">
+        <div class="thumb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <span class="course-badge badge-required">Required</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-roberts" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Chapter Governance</div>
+        <div class="course-title">Parliamentary Procedure: Robert's Rules of Order</div>
+        <div class="course-meta">6 modules &nbsp;·&nbsp; ~45 min</div>
+        <a class="btn-course btn-start" id="btn-roberts" href="/portal/roberts_rules_training.html" target="_blank">Start Course</a>
+      </div>
+    </div>
+
+    <!-- Membership Education -->
+    <div class="course-card" data-filter="required all">
+      <div class="course-thumb">
+        <div class="thumb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="course-badge badge-required">Required</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Brotherhood</div>
+        <div class="course-title">Membership Education &amp; Standards</div>
+        <div class="course-meta">Coming soon</div>
+        <button class="btn-course btn-soon" disabled>Coming Soon</button>
+      </div>
+    </div>
+
+    <!-- Guide Right -->
+    <div class="course-card" data-filter="all">
+      <div class="course-thumb">
+        <div class="thumb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <span class="course-badge badge-new">New</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Youth Development</div>
+        <div class="course-title">Guide Right &amp; Kappa League Mentor Training</div>
+        <div class="course-meta">Coming soon</div>
+        <button class="btn-course btn-soon" disabled>Coming Soon</button>
+      </div>
+    </div>
+
+    <!-- Financial Literacy -->
+    <div class="course-card" data-filter="all">
+      <div class="course-thumb">
+        <div class="thumb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <span class="course-badge badge-new">New</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Professional Development</div>
+        <div class="course-title">Chapter Financial Literacy &amp; Dues Management</div>
+        <div class="course-meta">Coming soon</div>
+        <button class="btn-course btn-soon" disabled>Coming Soon</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    No courses match this filter yet. Check back as new modules are added.
+  </div>
+
+</div>
+
+<script>
+// Auth guard
+var user = null;
+try { user = JSON.parse(localStorage.getItem('dla_user') || 'null'); } catch(e){}
+if (!user) { window.location.href = '/portal/login.html'; }
+document.getElementById('signOutBtn').addEventListener('click', function(e){
+  e.preventDefault();
+  localStorage.removeItem('dla_user');
+  window.location.href = '/portal/login.html';
+});
+
+// Progress
+function getProgress(id){ return parseInt(localStorage.getItem('dla_prog_'+id)||'0',10); }
+function refreshUI(){
+  var rp = getProgress('roberts');
+  var bar = document.getElementById('prog-roberts');
+  var btn = document.getElementById('btn-roberts');
+  if(bar) bar.style.width = rp + '%';
+  if(btn){
+    if(rp>=100){ btn.className='btn-course btn-done'; btn.textContent='✓ Completed'; btn.removeAttribute('href'); }
+    else if(rp>0){ btn.className='btn-course btn-continue'; btn.textContent='Continue ('+rp+'%)'; }
+  }
+  var inProg = (rp>0 && rp<100) ? 1 : 0;
+  var done   = rp>=100 ? 1 : 0;
+  document.getElementById('statInProg').textContent = inProg || '—';
+  document.getElementById('statDone').textContent   = done   || '—';
+}
+refreshUI();
+
+// Filter
+var allCards = Array.from(document.querySelectorAll('.course-card'));
+document.getElementById('courseCount').textContent = allCards.length + ' courses';
+
+function filterCourses(btn, tag){
+  document.querySelectorAll('.tile').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  var visible = 0;
+  allCards.forEach(function(c){
+    var show = tag==='all' || (c.getAttribute('data-filter')||'').includes(tag);
+    // For inprogress/completed, check localStorage
+    if(tag==='inprogress'){
+      var rp=getProgress('roberts');
+      show = c.getAttribute('data-filter').includes('required') && rp>0 && rp<100;
+    }
+    if(tag==='completed'){
+      var rp=getProgress('roberts');
+      show = c.getAttribute('data-filter').includes('required') && rp>=100;
+    }
+    c.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+  document.getElementById('courseCount').textContent = visible + ' course'+(visible!==1?'s':'');
+  document.getElementById('emptyState').style.display = visible===0 ? 'block' : 'none';
+}
+</script>
+<script src="/js/nav.js" onerror="void 0"></script>
 </body>
 </html>
