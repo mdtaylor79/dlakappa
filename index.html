@@ -13,12 +13,31 @@
 <body data-page="home">
 <div id="site-nav-placeholder"></div>
 
-  <section class="hero">
+<section class="hero">
 
-  <div class="lattice"></div>
-  <div class="glow"></div>
+  <!-- Full-screen background carousel -->
+  <div class="hero-carousel" id="heroCarousel">
+    <div class="slide active">
+      <img src="/img/brother_serving.jpg" alt="Brothers Serving the Community">
+    </div>
+    <div class="slide">
+      <a href="https://fundraising.stjude.org/site/TR?px=7183214&fr_id=164153&pg=personal" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;">
+        <img src="/img/ST_Jude_Banner.jpg" alt="St. Jude Fundraiser — Donate Now" style="width:100%;height:100%;object-fit:cover;">
+      </a>
+    </div>
+    <div class="slide">
+      <img src="/img/25_26_chapter_photo.jpg" alt="2025-26 Chapter Photo">
+    </div>
+    <div class="slide">
+      <img src="/img/Kappa_Silhouttes.jpg" alt="Kappa Silhouettes">
+    </div>
+  </div>
 
-  <div class="wrap">
+  <!-- Dark gradient overlay -->
+  <div class="hero-overlay"></div>
+
+  <!-- Floating content -->
+  <div class="hero-content-wrap">
 
     <div class="hero-inner">
       <div class="eyebrow">Kappa Alpha Psi Fraternity, Inc. &middot; Est. 1997</div>
@@ -28,40 +47,38 @@
         <a class="btn btn-gold" href="/about/chapter_history.html">Explore the Chapter</a>
         <a class="btn btn-ghost" href="/portal/login.html">Member Login</a>
       </div>
-      <div class="facts">
-        <div><b>1997</b><small>Chartered</small></div>
-        <div><b>North Texas</b><small>Denton &amp; Lewisville</small></div>
-        <div><b>Service</b><small>Scholarship &amp; Mentorship</small></div>
+      <div class="hero-slide-info">
+        <div class="carousel-dots" id="carouselDots"></div>
+        <span class="hero-counter" id="heroCounter">01 / 04</span>
       </div>
     </div>
 
-    <div class="hero-carousel" id="heroCarousel">
-
-      <div class="slide active">
-        <img src="/img/brother_serving.jpg" alt="Brothers Serving the Community">
+    <div class="hero-stats">
+      <div class="hero-stat-main">
+        <div class="hstat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="hstat-cat">Brotherhood</div>
+        <div class="hstat-num">1997</div>
+        <div class="hstat-label">Chapter Founded</div>
       </div>
-
-      <div class="slide">
-        <a href="https://fundraising.stjude.org/site/TR?px=7183214&fr_id=164153&pg=personal" target="_blank" rel="noopener" style="display:block;width:100%;height:100%;">
-          <img src="/img/ST_Jude_Banner.jpg" alt="St. Jude Fundraiser — Donate Now" style="width:100%;height:100%;object-fit:cover;">
-        </a>
+      <div class="hero-stat-row">
+        <div class="hero-stat-sm">
+          <div class="hstat-num-sm">80+</div>
+          <div class="hstat-label-sm">Active Members</div>
+        </div>
+        <div class="hero-stat-sm">
+          <div class="hstat-num-sm">400+</div>
+          <div class="hstat-label-sm">Service Hours</div>
+        </div>
       </div>
-
-      <div class="slide">
-        <img src="/img/25_26_chapter_photo.jpg" alt="2025-26 Chapter Photo">
-      </div>
-
-      <div class="slide">
-        <img src="/img/Kappa_Silhouttes.jpg" alt="Kappa Silhouettes">
-      </div>
-
-      <button class="carousel-prev" aria-label="Previous">&#8592;</button>
-      <button class="carousel-next" aria-label="Next">&#8594;</button>
-
-      <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
   </div>
+
+  <!-- Arrows at hero edges -->
+  <button class="carousel-prev" aria-label="Previous">&#8592;</button>
+  <button class="carousel-next" aria-label="Next">&#8594;</button>
 
 </section>
   <section class="polemarch">
@@ -560,6 +577,8 @@
   if (!carousel) return;
   const slides = carousel.querySelectorAll('.slide');
   const dotsWrap = document.getElementById('carouselDots');
+  const counter = document.getElementById('heroCounter');
+  const total = slides.length;
   let current = 0;
   let timer;
 
@@ -571,22 +590,25 @@
     dotsWrap.appendChild(d);
   });
 
+  function pad(n) { return String(n).padStart(2, '0'); }
+
   function goTo(n) {
     slides[current].classList.remove('active');
     dotsWrap.children[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
+    current = (n + total) % total;
     slides[current].classList.add('active');
     dotsWrap.children[current].classList.add('active');
+    if (counter) counter.textContent = pad(current + 1) + ' / ' + pad(total);
     resetTimer();
   }
 
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(() => goTo(current + 1), 3000);
+    timer = setInterval(() => goTo(current + 1), 5000);
   }
 
-  carousel.querySelector('.carousel-prev').addEventListener('click', () => goTo(current - 1));
-  carousel.querySelector('.carousel-next').addEventListener('click', () => goTo(current + 1));
+  document.querySelector('.carousel-prev').addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.carousel-next').addEventListener('click', () => goTo(current + 1));
 
   resetTimer();
 })();
