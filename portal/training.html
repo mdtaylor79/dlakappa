@@ -10,7 +10,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; min-height: 100vh; }
 
-/* ── PORTAL NAV ── */
 .portal-nav {
   background: #fff; border-bottom: 1px solid #e0d8cc;
   padding: 0 2rem; display: flex; align-items: center;
@@ -36,7 +35,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .portal-nav .nav-links .active { border-bottom: 2px solid #70110c; padding-bottom: 2px; }
 .portal-nav .nav-links .signout { color: #888; }
 
-/* ── HERO ── */
 .training-hero {
   background: linear-gradient(110deg, #1a0303 0%, #70110c 60%, #8a1a13 100%);
   padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
@@ -71,12 +69,10 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   color: rgba(242,235,215,.5); margin-top: .2rem; display: block;
 }
 
-/* ── QUICK TILES ── */
 .tiles-strip { background: #5a0e09; }
 .tiles-inner {
   max-width: 1100px; margin: 0 auto;
-  display: flex; overflow-x: auto;
-  scrollbar-width: none;
+  display: flex; overflow-x: auto; scrollbar-width: none;
 }
 .tiles-inner::-webkit-scrollbar { display: none; }
 .tile {
@@ -94,10 +90,8 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .tile svg { width: 20px; height: 20px; }
 .tile span { font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
 
-/* ── BODY ── */
 .training-body { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 
-/* ── SECTION LABEL ── */
 .section-label {
   display: flex; align-items: center; justify-content: space-between;
   margin: 2rem 0 1rem;
@@ -113,7 +107,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 }
 .section-label .count { font-size: .78rem; color: #999; }
 
-/* ── FEATURED BANNER ── */
 .featured-banner {
   background: #2a0604; border-radius: 6px;
   padding: 2rem 2.25rem;
@@ -129,8 +122,7 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   width: 72px; height: 72px; flex-shrink: 0;
   background: rgba(198,154,63,.12);
   border: 1.5px solid rgba(198,154,63,.38);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
+  display: flex; align-items: center; justify-content: center; position: relative;
 }
 .feat-icon svg { width: 34px; height: 34px; }
 .feat-content { flex: 1; position: relative; }
@@ -153,16 +145,14 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 }
 .feat-cta:hover { background: #daa70f; }
 
-/* ── COURSE GRID ── */
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.25rem;
 }
 .course-card {
-  background: #fff; border: 1px solid #e4ddd4;
-  border-radius: 6px; overflow: hidden;
-  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 6px;
+  overflow: hidden; display: flex; flex-direction: column;
   transition: box-shadow .2s, transform .2s;
 }
 .course-card:hover { box-shadow: 0 6px 24px rgba(112,17,12,.12); transform: translateY(-2px); }
@@ -186,7 +176,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 }
 .badge-required { background: #70110c; color: #f2ebd7; }
 .badge-new { background: #c69a3f; color: #2a0604; }
-.badge-done { background: #2d6a2d; color: #fff; }
 .progress-bar { height: 3px; background: #e8dfd4; }
 .progress-fill { height: 100%; background: #c69a3f; transition: width .4s; }
 .course-body { padding: 1rem 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
@@ -213,14 +202,12 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .btn-done { background: #e8f0e8; color: #2d6a2d; cursor: default; }
 .btn-soon { background: #f0ece6; color: #aaa; cursor: not-allowed; }
 
-/* ── EMPTY STATE ── */
 .empty-state {
-  background: #fff; border: 1px dashed #d0c8bc;
-  border-radius: 6px; padding: 2.5rem; text-align: center;
-  color: #999; font-size: .88rem; line-height: 1.7; display: none;
+  background: #fff; border: 1px dashed #d0c8bc; border-radius: 6px;
+  padding: 2.5rem; text-align: center; color: #999;
+  font-size: .88rem; line-height: 1.7; display: none;
 }
 
-/* ── MOBILE ── */
 @media(max-width:700px){
   .portal-nav { height:auto; min-height:56px; padding:.6rem 1rem; flex-wrap:wrap; gap:.4rem .75rem; }
   .portal-nav .brand-text .frat-name { display:none; }
@@ -236,7 +223,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="portal-nav">
   <div class="brand">
     <img src="/img/kappa-crest.png" alt="DLA Crest">
@@ -253,7 +239,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="training-hero">
   <div class="inner">
     <div>
@@ -262,14 +247,13 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num" id="statAvail">1</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num">1</span><span class="lbl">Available</span></div>
       <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
       <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
     </div>
   </div>
 </div>
 
-<!-- TILES -->
 <div class="tiles-strip">
   <div class="tiles-inner">
     <button class="tile active" onclick="filterCourses(this,'all')">
@@ -295,13 +279,8 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   </div>
 </div>
 
-<!-- BODY -->
 <div class="training-body">
-
-  <!-- Featured -->
-  <div class="section-label" style="margin-top:1.5rem;">
-    <h2>Featured Training</h2>
-  </div>
+  <div class="section-label" style="margin-top:1.5rem;"><h2>Featured Training</h2></div>
   <div class="featured-banner">
     <div class="feat-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
@@ -314,15 +293,12 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
     </div>
   </div>
 
-  <!-- Catalog -->
   <div class="section-label">
     <h2>Course Catalog</h2>
     <span class="count" id="courseCount"></span>
   </div>
 
   <div class="course-grid" id="courseGrid">
-
-    <!-- Robert's Rules -->
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <div class="thumb-icon">
@@ -338,12 +314,10 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-roberts" href="/portal/roberts_rules_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
-    <!-- Membership Education -->
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <div class="thumb-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
         </div>
         <span class="course-badge badge-required">Required</span>
       </div>
@@ -355,8 +329,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <button class="btn-course btn-soon" disabled>Coming Soon</button>
       </div>
     </div>
-
-    <!-- Guide Right -->
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <div class="thumb-icon">
@@ -372,8 +344,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <button class="btn-course btn-soon" disabled>Coming Soon</button>
       </div>
     </div>
-
-    <!-- Financial Literacy -->
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <div class="thumb-icon">
@@ -389,70 +359,64 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <button class="btn-course btn-soon" disabled>Coming Soon</button>
       </div>
     </div>
-
   </div>
-
-  <div class="empty-state" id="emptyState">
-    No courses match this filter yet. Check back as new modules are added.
-  </div>
-
+  <div class="empty-state" id="emptyState">No courses match this filter yet.</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// Auth guard
-var user = null;
-try { user = JSON.parse(localStorage.getItem('dla_user') || 'null'); } catch(e){}
-if (!user) { window.location.href = '/portal/login.html'; }
-document.getElementById('signOutBtn').addEventListener('click', function(e){
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+})();
+
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
   e.preventDefault();
-  localStorage.removeItem('dla_user');
+  await sb.auth.signOut();
   window.location.href = '/portal/login.html';
 });
 
-// Progress
-function getProgress(id){ return parseInt(localStorage.getItem('dla_prog_'+id)||'0',10); }
-function refreshUI(){
+// Progress tracking via localStorage
+function getProgress(id) { return parseInt(localStorage.getItem('dla_prog_' + id) || '0', 10); }
+(function refreshUI() {
   var rp = getProgress('roberts');
   var bar = document.getElementById('prog-roberts');
   var btn = document.getElementById('btn-roberts');
-  if(bar) bar.style.width = rp + '%';
-  if(btn){
-    if(rp>=100){ btn.className='btn-course btn-done'; btn.textContent='✓ Completed'; btn.removeAttribute('href'); }
-    else if(rp>0){ btn.className='btn-course btn-continue'; btn.textContent='Continue ('+rp+'%)'; }
+  if (bar) bar.style.width = rp + '%';
+  if (btn) {
+    if (rp >= 100) { btn.className = 'btn-course btn-done'; btn.textContent = '✓ Completed'; btn.removeAttribute('href'); }
+    else if (rp > 0) { btn.className = 'btn-course btn-continue'; btn.textContent = 'Continue (' + rp + '%)'; }
   }
-  var inProg = (rp>0 && rp<100) ? 1 : 0;
-  var done   = rp>=100 ? 1 : 0;
-  document.getElementById('statInProg').textContent = inProg || '—';
-  document.getElementById('statDone').textContent   = done   || '—';
-}
-refreshUI();
+  document.getElementById('statInProg').textContent = (rp > 0 && rp < 100) ? '1' : '—';
+  document.getElementById('statDone').textContent   = (rp >= 100) ? '1' : '—';
+})();
 
 // Filter
 var allCards = Array.from(document.querySelectorAll('.course-card'));
 document.getElementById('courseCount').textContent = allCards.length + ' courses';
 
-function filterCourses(btn, tag){
-  document.querySelectorAll('.tile').forEach(function(t){ t.classList.remove('active'); });
+function filterCourses(btn, tag) {
+  document.querySelectorAll('.tile').forEach(function(t) { t.classList.remove('active'); });
   btn.classList.add('active');
+  var rp = getProgress('roberts');
   var visible = 0;
-  allCards.forEach(function(c){
-    var show = tag==='all' || (c.getAttribute('data-filter')||'').includes(tag);
-    // For inprogress/completed, check localStorage
-    if(tag==='inprogress'){
-      var rp=getProgress('roberts');
-      show = c.getAttribute('data-filter').includes('required') && rp>0 && rp<100;
-    }
-    if(tag==='completed'){
-      var rp=getProgress('roberts');
-      show = c.getAttribute('data-filter').includes('required') && rp>=100;
-    }
+  allCards.forEach(function(c) {
+    var f = c.getAttribute('data-filter') || '';
+    var show = false;
+    if (tag === 'all')        show = true;
+    else if (tag === 'required')   show = f.includes('required');
+    else if (tag === 'inprogress') show = f.includes('required') && rp > 0 && rp < 100;
+    else if (tag === 'completed')  show = f.includes('required') && rp >= 100;
     c.style.display = show ? '' : 'none';
-    if(show) visible++;
+    if (show) visible++;
   });
-  document.getElementById('courseCount').textContent = visible + ' course'+(visible!==1?'s':'');
-  document.getElementById('emptyState').style.display = visible===0 ? 'block' : 'none';
+  document.getElementById('courseCount').textContent = visible + ' course' + (visible !== 1 ? 's' : '');
+  document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
 }
 </script>
-<script src="/js/nav.js" onerror="void 0"></script>
 </body>
 </html>
