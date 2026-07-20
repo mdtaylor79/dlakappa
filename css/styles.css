@@ -277,10 +277,8 @@ body{background:#ffffff !important;min-height:100vh;}
   position:relative;z-index:2;
   width:100%;max-width:1200px;
   margin:0 auto;
-  padding:110px 80px 110px 28px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:48px;
+  padding:110px 28px;
+  display:flex;
   align-items:center;
 }
 .hero-inner{max-width:540px;}
