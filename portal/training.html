@@ -247,7 +247,7 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num">1</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num">2</span><span class="lbl">Available</span></div>
       <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
       <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
     </div>
@@ -312,6 +312,21 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <div class="course-title">Parliamentary Procedure: Robert's Rules of Order</div>
         <div class="course-meta">6 modules &nbsp;·&nbsp; ~45 min</div>
         <a class="btn-course btn-start" id="btn-roberts" href="/portal/roberts_rules_training.html" target="_blank">Start Course</a>
+      </div>
+    </div>
+    <div class="course-card" data-filter="required all">
+      <div class="course-thumb">
+        <div class="thumb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="course-badge badge-required">Required</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-compliance" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Fraternity Compliance</div>
+        <div class="course-title">Kappa Compliance Training</div>
+        <div class="course-meta">Chapter compliance &amp; standards</div>
+        <a class="btn-course btn-start" id="btn-compliance" href="/portal/kappa_compliance_training.html" target="_blank">Start Course</a>
       </div>
     </div>
     <div class="course-card" data-filter="required all">
@@ -382,17 +397,24 @@ document.getElementById('signOutBtn').addEventListener('click', async (e) => {
 
 // Progress tracking via localStorage
 function getProgress(id) { return parseInt(localStorage.getItem('dla_prog_' + id) || '0', 10); }
-(function refreshUI() {
-  var rp = getProgress('roberts');
-  var bar = document.getElementById('prog-roberts');
-  var btn = document.getElementById('btn-roberts');
-  if (bar) bar.style.width = rp + '%';
+function applyProgress(id) {
+  var p = getProgress(id);
+  var bar = document.getElementById('prog-' + id);
+  var btn = document.getElementById('btn-' + id);
+  if (bar) bar.style.width = p + '%';
   if (btn) {
-    if (rp >= 100) { btn.className = 'btn-course btn-done'; btn.textContent = '✓ Completed'; btn.removeAttribute('href'); }
-    else if (rp > 0) { btn.className = 'btn-course btn-continue'; btn.textContent = 'Continue (' + rp + '%)'; }
+    if (p >= 100) { btn.className = 'btn-course btn-done'; btn.textContent = '✓ Completed'; btn.removeAttribute('href'); }
+    else if (p > 0) { btn.className = 'btn-course btn-continue'; btn.textContent = 'Continue (' + p + '%)'; }
   }
-  document.getElementById('statInProg').textContent = (rp > 0 && rp < 100) ? '1' : '—';
-  document.getElementById('statDone').textContent   = (rp >= 100) ? '1' : '—';
+  return p;
+}
+(function refreshUI() {
+  var rp = applyProgress('roberts');
+  var cp = applyProgress('compliance');
+  var inProg = [rp, cp].filter(function(p){ return p > 0 && p < 100; }).length;
+  var done   = [rp, cp].filter(function(p){ return p >= 100; }).length;
+  document.getElementById('statInProg').textContent = inProg || '—';
+  document.getElementById('statDone').textContent   = done   || '—';
 })();
 
 // Filter
