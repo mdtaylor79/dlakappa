@@ -114,6 +114,34 @@ body{background:#ffffff !important;min-height:100vh;}
   .site-nav .nav-members > a{border:none;margin:0;}
 }
 
+/* ── SECTION DIVIDER ── */
+.section-divider{
+  display:flex;align-items:center;gap:1.1rem;
+  max-width:520px;margin:0 auto;padding:0 2rem;
+  pointer-events:none;user-select:none;
+}
+.section-divider::before,.section-divider::after{
+  content:'';flex:1;height:1px;
+  background:rgba(198,154,63,.38);
+}
+.section-divider span{
+  display:block;width:7px;height:7px;
+  background:#c69a3f;transform:rotate(45deg);flex-shrink:0;
+}
+/* Wrapper that owns the background + vertical breathing room */
+.divider-wrap{
+  padding:6px 0;
+  background:inherit; /* inherits surrounding section's bg */
+}
+/* For use inside dark sections */
+.divider-wrap--dark .section-divider::before,
+.divider-wrap--dark .section-divider::after{
+  background:rgba(242,235,215,.18);
+}
+.divider-wrap--dark .section-divider span{
+  background:rgba(198,154,63,.65);
+}
+
 /* INNER PAGES */
 .inner-page{
   color:var(--cream);font-family:var(--font-sans);
