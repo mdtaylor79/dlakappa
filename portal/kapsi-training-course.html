@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership Education &amp; Standards Overview — Kappa Alpha Psi</title>
+<style>
+:root {
+  color-scheme: light;
+  --crimson: #70110c;
+  --crimson-dark: #4d0c09;
+  --crimson-light: #8a1510;
+  --cream: #f2ebd7;
+  --cream-light: #faf7ef;
+  --gold: #b8952a;
+  --white: #ffffff;
+  --gray-100: #f8f8f8;
+  --gray-200: #e9e9e9;
+  --gray-300: #d0d0d0;
+  --gray-600: #666;
+  --gray-800: #333;
+  --text: #1a1a1a;
+  --sidebar-w: 290px;
+  --header-h: 56px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gray-100);
+  color: var(--text);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+/* SIDEBAR */
+#sidebar {
+  width: var(--sidebar-w);
+  background: var(--cream);
+  color: var(--crimson-dark);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  border-right: 2px solid var(--gold);
+}
+#sidebar-header {
+  background: var(--cream);
+  padding: 20px 16px;
+  border-bottom: 2px solid var(--gold);
+}
+#sidebar-header .brand {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 6px;
+}
+#sidebar-header h2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--crimson-dark);
+  line-height: 1.4;
+}
+#progress-wrap {
+  padding: 12px 16px;
+  background: var(--cream-light);
+  border-bottom: 1px solid var(--gold);
+}
+#progress-label {
+  font-size: 10px;
+  color: var(--crimson);
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+#progress-bar-bg {
+  height: 5px;
+  background: rgba(125,17,12,.15);
+  border-radius: 3px;
+}
+#progress-bar-fill {
+  height: 5px;
+  background: var(--crimson);
+  border-radius: 3px;
+  width: 0%;
+  transition: width .4s;
+}
+#nav-list { list-style: none; padding: 6px 0; flex: 1; }
+#nav-list li { padding: 0; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background .2s, border-color .2s;
+  font-size: 12.5px;
+  color: var(--crimson-dark);
+  line-height: 1.3;
+}
+.nav-item:hover { background: rgba(125,17,12,.07); color: var(--crimson); }
+.nav-item.active {
+  background: rgba(125,17,12,.1);
+  border-left-color: var(--crimson);
+  color: var(--crimson);
+  font-weight: 700;
+}
+.nav-item.completed .nav-num {
+  background: var(--gold);
+  color: var(--crimson-dark);
+}
+.nav-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(125,17,12,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: var(--crimson);
+  font-family: Georgia, serif;
+}
+/* MAIN */
+#main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+#top-bar {
+  height: var(--header-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+#top-bar .breadcrumb { font-size: 12px; color: var(--gray-600); }
+#top-bar .breadcrumb span { color: var(--crimson); font-weight: 600; }
+#content-scroll { flex: 1; overflow-y: auto; padding-bottom: 60px; }
+.section { display: none; }
+.section.active { display: block; }
+/* COVER */
+#cover {
+  min-height: 100%;
+  background: linear-gradient(160deg, var(--crimson) 0%, var(--crimson-dark) 55%, var(--crimson-dark) 100%);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+}
+#cover .org-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+#cover h1 {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  max-width: 600px;
+}
+#cover .subtitle {
+  font-size: 14px;
+  color: var(--cream);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+#cover .meta-row { display: flex; gap: 40px; margin-bottom: 40px; }
+#cover .meta-item { text-align: center; }
+#cover .meta-item .num { font-size: 30px; font-weight: 800; color: var(--gold); }
+#cover .meta-item .lbl { font-size: 11px; color: var(--cream); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+.btn-primary {
+  background: var(--gold);
+  color: var(--crimson-dark);
+  border: none;
+  padding: 14px 36px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: .5px;
+  transition: opacity .2s, transform .1s;
+  text-transform: uppercase;
+}
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+/* PAGE HERO */
+.page-hero {
+  background: var(--crimson);
+  color: var(--white);
+  padding: 48px 48px 40px;
+}
+.page-hero .label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.page-hero h2 { font-size: 26px; font-weight: 800; line-height: 1.2; }
+.page-hero p { font-size: 14px; color: var(--cream); margin-top: 10px; max-width: 640px; line-height: 1.6; }
+.page-body { padding: 40px 48px; max-width: 880px; }
+/* OBJECTIVES GRID */
+.obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+.obj-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-top: 3px solid var(--crimson);
+  border-radius: 4px;
+  padding: 18px 20px;
+}
+.obj-card h4 { font-size: 13px; font-weight: 700; color: var(--crimson); margin-bottom: 6px; }
+.obj-card p { font-size: 12.5px; color: var(--gray-800); line-height: 1.6; }
+/* MODULE HERO */
+.module-hero {
+  background: var(--crimson);
+  color: var(--white);
+  padding: 42px 48px 34px;
+}
+.module-num-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.module-hero h2 { font-size: 24px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+.module-hero p { font-size: 13.5px; color: var(--cream); max-width: 620px; line-height: 1.6; }
+.module-body { padding: 36px 48px; max-width: 880px; }
+.lesson-body { padding: 36px 48px; max-width: 880px; }
+.obj-strip { padding: 24px 48px; background: var(--cream-light); border-bottom: 1px solid var(--gray-200); }
+/* OBJECTIVES STRIP */
+.objectives-strip {
+  background: var(--cream-light);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.objectives-strip h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 14px;
+}
+.objectives-strip ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.objectives-strip li {
+  font-size: 13px;
+  color: var(--gray-800);
+  display: flex;
+  gap: 10px;
+  line-height: 1.5;
+}
+.objectives-strip li::before {
+  content: '\2713';
+  color: var(--crimson);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+/* CONTENT BLOCKS */
+.content-block { margin-bottom: 32px; }
+.content-block h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--crimson);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--cream);
+}
+.content-block h4 { font-size: 14px; font-weight: 700; color: var(--crimson-dark); margin: 14px 0 8px; }
+.content-block p { font-size: 13.5px; line-height: 1.75; color: var(--gray-800); margin-bottom: 10px; }
+.content-block ul, .content-block ol { margin-left: 22px; margin-bottom: 12px; }
+.content-block li { font-size: 13.5px; line-height: 1.65; color: var(--gray-800); margin-bottom: 5px; }
+/* INFO CARDS */
+.info-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
+.info-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-top: 3px solid var(--crimson);
+  border-radius: 4px;
+  padding: 16px;
+}
+.info-card h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--crimson); margin-bottom: 8px; }
+.info-card p, .info-card li { font-size: 12.5px; color: var(--gray-800); line-height: 1.55; }
+.info-card ul { margin-left: 14px; margin-top: 4px; }
+/* CALLOUT */
+.callout {
+  background: var(--cream-light);
+  border: 1px solid var(--cream);
+  border-left: 4px solid var(--crimson);
+  border-radius: 0 6px 6px 0;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  color: var(--gray-800);
+  line-height: 1.65;
+}
+.callout strong { color: var(--crimson); }
+/* ALERT */
+.alert {
+  background: #fff8f8;
+  border: 1px solid #f0d0d0;
+  border-left: 4px solid var(--crimson);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 13px;
+  color: var(--gray-800);
+  line-height: 1.6;
+}
+/* LEVEL BADGES */
+.level-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-right: 6px;
+}
+.level-1 { background: #fef3cd; color: #7a5a00; border: 1px solid #e6d07a; }
+.level-2 { background: #fde8e8; color: #8b1a1a; border: 1px solid #e8b0b0; }
+.level-3 { background: var(--crimson); color: var(--white); }
+/* CHECKLIST */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--gray-800);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 11px 14px;
+}
+.checklist li .ck-num {
+  background: var(--crimson);
+  color: var(--white);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+/* TABLE */
+.styled-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; }
+.styled-table th { background: var(--crimson); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 700; font-size: 12px; letter-spacing: .5px; }
+.styled-table td { padding: 9px 14px; border-bottom: 1px solid var(--gray-200); color: var(--gray-800); line-height: 1.5; vertical-align: top; }
+.styled-table tr:nth-child(even) td { background: var(--gray-100); }
+/* ORG CHART */
+.org-chart { font-size: 12.5px; }
+.org-box {
+  display: inline-flex;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: 4px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: var(--gray-800);
+}
+.org-box.top { background: var(--crimson); color: var(--white); border-color: var(--crimson); font-weight: 700; }
+.org-box.mid { background: var(--cream-light); border-color: var(--gold); color: var(--crimson-dark); font-weight: 600; }
+.org-children { margin-left: 28px; border-left: 2px solid var(--gray-300); padding-left: 18px; margin-top: 4px; }
+.org-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; align-items: center; }
+/* QUIZ */
+.quiz-wrap {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-top: 3px solid var(--crimson);
+  border-radius: 4px;
+  padding: 28px 32px;
+  margin-top: 36px;
+}
+.quiz-wrap h3 { font-size: 15px; font-weight: 700; color: var(--crimson); margin-bottom: 4px; letter-spacing: .3px; }
+.quiz-wrap .quiz-intro { font-size: 13px; color: var(--gray-600); margin-bottom: 26px; }
+.quiz-q { margin-bottom: 28px; }
+.quiz-q .q-text { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: var(--gray-800);
+  transition: border-color .2s, background .2s;
+  line-height: 1.45;
+}
+.quiz-option:hover { border-color: var(--crimson); background: var(--cream-light); }
+.quiz-option input[type=radio] { accent-color: var(--crimson); flex-shrink: 0; margin-top: 2px; }
+.quiz-option.correct { border-color: #2d9b5c; background: #f0fdf4; color: #1a5c35; }
+.quiz-option.incorrect { border-color: var(--crimson); background: #fff8f8; color: var(--crimson); }
+.quiz-feedback {
+  font-size: 12.5px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: none;
+  line-height: 1.5;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.pass { background: #f0fdf4; color: #1a5c35; border: 1px solid #bbf7d0; }
+.quiz-feedback.fail { background: #fff8f8; color: var(--crimson-dark); border: 1px solid #f0d0d0; }
+.btn-check {
+  background: var(--crimson);
+  color: var(--white);
+  border: none;
+  padding: 11px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: opacity .2s;
+}
+.btn-check:hover { opacity: .88; }
+.quiz-score { text-align: center; padding: 20px 0 8px; display: none; }
+.quiz-score .score-num { font-size: 42px; font-weight: 800; color: var(--crimson); }
+.quiz-score .score-label { font-size: 13px; color: var(--gray-600); margin-top: 4px; }
+/* NAV BUTTONS */
+.nav-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px 48px;
+  max-width: 880px;
+  margin-top: 8px;
+}
+.btn-nav {
+  background: var(--white);
+  border: 1.5px solid var(--gray-300);
+  color: var(--gray-800);
+  padding: 10px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-nav:hover { border-color: var(--crimson); color: var(--crimson); }
+.btn-nav.next { background: var(--crimson); color: var(--white); border-color: var(--crimson); }
+.btn-nav.next:hover { background: var(--crimson-light); }
+/* COMPLETION */
+#completion-banner {
+  background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 80px 40px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#completion-banner h2 { font-size: 30px; font-weight: 800; margin-bottom: 14px; }
+#completion-banner p { font-size: 14px; color: var(--cream); max-width: 460px; line-height: 1.7; margin-bottom: 10px; }
+#completion-banner .gold-line { color: var(--gold); font-weight: 700; font-size: 17px; margin: 18px 0; }
+.divider { height: 1px; background: var(--gray-200); margin: 24px 0; }
+</style>
+</head>
+<body>
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div id="sidebar-header">
+    <div class="brand">Kappa Alpha Psi Fraternity, Inc.</div>
+    <h2>Membership Education &amp; Standards Overview</h2>
+  </div>
+  <div id="progress-wrap">
+    <div id="progress-label"><span>Progress</span><span id="progress-pct">0%</span></div>
+    <div id="progress-bar-bg"><div id="progress-bar-fill"></div></div>
+  </div>
+  <ul id="nav-list">
+    <li><div class="nav-item active" data-section="0"><span class="nav-num">H</span>Course Home</div></li>
+    <li><div class="nav-item" data-section="1"><span class="nav-num">O</span>Course Objectives</div></li>
+    <li><div class="nav-item" data-section="2"><span class="nav-num">1</span>Code of Conduct</div></li>
+    <li><div class="nav-item" data-section="3"><span class="nav-num">2</span>Protocol &amp; Etiquette</div></li>
+    <li><div class="nav-item" data-section="4"><span class="nav-num">3</span>Risk Management</div></li>
+    <li><div class="nav-item" data-section="5"><span class="nav-num">4</span>Conducting Meetings</div></li>
+    <li><div class="nav-item" data-section="6"><span class="nav-num">5</span>Committee Structure</div></li>
+    <li><div class="nav-item" data-section="7"><span class="nav-num">6</span>Org Chart</div></li>
+    <li><div class="nav-item" data-section="8"><span class="nav-num">7</span>Social Media &amp; Digital Standards</div></li>
+    <li><div class="nav-item" data-section="9"><span class="nav-num">8</span>Paraphernalia &amp; Apparel</div></li>
+    <li><div class="nav-item" data-section="10"><span class="nav-num">F</span>Course Complete</div></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="top-bar">
+    <div class="breadcrumb">Denton-Lewisville KAPSI &nbsp;&rsaquo;&nbsp; <span id="breadcrumb-title">Course Home</span></div>
+  </div>
+  <div id="content-scroll">
+
+    <!-- SECTION 0: COVER -->
+    <div class="section active" id="sec-0">
+      <div id="cover">
+        <div style="margin-bottom:20px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--cream);opacity:.7;">Est. January 5, 1911</div>
+          <div style="font-size:22px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--cream);font-family:Georgia,serif;">Kappa Alpha Psi</div>
+          <div style="width:60px;height:2px;background:var(--gold);margin:4px 0;"></div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cream);opacity:.8;">Denton-Lewisville (TX) Alumni Chapter</div>
+        </div>
+        <h1>Membership Education &amp; Standards Overview</h1>
+        <p class="subtitle">A comprehensive training course for all members covering the standards, expectations, governance, and protocols of Kappa Alpha Psi Fraternity, Inc. Founded January 5, 1911 &mdash; Training for Leadership Since 1911.</p>
+        <div class="meta-row">
+          <div class="meta-item"><div class="num">6</div><div class="lbl">Modules</div></div>
+          <div class="meta-item"><div class="num">~75</div><div class="lbl">Minutes</div></div>
+          <div class="meta-item"><div class="num">6</div><div class="lbl">Quizzes</div></div>
+        </div>
+        <button class="btn-primary" onclick="goTo(1)">Begin Course &rarr;</button>
+      </div>
+    </div>
+
+    <!-- SECTION 1: OBJECTIVES -->
+    <div class="section" id="sec-1">
+      <div class="page-hero">
+        <div class="label">Course Overview</div>
+        <h2>Course Learning Objectives</h2>
+        <p>By the end of this course, all members will be able to demonstrate working knowledge of Kappa Alpha Psi's standards, governance, and operational expectations across six core areas.</p>
+      </div>
+      <div class="page-body">
+
+        <div style="margin: 28px 0 32px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--crimson);margin-bottom:10px;">Introduction Video</div>
+          <a href="https://youtu.be/UjOQaWroeMA" target="_blank" rel="noopener" style="display:block;text-decoration:none;">
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:6px;">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/UjOQaWroeMA?si=qg9x4mv17xmx4L7g"
+    title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;">
+  </iframe>
+</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:8px;">Watch this video before beginning the course modules.</div>
+        </div>
+        <p style="font-size:13.5px;color:var(--gray-800);line-height:1.75;margin-bottom:24px;">
+          This course is designed for <strong>all active members</strong> of the Denton-Lewisville chapter — whether newly initiated or long-standing brothers. It establishes a shared foundation so that every brother operates from the same understanding of fraternity standards. Completion of this course is expected of every active member.
+        </p>
+        <div class="obj-grid">
+          <div class="obj-card"><h4>Module 1 &mdash; Code of Conduct</h4><p>Identify the fraternity's zero-tolerance hazing policy, define key terms, distinguish violation categories and severity levels, and describe the full disciplinary procedure from complaint through appeal.</p></div>
+          <div class="obj-card"><h4>Module 2 &mdash; Protocol &amp; Etiquette</h4><p>Apply proper traditions, forms of address for all officer levels, dress code standards by event type, badge and insignia rules, speaking and seating decorum, and written and electronic communication standards.</p></div>
+          <div class="obj-card"><h4>Module 3 &mdash; Risk Management</h4><p>Explain the core liability principle, identify insurance coverage parameters, describe the event registration process, apply the Event Safety Checklist, and state policies on alcohol, drugs, and consent.</p></div>
+          <div class="obj-card"><h4>Module 4 &mdash; Conducting Meetings</h4><p>Differentiate between province and national meeting types, explain the delegate's role and voting structure, describe standard meeting activities and expectations, and identify available leadership development programs.</p></div>
+          <div class="obj-card"><h4>Module 5 &mdash; Committee Structure</h4><p>Define the three committee types, explain when each is used, identify core Standing Committees and their functions, describe committee reporting obligations, and list the responsibilities of committee members and chairs.</p></div>
+          <div class="obj-card"><h4>Module 6 &mdash; Organizational Chart</h4><p>Navigate the full organizational hierarchy from Grand Chapter to General Body, identify the duties of local chapter officers, explain the Board of Directors' role, and describe how liaisons connect the chapter to external bodies.</p></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(0)">&larr; Back</button>
+        <button class="btn-nav next" onclick="goTo(2)">Module 1: Code of Conduct &rarr;</button>
+      </div>
+    </div>
+    <!-- SECTION 2: MODULE 1 — CODE OF CONDUCT -->
+    <div class="section" id="sec-2">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 1 of 6</div>
+        <h2>Code of Conduct</h2>
+        <p>The standards that govern member behavior, the fraternity's absolute prohibition on hazing, the categories and severity levels of misconduct, and the structured disciplinary process that protects every brother's right to due process.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>State the fraternity's zero-tolerance position on hazing and identify the MTA as the sole approved intake process.</li>
+            <li>Define at least eight key terms used in the Code of Conduct.</li>
+            <li>Distinguish between physical hazing, non-physical hazing, and conduct unbecoming a brother.</li>
+            <li>Identify the three levels of Conduct Unbecoming, their sanction ranges, and two examples of each.</li>
+            <li>Explain Chapter Misconduct and how it differs from individual member violations.</li>
+            <li>Describe each step of the fraternity's disciplinary procedure, including the accused member's rights.</li>
+            <li>State the member's affirmative duty to report violations and the consequences of remaining silent.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Foundation and Zero-Tolerance Policy</h3>
+          <p>Kappa Alpha Psi Fraternity, Inc. was founded on <strong>January 5, 1911</strong>, at Indiana University, Bloomington, Indiana. The ten Founders established the organization on principles of achievement, brotherhood, and leadership — principles that require every member to maintain the highest standards of personal and organizational conduct.</p>
+          <p>The fraternity maintains an <strong>absolute zero-tolerance policy for hazing in any form</strong>. There are no exceptions based on tradition, chapter custom, fraternal secrecy, or member consent. Any activity that endangers the physical or mental health of a candidate or member falls within this prohibition, regardless of how the activity is framed or who authorizes it.</p>
+          <div class="callout"><strong>The Membership Training Activity (MTA)</strong> is the only approved intake process in Kappa Alpha Psi Fraternity, Inc. No chapter, province, or individual has the authority to deviate from the MTA framework. Unauthorized intake activities — no matter how long they have been practiced by a particular chapter — are violations of national policy and subject all participants to immediate disciplinary action including expulsion.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Key Definitions</h3>
+          <p>The Code of Conduct uses specific defined terms. Brothers must know these terms to properly understand their rights, obligations, and exposure under the Code.</p>
+          <div class="info-cards">
+            <div class="info-card"><h4>Applicant</h4><p>Any person who has submitted interest paperwork but has not yet been formally accepted into the MTA process. An applicant has no membership rights or standing within the fraternity.</p></div>
+            <div class="info-card"><h4>Candidate</h4><p>A person who has been formally approved by the chapter and Grand Chapter to participate in the MTA. Candidates are under the protection of fraternity policy and may not be subjected to hazing.</p></div>
+            <div class="info-card"><h4>Brother</h4><p>Any duly initiated member of Kappa Alpha Psi in good standing, meaning all dues and financial obligations are current and no administrative holds are active.</p></div>
+            <div class="info-card"><h4>Barred</h4><p>A person permanently and irrevocably prohibited from membership in Kappa Alpha Psi Fraternity, Inc. A barred individual may not participate in any fraternity activities in any capacity.</p></div>
+            <div class="info-card"><h4>Code of Silence</h4><p>Knowingly withholding information about a hazing incident or Code violation. The Code of Silence is itself a separate and distinct violation &mdash; not simply a moral failure. Members who remain silent may face the same sanctions as those who committed the underlying act.</p></div>
+            <div class="info-card"><h4>Expulsion</h4><p>The permanent removal of a member from Kappa Alpha Psi Fraternity, Inc. An expelled member loses all rights, privileges, and recognitions of membership and may be declared Barred.</p></div>
+            <div class="info-card"><h4>Suspension</h4><p>A temporary removal from membership rights and privileges for a defined period. A suspended member may not vote, hold office, attend closed events, or represent the fraternity during the suspension period.</p></div>
+            <div class="info-card"><h4>Reprimand</h4><p>A formal written notice of violation placed in a member's record. A reprimand is the least severe sanction but is still an official disciplinary action and may be considered in any future disciplinary proceedings.</p></div>
+            <div class="info-card"><h4>Cease &amp; Desist</h4><p>A formal order requiring a member or chapter to immediately stop a prohibited activity. Failure to comply with a Cease &amp; Desist elevates the severity of the violation and may result in suspension or expulsion.</p></div>
+            <div class="info-card"><h4>Administrative Hold</h4><p>A freeze placed on a member's record that prevents them from voting, being recognized, or holding office. Common reasons include unpaid dues, outstanding fines, or pending disciplinary action.</p></div>
+            <div class="info-card"><h4>Slush Funds</h4><p>Unofficial money collected outside approved chapter financial accounts. Slush funds create personal financial liability for those who collect or distribute them and are prohibited regardless of the intended purpose.</p></div>
+            <div class="info-card"><h4>Probation</h4><p>A period during which a member or chapter operates under heightened oversight. Violations during probation are treated with greater severity, and probation may include conditions such as mandatory training or restricted event participation.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Section I &mdash; MTA Violations</h3>
+          <p>Section I addresses any deviation from the approved Membership Training Activity process. The MTA is a nationally standardized, time-limited program with a defined curriculum, timeline, and participant list. Any of the following constitute MTA violations:</p>
+          <ul>
+            <li>Conducting activities outside the approved MTA timeline or curriculum</li>
+            <li>Allowing unauthorized persons — brothers or non-members — to participate in or observe the MTA process</li>
+            <li>Collecting fees, gifts, or contributions from candidates beyond those explicitly authorized in the MTA guidelines</li>
+            <li>Conducting a "shadow" or parallel intake process alongside or in addition to the official MTA</li>
+            <li>Initiating a member without completing the full MTA process</li>
+            <li>Permitting a suspended, barred, or non-member to serve in any capacity during the MTA</li>
+          </ul>
+          <div class="alert">MTA violations are reported to the Province Polemarch and Grand Chapter simultaneously. They may result in chapter suspension, loss of the chapter's intake privileges, and individual expulsion of all participating brothers.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Section II &mdash; Hazing</h3>
+          <p>Hazing is defined as any action, activity, or situation — whether on or off fraternity premises — that recklessly or intentionally endangers the physical health, mental health, or dignity of a member, candidate, or applicant, regardless of the person's consent or willingness to participate.</p>
+          <table class="styled-table">
+            <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+            <tr><td><strong>Physical Hazing</strong></td><td>Any act causing or risking physical harm or discomfort</td><td>Paddling or striking; forcing physical exercise to the point of exhaustion; sleep deprivation; food deprivation; exposure to extreme temperatures; forced consumption of food, alcohol, or substances</td></tr>
+            <tr><td><strong>Non-Physical Hazing</strong></td><td>Any act causing psychological harm, humiliation, or coercive distress</td><td>Verbal abuse and degradation; forced memorization under threat of punishment; financial exploitation; isolation from family or friends; public humiliation rituals; forced servitude or degrading tasks</td></tr>
+          </table>
+          <p>Consent is not a defense. The fraternity's position is that a candidate's environment — the power imbalance between initiates and initiated members — makes truly free consent impossible during the intake process. Any claimed consent is therefore not a mitigating factor.</p>
+          <div class="alert"><strong>Reporting Obligation:</strong> Every brother has an affirmative duty to report hazing. Reporting to the chapter Polemarch, Province Polemarch, or Grand Chapter directly are all acceptable channels. Choosing not to report &mdash; even if the brother did not participate &mdash; constitutes a Code of Silence violation and carries the same potential sanctions as participation.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Section III &mdash; Conduct Unbecoming</h3>
+          <p>Conduct Unbecoming refers to any behavior by a brother that reflects negatively on himself, the chapter, or the fraternity, or that violates the fraternity's values and standards outside the specific context of hazing or intake. The Code organizes these violations into three levels of increasing severity.</p>
+
+          <h4><span class="level-badge level-1">Level 1</span> Minor Violations</h4>
+          <p>Level 1 violations are addressed and resolved at the chapter level by the chapter officers. They do not require province or national involvement unless they recur or are left unaddressed. Examples include:</p>
+          <ul>
+            <li>Repeated unexcused absences from chapter meetings without notification</li>
+            <li>Failure to pay dues or meet financial obligations to the chapter within the allotted period</li>
+            <li>Disrespectful or dismissive behavior toward chapter officers during official meetings</li>
+            <li>Failure to fulfill an assigned committee responsibility without notifying the chair</li>
+            <li>Wearing the badge, letters, or insignia at an event that conflicts with fraternity values</li>
+          </ul>
+          <p><strong>Typical sanctions:</strong> Formal reprimand; requirement to complete a training module; temporary suspension of voting rights at the chapter level.</p>
+
+          <h4><span class="level-badge level-2">Level 2</span> Moderate Violations</h4>
+          <p>Level 2 violations require involvement from the Province Polemarch and Province Board. They reflect behavior that embarrasses the fraternity in the community or demonstrates a pattern of disregard for fraternity standards. Examples include:</p>
+          <ul>
+            <li>Public intoxication while wearing fraternity insignia or representing the chapter at an event</li>
+            <li>Misuse, misappropriation, or unauthorized disbursement of chapter funds</li>
+            <li>Making false or defamatory statements about a brother or chapter officer</li>
+            <li>Conduct at a fraternity event that results in legal involvement, a complaint to the host institution, or adverse media attention</li>
+            <li>Repeated Level 1 violations that have not been corrected after formal reprimand</li>
+          </ul>
+          <p><strong>Typical sanctions:</strong> Suspension from chapter activities; financial restitution; mandatory province-level training; probation with conditions.</p>
+
+          <h4><span class="level-badge level-3">Level 3</span> Severe Violations</h4>
+          <p>Level 3 violations are handled directly by the Grand Chapter. They represent behavior so serious that they threaten the integrity, legal standing, or public reputation of the fraternity at a national level. Examples include:</p>
+          <ul>
+            <li>Any criminal conviction that reflects directly on the fraternity's values</li>
+            <li>Sexual misconduct or assault involving any fraternity event, member, or use of the fraternity's name</li>
+            <li>Participation in, facilitation of, or failure to report hazing (including Code of Silence violations)</li>
+            <li>Falsification of official fraternity records, intake documents, or financial reports</li>
+            <li>Operating an unauthorized chapter or engaging in fraternity activities after suspension or expulsion</li>
+          </ul>
+          <p><strong>Typical sanctions:</strong> Immediate suspension pending hearing; expulsion; declaration as Barred; referral to law enforcement where applicable.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Section IV &mdash; Chapter Misconduct</h3>
+          <p>The Code recognizes that violations are not always the act of a single individual. A chapter itself can be found in violation when the organization collectively enables, condones, or fails to prevent prohibited behavior. Chapter Misconduct findings can result in suspension of the chapter's charter, loss of intake privileges, required supervision by the Province, or dissolution.</p>
+          <p>Specific grounds for a Chapter Misconduct finding include:</p>
+          <ul>
+            <li>Failure to maintain accurate membership, financial, or intake records as required by national policy</li>
+            <li>Conducting an unauthorized event that results in harm to attendees</li>
+            <li>Allowing members in bad standing, suspended individuals, or non-members to participate in official chapter business</li>
+            <li>Pattern of unresolved individual violations that the chapter leadership has failed to address</li>
+            <li>Operating slush funds or conducting chapter business through unofficial financial channels</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Disciplinary Procedure (Sections A&ndash;T)</h3>
+          <p>The Code of Conduct establishes a comprehensive, multi-step disciplinary procedure designed to ensure fairness, transparency, and due process for all parties. The level at which each step occurs &mdash; chapter, province, or Grand Chapter &mdash; depends on the severity of the alleged violation.</p>
+          <ul class="checklist">
+            <li><span class="ck-num">A</span><span><strong>Complaint Filed:</strong> Any member, candidate, or affected party may file a formal written complaint with the chapter Polemarch, Province Polemarch, or Grand Chapter, depending on the severity of the alleged violation.</span></li>
+            <li><span class="ck-num">B</span><span><strong>Preliminary Review:</strong> The receiving officer reviews the complaint to determine if it states a cognizable violation and whether it falls within their jurisdiction. Frivolous or anonymous complaints may be dismissed at this stage.</span></li>
+            <li><span class="ck-num">C</span><span><strong>Investigation:</strong> A designated investigator or committee conducts a fact-finding inquiry. The accused is not required to cooperate but the investigation proceeds regardless.</span></li>
+            <li><span class="ck-num">D</span><span><strong>Formal Notice:</strong> The accused member receives written notice of the complaint, the specific charges, the evidence gathered, and the scheduled hearing date. The accused is entitled to reasonable time to prepare a response.</span></li>
+            <li><span class="ck-num">E</span><span><strong>Right to Respond:</strong> The accused may submit a written response to the charges prior to the hearing. The accused may also be accompanied by a fraternity member of their choosing at the hearing.</span></li>
+            <li><span class="ck-num">F</span><span><strong>Hearing:</strong> A formal hearing is conducted before the appropriate body. Both the complainant and the accused may present evidence and witnesses. The hearing is not a legal proceeding but follows orderly procedure.</span></li>
+            <li><span class="ck-num">G</span><span><strong>Decision and Sanction:</strong> The hearing body deliberates and renders a decision. If a violation is found, the body recommends a sanction appropriate to the severity of the offense and the brother's history.</span></li>
+            <li><span class="ck-num">H</span><span><strong>Appeal:</strong> The accused member has the right to appeal a finding to the next higher body within the specified timeframe (typically 30 days). The appeal must state specific grounds &mdash; procedural error, new evidence, or disproportionate sanction.</span></li>
+            <li><span class="ck-num">I</span><span><strong>Final Action:</strong> Upon exhaustion of appeals or expiration of the appeal period, the sanction is enforced. Enforcement may include administrative holds, formal notification to institutions, or public fraternity records updates.</span></li>
+          </ul>
+        </div>
+
+        <!-- QUIZ 1 -->
+        <div class="quiz-wrap" id="quiz-1">
+          <h3>Knowledge Check &mdash; Code of Conduct</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. A candidate tells a brother that the line was forced to do physical exercise drills late at night. The brother does not report it because "it wasn't that bad." Under the Code, the brother:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q1-1" value="a"> Made a reasonable judgment call and has no liability</label>
+              <label class="quiz-option"><input type="radio" name="q1-1" value="b"> Violated the Code of Silence, which is itself a punishable offense</label>
+              <label class="quiz-option"><input type="radio" name="q1-1" value="c"> Is only liable if he was present during the drills</label>
+              <label class="quiz-option"><input type="radio" name="q1-1" value="d"> Should bring it up informally at the next chapter meeting</label>
+            </div>
+            <div class="quiz-feedback" id="fb1-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. Which of the following accurately describes a Level 3 Conduct Unbecoming violation?</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q1-2" value="a"> Missing three consecutive chapter meetings without excuse</label>
+              <label class="quiz-option"><input type="radio" name="q1-2" value="b"> Public intoxication while wearing Kappa insignia at a community event</label>
+              <label class="quiz-option"><input type="radio" name="q1-2" value="c"> Falsification of official intake documents submitted to Grand Chapter</label>
+              <label class="quiz-option"><input type="radio" name="q1-2" value="d"> Failure to pay dues within the stated period</label>
+            </div>
+            <div class="quiz-feedback" id="fb1-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. A candidate says he is "fine with" the extra physical activities his chapter is requiring. Under the Code, this means:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q1-3" value="a"> The activities are permitted because the candidate consented</label>
+              <label class="quiz-option"><input type="radio" name="q1-3" value="b"> The chapter must still stop &mdash; consent is not a defense to hazing under fraternity policy</label>
+              <label class="quiz-option"><input type="radio" name="q1-3" value="c"> The Polemarch can approve the activities on a case-by-case basis</label>
+              <label class="quiz-option"><input type="radio" name="q1-3" value="d"> The activity is only prohibited if the candidate later files a complaint</label>
+            </div>
+            <div class="quiz-feedback" id="fb1-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. At which step in the disciplinary procedure does the accused member first have an opportunity to formally respond to the charges?</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q1-4" value="a"> Preliminary Review</label>
+              <label class="quiz-option"><input type="radio" name="q1-4" value="b"> Investigation</label>
+              <label class="quiz-option"><input type="radio" name="q1-4" value="c"> After receiving Formal Notice</label>
+              <label class="quiz-option"><input type="radio" name="q1-4" value="d"> Only during the Appeal stage</label>
+            </div>
+            <div class="quiz-feedback" id="fb1-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(1)">Check Answers</button>
+          <div class="quiz-score" id="score-1"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(1)">&larr; Course Objectives</button>
+        <button class="btn-nav next" onclick="goTo(3)">Module 2: Protocol &amp; Etiquette &rarr;</button>
+      </div>
+    </div>
+    <!-- SECTION 3: MODULE 2 — PROTOCOL & ETIQUETTE -->
+    <div class="section" id="sec-3">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 2 of 6</div>
+        <h2>Protocol &amp; Etiquette</h2>
+        <p>The traditions, forms of address, dress standards, badge and insignia rules, meeting decorum, and communication protocols that define how Kappa Alpha Psi members present themselves in every fraternal and public setting.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>Name the six fraternity traditions and explain the practical expectation each places on members.</li>
+            <li>Apply the correct form of address for national, province, and chapter officers, and for non-officer brothers.</li>
+            <li>State the appropriate dress code for standard meetings, formal banquets, and Founders Day programs.</li>
+            <li>Describe the correct placement and order of precedence for wearing the badge, Life Membership Pin, and other insignia.</li>
+            <li>Demonstrate proper speaking decorum &mdash; introduction, procedure, and behavior at the microphone.</li>
+            <li>Apply seating protocol for Grand Board and Province Board members at official programs.</li>
+            <li>Distinguish between appropriate and prohibited uses of electronic communication for fraternity matters.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>The Six Fraternity Traditions</h3>
+          <p>These traditions are not historical artifacts &mdash; they are active expectations that shape how every brother conducts himself within and outside the fraternity.</p>
+          <div class="info-cards">
+            <div class="info-card"><h4>Brotherhood</h4><p>The bond between members extends beyond the local chapter. Brothers are expected to recognize, greet, and extend courtesy to members from any chapter. Brotherhood is demonstrated through active participation, mutual support, and genuine investment in other brothers' success.</p></div>
+            <div class="info-card"><h4>Self-Discipline</h4><p>Brothers are held to a higher standard of personal conduct. Self-discipline means controlling one's speech, appearance, and behavior &mdash; especially in public settings &mdash; even when no one from the fraternity is watching. Character is consistent.</p></div>
+            <div class="info-card"><h4>Intra-Fraternity Relations</h4><p>Chapters within Kappa Alpha Psi must treat one another with respect and collegiality. Disputes between chapters are resolved through proper channels, not public confrontation. Brothers support the success of other chapters as an expression of organizational pride.</p></div>
+            <div class="info-card"><h4>Extra-Fraternity Relations</h4><p>How Kappas interact with other Greek organizations and the general public reflects on the entire fraternity. Brothers are expected to be courteous, collaborative, and professional in all inter-organizational settings. Conduct that embarrasses the fraternity in relation to another organization is a Code violation.</p></div>
+            <div class="info-card"><h4>Achievement &amp; Leadership</h4><p>The fraternity's motto &mdash; "Achievement in Every Field of Human Endeavor" &mdash; is not aspirational. It is an obligation. Brothers are expected to actively pursue excellence in their careers, education, and community contributions. Mediocrity is inconsistent with membership.</p></div>
+            <div class="info-card"><h4>General Fraternity Practices</h4><p>Brothers adhere to all established rituals, customs, and protocols as defined by Grand Chapter. This includes proper conduct at all fraternity events, adherence to meeting procedures, and respect for the sacred elements of the fraternity's history and traditions.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Courtesies and Dignitary Protocol</h3>
+          <p>The fraternity recognizes a clear hierarchy of national, province, and local dignitaries. Brothers are expected to know this hierarchy and conduct themselves accordingly.</p>
+          <table class="styled-table">
+            <tr><th>Level</th><th>Dignitary</th><th>Protocol</th></tr>
+            <tr><td>National (Highest)</td><td>Past Grand Polemarchs</td><td>Addressed as "Past Grand Polemarch [Last Name]." Stand upon entry to any room or when recognized.</td></tr>
+            <tr><td>National</td><td>Grand Polemarch</td><td>Addressed as "Grand Polemarch [Last Name]." All brothers stand when the Grand Polemarch enters or rises to speak.</td></tr>
+            <tr><td>National</td><td>Sr./Jr. Grand Vice Polemarch, Grand KRE, Grand Strategus, Grand Historian</td><td>Addressed by full title: "Grand Keeper of Records Brother [Name]." Seated on the dais at national programs.</td></tr>
+            <tr><td>National</td><td>Laurel Wreath Laureates; Elder Watson Diggs, Guy L. Grant, Byron K. Armstrong Awardees</td><td>Recognized by award title at programs; acknowledged before general brothers when introductions are made.</td></tr>
+            <tr><td>Province</td><td>Province Polemarch</td><td>Addressed as "Province Polemarch [Last Name]." Seated on the dais at province-level programs.</td></tr>
+            <tr><td>Chapter</td><td>Chapter Officers</td><td>Addressed as "Brother [Title]" (e.g., "Brother Polemarch") during official business.</td></tr>
+            <tr><td>Chapter</td><td>General Brothers</td><td>Addressed as "Brother [Last Name]" in all formal settings. First names alone are not used in formal fraternal interactions.</td></tr>
+          </table>
+        </div>
+
+        <div class="content-block">
+          <h3>Dress Code by Event Type</h3>
+          <p>Personal appearance is a direct reflection of the fraternity. The following standards are mandatory &mdash; not suggested &mdash; for the events indicated.</p>
+          <div class="info-cards">
+            <div class="info-card"><h4>Standard Fraternity Business Events</h4><p>Kappa Blazer, white dress shirt, and official Kappa necktie. Shirt must be pressed and collar buttoned. Slacks and dress shoes. No athletic wear, t-shirts, or casual footwear.</p></div>
+            <div class="info-card"><h4>Closed Banquet / Province or Grand Chapter Banquet</h4><p>Black-tie tuxedo, required without exception. Fraternity pin worn over the heart. White formal shirt, bow tie, and dress shoes appropriate to the occasion.</p></div>
+            <div class="info-card"><h4>Founders Day Program</h4><p>Formal attire. National Founders Day in January requires tuxedo. Local chapter Founders Day observances follow the same formal standard unless the local chapter has formally voted to vary the dress code for a particular event portion.</p></div>
+            <div class="info-card"><h4>Province Council Meeting &mdash; Business Sessions</h4><p>Kappa Blazer with dress shirt and Kappa tie. This applies to all official business meeting sessions regardless of the time of day or informality of the agenda item.</p></div>
+            <div class="info-card"><h4>Public Meeting / Community Events</h4><p>Kappa Blazer and tie as the standard. Brothers must present a unified, professional appearance when representing the fraternity to the public or to other organizations.</p></div>
+            <div class="info-card"><h4>Casual/Social Events</h4><p>Unless specifically designated as formal, fraternity social events allow business casual attire. However, if Kappa insignia is worn, the overall appearance must reflect positively on the fraternity at all times.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Badge, Pins, and Insignia</h3>
+          <p>The badge is the most sacred emblem of membership in Kappa Alpha Psi. It must be worn with reverence and in strict accordance with fraternity guidelines.</p>
+          <ul>
+            <li>The badge is worn <strong>over the heart</strong> &mdash; on the left chest. It is never worn on the right side, below the waist, or on non-fraternity clothing.</li>
+            <li>The order of precedence when multiple insignia are worn: Badge &rarr; Life Membership Pin &rarr; 50-Year Pin &rarr; 25-Year Pin &rarr; Medallion.</li>
+            <li>Insignia is <strong>never worn</strong> at events that conflict with fraternity values, including events involving illegal activity, events that demean the fraternity's image, or events where the brother's conduct does not meet fraternity standards.</li>
+            <li>Renting, lending, or selling the badge or any official insignia to a non-member is a serious Code violation.</li>
+            <li>The badge must be secured properly at all times. Losing a badge should be reported promptly and a replacement obtained through official channels.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Speaking and Seating Decorum</h3>
+          <p><strong>Speaking at Official Programs and Meetings:</strong></p>
+          <ul>
+            <li>Always stand before speaking. A brother does not speak from a seated position during any formal meeting or program.</li>
+            <li>If a microphone is available, approach it before speaking. Do not speak past the microphone from your seat.</li>
+            <li>Introduce yourself each time you speak: <em>"Brother [Last Name], [Chapter Name], [Province]."</em> This applies even if you have spoken earlier in the session.</li>
+            <li>Address remarks to the presiding officer, not to other brothers directly. In a meeting: "Brother Polemarch, I move that&hellip;" not "I think we should&hellip;"</li>
+            <li>Do not interrupt another brother while he is speaking. Wait to be recognized by the presiding officer.</li>
+          </ul>
+          <p><strong>Seating at Programs:</strong></p>
+          <ul>
+            <li>The <strong>Grand Board of Directors</strong> is always seated on the dais at national programs. No other brothers take seats on the dais unless they hold an appropriate office for that program.</li>
+            <li>The <strong>Province Board of Directors</strong> is seated on the dais at province-level meetings and programs.</li>
+            <li>Local chapter officers may be designated reserved seating near the front at local events, but this should be formally established in the event program.</li>
+            <li>Brothers should be in their seats before the program begins. Late arrivals should enter quietly and take available seating without disrupting the program.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Fraternity Communication Standards</h3>
+          <h4>Verbal Communication</h4>
+          <p>Officers are addressed by title in all formal settings. General brothers are addressed as "Brother [Last Name]." Using a brother's first name alone in a formal setting is a breach of protocol. When addressing a dignitary, always use the full title before the name.</p>
+
+          <h4>Written Correspondence</h4>
+          <p>All official written communications from or on behalf of the chapter must follow formal letter format:</p>
+          <ul>
+            <li>Address the recipient by full title and name on the salutation line</li>
+            <li>State the fraternal year, chapter name, and province in the letterhead or opening line</li>
+            <li>Use formal language throughout &mdash; avoid colloquialisms and abbreviations</li>
+            <li>Close all formal letters with: <em>"Yours in the Bond,"</em> followed by the writer's full name, title, chapter name, and province</li>
+            <li>Official chapter correspondence must be reviewed and signed by the Keeper of Records &amp; Exchequer and the Polemarch before being sent</li>
+          </ul>
+
+          <h4>Electronic Communication</h4>
+          <div class="alert"><strong>Prohibited:</strong> Electronic mail, text messaging, social media platforms, group chats, and any digital medium must <em>never</em> be used to communicate esoteric matters, ritual content, confidential fraternity business, or any information that could identify candidates during the intake period. These matters must be handled in person or through secured, physical written correspondence only. Brothers who transmit protected fraternity content electronically may face immediate disciplinary action.</div>
+          <p>Electronic communication is appropriate for: meeting reminders and logistics, sharing publicly available chapter news, coordinating service project details, and communicating event information that contains no sensitive fraternity content.</p>
+        </div>
+
+        <!-- QUIZ 2 -->
+        <div class="quiz-wrap" id="quiz-2">
+          <h3>Knowledge Check &mdash; Protocol &amp; Etiquette</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. Brother Williams serves as the chapter's Keeper of Records &amp; Exchequer. During a chapter meeting, the correct way to address him is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q2-1" value="a"> "Hey Marcus" or by first name since everyone knows him</label>
+              <label class="quiz-option"><input type="radio" name="q2-1" value="b"> "Brother Williams" since he is a non-officer general member</label>
+              <label class="quiz-option"><input type="radio" name="q2-1" value="c"> "Brother Keeper" or "Brother Keeper of Records" during official business</label>
+              <label class="quiz-option"><input type="radio" name="q2-1" value="d"> "Sir Williams" to denote respect</label>
+            </div>
+            <div class="quiz-feedback" id="fb2-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. A brother wants to text a friend from another chapter some details about the MTA that are in progress. Under communication standards, he should:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q2-2" value="a"> Text only the general schedule &mdash; details are fine as long as no names are included</label>
+              <label class="quiz-option"><input type="radio" name="q2-2" value="b"> Not send the message &mdash; MTA information is prohibited from being shared via any electronic medium</label>
+              <label class="quiz-option"><input type="radio" name="q2-2" value="c"> Use a private encrypted app since it is more secure than regular texting</label>
+              <label class="quiz-option"><input type="radio" name="q2-2" value="d"> Wait until the MTA is complete and then share the information</label>
+            </div>
+            <div class="quiz-feedback" id="fb2-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. At a Province Council business session, a brother wishes to speak on a motion before the body. The correct procedure is to:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q2-3" value="a"> Raise his hand and speak from his seat once acknowledged</label>
+              <label class="quiz-option"><input type="radio" name="q2-3" value="b"> Stand, approach the microphone, introduce himself with name/chapter/province, and address remarks to the presiding officer</label>
+              <label class="quiz-option"><input type="radio" name="q2-3" value="c"> Send a written note to the Province Polemarch since speaking at Province Council requires special approval</label>
+              <label class="quiz-option"><input type="radio" name="q2-3" value="d"> Stand and speak loudly enough for the room to hear without going to the microphone</label>
+            </div>
+            <div class="quiz-feedback" id="fb2-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. Which is the correct closing for an official chapter letter addressed to the Province Polemarch?</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q2-4" value="a"> "Respectfully Submitted"</label>
+              <label class="quiz-option"><input type="radio" name="q2-4" value="b"> "In Brotherhood and Service"</label>
+              <label class="quiz-option"><input type="radio" name="q2-4" value="c"> "Yours in the Bond,"</label>
+              <label class="quiz-option"><input type="radio" name="q2-4" value="d"> "Fraternally Yours"</label>
+            </div>
+            <div class="quiz-feedback" id="fb2-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(2)">Check Answers</button>
+          <div class="quiz-score" id="score-2"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(2)">&larr; Module 1</button>
+        <button class="btn-nav next" onclick="goTo(4)">Module 3: Risk Management &rarr;</button>
+      </div>
+    </div>
+    <!-- SECTION 4: MODULE 3 — RISK MANAGEMENT -->
+    <div class="section" id="sec-4">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 3 of 6</div>
+        <h2>Risk Management</h2>
+        <p>Understanding fraternity liability, the parameters of insurance coverage, the mandatory event registration process, the complete Event Safety Checklist, and the chapter's obligations regarding alcohol, drugs, and member safety.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>State the core principle of risk management and explain why liability cannot be fully eliminated.</li>
+            <li>Identify what the $1,000,000 blanket liability policy covers and what it explicitly excludes.</li>
+            <li>Describe the KappaOrg event registration requirement including the 2-week advance deadline.</li>
+            <li>Define all eight key risk management terms: Host Chapter, Event, Party, Planned, Sponsored, Hosted, Promoted, Slush Funds, Pregame, Drinking Games.</li>
+            <li>Apply each item on the Event Safety Checklist and explain why it reduces chapter exposure.</li>
+            <li>State the chapter's specific obligations regarding alcohol service, drug use, and consent at any affiliated event.</li>
+            <li>Describe the personal liability a brother assumes when he collects or distributes slush funds.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>The Core Principle</h3>
+          <div class="callout" style="font-size:15px;font-weight:700;text-align:center;padding:22px 24px;line-height:1.6;">
+            "You can never get rid of liability &mdash; you can only manage it."
+          </div>
+          <p>Every action the chapter takes &mdash; hosting an event, promoting a gathering, co-sponsoring an activity &mdash; creates some level of legal and financial risk. The goal of the fraternity's risk management framework is not to eliminate all risk, which is impossible, but to reduce foreseeable risks to a manageable level and to ensure that when something does go wrong, the chapter has followed every reasonable precaution.</p>
+          <p>Failure to follow risk management protocols does not just expose the chapter to liability. It exposes <strong>individual brothers personally</strong> &mdash; their personal assets, academic standing, and employment can all be affected by incidents at improperly managed chapter events. Risk management is self-protection.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Fraternity Insurance Coverage</h3>
+          <p>Kappa Alpha Psi Fraternity, Inc. provides a <strong>$1,000,000 blanket general liability policy</strong> for registered chapter events. This policy provides the chapter's first line of financial defense in the event of a claim arising from an officially registered event.</p>
+          <table class="styled-table">
+            <tr><th>Covered Under Fraternity Insurance</th><th>NOT Covered &mdash; No Protection</th></tr>
+            <tr><td>Active brothers in good financial standing (dues current, no administrative hold)</td><td>Brothers with unpaid dues or active administrative holds</td></tr>
+            <tr><td>Events registered on KappaOrg at least 2 weeks in advance</td><td>Unregistered events or events registered late</td></tr>
+            <tr><td>Activities conducted within the scope of the approved event</td><td>Individual acts that fall outside the approved event parameters</td></tr>
+            <tr><td>Chapter-sponsored community service activities</td><td>Events involving alcohol law violations, hazing, or other Code violations</td></tr>
+            <tr><td>Guests present at the registered event within the documented guest list</td><td>Uninvited individuals or those admitted after the guest list was closed</td></tr>
+          </table>
+          <div class="alert"><strong>Key implication:</strong> If a brother is not in good standing on the date of an incident, the fraternity's insurance does not cover him. If the event was not registered, the fraternity's insurance does not apply. In both cases, the individual brother and chapter officers may face personal civil or criminal liability.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Event Registration Requirements</h3>
+          <p>Registration is not optional. The Constitution and Statutes require all chapter events to be formally registered through the official fraternity portal.</p>
+          <ul>
+            <li><strong>Platform:</strong> All events must be registered on <strong>KappaOrg</strong> &mdash; the fraternity's official national membership and event management portal.</li>
+            <li><strong>Deadline:</strong> Registration must be submitted and approved <strong>at least two (2) weeks before the event date</strong>. Submitting on the deadline date does not guarantee approval.</li>
+            <li><strong>Responsibility:</strong> The chapter Polemarch and the Risk Management Chairman share responsibility for ensuring timely event registration. This cannot be delegated to a member without an official chapter office.</li>
+            <li><strong>Late Registration:</strong> Events registered after the deadline may still be submitted but will not receive insurance coverage. The Province Polemarch must also be notified of the late registration.</li>
+            <li><strong>Post-Event Reporting:</strong> Certain events require a post-event report to be filed on KappaOrg within 30 days, documenting attendance, incidents (if any), and event outcomes.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Key Risk Management Definitions</h3>
+          <div class="info-cards">
+            <div class="info-card"><h4>Host Chapter</h4><p>The chapter that assumes legal and financial responsibility for an event. Being the Host Chapter means accepting liability for everything that happens at the event, whether or not the chapter planned it.</p></div>
+            <div class="info-card"><h4>Event / Party</h4><p>Any gathering, activity, or function &mdash; formal or informal &mdash; organized, sponsored, hosted, or promoted by the chapter or by identifiable chapter members acting in a fraternal capacity.</p></div>
+            <div class="info-card"><h4>Sponsored</h4><p>The chapter is the primary financial backer of the event. Sponsorship creates the highest level of liability exposure because the chapter is directly funding the activity.</p></div>
+            <div class="info-card"><h4>Hosted</h4><p>The chapter provides the venue or primary organizational infrastructure. Even if another entity funds the event, hosting creates significant liability for what occurs on the chapter's premises.</p></div>
+            <div class="info-card"><h4>Promoted</h4><p>The chapter advertises, publicizes, or otherwise encourages attendance at an event. Critically, promotion creates liability exposure <em>even if the chapter did not organize or fund the event</em>. If the chapter's name or letters appear on a flyer for an event where harm occurs, the chapter may be held liable.</p></div>
+            <div class="info-card"><h4>Slush Funds</h4><p>Unofficial money collected, held, or distributed outside the chapter's official financial accounts. Slush funds bypass the Treasurer and official budget process. Any brother who collects or distributes slush funds assumes full personal financial and legal liability for those funds.</p></div>
+            <div class="info-card"><h4>Pregame</h4><p>Drinking or informal gatherings that occur before an official chapter event. Even if the pregame is not organized by the chapter, brothers who participate and then attend the official event may extend the chapter's liability window. The fraternity considers the pregame part of the event's liability exposure.</p></div>
+            <div class="info-card"><h4>Drinking Games</h4><p>Any structured activity designed to promote or reward rapid alcohol consumption. Drinking games are strictly prohibited at any event affiliated with the chapter, regardless of whether the event is registered. Their presence at an event is automatic grounds for the insurance policy to deny coverage for any resulting claim.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Event Safety Checklist</h3>
+          <p>Every registered event must be reviewed against this checklist by the Risk Management Chairman prior to the event date. If any item cannot be confirmed, the event should be postponed until compliance is achieved.</p>
+          <ul class="checklist">
+            <li><span class="ck-num">1</span><span><strong>Registered On Time:</strong> Confirm the event has been submitted and approved on KappaOrg at least two weeks prior. Print or screenshot the confirmation for chapter records. Without this, there is no insurance coverage.</span></li>
+            <li><span class="ck-num">2</span><span><strong>Guest List Maintained:</strong> A written list of all invited and expected guests must be prepared before the event and checked at the door. Walk-in guests without prior authorization should not be admitted. The guest list is legal documentation in the event of an incident.</span></li>
+            <li><span class="ck-num">3</span><span><strong>Safe Rides Arranged:</strong> Transportation options must be communicated to all attendees in advance. Post rideshare codes, taxi numbers, or designated driver arrangements. No brother or guest should be driving impaired from a chapter event.</span></li>
+            <li><span class="ck-num">4</span><span><strong>Substantive Food Available:</strong> If alcohol is served, unsalted, substantive food must be available throughout the event &mdash; not just at the beginning. Food that slows alcohol absorption is a legal requirement in many jurisdictions and directly reduces liability exposure.</span></li>
+            <li><span class="ck-num">5</span><span><strong>ID Checked at Entry:</strong> All attendees must present valid, government-issued identification before entry to any event where alcohol is present. No exceptions. A brother who allows a minor to access alcohol faces personal criminal liability under state law.</span></li>
+            <li><span class="ck-num">6</span><span><strong>Designated Sober Brother:</strong> At least one brother must be formally assigned as the Sober Brother for the event. The Sober Brother does not consume alcohol, monitors the event for safety concerns, intervenes in problem situations, and ensures the event ends safely. This role must be assigned before the event, not improvised during it.</span></li>
+            <li><span class="ck-num">7</span><span><strong>No Slush Funds:</strong> Confirm that all event funding has been processed through official chapter accounts and approved by the Treasurer and chapter vote. No money should be collected at the door or from attendees in an unofficial capacity.</span></li>
+            <li><span class="ck-num">8</span><span><strong>No Drinking Games:</strong> Confirm that no organized drinking games, drinking challenges, or consumption competitions are planned or permitted at the event in any form.</span></li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Alcohol and Drug Policy</h3>
+          <p><strong>Alcohol:</strong> Alcohol may be present at a chapter event only when the event is properly registered, the venue is legally permitted to have alcohol, and all attendees consuming alcohol are verified to be of legal drinking age. The chapter may not purchase alcohol for the event using chapter funds in most circumstances &mdash; consult the fraternity's current event guidelines for the specific rules governing alcohol funding. Brothers who provide alcohol to minors face criminal prosecution independent of any fraternity disciplinary action.</p>
+          <p><strong>Illegal Drugs:</strong> The presence or use of illegal drugs at any event affiliated with the chapter &mdash; in any quantity, by any person &mdash; is an automatic basis for the insurance policy to deny all coverage and for all chapter officers to face disciplinary action. There are no exceptions. Brothers found to have facilitated or knowingly permitted drug use at a chapter event face Level 3 disciplinary action.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Sexual Assault, Harassment, and Consent</h3>
+          <p>The fraternity has an absolute zero-tolerance policy for sexual assault and harassment at any event or in any context where brothers are acting in a fraternal capacity. This policy applies regardless of the relationship between the parties involved.</p>
+          <p><strong>Consent</strong> must be:</p>
+          <ul>
+            <li><strong>Freely given</strong> &mdash; not obtained through pressure, manipulation, or coercion</li>
+            <li><strong>Reversible</strong> &mdash; anyone can change their mind at any point</li>
+            <li><strong>Informed</strong> &mdash; both parties understand what they are agreeing to</li>
+            <li><strong>Enthusiastic</strong> &mdash; the absence of a "no" is not a "yes"</li>
+            <li><strong>Sober</strong> &mdash; a person who is intoxicated cannot legally give consent</li>
+          </ul>
+          <p><strong>Bystander Obligation:</strong> Brothers who witness behavior that appears threatening, non-consensual, or harassing are required to intervene. Acceptable intervention includes approaching the individuals directly, alerting the Sober Brother or event organizer, or contacting security. A brother who witnesses potential sexual misconduct and does nothing may face disciplinary action for failure to act.</p>
+          <div class="alert">Any incident of alleged sexual assault or harassment at a chapter event must be reported to law enforcement and to the Province Polemarch. The chapter may not attempt to resolve such allegations internally. Failure to report such an incident to the appropriate authorities is a Level 3 Code violation.</div>
+        </div>
+
+        <!-- QUIZ 3 -->
+        <div class="quiz-wrap" id="quiz-3">
+          <h3>Knowledge Check &mdash; Risk Management</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. The chapter designs a flyer promoting a party organized by a non-chapter group, but the flyer displays the chapter's letters. If an incident occurs at the party, the chapter's liability exposure is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q3-1" value="a"> Minimal, because the chapter did not organize the event</label>
+              <label class="quiz-option"><input type="radio" name="q3-1" value="b"> Significant, because promoting an event creates liability even without sponsoring it</label>
+              <label class="quiz-option"><input type="radio" name="q3-1" value="c"> Nonexistent, because the fraternity's insurance automatically covers all events with brothers present</label>
+              <label class="quiz-option"><input type="radio" name="q3-1" value="d"> Limited to the brothers who designed the flyer</label>
+            </div>
+            <div class="quiz-feedback" id="fb3-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. The chapter treasurer collects $200 from brothers at the door to cover DJ costs and holds the money in his personal account until the DJ is paid. This is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q3-2" value="a"> Acceptable as long as he provides a receipt to every brother</label>
+              <label class="quiz-option"><input type="radio" name="q3-2" value="b"> A slush fund, which is prohibited and creates personal liability for the Treasurer</label>
+              <label class="quiz-option"><input type="radio" name="q3-2" value="c"> Allowed since the Treasurer is an authorized chapter officer</label>
+              <label class="quiz-option"><input type="radio" name="q3-2" value="d"> Fine as long as the amount stays under $500</label>
+            </div>
+            <div class="quiz-feedback" id="fb3-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. During the chapter's registered event, a brother witnesses someone appear to be non-consensually touching a guest. The brother's obligation under fraternity policy is to:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q3-3" value="a"> Wait to see if the guest says anything before acting</label>
+              <label class="quiz-option"><input type="radio" name="q3-3" value="b"> Intervene, alert the Sober Brother, and report the incident &mdash; silence is a violation</label>
+              <label class="quiz-option"><input type="radio" name="q3-3" value="c"> Let the Polemarch handle it after the event</label>
+              <label class="quiz-option"><input type="radio" name="q3-3" value="d"> Only intervene if he personally knows the guest</label>
+            </div>
+            <div class="quiz-feedback" id="fb3-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. A chapter event is submitted to KappaOrg 10 days before the event. If an incident occurs at the event, the fraternity's insurance coverage will:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q3-4" value="a"> Apply in full since the chapter still made an effort to register</label>
+              <label class="quiz-option"><input type="radio" name="q3-4" value="b"> Apply partially, covering brothers but not guests</label>
+              <label class="quiz-option"><input type="radio" name="q3-4" value="c"> Not apply &mdash; the 2-week advance registration requirement was not met</label>
+              <label class="quiz-option"><input type="radio" name="q3-4" value="d"> Apply if the Province Polemarch approves a retroactive waiver</label>
+            </div>
+            <div class="quiz-feedback" id="fb3-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(3)">Check Answers</button>
+          <div class="quiz-score" id="score-3"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(3)">&larr; Module 2</button>
+        <button class="btn-nav next" onclick="goTo(5)">Module 4: Conducting Meetings &rarr;</button>
+      </div>
+    </div>
+    <!-- SECTION 5: MODULE 4 — CONDUCTING MEETINGS -->
+    <div class="section" id="sec-5">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 4 of 6</div>
+        <h2>Conducting Meetings &amp; Meeting Expectations</h2>
+        <p>The structure and purpose of business meetings at every level of the fraternity, the delegate's role and voting rights, standard meeting activities, parliamentary conduct expectations, and the training programs that develop Kappa's leaders.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>Distinguish between the Province Council Meeting and the Grand Chapter Meeting in terms of frequency, hosting, and purpose.</li>
+            <li>Explain the role and legal obligations of the chapter Delegate and how voting rights are structured.</li>
+            <li>Identify the standard activities that occur during a province or national business meeting cycle.</li>
+            <li>Describe the purpose of the Undergraduate Summit and National Founders Day.</li>
+            <li>Apply proper meeting conduct expectations as both an attendee and as a speaking participant.</li>
+            <li>Identify the four major leadership development programs and the audience each is designed to serve.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Types of Business Meetings</h3>
+          <p>Kappa Alpha Psi conducts formal business at multiple levels. Understanding which meeting does what &mdash; and what is expected of the chapter at each &mdash; is a foundational responsibility of every member.</p>
+          <div class="info-cards">
+            <div class="info-card"><h4>Province Council Meeting</h4><p><strong>Frequency: Annual.</strong> All chapters within the province gather to conduct official business, elect province officers, recognize chapter achievements, and engage with the local community. The host chapter rotates alphabetically among chapters in the province. Each chapter is required by the Constitution and Statutes to send a Delegate.</p></div>
+            <div class="info-card"><h4>Grand Chapter Meeting</h4><p><strong>Frequency: Bi-annual (every two years).</strong> The national business meeting of the fraternity. Chapters from across the country gather to conduct national business, amend the Constitution, elect national officers, and recognize the fraternity's highest achievers. Host chapters &mdash; both undergraduate and alumni &mdash; submit formal bids for the right to host.</p></div>
+            <div class="info-card"><h4>Undergraduate Summit</h4><p><strong>Frequency: Annual, within each Province.</strong> A meeting organized and led entirely by undergraduate brothers. Purpose: open dialogue on challenges facing undergraduate chapters, goal-setting, and strengthening connections between undergraduate chapters across the province. Alumni attend only in an advisory, non-voting capacity.</p></div>
+            <div class="info-card"><h4>National Founders Day</h4><p><strong>Frequency: Annual.</strong> Celebrates the founding of the fraternity on January 5, 1911. A host chapter is selected annually. Activities include community service, social events, and a Closed Banquet featuring the Oath of Rededication. Brothers from across the fraternity attend to renew their commitment to Kappa's founding principles.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>The Chapter Delegate</h3>
+          <p>The Delegate is the chapter's official representative at Province Council and Grand Chapter meetings. The role carries both privilege and responsibility.</p>
+          <p><strong>Requirements:</strong> The Delegate must be an active member of the chapter in good standing &mdash; all dues paid, no administrative holds, no active suspension. The chapter Polemarch formally designates the Delegate prior to the meeting and communicates this designation to the Province.</p>
+          <p><strong>Voting Rights:</strong> Every chapter, regardless of size, is allotted exactly <strong>three (3) votes</strong> at Province Council and Grand Chapter meetings. This equal representation structure ensures that small chapters have the same institutional voice as large chapters. The Delegate casts all three votes on behalf of the chapter.</p>
+          <p><strong>Responsibilities of the Delegate:</strong></p>
+          <ul>
+            <li>Attend all scheduled business sessions of the meeting &mdash; unexcused absence forfeits the chapter's votes</li>
+            <li>Carry the chapter's formal positions on pending motions and votes, as determined by a chapter vote before the meeting</li>
+            <li>Conduct themselves in full compliance with Protocol and Etiquette standards throughout the meeting</li>
+            <li>Take detailed notes of all actions taken at the meeting and report back to the full chapter within a reasonable period after returning</li>
+            <li>Collect and return all meeting materials, official publications, and communications distributed at the meeting</li>
+          </ul>
+          <div class="callout"><strong>Constitutional Requirement:</strong> The Constitution and Statutes require each chapter to send a Delegate to both Province Council and Grand Chapter meetings. A chapter that repeatedly fails to send a Delegate may face sanctions including loss of voting rights and, ultimately, suspension of the chapter's charter.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Business Meeting Activities</h3>
+          <p>Province Council and Grand Chapter meetings follow a structured schedule. Brothers attending in any capacity should understand what each component entails and what conduct is expected.</p>
+          <ul class="checklist">
+            <li><span class="ck-num">1</span><span><strong>Public Meeting:</strong> An open session welcoming community members and guests to observe formal fraternity business. The chapter demonstrates its commitment to transparency and community engagement. Brothers must be in full protocol dress and on their best behavior during public sessions.</span></li>
+            <li><span class="ck-num">2</span><span><strong>Undergraduate Luncheon:</strong> A dedicated gathering for undergraduate brothers to network, discuss challenges unique to their chapters, and build relationships across chapters. The Province Polemarch or a designated facilitator leads the discussion.</span></li>
+            <li><span class="ck-num">3</span><span><strong>Business Sessions:</strong> Formal meetings where motions are made, debated, and voted upon. All business is conducted according to parliamentary procedure (Robert's Rules of Order). Delegates vote; observers may not interrupt or participate in voting. The presiding officer controls the floor.</span></li>
+            <li><span class="ck-num">4</span><span><strong>Awards Ceremony:</strong> Outstanding brothers, chapters, and community leaders are formally recognized. Both Province Council and Grand Chapter present a series of awards. Attendance is expected of all brothers attending the meeting.</span></li>
+            <li><span class="ck-num">5</span><span><strong>Closed Banquet:</strong> A formal, tuxedo-required event open to brothers only. The Closed Banquet includes the Oath of Rededication, in which brothers formally renew their commitment to the fraternity's founding principles. Conduct and protocol expectations are at their highest during the Closed Banquet.</span></li>
+            <li><span class="ck-num">6</span><span><strong>Elections of Leadership:</strong> Province and national officers are elected by eligible Delegates. Candidates must meet specific requirements including active status and service history. Elections must be conducted fairly, transparently, and in accordance with the Constitution &mdash; any interference with a fair election is a Code violation.</span></li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Awards Recognized at Meetings</h3>
+          <table class="styled-table">
+            <tr><th>Province Council Awards</th><th>Grand Chapter Awards</th></tr>
+            <tr><td>Chapter of the Year</td><td>Laurel Wreath Award</td></tr>
+            <tr><td>Brother of the Year</td><td>Elder Watson Diggs Award</td></tr>
+            <tr><td>Guide Right Program of the Year</td><td>Guy L. Grant Award</td></tr>
+            <tr><td>Guide Right Director of the Year</td><td>Byron K. Armstrong Award</td></tr>
+            <tr><td>Reclamation Award</td><td>Chapter of the Year</td></tr>
+            <tr><td>Humanitarian Award</td><td>Brother of the Year</td></tr>
+            <tr><td>&mdash;</td><td>Guide Right Program &amp; Director of the Year</td></tr>
+            <tr><td>&mdash;</td><td>Reclamation Award</td></tr>
+            <tr><td>&mdash;</td><td>Humanitarian Award</td></tr>
+          </table>
+        </div>
+
+        <div class="content-block">
+          <h3>Meeting Conduct Expectations</h3>
+          <p>The following standards apply at all formal fraternity meetings, whether at the local chapter level, province, or national.</p>
+          <h4>As an Attendee</h4>
+          <ul>
+            <li><strong>Arrive on time.</strong> Late arrivals disrupt quorum counts, interrupt proceedings, and demonstrate disrespect for the body. If you will be late, notify the Polemarch or chapter Secretary in advance.</li>
+            <li><strong>Silence all electronic devices</strong> before the meeting is called to order. Texting, browsing, or taking calls during a session is a breach of protocol.</li>
+            <li><strong>Maintain appropriate dress</strong> for the event. Do not attend formal sessions in casual attire.</li>
+            <li><strong>Maintain confidentiality.</strong> Closed-session discussions are confidential. Nothing said in a closed session may be shared outside the meeting without the presiding officer's authorization.</li>
+          </ul>
+          <h4>As a Speaking Participant</h4>
+          <ul>
+            <li>Rise and wait to be recognized by the presiding officer before speaking on any matter.</li>
+            <li>Identify yourself fully: name, chapter, and province at Province Council and Grand Chapter; name and role at local meetings.</li>
+            <li>Speak to the motion or agenda item &mdash; do not introduce unrelated topics during debate on a motion.</li>
+            <li>Debate the <em>issue</em>, not the person. Personal attacks on other brothers during a business session are out of order and subject to being ruled a breach of conduct.</li>
+            <li>Accept the outcome of a properly conducted vote. A brother who refuses to accept a democratic outcome may be ruled out of order and removed from the session.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Leadership Development Programs</h3>
+          <div class="info-cards">
+            <div class="info-card"><h4>C. Roger Wilson Leadership Conference (CRWLC)</h4><p>Held annually within each province. Educates and trains chapter officers &mdash; both alumni and undergraduate &mdash; on fraternal leadership, chapter administration, and professional development. The conference grew from Grand Polemarch C. Rodger Wilson's 1957 initiative to formalize the theme "Training for Leadership."</p></div>
+            <div class="info-card"><h4>Undergraduate Leadership Institute (ULI)</h4><p>A highly structured national program designed specifically for undergraduate brothers. Focus areas: chapter leadership, career development, networking, brand management, and 21st-century leadership concepts. Participants engage with fraternity leaders and corporate sponsors.</p></div>
+            <div class="info-card"><h4>Lead Kappa</h4><p>A 5-day intensive program held immediately before the Grand Chapter Meeting. Goals: expand leadership training access, build corporate partnerships, and develop undergraduate leaders. Focus areas: Team Building, Leadership, Community, Transitions, and Corporate Kappa.</p></div>
+            <div class="info-card"><h4>Kappa Kamp</h4><p>The fraternity's signature youth development initiative. A summer enrichment camp for youth ages 12&ndash;16. Objectives include life skills development, academic enrichment, cultural exposure, and character education. All brothers are encouraged to support Kappa Kamp efforts, whether by sponsoring campers or volunteering in chapter-based programs.</p></div>
+          </div>
+        </div>
+
+        <!-- QUIZ 4 -->
+        <div class="quiz-wrap" id="quiz-4">
+          <h3>Knowledge Check &mdash; Conducting Meetings</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. During a Province Council business session, a visiting brother (not a Delegate) disagrees with a motion and loudly calls out "No!" from the audience. Under proper meeting conduct, this is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q4-1" value="a"> Acceptable as long as he stands while doing it</label>
+              <label class="quiz-option"><input type="radio" name="q4-1" value="b"> Out of order &mdash; only recognized Delegates may participate in voting and debate</label>
+              <label class="quiz-option"><input type="radio" name="q4-1" value="c"> Acceptable since every brother has the right to vote at any fraternity meeting</label>
+              <label class="quiz-option"><input type="radio" name="q4-1" value="d"> Fine as a courtesy interjection, provided he was not too loud</label>
+            </div>
+            <div class="quiz-feedback" id="fb4-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. A chapter's Delegate has unpaid dues and is on administrative hold when the Province Council convenes. The chapter's votes for that meeting:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q4-2" value="a"> Are cast by the chapter Polemarch automatically as the backup Delegate</label>
+              <label class="quiz-option"><input type="radio" name="q4-2" value="b"> Are forfeit &mdash; the Delegate must be in good standing to cast votes</label>
+              <label class="quiz-option"><input type="radio" name="q4-2" value="c"> Can be exercised by any attending brother from the chapter</label>
+              <label class="quiz-option"><input type="radio" name="q4-2" value="d"> Are held in escrow until the dues are paid</label>
+            </div>
+            <div class="quiz-feedback" id="fb4-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. The Undergraduate Summit differs from the Province Council Meeting in that:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q4-3" value="a"> It is held nationally rather than at the province level</label>
+              <label class="quiz-option"><input type="radio" name="q4-3" value="b"> It is led and conducted by undergraduates, with alumni attending in an advisory role only</label>
+              <label class="quiz-option"><input type="radio" name="q4-3" value="c"> It involves a formal vote on national fraternity business</label>
+              <label class="quiz-option"><input type="radio" name="q4-3" value="d"> It replaces the Province Council in provinces with a large undergraduate population</label>
+            </div>
+            <div class="quiz-feedback" id="fb4-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. Which leadership development program is explicitly designed for youth ages 12&ndash;16?</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q4-4" value="a"> Lead Kappa</label>
+              <label class="quiz-option"><input type="radio" name="q4-4" value="b"> Undergraduate Leadership Institute</label>
+              <label class="quiz-option"><input type="radio" name="q4-4" value="c"> Kappa Kamp</label>
+              <label class="quiz-option"><input type="radio" name="q4-4" value="d"> C. Roger Wilson Leadership Conference</label>
+            </div>
+            <div class="quiz-feedback" id="fb4-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(4)">Check Answers</button>
+          <div class="quiz-score" id="score-4"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(4)">&larr; Module 3</button>
+        <button class="btn-nav next" onclick="goTo(6)">Module 5: Committee Structure &rarr;</button>
+      </div>
+    </div>
+    <!-- SECTION 6: MODULE 5 — COMMITTEE STRUCTURE -->
+    <div class="section" id="sec-6">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 5 of 6</div>
+        <h2>Committee Structure</h2>
+        <p>The three types of committees that drive chapter operations &mdash; Standing, Ad Hoc, and Special &mdash; their distinct purposes, authority levels, reporting obligations, and the responsibilities every committee member carries.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>Define Standing, Ad Hoc, and Special Committees and state the primary purpose of each.</li>
+            <li>Identify at least five Standing Committees typical to a Kappa chapter and describe each one's scope.</li>
+            <li>Explain when an Ad Hoc Committee is created, what limits its authority, and when it is dissolved.</li>
+            <li>Distinguish a Special Committee from an Ad Hoc Committee in terms of scope, authority, and oversight level.</li>
+            <li>Describe the committee chair's reporting responsibility to the General Body.</li>
+            <li>List the conduct and participation obligations of every committee member.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>The Role of Committees in Chapter Governance</h3>
+          <p>Committees are the primary operational units of a well-functioning chapter. They exist because the full General Body cannot efficiently deliberate on every detail of chapter operations. Committees research, plan, and execute within their assigned areas, then bring their work products and recommendations back to the full membership for approval and vote.</p>
+          <p>This structure serves two critical purposes. First, it <strong>distributes work</strong> across a broader portion of the membership, preventing burnout in officers and building engagement across all brothers. Second, it <strong>maintains accountability</strong> &mdash; no committee acts unilaterally on behalf of the chapter without the General Body's authorization.</p>
+          <div class="callout"><strong>Core principle:</strong> Committees propose and execute. The General Body decides. A committee that takes action beyond its authorized scope has overstepped, and the action may be void or subject to reversal by a chapter vote.</div>
+          <p>Every active brother is expected to serve on at least one committee. Service on a committee is not optional for members in good standing. Brothers who decline all committee service without cause may be considered inactive for chapter purposes.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Standing Committees</h3>
+          <p>Standing Committees are <strong>permanent committees</strong> established by the chapter's Constitution and Bylaws. They exist from year to year regardless of who serves on them. Because the work of a Standing Committee never ends &mdash; the chapter always needs to manage its finances, develop its youth program, and manage risk &mdash; these committees are structural features of the chapter, not temporary responses to a specific need.</p>
+          <p><strong>Characteristics of Standing Committees:</strong></p>
+          <ul>
+            <li>Authorized by name in the chapter's Constitution and Bylaws</li>
+            <li>Operate continuously throughout the fraternal year, from installation of officers to end of term</li>
+            <li>Chaired by a member appointed by the Polemarch or elected by the General Body, as specified in the Bylaws</li>
+            <li>Report formally to the General Body at every regular chapter meeting &mdash; even if the report is only "no update this period"</li>
+            <li>Maintain ongoing records, minutes of committee meetings, and documentation of all major decisions and expenditures</li>
+          </ul>
+          <p><strong>Core Standing Committees:</strong></p>
+          <div class="info-cards">
+            <div class="info-card"><h4>Finance Committee</h4><p>Oversees the annual chapter budget, reviews all proposed expenditures above the Treasurer's spending authority, audits financial records, and ensures that all fraternity funds are held and disbursed through official accounts. Works directly with the Keeper of Records &amp; Exchequer.</p></div>
+            <div class="info-card"><h4>Guide Right / Youth Development</h4><p>Plans and executes the chapter's youth mentoring programs. Manages Kappa Kamp participation, coordinates with local schools and youth organizations, and tracks program outcomes. This committee directly fulfills the fraternity's primary service mission.</p></div>
+            <div class="info-card"><h4>Membership Committee</h4><p>Manages the MTA intake process from applicant tracking through candidate orientation. Oversees member retention and reclamation efforts. Maintains the official chapter membership roll. Works with the Province to ensure intake compliance.</p></div>
+            <div class="info-card"><h4>Risk Management Committee</h4><p>Reviews all upcoming events for compliance, leads the Event Safety Checklist review before every registered event, manages insurance documentation, and enforces the chapter's risk management policies. The Risk Management Chairman reports directly to the Polemarch on all risk-related matters.</p></div>
+            <div class="info-card"><h4>Social Action / Community Service</h4><p>Plans the chapter's community engagement calendar, coordinates volunteer activities, builds partnerships with local nonprofits and community organizations, and tracks service hours for reporting to Grand Chapter. This committee is responsible for the chapter's public-facing community identity.</p></div>
+            <div class="info-card"><h4>Protocol &amp; Scholarship</h4><p>Ensures that all brothers receive and maintain proper training in fraternity protocol and etiquette. Manages scholarship opportunities for chapter members and community youth. Tracks academic achievement among active brothers and recognizes academic excellence.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Ad Hoc Committees</h3>
+          <p>Ad Hoc Committees are <strong>temporary committees</strong> created to address a specific, defined need. They are not in the Bylaws because they are not permanent features of the chapter &mdash; they are responses to a particular situation or project.</p>
+          <p><strong>Characteristics of Ad Hoc Committees:</strong></p>
+          <ul>
+            <li>Created by a motion and vote of the General Body, or at the direction of the Polemarch for administrative matters within the Polemarch's authority</li>
+            <li>Given a specific, written charge &mdash; the task the committee is created to accomplish &mdash; at the time of their formation</li>
+            <li>Limited in authority strictly to their written charge; they may not expand their scope without a new General Body vote</li>
+            <li>Dissolved automatically when their final report or work product is submitted to the General Body and accepted</li>
+            <li>Do not carry over from one fraternal year to the next unless a new vote re-establishes them</li>
+          </ul>
+          <p><strong>Examples of Ad Hoc Committees:</strong></p>
+          <ul>
+            <li>Charter Anniversary Planning Committee (tasked with planning a single event)</li>
+            <li>Bylaws Revision Committee (tasked with proposing amendments for a General Body vote)</li>
+            <li>Venue Selection Committee (tasked with identifying and recommending a location for a specific event)</li>
+            <li>Grievance Investigation Committee (tasked with investigating a specific complaint and reporting findings)</li>
+            <li>Social Media Policy Committee (tasked with drafting a chapter social media policy for General Body adoption)</li>
+          </ul>
+          <div class="callout"><strong>Key distinction:</strong> An Ad Hoc Committee does not have independent authority to implement its recommendations. It researches, proposes, and reports &mdash; then the General Body decides whether to adopt the recommendation. If the committee acts on its own without General Body approval, those actions have no binding effect on the chapter.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Special Committees</h3>
+          <p>Special Committees are committees of elevated importance or sensitivity, appointed when a task requires broader authority, higher-level oversight, or involvement that extends beyond the local chapter. They are a distinct category from standard Ad Hoc Committees.</p>
+          <p><strong>Characteristics of Special Committees:</strong></p>
+          <ul>
+            <li>May be appointed at the chapter, province, or Grand Chapter level &mdash; the level of appointment determines the level of oversight</li>
+            <li>Typically handle matters of significant organizational sensitivity: disciplinary appeals, constitutional review, strategic planning, or investigations that cannot be handled at the chapter level</li>
+            <li>May be granted broader authority than a standard Ad Hoc Committee, as explicitly stated in the resolution or order that creates them</li>
+            <li>May include members from outside the local chapter &mdash; for example, a province-appointed oversight committee placed on a chapter under probation</li>
+            <li>Like Ad Hoc Committees, they are dissolved once their work is complete; unlike Ad Hoc Committees, their dissolution may require formal action by the appointing body rather than automatic dissolution</li>
+          </ul>
+          <p><strong>Examples of Special Committees:</strong></p>
+          <ul>
+            <li>Judicial Appeals Committee (hearing a member's formal appeal of a disciplinary decision)</li>
+            <li>Strategic Vision Committee (developing a multi-year plan for presentation to Grand Chapter)</li>
+            <li>Province Oversight Committee (placed on a chapter in conflict or under probation)</li>
+            <li>National Task Force (established by Grand Chapter to address a fraternity-wide policy issue)</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Committee Chair Responsibilities</h3>
+          <p>The committee chair is accountable to the General Body and to the chapter Polemarch for the work of the committee. The chair's responsibilities include:</p>
+          <ul>
+            <li>Scheduling and facilitating all committee meetings; maintaining attendance records</li>
+            <li>Setting a written agenda for each committee meeting and distributing it to members in advance</li>
+            <li>Ensuring every committee meeting produces action items with assigned owners and deadlines</li>
+            <li>Preparing a written committee report for each General Body meeting; delivering the report verbally and in writing</li>
+            <li>Escalating to the Polemarch any matter that falls outside the committee's authority or requires General Body action</li>
+            <li>Maintaining a committee file containing meeting minutes, correspondence, financial records, and work products that can be passed to the next committee chair at the end of the fraternal year</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Committee Member Obligations</h3>
+          <ul>
+            <li>Attend all committee meetings. Unexcused absences should be reported to the chair and may be reported to the Polemarch.</li>
+            <li>Carry out all assigned tasks within agreed-upon deadlines and communicate proactively if a deadline cannot be met.</li>
+            <li>Bring analysis and recommendations to the committee &mdash; not just problems. A committee member who only identifies obstacles without proposing solutions is not fulfilling the role.</li>
+            <li>Maintain confidentiality of committee deliberations where the committee is handling sensitive matters (personnel, disciplinary, financial).</li>
+            <li>Operate strictly within the committee's authorized scope. Do not take actions that bind the chapter or commit chapter resources without General Body approval.</li>
+            <li>Support the committee chair's reporting to the General Body and contribute to the committee's written records.</li>
+          </ul>
+        </div>
+
+        <!-- QUIZ 5 -->
+        <div class="quiz-wrap" id="quiz-5">
+          <h3>Knowledge Check &mdash; Committee Structure</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. The chapter's Risk Management Committee has operated for three consecutive years. When the new Polemarch is installed at the start of the fraternal year, the Risk Management Committee:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q5-1" value="a"> Must be re-created by a General Body vote since the previous Polemarch's term ended</label>
+              <label class="quiz-option"><input type="radio" name="q5-1" value="b"> Continues as a Standing Committee &mdash; its existence is established in the Bylaws and does not depend on the Polemarch's term</label>
+              <label class="quiz-option"><input type="radio" name="q5-1" value="c"> Is automatically dissolved and replaced by an Ad Hoc Risk Committee for the new term</label>
+              <label class="quiz-option"><input type="radio" name="q5-1" value="d"> Becomes a Special Committee until the new Polemarch formally reauthorizes it</label>
+            </div>
+            <div class="quiz-feedback" id="fb5-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. An Ad Hoc Bylaws Revision Committee presents its draft amendments to the General Body. The General Body debates and rejects the proposed changes by a majority vote. The committee should:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q5-2" value="a"> Implement the amendments anyway since the committee was authorized to revise the Bylaws</label>
+              <label class="quiz-option"><input type="radio" name="q5-2" value="b"> Accept the outcome &mdash; the committee proposes and the General Body decides; the rejection is final unless a new vote is called</label>
+              <label class="quiz-option"><input type="radio" name="q5-2" value="c"> Escalate to the Province Polemarch to override the General Body's decision</label>
+              <label class="quiz-option"><input type="radio" name="q5-2" value="d"> Continue operating until the General Body accepts a version of the amendments</label>
+            </div>
+            <div class="quiz-feedback" id="fb5-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. The Province places a committee of province-level officers on a chapter that is under formal probation to oversee its operations. This committee is best described as:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q5-3" value="a"> A Standing Committee, since it operates continuously during the probation period</label>
+              <label class="quiz-option"><input type="radio" name="q5-3" value="b"> An Ad Hoc Committee, since it is temporary and task-specific</label>
+              <label class="quiz-option"><input type="radio" name="q5-3" value="c"> A Special Committee, appointed at a higher organizational level with broader authority than a standard Ad Hoc Committee</label>
+              <label class="quiz-option"><input type="radio" name="q5-3" value="d"> An Executive Committee, since it is composed of officers</label>
+            </div>
+            <div class="quiz-feedback" id="fb5-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. A committee member disagrees with the majority recommendation the committee plans to present to the General Body. The correct course of action is to:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q5-4" value="a"> Resign from the committee rather than present a recommendation he disagrees with</label>
+              <label class="quiz-option"><input type="radio" name="q5-4" value="b"> Represent the committee's majority recommendation to the General Body and, if desired, formally note his dissent when the General Body takes up the item</label>
+              <label class="quiz-option"><input type="radio" name="q5-4" value="c"> Contact brothers outside the committee to lobby against the recommendation before the General Body meeting</label>
+              <label class="quiz-option"><input type="radio" name="q5-4" value="d"> Present both the majority recommendation and his own alternative to the General Body without the committee's knowledge</label>
+            </div>
+            <div class="quiz-feedback" id="fb5-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(5)">Check Answers</button>
+          <div class="quiz-score" id="score-5"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(5)">&larr; Module 4</button>
+        <button class="btn-nav next" onclick="goTo(7)">Module 6: Org Chart &rarr;</button>
+      </div>
+    </div>
+    <!-- SECTION 7: MODULE 6 — ORG CHART -->
+    <div class="section" id="sec-7">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 6 of 6</div>
+        <h2>Organizational Chart</h2>
+        <p>The full hierarchy of Kappa Alpha Psi Fraternity, Inc. from the supreme governing Grand Chapter through Province, local Chapter Administration, Board of Directors, Standing Committees, Liaisons, and the General Body.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>Identify the Grand Chapter as the supreme governing body and describe how authority flows downward through the structure.</li>
+            <li>Name the elected national officers and their primary responsibilities.</li>
+            <li>Describe the role of the Province Polemarch and the Province Board of Directors.</li>
+            <li>Identify each chapter officer position and state that officer's primary duty.</li>
+            <li>Explain the Board of Directors' function and how it differs from the chapter's executive officers.</li>
+            <li>Describe how Liaisons connect the chapter to external organizations and governing bodies.</li>
+            <li>Define the General Body and explain how it exercises ultimate authority within the chapter.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>How Authority Flows in the Fraternity</h3>
+          <p><strong>Top-down policy:</strong> Grand Chapter establishes fraternity-wide standards, policies, and constitutional requirements. Province enforces and implements those standards within the province. Local chapters operate within the framework set by both Grand Chapter and Province.</p>
+          <p><strong>Bottom-up accountability:</strong> The General Body holds local leadership accountable through regular elections and votes. Local leadership reports to Province. Province reports to Grand Chapter. Every level of the organization is accountable to the level above it.</p>
+          <p>Understanding where you stand in this structure &mdash; and who is accountable to whom &mdash; is essential for effective participation at every level of fraternity life.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>National Administration &mdash; Grand Chapter</h3>
+          <div class="org-chart">
+            <div class="org-row"><div class="org-box top">Grand Chapter &mdash; Supreme Governing Body of Kappa Alpha Psi Fraternity, Inc.</div></div>
+            <div class="org-children">
+              <div class="org-row" style="margin-top:8px;"><div class="org-box mid">Grand Board of Directors</div></div>
+              <div class="org-children">
+                <div class="org-row" style="margin-top:6px;">
+                  <div class="org-box">Grand Polemarch</div>
+                  <div class="org-box">Sr. Grand Vice Polemarch</div>
+                  <div class="org-box">Jr. Grand Vice Polemarch</div>
+                </div>
+                <div class="org-row">
+                  <div class="org-box">Grand Keeper of Records &amp; Exchequer</div>
+                  <div class="org-box">Grand Strategus</div>
+                  <div class="org-box">Grand Lt. Strategus</div>
+                </div>
+                <div class="org-row">
+                  <div class="org-box">Grand Historian</div>
+                  <div class="org-box">Grand Chapter Nominating Committee Chair</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>National Officers &mdash; Roles and Responsibilities</h3>
+          <table class="styled-table">
+            <tr><th>Officer</th><th>Primary Responsibility</th></tr>
+            <tr><td><strong>Grand Polemarch</strong></td><td>Chief executive officer of the fraternity. Presides over all Grand Chapter meetings. Enforces the Constitution, Statutes, and policies of the fraternity. Represents the fraternity in all national and public capacities.</td></tr>
+            <tr><td><strong>Sr. Grand Vice Polemarch</strong></td><td>Assumes the duties of the Grand Polemarch in his absence. Oversees specific program areas as assigned by the Grand Polemarch.</td></tr>
+            <tr><td><strong>Jr. Grand Vice Polemarch</strong></td><td>Supports the Sr. Grand Vice Polemarch and Grand Polemarch. Oversees undergraduate chapter development and activities.</td></tr>
+            <tr><td><strong>Grand Keeper of Records &amp; Exchequer</strong></td><td>Chief financial and records officer. Maintains all official fraternity records. Manages national finances, prepares financial reports, and ensures fiscal accountability across the fraternity.</td></tr>
+            <tr><td><strong>Grand Strategus</strong></td><td>Chief legal officer of the fraternity. Advises on constitutional interpretation, legal matters, and compliance issues. Presides over national hearings and appeals.</td></tr>
+            <tr><td><strong>Grand Lt. Strategus</strong></td><td>Supports the Grand Strategus. Handles enforcement matters and serves in the Strategus's absence.</td></tr>
+            <tr><td><strong>Grand Historian</strong></td><td>Maintains the official historical record of the fraternity. Preserves archival materials and produces historical publications and exhibits.</td></tr>
+          </table>
+        </div>
+
+        <div class="content-block">
+          <h3>Province Structure</h3>
+          <div class="org-chart">
+            <div class="org-row"><div class="org-box mid">Province Polemarch (Appointed by Grand Polemarch)</div></div>
+            <div class="org-children">
+              <div class="org-row" style="margin-top:6px;">
+                <div class="org-box">Province Board of Directors</div>
+                <div class="org-box">Province Officers</div>
+                <div class="org-box">Province Committees</div>
+              </div>
+              <div class="org-row">
+                <div class="org-box">Undergraduate Chapters within Province</div>
+                <div class="org-box">Alumni Chapters within Province</div>
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:14px;">The Province Polemarch is <em>appointed</em> by the Grand Polemarch, not elected. This appointment structure ensures that provincial leadership aligns with national priorities. The Province Polemarch serves as the direct link between local chapters and Grand Chapter &mdash; all major chapter actions, disciplinary matters, and event registrations flow through the Province.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Local Chapter &mdash; Executive Officers</h3>
+          <div class="org-chart">
+            <div class="org-row"><div class="org-box mid">Chapter Administration &mdash; Executive Officers</div></div>
+            <div class="org-children">
+              <div class="org-row" style="margin-top:6px;">
+                <div class="org-box">Polemarch</div>
+                <div class="org-box">Vice Polemarch</div>
+                <div class="org-box">Keeper of Records &amp; Exchequer</div>
+              </div>
+              <div class="org-row">
+                <div class="org-box">Strategus</div>
+                <div class="org-box">Lt. Strategus</div>
+                <div class="org-box">Historian</div>
+              </div>
+              <div class="org-row">
+                <div class="org-box">Parliamentarian</div>
+                <div class="org-box">Chaplain</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Chapter Officers &mdash; Duties</h3>
+          <table class="styled-table">
+            <tr><th>Officer</th><th>Primary Duties</th></tr>
+            <tr><td><strong>Polemarch</strong></td><td>Chief executive of the chapter. Presides over all chapter meetings. Supervises all officers and committees. Signs all official chapter correspondence. Represents the chapter to the Province and Grand Chapter. Responsible for overall chapter compliance with fraternity policy.</td></tr>
+            <tr><td><strong>Vice Polemarch</strong></td><td>Assumes all duties of the Polemarch in his absence. Oversees the chapter's program activities and committee productivity. Typically chairs the chapter's Program Planning Committee if one exists.</td></tr>
+            <tr><td><strong>Keeper of Records &amp; Exchequer</strong></td><td>Maintains all official chapter records including minutes, membership rolls, and correspondence files. Manages all chapter finances: collects dues, pays authorized expenses, prepares the annual budget, and submits required financial reports to the Province and Grand Chapter.</td></tr>
+            <tr><td><strong>Strategus</strong></td><td>Chief enforcement officer of the chapter. Ensures compliance with the Constitution, Bylaws, and chapter rules. Chairs the chapter's disciplinary process for Level 1 matters. Advises the Polemarch on constitutional questions.</td></tr>
+            <tr><td><strong>Lt. Strategus</strong></td><td>Supports the Strategus. Manages member records related to compliance, dues status, and administrative holds. Assists in preparing disciplinary documentation.</td></tr>
+            <tr><td><strong>Historian</strong></td><td>Maintains the chapter's historical record. Documents all events, programs, and significant chapter milestones with photographs, written accounts, and preserved materials. Prepares the chapter's history report for Province Council.</td></tr>
+            <tr><td><strong>Parliamentarian</strong></td><td>Advises the presiding officer and chapter members on parliamentary procedure (Robert's Rules of Order). Rules on procedural questions during meetings. Ensures that all votes and motions follow proper process.</td></tr>
+            <tr><td><strong>Chaplain</strong></td><td>Provides spiritual guidance to the chapter. Opens and closes meetings with appropriate invocations. Provides pastoral support to brothers in need and coordinates the chapter's participation in faith-based community activities.</td></tr>
+          </table>
+        </div>
+
+        <div class="content-block">
+          <h3>Board of Directors</h3>
+          <div class="org-chart">
+            <div class="org-row"><div class="org-box mid">Chapter Board of Directors</div></div>
+            <div class="org-children">
+              <div class="org-row" style="margin-top:6px;">
+                <div class="org-box">Board Chair</div>
+                <div class="org-box">Past Chapter Officers</div>
+                <div class="org-box">Appointed Board Members</div>
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:14px;">The Board of Directors provides <strong>oversight, institutional memory, and strategic guidance</strong> to chapter leadership. Board members are typically past officers or senior brothers with demonstrated service to the chapter. They are not the executive leadership &mdash; that is the role of the elected officers &mdash; but they serve as a check on executive action and a reservoir of experience.</p>
+          <p>The Board's authority includes reviewing major financial decisions, advising the Polemarch on matters of chapter policy, and hearing Level 1 disciplinary matters when convened as a disciplinary body. The Board reports to the General Body, not the other way around.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Standing Committees</h3>
+          <div class="org-chart">
+            <div class="org-row">
+              <div class="org-box">Finance</div>
+              <div class="org-box">Guide Right / Youth Dev.</div>
+              <div class="org-box">Membership</div>
+              <div class="org-box">Risk Management</div>
+            </div>
+            <div class="org-row">
+              <div class="org-box">Social Action</div>
+              <div class="org-box">Protocol &amp; Scholarship</div>
+              <div class="org-box" style="font-style:italic;color:var(--gray-600);">+ Ad Hoc &amp; Special Committees as authorized</div>
+            </div>
+          </div>
+          <p style="margin-top:14px;">Each Standing Committee is chaired by a member appointed or elected per the Bylaws and reports to the General Body at every regular meeting. Committees coordinate with the relevant executive officer &mdash; for example, the Finance Committee works with the Keeper of Records &amp; Exchequer &mdash; but their reporting obligation is to the full General Body.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Liaisons</h3>
+          <div class="org-chart">
+            <div class="org-row">
+              <div class="org-box">NPHC Liaison</div>
+              <div class="org-box">IFC / Panhellenic Liaison</div>
+              <div class="org-box">University / Campus Liaison</div>
+            </div>
+            <div class="org-row">
+              <div class="org-box">Community Partner Liaisons</div>
+              <div class="org-box">Province Liaison</div>
+              <div class="org-box">Alumni Relations Liaison</div>
+            </div>
+          </div>
+          <p style="margin-top:14px;">Liaisons are brothers assigned to maintain the chapter's formal relationship with a specific external organization or governing body. A Liaison does not have independent authority to commit the chapter to agreements or positions &mdash; they communicate, coordinate, and represent, then report back to chapter leadership and the General Body for any decisions that require chapter authorization.</p>
+          <p>The <strong>NPHC Liaison</strong> is particularly important &mdash; this brother represents the chapter within the National Pan-Hellenic Council, ensures the chapter meets NPHC requirements, and fosters cooperative relationships with the chapter's peer organizations in the Divine Nine.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>The General Body</h3>
+          <div class="org-chart">
+            <div class="org-row"><div class="org-box top" style="background:var(--gold);color:var(--crimson-dark);border-color:var(--gold);">General Body &mdash; All Active Brothers in Good Standing</div></div>
+          </div>
+          <p style="margin-top:14px;">The General Body is every active member of the chapter who is in good standing. While officers lead and committees execute, <strong>the General Body holds ultimate authority</strong> over all chapter matters. Officers serve the General Body &mdash; not the other way around.</p>
+          <p>The General Body exercises its authority by:</p>
+          <ul>
+            <li><strong>Voting</strong> on all major decisions: the annual budget, significant expenditures, chapter program commitments, and bylaw amendments</li>
+            <li><strong>Electing officers</strong> at the end of each fraternal term through a fair, transparent election process</li>
+            <li><strong>Ratifying</strong> committee recommendations before they become chapter policy or binding commitments</li>
+            <li><strong>Holding leadership accountable</strong> through the election process, through motions to censure, and through the removal process if officers fail to meet their obligations</li>
+          </ul>
+          <div class="callout"><strong>Every brother's voice matters.</strong> Consistent attendance at General Body meetings, active participation in committee work, and informed voting are how brothers fulfill their obligation to the chapter. A brother who does not participate cannot complain about the direction of chapter leadership.</div>
+        </div>
+
+        <!-- QUIZ 6 -->
+        <div class="quiz-wrap" id="quiz-6">
+          <h3>Knowledge Check &mdash; Org Chart</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. The Province Polemarch is appointed, not elected. This means:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q6-1" value="a"> The Province Polemarch has less authority than an elected Province officer</label>
+              <label class="quiz-option"><input type="radio" name="q6-1" value="b"> The Grand Polemarch appoints Province leadership to ensure provincial operations align with national priorities</label>
+              <label class="quiz-option"><input type="radio" name="q6-1" value="c"> Any chapter can challenge the Province Polemarch's authority by a General Body vote</label>
+              <label class="quiz-option"><input type="radio" name="q6-1" value="d"> The Province Polemarch serves for life unless he resigns</label>
+            </div>
+            <div class="quiz-feedback" id="fb6-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. The chapter Strategus's primary role is best described as:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q6-2" value="a"> Managing chapter finances and preparing the annual budget</label>
+              <label class="quiz-option"><input type="radio" name="q6-2" value="b"> Maintaining the chapter's historical archive and event documentation</label>
+              <label class="quiz-option"><input type="radio" name="q6-2" value="c"> Chief enforcement officer ensuring compliance with the Constitution, Bylaws, and chapter rules</label>
+              <label class="quiz-option"><input type="radio" name="q6-2" value="d"> Presiding over chapter meetings in the Polemarch's absence</label>
+            </div>
+            <div class="quiz-feedback" id="fb6-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. The chapter's NPHC Liaison attends an NPHC meeting and is asked to commit the chapter to co-sponsoring a large community event. The Liaison should:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q6-3" value="a"> Commit the chapter immediately &mdash; co-sponsoring community events is clearly within the fraternity's mission</label>
+              <label class="quiz-option"><input type="radio" name="q6-3" value="b"> Decline the request &mdash; Liaisons cannot attend NPHC meetings without Polemarch approval</label>
+              <label class="quiz-option"><input type="radio" name="q6-3" value="c"> Express the chapter's interest, take the details back to chapter leadership and the General Body, and confirm only after a chapter vote</label>
+              <label class="quiz-option"><input type="radio" name="q6-3" value="d"> Commit provisionally and tell the NPHC the chapter will confirm by email</label>
+            </div>
+            <div class="quiz-feedback" id="fb6-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. The chapter officers want to make a large unbudgeted expenditure. The Board of Directors supports the expenditure. However, the General Body has not voted on it. The expenditure:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q6-4" value="a"> Can proceed since both the officers and Board of Directors have approved it</label>
+              <label class="quiz-option"><input type="radio" name="q6-4" value="b"> Requires only the Keeper of Records &amp; Exchequer's signature to be valid</label>
+              <label class="quiz-option"><input type="radio" name="q6-4" value="c"> Should not proceed &mdash; the General Body holds ultimate authority and major expenditures require a vote</label>
+              <label class="quiz-option"><input type="radio" name="q6-4" value="d"> Is valid if it falls under the Polemarch's emergency spending authority</label>
+            </div>
+            <div class="quiz-feedback" id="fb6-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(6)">Check Answers</button>
+          <div class="quiz-score" id="score-6"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(6)">&larr; Module 5</button>
+        <button class="btn-nav next" onclick="goTo(8)">Module 7: Social Media &amp; Digital Standards &rarr;</button>
+      </div>
+    </div>
+
+
+    <!-- SECTION 8: MODULE 7 — SOCIAL MEDIA & DIGITAL STANDARDS -->
+    <div class="section" id="sec-8">
+      <div class="module-hero">
+        <div class="module-num-tag">Module 7 of 7</div>
+        <h2>Social Media &amp; Digital Standards</h2>
+        <p>The fraternity&rsquo;s official guidelines for chapter social media accounts, website standards, multimedia use, and trademark compliance &mdash; ensuring every digital touchpoint reflects positively on Kappa Alpha Psi.</p>
+      </div>
+      <div class="module-body">
+        <div class="objectives-strip">
+          <h3>Module Learning Objectives</h3>
+          <ul>
+            <li>Define social media and identify the platform categories covered by fraternity guidelines.</li>
+            <li>State the core assumption all brothers must make when posting to any online platform.</li>
+            <li>List the mandatory rules for any chapter-affiliated social media account or post.</li>
+            <li>Describe the key website standards for accessibility, navigation, content, and design.</li>
+            <li>Identify what multimedia content is prohibited from auto-playing and why.</li>
+            <li>State the trademark restrictions on fraternity insignia and explain the Playboy logo prohibition.</li>
+            <li>Describe the chapter certification procedure required before a website goes live.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Why Digital Standards Matter</h3>
+          <p>Social media and digital platforms have become the primary way chapters communicate with the public, recruit prospective members, and demonstrate the fraternity&rsquo;s impact in the community. Every post, photo, video, and web page associated with the Denton-Lewisville Chapter is a direct extension of the Kappa Alpha Psi brand and is subject to national fraternity standards.</p>
+          <div class="callout"><strong>Core assumption:</strong> Information sent over the internet is insecure and can eventually find its way into the public domain. This applies to &ldquo;closed sites,&rdquo; private groups, and direct messages as well. Brothers must assume that any digital content they create or share in a fraternal context may become public, regardless of privacy settings. When in doubt, do not post.</div>
+        </div>
+
+        <div class="content-block">
+          <h3>Social Media Defined</h3>
+          <p>Social media encompasses the websites, applications, and mobile apps used for multimedia communication. The fraternity&rsquo;s guidelines apply to all of the following categories:</p>
+          <div class="info-cards">
+            <div class="info-card"><h4>Social Networking</h4><p>Facebook, Instagram. Used for community building, event promotion, and member engagement. Chapter accounts must reflect the province or chapter they represent.</p></div>
+            <div class="info-card"><h4>Professional Networking</h4><p>LinkedIn. Used to promote brothers&rsquo; professional achievements and the fraternity&rsquo;s community impact. Content must align with the fraternity&rsquo;s professional image.</p></div>
+            <div class="info-card"><h4>Video &amp; Media Sharing</h4><p>YouTube, Instagram, TikTok, Snapchat, Vimeo, Facebook Live. All video content must comply with multimedia guidelines. No auto-play on websites.</p></div>
+            <div class="info-card"><h4>Micro-Blogging</h4><p>Twitter/X, Tumblr. Short-form content that reaches broad audiences quickly. Each post is a public-facing representation of the chapter and fraternity.</p></div>
+            <div class="info-card"><h4>Chat &amp; Messaging</h4><p>Instagram DM, Signal. Even private messaging platforms are covered. Esoteric or confidential fraternity content may never be transmitted electronically under any circumstances.</p></div>
+            <div class="info-card"><h4>Blogs &amp; Online Content</h4><p>WordPress, Tumblr. Long-form content platforms. All written content must meet the fraternity&rsquo;s content, grammar, and accuracy standards.</p></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Mandatory Social Media Rules</h3>
+          <p>The following rules apply to every account and every post from any chapter, officer, or member of Kappa Alpha Psi in a fraternal capacity. Non-compliance with these rules is a conduct violation.</p>
+          <ul class="checklist">
+            <li><span class="ck-num">1</span><span><strong>Represent the chapter or entity:</strong> The account must be a clear reflection of the province, chapter, or event it represents. Personal social media accounts may not claim to represent the chapter without authorization from the Polemarch and Board of Directors.</span></li>
+            <li><span class="ck-num">2</span><span><strong>No unauthorized promotional use:</strong> Chapter accounts may not be used to promote individual members&rsquo; personal business interests, political campaigns, or any activity not directly approved by the Polemarch and Board of Directors.</span></li>
+            <li><span class="ck-num">3</span><span><strong>Credit all third-party content:</strong> Quotations, images, and intellectual property from third parties must be appropriately credited. Use of copyrighted materials without credit is strictly prohibited.</span></li>
+            <li><span class="ck-num">4</span><span><strong>No duplicate or plagiarized content:</strong> Do not copy content directly from other chapter websites or social media pages without attribution. The chapter&rsquo;s digital presence should reflect its own unique story and programs.</span></li>
+            <li><span class="ck-num">5</span><span><strong>No esoteric or confidential content:</strong> Ritual content, intake-related information, and confidential fraternity business must never appear on any digital platform in any form. This is a separate prohibition from the Code of Conduct&rsquo;s electronic communication rule &mdash; both apply simultaneously.</span></li>
+            <li><span class="ck-num">6</span><span><strong>No prohibited imagery:</strong> No alcoholic imagery, drug paraphernalia, sexually explicit content, or the Playboy bunny logo in any form may appear on any chapter digital platform.</span></li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Chapter Website Standards</h3>
+          <p>If the chapter maintains a website, it must meet the following minimum standards. The chapter Polemarch, Vice Polemarch, and Keeper of Records are jointly responsible for ensuring compliance.</p>
+
+          <h4>Accessibility &amp; Responsiveness</h4>
+          <p>The website must be usable across different devices (desktop, mobile, tablet), browsers (Chrome, Firefox, Safari, Edge), and by users with disabilities. Web accessibility is not optional &mdash; it is a fraternity standard that ensures all community members can access the chapter&rsquo;s digital presence regardless of ability or device.</p>
+
+          <h4>Navigation Standards</h4>
+          <ul>
+            <li>All links (internal and external) must work properly &mdash; no broken links</li>
+            <li>Main navigation must be consistent on every page</li>
+            <li>The site must not depend on the browser&rsquo;s back button for navigation</li>
+            <li>Pages must load quickly; all graphics must be optimized for web delivery</li>
+            <li>No unsolicited pop-ups or auto-play audio or video of any kind</li>
+            <li>The chapter&rsquo;s name must appear in the title of every page for bookmarking purposes</li>
+          </ul>
+
+          <h4>Required Content</h4>
+          <ul>
+            <li>The fraternity&rsquo;s position on hazing must be clearly stated on the website</li>
+            <li>Current contact information for the chapter must be displayed</li>
+            <li>Information about the Grand Chapter, province, and local chapter must be present</li>
+            <li>The website must include information on how to become a member of Kappa Alpha Psi</li>
+            <li>Chapter programs must be described with current, accurate information &mdash; outdated content must be removed promptly</li>
+          </ul>
+
+          <h4>Content &amp; Design Standards</h4>
+          <ul>
+            <li>Proper grammar and spelling throughout &mdash; no spelling errors, punctuation mistakes, or factual inaccuracies</li>
+            <li>No content that could be construed as distasteful, offensive, or profane</li>
+            <li>All graphics must be crisp and visually appropriate; no inappropriate graphics</li>
+            <li>Consistent design layout across all pages; user-friendly, simple interface</li>
+            <li>Page length should be reasonable &mdash; pages longer than four &ldquo;page downs&rdquo; should include &ldquo;Return to Top&rdquo; links</li>
+            <li>Only official Kappa Alpha Psi digital images supplied by the fraternity may be used. Second-generation photography or images downloaded from unauthorized sources are prohibited</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Multimedia Guidelines</h3>
+          <p>Video, audio, and animation can be powerful tools for chapter communications when used correctly.</p>
+          <table class="styled-table">
+            <tr><th>Media Type</th><th>Permitted Uses</th><th>Restrictions</th></tr>
+            <tr><td><strong>Video</strong></td><td>Chapter event highlights, educational content, community service documentation. May be hosted on YouTube, Vimeo, or the chapter&rsquo;s web host.</td><td>Must not auto-play on websites. Must not contain inappropriate content, esoteric material, or prohibited imagery. Must be clearly labeled with the publishing entity and purpose.</td></tr>
+            <tr><td><strong>Audio / Podcasts</strong></td><td>Chapter programs, leadership interviews, community discussions. Submit to Apple Music, Google Play, and Stitcher directories for distribution.</td><td>Must clearly identify the publishing entity, participants, and purpose. Must not auto-play. Must not contain confidential fraternity content.</td></tr>
+            <tr><td><strong>Slideshows / Infographics</strong></td><td>Informational presentations, event recaps, program summaries. Compatible with PowerPoint, Keynote, and Google Slides.</td><td>Infographics must include explanatory text for screen reader accessibility. Flash introductions must have a skip option.</td></tr>
+            <tr><td><strong>Music</strong></td><td>Official Kappa Klassics album by Anthony Patrick and Jonathan Hicks (available on BandCamp at kappaklassiks.bandcamp.com) may be used for chapter productions.</td><td>All music must be properly licensed. The chapter may not use copyrighted music without obtaining the appropriate license from the rights holder.</td></tr>
+          </table>
+        </div>
+
+        <div class="content-block">
+          <h3>Trademark &amp; Branding Compliance</h3>
+          <p>Kappa Alpha Psi Fraternity, Inc. holds registered trademarks on its name, Greek letters (K&#934;&#928;), Coat of Arms, and other insignia. The following restrictions apply to all chapter digital and physical communications.</p>
+
+          <div class="alert"><strong>Absolute prohibition:</strong> The Playboy rabbit head logo or any facsimile resembling a rabbit head is strictly prohibited on any website, flyer, correspondence, or other material related to Kappa Alpha Psi. This prohibition is based on a July 2004 order from Past Grand Polemarch Sam Hamilton and carries financial penalties including fines and suspension of the chapter&rsquo;s charter.</div>
+
+          <h4>Permitted Uses</h4>
+          <ul>
+            <li>Official fraternity colors: Crimson (PMS #199C) and Cream (PMS #461C). Red and white are acceptable alternatives for printed materials.</li>
+            <li>The fraternity name and Greek letters when used in direct connection with official chapter business &mdash; always with the registered trademark symbol (&reg;)</li>
+            <li>Images and photographs downloaded directly from the official Kappa Media Kit (kappamediakit.com) with proper attribution and subject to the media kit&rsquo;s terms</li>
+          </ul>
+
+          <h4>Prohibited Uses</h4>
+          <ul>
+            <li>The fraternity&rsquo;s badge (Diamond) or any facsimile of the badge on programs, articles of wear, stationery, announcements, or invitations (Statute 35, Section 7)</li>
+            <li>The Coat of Arms reproduced without the registered trademark; the fraternity&rsquo;s name without the registered trademark symbol</li>
+            <li>Any sexually explicit content, including &ldquo;Kappa Diamonds&rdquo; imagery, &ldquo;Girls of the Month Club,&rdquo; or similar content</li>
+            <li>Alcoholic imagery, drug paraphernalia, or any content that contradicts the fraternity&rsquo;s values and standards</li>
+            <li>Second-generation photography (images copied from another source rather than downloaded directly from authorized fraternity media)</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Chapter Website Certification</h3>
+          <p>Before a chapter website goes live or after significant updates, the chapter must submit its website link to the Grand Chapter along with contact information for primary and secondary webmasters. A signed certification document &mdash; signed by the Polemarch, Vice Polemarch, Keeper of Records, Keeper of Exchequer, and all webmasters &mdash; must confirm that:</p>
+          <ul>
+            <li>The &ldquo;bunny rabbit&rdquo; logo does not appear anywhere on the website, in any flyer, or in any correspondence related to the chapter</li>
+            <li>The website does not contain sexually explicit songs, images, or resemblances to prohibited content</li>
+            <li>The website does not contain alcoholic imagery or drug paraphernalia</li>
+          </ul>
+          <p>If the chapter operates a Kappa League with its own website, the same certification and webmaster contact information must be submitted for that site as well.</p>
+        </div>
+
+        <!-- QUIZ 7 -->
+        <div class="quiz-wrap" id="quiz-7">
+          <h3>Knowledge Check &mdash; Social Media &amp; Digital Standards</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. A brother posts chapter event photos to a private Facebook group limited to chapter members, including images from the MTA process. Under fraternity digital standards, this is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q7-1" value="a"> Acceptable because the group is private and restricted to brothers only</label>
+              <label class="quiz-option"><input type="radio" name="q7-1" value="b"> A violation &mdash; all digital platforms are considered potentially public, and MTA content may never be shared electronically</label>
+              <label class="quiz-option"><input type="radio" name="q7-1" value="c"> Fine as long as the Polemarch approves the post in advance</label>
+              <label class="quiz-option"><input type="radio" name="q7-1" value="d"> Acceptable for photos but not for written descriptions of the MTA</label>
+            </div>
+            <div class="quiz-feedback" id="fb7-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. The chapter wants to use a popular copyrighted song as background music in its chapter recap video posted to YouTube. The fraternity&rsquo;s digital standards require the chapter to:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q7-2" value="a"> Obtain a license from the rights holder before using the music in any chapter production</label>
+              <label class="quiz-option"><input type="radio" name="q7-2" value="b"> Use the song since it is for educational and nonprofit purposes</label>
+              <label class="quiz-option"><input type="radio" name="q7-2" value="c"> Credit the artist in the video description, which satisfies the copyright requirement</label>
+              <label class="quiz-option"><input type="radio" name="q7-2" value="d"> Use the official Kappa Klassics album instead without needing a license</label>
+            </div>
+            <div class="quiz-feedback" id="fb7-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. A chapter brother uses the chapter&rsquo;s official Instagram account to promote his personal catering business, saying the chapter &ldquo;endorses&rdquo; his services. This is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q7-3" value="a"> Acceptable if the business serves the community and reflects positively on the chapter</label>
+              <label class="quiz-option"><input type="radio" name="q7-3" value="b"> A violation &mdash; chapter accounts may not promote individual members&rsquo; interests without Polemarch and Board authorization for activities directly related to chapter business</label>
+              <label class="quiz-option"><input type="radio" name="q7-3" value="c"> Fine as long as it is disclosed that the brother is a chapter member</label>
+              <label class="quiz-option"><input type="radio" name="q7-3" value="d"> Acceptable since the Polemarch can approve any use of chapter accounts at his discretion</label>
+            </div>
+            <div class="quiz-feedback" id="fb7-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. The chapter launches a new website. Before it goes live, the chapter must:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q7-4" value="a"> Submit the URL to the Province Polemarch for informal review</label>
+              <label class="quiz-option"><input type="radio" name="q7-4" value="b"> Have the Risk Management Chairman review it for event-related content only</label>
+              <label class="quiz-option"><input type="radio" name="q7-4" value="c"> Submit the website link and webmaster contact information to Grand Chapter along with a signed certification document from chapter leadership confirming the site meets all content and trademark standards</label>
+              <label class="quiz-option"><input type="radio" name="q7-4" value="d"> No pre-launch approval is required &mdash; chapters are responsible for ongoing self-monitoring</label>
+            </div>
+            <div class="quiz-feedback" id="fb7-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(7)">Check Answers</button>
+          <div class="quiz-score" id="score-7"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(7)">&larr; Module 6</button>
+        <button class="btn-nav next" onclick="goTo(9)">Module 8: Paraphernalia &amp; Apparel &rarr;</button>
+      </div>
+    </div>
+
+    <!-- SECTION 9: MODULE 8 -->
+    <!-- SECTION 9: MODULE 8 -->
+    <div class="section" id="sec-9">
+      <div class="module-hero" style="background:linear-gradient(135deg,var(--crimson) 0%,var(--crimson-dark) 100%);">
+        <div class="module-num-tag">Module 8 of 8</div>
+        <h2>Paraphernalia &amp; Apparel Standards</h2>
+        <p>Understand the rules governing licensed vendors, permitted color combinations, prohibited items, and the proper use of fraternity images and trademarks on apparel and merchandise.</p>
+      </div>
+      <div class="obj-strip">
+        <div class="obj-card"><h4>Learning Objectives</h4><ul>
+          <li>Identify the permitted and prohibited color combinations for Kappa Alpha Psi paraphernalia</li>
+          <li>Explain the 2025 update to the black shirt policy</li>
+          <li>List items vendors are prohibited from producing under the fraternity&rsquo;s licensing terms</li>
+          <li>Describe the proper source for official Kappa Alpha Psi apparel</li>
+          <li>Apply media use requirements when reproducing fraternity images</li>
+        </ul></div>
+      </div>
+
+      <div class="lesson-body">
+        <div class="content-block">
+          <h3>Overview</h3>
+          <p>All apparel and souvenir retailers and manufacturers must hold an active license from Kappa Alpha Psi Fraternity, Inc. to produce items bearing the fraternity&rsquo;s trademarks. Brothers should only purchase from licensed vendors. Any intellectual property violations must be referred immediately to the <strong>Vendor Management Team at IHQ</strong>.</p>
+          <div class="callout"><strong>"The Kappa Alpha Psi&reg; image is more than just the Greek letters K&Alpha;&Psi; and our commitment to Achievement through &Phi;N&Pi;. The Kappa Alpha Psi&reg; brand is not only who we are as an organization but also who we want to be as leaders and how we are perceived by the world — all at the same time."</strong><br><span style="font-size:12px;">— Executive Director John Burrell</span></div>
+        </div>
+
+        <div class="content-block">
+          <h3>Official Apparel Source</h3>
+          <p>Official Kappa Alpha Psi apparel is sold exclusively through the fraternity&rsquo;s preferred vendor <strong>Nupe Mall</strong> (NupeMall.com). Brothers should visit the official paraphernalia section for blazers, ties, and other licensed items. No other source is designated as an official apparel supplier without an active vendor license from IHQ.</p>
+        </div>
+
+        <div class="content-block">
+          <h3>Permitted Color Combinations</h3>
+          <table class="styled-table">
+            <tr><th>Combination</th><th>Permitted</th><th>Notes</th></tr>
+            <tr><td><strong>Crimson and White</strong></td><td>Yes</td><td>Standard approved combination for all paraphernalia</td></tr>
+            <tr><td><strong>Red and White</strong></td><td>Yes</td><td>Acceptable alternative to Crimson and White</td></tr>
+            <tr><td><strong>Crimson and Cream</strong></td><td>Yes (digital only)</td><td>Not recommended for fabric — cream is not consistently rendered across different materials</td></tr>
+            <tr><td><strong>Black shirts</strong></td><td>Yes (as of 2025)</td><td>Black shirts are no longer prohibited; vendors may produce and brothers may wear items on black shirts</td></tr>
+            <tr><td><strong>Any other color</strong></td><td>No</td><td>Production and sale in any other color combination is strongly prohibited</td></tr>
+          </table>
+        </div>
+
+        <div class="content-block">
+          <h3>Vendor Prohibitions</h3>
+          <p>Any vendor found in violation of the following rules will have their vendor&rsquo;s license revoked immediately and all vendor fees will be forfeited. Kappa Alpha Psi reserves the right to pursue legal action for any license violation.</p>
+          <ul>
+            <li>Reproduce the fraternity&rsquo;s badge (Diamond) or any facsimile thereof on apparel, programs, stationery, announcements, invitations, or any article of wear (Statute 35, Section 7 of the Constitution)</li>
+            <li>Reproduce the Coat of Arms or use the fraternity&rsquo;s name without the registered trademark symbol (&reg;)</li>
+            <li>Produce or sell undergarments of any kind (workout gear may be permissible with approval)</li>
+            <li>Reproduce or sell items bearing another company&rsquo;s intellectual property — including the <strong>Playboy Bunny logo or any rabbit-head facsimile</strong> (strictly prohibited; carries fines and suspension of charter)</li>
+            <li>Produce or sell paddles of any kind, unless in a specifically approved commemorative format (e.g., key chains)</li>
+            <li>Produce, market, or sell alcohol or wine beverages</li>
+            <li>Sell paraphernalia from any other fraternal or Greek-letter organization without a current vending license from that entity</li>
+            <li>Sell any items reproduced illegally (e.g., bootleg CDs, DVDs) without appropriate written permission</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h3>Media Use Requirements</h3>
+          <p>Only digital images supplied directly by Kappa Alpha Psi via the official <strong>Kappa Media Kit (kappamediakit.com)</strong> may be reproduced. Second-generation photography — copying images from any other source — is strictly prohibited unless prior arrangements have been made with Kappa Alpha Psi.</p>
+          <ul>
+            <li>Kappa Alpha Psi holds title and copyright to all authorized images</li>
+            <li>The fraternity does not possess a subject release for individuals pictured; the user assumes all responsibility for privacy and publicity rights</li>
+            <li>By downloading authorized images, users agree to indemnify Kappa Alpha Psi against any costs, claims, liabilities, or damages arising from use of the images</li>
+          </ul>
+          <div class="alert"><strong>Questions about branding or vendor registration:</strong> Contact IHQ at <strong>ihqip@kappaalphapsi1911.com</strong></div>
+        </div>
+
+        <!-- QUIZ 8 -->
+        <div class="quiz-wrap" id="quiz-8">
+          <h3>Knowledge Check &mdash; Paraphernalia &amp; Apparel Standards</h3>
+          <p class="quiz-intro">Select the best answer for each question, then click Check Answers.</p>
+          <div class="quiz-q">
+            <div class="q-text">1. A chapter brother wants to order custom chapter T-shirts on black fabric. Under the 2025 updated policy, this is:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q8-1" value="a"> Still prohibited — black shirts remain off-limits regardless of the update</label>
+              <label class="quiz-option"><input type="radio" name="q8-1" value="b"> Permitted — black shirts are no longer prohibited as of 2025, provided the vendor is licensed and the design meets all other standards</label>
+              <label class="quiz-option"><input type="radio" name="q8-1" value="c"> Permitted only for alumni chapters, not undergraduate chapters</label>
+              <label class="quiz-option"><input type="radio" name="q8-1" value="d"> Permitted only if the IHQ Vendor Management Team approves the specific design in advance</label>
+            </div>
+            <div class="quiz-feedback" id="fb8-1"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">2. A vendor wants to produce chapter hats using crimson and cream colors on fabric. The fraternity&rsquo;s paraphernalia standards say:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q8-2" value="a"> Crimson and cream is fully approved for fabric paraphernalia in all cases</label>
+              <label class="quiz-option"><input type="radio" name="q8-2" value="b"> Crimson and cream is not recommended for fabric because cream is inconsistently rendered across different materials, though it is approved for digital use</label>
+              <label class="quiz-option"><input type="radio" name="q8-2" value="c"> Cream is prohibited in all forms and must be replaced with white</label>
+              <label class="quiz-option"><input type="radio" name="q8-2" value="d"> The vendor may use any color as long as the fraternity name includes the registered trademark symbol</label>
+            </div>
+            <div class="quiz-feedback" id="fb8-2"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">3. A brother notices a vendor online selling shirts with the Kappa Alpha Psi name alongside a rabbit-head logo. He should:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q8-3" value="a"> Purchase the item since the fraternity name is present, indicating it may be authorized</label>
+              <label class="quiz-option"><input type="radio" name="q8-3" value="b"> Report the violation to the chapter Polemarch and refer it to the IHQ Vendor Management Team immediately — the Playboy rabbit-head logo is strictly prohibited and carries fines and potential charter suspension</label>
+              <label class="quiz-option"><input type="radio" name="q8-3" value="c"> Contact the vendor directly and ask them to remove the logo before purchasing</label>
+              <label class="quiz-option"><input type="radio" name="q8-3" value="d"> Only report if the item also includes a reproduction of the fraternity badge</label>
+            </div>
+            <div class="quiz-feedback" id="fb8-3"></div>
+          </div>
+          <div class="quiz-q">
+            <div class="q-text">4. A chapter wants to use a photo of brothers from a local news article in its chapter newsletter. Under the media use requirements, the chapter:</div>
+            <div class="quiz-options">
+              <label class="quiz-option"><input type="radio" name="q8-4" value="a"> May use the photo freely since it has already been published and is in the public domain</label>
+              <label class="quiz-option"><input type="radio" name="q8-4" value="b"> May use the photo after crediting the original news source in the newsletter</label>
+              <label class="quiz-option"><input type="radio" name="q8-4" value="c"> Must only use images downloaded directly from the official Kappa Media Kit; second-generation photography from other sources is prohibited without prior arrangements with Kappa Alpha Psi</label>
+              <label class="quiz-option"><input type="radio" name="q8-4" value="d"> May use any photo as long as the individuals pictured give verbal permission</label>
+            </div>
+            <div class="quiz-feedback" id="fb8-4"></div>
+          </div>
+          <button class="btn-check" onclick="checkQuiz(8)">Check Answers</button>
+          <div class="quiz-score" id="score-8"></div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-nav" onclick="goTo(8)">&larr; Module 7</button>
+        <button class="btn-nav next" onclick="goTo(10)">Complete Course &rarr;</button>
+      </div>
+    </div>
+
+    <!-- SECTION 10: COMPLETION -->
+    <div class="section" id="sec-10">
+      <div id="completion-banner">
+        <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);margin-bottom:14px;">Kappa Alpha Psi Fraternity, Inc. &mdash; Denton-Lewisville Chapter</div>
+        <h2>Course Complete</h2>
+        <p>You have completed the <strong>Membership Education &amp; Standards Overview</strong>. You have covered the Code of Conduct, Protocol &amp; Etiquette, Risk Management, Conducting Meetings, Committee Structure, Organizational Chart, Social Media &amp; Digital Standards, and Paraphernalia &amp; Apparel Standards.</p>
+        <div class="gold-line" id="final-score-display">Complete each module's knowledge check to see your total score.</div>
+        <p style="margin-top:6px;font-size:13px;">"Achievement in Every Field of Human Endeavor."</p>
+        <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+          <button class="btn-primary" onclick="goTo(0)">Restart Course</button>
+          <button class="btn-primary" style="background:transparent;border:2px solid var(--gold);color:var(--gold);" onclick="goTo(1)">Review Objectives</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content-scroll -->
+</div><!-- /main -->
+<script>
+let currentSection = 0;
+const TOTAL = 11;
+const titles = ['Course Home','Course Objectives','Module 1: Code of Conduct','Module 2: Protocol & Etiquette','Module 3: Risk Management','Module 4: Conducting Meetings','Module 5: Committee Structure','Module 6: Org Chart','Module 7: Social Media & Digital Standards','Module 8: Paraphernalia & Apparel Standards','Course Complete'];
+const visited = new Set([0]);
+
+function goTo(n) {
+  if (n < 0 || n >= TOTAL) return;
+  document.getElementById('sec-' + currentSection).classList.remove('active');
+  document.querySelectorAll('.nav-item')[currentSection].classList.remove('active');
+  currentSection = n;
+  visited.add(n);
+  document.getElementById('sec-' + currentSection).classList.add('active');
+  document.getElementById('content-scroll').scrollTo({ top: 0, behavior: 'smooth' });
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach((item, i) => {
+    item.classList.remove('active');
+    if (visited.has(i) && i !== currentSection) item.classList.add('completed');
+  });
+  items[currentSection].classList.add('active');
+  document.getElementById('breadcrumb-title').textContent = titles[currentSection];
+  const pct = Math.round((visited.size / TOTAL) * 100);
+  document.getElementById('progress-bar-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  if (n === 10) showFinalScore();
+}
+
+document.querySelectorAll('.nav-item').forEach((item, i) => {
+  item.addEventListener('click', () => goTo(i));
+});
+
+// answers[module] = [q1,q2,q3,q4]
+const answers = {
+  1: ['b','c','b','c'],
+  2: ['c','b','b','c'],
+  3: ['b','b','b','c'],
+  4: ['b','b','b','c'],
+  5: ['b','b','c','b'],
+  6: ['b','c','c','c'],
+  7: ['b','a','b','c'],
+  8: ['b','b','b','c']
+};
+
+const explanations = {
+  '1-1': {right:'The Code of Silence &mdash; knowingly withholding knowledge of a violation &mdash; is itself a punishable offense with the same potential sanctions as participation.',wrong:'Consent and severity judgments are not defenses. Every brother has an affirmative duty to report hazing through any available channel.'},
+  '1-2': {right:'Falsification of official intake documents is a Level 3 violation handled at the Grand Chapter level.',wrong:'Missing meetings and unpaid dues are Level 1. Public intoxication is Level 2. Falsifying official documents is Level 3.'},
+  '1-3': {right:'Consent is not a defense. The power imbalance inherent in the intake process makes truly free consent impossible. The fraternity\'s zero-tolerance policy does not include a consent exception.',wrong:'Consent is explicitly not a mitigating factor under the Code of Conduct\'s hazing provisions.'},
+  '1-4': {right:'After receiving Formal Notice, the accused has the right to review the evidence, prepare a response, and be accompanied by a fraternity member at the hearing.',wrong:'The accused has no formal role in the Preliminary Review or Investigation stages. The first formal opportunity to respond is after receiving Notice.'},
+  '2-1': {right:'Chapter officers are addressed by their title during official business: "Brother Keeper" or "Brother Keeper of Records."',wrong:'Officers are not addressed by last name alone in formal settings. First names are never used in formal fraternal interactions. "Sir" is not a Kappa form of address.'},
+  '2-2': {right:'MTA information is explicitly prohibited from electronic transmission in any form &mdash; even partial details, even to brothers. This applies to all electronic media.',wrong:'There are no encryption exceptions to this rule. The prohibition applies regardless of the medium or the recipient\'s membership status.'},
+  '2-3': {right:'The proper procedure is: stand, approach the microphone, introduce yourself with name/chapter/province, and address remarks to the presiding officer.',wrong:'Speaking from a seated position, speaking without introduction, and speaking to other brothers rather than the presiding officer are all breaches of speaking decorum.'},
+  '2-4': {right:'"Yours in the Bond," followed by name, title, chapter, and province, is the required formal closing for all official Kappa correspondence.',wrong:'None of the other options are the official, required fraternity correspondence closing.'},
+  '3-1': {right:'Promotion &mdash; placing the chapter\'s name or letters on a flyer &mdash; creates liability exposure even without sponsoring or hosting the event. This is one of the most commonly misunderstood risk management principles.',wrong:'Promotion is one of the defined liability-creating activities. The chapter\'s insurance coverage and the personal liability of officers can be triggered by promotion alone.'},
+  '3-2': {right:'Holding money in a personal account outside official chapter channels is a slush fund, regardless of the Treasurer\'s title. Slush funds create personal liability for the individual holding and disbursing the money.',wrong:'The Treasurer\'s office does not authorize unofficial financial handling. All money must flow through official chapter accounts regardless of the amount or purpose.'},
+  '3-3': {right:'Brothers have an affirmative obligation to intervene and report. Silence in the face of potential sexual misconduct is a conduct violation. Intervention can take multiple forms: direct, through the Sober Brother, or through security or law enforcement.',wrong:'Waiting, deferring, or limiting action based on personal knowledge of the victim are all failures to fulfill the bystander obligation.'},
+  '3-4': {right:'The 2-week advance registration requirement is non-negotiable. An event registered 10 days in advance does not meet the requirement and is not covered by the fraternity\'s insurance policy.',wrong:'There is no partial coverage exception, no retroactive waiver process at the Province level, and no exception for good-faith late registration.'},
+  '4-1': {right:'Only Delegates may participate in voting and formal debate during business sessions. Observers and non-Delegates are present but may not speak or vote on matters before the body.',wrong:'Standing while speaking, length of protest, and chapter membership do not grant a non-Delegate the right to speak or vote during a formal business session.'},
+  '4-2': {right:'The Delegate must be in good standing to exercise the chapter\'s voting rights. An administrative hold disqualifies the Delegate, and the chapter\'s votes are forfeit for that meeting.',wrong:'There is no automatic fallback to the Polemarch or other brothers. Voting rights follow the designated Delegate\'s standing, not the chapter\'s general membership status.'},
+  '4-3': {right:'The Undergraduate Summit is specifically led and conducted by undergraduates. Alumni attend in an advisory, non-voting capacity only. This is a deliberate design to keep the summit focused on undergraduate issues.',wrong:'The Undergraduate Summit is province-level, not national. It does not replace the Province Council and does not involve votes on national fraternity business.'},
+  '4-4': {right:'Kappa Kamp is the fraternity\'s summer enrichment program specifically for youth ages 12&ndash;16.',wrong:'Lead Kappa and ULI serve undergraduate brothers. CRWLC serves chapter officers. Kappa Kamp is the youth program.'},
+  '5-1': {right:'Standing Committees are established in the Bylaws and continue from year to year regardless of officer changes. The Polemarch appoints or confirms the chair, but the committee itself does not dissolve when a Polemarch\'s term ends.',wrong:'Standing Committees are structural &mdash; they survive transitions in chapter leadership. They are not re-created each term.'},
+  '5-2': {right:'The General Body\'s vote is the final word. A committee\'s role is to propose; the General Body\'s role is to decide. Rejection by the General Body ends the matter unless a new vote is called to reconsider.',wrong:'Ad Hoc Committees have no authority to implement recommendations the General Body has rejected. Escalating to Province or implementing over a vote are both violations of chapter governance.'},
+  '5-3': {right:'A Special Committee appointed at the province level with authority over the chapter\'s operations &mdash; including members from outside the chapter &mdash; is a Special Committee, not an Ad Hoc Committee.',wrong:'Standing Committees are permanent and Bylaws-authorized. Ad Hoc Committees are local and task-specific without elevated authority. Executive Committee is not one of the three types.'},
+  '5-4': {right:'A committee member may formally note his dissent when the General Body takes up the item. The committee presents its majority recommendation; the dissenting member may speak to the General Body as an individual brother during debate.',wrong:'Private lobbying, resigning to avoid presenting the recommendation, and presenting unauthorized alternatives without the committee\'s knowledge are all breaches of committee and meeting protocol.'},
+  '6-1': {right:'The Grand Polemarch\'s appointment power over Province Polemarchs ensures that province leadership is aligned with national priorities and accountable upward through the structure.',wrong:'Appointment does not mean lesser authority &mdash; it means the Province Polemarch is accountable to the Grand Polemarch. Province Polemarchs serve terms, not for life.'},
+  '6-2': {right:'The Strategus is the chapter\'s chief enforcement officer. He ensures compliance with all governing documents and chairs Level 1 disciplinary proceedings.',wrong:'Finances belong to the Keeper of Records. History belongs to the Historian. Presiding in the Polemarch\'s absence belongs to the Vice Polemarch.'},
+  '6-3': {right:'Liaisons represent and communicate; they cannot commit the chapter to agreements without a chapter vote. The proper process is to bring the request back to chapter leadership and the General Body.',wrong:'A Liaison committing the chapter without authorization creates an unauthorized obligation. Provisional commitments have the same problem &mdash; the chapter has not authorized them.'},
+  '7-1': {right:'All digital platforms must be treated as potentially public, regardless of privacy settings. MTA content may never be shared electronically under any circumstances &mdash; this is both a Code of Conduct violation and a digital standards violation.',wrong:'Private groups are not truly private. The fraternity\'s core assumption is that any digital content can eventually reach the public domain. The prohibition on electronic transmission of MTA content has no exceptions.'},
+  '7-2': {right:'All music must be properly licensed. The nonprofit or educational purpose exception does not apply to fraternity video productions under the fraternity\'s digital standards. A license from the rights holder is required.',wrong:'Nonprofit purpose is not a copyright exception for fraternity digital productions. Crediting the artist does not substitute for a license. The Kappa Klassics album does require proper attribution and its terms do not extend to covering the need to license other copyrighted music.'},
+  '7-3': {right:'Chapter accounts may not be used to promote individual members\' personal business interests, political activities, or any activity not directly approved by the Polemarch and Board of Directors for chapter business purposes.',wrong:'The chapter\'s digital platforms represent the fraternity, not its individual members\' personal interests. No personal endorsement is permitted regardless of community benefit or disclosure.'},
+  '7-4': {right:'A signed certification document must be submitted to Grand Chapter by the Polemarch, Vice Polemarch, Keeper of Records, Keeper of Exchequer, and all webmasters, confirming the site meets all content and trademark standards.',wrong:'Province review is not the certification process. Risk Management reviews events, not the website. There is an explicit pre-launch certification requirement &mdash; self-monitoring alone is insufficient.'},
+  '8-1': {right:'As of 2025, black shirts are no longer prohibited. A licensed vendor may produce items on black fabric provided all other design standards are met.',wrong:'The 2025 policy change explicitly removed the black shirt prohibition. The change applies across chapter types and does not require per-design IHQ approval beyond normal vendor licensing.'},
+  '8-2': {right:'Crimson and cream is approved for digital use but not recommended for fabric paraphernalia because cream is inconsistently rendered across different fabric materials and production methods.',wrong:'Cream is not prohibited entirely — it is approved for digital use. The issue is fabric rendering inconsistency, not a blanket prohibition.'},
+  '8-3': {right:'The Playboy rabbit-head logo is absolutely prohibited on any Kappa Alpha Psi material. This prohibition carries financial penalties including fines and potential suspension of the chapter charter. Violations must be reported to IHQ Vendor Management immediately.',wrong:'Brothers must never purchase items with the prohibited rabbit-head logo regardless of other content. Contacting the vendor directly is insufficient — the violation must be reported to IHQ. The prohibition is not limited to items that also show the badge.'},
+  '8-4': {right:'Only images downloaded directly from the official Kappa Media Kit may be reproduced. Copying from a news article is second-generation photography, which is explicitly prohibited under the fraternity media use policy.',wrong:'Publication in a news article does not place an image in the public domain. Crediting the source does not substitute for using an authorized image. Verbal permission from individuals pictured does not satisfy the fraternity media use requirement.'}
+};
+
+// placeholder
+const _placeholder = {'6-4x': {right:'The General Body holds ultimate authority. A major unbudgeted expenditure requires a General Body vote regardless of officer or Board support. Officers who spend without authorization may face accountability action.',wrong:'Neither officer approval nor Board support substitutes for a General Body vote on major unbudgeted expenditures.'}
+};
+
+const quizScores = {};
+
+function checkQuiz(m) {
+  const qs = answers[m].length;
+  let correct = 0;
+  for (let q = 1; q <= qs; q++) {
+    const name = 'q' + m + '-' + q;
+    const key = m + '-' + q;
+    const sel = document.querySelector('input[name="' + name + '"]:checked');
+    const fb = document.getElementById('fb' + m + '-' + q);
+    const opts = document.querySelectorAll('input[name="' + name + '"]');
+    opts.forEach(opt => {
+      opt.parentElement.classList.remove('correct','incorrect');
+      if (opt.value === answers[m][q-1]) opt.parentElement.classList.add('correct');
+      if (sel && opt.checked && opt.value !== answers[m][q-1]) opt.parentElement.classList.add('incorrect');
+    });
+    if (!sel) { fb.className='quiz-feedback fail show'; fb.innerHTML='Please select an answer above.'; continue; }
+    const isRight = sel.value === answers[m][q-1];
+    if (isRight) correct++;
+    const exp = explanations[key];
+    fb.className = 'quiz-feedback show ' + (isRight ? 'pass' : 'fail');
+    fb.innerHTML = isRight ? '<strong>Correct.</strong> ' + exp.right : '<strong>Incorrect.</strong> ' + exp.wrong;
+  }
+  quizScores[m] = correct;
+  const el = document.getElementById('score-' + m);
+  el.style.display = 'block';
+  const pct = Math.round(correct/qs*100);
+  el.innerHTML = '<div class="score-num">' + correct + '/' + qs + '</div><div class="score-label"></div>';
+  el.querySelector('.score-label').textContent = pct===100 ? 'Perfect Score' : pct>=75 ? pct+'% — Good, review any missed items' : pct>=50 ? pct+'% — Review module content and retry' : pct+'% — Revisit this module before proceeding';
+}
+
+function showFinalScore() {
+  const mods = Object.keys(quizScores);
+  if (!mods.length) return;
+  const total = mods.reduce((s,m)=>s+quizScores[m],0);
+  const max = mods.reduce((s,m)=>s+answers[m].length,0);
+  const pct = Math.round(total/max*100);
+  document.getElementById('final-score-display').textContent = 'Total Quiz Score: ' + total + ' / ' + max + ' (' + pct + '%)';
+}
+</script>
+</body>
+</html>
