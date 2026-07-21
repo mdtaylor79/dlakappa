@@ -7,9 +7,85 @@
 <title>Chapter History — About — DLA Kappa Alpha Psi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+.history-wrap { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
+.history-section { padding: 3.5rem 0; border-bottom: 1px solid #e8dfd4; }
+.history-section:last-of-type { border-bottom: none; }
+.history-section .eyebrow {
+  font-size: .62rem; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: #c69a3f;
+  display: flex; align-items: center; gap: .5rem;
+  margin-bottom: .75rem;
+}
+.history-section .eyebrow::before {
+  content: ''; width: 6px; height: 6px; background: #c69a3f;
+  transform: rotate(45deg); display: inline-block; flex-shrink: 0;
+}
+.history-section h2 {
+  font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700; color: #70110c; margin-bottom: 1.25rem; line-height: 1.2;
+}
+.history-section p {
+  font-size: .97rem; line-height: 1.85; color: #3a2e28; margin-bottom: 1rem;
+}
+.timeline-bar {
+  border-left: 3px solid #c69a3f; padding-left: 1.5rem; margin: 2rem 0;
+}
+.timeline-bar .year {
+  font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700;
+  color: #70110c; line-height: 1; margin-bottom: .35rem;
+}
+.timeline-bar p { margin-bottom: 0; }
 
+/* Charter Members */
+.charter-block {
+  background: #fff; border: 1px solid #e4ddd4;
+  padding: 2.5rem; margin-top: 2rem;
+}
+.charter-block h3 {
+  font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700;
+  color: #70110c; text-align: center; margin-bottom: 1.75rem;
+  padding-bottom: .75rem; border-bottom: 2px solid #c69a3f;
+}
+.charter-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: .45rem 3rem; list-style: none; padding: 0; margin: 0;
+}
+.charter-grid li {
+  font-size: .93rem; color: #3a2e28; line-height: 1.6;
+  padding: .3rem 0; border-bottom: 1px solid #f0ece6;
+}
+.charter-grid li:last-child { border-bottom: none; }
+
+/* Pull quote */
+.pull-quote {
+  background: #2a0604; padding: 2.5rem 2rem; margin: 2.5rem 0;
+  position: relative; overflow: hidden;
+}
+.pull-quote::before {
+  content: '\201C'; font-family: 'Cinzel', serif;
+  font-size: 8rem; line-height: 1; color: rgba(198,154,63,.15);
+  position: absolute; top: -1rem; left: 1rem; pointer-events: none;
+}
+.pull-quote p {
+  font-family: 'Cinzel', serif; font-size: clamp(.95rem,2vw,1.15rem);
+  font-weight: 600; color: #f2ebd7; line-height: 1.65;
+  text-align: center; margin: 0; position: relative;
+}
+.pull-quote cite {
+  display: block; font-family: 'Archivo', sans-serif;
+  font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: #c69a3f; text-align: center;
+  margin-top: .9rem; font-style: normal;
+}
+
+@media(max-width:560px){
+  .charter-grid { grid-template-columns: 1fr; }
+  .history-wrap { padding: 0 1rem; }
+}
+</style>
 </head>
 <body data-page="about">
 <div id="site-nav-placeholder"></div>
@@ -24,25 +100,118 @@
   </div>
 </div>
 <style>.sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}</style>
+
 <div class="page-hero">
-      <div class="wrap">
-        <div class="eyebrow">About — Chapter History</div>
-        <h1>Chapter History</h1>
-        <div class="gold-bar"></div>
-        <p>From its chartering in 1997 to the present, the Denton-Lewisville Alumni Chapter has built a lasting legacy across Denton and Lewisville, Texas.</p>
-      </div>
-    </div>
-    <div class="content-section">
-      <div class="wrap">
-        <h2>Our Story</h2>
-        <p>The Denton-Lewisville (TX) Alumni Chapter was chartered in 1997 with a mission to serve Denton and Lewisville through scholarship, mentorship, civic engagement, and brotherhood. In the decades since, the chapter has grown into one of North Texas's most respected community organizations.</p>
-        <p>Through programs like Guide Right, Kappa League, and the Achievement Academy, the chapter has touched thousands of lives — mentoring young men, supporting families, and partnering with local organizations to create lasting change.</p>
-      </div>
-    </div>
+  <div class="wrap">
+    <div class="eyebrow">About — Chapter History</div>
+    <h1>Chapter History</h1>
+    <div class="gold-bar"></div>
+    <p>From its chartering in 1997 to the present, the Denton-Lewisville Alumni Chapter has built a lasting legacy across Denton and Lewisville, Texas.</p>
   </div>
+</div>
+
+<div style="background:#fff;padding:3rem 0 5rem;">
+  <div class="history-wrap">
+
+    <!-- Our Story -->
+    <div class="history-section">
+      <div class="eyebrow">Our Story</div>
+      <h2>A Legacy of Achievement in North Texas</h2>
+      <p>The Denton-Lewisville Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. was founded to extend the fraternity's legacy of achievement, brotherhood, and service into the North Texas region. Chartered in 1997, the chapter has grown into a cornerstone of community engagement, mentorship, and leadership development. Guided by the fraternity's ideals, the chapter has weathered challenges, celebrated milestones, and continually evolved to meet the needs of its members and the communities it serves.</p>
+
+      <div class="pull-quote">
+        <p>Achievement in Every Field of Human Endeavor</p>
+        <cite>Kappa Alpha Psi Fraternity, Inc. — Motto</cite>
+      </div>
+    </div>
+
+    <!-- Founding -->
+    <div class="history-section">
+      <div class="eyebrow">Founding &amp; Early Years</div>
+      <h2>Chartered March 1, 1997</h2>
+      <p>The chapter's journey began with the vision of a dedicated group of 16 alumni who sought to create a space for fellowship and service within Denton County. Officially chartered on March 1, 1997, the chapter was a beacon of fraternity ideals, fostering camaraderie and a commitment to achievement. Over the years, the chapter expanded its reach, embracing the Lewisville community to reflect its broader scope of impact.</p>
+
+      <div class="timeline-bar">
+        <div class="year">1997</div>
+        <p>Denton-Lewisville Alumni Chapter officially chartered with 16 founding members.</p>
+      </div>
+
+      <!-- Charter Members -->
+      <div class="charter-block">
+        <h3>Charter Members</h3>
+        <ul class="charter-grid">
+          <li>Vivyon Bowman</li>
+          <li>Earnest Sanford</li>
+          <li>Bill Brooks</li>
+          <li>Elwood Shannon</li>
+          <li>Darin Daniels</li>
+          <li>Eric Smith</li>
+          <li>Randal Hawthorne</li>
+          <li>Tracy Suber</li>
+          <li>Joseph Henderson</li>
+          <li>Casey Thomas</li>
+          <li>Dexter Ingram</li>
+          <li>Artist Thornton Jr.</li>
+          <li>Steve Johnson</li>
+          <li>James Veasley</li>
+          <li>A. Lee Kendrick</li>
+          <li>Charles Williams</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Period of Reflection -->
+    <div class="history-section">
+      <div class="eyebrow">A Period of Reflection</div>
+      <h2>2004 — Temporary Inactivity</h2>
+      <p>In 2004, the chapter faced challenges that led to a temporary period of inactivity. However, the spirit of Kappa Alpha Psi remained alive in the hearts of its members. Through determination and collaboration, efforts to revive the chapter culminated in a triumphant reactivation in 2018, marking a new chapter in its storied history.</p>
+
+      <div class="timeline-bar">
+        <div class="year">2004</div>
+        <p>Chapter enters a period of inactivity. The fraternal bond among members remains strong.</p>
+      </div>
+      <div class="timeline-bar">
+        <div class="year">2018</div>
+        <p>Chapter reactivated — brothers reunite and welcome new members to carry the mission forward.</p>
+      </div>
+    </div>
+
+    <!-- Reactivation -->
+    <div class="history-section">
+      <div class="eyebrow">Reactivation &amp; Resurgence</div>
+      <h2>Renewed Purpose, Greater Impact</h2>
+      <p>Since its reactivation, the chapter has focused on reclaiming members, welcoming new brothers, and revitalizing its community presence. Signature programs such as Guide Right and Kappa League have become hallmarks of the chapter's commitment to mentoring young men and fostering leadership. Scholarship initiatives, community service projects, and regional partnerships have further solidified the chapter's reputation as a leader in service and excellence.</p>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="history-section">
+      <div class="eyebrow">Mission &amp; Vision</div>
+      <h2>Purpose-Driven Brotherhood</h2>
+      <p>We are committed to achieving excellence in every field of human endeavor. Our mission is to cultivate leadership, foster brotherhood, and provide impactful service to our community. With a focus on mentorship, education, and civic engagement, the Denton-Lewisville Alumni Chapter seeks to inspire individuals and uplift communities, ensuring a legacy of positive impact for generations to come.</p>
+    </div>
+
+    <!-- Looking Ahead -->
+    <div class="history-section">
+      <div class="eyebrow">Looking Ahead</div>
+      <h2>Building on Our Foundation</h2>
+      <p>As we build on our foundation, the chapter remains dedicated to expanding its reach, strengthening its programs, and deepening its commitment to service. The Denton-Lewisville Alumni Chapter continues to honor its past while embracing the opportunities of the future, striving to make a lasting difference in the lives of those we touch.</p>
+    </div>
+
+    <!-- Join Us -->
+    <div class="history-section" style="border-bottom:none;">
+      <div class="eyebrow">Join Us</div>
+      <h2>Be Part of the Story</h2>
+      <p>Whether you are a brother looking to reconnect, a community member seeking collaboration, or an individual inspired by our mission, we invite you to join us on this journey of achievement and service. Together, we can continue to make a meaningful impact in the North Texas region and beyond.</p>
+      <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/membership.html" style="display:inline-block;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;background:#70110c;color:#f2ebd7;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='#5a0e09'" onmouseout="this.style.background='#70110c'">Membership Info &rarr;</a>
+        <a href="/contact.html" style="display:inline-block;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;background:transparent;color:#70110c;text-decoration:none;border:2px solid #70110c;transition:background .2s,color .2s;" onmouseover="this.style.background='#70110c';this.style.color='#f2ebd7'" onmouseout="this.style.background='transparent';this.style.color='#70110c'">Contact Us &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
-
 </body>
 </html>
