@@ -15,7 +15,7 @@
   /* Committee grid */
   .committee-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
     margin-top: 2.5rem;
   }
@@ -24,48 +24,62 @@
     background: #fff;
     border: 1px solid #e0d8cc;
     border-top: 3px solid #70110c;
-    padding: 1.75rem 1.75rem 1.5rem;
+    padding: 1.75rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: .75rem;
+    align-items: center;
+    text-align: center;
+    gap: .6rem;
   }
 
-  .committee-card .cc-icon {
-    width: 44px;
-    height: 44px;
-    background: #f2ebd7;
+  /* Circular photo */
+  .cc-photo {
+    width: 82px;
+    height: 82px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
     flex-shrink: 0;
+    border: 2px solid #e0d8cc;
+    background: linear-gradient(160deg,#bbb,#888);
+    margin-bottom: .25rem;
+  }
+  .cc-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
 
   .committee-card h3 {
     font-family: 'Cinzel', serif;
-    font-size: .9rem;
+    font-size: .88rem;
     font-weight: 700;
     color: #70110c;
     letter-spacing: .04em;
     margin: 0;
+    line-height: 1.35;
   }
 
   .committee-card p {
-    font-size: .88rem;
+    font-size: .85rem;
     color: #4a3c35;
     line-height: 1.75;
     margin: 0;
+    flex: 1;
   }
 
   .committee-card .cc-chair {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    justify-content: center;
+    gap: .4rem;
     margin-top: auto;
     padding-top: .75rem;
     border-top: 1px solid #ede6da;
     font-size: .75rem;
     color: #6a5a52;
+    width: 100%;
   }
 
   .committee-card .cc-chair span {
@@ -87,6 +101,30 @@
     color: #3a2e28;
     line-height: 1.8;
     margin: 0;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #c69a3f;
+    margin: 3rem 0 0;
+    padding-bottom: .6rem;
+    border-bottom: 1px solid #e0d8cc;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: #c69a3f;
+    transform: rotate(45deg);
+    display: inline-block;
+    flex-shrink: 0;
   }
 </style>
 </head>
@@ -120,165 +158,238 @@
       <p>Each committee is chaired by a chapter brother and supported by volunteers committed to achievement in every field of human endeavor. Brothers interested in serving on a committee should contact the chapter at <a href="mailto:info@dlakappa.org" style="color:#70110c;">info@dlakappa.org</a>.</p>
     </div>
 
+    <!-- COMMITTEES -->
+    <div class="section-label">Committees</div>
+
     <div class="committee-grid">
 
-      <!-- Guide Right / Kappa League -->
+      <!-- Community Engagement -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Guide Right &amp; Kappa League</h3>
-        <p>Oversees the chapter's youth mentorship programs including Kappa League, college prep workshops, and the DLA Guide Right initiative for young men in Denton County.</p>
+        <div class="cc-photo"></div>
+        <h3>Community Engagement</h3>
+        <p>Builds and sustains partnerships with local nonprofits, civic organizations, and community leaders across Denton County to amplify the chapter's service footprint.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>MD Taylor</span>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>— Open</span>
         </div>
       </div>
 
-      <!-- Membership -->
+      <!-- Civic Actions -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h3>Membership &amp; Training</h3>
-        <p>Manages the chapter's membership process including interest meetings, reclamation of inactive brothers, Membership Training Academy (MTA), and new member orientation.</p>
+        <div class="cc-photo"></div>
+        <h3>Civic Actions</h3>
+        <p>Promotes voter registration, civic education, and political awareness — partnering with local and regional organizations to advance advocacy efforts throughout the community.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>Cedric Travis</span>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>— Open</span>
         </div>
       </div>
 
-      <!-- Finance -->
+      <!-- Kappa League -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        <div class="cc-photo">
+          <img src="/img/Omari_Souza_KL_lead.jpg" alt="Omari Souza" style="object-position:center top;">
         </div>
-        <h3>Finance &amp; Budget</h3>
+        <h3>Kappa League</h3>
+        <p>Oversees the chapter's Kappa League youth mentorship program — college prep workshops, career development, life skills, and the DLA Guide Right initiative for young men in Denton County.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>Omari Souza</span>
+        </div>
+      </div>
+
+      <!-- Budget & Finance -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/erick.png" alt="Erick Mitchell">
+        </div>
+        <h3>Budget &amp; Finance</h3>
         <p>Maintains the chapter's financial records, prepares the annual budget, oversees dues collection, and ensures fiscal accountability in partnership with the Keeper of Exchequer.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Erick Mitchell</span>
         </div>
       </div>
 
-      <!-- Scholarship -->
+      <!-- By-Laws -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <div class="cc-photo">
+          <img src="/img/rod_wilson.png" alt="Rod Wilson">
         </div>
-        <h3>Scholarship &amp; Education</h3>
-        <p>Administers the chapter's scholarship program, coordinates academic recognition events, and supports educational initiatives including the Achievement Academy program.</p>
+        <h3>By-Laws</h3>
+        <p>Ensures chapter operations adhere to national fraternity guidelines and local bylaws, advises on parliamentary procedure, and manages governance documentation and amendments.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>— Open</span>
-        </div>
-      </div>
-
-      <!-- Community Service -->
-      <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </div>
-        <h3>Community Service &amp; Outreach</h3>
-        <p>Coordinates the chapter's community service calendar including the annual Day of Service, Back to School Drive, Juneteenth programming, and partnerships with local nonprofits.</p>
-        <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>— Open</span>
-        </div>
-      </div>
-
-      <!-- Programs & Events -->
-      <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3>Programs &amp; Events</h3>
-        <p>Plans and executes chapter events including Founders' Day, the Achievement Scholarship Gala, fellowship gatherings, and special programming throughout the fraternal year.</p>
-        <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>— Open</span>
-        </div>
-      </div>
-
-      <!-- Communications -->
-      <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3>Communications &amp; Technology</h3>
-        <p>Manages the chapter's website, social media channels, email communications, photography, and digital presence to keep brothers and the community informed and engaged.</p>
-        <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>— Open</span>
-        </div>
-      </div>
-
-      <!-- Bylaws & Parliamentarian -->
-      <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3>Bylaws &amp; Parliamentarian</h3>
-        <p>Ensures chapter operations adhere to national fraternity guidelines and local bylaws, advises on parliamentary procedure, and manages governance documentation and chapter amendments.</p>
-        <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Rod Wilson</span>
         </div>
       </div>
 
       <!-- Long Range Planning -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
+        <div class="cc-photo"></div>
         <h3>Long Range Planning</h3>
-        <p>Develops the chapter's strategic vision and multi-year goals, evaluates chapter performance metrics, and recommends initiatives to strengthen the chapter's impact and sustainability.</p>
+        <p>Develops the chapter's strategic vision and multi-year goals, evaluates performance metrics, and recommends initiatives to strengthen the chapter's long-term impact and sustainability.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>— Open</span>
+        </div>
+      </div>
+
+      <!-- Nominations & Elections -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/mark_elmore.png" alt="Mark Elmore">
+        </div>
+        <h3>Nominations &amp; Elections</h3>
+        <p>Oversees the annual officer nomination and election process, ensures compliance with fraternity election guidelines, and maintains the integrity of chapter governance transitions.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>Mark Elmore</span>
+        </div>
+      </div>
+
+      <!-- Fundraising / Planning & Events -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/Omari_Souza_KL_lead.jpg" alt="Omari Souza" style="object-position:center top;">
+        </div>
+        <h3>Fundraising, Planning &amp; Events</h3>
+        <p>Plans and executes chapter events including Founders' Day, the Achievement Scholarship Gala, fellowship gatherings, and leads annual fundraising campaigns throughout the fraternal year.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>Omari Souza</span>
+        </div>
+      </div>
+
+      <!-- Marketing & Advertising -->
+      <div class="committee-card">
+        <div class="cc-photo"></div>
+        <h3>Marketing &amp; Advertising</h3>
+        <p>Manages the chapter's brand, website, social media channels, email communications, and digital presence to keep brothers and the broader community informed and engaged.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>Colen Skinner</span>
+        </div>
+      </div>
+
+      <!-- Reclamation -->
+      <div class="committee-card">
+        <div class="cc-photo"></div>
+        <h3>Reclamation</h3>
+        <p>Identifies and reconnects with inactive brothers, facilitating their return to active participation in chapter life and reinforcing the bonds of fraternal brotherhood.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>— Open</span>
+        </div>
+      </div>
+
+      <!-- Reengagement -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/lee_glenn.png" alt="Lee Glenn">
+        </div>
+        <h3>Reengagement</h3>
+        <p>Builds pathways for brothers to re-engage with chapter programming, committees, and service — ensuring every member has a meaningful place in the chapter's work.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>Lee Glenn</span>
+        </div>
+      </div>
+
+      <!-- Community Health & Welfare -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/erik_sturdivant.png" alt="Erik Sturdivant">
+        </div>
+        <h3>Community Health &amp; Welfare</h3>
+        <p>Organizes health fairs, screenings, and wellness programming for brothers and the community, with a focus on addressing health disparities affecting Black men and families in North Texas.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>Erik Sturdivant</span>
         </div>
       </div>
 
       <!-- Senior Kappa Affairs -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/><path d="M2 20h20"/></svg>
+        <div class="cc-photo">
+          <img src="/img/william_atkinson.png" alt="William Atkinson">
         </div>
         <h3>Senior Kappa Affairs</h3>
         <p>Supports and honors the chapter's elder brothers, coordinates Senior Kappa recognition programming, and ensures the wisdom and legacy of longtime members remains central to chapter life.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>William Atkinson</span>
+        </div>
+      </div>
+
+      <!-- Social Media -->
+      <div class="committee-card">
+        <div class="cc-photo"></div>
+        <h3>Social Media</h3>
+        <p>Develops and executes the chapter's social media strategy across Instagram, Facebook, and YouTube — creating content that celebrates brotherhood, highlights events, and grows community reach.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>— Open</span>
         </div>
       </div>
 
-      <!-- Political Action & Civic Engagement -->
+      <!-- Military Veterans Affairs Commission -->
       <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <h3>Political Action &amp; Civic Engagement</h3>
-        <p>Promotes voter registration, civic participation, and political awareness across Denton County communities, partnering with local organizations to amplify the chapter's advocacy efforts.</p>
+        <div class="cc-photo"></div>
+        <h3>Military Veterans Affairs Commission</h3>
+        <p>Advocates for and supports veteran brothers within the chapter, coordinates veteran-focused programming, and connects members with resources and recognition they have earned through service.</p>
         <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chair: <span>— Open</span>
-        </div>
-      </div>
-
-      <!-- Health & Wellness -->
-      <div class="committee-card">
-        <div class="cc-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3>Health &amp; Wellness</h3>
-        <p>Organizes health fairs, screenings, and wellness programming for brothers and the broader community, with a focus on addressing health disparities affecting Black men and families in North Texas.</p>
-        <div class="cc-chair">
-          <svg width="13" height="13" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>— Open</span>
         </div>
       </div>
 
     </div>
+
+    <!-- LIAISONS -->
+    <div class="section-label">Liaisons</div>
+
+    <div class="committee-grid">
+
+      <!-- St. Jude Liaison -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/mark_elmore.png" alt="Mark Elmore">
+        </div>
+        <h3>St. Jude Children's Research Hospital</h3>
+        <p>Serves as the chapter's liaison to St. Jude Children's Research Hospital, coordinating fundraising campaigns, awareness events, and community giving initiatives on behalf of the chapter.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Liaison: <span>Mark Elmore</span>
+        </div>
+      </div>
+
+      <!-- Silhouettes Liaison -->
+      <div class="committee-card">
+        <div class="cc-photo">
+          <img src="/img/vivyon_bowman.png" alt="Vivyon Bowman">
+        </div>
+        <h3>Silhouettes</h3>
+        <p>Maintains the chapter's relationship with the Silhouettes, the associate body of Kappa Alpha Psi, supporting joint programming, events, and community engagement activities.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Liaison: <span>Vivyon Bowman</span>
+        </div>
+      </div>
+
+      <!-- NPHC Liaison -->
+      <div class="committee-card">
+        <div class="cc-photo"></div>
+        <h3>NPHC</h3>
+        <p>Represents the chapter within the National Pan-Hellenic Council, fostering collaboration and unity among the Divine Nine organizations in the Denton-Lewisville area.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Liaison: <span>— Open</span>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>
 
