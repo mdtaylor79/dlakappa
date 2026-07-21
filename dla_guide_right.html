@@ -193,6 +193,26 @@
     @media(max-width:420px){
       .kl-pillars{grid-template-columns:1fr!important;}
     }
+    /* Thumbnail strip: scroll on mobile */
+    @media(max-width:600px){
+      #klThumbs{grid-template-columns:repeat(5,1fr)!important;}
+    }
+    @media(max-width:400px){
+      #klThumbs{grid-template-columns:repeat(4,1fr)!important;}
+    }
+    /* Gallery image height on mobile */
+    @media(max-width:560px){
+      #klGallery img{height:300px!important;}
+    }
+    /* Tab labels on small screens */
+    @media(max-width:480px){
+      .kl-tab{padding:.65rem .75rem!important;font-size:.62rem!important;}
+    }
+    /* Apply buttons stack on mobile */
+    .kl-apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    @media(max-width:560px){
+      .kl-apply-grid{grid-template-columns:1fr!important;}
+    }
   </style>
   <script>
   (function(){
@@ -256,7 +276,7 @@
         <div style="font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.35rem;">Ready to Join</div>
         <h2 style="margin:0;font-size:clamp(1.4rem,3vw,2rem);">Apply to Kappa League</h2>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div class="kl-apply-grid">
         <a href="https://www.jotform.com/form/222445122922145" target="_blank" rel="noopener"
            style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:#70110c;color:#f2ebd7;text-decoration:none;font-family:'Archivo',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.03em;transition:background .2s;"
            onmouseover="this.style.background='#5a0e09';"

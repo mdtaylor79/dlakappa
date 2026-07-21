@@ -120,6 +120,23 @@
   .board-grid .officer-photo .photo-placeholder {
     width: 155px;
   }
+
+  /* Mobile: tighter cards */
+  @media(max-width:560px){
+    .admin-grid, .board-grid { gap: 1rem; }
+    .officer-photo { width: 130px !important; }
+    .officer-photo img { height: 165px !important; }
+    .polemarch-row .officer-photo { width: 160px !important; }
+    .polemarch-row .officer-photo img { height: 200px !important; }
+    .officer-photo .photo-placeholder { height: 165px !important; }
+    .officer-card .officer-name { font-size: .82rem; }
+    .officer-card .officer-title { font-size: .72rem; }
+  }
+  @media(max-width:400px){
+    .officer-photo { width: 115px !important; }
+    .officer-photo img { height: 145px !important; }
+    .officer-photo .photo-placeholder { height: 145px !important; }
+  }
 </style>
 </head>
 <body data-page="about">
