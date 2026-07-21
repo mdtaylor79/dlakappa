@@ -276,6 +276,11 @@
     .content-area, .welcome-body { padding: 24px; }
     .hero { padding: 36px 24px; }
   }
+
+/* ── Diamond Section Divider ── */
+.diamond-divider{display:flex;align-items:center;gap:1.1rem;max-width:520px;margin:0 auto;padding:8px 2rem;pointer-events:none;}
+.diamond-divider::before,.diamond-divider::after{content:"";flex:1;height:1px;background:rgba(198,154,63,.38);}
+.diamond-divider span{display:block;width:7px;height:7px;background:#c69a3f;transform:rotate(45deg);flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -2890,7 +2895,7 @@ Alumni Chapter (501(c)(7))   Community Groups
         <div class="cert-topic">UBIT &amp; intermediate sanctions</div>
         <div class="cert-topic">Political activity prohibition</div>
       </div>
-      <hr style="border-color: var(--cream-border); margin: 20px 0;">
+      <div class="diamond-divider" aria-hidden="true"><span></span></div>
       <p style="font-size:13px; color:var(--text-light);">Issued by the Denton-Lewisville Guide Right Foundation &amp; Alumni Chapter<br>
       Based on IRS Publication 557, IRC §501(c)(3), IRC §501(c)(7), and IRS Stay Exempt Workshop materials</p>
       <p style="font-size:12px; color:var(--text-light); margin-top:8px;">Date Completed: <span id="cert-date"></span></p>
@@ -3046,7 +3051,7 @@ function printCertificate() {
     <div class="topic">UBIT &amp; intermediate sanctions</div>
     <div class="topic">Political activity prohibition</div>
   </div>
-  <hr>
+  <div class="diamond-divider" aria-hidden="true"><span></span></div>
   <div class="footer">
     Issued by the Denton-Lewisville Guide Right Foundation &amp; Alumni Chapter<br>
     Based on IRS Publication 557, IRC §501(c)(3), IRC §501(c)(7), and IRS Stay Exempt Workshop materials<br>
