@@ -304,7 +304,7 @@ body{background:#ffffff !important;min-height:100vh;}
 /* Dark gradient overlay */
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(110deg,rgba(15,3,3,.82) 0%,rgba(15,3,3,.60) 50%,rgba(15,3,3,.22) 100%);
+  background:linear-gradient(110deg,rgba(15,3,3,.62) 0%,rgba(15,3,3,.38) 50%,rgba(15,3,3,.10) 100%);
 }
 
 /* Content floats over image */
