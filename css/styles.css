@@ -647,7 +647,7 @@ body{background:#ffffff !important;min-height:100vh;}
 @media(max-width:880px){.engage{padding:72px 0}.engage .grid{grid-template-columns:1fr;gap:52px}}
 
 /* === WHAT WE DO — Programs Section === */
-.programs{padding:100px 0}
+.programs{padding:100px 0;background:#f2ebd7;}
 .programs .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
 .programs .head{text-align:center;max-width:660px;margin:0 auto 58px}
 .programs .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7rem;justify-content:center}
