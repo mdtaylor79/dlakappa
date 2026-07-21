@@ -69,9 +69,9 @@
         <div class="frat">Kappa Alpha Psi Fraternity, Inc.</div>
         <div class="addr">1501 S. Loop 288, Suite 104, PMB 190<br>Denton, TX 76205</div>
         <div class="social">
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="YouTube">YT</a>
+          <a href="https://www.facebook.com/dlanupes/" target="_blank" rel="noopener" aria-label="Facebook"><img src="/img/facebook_icon.png" alt="Facebook" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
+          <a href="https://www.instagram.com/dlanupes/" target="_blank" rel="noopener" aria-label="Instagram"><img src="/img/Instagram_icon.png" alt="Instagram" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
+          <a href="https://www.youtube.com/@DLAKappas" target="_blank" rel="noopener" aria-label="YouTube"><img src="/img/youtube_icon.png" alt="YouTube" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
         </div>
       </div>
       <div class="contact">
