@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide Right & Kappa League Mentor Training</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#70110C;--secondary:#D4AF37;--secondary-light:#FFFBEB;--white:#fff;--text:#1a1a1a;--muted:#666;--border:#ddd;--success:#2a7d3a;--error:#c0392b;--sidebar-w:280px}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f5f5;color:var(--text);display:flex;min-height:100vh}
+
+/* SIDEBAR */
+#sidebar{width:var(--sidebar-w);background:var(--primary);color:var(--white);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100}
+#sidebar-header{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,0.2)}
+#sidebar-header .logo{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:6px}
+#sidebar-header h2{font-size:15px;font-weight:700;line-height:1.4}
+#progress-bar-wrap{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.15)}
+#progress-label{font-size:11px;opacity:0.7;margin-bottom:6px}
+#progress-bar{background:rgba(255,255,255,0.2);border-radius:10px;height:6px}
+#progress-fill{background:var(--secondary);height:6px;border-radius:10px;transition:width 0.4s}
+nav{flex:1;padding:12px 0}
+.nav-item{display:flex;align-items:center;gap:10px;padding:12px 20px;cursor:pointer;transition:background 0.2s;border-left:3px solid transparent;text-decoration:none;color:inherit}
+.nav-item:hover{background:rgba(255,255,255,0.1)}
+.nav-item.active{background:rgba(255,255,255,0.15);border-left-color:var(--secondary)}
+.nav-item.completed .nav-num{background:var(--secondary);color:var(--primary)}
+.nav-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.nav-title{font-size:12px;line-height:1.4}
+
+/* MAIN */
+#main{margin-left:var(--sidebar-w);flex:1;min-height:100vh}
+
+/* PAGE SECTIONS */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* HERO BANNER */
+.hero{background:var(--primary);color:var(--white);padding:60px 60px 50px}
+.hero .klass{font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:12px}
+.hero h1{font-size:38px;font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero p{font-size:17px;opacity:0.85;max-width:600px;line-height:1.6}
+.hero-meta{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}
+.hero-badge{background:rgba(255,255,255,0.15);border-radius:6px;padding:8px 16px;font-size:13px}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{background:var(--secondary-light);border:2px dashed #C9A84C;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;color:#7a6200;margin:24px 0;min-height:200px}
+.img-placeholder .icon{font-size:40px;margin-bottom:10px}
+.img-placeholder p{font-size:13px;text-align:center}
+
+/* CONTENT CONTAINER */
+.content{max-width:820px;margin:0 auto;padding:40px 40px 60px}
+
+/* OBJECTIVES BLOCK */
+.obj-block{background:var(--secondary-light);border-left:5px solid var(--primary);border-radius:0 8px 8px 0;padding:24px 28px;margin:28px 0}
+.obj-block h3{color:var(--primary);font-size:14px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.obj-block ol{padding-left:20px}
+.obj-block li{margin-bottom:8px;font-size:15px;line-height:1.5}
+
+/* SECTION HEADERS */
+.section-head{border-bottom:2px solid var(--primary);padding-bottom:10px;margin:36px 0 20px;color:var(--primary);font-size:22px;font-weight:700}
+
+/* PROSE */
+p.prose{font-size:15px;line-height:1.7;margin-bottom:16px}
+
+/* CALLOUT BOX */
+.callout{border-radius:8px;padding:20px 24px;margin:20px 0;font-size:15px;line-height:1.6}
+.callout-info{background:#e8f4fd;border-left:4px solid #2980b9}
+.callout-warn{background:#FFFDE7;border-left:4px solid #f39c12}
+.callout-key{background:var(--secondary-light);border-left:4px solid var(--primary)}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead{background:var(--primary);color:var(--white)}
+th{padding:12px 14px;text-align:left;font-weight:600}
+td{padding:11px 14px;border-bottom:1px solid var(--border)}
+tr:nth-child(even) td{background:#fafaf5}
+tr:hover td{background:#FFF3B0}
+
+/* ACCORDION */
+.accordion{margin:20px 0}
+.acc-item{border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;background:var(--white);font-weight:600;font-size:15px;transition:background 0.2s}
+.acc-head:hover{background:var(--secondary-light)}
+.acc-head .arrow{transition:transform 0.3s;font-size:12px;color:var(--primary)}
+.acc-head.open{background:var(--secondary-light);color:var(--primary)}
+.acc-head.open .arrow{transform:rotate(180deg)}
+.acc-body{display:none;padding:20px;background:#fff;border-top:1px solid var(--border);font-size:14px;line-height:1.7}
+.acc-body.open{display:block}
+.acc-body ul{padding-left:20px}
+.acc-body li{margin-bottom:6px}
+
+/* KNOWLEDGE CHECK */
+.kc-block{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;margin:32px 0}
+.kc-title{color:var(--primary);font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.kc-question{font-size:16px;font-weight:600;margin-bottom:18px;line-height:1.5}
+.kc-options{display:flex;flex-direction:column;gap:10px}
+.kc-opt{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:2px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:14px;line-height:1.5}
+.kc-opt:hover{border-color:var(--primary);background:var(--secondary-light)}
+.kc-opt.correct{border-color:var(--success);background:#f0fdf4;color:var(--success)}
+.kc-opt.incorrect{border-color:var(--error);background:#fef0f0;color:var(--error)}
+.kc-opt input{margin-top:2px;accent-color:var(--primary)}
+.kc-feedback{margin-top:14px;padding:14px 18px;border-radius:8px;font-size:14px;display:none}
+.kc-feedback.show{display:block}
+.kc-feedback.correct-fb{background:#f0fdf4;border:1px solid var(--success);color:#166534}
+.kc-feedback.incorrect-fb{background:#fef0f0;border:1px solid var(--error);color:#991b1b}
+.kc-btn{margin-top:16px;background:var(--primary);color:var(--white);border:none;padding:11px 28px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.2s}
+.kc-btn:hover{opacity:0.88}
+
+/* PHASE CARDS */
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:20px 0}
+.phase-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;border-top:4px solid var(--primary)}
+.phase-card .phase-num{font-size:11px;color:var(--primary);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.phase-card h4{font-size:15px;font-weight:700;margin-bottom:10px}
+.phase-card ul{padding-left:16px;font-size:13px;color:var(--muted)}
+.phase-card li{margin-bottom:4px}
+
+/* CHECKLIST */
+.checklist{list-style:none;margin:16px 0;padding:0}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0ebe0;font-size:14px;line-height:1.5}
+.check-icon{color:var(--primary);font-weight:700;font-size:16px;flex-shrink:0;background:var(--secondary);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+
+/* MODULE NAV BUTTONS */
+.mod-nav{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
+.btn-nav{background:var(--primary);color:var(--white);border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.btn-nav:hover{opacity:0.88}
+.btn-nav.ghost{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+
+/* COMPLETION */
+.completion{text-align:center;padding:60px 40px;background:var(--secondary);min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.completion .badge{font-size:64px;margin-bottom:20px}
+.completion h2{color:var(--primary);font-size:32px;margin-bottom:16px}
+.completion p{font-size:16px;color:var(--muted);max-width:500px;margin-bottom:30px}
+
+/* INTERACTIVE FILTER TABLE */
+.filter-bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border:1px solid var(--primary);border-radius:20px;background:transparent;color:var(--primary);font-size:13px;cursor:pointer;transition:all 0.2s}
+.filter-btn.active,.filter-btn:hover{background:var(--primary);color:white}
+
+@media(max-width:700px){
+  #sidebar{width:100%;height:auto;position:relative}
+  #main{margin-left:0}
+  .hero{padding:30px 24px}
+  .content{padding:24px}
+  .hero h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <div class="logo">Kappa Alpha Psi</div>
+    <h2>Guide Right &amp; Kappa League Mentor Training</h2>
+  </div>
+  <div id="progress-bar-wrap">
+    <div id="progress-label">0 of 8 modules complete</div>
+    <div id="progress-bar"><div id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <nav id="nav"></nav>
+</div>
+
+<div id="main">
+
+<!-- PAGE 0: COURSE COVER -->
+<div class="page active" id="page-0">
+  <div style="display:flex;align-items:center;justify-content:center;gap:48px;padding:28px 40px 0;background:var(--primary)">
+    <img src="dla_guide_right_nlogo.png" alt="DLA Guide Right Logo" style="max-height:90px;max-width:180px;object-fit:contain;filter:brightness(0) invert(1)" onerror="this.parentElement.style.display='none'">
+    <div style="width:1px;height:70px;background:rgba(255,255,255,0.3)"></div>
+    <img src="dla_kappa_league_logo.png" alt="DLA Kappa League Logo" style="max-height:90px;max-width:180px;object-fit:contain;filter:brightness(0) invert(1)" onerror="this.parentElement.style.display='none'">
+  </div>
+  <div class="hero" style="min-height:320px;display:flex;flex-direction:column;justify-content:center">
+    <div class="klass">Kappa Alpha Psi Fraternity, Inc. &bull; Guide Right Program</div>
+    <h1>Guide Right &amp; Kappa League<br>Mentor Training</h1>
+    <p>A comprehensive training experience for Kappa Men committed to developing the next generation of leaders through mentorship, structure, and service.</p>
+    <div class="hero-meta">
+      <div class="hero-badge"> 8 Modules</div>
+      <div class="hero-badge"> Interactive Activities</div>
+      <div class="hero-badge"> Knowledge Checks</div>
+      <div class="hero-badge"> Self-Paced</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="img-placeholder"><p>Course Banner Image<br><small>Recommended: Kappa League group photo or program branding</small></p></div>
+
+    <h2 class="section-head">Understanding the Difference: Guide Right vs. Kappa League</h2>
+    <p class="prose">Before diving in, every mentor must understand a fundamental distinction that shapes how we talk about and deliver our programs:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0">
+      <div style="background:var(--primary);color:white;border-radius:10px;padding:24px">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:10px">The Umbrella Program</div>
+        <h3 style="font-size:18px;margin-bottom:12px">Guide Right</h3>
+        <ul style="padding-left:18px;font-size:14px;line-height:1.9;opacity:0.92">
+          <li>National Service Initiative of Kappa Alpha Psi</li>
+          <li>Educational &amp; occupational guidance of youth</li>
+          <li>Serves Boys &amp; Girls, elementary through college</li>
+          <li>Encompasses <em>all</em> chapter youth programs</li>
+          <li>Led by the <strong>Guide Right Director</strong></li>
+        </ul>
+      </div>
+      <div style="background:var(--secondary-light);border:2px solid var(--primary);border-radius:10px;padding:24px">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--primary);opacity:0.8;margin-bottom:10px">The Flagship Initiative</div>
+        <h3 style="font-size:18px;margin-bottom:12px;color:var(--primary)">Kappa League</h3>
+        <ul style="padding-left:18px;font-size:14px;line-height:1.9;color:#333">
+          <li>Official name: <strong>Kappa Leadership Development League</strong></li>
+          <li>Male youth only (Middle School &amp; High School)</li>
+          <li>Club-oriented, structured chapter activities</li>
+          <li>A <em>subset</em> of Guide Right — not interchangeable</li>
+          <li>Led by the <strong>Kappa League Coordinator</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout callout-warn" style="margin-bottom:28px"><strong>Key Distinction:</strong> Guide Right is the broader national service program. Kappa League is its flagship initiative. Every chapter has a <strong>Guide Right Director</strong> who oversees all youth programming and a <strong>Kappa League Coordinator</strong> who manages day-to-day Kappa League operations. These are separate roles with separate responsibilities.</div>
+
+    <div class="obj-block">
+      <h3>Course Learning Objectives</h3>
+      <p style="margin-bottom:14px;font-size:14px;color:#555">By completing this course, you will be able to:</p>
+      <ol>
+        <li>Explain the history and purpose of Guide Right as Kappa Alpha Psi&#39;s signature service program</li>
+        <li>Describe the Kappa League structure, constitution, bylaws, and governance</li>
+        <li>Identify the Seven Phases of Kappa League and their developmental objectives for youth</li>
+        <li>Articulate the eligibility requirements, training obligations, and responsibilities of Kappa Men(tors)</li>
+        <li>Apply effective mentoring strategies for building lasting, trust-based relationships with Kappa Leaguers</li>
+        <li>Enforce Kappa League program policies, the Code of Conduct, and the Do&#39;s &amp; Don&#39;ts</li>
+        <li>Utilize program evaluation tools, community service documentation, and assessment methods</li>
+        <li>Complete the steps required for Guide Right Program Certification</li>
+      </ol>
+    </div>
+    <div class="mod-nav" style="justify-content:flex-end">
+      <button class="btn-nav" onclick="goTo(1)">Begin Course &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 1: HISTORY & FOUNDATION -->
+<div class="page" id="page-1">
+  <div class="hero">
+    <div class="klass">Module 1 of 8</div>
+    <h1>History &amp; Foundation of Guide Right</h1>
+    <p>Understand the origins, mission, and foundational objectives of the Guide Right program — the oldest, most successful mentoring program for young people of color — from its founding in 1922 to today.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Distinguish Guide Right (the national service program) from Kappa League (its flagship initiative)</li>
+        <li>Identify the founder of Guide Right, its year of conception, and the roles of Guide Right Director and Kappa League Coordinator</li>
+        <li>List the five core objectives of the Guide Right program</li>
+        <li>Recognize Guide Right&#39;s impact — the oldest, most successful mentoring program for young people of color</li>
+        <li>Describe the core initiatives that deliver the Guide Right mission today</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Historical Photo Placeholder<br><small>Recommended: Archival photo of early Guide Right activities or Leon W. Stewart</small></p></div>
+
+    <h2 class="section-head">Guide Right vs. Kappa League: Know the Difference</h2>
+    <p class="prose"><strong>Guide Right</strong> is the National Service Initiative of Kappa Alpha Psi Fraternity, Inc. It encompasses <em>all</em> of the fraternity&#39;s youth-oriented programs. Guide Right serves boys and girls from elementary school through college and is focused on the educational and occupational guidance of youth — primarily inspirational and informative in character.</p>
+    <p class="prose"><strong>Kappa League</strong> — officially the <strong>Kappa Leadership Development League</strong> — is the <em>flagship initiative</em> of Guide Right. Kappa League is male-only, club-oriented, and focused on middle school and high school students. It is a subset of Guide Right, not its equivalent.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Guide Right</th><th>Kappa League</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Scope</strong></td><td>All chapter youth programs</td><td>Flagship youth leadership club</td></tr>
+          <tr><td><strong>Who It Serves</strong></td><td>Boys &amp; Girls, elementary–college</td><td>Male youth, Middle School &amp; High School</td></tr>
+          <tr><td><strong>Format</strong></td><td>Broad service initiative</td><td>Club-based, structured meetings &amp; activities</td></tr>
+          <tr><td><strong>Chapter Leader</strong></td><td><strong>Guide Right Director</strong></td><td><strong>Kappa League Coordinator</strong></td></tr>
+          <tr><td><strong>Relationship</strong></td><td>The umbrella program</td><td>A subset of Guide Right</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-key"><strong>We Are the Oldest, Most Successful Mentoring Program for Young People of Color!</strong> Guide Right has mentored over <strong>500,000 young people</strong> and operates in <strong>266 chapters</strong> across the U.S., currently impacting more than <strong>11,100 students</strong>.</div>
+
+    <h2 class="section-head">Origins of Guide Right</h2>
+    <p class="prose">Guide Right was <strong>conceived in 1922</strong> by <strong>Brother Leon W. Stewart</strong>, the "Father of Guide Right" and Past Western Province Polemarch, and was suggested at the <strong>12th Grand Chapter of Kappa Alpha Psi</strong>. Following the St. Louis Alumni Chapter&#39;s founding in 1921, Brothers Leon W. Stewart and <strong>J. Jerome Peters</strong> were assigned to research programs that would assist in developing the youth of the Black community and devise a "meaningful and practical approach" to the problem of Black youth underachievement.</p>
+    <p class="prose">Brother Stewart proposed a program of guidance designated as <em>Guide Right</em>, with the initial purpose of assisting high school seniors in choosing and pursuing useful careers. From its earliest days, Guide Right focused on providing <strong>scholarships to needy and talented students</strong> and informing young people about professions and career options.</p>
+    <div class="callout callout-info"><strong>What Guide Right Is:</strong> "A program of the educational and occupational guidance of youth, primarily inspirational and informative in character. The purpose of the Guide Right Service Program is to place the training, experience, and interest of successful men at the disposal of youth — developing leadership, creating an achievement mindset, and mentoring."</div>
+
+    <h2 class="section-head">The Five Objectives of Guide Right</h2>
+    <p class="prose">The Guide Right program operates under five core objectives that drive every chapter&#39;s youth programming:</p>
+    <div class="accordion" id="acc-objectives">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>1. Create the Next Generation of Leaders via Leadership Development</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Guide Right&#39;s primary mission is to develop leaders — not just followers. Every program activity, from officer elections to community service, is designed to grow each young man&#39;s capacity to lead with purpose, integrity, and vision. Leadership development is intentional, structured, and consistent across all phases of programming.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>2. Prepare Students for College</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Guide Right connects youth to college preparation resources beginning in middle school. Activities include college visits, admissions workshops, FAFSA assistance, standardized test prep, and College Signing Day celebrations. The program helps every Kappa Leaguer envision and plan a path to higher education.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>3. Mentor Students to College Graduation</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Guide Right&#39;s impact doesn&#39;t end at enrollment — it extends through college graduation. Mentoring relationships established in Kappa League continue to support young men through their college years. With <strong>77% of Guide Right students graduating college within 6 years</strong>, this long-term investment is transformative.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>4. Positively Impact Youth Through Mentoring and Training</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Beyond college prep, Guide Right shapes the character, confidence, and skills of every young man it touches. Through mentoring, structured training, and positive role modeling, Guide Right gives youth the tools they need to navigate life&#39;s challenges — academically, socially, and professionally.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>5. Prepare Youth for Academic Success in Middle School, High School, and College</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Guide Right supports academic excellence at every educational stage. With <strong>98% of Guide Right students graduating high school</strong>, the program's cradle-to-career approach creates sustained academic achievement. Study halls, tutoring, and academic accountability are embedded across all programming.</p></div>
+      </div>
+    </div>
+
+    <h2 class="section-head">Program Impact</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin:20px 0">
+      <div style="background:var(--primary);color:white;border-radius:10px;padding:20px;text-align:center">
+        <div style="font-size:32px;font-weight:800">98%</div>
+        <div style="font-size:13px;opacity:0.85;margin-top:6px">High School Graduation Rate</div>
+      </div>
+      <div style="background:var(--primary);color:white;border-radius:10px;padding:20px;text-align:center">
+        <div style="font-size:32px;font-weight:800">77%</div>
+        <div style="font-size:13px;opacity:0.85;margin-top:6px">College Graduation within 6 Years</div>
+      </div>
+      <div style="background:var(--primary);color:white;border-radius:10px;padding:20px;text-align:center">
+        <div style="font-size:32px;font-weight:800">500K+</div>
+        <div style="font-size:13px;opacity:0.85;margin-top:6px">Young Lives Impacted</div>
+      </div>
+      <div style="background:var(--primary);color:white;border-radius:10px;padding:20px;text-align:center">
+        <div style="font-size:32px;font-weight:800">266</div>
+        <div style="font-size:13px;opacity:0.85;margin-top:6px">Chapters Nationwide</div>
+      </div>
+      <div style="background:var(--primary);color:white;border-radius:10px;padding:20px;text-align:center">
+        <div style="font-size:32px;font-weight:800">11,100+</div>
+        <div style="font-size:13px;opacity:0.85;margin-top:6px">Students Currently Served</div>
+      </div>
+    </div>
+
+    <h2 class="section-head">Core Initiatives</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> STEM Education</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><ul><li>NSBE Jr. (National Society of Black Engineers Junior) chapters</li><li>STEM Career Fairs and exposure events</li><li>Free programming training through Code.org</li><li>Microsoft Retail STEM training partnerships</li><li>STEM Drone Competitions and Hackathons</li></ul></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> College Success &amp; Prep</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><ul><li>Mentoring programs with 90% college graduation rates</li><li>Undergraduate and alumni partnership networks</li><li>Naviance college planning platform integration</li><li>FAFSA awareness and completion support</li><li>College Signing Day celebrations</li><li>Virtual College Tours &amp; Conversations</li></ul></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> Financial Literacy</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Financial literacy is woven throughout the Guide Right curriculum. Members learn budgeting, saving, investing, entrepreneurship, and credit management — building the economic awareness needed for long-term financial independence and wealth building.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> Positive Video Reporting — Kappa League TV</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p>Kappa League TV (KLTV) showcases the achievements and activities of Kappa League programs nationwide, providing positive media representation of young Black men.</p>
+          <ul style="margin-top:10px">
+            <li> National Kappa League TV: <a href="https://www.youtube.com/channel/UCKmtfzGdgd31233tRZNXH2Q" target="_blank" style="color:var(--primary)">youtube.com — Kappa League TV</a></li>
+            <li> DLA Kappa League TV: <a href="https://www.youtube.com/@dlakappaleague" target="_blank" style="color:var(--primary)">youtube.com/@dlakappaleague</a></li>
+            <li> National Instagram: <a href="https://www.instagram.com/kappa_league_tv/" target="_blank" style="color:var(--primary)">@kappa_league_tv</a></li>
+            <li> DLA Instagram: <a href="https://www.instagram.com/dlakappaleague/" target="_blank" style="color:var(--primary)">@dlakappaleague</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-head">From Guide Right to Kappa League</h2>
+    <p class="prose">Kappa League — the <strong>Kappa Leadership Development League</strong> — was founded on <strong>February 12, 1969</strong> by the Los Angeles Alumni Chapter at <strong>Alain LeRoy Locke High School</strong>. The national body adopted Kappa League in <strong>1970</strong> as the structured, club-based flagship of the Guide Right mission.</p>
+    <p class="prose">Today, each chapter's <strong>Guide Right Director</strong> oversees the full Guide Right program portfolio while the <strong>Kappa League Coordinator</strong> manages the day-to-day delivery of Kappa League activities, meetings, and mentoring. Understanding this leadership structure ensures clear accountability at every level.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Year</th><th>Milestone</th></tr></thead>
+        <tbody>
+          <tr><td>1911</td><td>Kappa Alpha Psi Fraternity, Inc. founded at Indiana University</td></tr>
+          <tr><td>1921</td><td>St. Louis Alumni Chapter formed; Brothers Stewart and Peters assigned to research youth programs</td></tr>
+          <tr><td>1922</td><td>Guide Right conceived by Leon W. Stewart; adopted at the 12th Grand Chapter of Kappa Alpha Psi</td></tr>
+          <tr><td>1969</td><td>Kappa League founded by LA Alumni Chapter at Alain LeRoy Locke HS (February 12)</td></tr>
+          <tr><td>1970</td><td>Kappa League adopted nationally as the flagship initiative of Guide Right</td></tr>
+          <tr><td>Present</td><td>266 chapters, 11,100+ students, 500K+ lives impacted nationwide</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">Which statement BEST describes the relationship between Guide Right and Kappa League?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc1" value="a"> <span>Guide Right and Kappa League are two separate, independent programs with no connection</span></label>
+        <label class="kc-opt"><input type="radio" name="kc1" value="b"> <span>Kappa League is the flagship initiative within Guide Right, which is the broader national service program</span></label>
+        <label class="kc-opt"><input type="radio" name="kc1" value="c"> <span>Guide Right is a subset of Kappa League&#39;s youth programming</span></label>
+        <label class="kc-opt"><input type="radio" name="kc1" value="d"> <span>Kappa League replaced Guide Right as Kappa Alpha Psi&#39;s national service program in 1970</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc1','b','kc1-fb',this)">Submit Answer</button>
+      <div id="kc1-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(0)">&#8592; Back</button>
+      <button class="btn-nav" onclick="completeAndGo(1,2)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 2: KAPPA LEAGUE OVERVIEW -->
+<div class="page" id="page-2">
+  <div class="hero">
+    <div class="klass">Module 2 of 8</div>
+    <h1>Kappa League Overview &amp; Governance</h1>
+    <p>Explore the structure, mission, constitution, and chapter organization of the Kappa League program.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Define the mission and purpose of the Kappa League</li>
+        <li>Identify the officer roles and their responsibilities within a Kappa League chapter</li>
+        <li>Explain the requirements for chapter membership and meeting structure</li>
+        <li>Describe the relationship between Kappa League, the alumni chapter, and national Guide Right standards</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Kappa League Group Photo Placeholder<br><small>Recommended: Photo of a Kappa League chapter meeting or group activity</small></p></div>
+    <h2 class="section-head">Mission &amp; Purpose</h2>
+    <p class="prose">Kappa League is the <strong>youth auxiliary of Kappa Alpha Psi Fraternity, Inc.</strong>, operating under the Guide Right mandate. Its mission is to develop the <strong>next generation of young leaders</strong> by exposing them to positive role models, structured programming, and the values of academic achievement, civic responsibility, and character development.</p>
+    <p class="prose">Kappa League is <strong>not a fraternity</strong> and Kappa Leaguers are <strong>not "Junior Kappas."</strong> Membership in Kappa League does not confer any fraternal status or future membership guarantee in Kappa Alpha Psi.</p>
+    <div class="callout callout-warn"><strong>Important Distinction:</strong> Kappa Leaguers must never be referred to as "Junior Kappas." This language misrepresents the program and blurs the distinct identity of Kappa League as a youth development program, not a fraternal pipeline.</div>
+    <h2 class="section-head">Kappa League Officer Roles</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Officer Title</th><th>Primary Responsibilities</th></tr></thead>
+        <tbody>
+          <tr><td><strong>President</strong></td><td>Presides over meetings; represents Kappa League; coordinates with advisors</td></tr>
+          <tr><td><strong>Vice President</strong></td><td>Assists president; assumes duties in president&#39;s absence; oversees committees</td></tr>
+          <tr><td><strong>Secretary</strong></td><td>Records minutes; maintains correspondence; manages member records</td></tr>
+          <tr><td><strong>Treasurer</strong></td><td>Manages funds; prepares financial reports; tracks dues and expenditures</td></tr>
+          <tr><td><strong>Chaplain</strong></td><td>Provides spiritual reflection at meetings; promotes moral character</td></tr>
+          <tr><td><strong>Parliamentarian</strong></td><td>Ensures meetings follow proper order; advises on parliamentary procedure</td></tr>
+          <tr><td><strong>Sergeant-at-Arms</strong></td><td>Maintains order; assists with logistics; enforces meeting decorum</td></tr>
+          <tr><td><strong>Reporter/Historian</strong></td><td>Documents activities; maintains historical records; manages publicity</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="section-head">Meeting Structure</h2>
+    <p class="prose">Kappa League meetings follow a standard parliamentary order to develop professionalism and procedural knowledge in members. Each meeting should be structured and purposeful.</p>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Standard Meeting Order of Business</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ol style="padding-left:20px;line-height:2">
+            <li>Call to Order</li>
+            <li>Prayer / Invocation (Chaplain)</li>
+            <li>Pledge of Allegiance</li>
+            <li>Kappa League Pledge / Creed</li>
+            <li>Roll Call / Attendance</li>
+            <li>Reading of Previous Minutes</li>
+            <li>Treasurer&#39;s Report</li>
+            <li>Committee Reports</li>
+            <li>Old Business</li>
+            <li>New Business</li>
+            <li>Program / Speaker / Activity</li>
+            <li>Announcements</li>
+            <li>Adjournment</li>
+          </ol>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Membership Requirements for Kappa Leaguers</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Must be a male youth (age requirements set by chapter)</li>
+            <li>Must maintain satisfactory academic standing</li>
+            <li>Must attend meetings regularly</li>
+            <li>Must adhere to the Kappa League Code of Conduct</li>
+            <li>Must pay chapter-determined dues</li>
+            <li>Must complete parent/guardian enrollment paperwork</li>
+            <li>Must participate in community service activities</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Relationship to the Alumni Chapter</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p>The alumni chapter bears ultimate responsibility for the Kappa League program. The chapter&#39;s Guide Right Chairman oversees program operations, ensures compliance with national standards, and coordinates mentor recruitment, training, and Guide Right Certification. Kappa League operates under the oversight of the alumni chapter at all times.</p>
+        </div>
+      </div>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">Which of the following statements about Kappa League is CORRECT?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc2" value="a"><span>Kappa Leaguers are considered "Junior Kappas" and have a path to fraternity membership</span></label>
+        <label class="kc-opt"><input type="radio" name="kc2" value="b"><span>Kappa League is a youth development program; members are NOT "Junior Kappas"</span></label>
+        <label class="kc-opt"><input type="radio" name="kc2" value="c"><span>Kappa League is independent of the alumni chapter&#39;s oversight</span></label>
+        <label class="kc-opt"><input type="radio" name="kc2" value="d"><span>Membership in Kappa League guarantees future membership in Kappa Alpha Psi</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc2','b','kc2-fb',this)">Submit Answer</button>
+      <div id="kc2-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(1)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(2,3)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 3: SEVEN PHASES -->
+<div class="page" id="page-3">
+  <div class="hero">
+    <div class="klass">Module 3 of 8</div>
+    <h1>The Seven Phases of Kappa League</h1>
+    <p>Explore the structured, seven-phase curriculum that drives Kappa League&#39;s holistic youth development model.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Name and describe all seven phases of the Kappa League curriculum</li>
+        <li>Identify the sub-topics and focus areas within each phase</li>
+        <li>Explain how the phases collectively address the whole-person development of Kappa Leaguers</li>
+        <li>Match program activities to the appropriate phase framework</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Phase Activity Photo Placeholder<br><small>Recommended: Photo of youth engaged in a Kappa League program activity</small></p></div>
+    <h2 class="section-head">Overview: The Seven-Phase Model</h2>
+    <p class="prose">The Kappa League curriculum is organized into <strong>seven developmental phases</strong> that collectively address the mental, social, physical, and economic development of young men. Each phase is designed to build upon the previous one, creating a comprehensive pathway from self-awareness to career readiness.</p>
+    <div class="phase-grid">
+      <div class="phase-card"><div class="phase-num">Phase 1</div><h4>Self-Identity &amp; Purpose</h4><ul><li>Discipline</li><li>Assurance</li><li>Self-Awareness</li><li>Appearance</li></ul></div>
+      <div class="phase-card"><div class="phase-num">Phase 2</div><h4>Training</h4><ul><li>Academic Excellence</li><li>Career Choice</li><li>Preparation</li><li>Organization</li></ul></div>
+      <div class="phase-card"><div class="phase-num">Phase 3</div><h4>Competition</h4><ul><li>Politics</li><li>Career Advancement</li><li>Sports</li></ul></div>
+      <div class="phase-card"><div class="phase-num">Phase 4</div><h4>Social</h4><ul><li>Religion</li><li>Arts &amp; Entertainment</li><li>Communication</li><li>Etiquette</li></ul></div>
+      <div class="phase-card"><div class="phase-num">Phase 5</div><h4>Health Education</h4><ul><li>Physical Fitness</li><li>Sex Education</li><li>Drug Awareness</li><li>Health &amp; Safety</li></ul></div>
+      <div class="phase-card"><div class="phase-num">Phase 6</div><h4>Economic Empowerment</h4><ul><li>Financial Literacy</li><li>Entrepreneurship</li><li>Budgeting</li></ul></div>
+      <div class="phase-card"><div class="phase-num">Phase 7</div><h4>College &amp; Career</h4><ul><li>College Prep</li><li>Career Exploration</li><li>Scholarship Research</li></ul></div>
+    </div>
+    <h2 class="section-head">Phase Deep Dives</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 1 — Self-Identity &amp; Purpose</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>This foundational phase helps young men develop a clear sense of who they are. Topics include <strong>discipline</strong> (managing behavior and time), <strong>assurance</strong> (building confidence and self-worth), <strong>self-awareness</strong> (understanding strengths and weaknesses), and <strong>appearance</strong> (professional dress and grooming). Mentors should create a safe space for honest self-reflection and goal articulation.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 2 — Training</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Phase 2 equips Kappa Leaguers with the academic and career tools they need to succeed. <strong>Academic excellence</strong> sessions encourage GPA improvement and study habits. <strong>Career choice</strong> activities expose members to diverse professions. <strong>Preparation</strong> covers resume writing, interview skills, and goal-setting. <strong>Organization</strong> teaches time management and personal productivity.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 3 — Competition</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>This phase teaches Kappa Leaguers how to compete constructively. <strong>Politics</strong> covers civic engagement and understanding governmental systems. <strong>Career advancement</strong> addresses navigating workplace dynamics. <strong>Sports</strong> fosters teamwork, sportsmanship, and the role athletics can play in development and scholarship access.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 4 — Social</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Phase 4 develops the social competencies every young man needs. <strong>Religion</strong> explores spiritual identity and values. <strong>Arts &amp; Entertainment</strong> exposes members to creative expression and cultural appreciation. <strong>Communication</strong> sharpens verbal and written skills. <strong>Etiquette</strong> training prepares members for professional and formal social settings.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 5 — Health Education</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>This phase promotes physical and emotional wellness. <strong>Physical fitness</strong> encourages healthy habits. <strong>Sex education</strong> provides age-appropriate, factual health information. <strong>Drug awareness</strong> presents the consequences of substance use. <strong>Health &amp; safety</strong> covers first aid basics and personal safety awareness. All content must be delivered in an age-appropriate, chapter-approved manner.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 6 — Economic Empowerment</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Phase 6 builds financial literacy and entrepreneurial thinking. Topics include <strong>budgeting</strong>, <strong>saving and investing</strong>, <strong>banking basics</strong>, and <strong>entrepreneurship</strong>. Young men explore how to start and manage businesses, understand credit, and build long-term financial goals. Guest speakers from business and finance are highly encouraged.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Phase 7 — College &amp; Career</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>The culminating phase prepares Kappa Leaguers for life after high school. Activities include <strong>college visits</strong>, <strong>admissions workshops</strong>, <strong>FAFSA completion support</strong>, <strong>scholarship research</strong>, and <strong>career exploration panels</strong>. Mentors play a critical role in connecting members with higher education resources and helping them visualize their futures.</p></div>
+      </div>
+    </div>
+    <h2 class="section-head">Interactive: Match the Phase</h2>
+    <p class="prose" style="margin-bottom:12px">Filter activities by phase to see how program events align with the curriculum:</p>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterPhase(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterPhase(this,'1')">Phase 1</button>
+      <button class="filter-btn" onclick="filterPhase(this,'2')">Phase 2</button>
+      <button class="filter-btn" onclick="filterPhase(this,'3')">Phase 3</button>
+      <button class="filter-btn" onclick="filterPhase(this,'4')">Phase 4</button>
+      <button class="filter-btn" onclick="filterPhase(this,'5')">Phase 5</button>
+      <button class="filter-btn" onclick="filterPhase(this,'6')">Phase 6</button>
+      <button class="filter-btn" onclick="filterPhase(this,'7')">Phase 7</button>
+    </div>
+    <div class="tbl-wrap">
+      <table id="phase-table">
+        <thead><tr><th>Activity / Topic</th><th>Phase</th><th>Key Outcome</th></tr></thead>
+        <tbody>
+          <tr data-phase="1"><td>Dress for Success Workshop</td><td>Phase 1</td><td>Professional appearance &amp; self-image</td></tr>
+          <tr data-phase="1"><td>Personal Vision Board Activity</td><td>Phase 1</td><td>Self-awareness &amp; goal clarity</td></tr>
+          <tr data-phase="2"><td>Study Hall &amp; Tutoring Program</td><td>Phase 2</td><td>Academic excellence</td></tr>
+          <tr data-phase="2"><td>Resume Writing Workshop</td><td>Phase 2</td><td>Career preparation</td></tr>
+          <tr data-phase="3"><td>Mock City Council Exercise</td><td>Phase 3</td><td>Civic engagement &amp; politics</td></tr>
+          <tr data-phase="3"><td>Career Fair Attendance</td><td>Phase 3</td><td>Career advancement awareness</td></tr>
+          <tr data-phase="4"><td>Etiquette Dinner</td><td>Phase 4</td><td>Social &amp; professional etiquette</td></tr>
+          <tr data-phase="4"><td>Public Speaking Competition</td><td>Phase 4</td><td>Communication skills</td></tr>
+          <tr data-phase="5"><td>Fitness Challenge Series</td><td>Phase 5</td><td>Physical health habits</td></tr>
+          <tr data-phase="5"><td>Health &amp; Wellness Panel</td><td>Phase 5</td><td>Health education &amp; awareness</td></tr>
+          <tr data-phase="6"><td>Financial Literacy Workshop</td><td>Phase 6</td><td>Budgeting &amp; saving</td></tr>
+          <tr data-phase="6"><td>Entrepreneurship Pitch Night</td><td>Phase 6</td><td>Business &amp; economic empowerment</td></tr>
+          <tr data-phase="7"><td>HBCU College Tour</td><td>Phase 7</td><td>College exploration &amp; readiness</td></tr>
+          <tr data-phase="7"><td>FAFSA Completion Workshop</td><td>Phase 7</td><td>Financial aid &amp; college access</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">Which Kappa League phase specifically addresses financial literacy, budgeting, and entrepreneurship?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc3" value="a"><span>Phase 2 — Training</span></label>
+        <label class="kc-opt"><input type="radio" name="kc3" value="b"><span>Phase 5 — Health Education</span></label>
+        <label class="kc-opt"><input type="radio" name="kc3" value="c"><span>Phase 6 — Economic Empowerment</span></label>
+        <label class="kc-opt"><input type="radio" name="kc3" value="d"><span>Phase 7 — College &amp; Career</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc3','c','kc3-fb',this)">Submit Answer</button>
+      <div id="kc3-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(2)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(3,4)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 4: MENTOR ROLES & ELIGIBILITY -->
+<div class="page" id="page-4">
+  <div class="hero">
+    <div class="klass">Module 4 of 8</div>
+    <h1>Mentor Roles, Eligibility &amp; Responsibilities</h1>
+    <p>Understand who qualifies to serve as a Kappa Men(tor), what&#39;s required before serving, and what the role demands.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>List the eligibility requirements for Kappa Men(tors)</li>
+        <li>Identify mandatory training and background check requirements</li>
+        <li>Describe the five Kappa Men(tor) fundamentals</li>
+        <li>Explain the time commitment and expectations of the mentor role</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Mentor Training Photo Placeholder<br><small>Recommended: Photo of Kappa Men in a mentor training session</small></p></div>
+    <h2 class="section-head">Mentor Eligibility Requirements</h2>
+    <p class="prose">Not every brother automatically qualifies to serve as a Kappa Men(tor). The following requirements must be satisfied before any Kappa Man works directly with Kappa Leaguers:</p>
+    <ul class="checklist">
+      <li><span class="check-icon">&#10003;</span><span><strong>Age:</strong> Must be at least 21 years of age</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>Background Check:</strong> Must successfully complete a Tier 3 background check (no disqualifying criminal history)</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>Clean Criminal Record:</strong> No felony convictions; no crimes against minors; no sexual offenses</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>Youth Protection Training:</strong> Must complete Boy Scouts of America Youth Protection Training (or equivalent approved training)</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>1-Year Commitment:</strong> Must commit to serve for a minimum of one full program year</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>Valid Driver&#39;s License:</strong> Required for mentors who may transport Kappa Leaguers</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>Good Standing:</strong> Must be a financial member in good standing with Kappa Alpha Psi</span></li>
+      <li><span class="check-icon">&#10003;</span><span><strong>Acknowledgment Form:</strong> Must sign the Do&#39;s and Don&#39;ts Acknowledgment as required for Guide Right Certification</span></li>
+    </ul>
+    <div class="callout callout-warn"><strong>No Exceptions:</strong> All eligibility requirements are mandatory. No Kappa Man should have direct, unsupervised access to Kappa Leaguers until all clearances and training are confirmed.</div>
+    <h2 class="section-head">The Five Kappa Men(tor) Fundamentals</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Fundamental 1 — Be Friendly, Not a Friend</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>A mentor maintains a <strong>warm, supportive relationship</strong> while preserving appropriate professional boundaries. The goal is not to be a peer or buddy — it is to be a consistent, trustworthy adult figure. Avoid sharing personal problems, seeking validation from Kappa Leaguers, or creating relationships that blur the adult/youth dynamic.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Fundamental 2 — Be a Role Model</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Kappa Men(tors) lead by example. What you <em>do</em> matters more than what you say. Model punctuality, professional dress, respectful communication, and civic engagement. Kappa Leaguers are always watching — your conduct on and off program grounds shapes their understanding of manhood.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Fundamental 3 — Accept Participants as They Are</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Meet every Kappa Leaguer where he is — not where you wish he were. Some young men come from challenging home environments, have academic struggles, or carry social-emotional burdens. A good mentor creates an unconditionally supportive environment and works patiently toward growth, not perfection.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Fundamental 4 — Encourage School and Academic Achievement</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Academic success is a cornerstone of Guide Right. Mentors should regularly ask about school performance, encourage consistent attendance, connect members with tutoring resources, and celebrate academic milestones. Challenge Kappa Leaguers to set and track GPA goals each semester.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Fundamental 5 — Set Goals Together</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Effective mentors help Kappa Leaguers develop SMART (Specific, Measurable, Achievable, Relevant, Time-bound) goals across multiple life domains — academic, social, personal, and career. Regular goal check-ins create accountability and build the self-discipline needed for long-term success.</p></div>
+      </div>
+    </div>
+    <h2 class="section-head">Mentor Roles Overview</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Role</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Guide Right Chairman</strong></td><td>Chapter&#39;s senior leader for all Guide Right / Kappa League operations; accountable for certification</td></tr>
+          <tr><td><strong>Program Director/Coordinator</strong></td><td>Day-to-day management of Kappa League activities, scheduling, and logistics</td></tr>
+          <tr><td><strong>Kappa Men(tor)</strong></td><td>Direct mentor to Kappa Leaguers; attends meetings, conducts one-on-ones, models values</td></tr>
+          <tr><td><strong>Advisor / Sponsor</strong></td><td>Provides subject-matter expertise or professional guidance in specific topic areas</td></tr>
+          <tr><td><strong>Chaperone</strong></td><td>Approved adult responsible for supervision at off-site events (must meet all eligibility requirements)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">Which of the following is a required step BEFORE a Kappa Man can serve as a mentor with direct access to Kappa Leaguers?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc4" value="a"><span>Serving as chapter president</span></label>
+        <label class="kc-opt"><input type="radio" name="kc4" value="b"><span>Completing a Tier 3 background check and Youth Protection Training</span></label>
+        <label class="kc-opt"><input type="radio" name="kc4" value="c"><span>Having at least 5 years of fraternity membership</span></label>
+        <label class="kc-opt"><input type="radio" name="kc4" value="d"><span>Being nominated by the chapter&#39;s Polemarch</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc4','b','kc4-fb',this)">Submit Answer</button>
+      <div id="kc4-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(3)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(4,5)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 5: BUILDING RELATIONSHIPS -->
+<div class="page" id="page-5">
+  <div class="hero">
+    <div class="klass">Module 5 of 8</div>
+    <h1>Building &amp; Cultivating Mentoring Relationships</h1>
+    <p>Learn practical strategies for establishing trust, setting goals, and sustaining meaningful mentoring connections with Kappa Leaguers.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Apply techniques for building trust with youth mentees</li>
+        <li>Use structured conversation starters to understand a Kappa Leaguer&#39;s school experience, goals, and challenges</li>
+        <li>Facilitate SMART goal-setting conversations with mentees</li>
+        <li>Demonstrate strategies for providing constructive feedback and sustaining long-term mentoring relationships</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Mentor-Mentee Meeting Photo Placeholder<br><small>Recommended: Photo of one-on-one mentor and youth conversation</small></p></div>
+    <h2 class="section-head">Establishing Trust</h2>
+    <p class="prose">Trust is the foundation of any effective mentoring relationship. It cannot be demanded — it must be earned over time through consistency, honesty, and genuine care. Kappa Leaguers, especially those from under-resourced environments, may initially be guarded or skeptical of adult relationships.</p>
+    <div class="callout callout-key"><strong>Key Principle:</strong> Show up consistently. Be where you said you would be, when you said you would be there. Consistency is the fastest path to trust.</div>
+    <h2 class="section-head">Mentor Connection: Getting to Know Your Mentee</h2>
+    <p class="prose">Use these conversation starters in your first few one-on-one meetings. They come from the Kappa League Mentor Connection framework and are designed to help mentors understand the whole person — not just academic performance.</p>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> School Experience Questions</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>What do you enjoy most about school? What do you find most challenging?</li>
+            <li>Which subjects are you strongest in? Which need the most work?</li>
+            <li>How do you feel about your teachers? Do you feel supported at school?</li>
+            <li>What&#39;s your current GPA, and where would you like it to be?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> Goals &amp; Aspirations Questions</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Where do you see yourself in 5 years? 10 years?</li>
+            <li>What career or profession are you most curious about?</li>
+            <li>What does success look like to you personally?</li>
+            <li>What college or training program are you considering after high school?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> Strengths &amp; Interests Questions</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>What are you really good at — inside or outside of school?</li>
+            <li>What activities or hobbies do you enjoy most?</li>
+            <li>Tell me about a time you accomplished something you were proud of.</li>
+            <li>Who are the people in your life who believe in you?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> Challenges &amp; Support Questions</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>What&#39;s the biggest challenge you&#39;re facing right now?</li>
+            <li>Is there anything happening at home or school that affects your ability to focus?</li>
+            <li>What kind of support would be most helpful to you?</li>
+            <li>What do you wish adults in your life better understood about you?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span> Gratitude &amp; Connection Questions</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>What are three things in your life you&#39;re grateful for?</li>
+            <li>Who is someone who has made a positive difference in your life? How?</li>
+            <li>What does it mean to you to be part of Kappa League?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h2 class="section-head">SMART Goal Setting</h2>
+    <p class="prose">Guide your mentees to set goals that are <strong>Specific, Measurable, Achievable, Relevant,</strong> and <strong>Time-bound</strong>. The SMART framework transforms vague aspirations into actionable plans.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Element</th><th>Meaning</th><th>Example Question to Ask</th></tr></thead>
+        <tbody>
+          <tr><td><strong>S</strong>pecific</td><td>Clearly defined goal</td><td>"What exactly do you want to achieve?"</td></tr>
+          <tr><td><strong>M</strong>easurable</td><td>Progress can be tracked</td><td>"How will you know when you&#39;ve reached it?"</td></tr>
+          <tr><td><strong>A</strong>chievable</td><td>Realistic and attainable</td><td>"Is this something you can realistically accomplish?"</td></tr>
+          <tr><td><strong>R</strong>elevant</td><td>Aligned with broader goals</td><td>"Why is this goal important to you?"</td></tr>
+          <tr><td><strong>T</strong>ime-bound</td><td>Has a deadline or timeframe</td><td>"By when do you want to accomplish this?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="section-head">Sustaining the Relationship</h2>
+    <p class="prose">Long-term mentoring requires intentional effort. After initial rapport is established, maintain momentum through consistent check-ins, celebrating small wins, and navigating setbacks with patience.</p>
+    <div class="callout callout-info"><strong>Feedback Best Practice:</strong> When giving feedback, use the "Sandwich" approach — start with a genuine strength, address the growth area, then close with encouragement. This method preserves dignity while promoting growth.</div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">A Kappa Leaguer sets this goal: "I want to do better in math." Which SMART element is MISSING from this goal statement?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc5" value="a"><span>Relevant — the goal isn&#39;t connected to his interests</span></label>
+        <label class="kc-opt"><input type="radio" name="kc5" value="b"><span>Specific and Measurable — it is too vague and has no target or deadline</span></label>
+        <label class="kc-opt"><input type="radio" name="kc5" value="c"><span>Achievable — improving in math is not a realistic goal</span></label>
+        <label class="kc-opt"><input type="radio" name="kc5" value="d"><span>Nothing is missing — this is a complete SMART goal</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc5','b','kc5-fb',this)">Submit Answer</button>
+      <div id="kc5-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(4)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(5,6)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 6: POLICIES & DO'S AND DON'TS -->
+<div class="page" id="page-6">
+  <div class="hero">
+    <div class="klass">Module 6 of 8</div>
+    <h1>Program Policies, Do&#39;s &amp; Don&#39;ts, and Safety</h1>
+    <p>Know the rules. Protect the young men. Uphold the program&#39;s integrity.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Identify the prohibited activities listed in the Kappa League Do&#39;s and Don&#39;ts</li>
+        <li>Explain the social media policy for Kappa League participants and mentors</li>
+        <li>Describe the components of the Code of Conduct and dress code expectations</li>
+        <li>Recognize the Guide Right Certification requirements related to policy compliance</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Kappa League Meeting / Professional Setting Placeholder<br><small>Recommended: Photo of Kappa Leaguers in professional dress at a formal activity</small></p></div>
+    <h2 class="section-head">Kappa League Do&#39;s &amp; Don&#39;ts</h2>
+    <p class="prose">These rules exist to protect Kappa Leaguers, preserve the integrity of the Guide Right program, and ensure that Kappa League remains clearly distinct from the fraternal experience of Kappa Alpha Psi.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:50%">&#10060; DON&#39;T — Prohibited Activities</th><th>&#9989; DO — Correct Practice</th></tr></thead>
+        <tbody>
+          <tr><td>Assign Kappa Leaguers fraternity line names or numbers</td><td>Address members by their given names or titles only</td></tr>
+          <tr><td>Allow Kappa Leaguers to wear or "cross" Kappa Alpha Psi paraphernalia/jackets</td><td>Provide Kappa League branded apparel appropriate to their program</td></tr>
+          <tr><td>Conduct probate-style events, "coming out" shows, or any hazing simulation</td><td>Use induction/welcome ceremonies appropriate for youth organizations</td></tr>
+          <tr><td>Engage in, permit, or condone hazing in any form</td><td>Report any suspected hazing to chapter leadership immediately</td></tr>
+          <tr><td>Teach or permit Kappa Alpha Psi fraternal hand signs or rituals</td><td>Use Kappa League&#39;s own gestures, pledges, and traditions</td></tr>
+          <tr><td>Refer to Kappa Leaguers as "Junior Kappas"</td><td>Use "Kappa Leaguers" or their officer titles exclusively</td></tr>
+          <tr><td>Be alone with a Kappa Leaguer without another adult present</td><td>Follow the "two-deep" leadership rule at all times</td></tr>
+          <tr><td>Use personal social media to contact individual Kappa Leaguers</td><td>Use official chapter/program communication channels only</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="section-head">Social Media Policy</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Social Media Policy for Mentors</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Mentors must <strong>not</strong> connect with Kappa Leaguers on personal social media accounts (Instagram, Snapchat, TikTok, etc.)</li>
+            <li>All digital communication must occur through official chapter platforms or with full transparency to parents/guardians</li>
+            <li>Mentors must not post photos or videos of Kappa Leaguers without written parental consent</li>
+            <li>Any inappropriate contact reported online must be escalated to the Guide Right Chairman immediately</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Social Media Policy for Kappa Leaguers</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Kappa Leaguers represent the program at all times on social media</li>
+            <li>Content that is disrespectful, violent, or discriminatory is prohibited and may result in disciplinary action</li>
+            <li>Members must not share details of program activities before official announcements</li>
+            <li>All social media conduct is subject to the Kappa League Code of Conduct</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h2 class="section-head">Code of Conduct &amp; Dress Code</h2>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Member Code of Conduct</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Treat all members, mentors, and guests with respect and dignity</li>
+            <li>Maintain academic standards set by the chapter</li>
+            <li>Attend meetings and activities punctually and consistently</li>
+            <li>Refrain from illegal behavior, substance use, or gang activity</li>
+            <li>Honor the confidentiality of personal information shared in meetings or one-on-one sessions</li>
+            <li>Represent Kappa League with pride and professionalism in the community</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Dress Code Expectations</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p><strong>Standard Meetings:</strong> Business casual — collared shirt, slacks or khakis, clean shoes. No athletic wear, sagging pants, or offensive graphics.</p>
+          <p style="margin-top:10px"><strong>Formal Events:</strong> Business professional — suit or dress shirt with tie, dress pants, dress shoes.</p>
+          <p style="margin-top:10px"><strong>Community Service:</strong> Kappa League polo/program shirt or chapter-approved attire.</p>
+          <p style="margin-top:10px">Dress standards build professional identity and help Kappa Leaguers understand expectations in academic and corporate settings.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Transportation &amp; Safety Policies</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>Mentors who transport Kappa Leaguers must have a valid driver&#39;s license and adequate auto insurance</li>
+            <li>Transportation must be arranged with parent/guardian knowledge and consent</li>
+            <li>The "two-deep" rule applies to vehicle transportation — no mentor should be alone with a single Kappa Leaguer in a vehicle</li>
+            <li>Any transportation incident must be reported to program leadership</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">A mentor wants to contact a Kappa Leaguer about an upcoming meeting. What is the CORRECT way to do this?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc6" value="a"><span>Send a direct message through his personal Instagram account</span></label>
+        <label class="kc-opt"><input type="radio" name="kc6" value="b"><span>Call the Kappa Leaguer&#39;s cell phone directly without notifying parents</span></label>
+        <label class="kc-opt"><input type="radio" name="kc6" value="c"><span>Use the official chapter communication channel or contact the parent/guardian</span></label>
+        <label class="kc-opt"><input type="radio" name="kc6" value="d"><span>Add the Kappa Leaguer on Snapchat so communication is easier</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc6','c','kc6-fb',this)">Submit Answer</button>
+      <div id="kc6-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(5)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(6,7)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 7: PROGRAM DELIVERY -->
+<div class="page" id="page-7">
+  <div class="hero">
+    <div class="klass">Module 7 of 8</div>
+    <h1>Program Delivery: Monthly Activities &amp; Assignments</h1>
+    <p>Structure your program year using the monthly assignment calendar and learn how to facilitate meaningful activities for each phase.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Navigate the 12-month Kappa League assignment calendar</li>
+        <li>Facilitate Module 1 mentor activities focused on communication skills</li>
+        <li>Plan program activities that align with the Seven Phases curriculum</li>
+        <li>Integrate budget planning into the program delivery process</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Program Activity Photo Placeholder<br><small>Recommended: Photo of a structured Kappa League workshop or activity</small></p></div>
+    <h2 class="section-head">12-Month Assignment Calendar</h2>
+    <p class="prose">Each month of the Kappa League program year has a focused theme and assignment. Use this calendar as a guide to structure your year-round programming, ensuring all seven phases are addressed.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Focus Topic</th><th>Phase Alignment</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Month 1</strong></td><td>Communication Skills</td><td>Phase 4 — Social</td></tr>
+          <tr><td><strong>Month 2</strong></td><td>Self-Identity &amp; Personal Branding</td><td>Phase 1 — Self-Identity</td></tr>
+          <tr><td><strong>Month 3</strong></td><td>Academic Excellence &amp; Study Skills</td><td>Phase 2 — Training</td></tr>
+          <tr><td><strong>Month 4</strong></td><td>Financial Literacy &amp; Budgeting</td><td>Phase 6 — Economic Empowerment</td></tr>
+          <tr><td><strong>Month 5</strong></td><td>Health &amp; Wellness</td><td>Phase 5 — Health Education</td></tr>
+          <tr><td><strong>Month 6</strong></td><td>Career Exploration &amp; Preparation</td><td>Phase 2 — Training</td></tr>
+          <tr><td><strong>Month 7</strong></td><td>Civic Engagement &amp; Leadership</td><td>Phase 3 — Competition</td></tr>
+          <tr><td><strong>Month 8</strong></td><td>Etiquette &amp; Professionalism</td><td>Phase 4 — Social</td></tr>
+          <tr><td><strong>Month 9</strong></td><td>Entrepreneurship</td><td>Phase 6 — Economic Empowerment</td></tr>
+          <tr><td><strong>Month 10</strong></td><td>College Planning &amp; Admissions</td><td>Phase 7 — College &amp; Career</td></tr>
+          <tr><td><strong>Month 11</strong></td><td>Community Service &amp; Giving Back</td><td>All Phases</td></tr>
+          <tr><td><strong>Month 12</strong></td><td>Program Reflection &amp; Recognition</td><td>All Phases</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="section-head">Month 1 Spotlight: Communication Skills</h2>
+    <p class="prose">The first month of Kappa League is designed to build foundational communication skills. The Month One Assignment focuses on a practical scenario that tests how young men respond in real-world communication challenges.</p>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Month 1 Scenario: Navigating a Difficult Conversation</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p><strong>Scenario:</strong> A Kappa Leaguer has been experiencing conflict with a classmate who keeps disrupting his ability to focus during a group project. He wants to address it but isn&#39;t sure how to approach the conversation without it becoming an argument.</p><p style="margin-top:10px"><strong>Assignment:</strong> Working with your mentor, develop a plan for how to approach this classmate respectfully and constructively. Role-play the conversation. Discuss how tone, body language, and word choice affect the outcome.</p><p style="margin-top:10px"><strong>Learning Outcome:</strong> Kappa Leaguers practice assertive (not aggressive) communication, active listening, and conflict resolution — core social-emotional skills for academic and professional success.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Facilitating the Activity: Tips for Mentors</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li><strong>Set the tone:</strong> Create a non-judgmental space. Emphasize that there are no "wrong" answers in the exploration phase.</li>
+            <li><strong>Model it first:</strong> Demonstrate the role-play yourself before asking the mentee to try.</li>
+            <li><strong>Debrief after:</strong> Ask reflective questions — "How did that feel?" "What would you change?" "What worked well?"</li>
+            <li><strong>Connect to their life:</strong> Ask the mentee to identify a real situation where these skills would be useful.</li>
+            <li><strong>Document the session:</strong> Note key takeaways in the mentee&#39;s progress log for future reference.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h2 class="section-head">Budget Planning for Program Delivery</h2>
+    <p class="prose">Effective programming requires financial planning. Chapters must develop an annual program budget that accounts for all planned activities.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Budget Category</th><th>Examples</th><th>Planning Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Meeting Costs</td><td>Venue rental, supplies, refreshments</td><td>Secure recurring meeting space at no or low cost if possible</td></tr>
+          <tr><td>Program Materials</td><td>Workbooks, printing, uniforms/shirts</td><td>Seek sponsor donations for branded materials</td></tr>
+          <tr><td>Activity Costs</td><td>Field trips, college visits, workshops</td><td>Apply for Guide Right grants; seek corporate sponsors</td></tr>
+          <tr><td>Administrative</td><td>Background checks, insurance, certifications</td><td>Factor into chapter annual budget; non-negotiable line items</td></tr>
+          <tr><td>Recognition &amp; Awards</td><td>Trophies, certificates, scholarship contributions</td><td>Plan for end-of-year recognition ceremony costs</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check</div>
+      <div class="kc-question">According to the monthly assignment calendar, which month focuses on Financial Literacy &amp; Budgeting?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc7" value="a"><span>Month 1</span></label>
+        <label class="kc-opt"><input type="radio" name="kc7" value="b"><span>Month 3</span></label>
+        <label class="kc-opt"><input type="radio" name="kc7" value="c"><span>Month 4</span></label>
+        <label class="kc-opt"><input type="radio" name="kc7" value="d"><span>Month 9</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc7','c','kc7-fb',this)">Submit Answer</button>
+      <div id="kc7-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(6)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(7,8)">Next Module &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 8: ASSESSMENT & CERTIFICATION -->
+<div class="page" id="page-8">
+  <div class="hero">
+    <div class="klass">Module 8 of 8</div>
+    <h1>Assessment, Awards &amp; Guide Right Certification</h1>
+    <p>Learn how to evaluate program impact, recognize excellence, and complete the steps required for official Guide Right Certification.</p>
+  </div>
+  <div class="content">
+    <div class="obj-block">
+      <h3>Module Objectives</h3>
+      <ol>
+        <li>Identify the tools used to evaluate individual and program-level outcomes</li>
+        <li>Complete community service log requirements for program documentation</li>
+        <li>Describe the national awards available to Kappa League programs and participants</li>
+        <li>List the required steps to achieve Guide Right Program Certification (NGRC)</li>
+      </ol>
+    </div>
+    <div class="img-placeholder"><p>Awards Ceremony Photo Placeholder<br><small>Recommended: Photo of a Kappa League recognition ceremony or award presentation</small></p></div>
+    <h2 class="section-head">Program Evaluation Tools</h2>
+    <p class="prose">Measuring program effectiveness is essential for continuous improvement and for meeting Guide Right Certification requirements. Use these tools throughout the program year:</p>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Individual Member Evaluation</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li><strong>Academic Tracking Form:</strong> Monitor GPA and course performance each semester</li>
+            <li><strong>Attendance Log:</strong> Track meeting and event attendance; note patterns requiring intervention</li>
+            <li><strong>Goal Progress Journal:</strong> Review SMART goals quarterly with each mentee</li>
+            <li><strong>Community Service Log:</strong> Document hours, activities, and reflection notes for each member</li>
+            <li><strong>Mentor Observation Notes:</strong> Record behavioral and developmental observations from one-on-one sessions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Program-Level Evaluation</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li><strong>Annual Program Report:</strong> Summarizes activities, outcomes, and enrollment statistics for the year</li>
+            <li><strong>Parent/Guardian Satisfaction Survey:</strong> Gathers feedback on program value and communication quality</li>
+            <li><strong>Member Exit Survey:</strong> Captures graduating members&#39; experience and program impact</li>
+            <li><strong>Budget Reconciliation:</strong> Documents all expenditures against planned budget</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h2 class="section-head">National Awards</h2>
+    <p class="prose">Kappa Alpha Psi recognizes exceptional Guide Right programs and individuals through national awards. These honors reflect excellence in programming and the meaningful impact of mentorship.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Award</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Leon W. Steward Award</strong></td><td>Highest national honor for Guide Right programming; recognizes the chapter with the most outstanding program overall</td></tr>
+          <tr><td><strong>Bert V. Wadkins Award</strong></td><td>Recognizes outstanding service and commitment to the Guide Right mission by a chapter or individual</td></tr>
+          <tr><td><strong>Jay Crosby Award</strong></td><td>Recognizes excellence in program documentation and reporting</td></tr>
+          <tr><td><strong>Mel L. Davis Award</strong></td><td>Recognizes innovative programming and creative approaches to youth development</td></tr>
+          <tr><td><strong>Student of the Year</strong></td><td>Recognizes Kappa Leaguers who demonstrate exceptional academic achievement, leadership, and community service</td></tr>
+          <tr><td><strong>Kappa Kamp Recognition</strong></td><td>Awarded to chapters that successfully send members to the national Kappa Kamp summer program</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="section-head">Guide Right Certification (NGRC) Requirements</h2>
+    <p class="prose">The National Guide Right Certification (NGRC) is awarded to chapters that demonstrate full compliance with program standards. Certification is required to be recognized as an official Kappa League chapter in good standing.</p>
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>NGRC Certification Checklist</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <ul>
+            <li> All active mentors have completed background checks (Tier 3)</li>
+            <li> All mentors have completed Youth Protection Training</li>
+            <li> All mentors have signed the Do&#39;s &amp; Don&#39;ts Acknowledgment</li>
+            <li> Chapter has a registered Guide Right Chairman on file</li>
+            <li> Annual Program Report submitted to national office</li>
+            <li> Community service logs completed and documented</li>
+            <li> Member enrollment forms and parental consent on file</li>
+            <li> NGRC online submission completed through the national portal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Program Sustainability Planning</span><span class="arrow">&#9660;</span></div>
+        <div class="acc-body"><p>Sustainable programs plan beyond a single year. Key sustainability strategies include:</p>
+          <ul style="margin-top:10px">
+            <li><strong>Mentor Pipeline:</strong> Recruit new mentors annually; avoid single-point-of-failure dependency on one leader</li>
+            <li><strong>Community Partnerships:</strong> Build relationships with schools, businesses, and nonprofits for resources and referrals</li>
+            <li><strong>Parent Engagement:</strong> Active parent/guardian involvement increases retention and support</li>
+            <li><strong>Documentation:</strong> Maintain thorough records so program knowledge transfers when leadership changes</li>
+            <li><strong>Scholarship Support:</strong> Connect graduating Kappa Leaguers with scholarship resources to demonstrate long-term program value</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="kc-block">
+      <div class="kc-title">Knowledge Check — Final Check</div>
+      <div class="kc-question">Which national award recognizes the Kappa League chapter with the most outstanding overall Guide Right program?</div>
+      <div class="kc-options">
+        <label class="kc-opt"><input type="radio" name="kc8" value="a"><span>The Mel L. Davis Award</span></label>
+        <label class="kc-opt"><input type="radio" name="kc8" value="b"><span>The Jay Crosby Award</span></label>
+        <label class="kc-opt"><input type="radio" name="kc8" value="c"><span>The Bert V. Wadkins Award</span></label>
+        <label class="kc-opt"><input type="radio" name="kc8" value="d"><span>The Leon W. Steward Award</span></label>
+      </div>
+      <button class="kc-btn" onclick="checkKC('kc8','d','kc8-fb',this)">Submit Answer</button>
+      <div id="kc8-fb" class="kc-feedback"></div>
+    </div>
+    <div class="mod-nav">
+      <button class="btn-nav ghost" onclick="goTo(7)">&#8592; Previous</button>
+      <button class="btn-nav" onclick="completeAndGo(8,9)">Complete Course </button>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETION PAGE -->
+<div class="page" id="page-9">
+  <div class="completion">
+    <div class="badge"></div>
+    <h2>Course Complete!</h2>
+    <p>Congratulations on completing the <strong>Guide Right &amp; Kappa Alpha Psi Kappa League Mentor Training</strong>. You are now equipped with the knowledge, policies, and strategies to serve as an effective Kappa Men(tor).</p>
+    <div style="background:var(--primary);color:white;padding:20px 32px;border-radius:10px;margin:20px 0;max-width:420px;text-align:left">
+      <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:0.7;margin-bottom:8px">Your Next Steps</div>
+      <ul style="padding-left:18px;line-height:2;font-size:14px">
+        <li>Complete your background check (Tier 3)</li>
+        <li>Finish Youth Protection Training</li>
+        <li>Sign the Do&#39;s &amp; Don&#39;ts Acknowledgment</li>
+        <li>Connect with your Guide Right Chairman</li>
+        <li>Begin mentoring with purpose</li>
+      </ul>
+    </div>
+    <button class="btn-nav" onclick="goTo(0)" style="margin-top:10px">&#8592; Return to Course Home</button>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+var modules=[
+  {title:"Course Overview",short:"Overview"},
+  {title:"History & Foundation",short:"Module 1"},
+  {title:"Kappa League Overview",short:"Module 2"},
+  {title:"The Seven Phases",short:"Module 3"},
+  {title:"Mentor Roles & Eligibility",short:"Module 4"},
+  {title:"Building Relationships",short:"Module 5"},
+  {title:"Policies & Do\'s/Don\'ts",short:"Module 6"},
+  {title:"Program Delivery",short:"Module 7"},
+  {title:"Assessment & Certification",short:"Module 8"}
+];
+var completed={};
+function buildNav(){
+  var nav=document.getElementById("nav");
+  nav.innerHTML="";
+  for(var i=0;i<modules.length;i++){
+    var m=modules[i];
+    var div=document.createElement("div");
+    div.className="nav-item"+(i===0?" active":"")+(completed[i]?" completed":"");
+    div.setAttribute("data-page",i);
+    div.onclick=(function(idx){return function(){goTo(idx)}})(i);
+    div.innerHTML='<div class="nav-num">'+(completed[i]?"":(i===0?"":i))+"</div>"
+      +'<div class="nav-title">'+m.title+"</div>";
+    nav.appendChild(div);
+  }
+}
+function goTo(idx){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
+  document.getElementById("page-"+idx).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active")});
+  var navItems=document.querySelectorAll(".nav-item");
+  if(navItems[idx]) navItems[idx].classList.add("active");
+  window.scrollTo(0,0);
+}
+function completeAndGo(fromIdx,toIdx){
+  completed[fromIdx]=true;
+  var c=Object.keys(completed).length;
+  document.getElementById("progress-fill").style.width=(c/8*100)+"%";
+  document.getElementById("progress-label").textContent=c+" of 8 modules complete";
+  buildNav();
+  goTo(toIdx);
+}
+function toggleAcc(head){
+  var body=head.nextElementSibling;
+  var isOpen=head.classList.contains("open");
+  // close all in same container
+  var parent=head.closest(".accordion");
+  if(parent){
+    parent.querySelectorAll(".acc-head.open").forEach(function(h){
+      h.classList.remove("open");
+      h.nextElementSibling.classList.remove("open");
+    });
+  }
+  if(!isOpen){head.classList.add("open");body.classList.add("open");}
+}
+function checkKC(name,correct,fbId,btn){
+  var sel=document.querySelector("input[name="+name+"]:checked");
+  if(!sel){alert("Please select an answer.");return;}
+  var opts=document.querySelectorAll("input[name="+name+"]");
+  opts.forEach(function(o){
+    o.disabled=true;
+    var lbl=o.closest(".kc-opt");
+    if(o.value===correct) lbl.classList.add("correct");
+    else if(o.checked) lbl.classList.add("incorrect");
+  });
+  var fb=document.getElementById(fbId);
+  fb.classList.add("show");
+  if(sel.value===correct){
+    fb.className="kc-feedback show correct-fb";
+    fb.innerHTML="&#10004; <strong>Correct!</strong> Great work — you've got this concept down.";
+  } else {
+    fb.className="kc-feedback show incorrect-fb";
+    fb.innerHTML="&#10008; <strong>Not quite.</strong> Review this module's content and try to identify the correct answer before moving on.";
+  }
+  btn.style.display="none";
+}
+function filterPhase(btn,phase){
+  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});
+  btn.classList.add("active");
+  var rows=document.querySelectorAll("#phase-table tbody tr");
+  rows.forEach(function(r){
+    r.style.display=(phase==="all"||r.getAttribute("data-phase")===phase)?"":"none";
+  });
+}
+buildNav();
+</script>
+</body>
+</html>
