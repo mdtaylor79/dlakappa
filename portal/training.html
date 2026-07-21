@@ -248,7 +248,7 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num">2</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num">3</span><span class="lbl">Available</span></div>
       <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
       <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
     </div>
@@ -337,12 +337,12 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         </div>
         <span class="course-badge badge-required">Required</span>
       </div>
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-membership" style="width:0%"></div></div>
       <div class="course-body">
         <div class="course-type">Brotherhood</div>
         <div class="course-title">Membership Education &amp; Standards</div>
-        <div class="course-meta">Coming soon</div>
-        <button class="btn-course btn-soon" disabled>Coming Soon</button>
+        <div class="course-meta">8 modules &nbsp;·&nbsp; ~50 min</div>
+        <a class="btn-course btn-start" id="btn-membership" href="/portal/kapsi-training-membership_course.html" target="_blank">Start Course</a>
       </div>
     </div>
     <div class="course-card" data-filter="all">
@@ -412,8 +412,9 @@ function applyProgress(id) {
 (function refreshUI() {
   var rp = applyProgress('roberts');
   var cp = applyProgress('compliance');
-  var inProg = [rp, cp].filter(function(p){ return p > 0 && p < 100; }).length;
-  var done   = [rp, cp].filter(function(p){ return p >= 100; }).length;
+  var mp = applyProgress('membership');
+  var inProg = [rp, cp, mp].filter(function(p){ return p > 0 && p < 100; }).length;
+  var done   = [rp, cp, mp].filter(function(p){ return p >= 100; }).length;
   document.getElementById('statInProg').textContent = inProg || '—';
   document.getElementById('statDone').textContent   = done   || '—';
 })();
