@@ -537,6 +537,16 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { window.location.href = '/portal/login.html'; return; }
 
+  // Show Blog Admin link for admins only
+  const ADMINS = ['webmaster@dlakappa.org', 'marcus.d.taylor.kapsi@gmail.com'];
+  if (ADMINS.includes(session.user.email.toLowerCase())) {
+    const adminLink = document.createElement('a');
+    adminLink.href = '/portal/blog-admin.html';
+    adminLink.textContent = 'Blog Admin';
+    adminLink.style.cssText = 'color:#c69a3f;font-weight:700;';
+    document.querySelector('.nav-links .signout').before(adminLink);
+  }
+
   const meta = session.user.user_metadata || {};
   function toTitle(s) { return (s||'').replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase()); }
 

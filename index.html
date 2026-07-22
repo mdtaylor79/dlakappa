@@ -388,10 +388,11 @@
 <div class="divider-wrap" style="background:#fff;"><div class="section-divider" aria-hidden="true"><span></span></div></div>
 
 <!-- BLOG PREVIEW -->
-<section id="blogPreview" style="background:#fff;padding:80px 0;">
+<section id="blogPreview" style="background:#f2ebd7;padding:80px 0;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:.06;background-image:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'96\' height=\'96\' viewBox=\'0 0 96 96\'><path d=\'M48 4L92 48L48 92L4 48Z\' fill=\'none\' stroke=\'%2370110c\' stroke-width=\'1\'/></svg>');background-size:96px 96px;pointer-events:none;"></div>
   <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
 
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;position:relative;z-index:1;">
       <div>
         <div style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;">
           <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
@@ -402,7 +403,7 @@
       <a href="/blog/" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#70110c;text-decoration:none;border-bottom:1px solid #c69a3f;padding-bottom:2px;white-space:nowrap;">View All Posts &rarr;</a>
     </div>
 
-    <div id="homeBlogGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;">
+    <div id="homeBlogGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;position:relative;z-index:1;">
       <div style="grid-column:1/-1;text-align:center;padding:3rem 0;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#ccc;">Loading posts…</div>
     </div>
 

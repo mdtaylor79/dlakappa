@@ -196,11 +196,17 @@ const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// Auth guard
+// Auth guard — admin only
+const ADMINS = ['webmaster@dlakappa.org', 'marcus.d.taylor.kapsi@gmail.com'];
+
 (async () => {
   const { data: { session } } = await sb.auth.getSession();
-  if (!session) window.location.href = '/portal/login.html';
-  else loadPosts();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+  if (!ADMINS.includes(session.user.email.toLowerCase())) {
+    window.location.href = '/portal/dashboard.html';
+    return;
+  }
+  loadPosts();
 })();
 
 // Auto-slug from title
