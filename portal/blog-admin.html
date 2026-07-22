@@ -101,6 +101,10 @@
 .btn-unpublish:hover { background: #f0c0c0; }
 .btn-publish-sm { background: #70110c; color: #f2ebd7; }
 .btn-publish-sm:hover { background: #5a0e09; }
+.btn-edit { background: #eef4ff; color: #1a4e99; }
+.btn-edit:hover { background: #d5e5ff; }
+.btn-delete { background: #fff0f0; color: #cc0000; border: 1px solid #f0c0c0; }
+.btn-delete:hover { background: #ffd5d5; }
 .badge {
   display: inline-block; font-size: .58rem; font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase;
@@ -118,8 +122,8 @@
 
 <div style="background:#fff; padding:3rem 0 0; min-height:100vh;">
   <div class="admin-wrap">
-    <h1>Blog Admin</h1>
-    <p class="subtitle">Create and manage chapter blog posts.</p>
+    <h1 id="formHeading">Blog Admin</h1>
+    <p class="subtitle" id="formSubtitle">Create and manage chapter blog posts.</p>
 
     <!-- Create Post Form -->
     <div class="form-section">
@@ -138,6 +142,7 @@
         <label for="postCategory">Category *</label>
         <select id="postCategory">
           <option value="news">News &amp; Announcements</option>
+          <option value="chapter-news">Chapter News</option>
           <option value="event-recap">Event Recap</option>
           <option value="member-spotlight">Member Spotlight</option>
           <option value="guide-right">Guide Right</option>
@@ -183,7 +188,8 @@
 
     <div class="btn-row">
       <button class="btn-publish" id="btnPublish" onclick="savePost(true)">Publish Now</button>
-      <button class="btn-draft" onclick="savePost(false)">Save as Draft</button>
+      <button class="btn-draft" id="btnDraft" onclick="savePost(false)">Save as Draft</button>
+      <button class="btn-draft" id="btnCancel" onclick="resetForm()" style="display:none;border-color:#aaa;color:#666;">Cancel Edit</button>
     </div>
     <div class="status-msg" id="statusMsg"></div>
 
@@ -248,6 +254,8 @@ const quill = new Quill('#quill-editor', {
 
 // Editor mode toggle
 let editorMode = 'rich';
+// Edit state
+let editId = null;
 
 function switchEditor(mode) {
   if (mode === editorMode) return;
@@ -260,7 +268,6 @@ function switchEditor(mode) {
   const hint     = document.getElementById('editorHint');
 
   if (mode === 'html') {
-    // Sync Quill → textarea
     htmlEl.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
     quillEl.style.display = 'none';
     document.querySelector('.ql-toolbar').style.display = 'none';
@@ -269,7 +276,6 @@ function switchEditor(mode) {
     htmlBtn.classList.add('active');
     hint.textContent = 'Write raw HTML. Use <p>, <h2>, <h3>, <strong>, <em>, <ul>, <li>, <blockquote>, <img>.';
   } else {
-    // Sync textarea → Quill
     const html = htmlEl.value.trim();
     if (html) quill.root.innerHTML = html;
     htmlEl.style.display = 'none';
@@ -281,8 +287,9 @@ function switchEditor(mode) {
   }
 }
 
-// Auto-slug from title
+// Auto-slug from title (only when creating, not editing)
 document.getElementById('postTitle').addEventListener('input', function() {
+  if (editId) return; // don't overwrite slug when editing
   const slug = this.value.toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
@@ -297,6 +304,63 @@ function showStatus(msg, type) {
   el.className = `status-msg ${type}`;
   el.style.display = 'block';
   if (type === 'success') setTimeout(() => el.style.display = 'none', 4000);
+}
+
+function resetForm() {
+  editId = null;
+  ['postTitle','postSlug','postExcerpt','postCover','postAuthor'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('postCategory').value = 'news';
+  quill.setContents([]);
+  document.getElementById('postContentHtml').value = '';
+  document.getElementById('membersOnly').checked = false;
+  document.getElementById('formHeading').textContent = 'Blog Admin';
+  document.getElementById('formSubtitle').textContent = 'Create and manage chapter blog posts.';
+  document.getElementById('btnPublish').textContent = 'Publish Now';
+  document.getElementById('btnDraft').style.display = '';
+  document.getElementById('btnCancel').style.display = 'none';
+  document.getElementById('statusMsg').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function editPost(id) {
+  const { data: p, error } = await sb.from('posts').select('*').eq('id', id).single();
+  if (error || !p) { showStatus('Could not load post.', 'error'); return; }
+
+  editId = id;
+  document.getElementById('postTitle').value    = p.title || '';
+  document.getElementById('postSlug').value     = p.slug  || '';
+  document.getElementById('postExcerpt').value  = p.excerpt || '';
+  document.getElementById('postCover').value    = p.cover_image || '';
+  document.getElementById('postAuthor').value   = p.author || '';
+  document.getElementById('postCategory').value = p.category || 'news';
+  document.getElementById('membersOnly').checked = !!p.is_members_only;
+
+  // Load content into the active editor
+  if (editorMode === 'rich') {
+    quill.root.innerHTML = p.content || '';
+  } else {
+    document.getElementById('postContentHtml').value = p.content || '';
+  }
+
+  document.getElementById('formHeading').textContent   = 'Edit Post';
+  document.getElementById('formSubtitle').textContent  = 'Editing: ' + p.title;
+  document.getElementById('btnPublish').textContent    = p.published ? 'Update & Keep Live' : 'Update & Publish';
+  document.getElementById('btnDraft').style.display   = p.published ? 'none' : '';
+  document.getElementById('btnCancel').style.display  = '';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deletePost(id, title) {
+  if (!confirm(`Delete "${title}"?\n\nThis cannot be undone.`)) return;
+  const { error } = await sb.from('posts').delete().eq('id', id);
+  if (error) {
+    showStatus('Delete failed: ' + error.message, 'error');
+  } else {
+    showStatus('Post deleted.', 'success');
+    if (editId === id) resetForm();
+    loadPosts();
+  }
 }
 
 async function savePost(publish) {
@@ -326,18 +390,20 @@ async function savePost(publish) {
     published_at:    publish ? new Date().toISOString() : null,
   };
 
-  const { error } = await sb.from('posts').insert(payload);
+  let error;
+  if (editId) {
+    ({ error } = await sb.from('posts').update(payload).eq('id', editId));
+  } else {
+    ({ error } = await sb.from('posts').insert(payload));
+  }
 
   btn.disabled = false;
   if (error) {
     showStatus(error.message, 'error');
   } else {
-    showStatus(publish ? 'Post published successfully!' : 'Post saved as draft.', 'success');
-    // Clear form
-    ['postTitle','postSlug','postExcerpt','postCover','postAuthor'].forEach(id => document.getElementById(id).value = '');
-    quill.setContents([]);
-    document.getElementById('postContentHtml').value = '';
-    document.getElementById('membersOnly').checked = false;
+    const action = editId ? 'updated' : (publish ? 'published' : 'saved as draft');
+    showStatus(`Post ${action} successfully!`, 'success');
+    resetForm();
     loadPosts();
   }
 }
@@ -362,7 +428,13 @@ async function loadPosts() {
     return;
   }
 
-  const CATS = { 'news':'News','event-recap':'Event Recap','member-spotlight':'Member Spotlight','guide-right':'Guide Right' };
+  const CATS = {
+    'news': 'News & Announcements',
+    'chapter-news': 'Chapter News',
+    'event-recap': 'Event Recap',
+    'member-spotlight': 'Member Spotlight',
+    'guide-right': 'Guide Right'
+  };
 
   container.innerHTML = posts.map(p => `
     <div class="post-row">
@@ -375,9 +447,11 @@ async function loadPosts() {
       </div>
       <div class="post-row-actions">
         ${p.published ? `<button class="btn-sm btn-view" onclick="window.open('/blog/post.html?slug=${p.slug}','_blank')">View</button>` : ''}
+        <button class="btn-sm btn-edit" onclick="editPost('${p.id}')">Edit</button>
         <button class="btn-sm ${p.published ? 'btn-unpublish' : 'btn-publish-sm'}" onclick="togglePublish('${p.id}', ${p.published})">
           ${p.published ? 'Unpublish' : 'Publish'}
         </button>
+        <button class="btn-sm btn-delete" onclick="deletePost('${p.id}', ${JSON.stringify(p.title)})">Delete</button>
       </div>
     </div>`).join('');
 }

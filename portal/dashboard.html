@@ -269,6 +269,7 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/portal/events.html">Events</a>
+    <a href="/portal/news.html">News</a>
     <a href="/portal/training.html">My Training</a>
     <a href="#" class="signout" id="signOutBtn">Sign out</a>
   </div>
@@ -424,6 +425,24 @@ body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min
       </div>
       <div><h4>My DLA Training</h4><p>Access chapter training modules, compliance courses, and more.</p></div>
     </a>
+  </div>
+
+  <!-- Chapter News -->
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/>
+        <line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="12" y2="17"/>
+      </svg>
+    </div>
+    <div class="section-title">Chapter News</div>
+  </div>
+  <div class="section-divider"></div>
+  <div id="dashNewsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
+    <p style="font-size:.84rem;color:#aaa;grid-column:1/-1;">Loading news…</p>
+  </div>
+  <div style="text-align:right;margin-top:-.75rem;margin-bottom:2rem;">
+    <a href="/portal/news.html" style="font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#70110c;text-decoration:none;">View All News &rarr;</a>
   </div>
 
   <!-- Documents -->
@@ -589,6 +608,43 @@ document.getElementById('signOutBtn').addEventListener('click', async (e) => {
   await sb.auth.signOut();
   window.location.href = '/portal/login.html';
 });
+
+// Load recent news posts
+(async () => {
+  const { data: posts } = await sb
+    .from('posts')
+    .select('id, title, slug, excerpt, cover_image, category, is_members_only, published_at, created_at')
+    .eq('published', true)
+    .order('published_at', { ascending: false })
+    .limit(3);
+
+  const grid = document.getElementById('dashNewsGrid');
+  if (!posts || !posts.length) {
+    grid.innerHTML = '<p style="font-size:.84rem;color:#aaa;grid-column:1/-1;">No posts published yet.</p>';
+    return;
+  }
+
+  const CATS = {
+    'news': 'News & Announcements', 'chapter-news': 'Chapter News',
+    'event-recap': 'Event Recap', 'member-spotlight': 'Member Spotlight', 'guide-right': 'Guide Right'
+  };
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  grid.innerHTML = posts.map(p => `
+    <a class="doc-card" href="/blog/post.html?slug=${p.slug}" style="flex-direction:column;gap:.5rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
+        <span style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;">${CATS[p.category] || p.category}</span>
+        ${p.is_members_only ? '<span style="font-size:.58rem;font-weight:700;background:#fdf3e0;color:#8a6020;padding:.1rem .4rem;border-radius:3px;">&#128274; Members</span>' : ''}
+      </div>
+      <h4 style="font-size:.87rem;font-weight:700;color:#70110c;line-height:1.4;">${p.title}</h4>
+      ${p.excerpt ? `<p style="font-size:.76rem;color:#666;line-height:1.4;">${p.excerpt.length > 90 ? p.excerpt.slice(0,90)+'…' : p.excerpt}</p>` : ''}
+      <p style="font-size:.7rem;color:#bbb;margin-top:auto;">${fmtDate(p.published_at || p.created_at)}</p>
+    </a>`).join('');
+})();
 </script>
 </body>
 </html>

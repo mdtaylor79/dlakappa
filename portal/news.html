@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Chapter News — DLA Member Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f2f2f2; color: #222; min-height: 100vh; }
+
+/* ── NAV ── */
+.portal-nav {
+  background: #fff; border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem; display: flex; align-items: center; height: 64px; gap: 1rem;
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
+.portal-nav .brand img { width: 52px; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+  color: #70110c; line-height: 1.1;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .62rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: #888;
+}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+.portal-nav .nav-links a {
+  font-size: .85rem; font-weight: 600; color: #70110c;
+  text-decoration: none; letter-spacing: .03em;
+}
+.portal-nav .nav-links a:hover { text-decoration: underline; }
+.portal-nav .nav-links a.active { border-bottom: 2px solid #c69a3f; padding-bottom: 2px; }
+.portal-nav .nav-links .signout { color: #555; }
+
+/* ── HERO ── */
+.news-hero {
+  background: #2a0604; padding: 2.5rem 2rem; position: relative; overflow: hidden;
+}
+.news-hero::before {
+  content: ''; position: absolute; inset: 0; opacity: .06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px;
+}
+.news-hero .inner { max-width: 1100px; margin: 0 auto; position: relative; }
+.news-hero .eyebrow {
+  font-size: .65rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: #c69a3f; margin-bottom: .5rem;
+}
+.news-hero h1 {
+  font-family: 'Cinzel', serif; font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700; color: #f2ebd7; letter-spacing: .04em;
+  text-transform: uppercase; line-height: 1.1; margin-bottom: .5rem;
+}
+.news-hero .sub { font-size: .9rem; color: rgba(242,235,215,.7); }
+
+/* ── BODY ── */
+.news-body { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+
+/* ── FILTERS ── */
+.filter-row {
+  display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem;
+}
+.filter-btn {
+  font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .45rem 1rem; border: 1.5px solid #ddd; border-radius: 3px;
+  background: #fff; color: #555; cursor: pointer; transition: all .2s;
+}
+.filter-btn:hover { border-color: #70110c; color: #70110c; }
+.filter-btn.active { background: #70110c; color: #f2ebd7; border-color: #70110c; }
+
+/* ── POST GRID ── */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media(max-width:900px){ .posts-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:560px){ .posts-grid { grid-template-columns: 1fr; } }
+
+.post-card {
+  background: #fff; border: 1px solid #e8e0d5; border-radius: 6px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: box-shadow .2s, border-color .2s;
+  text-decoration: none; color: inherit;
+}
+.post-card:hover { border-color: #c69a3f; box-shadow: 0 4px 16px rgba(198,154,63,.15); }
+
+.post-card .cover {
+  width: 100%; height: 160px; object-fit: cover;
+  background: #2a0604; display: flex; align-items: center; justify-content: center;
+}
+.post-card .cover-placeholder {
+  width: 100%; height: 160px; background: linear-gradient(135deg, #2a0604, #70110c);
+  display: flex; align-items: center; justify-content: center;
+}
+.post-card .cover-placeholder svg { opacity: .3; }
+
+.post-card .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.post-card .card-meta {
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: #c69a3f; margin-bottom: .5rem;
+  display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+}
+.post-card .badge-members-card {
+  display: inline-block; font-size: .58rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .15rem .5rem; border-radius: 3px;
+  background: #fdf3e0; color: #8a6020;
+}
+.post-card h3 {
+  font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700;
+  color: #1a1a1a; line-height: 1.4; margin-bottom: .5rem;
+}
+.post-card .excerpt { font-size: .82rem; color: #555; line-height: 1.6; flex: 1; }
+.post-card .card-footer {
+  margin-top: 1rem; padding-top: .75rem; border-top: 1px solid #f0ece6;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.post-card .card-date { font-size: .72rem; color: #aaa; }
+.post-card .read-more {
+  font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: #70110c;
+}
+
+/* Members-only gate */
+.members-gate {
+  background: #fdf9f0; border: 1px solid #e4d5a0; border-radius: 6px;
+  padding: 3rem 2rem; text-align: center; grid-column: 1/-1;
+}
+.members-gate svg { margin: 0 auto .75rem; display: block; }
+.members-gate h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #70110c; margin-bottom: .5rem; }
+.members-gate p { font-size: .87rem; color: #666; }
+
+/* Loading / empty */
+.news-loading { text-align: center; padding: 3rem; color: #aaa; font-size: .9rem; grid-column: 1/-1; }
+
+/* Nav mobile */
+@media(max-width:700px){
+  .portal-nav { height: auto; min-height: 56px; padding: .6rem 1rem; flex-wrap: wrap; gap: .5rem .75rem; }
+  .portal-nav .brand img { width: 40px; }
+  .portal-nav .brand-text .chapter-name { font-size: .82rem; }
+  .portal-nav .brand-text .frat-name { display: none; }
+  .portal-nav .nav-links { width: 100%; flex-wrap: wrap; gap: .4rem 1.1rem; padding-bottom: .3rem; }
+  .portal-nav .nav-links a { font-size: .78rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Crest">
+    <div class="brand-text">
+      <div class="chapter-name">Denton-Lewisville</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/portal/dashboard.html">Home</a>
+    <a href="/portal/events.html">Events</a>
+    <a href="/portal/news.html" class="active">News</a>
+    <a href="/portal/training.html">My Training</a>
+    <a href="#" class="signout" id="signOutBtn">Sign out</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="news-hero">
+  <div class="inner">
+    <div class="eyebrow">Member Portal</div>
+    <h1>Chapter News</h1>
+    <p class="sub">Announcements, event recaps, member spotlights, and chapter updates — for members.</p>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="news-body">
+
+  <!-- Filter tabs -->
+  <div class="filter-row">
+    <button class="filter-btn active" data-cat="all" onclick="filterPosts('all', this)">All Posts</button>
+    <button class="filter-btn" data-cat="news" onclick="filterPosts('news', this)">News &amp; Announcements</button>
+    <button class="filter-btn" data-cat="chapter-news" onclick="filterPosts('chapter-news', this)">Chapter News</button>
+    <button class="filter-btn" data-cat="event-recap" onclick="filterPosts('event-recap', this)">Event Recaps</button>
+    <button class="filter-btn" data-cat="member-spotlight" onclick="filterPosts('member-spotlight', this)">Member Spotlights</button>
+    <button class="filter-btn" data-cat="guide-right" onclick="filterPosts('guide-right', this)">Guide Right</button>
+  </div>
+
+  <!-- Posts grid -->
+  <div class="posts-grid" id="postsGrid">
+    <div class="news-loading">Loading posts…</div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const CATS = {
+  'news': 'News & Announcements',
+  'chapter-news': 'Chapter News',
+  'event-recap': 'Event Recap',
+  'member-spotlight': 'Member Spotlight',
+  'guide-right': 'Guide Right'
+};
+
+let allPosts = [];
+let isLoggedIn = false;
+
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  isLoggedIn = !!session;
+
+  if (!session) {
+    window.location.href = '/portal/login.html';
+    return;
+  }
+
+  // Admin nav link
+  const ADMINS = ['webmaster@dlakappa.org', 'marcus.d.taylor.kapsi@gmail.com'];
+  if (ADMINS.includes(session.user.email.toLowerCase())) {
+    const adminLink = document.createElement('a');
+    adminLink.href = '/portal/blog-admin.html';
+    adminLink.textContent = 'Blog Admin';
+    adminLink.style.cssText = 'color:#c69a3f;font-weight:700;';
+    document.querySelector('.nav-links .signout').before(adminLink);
+  }
+
+  // Load all published posts (members see everything including members-only)
+  const { data: posts, error } = await sb
+    .from('posts')
+    .select('id, title, slug, excerpt, cover_image, category, author, is_members_only, published_at, created_at')
+    .eq('published', true)
+    .order('published_at', { ascending: false });
+
+  if (error || !posts) {
+    document.getElementById('postsGrid').innerHTML = '<div class="news-loading">Could not load posts.</div>';
+    return;
+  }
+
+  allPosts = posts;
+  renderPosts(allPosts);
+})();
+
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await sb.auth.signOut();
+  window.location.href = '/portal/login.html';
+});
+
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = cat === 'all' ? allPosts : allPosts.filter(p => p.category === cat);
+  renderPosts(filtered);
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function renderPosts(posts) {
+  const grid = document.getElementById('postsGrid');
+  if (!posts.length) {
+    grid.innerHTML = '<div class="news-loading">No posts in this category yet.</div>';
+    return;
+  }
+
+  grid.innerHTML = posts.map(p => `
+    <a class="post-card" href="/blog/post.html?slug=${p.slug}">
+      ${p.cover_image
+        ? `<img class="cover" src="${p.cover_image}" alt="${p.title}" loading="lazy">`
+        : `<div class="cover-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.2">
+              <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l6 6v8a2 2 0 0 1-2 2z"/>
+              <polyline points="17 1 17 8 24 8" style="display:none"/>
+            </svg>
+           </div>`
+      }
+      <div class="card-body">
+        <div class="card-meta">
+          ${CATS[p.category] || p.category}
+          ${p.is_members_only ? '<span class="badge-members-card">&#128274; Members</span>' : ''}
+        </div>
+        <h3>${p.title}</h3>
+        ${p.excerpt ? `<p class="excerpt">${p.excerpt}</p>` : ''}
+        <div class="card-footer">
+          <span class="card-date">${formatDate(p.published_at || p.created_at)}</span>
+          <span class="read-more">Read &rarr;</span>
+        </div>
+      </div>
+    </a>`).join('');
+}
+</script>
+</body>
+</html>
