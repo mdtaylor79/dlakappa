@@ -162,9 +162,9 @@
     </div>
 
     <div class="form-section">
-      <label for="postContent">Content (HTML) *</label>
-      <textarea id="postContent" placeholder="<p>Write your post here...</p>&#10;&#10;<p>You can use basic HTML: &lt;p&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;blockquote&gt;, &lt;img&gt;</p>"></textarea>
-      <div class="hint">Write in HTML. Wrap paragraphs in &lt;p&gt; tags. Use &lt;h2&gt; for section headings.</div>
+      <label>Content *</label>
+      <div id="quill-editor" style="min-height:320px;font-family:'Archivo',sans-serif;font-size:.92rem;"></div>
+      <div class="hint">Write or paste content directly. Paste from Word or Google Docs and formatting will be preserved.</div>
     </div>
 
     <div class="form-section">
@@ -191,6 +191,16 @@
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<style>
+#quill-editor { background:#fafafa; border:1.5px solid #ddd; border-top:none; transition:border-color .2s; }
+#quill-editor:focus-within { border-color:#c69a3f; background:#fff; }
+.ql-toolbar { border:1.5px solid #ddd !important; border-radius:4px 4px 0 0; background:#f5f2ed; }
+.ql-container { border-radius:0 0 4px 4px; font-family:'Archivo',sans-serif !important; font-size:.92rem !important; }
+.ql-editor { min-height:320px; }
+.ql-editor p, .ql-editor li { font-family:'Archivo',sans-serif; font-size:.92rem; line-height:1.75; }
+</style>
 <script>
 const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
@@ -208,6 +218,22 @@ const ADMINS = ['webmaster@dlakappa.org', 'marcus.d.taylor.kapsi@gmail.com'];
   }
   loadPosts();
 })();
+
+// Init Quill rich-text editor
+const quill = new Quill('#quill-editor', {
+  theme: 'snow',
+  placeholder: 'Write or paste your post content here…',
+  modules: {
+    toolbar: [
+      [{ header: [2, 3, false] }],
+      ['bold', 'italic', 'underline'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['blockquote', 'link'],
+      ['clean']
+    ],
+    clipboard: { matchVisual: false }
+  }
+});
 
 // Auto-slug from title
 document.getElementById('postTitle').addEventListener('input', function() {
@@ -230,9 +256,9 @@ function showStatus(msg, type) {
 async function savePost(publish) {
   const title   = document.getElementById('postTitle').value.trim();
   const slug    = document.getElementById('postSlug').value.trim();
-  const content = document.getElementById('postContent').value.trim();
+  const content = quill.root.innerHTML.trim();
 
-  if (!title || !slug || !content) {
+  if (!title || !slug || !content || content === '<p><br></p>') {
     showStatus('Title, slug, and content are required.', 'error'); return;
   }
 
@@ -260,7 +286,8 @@ async function savePost(publish) {
   } else {
     showStatus(publish ? 'Post published successfully!' : 'Post saved as draft.', 'success');
     // Clear form
-    ['postTitle','postSlug','postExcerpt','postContent','postCover','postAuthor'].forEach(id => document.getElementById(id).value = '');
+    ['postTitle','postSlug','postExcerpt','postCover','postAuthor'].forEach(id => document.getElementById(id).value = '');
+    quill.setContents([]);
     document.getElementById('membersOnly').checked = false;
     loadPosts();
   }
