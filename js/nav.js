@@ -38,9 +38,10 @@
         <div class="drop">
           <a href="/events.html">Events &amp; Calendar</a>
           <a href="/events/our_community.html">Our Community</a>
+          <a href="/blog/">DLA News</a>
         </div>
       </li>
-      <li><a href="/blog/" data-page="blog">Blog</a></li>
+      <li><a href="/blog/" data-page="blog">DLA News</a></li>
       <li><a href="/contact.html" data-page="contact">Contact</a></li>
       <li class="nav-members">
         <a href="/portal/login.html">Members Area</a>

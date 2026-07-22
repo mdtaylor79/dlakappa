@@ -396,11 +396,11 @@
       <div>
         <div style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;">
           <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
-          Chapter News
+          DLA News
         </div>
         <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#70110c;line-height:1.15;margin:0;">Latest from the Chapter</h2>
       </div>
-      <a href="/blog/" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#70110c;text-decoration:none;border-bottom:1px solid #c69a3f;padding-bottom:2px;white-space:nowrap;">View All Posts &rarr;</a>
+      <a href="/blog/" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#70110c;text-decoration:none;border-bottom:1px solid #c69a3f;padding-bottom:2px;white-space:nowrap;">View All DLA News &rarr;</a>
     </div>
 
     <div id="homeBlogGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;position:relative;z-index:1;">
@@ -627,7 +627,7 @@
     'https://eithccduveikejdhvnmq.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ'
   );
-  const CATS = { 'news':'News','event-recap':'Event Recap','member-spotlight':'Member Spotlight','guide-right':'Guide Right' };
+  const CATS = { 'news':'News & Announcements','chapter-news':'Chapter News','event-recap':'Event Recap','member-spotlight':'Member Spotlight','guide-right':'Guide Right' };
 
   sb.from('posts')
     .select('title,slug,excerpt,cover_image,category,author,is_members_only,published_at')
@@ -637,7 +637,10 @@
     .limit(3)
     .then(({ data }) => {
       const grid = document.getElementById('homeBlogGrid');
-      if (!data || !data.length) { grid.innerHTML = ''; return; }
+      if (!data || !data.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem 0;font-family:\'Cinzel\',serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#aaa;">No posts published yet. Check back soon.</div>';
+        return;
+      }
       grid.innerHTML = data.map(p => `
         <a href="/blog/post.html?slug=${p.slug}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid #e4ddd4;transition:box-shadow .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.10)'" onmouseout="this.style.boxShadow='none'">
           <div style="aspect-ratio:16/9;overflow:hidden;background:#2a0604;flex-shrink:0;">
