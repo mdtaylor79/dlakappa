@@ -25,8 +25,14 @@
         </div>
       </li>
       <li><a href="/membership.html" data-page="membership">Membership</a></li>
-      <li><a href="/programs.html" data-page="programs">Programs</a></li>
-      <li><a href="/dla_guide_right.html" data-page="guideright">DLA Guide Right</a></li>
+      <li class="has-drop">
+        <a href="/programs.html" data-page="programs">Programs</a>
+        <div class="drop">
+          <a href="/programs.html">All Programs</a>
+          <a href="/volunteering.html">Volunteering &amp; Service</a>
+          <a href="/dla_guide_right.html">Guide Right</a>
+        </div>
+      </li>
       <li class="has-drop">
         <a href="/events.html" data-page="events">Events</a>
         <div class="drop">
