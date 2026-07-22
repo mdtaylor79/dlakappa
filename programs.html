@@ -9,40 +9,462 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+/* Card interactivity */
+.card {
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(112,17,12,.13);
+}
+.card .card-learn {
+  display: inline-block;
+  margin-top: .85rem;
+  font-family: 'Cinzel', serif;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #c69a3f;
+  border-bottom: 1.5px solid #c69a3f;
+  padding-bottom: 2px;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30,8,6,.65);
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn .2s ease;
+}
+.modal-overlay.open { display: flex; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+.modal-box {
+  background: #fff;
+  max-width: 600px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp .25s ease;
+}
+
+.modal-header {
+  background: #70110c;
+  padding: 2.25rem 2rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.modal-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><path d='M40 4L76 40L40 76L4 40Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 80px 80px; opacity: .07; pointer-events: none;
+}
+.modal-logo {
+  height: 60px;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 1rem;
+  position: relative;
+  filter: brightness(0) invert(1);
+  opacity: .92;
+}
+.modal-logo-svg {
+  height: 60px; width: 60px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem; position: relative;
+}
+.modal-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f2ebd7;
+  margin: 0 0 .3rem;
+  line-height: 1.2;
+  position: relative;
+}
+.modal-tagline {
+  font-size: .78rem;
+  color: rgba(198,154,63,.9);
+  font-style: italic;
+  position: relative;
+  letter-spacing: .04em;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 34px; height: 34px;
+  background: rgba(242,235,215,.15);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #f2ebd7;
+  transition: background .2s;
+  z-index: 2;
+}
+.modal-close:hover { background: rgba(242,235,215,.28); }
+
+/* Modal body */
+.modal-body {
+  padding: 1.75rem 2rem 2rem;
+}
+.modal-body p {
+  font-size: .94rem;
+  line-height: 1.85;
+  color: #3a2e28;
+  margin-bottom: 1rem;
+}
+.modal-body p:last-of-type { margin-bottom: 0; }
+
+.modal-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+  margin: 1.5rem 0;
+}
+.modal-highlight {
+  display: flex; align-items: flex-start; gap: .6rem;
+  padding: .85rem .9rem;
+  background: #faf8f4;
+  border-left: 3px solid #c69a3f;
+}
+.modal-highlight svg { width: 16px; height: 16px; color: #70110c; flex-shrink: 0; margin-top: 2px; }
+.modal-highlight span { font-size: .8rem; color: #3a2e28; line-height: 1.5; }
+
+.modal-footer {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid #f0ece6;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.modal-contact {
+  font-size: .78rem; color: #8a7a72;
+}
+.modal-contact a { color: #70110c; text-decoration: none; font-weight: 600; }
+.modal-contact a:hover { text-decoration: underline; }
+.btn-modal-cta {
+  font-family: 'Cinzel', serif;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .7rem 1.5rem;
+  background: #70110c;
+  color: #f2ebd7;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background .2s;
+}
+.btn-modal-cta:hover { background: #5a0e09; }
+
+@media(max-width:560px){
+  .modal-highlights { grid-template-columns: 1fr; }
+  .modal-body { padding: 1.25rem 1.25rem 1.5rem; }
+  .modal-header { padding: 1.75rem 1.25rem 1.25rem; }
+  .modal-footer { padding: 1rem 1.25rem; }
+}
+</style>
 </head>
 <body data-page="programs">
 <div id="site-nav-placeholder"></div>
+
 <div class="page-hero">
-    <div class="wrap">
-      <div class="eyebrow">Programs</div>
-      <h1>Our Programs</h1>
-      <div class="gold-bar"></div>
-      <p>Comprehensive initiatives designed to develop men, serve communities, and uplift youth across North Texas — guided by Leadership, Mentorship, Engagement, and Legacy.</p>
-    </div>
+  <div class="wrap">
+    <div class="eyebrow">Programs</div>
+    <h1>Our Programs</h1>
+    <div class="gold-bar"></div>
+    <p>Comprehensive initiatives designed to develop men, serve communities, and uplift youth across North Texas — guided by Leadership, Mentorship, Engagement, and Legacy.</p>
   </div>
-  <div class="content-section alt">
-    <div class="wrap">
-      <div class="card-grid">
-        <div class="card"><img src="/img/room_2_read_logo.png" alt="Room to Read" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>Room to Read</h3><p>Promoting literacy and a lifelong love of reading among youth through community partnerships and reading resources.</p></div>
-        <div class="card"><img src="/img/acheivement_academy_logo.png" alt="Achievement Academy" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>Achievement Academy</h3><p>Academic support and enrichment helping students in Denton and Lewisville achieve their full scholastic potential.</p></div>
-        <div class="card"><img src="/img/kappa_league.png" alt="Kappa League" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>Kappa League</h3><p>A distinguished mentoring initiative offering young men opportunities for growth in leadership, academics, and community engagement.</p></div>
-        <div class="card"><img src="/img/mvac_logo.png" alt="MVAC" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>MVAC</h3><p>Connecting community members with motor vehicle assistance and resources to maintain mobility and independence.</p></div>
-        <div class="card"><img src="/img/senior_kappa_affairs_logo.png" alt="Senior Kappa Affairs" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>Senior Kappa Affairs</h3><p>Programs and outreach events supporting our senior brothers and the elderly members of our community.</p></div>
-        <div class="card"><img src="/img/KAPsi-Foundation.png" alt="Kappa Foundation" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>Kappa Foundation</h3><p>Scholarship and philanthropic initiatives supporting educational achievement and community development.</p></div>
-        <div class="card"><img src="/img/kappa_kamp.png" alt="Kappa Kamp" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;"><h3>Kappa Kamp</h3><p>Summer enrichment programs providing young men with mentorship, life skills, and character-building experiences.</p></div>
-        <div class="card" style="border-top:3px solid #c69a3f;">
-          <div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;">
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Volunteering &amp; Service</h3>
-          <p>Community engagement, civic partnerships, and service initiatives that strengthen North Texas through brotherhood and action.</p>
-          <a href="/volunteering.html" style="display:inline-block;margin-top:.75rem;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#70110c;text-decoration:none;border-bottom:2px solid #c69a3f;padding-bottom:2px;">Learn More</a>
-        </div>
+</div>
+
+<div class="content-section alt">
+  <div class="wrap">
+    <div class="card-grid">
+
+      <div class="card" onclick="openModal('room2read')">
+        <img src="/img/room_2_read_logo.png" alt="Room to Read" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>Room to Read</h3>
+        <p>Promoting literacy and a lifelong love of reading among youth through community partnerships and reading resources.</p>
+        <span class="card-learn">Learn More</span>
       </div>
+
+      <div class="card" onclick="openModal('achievement')">
+        <img src="/img/acheivement_academy_logo.png" alt="Achievement Academy" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>Achievement Academy</h3>
+        <p>Academic support and enrichment helping students in Denton and Lewisville achieve their full scholastic potential.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
+      <div class="card" onclick="openModal('kappaleague')">
+        <img src="/img/kappa_league.png" alt="Kappa League" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>Kappa League</h3>
+        <p>A distinguished mentoring initiative offering young men opportunities for growth in leadership, academics, and community engagement.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
+      <div class="card" onclick="openModal('mvac')">
+        <img src="/img/mvac_logo.png" alt="MVAC" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>MVAC</h3>
+        <p>Connecting community members with motor vehicle assistance and resources to maintain mobility and independence.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
+      <div class="card" onclick="openModal('senior')">
+        <img src="/img/senior_kappa_affairs_logo.png" alt="Senior Kappa Affairs" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>Senior Kappa Affairs</h3>
+        <p>Programs and outreach events supporting our senior brothers and the elderly members of our community.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
+      <div class="card" onclick="openModal('foundation')">
+        <img src="/img/KAPsi-Foundation.png" alt="Kappa Foundation" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>Kappa Foundation</h3>
+        <p>Scholarship and philanthropic initiatives supporting educational achievement and community development.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
+      <div class="card" onclick="openModal('kappakamp')">
+        <img src="/img/kappa_kamp.png" alt="Kappa Kamp" style="height:60px;object-fit:contain;margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto;">
+        <h3>Kappa Kamp</h3>
+        <p>Summer enrichment programs providing young men with mentorship, life skills, and character-building experiences.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
+      <div class="card" style="border-top:3px solid #c69a3f;" onclick="openModal('volunteering')">
+        <div style="height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Volunteering &amp; Service</h3>
+        <p>Community engagement, civic partnerships, and service initiatives that strengthen North Texas through brotherhood and action.</p>
+        <span class="card-learn">Learn More</span>
+      </div>
+
     </div>
   </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header" id="modalHeader">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="modalLogoWrap"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-tagline" id="modalTagline"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
+<script>
+const PROGRAMS = {
+  room2read: {
+    title: 'Room to Read',
+    tagline: 'Building Lifelong Readers',
+    logo: '/img/room_2_read_logo.png',
+    body: `<p>The Denton-Lewisville Alumni Chapter supports Room to Read — a global initiative dedicated to transforming the lives of millions of children in developing communities by focusing on literacy and gender equality in education. We bring this mission home to North Texas by partnering with local schools and community organizations to promote reading culture and resource access.</p>
+<p>Through book drives, reading events, classroom visits, and community library partnerships, brothers commit time and resources to building a generation of confident, capable readers in our neighborhoods.</p>`,
+    highlights: [
+      { icon: 'book', text: 'Community book drives & donations' },
+      { icon: 'users', text: 'School reading program partnerships' },
+      { icon: 'star', text: 'Youth literacy event sponsorships' },
+      { icon: 'heart', text: 'Library resource support' },
+    ],
+    cta: null,
+    ctaLabel: null,
+    contact: 'info@dlakappa.org',
+  },
+  achievement: {
+    title: 'Achievement Academy',
+    tagline: 'Academic Excellence in Action',
+    logo: '/img/acheivement_academy_logo.png',
+    body: `<p>The Achievement Academy is the chapter's flagship academic enrichment initiative, dedicated to helping students in Denton and Lewisville reach their full academic potential. We partner with Denton ISD, Lewisville ISD, and community organizations to deliver hands-on tutoring, college readiness workshops, and STEM enrichment sessions.</p>
+<p>Brothers serve as tutors, mentors, and role models — showing young students that academic achievement is both attainable and celebrated within the Black community and beyond.</p>`,
+    highlights: [
+      { icon: 'book', text: 'One-on-one & group tutoring sessions' },
+      { icon: 'star', text: 'SAT/ACT prep workshops' },
+      { icon: 'users', text: 'College application guidance' },
+      { icon: 'briefcase', text: 'STEM enrichment & career exposure' },
+    ],
+    cta: null,
+    ctaLabel: null,
+    contact: 'info@dlakappa.org',
+  },
+  kappaleague: {
+    title: 'Kappa League',
+    tagline: 'Developing Tomorrow\'s Leaders Today',
+    logo: '/img/kappa_league.png',
+    body: `<p>Kappa League — the official mentoring program of Kappa Alpha Psi Fraternity, Inc. — is a cornerstone of the DLA Chapter's commitment to youth development. Open to young men ages 14–18, the program builds character, academic discipline, civic responsibility, and leadership skills through a structured, year-round curriculum.</p>
+<p>Participants engage in community service projects, leadership workshops, college tours, professional development seminars, and networking events — all guided by dedicated brothers who invest in their futures.</p>`,
+    highlights: [
+      { icon: 'users', text: 'Year-round mentorship for ages 14–18' },
+      { icon: 'star', text: 'Leadership & character development' },
+      { icon: 'book', text: 'Academic accountability & support' },
+      { icon: 'heart', text: 'Community service & civic engagement' },
+    ],
+    cta: null,
+    ctaLabel: null,
+    contact: 'info@dlakappa.org',
+  },
+  mvac: {
+    title: 'MVAC',
+    tagline: 'Keeping Our Community Moving',
+    logo: '/img/mvac_logo.png',
+    body: `<p>The Motor Vehicle Assistance Committee (MVAC) addresses a critical need in our community — reliable transportation. Through this program, the DLA Chapter connects low-income residents and families with motor vehicle resources including minor repairs, vehicle inspections, tire assistance, and referrals to certified automotive partners who offer discounted services.</p>
+<p>Mobility is independence. MVAC ensures that financial hardship does not become a barrier to employment, healthcare access, or education for North Texas families.</p>`,
+    highlights: [
+      { icon: 'briefcase', text: 'Minor vehicle repair assistance' },
+      { icon: 'heart', text: 'Referrals to discounted auto services' },
+      { icon: 'users', text: 'Transportation resource navigation' },
+      { icon: 'star', text: 'Support for low-income families' },
+    ],
+    cta: null,
+    ctaLabel: null,
+    contact: 'info@dlakappa.org',
+  },
+  senior: {
+    title: 'Senior Kappa Affairs',
+    tagline: 'Honoring Those Who Paved the Way',
+    logo: '/img/senior_kappa_affairs_logo.png',
+    body: `<p>Senior Kappa Affairs recognizes that service extends across generations. Through this program, the DLA Chapter provides outreach, resources, and community for our senior brothers and elderly community members in Denton and Lewisville.</p>
+<p>Activities include assisted living facility visits, resource fairs, holiday events, wellness check-ins, and support for navigating senior services. We believe in honoring the legacy of those who came before us through consistent, compassionate action.</p>`,
+    highlights: [
+      { icon: 'heart', text: 'Senior community visits & events' },
+      { icon: 'users', text: 'Resource & benefits navigation support' },
+      { icon: 'star', text: 'Holiday outreach & gift drives' },
+      { icon: 'book', text: 'Wellness & health awareness programs' },
+    ],
+    cta: null,
+    ctaLabel: null,
+    contact: 'info@dlakappa.org',
+  },
+  foundation: {
+    title: 'Kappa Alpha Psi Foundation',
+    tagline: 'Investing in Educational Excellence',
+    logo: '/img/KAPsi-Foundation.png',
+    body: `<p>The Kappa Alpha Psi Foundation is the philanthropic and scholarship arm of the fraternity, dedicated to supporting educational achievement and community development at the national and local level. The DLA Chapter actively participates in fundraising, scholarship selection, and community grant initiatives that put educational resources in the hands of deserving students.</p>
+<p>Through annual scholarship drives and community events, we help fund the dreams of North Texas students who demonstrate academic merit, leadership potential, and a commitment to giving back.</p>`,
+    highlights: [
+      { icon: 'star', text: 'Annual scholarship awards' },
+      { icon: 'book', text: 'Educational grant programs' },
+      { icon: 'heart', text: 'Community development funding' },
+      { icon: 'briefcase', text: 'Professional development support' },
+    ],
+    cta: 'https://www.kappaalphapsi1911.com/',
+    ctaLabel: 'Visit KAΨ Foundation',
+    contact: 'info@dlakappa.org',
+  },
+  kappakamp: {
+    title: 'Kappa Kamp',
+    tagline: 'Where Leaders Are Made',
+    logo: '/img/kappa_kamp.png',
+    body: `<p>Kappa Kamp is a structured summer enrichment experience for young men that blends academic reinforcement, life skills development, and character-building activities in a positive, supervised environment. Guided by chapter brothers and community volunteers, participants grow in confidence, discipline, and civic awareness over the course of the program.</p>
+<p>From STEM workshops and career panels to team sports and community service projects, Kappa Kamp gives young men the tools and connections they need to thrive — in school and beyond.</p>`,
+    highlights: [
+      { icon: 'star', text: 'STEM workshops & activities' },
+      { icon: 'users', text: 'Leadership & life skills training' },
+      { icon: 'heart', text: 'Community service projects' },
+      { icon: 'book', text: 'Career exploration & mentorship' },
+    ],
+    cta: null,
+    ctaLabel: null,
+    contact: 'info@dlakappa.org',
+  },
+  volunteering: {
+    title: 'Volunteering & Service',
+    tagline: 'Strengthening North Texas Through Brotherhood',
+    logo: null,
+    body: `<p>The Denton-Lewisville Alumni Chapter places high emphasis on community engagement and civic service. We rest our shoulders on the belief that true achievement is measured by the uplift we provide to those around us.</p>
+<p>We actively encourage partnerships with community leaders, local businesses, nonprofits, and civic organizations who share our values. Whether you want to serve alongside us or invite us to serve within your initiative, there is a place at the table.</p>`,
+    highlights: [
+      { icon: 'users', text: 'Volunteer days & community cleanups' },
+      { icon: 'star', text: 'Civic engagement & voter registration' },
+      { icon: 'briefcase', text: 'Business & corporate partnerships' },
+      { icon: 'heart', text: 'Nonprofit & civic collaborations' },
+    ],
+    cta: '/volunteering.html',
+    ctaLabel: 'View Full Volunteering Page',
+    contact: 'csc@dlakappa.org',
+  },
+};
 
+const ICONS = {
+  book: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  heart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  briefcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+};
+
+function openModal(id) {
+  const p = PROGRAMS[id];
+  if (!p) return;
+
+  // Logo
+  const logoWrap = document.getElementById('modalLogoWrap');
+  if (p.logo) {
+    logoWrap.innerHTML = `<img src="${p.logo}" class="modal-logo" alt="${p.title}">`;
+  } else {
+    logoWrap.innerHTML = `<div class="modal-logo-svg"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(242,235,215,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>`;
+  }
+
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalTagline').textContent = p.tagline;
+
+  // Body
+  let highlightsHTML = '';
+  if (p.highlights && p.highlights.length) {
+    highlightsHTML = `<div class="modal-highlights">` +
+      p.highlights.map(h => `<div class="modal-highlight">${ICONS[h.icon] || ''}<span>${h.text}</span></div>`).join('') +
+      `</div>`;
+  }
+  document.getElementById('modalBody').innerHTML = p.body + highlightsHTML;
+
+  // Footer
+  let footerHTML = `<div class="modal-contact">Questions? <a href="mailto:${p.contact}">${p.contact}</a></div>`;
+  if (p.cta) {
+    footerHTML += `<a href="${p.cta}" class="btn-modal-cta"${p.cta.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${p.ctaLabel}</a>`;
+  } else {
+    footerHTML += `<a href="mailto:${p.contact}" class="btn-modal-cta">Get Involved</a>`;
+  }
+  document.getElementById('modalFooter').innerHTML = footerHTML;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 </body>
 </html>
