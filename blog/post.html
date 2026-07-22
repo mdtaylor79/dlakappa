@@ -13,11 +13,12 @@
 .post-wrap { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
 
 .post-cover {
-  width: 100%; aspect-ratio: 16/6;
+  width: 100%; aspect-ratio: 16/9;
   overflow: hidden; background: #2a0604;
   margin-bottom: 2.5rem;
+  max-height: 480px;
 }
-.post-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-cover img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .post-cover .cover-placeholder {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, #2a0604, #70110c);
@@ -198,8 +199,17 @@ async function loadPost() {
 
   document.title = `${post.title} — DLA Kappa Alpha Psi`;
 
+  function wixImgUrl(url) {
+    if (!url) return null;
+    // Add Wix resize transform if it's a raw wixstatic URL without one
+    if (url.includes('wixstatic.com/media') && !url.includes('/v1/')) {
+      return url + '/v1/fit/w_1200,h_675,al_c,q_80/file.jpg';
+    }
+    return url;
+  }
+
   const coverHtml = post.cover_image
-    ? `<div class="post-cover"><img src="${post.cover_image}" alt="${post.title}"></div>`
+    ? `<div class="post-cover"><img src="${wixImgUrl(post.cover_image)}" alt="${post.title}"></div>`
     : `<div class="post-cover"><div class="cover-placeholder"><img src="/img/kappa-crest.png" alt=""></div></div>`;
 
   const membersTag = post.is_members_only
