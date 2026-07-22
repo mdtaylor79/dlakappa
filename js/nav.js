@@ -127,4 +127,10 @@
       });
     });
   });
+
+  // Tidio chat widget
+  const tidio = document.createElement('script');
+  tidio.src = '//code.tidio.co/roka7o1avkjubn9zot6ve3xaq4mdbldr.js';
+  tidio.async = true;
+  document.body.appendChild(tidio);
 })();
