@@ -32,8 +32,7 @@
   }
 
   .cc-photo {
-    width: 82px;
-    height: 82px;
+    width: 82px; height: 82px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -42,8 +41,7 @@
     margin-bottom: .25rem;
   }
   .cc-photo img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -72,12 +70,12 @@
     align-items: center;
     justify-content: center;
     gap: .4rem;
-    margin-top: auto;
     padding-top: .75rem;
     border-top: 1px solid #ede6da;
     font-size: .75rem;
     color: #6a5a52;
     width: 100%;
+    margin-top: auto;
   }
 
   .committee-card .cc-chair span {
@@ -85,6 +83,25 @@
     color: #2a1a16;
     font-size: .78rem;
   }
+
+  .cc-contact-btn {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: .6rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .5rem 1.25rem;
+    background: #70110c;
+    color: #f2ebd7;
+    text-decoration: none;
+    margin-top: .5rem;
+    transition: background .2s;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .cc-contact-btn:hover { background: #5a0e09; color: #f2ebd7; }
 
   .committees-intro {
     background: #f2ebd7;
@@ -151,7 +168,7 @@
   <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
 
     <div class="committees-intro">
-      <p>Each committee is chaired by a chapter brother and supported by volunteers committed to achievement in every field of human endeavor. Brothers interested in serving on a committee should contact the chapter at <a href="mailto:info@dlakappa.org" style="color:#70110c;">info@dlakappa.org</a>.</p>
+      <p>Each committee is chaired by a chapter brother and supported by volunteers committed to achievement in every field of human endeavor. Brothers interested in serving on a committee should contact the chapter at <a href="mailto:vicepolemarch@dlakappa.org" style="color:#70110c;">vicepolemarch@dlakappa.org</a>.</p>
     </div>
 
     <!-- COMMITTEES -->
@@ -159,7 +176,7 @@
 
     <div class="committee-grid">
 
-      <!-- Benevolence (New) -->
+      <!-- Benevolence -->
       <div class="committee-card">
         <div class="cc-photo"><img src="/img/frank_daniels.png" alt="Frank Daniels"></div>
         <h3>Benevolence</h3>
@@ -168,6 +185,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Frank Daniels</span>
         </div>
+        <a href="mailto:benevolence@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Budget & Finance -->
@@ -179,6 +197,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Erick Mitchell</span>
         </div>
+        <a href="mailto:Budgeting_finance@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- By-Laws -->
@@ -190,6 +209,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Rod Wilson</span>
         </div>
+        <a href="mailto:bylaws@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Civic Actions -->
@@ -201,6 +221,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Douglas Jackson</span>
         </div>
+        <a href="mailto:civic-action-committee@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Community Engagement -->
@@ -212,28 +233,31 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Mark Elmore</span>
         </div>
+        <a href="mailto:csc@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Community Health & Welfare -->
       <div class="committee-card">
         <div class="cc-photo"><img src="/img/erik_sturdivant.png" alt="Erik Sturdivant"></div>
-        <h3>Community Health &amp; Welfare</h3>
+        <h3>Community Health &amp; Wellness</h3>
         <p>Organizes health fairs, screenings, and wellness programming for brothers and the community, with a focus on addressing health disparities affecting Black men and families in North Texas.</p>
         <div class="cc-chair">
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Erik Sturdivant</span>
         </div>
+        <a href="mailto:healthandwellness@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
-      <!-- DLA Award (New) -->
+      <!-- DLA Award -->
       <div class="committee-card">
-        <div class="cc-photo"><img src="/img/kirk_nobles.jpg" alt="Kirk Nobles"></div>
+        <div class="cc-photo"><img src="/img/kirk_nobles.png" alt="Kirk Nobles"></div>
         <h3>DLA Award</h3>
         <p>Manages the chapter's annual awards recognition process — identifying, vetting, and honoring brothers and community members who exemplify achievement and service.</p>
         <div class="cc-chair">
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Kirk Nobles</span>
         </div>
+        <a href="mailto:ad-hoc-awards@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Fundraising / Planning & Events -->
@@ -245,6 +269,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Omari Souza</span>
         </div>
+        <a href="mailto:fundraising@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Kappa League -->
@@ -256,17 +281,19 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Omari Souza</span>
         </div>
+        <a href="mailto:kappaleague@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Long Range Planning -->
       <div class="committee-card">
-        <div class="cc-photo"><img src="/img/kirk_nobles.jpg" alt="Kirk Nobles"></div>
+        <div class="cc-photo"><img src="/img/kirk_nobles.png" alt="Kirk Nobles"></div>
         <h3>Long Range Planning</h3>
         <p>Develops the chapter's strategic vision and multi-year goals, evaluates performance metrics, and recommends initiatives to strengthen the chapter's long-term impact and sustainability.</p>
         <div class="cc-chair">
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Kirk Nobles</span>
         </div>
+        <a href="mailto:long-range-planning@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Marketing & Advertising -->
@@ -278,6 +305,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Colen Skinner</span>
         </div>
+        <a href="mailto:marketing@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Military Veterans Affairs Commission -->
@@ -289,6 +317,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Keith Williams</span>
         </div>
+        <a href="mailto:mvac@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Nominations & Elections -->
@@ -300,13 +329,14 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Mark Elmore</span>
         </div>
+        <a href="mailto:nomination-elections@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Parliamentarian -->
       <div class="committee-card">
         <div class="cc-photo"></div>
         <h3>Parliamentarian</h3>
-        <p>Advises the chapter on rules of order and proper meeting procedure, ensures that all business is conducted in accordance with parliamentary authority and fraternity bylaws.</p>
+        <p>Advises the chapter on rules of order and proper meeting procedure, ensuring that all business is conducted in accordance with parliamentary authority and fraternity bylaws.</p>
         <div class="cc-chair">
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>— Vacant</span>
@@ -322,6 +352,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Charles Spencer</span>
         </div>
+        <a href="mailto:reclamations@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Reengagement -->
@@ -333,9 +364,10 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Lee Glenn</span>
         </div>
+        <a href="mailto:re-engagement@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
-      <!-- Retreat (New) -->
+      <!-- Retreat -->
       <div class="committee-card">
         <div class="cc-photo"><img src="/img/vivyon_bowman.png" alt="Vivyon Bowman"></div>
         <h3>Retreat</h3>
@@ -344,6 +376,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Vivyon Bowman</span>
         </div>
+        <a href="mailto:ways_means@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Senior Kappa Affairs -->
@@ -355,6 +388,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>William Atkinson</span>
         </div>
+        <a href="mailto:senior_kappas@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Social Media -->
@@ -366,17 +400,31 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>Trezsley Tucker</span>
         </div>
+        <a href="mailto:socialmedia@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
-      <!-- Training & Development (New) -->
+      <!-- Training & Development -->
       <div class="committee-card">
-        <div class="cc-photo"><img src="/img/william_atkinson.jpg" alt="William Atkinson"></div>
+        <div class="cc-photo"><img src="/img/william_atkinson.png" alt="William Atkinson"></div>
         <h3>Training &amp; Development</h3>
         <p>Designs and delivers professional development, leadership training, and fraternal education programming to equip brothers for service and excellence in every field of endeavor.</p>
         <div class="cc-chair">
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>William Atkinson</span>
         </div>
+        <a href="mailto:training-development@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
+      </div>
+
+      <!-- Undergraduate Chapter Advisory -->
+      <div class="committee-card">
+        <div class="cc-photo"></div>
+        <h3>Undergraduate Chapter Advisory</h3>
+        <p>Provides guidance and support to undergraduate Kappa chapters in the area, fostering relationships between alumni and collegiate brothers to strengthen the broader fraternal bond.</p>
+        <div class="cc-chair">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chair: <span>— Open</span>
+        </div>
+        <a href="mailto:undergrad-advisory@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
       <!-- Webmaster & Tech -->
@@ -388,6 +436,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Chair: <span>MD Taylor</span>
         </div>
+        <a href="mailto:webmaster@dlakappa.org" class="cc-contact-btn">Contact Committee</a>
       </div>
 
     </div>
@@ -397,7 +446,7 @@
 
     <div class="committee-grid">
 
-      <!-- Foundation / 501(c)(3) (New) -->
+      <!-- Foundation / 501(c)(3) -->
       <div class="committee-card">
         <div class="cc-photo"><img src="/img/erick.png" alt="Erick Mitchell"></div>
         <h3>Foundation / 501(c)(3)</h3>
@@ -406,6 +455,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Liaison: <span>Erick Mitchell</span>
         </div>
+        <a href="mailto:foundation-liaison@dlakapp.org" class="cc-contact-btn">Contact Liaison</a>
       </div>
 
       <!-- NPHC -->
@@ -417,6 +467,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Liaison: <span>Darrell DeVaul</span>
         </div>
+        <a href="mailto:nphc@dlakappa.org" class="cc-contact-btn">Contact Liaison</a>
       </div>
 
       <!-- Silhouettes -->
@@ -428,6 +479,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Liaison: <span>Vivyon Bowman</span>
         </div>
+        <a href="mailto:silhouette.liaison@dlakappa.org" class="cc-contact-btn">Contact Liaison</a>
       </div>
 
       <!-- St. Jude -->
@@ -439,6 +491,7 @@
           <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
           Liaison: <span>Mark Elmore</span>
         </div>
+        <a href="mailto:st-jude@dlakappa.org" class="cc-contact-btn">Contact Liaison</a>
       </div>
 
     </div>
