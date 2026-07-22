@@ -34,6 +34,7 @@
           <a href="/events/our_community.html">Our Community</a>
         </div>
       </li>
+      <li><a href="/blog/" data-page="blog">Blog</a></li>
       <li><a href="/contact.html" data-page="contact">Contact</a></li>
       <li class="nav-members">
         <a href="/portal/login.html">Members Area</a>

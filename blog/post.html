@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Loading… — DLA Kappa Alpha Psi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+.post-wrap { max-width: 760px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+.post-cover {
+  width: 100%; aspect-ratio: 16/6;
+  overflow: hidden; background: #2a0604;
+  margin-bottom: 2.5rem;
+}
+.post-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-cover .cover-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #2a0604, #70110c);
+  display: flex; align-items: center; justify-content: center;
+}
+.post-cover .cover-placeholder img { width: 80px; opacity: .15; }
+
+.post-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: .75rem; flex-wrap: wrap;
+}
+.post-category {
+  font-size: .58rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: #c69a3f;
+}
+.members-badge {
+  font-size: .58rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #f2ebd7; background: #70110c;
+  padding: .25rem .65rem;
+}
+
+.post-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-weight: 700; color: #1a1a1a;
+  line-height: 1.2; margin-bottom: 1rem;
+}
+.post-meta {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  font-size: .8rem; color: #8a7a72;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e4ddd4;
+  margin-bottom: 2rem;
+}
+.post-meta span { display: flex; align-items: center; gap: .4rem; }
+
+.post-content {
+  font-size: .97rem; line-height: 1.85; color: #3a2e28;
+}
+.post-content p { margin-bottom: 1.25rem; }
+.post-content h2 {
+  font-family: 'Cinzel', serif; font-size: 1.3rem;
+  font-weight: 700; color: #70110c;
+  margin: 2rem 0 .75rem;
+}
+.post-content h3 {
+  font-family: 'Cinzel', serif; font-size: 1.05rem;
+  font-weight: 600; color: #3a2e28;
+  margin: 1.5rem 0 .5rem;
+}
+.post-content img {
+  max-width: 100%; height: auto; display: block;
+  margin: 1.5rem auto; border: 1px solid #e4ddd4;
+}
+.post-content blockquote {
+  border-left: 3px solid #c69a3f; padding-left: 1.25rem;
+  margin: 1.5rem 0; color: #5a4a42; font-style: italic;
+}
+.post-content ul, .post-content ol {
+  padding-left: 1.5rem; margin-bottom: 1.25rem;
+}
+.post-content li { margin-bottom: .4rem; }
+.post-content a { color: #70110c; }
+
+/* Lock wall */
+.lock-wall {
+  text-align: center; padding: 3rem 2rem;
+  border: 1px solid #e4ddd4; background: #faf8f4;
+  margin-top: 2rem;
+}
+.lock-wall svg { width: 40px; height: 40px; color: #c69a3f; margin-bottom: 1rem; }
+.lock-wall h3 {
+  font-family: 'Cinzel', serif; font-size: 1.1rem;
+  font-weight: 700; color: #70110c; margin-bottom: .5rem;
+}
+.lock-wall p { font-size: .88rem; color: #6a5a52; margin-bottom: 1.5rem; line-height: 1.6; }
+.lock-wall a {
+  display: inline-block; font-family: 'Cinzel', serif;
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: .85rem 2rem; background: #70110c; color: #f2ebd7;
+  text-decoration: none; transition: background .2s;
+}
+.lock-wall a:hover { background: #5a0e09; }
+
+/* Back link */
+.back-nav {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .78rem; font-weight: 600; color: #70110c;
+  text-decoration: none; margin-bottom: 2rem;
+  letter-spacing: .04em;
+}
+.back-nav:hover { text-decoration: underline; }
+
+/* Loading state */
+.post-loading {
+  text-align: center; padding: 5rem 0;
+  font-family: 'Cinzel', serif; font-size: .8rem;
+  letter-spacing: .14em; text-transform: uppercase; color: #aaa;
+}
+
+@media(max-width:560px){
+  .post-wrap { padding: 0 1rem 3rem; }
+  .post-cover { aspect-ratio: 16/7; }
+}
+</style>
+</head>
+<body data-page="blog">
+<div id="site-nav-placeholder"></div>
+
+<div style="background:#fff; padding:3rem 0 0;">
+  <div class="post-wrap">
+    <a class="back-nav" href="/blog/">&larr; Back to Blog</a>
+    <div id="postContent">
+      <div class="post-loading">Loading post…</div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer-placeholder"></div>
+<script src="/js/nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const CATEGORY_LABELS = {
+  'news': 'News & Announcements',
+  'event-recap': 'Event Recap',
+  'member-spotlight': 'Member Spotlight',
+  'guide-right': 'Guide Right'
+};
+
+function formatDate(str) {
+  if (!str) return '';
+  return new Date(str).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+}
+
+function renderLockWall() {
+  return `
+    <div class="lock-wall">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <h3>Members Only</h3>
+      <p>This article is available to DLA chapter members. Sign in to your portal account to read the full post.</p>
+      <a href="/portal/login.html?redirect=${encodeURIComponent(window.location.href)}">Sign In to Read &rarr;</a>
+    </div>`;
+}
+
+async function loadPost() {
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  if (!slug) { window.location.href = '/blog/'; return; }
+
+  const { data: { session } } = await sb.auth.getSession();
+  const isLoggedIn = !!session;
+
+  const { data: post, error } = await sb
+    .from('posts')
+    .select('*')
+    .eq('slug', slug)
+    .eq('published', true)
+    .single();
+
+  const container = document.getElementById('postContent');
+
+  if (error || !post) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:4rem 0;">
+        <p style="color:#8a7a72;font-size:.9rem;margin-bottom:1.5rem;">Post not found.</p>
+        <a href="/blog/" style="color:#70110c;font-weight:600;">← Back to Blog</a>
+      </div>`;
+    return;
+  }
+
+  document.title = `${post.title} — DLA Kappa Alpha Psi`;
+
+  const coverHtml = post.cover_image
+    ? `<div class="post-cover"><img src="${post.cover_image}" alt="${post.title}"></div>`
+    : `<div class="post-cover"><div class="cover-placeholder"><img src="/img/kappa-crest.png" alt=""></div></div>`;
+
+  const membersTag = post.is_members_only
+    ? `<span class="members-badge">&#128274; Members Only</span>` : '';
+
+  const contentHtml = (post.is_members_only && !isLoggedIn)
+    ? renderLockWall()
+    : `<div class="post-content">${post.content || ''}</div>`;
+
+  container.innerHTML = `
+    ${coverHtml}
+    <div class="post-eyebrow">
+      <span class="post-category">${CATEGORY_LABELS[post.category] || post.category || ''}</span>
+      ${membersTag}
+    </div>
+    <h1 class="post-title">${post.title}</h1>
+    <div class="post-meta">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        ${post.author || 'DLA Chapter'}
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        ${formatDate(post.published_at)}
+      </span>
+    </div>
+    ${contentHtml}`;
+}
+
+loadPost();
+</script>
+</body>
+</html>
