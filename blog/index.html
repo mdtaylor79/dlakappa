@@ -263,14 +263,19 @@ function renderGrid() {
   grid.innerHTML = filtered.map(renderCard).join('');
 }
 
-async function loadPosts() {
-  // Public page — only load posts that are NOT members-only
-  const { data: posts, error } = await sb
+async function loadPosts(searchQ) {
+  let query = sb
     .from('posts')
     .select('id, title, slug, excerpt, cover_image, category, author, published_at')
     .eq('published', true)
     .eq('is_members_only', false)
     .order('published_at', { ascending: false });
+
+  if (searchQ) {
+    query = query.or(`title.ilike.%${searchQ}%,excerpt.ilike.%${searchQ}%`);
+  }
+
+  const { data: posts, error } = await query;
 
   if (error) {
     document.getElementById('blogGrid').innerHTML = '<div class="blog-empty">Unable to load posts. Please try again later.</div>';
@@ -291,7 +296,22 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-loadPosts();
+// Handle ?q= search param from nav search
+const urlQ = new URLSearchParams(window.location.search).get('q');
+if (urlQ) {
+  // Pre-filter by search term client-side after load
+  loadPosts(urlQ);
+  // Show search context
+  const filtersEl = document.querySelector('.blog-filters');
+  if (filtersEl) {
+    const tag = document.createElement('div');
+    tag.style.cssText = 'width:100%;font-size:.8rem;color:#8a7a72;padding:.25rem 0;';
+    tag.innerHTML = `Showing results for <strong style="color:#70110c;">"${urlQ}"</strong> — <a href="/blog/" style="color:#70110c;">Clear</a>`;
+    filtersEl.after(tag);
+  }
+} else {
+  loadPosts();
+}
 </script>
 </body>
 </html>
