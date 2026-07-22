@@ -147,7 +147,7 @@ body{background:#ffffff !important;min-height:100vh;}
   color:var(--cream);font-family:var(--font-sans);
 }
 .page-hero{
-  background:radial-gradient(120% 120% at 70% 10%,#7d1610 0%,var(--crimson) 40%,var(--crimson-deep) 75%,var(--crimson-night) 100%);
+  background:#70110c;
   padding:5rem 2rem 4rem;position:relative;overflow:hidden;
 }
 .page-hero::before{
