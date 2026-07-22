@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.png" type="image/png">
 <title>Loading… — DLA Kappa Alpha Psi</title>
+<!-- SEO / Open Graph — filled dynamically once post loads -->
+<meta name="description" content="">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Denton-Lewisville (TX) Alumni Chapter — Kappa Alpha Psi">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="">
+<link rel="canonical" href="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
@@ -197,19 +210,57 @@ async function loadPost() {
     return;
   }
 
-  document.title = `${post.title} — DLA Kappa Alpha Psi`;
-
   function wixImgUrl(url) {
     if (!url) return null;
-    // Add Wix resize transform if it's a raw wixstatic URL without one
     if (url.includes('wixstatic.com/media') && !url.includes('/v1/')) {
       return url + '/v1/fit/w_1200,h_675,al_c,q_80/file.jpg';
     }
     return url;
   }
 
+  // ── SEO meta injection ─────────────────────────────────────────────
+  const pageTitle  = (post.seo_title || post.title) + ' — DLA Kappa Alpha Psi';
+  const pageDesc   = post.excerpt || '';
+  const pageImage  = wixImgUrl(post.cover_image) || 'https://dlakappa.org/img/kappa-crest.png';
+  const pageUrl    = post.canonical_url || window.location.href;
+  const canonical  = post.canonical_url || window.location.href;
+
+  document.title = pageTitle;
+  document.querySelector('meta[name="description"]').setAttribute('content', pageDesc);
+  document.querySelector('meta[property="og:title"]').setAttribute('content', pageTitle);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', pageDesc);
+  document.querySelector('meta[property="og:image"]').setAttribute('content', pageImage);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', pageUrl);
+  document.querySelector('meta[name="twitter:title"]').setAttribute('content', pageTitle);
+  document.querySelector('meta[name="twitter:description"]').setAttribute('content', pageDesc);
+  document.querySelector('meta[name="twitter:image"]').setAttribute('content', pageImage);
+  document.querySelector('link[rel="canonical"]').setAttribute('href', canonical);
+
+  // JSON-LD Article schema
+  const jsonLd = document.createElement('script');
+  jsonLd.type = 'application/ld+json';
+  jsonLd.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.excerpt || '',
+    "image": pageImage,
+    "datePublished": post.published_at || post.created_at || '',
+    "dateModified":  post.updated_at  || post.published_at || '',
+    "author": { "@type": "Organization", "name": post.author || 'DLA Chapter Administration' },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Denton-Lewisville (TX) Alumni Chapter — Kappa Alpha Psi Fraternity, Inc.",
+      "logo": { "@type": "ImageObject", "url": "https://dlakappa.org/img/kappa-crest.png" }
+    },
+    "url": pageUrl
+  });
+  document.head.appendChild(jsonLd);
+  // ──────────────────────────────────────────────────────────────────
+
+  const imgAlt = post.cover_alt || post.title;
   const coverHtml = post.cover_image
-    ? `<div class="post-cover"><img src="${wixImgUrl(post.cover_image)}" alt="${post.title}"></div>`
+    ? `<div class="post-cover"><img src="${wixImgUrl(post.cover_image)}" alt="${imgAlt}"></div>`
     : `<div class="post-cover"><div class="cover-placeholder"><img src="/img/kappa-crest.png" alt=""></div></div>`;
 
   const membersTag = post.is_members_only

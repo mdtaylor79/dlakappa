@@ -7,114 +7,87 @@
 <title>Blog Admin — DLA Member Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <style>
 .admin-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 2rem 5rem; }
-.admin-wrap h1 {
-  font-family: 'Cinzel', serif; font-size: 1.5rem;
-  font-weight: 700; color: #70110c; margin-bottom: .25rem;
-}
-.admin-wrap .subtitle { font-size: .85rem; color: #8a7a72; margin-bottom: 2rem; }
+.admin-wrap h1 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:700; color:#70110c; margin-bottom:.25rem; }
+.admin-wrap .subtitle { font-size:.85rem; color:#8a7a72; margin-bottom:2rem; }
 
-.form-section { margin-bottom: 1.25rem; }
-.form-section label {
-  display: block; font-size: .76rem; font-weight: 600;
-  color: #444; margin-bottom: .35rem; letter-spacing: .04em;
-  text-transform: uppercase;
-}
+.form-section { margin-bottom:1.25rem; }
+.form-section label { display:block; font-size:.76rem; font-weight:600; color:#444; margin-bottom:.35rem; letter-spacing:.04em; text-transform:uppercase; }
 .form-section input[type="text"],
 .form-section input[type="url"],
+.form-section input[type="datetime-local"],
 .form-section select,
 .form-section textarea {
-  width: 100%;
-  padding: .68rem .85rem;
-  border: 1.5px solid #ddd; border-radius: 4px;
-  background: #fafafa; font-family: 'Archivo', sans-serif;
-  font-size: .92rem; color: #222; outline: none;
-  transition: border-color .2s;
+  width:100%; padding:.68rem .85rem;
+  border:1.5px solid #ddd; border-radius:4px;
+  background:#fafafa; font-family:'Archivo',sans-serif;
+  font-size:.92rem; color:#222; outline:none; transition:border-color .2s;
+  box-sizing:border-box;
 }
-.form-section input:focus,
-.form-section select:focus,
-.form-section textarea:focus { border-color: #c69a3f; background: #fff; }
-.form-section textarea { resize: vertical; min-height: 320px; font-family: monospace; font-size: .85rem; }
+.form-section input:focus, .form-section select:focus, .form-section textarea:focus { border-color:#c69a3f; background:#fff; }
+.form-section textarea { resize:vertical; min-height:120px; font-family:monospace; font-size:.85rem; }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
 
-.toggle-row {
-  display: flex; align-items: center; gap: .75rem;
-  padding: .85rem 1rem; background: #faf8f4;
-  border: 1px solid #e4ddd4; border-radius: 4px;
-}
-.toggle-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: #70110c; cursor: pointer; }
-.toggle-row label { font-size: .85rem; color: #3a2e28; cursor: pointer; margin: 0; text-transform: none; letter-spacing: 0; font-weight: 500; }
+.toggle-row { display:flex; align-items:center; gap:.75rem; padding:.85rem 1rem; background:#faf8f4; border:1px solid #e4ddd4; border-radius:4px; }
+.toggle-row input[type="checkbox"] { width:16px; height:16px; accent-color:#70110c; cursor:pointer; }
+.toggle-row label { font-size:.85rem; color:#3a2e28; cursor:pointer; margin:0; text-transform:none; letter-spacing:0; font-weight:500; }
 
-.hint { font-size: .73rem; color: #aaa; margin-top: .3rem; }
+.hint { font-size:.73rem; color:#aaa; margin-top:.3rem; }
 
-.btn-row { display: flex; gap: 1rem; margin-top: 1.75rem; flex-wrap: wrap; }
-.btn-publish {
-  padding: .85rem 2rem; background: #70110c; color: #f2ebd7;
-  border: none; border-radius: 4px;
-  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  cursor: pointer; transition: background .2s;
-}
-.btn-publish:hover { background: #5a0e09; }
-.btn-publish:disabled { background: #a55; cursor: not-allowed; }
-.btn-draft {
-  padding: .85rem 1.75rem; background: transparent; color: #70110c;
-  border: 2px solid #70110c; border-radius: 4px;
-  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  cursor: pointer; transition: all .2s;
-}
-.btn-draft:hover { background: #70110c; color: #f2ebd7; }
+.btn-row { display:flex; gap:1rem; margin-top:1.75rem; flex-wrap:wrap; }
+.btn-publish { padding:.85rem 2rem; background:#70110c; color:#f2ebd7; border:none; border-radius:4px; font-family:'Cinzel',serif; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
+.btn-publish:hover { background:#5a0e09; }
+.btn-publish:disabled { background:#a55; cursor:not-allowed; }
+.btn-draft { padding:.85rem 1.75rem; background:transparent; color:#70110c; border:2px solid #70110c; border-radius:4px; font-family:'Cinzel',serif; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+.btn-draft:hover { background:#70110c; color:#f2ebd7; }
 
-.status-msg {
-  padding: .75rem 1rem; border-radius: 4px;
-  font-size: .84rem; margin-top: 1rem; display: none;
-}
-.status-msg.success { background: #f0fff4; border: 1px solid #b2e6c8; color: #1a6e3a; }
-.status-msg.error { background: #fff0f0; border: 1px solid #f0c0c0; color: #a00; }
+.status-msg { padding:.75rem 1rem; border-radius:4px; font-size:.84rem; margin-top:1rem; display:none; }
+.status-msg.success { background:#f0fff4; border:1px solid #b2e6c8; color:#1a6e3a; }
+.status-msg.error { background:#fff0f0; border:1px solid #f0c0c0; color:#a00; }
 
 /* Posts list */
-.posts-section { margin-top: 3rem; }
-.posts-section h2 {
-  font-family: 'Cinzel', serif; font-size: 1.1rem;
-  color: #70110c; font-weight: 700; margin-bottom: 1.25rem;
-  padding-bottom: .75rem; border-bottom: 1px solid #e4ddd4;
-}
-.post-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: .9rem 0; border-bottom: 1px solid #f0ece6; gap: 1rem;
-}
-.post-row-info h3 { font-size: .9rem; font-weight: 600; color: #1a1a1a; margin-bottom: .2rem; }
-.post-row-info .meta { font-size: .75rem; color: #aaa; }
-.post-row-actions { display: flex; gap: .5rem; flex-shrink: 0; }
-.btn-sm {
-  font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: .4rem .85rem; border: none; border-radius: 3px;
-  cursor: pointer; transition: all .2s;
-}
-.btn-view { background: #f0ece6; color: #3a2e28; }
-.btn-view:hover { background: #e0d8cc; }
-.btn-unpublish { background: #fff0f0; color: #a00; }
-.btn-unpublish:hover { background: #f0c0c0; }
-.btn-publish-sm { background: #70110c; color: #f2ebd7; }
-.btn-publish-sm:hover { background: #5a0e09; }
-.btn-edit { background: #eef4ff; color: #1a4e99; }
-.btn-edit:hover { background: #d5e5ff; }
-.btn-delete { background: #fff0f0; color: #cc0000; border: 1px solid #f0c0c0; }
-.btn-delete:hover { background: #ffd5d5; }
-.badge {
-  display: inline-block; font-size: .58rem; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: .2rem .55rem; border-radius: 3px; margin-left: .4rem;
-}
-.badge-live { background: #d4edda; color: #1a6e3a; }
-.badge-draft { background: #e0e0e0; color: #666; }
-.badge-members { background: #fdf3e0; color: #8a6020; }
+.posts-section { margin-top:3rem; }
+.posts-section h2 { font-family:'Cinzel',serif; font-size:1.1rem; color:#70110c; font-weight:700; margin-bottom:1.25rem; padding-bottom:.75rem; border-bottom:1px solid #e4ddd4; }
+.post-row { display:flex; align-items:center; justify-content:space-between; padding:.9rem 0; border-bottom:1px solid #f0ece6; gap:1rem; }
+.post-row-info h3 { font-size:.9rem; font-weight:600; color:#1a1a1a; margin-bottom:.2rem; }
+.post-row-info .meta { font-size:.75rem; color:#aaa; }
+.post-row-actions { display:flex; gap:.5rem; flex-shrink:0; flex-wrap:wrap; justify-content:flex-end; }
+.btn-sm { font-family:'Cinzel',serif; font-size:.58rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.4rem .85rem; border:none; border-radius:3px; cursor:pointer; transition:all .2s; }
+.btn-view { background:#f0ece6; color:#3a2e28; }
+.btn-view:hover { background:#e0d8cc; }
+.btn-edit { background:#eef4ff; color:#1a4e99; }
+.btn-edit:hover { background:#d5e5ff; }
+.btn-unpublish { background:#fff0f0; color:#a00; }
+.btn-unpublish:hover { background:#f0c0c0; }
+.btn-publish-sm { background:#70110c; color:#f2ebd7; }
+.btn-publish-sm:hover { background:#5a0e09; }
+.btn-delete { background:#fff0f0; color:#cc0000; border:1px solid #f0c0c0; }
+.btn-delete:hover { background:#ffd5d5; }
+.badge { display:inline-block; font-size:.58rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.2rem .55rem; border-radius:3px; margin-left:.4rem; }
+.badge-live { background:#d4edda; color:#1a6e3a; }
+.badge-draft { background:#e0e0e0; color:#666; }
+.badge-members { background:#fdf3e0; color:#8a6020; }
 
-@media(max-width:560px){ .form-row { grid-template-columns: 1fr; } .admin-wrap { padding: 1.5rem 1rem 3rem; } }
+/* Editor toggle */
+.editor-toggle { display:flex; gap:0; border:1.5px solid #ddd; border-radius:4px; overflow:hidden; }
+.toggle-btn { padding:.3rem .85rem; font-family:'Cinzel',serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:none; background:#f5f2ed; color:#8a7a72; cursor:pointer; transition:all .2s; }
+.toggle-btn.active { background:#70110c; color:#f2ebd7; }
+.toggle-btn:not(.active):hover { background:#e0d8cc; }
+
+/* Quill */
+#quill-editor { background:#fafafa; border:1.5px solid #ddd; border-top:none; transition:border-color .2s; }
+#quill-editor:focus-within { border-color:#c69a3f; background:#fff; }
+.ql-toolbar { border:1.5px solid #ddd !important; border-radius:4px 4px 0 0; background:#f5f2ed; flex-wrap:wrap !important; }
+.ql-container { border-radius:0 0 4px 4px; font-family:'Archivo',sans-serif !important; font-size:.92rem !important; }
+.ql-editor { height:420px; overflow-y:auto; }
+.ql-editor p, .ql-editor li { font-family:'Archivo',sans-serif; font-size:.92rem; line-height:1.75; }
+#postContentHtml { height:420px; overflow-y:auto; resize:none; }
+
+@media(max-width:560px){ .form-row,.form-row-3 { grid-template-columns:1fr; } .admin-wrap { padding:1.5rem 1rem 3rem; } }
 </style>
 </head>
 <body>
@@ -125,19 +98,21 @@
     <h1 id="formHeading">Blog Admin</h1>
     <p class="subtitle" id="formSubtitle">Create and manage chapter blog posts.</p>
 
-    <!-- Create Post Form -->
+    <!-- Title -->
     <div class="form-section">
       <label for="postTitle">Post Title *</label>
       <input type="text" id="postTitle" placeholder="e.g. Chapter Meeting Recap — June 2026">
     </div>
 
+    <!-- Slug -->
     <div class="form-section">
       <label for="postSlug">URL Slug *</label>
       <input type="text" id="postSlug" placeholder="e.g. chapter-meeting-recap-june-2026">
-      <div class="hint">Auto-generated from title. Use lowercase letters, numbers, and hyphens only.</div>
+      <div class="hint">Auto-generated from title. Lowercase letters, numbers, and hyphens only.</div>
     </div>
 
-    <div class="form-row">
+    <!-- Category / Author / Date -->
+    <div class="form-row-3">
       <div class="form-section">
         <label for="postCategory">Category *</label>
         <select id="postCategory">
@@ -152,40 +127,68 @@
         <label for="postAuthor">Author</label>
         <input type="text" id="postAuthor" placeholder="DLA Chapter Administration">
       </div>
+      <div class="form-section">
+        <label for="postDate">Publish Date</label>
+        <input type="datetime-local" id="postDate">
+        <div class="hint">Set original date for migrated articles.</div>
+      </div>
     </div>
 
+    <!-- Excerpt / SEO description -->
     <div class="form-section">
-      <label for="postExcerpt">Excerpt</label>
-      <input type="text" id="postExcerpt" placeholder="Short summary shown on the blog listing page…">
-      <div class="hint">1–2 sentences. Keep it under 160 characters.</div>
+      <label for="postExcerpt">Excerpt <span style="color:#c69a3f;font-weight:400;text-transform:none;letter-spacing:0;">(also used as SEO meta description)</span></label>
+      <input type="text" id="postExcerpt" placeholder="Short summary shown on the blog listing page and in search results…">
+      <div class="hint">1–2 sentences, under 160 characters for best SEO results.</div>
     </div>
 
+    <!-- Cover image -->
     <div class="form-section">
       <label>Cover Image</label>
-      <!-- Upload row -->
       <div style="display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;">
-        <input type="url" id="postCover" placeholder="https://dlakappa.org/img/your-image.jpg" style="flex:1;">
-        <button type="button" id="btnBrowse" onclick="document.getElementById('coverFileInput').click()"
-          style="flex-shrink:0;padding:.65rem 1.1rem;background:#f5f2ed;border:1.5px solid #ddd;border-radius:4px;font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3a2e28;cursor:pointer;white-space:nowrap;transition:all .2s;"
+        <input type="url" id="postCover" placeholder="https://dlakappa.org/img/your-image.jpg" style="flex:1;" oninput="onCoverUrlInput(this.value)">
+        <button type="button" onclick="document.getElementById('coverFileInput').click()"
+          style="flex-shrink:0;padding:.65rem 1.1rem;background:#f5f2ed;border:1.5px solid #ddd;border-radius:4px;font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3a2e28;cursor:pointer;white-space:nowrap;"
           onmouseover="this.style.background='#e8e0d4'" onmouseout="this.style.background='#f5f2ed'">
           Browse &amp; Upload
         </button>
       </div>
       <input type="file" id="coverFileInput" accept="image/*" style="display:none;" onchange="handleCoverUpload(this)">
-      <!-- Progress bar (hidden until uploading) -->
       <div id="coverUploadProgress" style="display:none;margin-bottom:.5rem;">
         <div style="height:4px;background:#e8e0d4;border-radius:2px;overflow:hidden;">
           <div id="coverProgressBar" style="height:100%;width:0%;background:#70110c;transition:width .3s;border-radius:2px;"></div>
         </div>
         <div id="coverUploadMsg" style="font-size:.72rem;color:#888;margin-top:.3rem;">Uploading…</div>
       </div>
-      <!-- Preview (hidden until image selected/uploaded) -->
       <div id="coverPreview" style="display:none;margin-bottom:.5rem;">
-        <img id="coverPreviewImg" src="" alt="Cover preview" style="max-height:140px;max-width:100%;border:1px solid #e0d8cc;border-radius:4px;display:block;">
+        <img id="coverPreviewImg" src="" alt="" style="max-height:140px;max-width:100%;border:1px solid #e0d8cc;border-radius:4px;display:block;">
       </div>
-      <div class="hint">Browse to upload an image, or paste a URL directly. Supported: JPG, PNG, WebP, GIF.</div>
     </div>
 
+    <!-- Cover alt text -->
+    <div class="form-section">
+      <label for="postCoverAlt">Cover Image Alt Text <span style="color:#c69a3f;font-weight:400;text-transform:none;letter-spacing:0;">(SEO &amp; accessibility)</span></label>
+      <input type="text" id="postCoverAlt" placeholder="e.g. Chapter brothers at the 2025 community service event">
+      <div class="hint">Describe the image for screen readers and search engines.</div>
+    </div>
+
+    <!-- SEO fields -->
+    <div class="form-section" style="background:#faf8f4;border:1px solid #e4ddd4;padding:1rem;border-radius:4px;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c69a3f;margin-bottom:.75rem;">SEO Settings</div>
+      <div class="form-row">
+        <div class="form-section" style="margin:0;">
+          <label for="postSeoTitle">SEO Title Override</label>
+          <input type="text" id="postSeoTitle" placeholder="Leave blank to use post title">
+          <div class="hint">Shown in browser tab and search results. ~60 chars max.</div>
+        </div>
+        <div class="form-section" style="margin:0;">
+          <label for="postCanonical">Canonical URL</label>
+          <input type="url" id="postCanonical" placeholder="https://dlakappa.org/blog/post.html?slug=…">
+          <div class="hint">Set if this article was originally published elsewhere.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content editor -->
     <div class="form-section">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;">
         <label style="margin:0;">Content *</label>
@@ -194,11 +197,12 @@
           <button type="button" class="toggle-btn" id="btnHtml" onclick="switchEditor('html')">HTML</button>
         </div>
       </div>
-      <div id="quill-editor" style="min-height:320px;font-family:'Archivo',sans-serif;font-size:.92rem;"></div>
-      <textarea id="postContentHtml" style="display:none;width:100%;min-height:320px;padding:.68rem .85rem;border:1.5px solid #ddd;border-radius:4px;background:#fafafa;font-family:monospace;font-size:.85rem;color:#222;outline:none;resize:vertical;box-sizing:border-box;" placeholder="<p>Write your HTML here...</p>"></textarea>
-      <div class="hint" id="editorHint">Write or paste content directly. Paste from Word or Google Docs and formatting will be preserved.</div>
+      <div id="quill-editor"></div>
+      <textarea id="postContentHtml" style="display:none;width:100%;padding:.68rem .85rem;border:1.5px solid #ddd;border-radius:4px;background:#fafafa;font-family:monospace;font-size:.85rem;color:#222;outline:none;box-sizing:border-box;" placeholder="<p>Write your HTML here...</p>"></textarea>
+      <div class="hint" id="editorHint">Write or paste content. Paste from Word or Google Docs and formatting will be preserved. Scroll within the content area.</div>
     </div>
 
+    <!-- Members only -->
     <div class="form-section">
       <div class="toggle-row">
         <input type="checkbox" id="membersOnly">
@@ -213,7 +217,7 @@
     </div>
     <div class="status-msg" id="statusMsg"></div>
 
-    <!-- Existing Posts -->
+    <!-- Posts list -->
     <div class="posts-section">
       <h2>All Posts</h2>
       <div id="postsList"><p style="font-size:.84rem;color:#aaa;">Loading posts…</p></div>
@@ -224,48 +228,37 @@
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-<style>
-.editor-toggle { display:flex; gap:0; border:1.5px solid #ddd; border-radius:4px; overflow:hidden; }
-.toggle-btn { padding:.3rem .85rem; font-family:'Cinzel',serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:none; background:#f5f2ed; color:#8a7a72; cursor:pointer; transition:all .2s; }
-.toggle-btn.active { background:#70110c; color:#f2ebd7; }
-.toggle-btn:not(.active):hover { background:#e0d8cc; }
-#quill-editor { background:#fafafa; border:1.5px solid #ddd; border-top:none; transition:border-color .2s; }
-#quill-editor:focus-within { border-color:#c69a3f; background:#fff; }
-.ql-toolbar { border:1.5px solid #ddd !important; border-radius:4px 4px 0 0; background:#f5f2ed; }
-.ql-container { border-radius:0 0 4px 4px; font-family:'Archivo',sans-serif !important; font-size:.92rem !important; }
-.ql-editor { min-height:320px; }
-.ql-editor p, .ql-editor li { font-family:'Archivo',sans-serif; font-size:.92rem; line-height:1.75; }
-</style>
 <script>
 const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// Auth guard — admin only
 const ADMINS = ['webmaster@dlakappa.org', 'marcus.d.taylor.kapsi@gmail.com'];
 
 (async () => {
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { window.location.href = '/portal/login.html'; return; }
   if (!ADMINS.includes(session.user.email.toLowerCase())) {
-    window.location.href = '/portal/dashboard.html';
-    return;
+    window.location.href = '/portal/dashboard.html'; return;
   }
   loadPosts();
 })();
 
-// Init Quill rich-text editor
+// ── Quill (expanded toolbar) ─────────────────────────────────────────────
 const quill = new Quill('#quill-editor', {
   theme: 'snow',
   placeholder: 'Write or paste your post content here…',
   modules: {
     toolbar: [
-      [{ header: [2, 3, false] }],
-      ['bold', 'italic', 'underline'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['blockquote', 'link'],
+      [{ header: [1, 2, 3, false] }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['blockquote', 'code-block'],
+      ['link', 'image'],
       ['clean']
     ],
     clipboard: { matchVisual: false }
@@ -273,11 +266,19 @@ const quill = new Quill('#quill-editor', {
 });
 
 // ── Cover image upload ──────────────────────────────────────────────────
+function onCoverUrlInput(url) {
+  if (url) {
+    document.getElementById('coverPreviewImg').src = url;
+    document.getElementById('coverPreview').style.display = 'block';
+  } else {
+    document.getElementById('coverPreview').style.display = 'none';
+  }
+}
+
 async function handleCoverUpload(input) {
   const file = input.files[0];
   if (!file) return;
 
-  // Show local preview immediately
   const reader = new FileReader();
   reader.onload = e => {
     document.getElementById('coverPreviewImg').src = e.target.result;
@@ -285,7 +286,6 @@ async function handleCoverUpload(input) {
   };
   reader.readAsDataURL(file);
 
-  // Show progress
   const progressWrap = document.getElementById('coverUploadProgress');
   const progressBar  = document.getElementById('coverProgressBar');
   const uploadMsg    = document.getElementById('coverUploadMsg');
@@ -293,14 +293,11 @@ async function handleCoverUpload(input) {
   progressBar.style.width = '30%';
   uploadMsg.textContent = 'Uploading…';
 
-  // Build a unique filename: timestamp + sanitised original name
   const ext      = file.name.split('.').pop().toLowerCase();
   const base     = file.name.replace(/\.[^.]+$/, '').replace(/[^a-z0-9]/gi, '-').toLowerCase();
   const fileName = `${Date.now()}-${base}.${ext}`;
 
-  const { data, error } = await sb.storage
-    .from('blog-images')
-    .upload(fileName, file, { contentType: file.type, upsert: false });
+  const { data, error } = await sb.storage.from('blog-images').upload(fileName, file, { contentType: file.type, upsert: false });
 
   if (error) {
     progressBar.style.width = '100%';
@@ -313,72 +310,51 @@ async function handleCoverUpload(input) {
   uploadMsg.textContent = 'Upload complete!';
   setTimeout(() => { progressWrap.style.display = 'none'; progressBar.style.width = '0%'; progressBar.style.background = '#70110c'; }, 2500);
 
-  // Get public URL and populate the field
   const { data: urlData } = sb.storage.from('blog-images').getPublicUrl(data.path);
   document.getElementById('postCover').value = urlData.publicUrl;
   document.getElementById('coverPreviewImg').src = urlData.publicUrl;
 }
 
-// Show preview when URL is pasted manually
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('postCover').addEventListener('input', function () {
-    const url = this.value.trim();
-    if (url) {
-      document.getElementById('coverPreviewImg').src = url;
-      document.getElementById('coverPreview').style.display = 'block';
-    } else {
-      document.getElementById('coverPreview').style.display = 'none';
-    }
-  });
-});
-// ────────────────────────────────────────────────────────────────────────
-
-// Editor mode toggle
+// ── Editor toggle ────────────────────────────────────────────────────────
 let editorMode = 'rich';
-// Edit state
 let editId = null;
 
 function switchEditor(mode) {
   if (mode === editorMode) return;
   editorMode = mode;
-
-  const richBtn  = document.getElementById('btnRichText');
-  const htmlBtn  = document.getElementById('btnHtml');
-  const quillEl  = document.getElementById('quill-editor');
-  const htmlEl   = document.getElementById('postContentHtml');
-  const hint     = document.getElementById('editorHint');
+  const quillEl = document.getElementById('quill-editor');
+  const htmlEl  = document.getElementById('postContentHtml');
+  const hint    = document.getElementById('editorHint');
+  const toolbar = document.querySelector('.ql-toolbar');
 
   if (mode === 'html') {
     htmlEl.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
     quillEl.style.display = 'none';
-    document.querySelector('.ql-toolbar').style.display = 'none';
+    if (toolbar) toolbar.style.display = 'none';
     htmlEl.style.display = 'block';
-    richBtn.classList.remove('active');
-    htmlBtn.classList.add('active');
+    document.getElementById('btnRichText').classList.remove('active');
+    document.getElementById('btnHtml').classList.add('active');
     hint.textContent = 'Write raw HTML. Use <p>, <h2>, <h3>, <strong>, <em>, <ul>, <li>, <blockquote>, <img>.';
   } else {
     const html = htmlEl.value.trim();
     if (html) quill.root.innerHTML = html;
     htmlEl.style.display = 'none';
     quillEl.style.display = 'block';
-    document.querySelector('.ql-toolbar').style.display = 'block';
-    htmlBtn.classList.remove('active');
-    richBtn.classList.add('active');
-    hint.textContent = 'Write or paste content directly. Paste from Word or Google Docs and formatting will be preserved.';
+    if (toolbar) toolbar.style.display = 'block';
+    document.getElementById('btnHtml').classList.remove('active');
+    document.getElementById('btnRichText').classList.add('active');
+    hint.textContent = 'Write or paste content. Paste from Word or Google Docs and formatting will be preserved. Scroll within the content area.';
   }
 }
 
-// Auto-slug from title (only when creating, not editing)
+// ── Auto-slug ────────────────────────────────────────────────────────────
 document.getElementById('postTitle').addEventListener('input', function() {
-  if (editId) return; // don't overwrite slug when editing
-  const slug = this.value.toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim();
-  document.getElementById('postSlug').value = slug;
+  if (editId) return;
+  document.getElementById('postSlug').value = this.value.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
 });
 
+// ── Helpers ──────────────────────────────────────────────────────────────
 function showStatus(msg, type) {
   const el = document.getElementById('statusMsg');
   el.textContent = msg;
@@ -387,10 +363,18 @@ function showStatus(msg, type) {
   if (type === 'success') setTimeout(() => el.style.display = 'none', 4000);
 }
 
+function toDatetimeLocal(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const pad = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 function resetForm() {
   editId = null;
-  ['postTitle','postSlug','postExcerpt','postCover','postAuthor'].forEach(id => document.getElementById(id).value = '');
+  ['postTitle','postSlug','postExcerpt','postCover','postCoverAlt','postAuthor','postSeoTitle','postCanonical'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('postCategory').value = 'news';
+  document.getElementById('postDate').value = '';
   quill.setContents([]);
   document.getElementById('postContentHtml').value = '';
   document.getElementById('membersOnly').checked = false;
@@ -403,56 +387,48 @@ function resetForm() {
   document.getElementById('btnDraft').style.display = '';
   document.getElementById('btnCancel').style.display = 'none';
   document.getElementById('statusMsg').style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('formHeading').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// ── Edit post ────────────────────────────────────────────────────────────
 async function editPost(id) {
   const { data: p, error } = await sb.from('posts').select('*').eq('id', id).single();
   if (error || !p) { showStatus('Could not load post.', 'error'); return; }
 
   editId = id;
-  document.getElementById('postTitle').value    = p.title || '';
-  document.getElementById('postSlug').value     = p.slug  || '';
-  document.getElementById('postExcerpt').value  = p.excerpt || '';
-  document.getElementById('postCover').value    = p.cover_image || '';
+  document.getElementById('postTitle').value      = p.title || '';
+  document.getElementById('postSlug').value       = p.slug  || '';
+  document.getElementById('postExcerpt').value    = p.excerpt || '';
+  document.getElementById('postCover').value      = p.cover_image || '';
+  document.getElementById('postCoverAlt').value   = p.cover_alt || '';
+  document.getElementById('postAuthor').value     = p.author || '';
+  document.getElementById('postCategory').value   = p.category || 'news';
+  document.getElementById('postDate').value       = toDatetimeLocal(p.published_at);
+  document.getElementById('postSeoTitle').value   = p.seo_title || '';
+  document.getElementById('postCanonical').value  = p.canonical_url || '';
+  document.getElementById('membersOnly').checked  = !!p.is_members_only;
+
   if (p.cover_image) {
     document.getElementById('coverPreviewImg').src = p.cover_image;
     document.getElementById('coverPreview').style.display = 'block';
   } else {
     document.getElementById('coverPreview').style.display = 'none';
   }
-  document.getElementById('postAuthor').value   = p.author || '';
-  document.getElementById('postCategory').value = p.category || 'news';
-  document.getElementById('membersOnly').checked = !!p.is_members_only;
 
-  // Load content into the active editor
-  if (editorMode === 'rich') {
-    quill.root.innerHTML = p.content || '';
-  } else {
-    document.getElementById('postContentHtml').value = p.content || '';
-  }
+  if (editorMode === 'rich') quill.root.innerHTML = p.content || '';
+  else document.getElementById('postContentHtml').value = p.content || '';
 
-  document.getElementById('formHeading').textContent   = 'Edit Post';
-  document.getElementById('formSubtitle').textContent  = 'Editing: ' + p.title;
-  document.getElementById('btnPublish').textContent    = p.published ? 'Update & Keep Live' : 'Update & Publish';
+  document.getElementById('formHeading').textContent  = 'Edit Post';
+  document.getElementById('formSubtitle').textContent = 'Editing: ' + p.title;
+  document.getElementById('btnPublish').textContent   = p.published ? 'Update & Keep Live' : 'Update & Publish';
   document.getElementById('btnDraft').style.display   = p.published ? 'none' : '';
   document.getElementById('btnCancel').style.display  = '';
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Scroll to form heading
+  document.getElementById('formHeading').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-async function deletePost(id, title) {
-  if (!confirm(`Delete "${title}"?\n\nThis cannot be undone.`)) return;
-  const { error } = await sb.from('posts').delete().eq('id', id);
-  if (error) {
-    showStatus('Delete failed: ' + error.message, 'error');
-  } else {
-    showStatus('Post deleted.', 'success');
-    if (editId === id) resetForm();
-    loadPosts();
-  }
-}
-
+// ── Save post ────────────────────────────────────────────────────────────
 async function savePost(publish) {
   const title   = document.getElementById('postTitle').value.trim();
   const slug    = document.getElementById('postSlug').value.trim();
@@ -467,17 +443,25 @@ async function savePost(publish) {
   const btn = document.getElementById('btnPublish');
   btn.disabled = true;
 
+  const dateVal = document.getElementById('postDate').value;
+  const publishedAt = dateVal
+    ? new Date(dateVal).toISOString()
+    : (publish ? new Date().toISOString() : null);
+
   const payload = {
     title,
     slug,
     excerpt:         document.getElementById('postExcerpt').value.trim() || null,
     content,
     cover_image:     document.getElementById('postCover').value.trim() || null,
+    cover_alt:       document.getElementById('postCoverAlt').value.trim() || null,
+    seo_title:       document.getElementById('postSeoTitle').value.trim() || null,
+    canonical_url:   document.getElementById('postCanonical').value.trim() || null,
     category:        document.getElementById('postCategory').value,
     author:          document.getElementById('postAuthor').value.trim() || 'DLA Chapter Administration',
     is_members_only: document.getElementById('membersOnly').checked,
     published:       publish,
-    published_at:    publish ? new Date().toISOString() : null,
+    published_at:    publishedAt,
   };
 
   let error;
@@ -491,13 +475,13 @@ async function savePost(publish) {
   if (error) {
     showStatus(error.message, 'error');
   } else {
-    const action = editId ? 'updated' : (publish ? 'published' : 'saved as draft');
-    showStatus(`Post ${action} successfully!`, 'success');
+    showStatus(`Post ${editId ? 'updated' : (publish ? 'published' : 'saved as draft')} successfully!`, 'success');
     resetForm();
     loadPosts();
   }
 }
 
+// ── Toggle publish ───────────────────────────────────────────────────────
 async function togglePublish(id, currentState) {
   await sb.from('posts').update({
     published: !currentState,
@@ -506,11 +490,20 @@ async function togglePublish(id, currentState) {
   loadPosts();
 }
 
+// ── Delete post ──────────────────────────────────────────────────────────
+async function deletePost(id, title) {
+  if (!confirm(`Delete "${title}"?\n\nThis cannot be undone.`)) return;
+  const { error } = await sb.from('posts').delete().eq('id', id);
+  if (error) { showStatus('Delete failed: ' + error.message, 'error'); }
+  else { showStatus('Post deleted.', 'success'); if (editId === id) resetForm(); loadPosts(); }
+}
+
+// ── Load posts list ──────────────────────────────────────────────────────
 async function loadPosts() {
   const { data: posts } = await sb
     .from('posts')
     .select('id, title, slug, category, is_members_only, published, published_at, created_at')
-    .order('created_at', { ascending: false });
+    .order('published_at', { ascending: false });
 
   const container = document.getElementById('postsList');
   if (!posts || !posts.length) {
@@ -518,13 +511,7 @@ async function loadPosts() {
     return;
   }
 
-  const CATS = {
-    'news': 'News & Announcements',
-    'chapter-news': 'Chapter News',
-    'event-recap': 'Event Recap',
-    'member-spotlight': 'Member Spotlight',
-    'guide-right': 'Guide Right'
-  };
+  const CATS = { 'news':'News','chapter-news':'Chapter News','event-recap':'Event Recap','member-spotlight':'Member Spotlight','guide-right':'Guide Right' };
 
   container.innerHTML = posts.map(p => `
     <div class="post-row">
@@ -533,7 +520,7 @@ async function loadPosts() {
           <span class="badge ${p.published ? 'badge-live' : 'badge-draft'}">${p.published ? 'Live' : 'Draft'}</span>
           ${p.is_members_only ? '<span class="badge badge-members">Members</span>' : ''}
         </h3>
-        <div class="meta">${CATS[p.category] || p.category} &middot; ${p.slug}</div>
+        <div class="meta">${CATS[p.category] || p.category} &middot; ${p.published_at ? new Date(p.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'No date'}</div>
       </div>
       <div class="post-row-actions">
         ${p.published ? `<button class="btn-sm btn-view" onclick="window.open('/blog/post.html?slug=${p.slug}','_blank')">View</button>` : ''}
