@@ -161,9 +161,29 @@
     </div>
 
     <div class="form-section">
-      <label for="postCover">Cover Image URL</label>
-      <input type="url" id="postCover" placeholder="https://dlakappa.org/img/your-image.jpg">
-      <div class="hint">Upload the image to your /img/ folder first, then paste the full URL here.</div>
+      <label>Cover Image</label>
+      <!-- Upload row -->
+      <div style="display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;">
+        <input type="url" id="postCover" placeholder="https://dlakappa.org/img/your-image.jpg" style="flex:1;">
+        <button type="button" id="btnBrowse" onclick="document.getElementById('coverFileInput').click()"
+          style="flex-shrink:0;padding:.65rem 1.1rem;background:#f5f2ed;border:1.5px solid #ddd;border-radius:4px;font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3a2e28;cursor:pointer;white-space:nowrap;transition:all .2s;"
+          onmouseover="this.style.background='#e8e0d4'" onmouseout="this.style.background='#f5f2ed'">
+          Browse &amp; Upload
+        </button>
+      </div>
+      <input type="file" id="coverFileInput" accept="image/*" style="display:none;" onchange="handleCoverUpload(this)">
+      <!-- Progress bar (hidden until uploading) -->
+      <div id="coverUploadProgress" style="display:none;margin-bottom:.5rem;">
+        <div style="height:4px;background:#e8e0d4;border-radius:2px;overflow:hidden;">
+          <div id="coverProgressBar" style="height:100%;width:0%;background:#70110c;transition:width .3s;border-radius:2px;"></div>
+        </div>
+        <div id="coverUploadMsg" style="font-size:.72rem;color:#888;margin-top:.3rem;">Uploading…</div>
+      </div>
+      <!-- Preview (hidden until image selected/uploaded) -->
+      <div id="coverPreview" style="display:none;margin-bottom:.5rem;">
+        <img id="coverPreviewImg" src="" alt="Cover preview" style="max-height:140px;max-width:100%;border:1px solid #e0d8cc;border-radius:4px;display:block;">
+      </div>
+      <div class="hint">Browse to upload an image, or paste a URL directly. Supported: JPG, PNG, WebP, GIF.</div>
     </div>
 
     <div class="form-section">
@@ -252,6 +272,67 @@ const quill = new Quill('#quill-editor', {
   }
 });
 
+// ── Cover image upload ──────────────────────────────────────────────────
+async function handleCoverUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  // Show local preview immediately
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('coverPreviewImg').src = e.target.result;
+    document.getElementById('coverPreview').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+
+  // Show progress
+  const progressWrap = document.getElementById('coverUploadProgress');
+  const progressBar  = document.getElementById('coverProgressBar');
+  const uploadMsg    = document.getElementById('coverUploadMsg');
+  progressWrap.style.display = 'block';
+  progressBar.style.width = '30%';
+  uploadMsg.textContent = 'Uploading…';
+
+  // Build a unique filename: timestamp + sanitised original name
+  const ext      = file.name.split('.').pop().toLowerCase();
+  const base     = file.name.replace(/\.[^.]+$/, '').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  const fileName = `${Date.now()}-${base}.${ext}`;
+
+  const { data, error } = await sb.storage
+    .from('blog-images')
+    .upload(fileName, file, { contentType: file.type, upsert: false });
+
+  if (error) {
+    progressBar.style.width = '100%';
+    progressBar.style.background = '#cc0000';
+    uploadMsg.textContent = 'Upload failed: ' + error.message;
+    return;
+  }
+
+  progressBar.style.width = '100%';
+  uploadMsg.textContent = 'Upload complete!';
+  setTimeout(() => { progressWrap.style.display = 'none'; progressBar.style.width = '0%'; progressBar.style.background = '#70110c'; }, 2500);
+
+  // Get public URL and populate the field
+  const { data: urlData } = sb.storage.from('blog-images').getPublicUrl(data.path);
+  document.getElementById('postCover').value = urlData.publicUrl;
+  document.getElementById('coverPreviewImg').src = urlData.publicUrl;
+}
+
+// Show preview when URL is pasted manually
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('postCover').addEventListener('input', function () {
+    const url = this.value.trim();
+    if (url) {
+      document.getElementById('coverPreviewImg').src = url;
+      document.getElementById('coverPreview').style.display = 'block';
+    } else {
+      document.getElementById('coverPreview').style.display = 'none';
+    }
+  });
+});
+// ────────────────────────────────────────────────────────────────────────
+
 // Editor mode toggle
 let editorMode = 'rich';
 // Edit state
@@ -313,6 +394,9 @@ function resetForm() {
   quill.setContents([]);
   document.getElementById('postContentHtml').value = '';
   document.getElementById('membersOnly').checked = false;
+  document.getElementById('coverPreview').style.display = 'none';
+  document.getElementById('coverPreviewImg').src = '';
+  document.getElementById('coverFileInput').value = '';
   document.getElementById('formHeading').textContent = 'Blog Admin';
   document.getElementById('formSubtitle').textContent = 'Create and manage chapter blog posts.';
   document.getElementById('btnPublish').textContent = 'Publish Now';
@@ -331,6 +415,12 @@ async function editPost(id) {
   document.getElementById('postSlug').value     = p.slug  || '';
   document.getElementById('postExcerpt').value  = p.excerpt || '';
   document.getElementById('postCover').value    = p.cover_image || '';
+  if (p.cover_image) {
+    document.getElementById('coverPreviewImg').src = p.cover_image;
+    document.getElementById('coverPreview').style.display = 'block';
+  } else {
+    document.getElementById('coverPreview').style.display = 'none';
+  }
   document.getElementById('postAuthor').value   = p.author || '';
   document.getElementById('postCategory').value = p.category || 'news';
   document.getElementById('membersOnly').checked = !!p.is_members_only;
