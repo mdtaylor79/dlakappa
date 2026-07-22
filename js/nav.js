@@ -79,6 +79,7 @@
           <a href="https://www.facebook.com/dlanupes/" target="_blank" rel="noopener" aria-label="Facebook"><img src="/img/facebook_icon.png" alt="Facebook" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
           <a href="https://www.instagram.com/dlanupes/" target="_blank" rel="noopener" aria-label="Instagram"><img src="/img/Instagram_icon.png" alt="Instagram" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
           <a href="https://www.youtube.com/@DLAKappas" target="_blank" rel="noopener" aria-label="YouTube"><img src="/img/youtube_icon.png" alt="YouTube" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
+          <a href="https://x.com/DNupes" target="_blank" rel="noopener" aria-label="X (Twitter)"><img src="/img/x_icon.svg" alt="X" style="width:28px;height:28px;object-fit:contain;display:block;"></a>
         </div>
       </div>
       <div class="contact">
