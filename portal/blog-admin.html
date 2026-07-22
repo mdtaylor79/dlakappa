@@ -162,9 +162,16 @@
     </div>
 
     <div class="form-section">
-      <label>Content *</label>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;">
+        <label style="margin:0;">Content *</label>
+        <div class="editor-toggle">
+          <button type="button" class="toggle-btn active" id="btnRichText" onclick="switchEditor('rich')">Rich Text</button>
+          <button type="button" class="toggle-btn" id="btnHtml" onclick="switchEditor('html')">HTML</button>
+        </div>
+      </div>
       <div id="quill-editor" style="min-height:320px;font-family:'Archivo',sans-serif;font-size:.92rem;"></div>
-      <div class="hint">Write or paste content directly. Paste from Word or Google Docs and formatting will be preserved.</div>
+      <textarea id="postContentHtml" style="display:none;width:100%;min-height:320px;padding:.68rem .85rem;border:1.5px solid #ddd;border-radius:4px;background:#fafafa;font-family:monospace;font-size:.85rem;color:#222;outline:none;resize:vertical;box-sizing:border-box;" placeholder="<p>Write your HTML here...</p>"></textarea>
+      <div class="hint" id="editorHint">Write or paste content directly. Paste from Word or Google Docs and formatting will be preserved.</div>
     </div>
 
     <div class="form-section">
@@ -194,6 +201,10 @@
 <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 <style>
+.editor-toggle { display:flex; gap:0; border:1.5px solid #ddd; border-radius:4px; overflow:hidden; }
+.toggle-btn { padding:.3rem .85rem; font-family:'Cinzel',serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:none; background:#f5f2ed; color:#8a7a72; cursor:pointer; transition:all .2s; }
+.toggle-btn.active { background:#70110c; color:#f2ebd7; }
+.toggle-btn:not(.active):hover { background:#e0d8cc; }
 #quill-editor { background:#fafafa; border:1.5px solid #ddd; border-top:none; transition:border-color .2s; }
 #quill-editor:focus-within { border-color:#c69a3f; background:#fff; }
 .ql-toolbar { border:1.5px solid #ddd !important; border-radius:4px 4px 0 0; background:#f5f2ed; }
@@ -235,6 +246,41 @@ const quill = new Quill('#quill-editor', {
   }
 });
 
+// Editor mode toggle
+let editorMode = 'rich';
+
+function switchEditor(mode) {
+  if (mode === editorMode) return;
+  editorMode = mode;
+
+  const richBtn  = document.getElementById('btnRichText');
+  const htmlBtn  = document.getElementById('btnHtml');
+  const quillEl  = document.getElementById('quill-editor');
+  const htmlEl   = document.getElementById('postContentHtml');
+  const hint     = document.getElementById('editorHint');
+
+  if (mode === 'html') {
+    // Sync Quill → textarea
+    htmlEl.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
+    quillEl.style.display = 'none';
+    document.querySelector('.ql-toolbar').style.display = 'none';
+    htmlEl.style.display = 'block';
+    richBtn.classList.remove('active');
+    htmlBtn.classList.add('active');
+    hint.textContent = 'Write raw HTML. Use <p>, <h2>, <h3>, <strong>, <em>, <ul>, <li>, <blockquote>, <img>.';
+  } else {
+    // Sync textarea → Quill
+    const html = htmlEl.value.trim();
+    if (html) quill.root.innerHTML = html;
+    htmlEl.style.display = 'none';
+    quillEl.style.display = 'block';
+    document.querySelector('.ql-toolbar').style.display = 'block';
+    htmlBtn.classList.remove('active');
+    richBtn.classList.add('active');
+    hint.textContent = 'Write or paste content directly. Paste from Word or Google Docs and formatting will be preserved.';
+  }
+}
+
 // Auto-slug from title
 document.getElementById('postTitle').addEventListener('input', function() {
   const slug = this.value.toLowerCase()
@@ -256,7 +302,9 @@ function showStatus(msg, type) {
 async function savePost(publish) {
   const title   = document.getElementById('postTitle').value.trim();
   const slug    = document.getElementById('postSlug').value.trim();
-  const content = quill.root.innerHTML.trim();
+  const content = editorMode === 'html'
+    ? document.getElementById('postContentHtml').value.trim()
+    : quill.root.innerHTML.trim();
 
   if (!title || !slug || !content || content === '<p><br></p>') {
     showStatus('Title, slug, and content are required.', 'error'); return;
@@ -288,6 +336,7 @@ async function savePost(publish) {
     // Clear form
     ['postTitle','postSlug','postExcerpt','postCover','postAuthor'].forEach(id => document.getElementById(id).value = '');
     quill.setContents([]);
+    document.getElementById('postContentHtml').value = '';
     document.getElementById('membersOnly').checked = false;
     loadPosts();
   }
