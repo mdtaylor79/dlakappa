@@ -9,6 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+@media(max-width:860px){ #homeBlogGrid { grid-template-columns: repeat(2,1fr) !important; } }
+@media(max-width:560px){ #homeBlogGrid { grid-template-columns: 1fr !important; } }
+</style>
 </head>
 <body data-page="home">
 <div id="site-nav-placeholder"></div>
@@ -381,6 +385,30 @@
     </div>
   </section>
 
+<div class="divider-wrap" style="background:#fff;"><div class="section-divider" aria-hidden="true"><span></span></div></div>
+
+<!-- BLOG PREVIEW -->
+<section id="blogPreview" style="background:#fff;padding:80px 0;">
+  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+      <div>
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;">
+          <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Chapter News
+        </div>
+        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#70110c;line-height:1.15;margin:0;">Latest from the Chapter</h2>
+      </div>
+      <a href="/blog/" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#70110c;text-decoration:none;border-bottom:1px solid #c69a3f;padding-bottom:2px;white-space:nowrap;">View All Posts &rarr;</a>
+    </div>
+
+    <div id="homeBlogGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;">
+      <div style="grid-column:1/-1;text-align:center;padding:3rem 0;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#ccc;">Loading posts…</div>
+    </div>
+
+  </div>
+</section>
+
 <div class="divider-wrap" style="background:#f2ebd7;"><div class="section-divider" aria-hidden="true"><span></span></div></div>
   <section class="pillars">
 
@@ -590,6 +618,45 @@
 
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Blog preview
+(function() {
+  const sb = window.supabase.createClient(
+    'https://eithccduveikejdhvnmq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ'
+  );
+  const CATS = { 'news':'News','event-recap':'Event Recap','member-spotlight':'Member Spotlight','guide-right':'Guide Right' };
+
+  sb.from('posts')
+    .select('title,slug,excerpt,cover_image,category,author,is_members_only,published_at')
+    .eq('published', true)
+    .eq('is_members_only', false)
+    .order('published_at', { ascending: false })
+    .limit(3)
+    .then(({ data }) => {
+      const grid = document.getElementById('homeBlogGrid');
+      if (!data || !data.length) { grid.innerHTML = ''; return; }
+      grid.innerHTML = data.map(p => `
+        <a href="/blog/post.html?slug=${p.slug}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid #e4ddd4;transition:box-shadow .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.10)'" onmouseout="this.style.boxShadow='none'">
+          <div style="aspect-ratio:16/9;overflow:hidden;background:#2a0604;flex-shrink:0;">
+            ${p.cover_image
+              ? `<img src="${p.cover_image}" alt="${p.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">`
+              : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#2a0604,#70110c);display:flex;align-items:center;justify-content:center;"><img src="/img/kappa-crest.png" style="width:44px;opacity:.18;"></div>`
+            }
+          </div>
+          <div style="padding:.75rem 1.25rem .25rem;">
+            <div style="font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#c69a3f;">${CATS[p.category]||p.category||''}</div>
+          </div>
+          <div style="padding:.25rem 1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;">
+            <h3 style="font-family:'Cinzel',serif;font-size:.92rem;font-weight:700;color:#1a1a1a;line-height:1.4;margin-bottom:.55rem;">${p.title}</h3>
+            <p style="font-size:.82rem;color:#6a5a52;line-height:1.65;flex:1;margin-bottom:.9rem;">${p.excerpt||''}</p>
+            <span style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#70110c;">Read more &rarr;</span>
+          </div>
+        </a>`).join('');
+    });
+})();
+</script>
 <script>
 (function() {
   const carousel = document.getElementById('heroCarousel');
