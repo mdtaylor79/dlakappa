@@ -7,42 +7,303 @@
 <title>Contact — DLA Kappa Alpha Psi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+.contact-wrap { max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+
+/* Info cards */
+.contact-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-bottom: 4rem;
+}
+.contact-card {
+  background: #faf8f4; border: 1px solid #e4ddd4;
+  padding: 1.75rem 1.5rem; text-align: center;
+}
+.contact-card .icon {
+  width: 44px; height: 44px; margin: 0 auto 1rem;
+  background: #70110c; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-card .icon svg { color: #f2ebd7; }
+.contact-card h3 {
+  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: #70110c; margin-bottom: .6rem;
+}
+.contact-card p, .contact-card a {
+  font-family: 'Archivo', sans-serif; font-size: .88rem;
+  color: #5a4a42; line-height: 1.6; text-decoration: none;
+}
+.contact-card a:hover { color: #70110c; text-decoration: underline; }
+
+/* Social row */
+.social-row {
+  display: flex; gap: .85rem; justify-content: center;
+  flex-wrap: wrap; margin-top: 1.5rem;
+}
+.social-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .6rem 1.25rem; border: 1.5px solid #e0d4c0;
+  color: #5a4a42; text-decoration: none; transition: all .2s;
+}
+.social-btn:hover { background: #70110c; color: #f2ebd7; border-color: #70110c; }
+
+/* Contact form */
+.form-wrap {
+  background: #fff; border: 1px solid #e4ddd4;
+  padding: 3rem; max-width: 680px; margin: 0 auto;
+}
+.form-wrap h2 {
+  font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 700;
+  color: #1a1a1a; margin-bottom: .4rem;
+}
+.form-wrap .sub {
+  font-size: .88rem; color: #8a7a72; margin-bottom: 2rem; line-height: 1.6;
+}
+.gold-bar { width: 48px; height: 3px; background: #c69a3f; margin: .75rem 0 1.5rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label {
+  display: block; font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #444; margin-bottom: .4rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: .72rem .9rem;
+  border: 1.5px solid #ddd; border-radius: 3px;
+  background: #fafafa; font-family: 'Archivo', sans-serif;
+  font-size: .92rem; color: #222; outline: none;
+  transition: border-color .2s; box-sizing: border-box;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: #c69a3f; background: #fff; }
+.form-group textarea { resize: vertical; min-height: 130px; }
+
+.form-submit {
+  width: 100%; padding: .95rem;
+  background: #70110c; color: #f2ebd7; border: none; border-radius: 3px;
+  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  cursor: pointer; transition: background .2s; margin-top: .5rem;
+}
+.form-submit:hover { background: #5a0e09; }
+.form-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+.form-msg {
+  display: none; padding: .85rem 1rem; border-radius: 3px;
+  font-size: .84rem; margin-top: 1rem;
+}
+.form-msg.success { background: #f0fff4; border: 1px solid #b2e6c8; color: #1a6e3a; }
+.form-msg.error   { background: #fff0f0; border: 1px solid #f0c0c0; color: #a00; }
+
+@media(max-width:760px){
+  .contact-cards { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-wrap { padding: 2rem 1.25rem; }
+  .contact-wrap { padding: 0 1rem; }
+}
+</style>
 </head>
 <body data-page="contact">
 <div id="site-nav-placeholder"></div>
+
 <div class="page-hero">
-    <div class="wrap">
-      <div class="eyebrow">Contact</div>
-      <h1>Get in Touch</h1>
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h1>Get in Touch</h1>
+    <div class="gold-bar"></div>
+    <p>We welcome members, partners, supporters, and community members to connect with us.</p>
+  </div>
+</div>
+
+<!-- Contact info cards -->
+<section style="background:#fff; padding:4rem 2rem 3rem;">
+  <div class="contact-wrap">
+    <div class="contact-cards">
+
+      <div class="contact-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3>Mailing Address</h3>
+        <p>1501 S. Loop 288, Suite 104<br>PMB 190<br>Denton, TX 76205</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <h3>Email</h3>
+        <p><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></p>
+        <p style="margin-top:.5rem;font-size:.8rem;color:#aaa;">General inquiries</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Membership</h3>
+        <p><a href="mailto:membership@dlakappa.org">membership@dlakappa.org</a></p>
+        <p style="margin-top:.5rem;font-size:.8rem;color:#aaa;">Membership &amp; reclamation</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact form -->
+<section style="background:#f7f4ef; padding:3rem 2rem 5rem;">
+  <div class="contact-wrap">
+    <div class="form-wrap">
+      <h2>Send Us a Message</h2>
       <div class="gold-bar"></div>
-      <p>We welcome members, partners, supporters, and community members to connect with us.</p>
+      <p class="sub">Fill out the form below and a chapter representative will respond within 2–3 business days.</p>
+
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-first">First Name *</label>
+            <input type="text" id="cf-first" placeholder="Marcus" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-last">Last Name *</label>
+            <input type="text" id="cf-last" placeholder="Taylor" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-email">Email Address *</label>
+            <input type="email" id="cf-email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Phone (optional)</label>
+            <input type="tel" id="cf-phone" placeholder="(555) 000-0000">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-subject">Subject *</label>
+          <select id="cf-subject" required>
+            <option value="">Select a topic…</option>
+            <option value="General Inquiry">General Inquiry</option>
+            <option value="Membership">Membership / Reclamation</option>
+            <option value="Partnership">Partnership / Sponsorship</option>
+            <option value="Guide Right">Guide Right / Mentorship</option>
+            <option value="Volunteering">Volunteering</option>
+            <option value="Media">Media / Press</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-message">Message *</label>
+          <textarea id="cf-message" placeholder="Tell us how we can help…" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="cf-submit">Send Message</button>
+        <div class="form-msg" id="cf-msg"></div>
+      </form>
     </div>
   </div>
-  <div class="content-section">
-    <div class="wrap">
-      <h2>Contact Information</h2>
-      <div class="contact-grid">
-        <div class="contact-row"><b>Mailing Address</b><span>1501 S. Loop 288, Suite 104, PMB 190<br>Denton, TX 76205</span></div>
-        <div class="contact-row"><b>Email</b><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></div>
-        <div class="contact-row"><b>Partnerships</b><span>We welcome members, partners, and supporters. Reach out via email to connect with the chapter.</span></div>
-      </div>
+</section>
+
+<!-- Social media -->
+<section style="background:#fff; padding:3rem 2rem; border-top:1px solid #e8e0d4; text-align:center;">
+  <div class="contact-wrap">
+    <div style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.5rem;">Stay Connected</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:1.2rem;color:#1a1a1a;margin-bottom:.5rem;">Follow Us on Social Media</h2>
+    <p style="font-size:.88rem;color:#8a7a72;margin-bottom:1.5rem;">Get the latest chapter news, events, and community highlights.</p>
+    <div class="social-row">
+      <a class="social-btn" href="https://www.facebook.com/dlanupes/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a class="social-btn" href="https://www.instagram.com/dlanupes/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@DLAKappas" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        YouTube
+      </a>
+      <a class="social-btn" href="https://x.com/DNupes" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X / Twitter
+      </a>
     </div>
   </div>
-  <div class="content-section alt">
-    <div class="wrap">
-      <h2>Follow Us</h2>
-      <p>Stay connected across all social media platforms.</p>
-      <div style="display:flex;gap:1rem;margin-top:1.5rem;">
-        <a href="#" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(112,17,12,.3);color:#70110c;text-decoration:none;font-weight:700;font-size:.75rem;border-radius:3px;">FB</a>
-        <a href="#" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(112,17,12,.3);color:#70110c;text-decoration:none;font-weight:700;font-size:.75rem;border-radius:3px;">IG</a>
-        <a href="#" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(112,17,12,.3);color:#70110c;text-decoration:none;font-weight:700;font-size:.75rem;border-radius:3px;">YT</a>
-      </div>
-    </div>
-  </div>
+</section>
+
 <div id="site-footer-placeholder"></div>
 <script src="/js/nav.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('cf-submit');
+  const msg = document.getElementById('cf-msg');
 
+  const first   = document.getElementById('cf-first').value.trim();
+  const last    = document.getElementById('cf-last').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value;
+  const message = document.getElementById('cf-message').value.trim();
+
+  if (!first || !last || !email || !subject || !message) {
+    msg.textContent = 'Please fill in all required fields.';
+    msg.className = 'form-msg error';
+    msg.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  // Send via Formspree (replace YOUR_FORM_ID with your Formspree endpoint)
+  try {
+    const res = await fetch('https://formspree.io/f/mwpbkpzj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name:    `${first} ${last}`,
+        email,
+        phone:   document.getElementById('cf-phone').value.trim() || 'Not provided',
+        subject,
+        message
+      })
+    });
+
+    if (res.ok) {
+      msg.textContent = 'Thank you! Your message has been sent. We\'ll be in touch within 2–3 business days.';
+      msg.className = 'form-msg success';
+      document.getElementById('contactForm').reset();
+    } else {
+      throw new Error('Server error');
+    }
+  } catch {
+    msg.textContent = 'Something went wrong. Please email us directly at info@dlakappa.org.';
+    msg.className = 'form-msg error';
+  }
+
+  msg.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = 'Send Message';
+});
+</script>
 </body>
 </html>
