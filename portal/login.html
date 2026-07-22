@@ -15,29 +15,21 @@ body {
   display: flex;
   align-items: stretch;
   overflow: hidden;
+  background: url('/img/log-on_page_background.jpg') center/cover no-repeat fixed;
 }
 
 /* ── Left panel ── */
 .panel-left {
   position: relative;
   width: 52%;
-  background: #3a0a08;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background: transparent;
 }
-.panel-left .bg-img {
-  position: absolute;
-  inset: 0;
-  background: url('/img/log-on_page_background.jpg') center/cover no-repeat;
-  opacity: .55;
-}
-.panel-left .overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(58,10,8,.3) 0%, rgba(58,10,8,.7) 60%, rgba(28,4,2,.95) 100%);
-}
+.panel-left .bg-img { display: none; }
+.panel-left .overlay { display: none; }
 
 /* Watermark crest */
 .panel-left .watermark {
@@ -90,7 +82,7 @@ body {
 /* ── Right panel ── */
 .panel-right {
   flex: 1;
-  background: #f7f3ee;
+  background: rgba(247,243,238,.88);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -440,7 +432,7 @@ body {
 
     <div class="invite-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <p><strong>Access is by invitation only.</strong><br>Contact your chapter administrator for access.</p>
+      <p><strong>Access is by invitation only.</strong><br>Contact your chapter administrator for access.<br><a href="mailto:webmaster@dlakappa.org" style="color:#70110c;font-weight:600;text-decoration:none;">webmaster@dlakappa.org</a></p>
     </div>
   </div>
 </div>
