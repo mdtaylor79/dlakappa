@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Volunteering — Programs — DLA Kappa Alpha Psi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+.vol-wrap { max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+
+/* Intro */
+.vol-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 5rem 0;
+}
+.vol-intro .text .eyebrow-label {
+  font-size: .62rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: #c69a3f; display: flex; align-items: center; gap: .5rem;
+  margin-bottom: .75rem;
+}
+.vol-intro .text h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700; color: #70110c;
+  line-height: 1.2; margin-bottom: 1.25rem;
+}
+.vol-intro .text .gold-rule {
+  width: 48px; height: 2px;
+  background: #c69a3f; margin-bottom: 1.5rem;
+}
+.vol-intro .text p {
+  font-size: .97rem; line-height: 1.85;
+  color: #3a2e28; margin-bottom: 1rem;
+}
+
+/* Image placeholder */
+.img-placeholder {
+  width: 100%; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #2a0604 0%, #70110c 60%, #c69a3f 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1rem; position: relative; overflow: hidden;
+}
+.img-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px; opacity: .08;
+}
+.img-placeholder svg { width: 48px; height: 48px; color: rgba(242,235,215,.4); position: relative; }
+.img-placeholder span {
+  font-family: 'Cinzel', serif; font-size: .65rem;
+  font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(242,235,215,.5); position: relative;
+}
+
+/* Ways to get involved */
+.ways-section {
+  background: #f2ebd7;
+  padding: 5rem 0;
+  position: relative; overflow: hidden;
+}
+.ways-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%2370110c' stroke-width='1'/></svg>");
+  background-size: 96px 96px; opacity: .05; pointer-events: none;
+}
+.ways-section .section-head {
+  text-align: center; margin-bottom: 3rem; position: relative;
+}
+.ways-section .section-head .eyebrow-label {
+  font-size: .62rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: #c69a3f; margin-bottom: .6rem;
+}
+.ways-section .section-head h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700; color: #70110c;
+}
+
+.ways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  position: relative;
+}
+.way-card {
+  background: #fff;
+  border: 1px solid #e0d4c0;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+.way-card .icon-diamond {
+  width: 52px; height: 52px;
+  background: #70110c;
+  clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+.way-card .icon-diamond svg { width: 22px; height: 22px; color: #c69a3f; }
+.way-card h3 {
+  font-family: 'Cinzel', serif; font-size: .95rem;
+  font-weight: 700; color: #70110c; margin-bottom: .65rem;
+}
+.way-card p { font-size: .85rem; line-height: 1.7; color: #5a4a42; }
+
+/* Partnership section */
+.partner-section { padding: 5rem 0; background: #fff; }
+.partner-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; align-items: center;
+}
+.partner-section h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700; color: #70110c;
+  margin-bottom: 1rem; line-height: 1.2;
+}
+.partner-section .gold-rule { width: 48px; height: 2px; background: #c69a3f; margin-bottom: 1.5rem; }
+.partner-section p { font-size: .97rem; line-height: 1.85; color: #3a2e28; margin-bottom: 1rem; }
+
+.partner-types {
+  display: flex; flex-direction: column; gap: 1rem;
+  margin-top: 1.5rem;
+}
+.partner-type {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #c69a3f;
+  background: #faf8f4;
+}
+.partner-type svg { width: 20px; height: 20px; color: #c69a3f; flex-shrink: 0; margin-top: 2px; }
+.partner-type h4 {
+  font-family: 'Cinzel', serif; font-size: .8rem;
+  font-weight: 700; color: #70110c; margin-bottom: .25rem;
+  text-transform: uppercase; letter-spacing: .08em;
+}
+.partner-type p { font-size: .84rem; line-height: 1.6; color: #5a4a42; margin: 0; }
+
+/* Stats bar */
+.stats-bar {
+  background: #2a0604; padding: 2.5rem 2rem;
+}
+.stats-inner {
+  max-width: 1060px; margin: 0 auto;
+  display: flex; flex-wrap: wrap;
+  justify-content: space-around; align-items: center; gap: 1.5rem;
+}
+.stat { text-align: center; }
+.stat .num {
+  font-family: 'Cinzel', serif; font-size: 2.2rem;
+  font-weight: 700; color: #fff; line-height: 1;
+}
+.stat .label {
+  font-size: .62rem; letter-spacing: .16em;
+  text-transform: uppercase; color: #c69a3f; margin-top: .3rem;
+}
+.stat-divider { width: 1px; height: 48px; background: rgba(198,154,63,.3); }
+
+/* CTA section */
+.cta-section {
+  background: #70110c; padding: 5rem 2rem;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M48 4L92 48L48 92L4 48Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 96px 96px; opacity: .06; pointer-events: none;
+}
+.cta-section h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700; color: #f2ebd7;
+  margin-bottom: .75rem; position: relative;
+}
+.cta-section p {
+  font-size: .97rem; color: rgba(242,235,215,.8);
+  max-width: 560px; margin: 0 auto 2rem;
+  line-height: 1.75; position: relative;
+}
+.cta-buttons {
+  display: flex; gap: 1rem; justify-content: center;
+  flex-wrap: wrap; position: relative;
+}
+.btn-cta-gold {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: .72rem;
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  padding: .9rem 2.25rem; background: #c69a3f; color: #2a0604;
+  text-decoration: none; transition: background .2s;
+}
+.btn-cta-gold:hover { background: #b38932; }
+.btn-cta-ghost {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: .72rem;
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  padding: .9rem 2.25rem; background: transparent; color: #f2ebd7;
+  border: 2px solid rgba(242,235,215,.5); text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.btn-cta-ghost:hover { border-color: #f2ebd7; }
+
+.contact-note {
+  margin-top: 1.5rem; position: relative;
+  font-size: .82rem; color: rgba(242,235,215,.6);
+}
+.contact-note a { color: #c69a3f; text-decoration: none; font-weight: 600; }
+.contact-note a:hover { text-decoration: underline; }
+
+@media(max-width:860px){
+  .vol-intro { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 0; }
+  .ways-grid { grid-template-columns: 1fr 1fr; }
+  .partner-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media(max-width:560px){
+  .ways-grid { grid-template-columns: 1fr; }
+  .vol-wrap { padding: 0 1rem; }
+  .stat-divider { display: none; }
+}
+</style>
+</head>
+<body data-page="programs">
+<div id="site-nav-placeholder"></div>
+
+<!-- Sub-nav -->
+<div class="sub-nav">
+  <div class="wrap">
+    <a href="/programs.html">All Programs</a>
+    <a href="/volunteering.html" class="active">Volunteering</a>
+    <a href="/dla_guide_right.html">Guide Right</a>
+  </div>
+</div>
+<style>.sub-nav{display:block!important;position:sticky;top:58px;z-index:9998;}</style>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Programs — Community Engagement</div>
+    <h1>Volunteering &amp; Service</h1>
+    <div class="gold-bar"></div>
+    <p>The Denton-Lewisville Alumni Chapter stands on a legacy of civic engagement, community service, and meaningful partnership across North Texas.</p>
+  </div>
+</div>
+
+<!-- Intro + Image -->
+<div style="background:#fff;">
+  <div class="vol-wrap">
+    <div class="vol-intro">
+
+      <div class="text">
+        <div class="eyebrow-label">
+          <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Our Commitment
+        </div>
+        <h2>Service is at the Heart of Who We Are</h2>
+        <div class="gold-rule"></div>
+        <p>The Denton-Lewisville (TX) Alumni Chapter rests its shoulders on a deep and unwavering commitment to community. We place high emphasis on civic engagement — not as an obligation, but as a calling rooted in the very spirit of Kappa Alpha Psi Fraternity, Inc.</p>
+        <p>From neighborhood service projects and youth mentorship to civic partnerships and community-wide initiatives, our brothers show up where it matters most. We believe that true achievement extends beyond individual success — it is measured by the uplift we provide to those around us.</p>
+        <p>We actively seek and welcome partnerships with community leaders, local businesses, nonprofit organizations, and civic groups who share our values. Whether you want to serve alongside us or invite us to serve with you, there is a place at the table.</p>
+      </div>
+
+      <div class="img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Community Photo</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Ways to Get Involved -->
+<div class="ways-section">
+  <div class="vol-wrap">
+    <div class="section-head">
+      <div class="eyebrow-label">Get Involved</div>
+      <h2>Ways to Serve With Us</h2>
+    </div>
+    <div class="ways-grid">
+
+      <div class="way-card">
+        <div class="icon-diamond">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Community Volunteer Days</h3>
+        <p>Join brothers for scheduled days of service — neighborhood cleanups, food drives, school support events, and more across Denton and Lewisville.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="icon-diamond">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>Youth Mentorship</h3>
+        <p>Volunteer as a mentor through our Guide Right and Kappa League programs, helping young men develop leadership skills, academic discipline, and character.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="icon-diamond">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Civic Engagement</h3>
+        <p>Participate in voter registration drives, civic forums, city council engagement, and community health initiatives that strengthen the fabric of North Texas.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="icon-diamond">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Business &amp; Corporate Partnerships</h3>
+        <p>Partner with the chapter as a business or organization — sponsor events, co-host service projects, or connect your team with chapter volunteer opportunities.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="icon-diamond">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Senior Community Support</h3>
+        <p>Through our Senior Kappa Affairs program, volunteers assist elderly community members with resources, transportation coordination, and outreach events.</p>
+      </div>
+
+      <div class="way-card">
+        <div class="icon-diamond">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Literacy &amp; Education</h3>
+        <p>Support Room to Read and Achievement Academy efforts — assist with reading programs, tutoring events, and school supply drives in underserved communities.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="num">400+</div><div class="label">Annual Service Hours</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="num">10+</div><div class="label">Community Partners</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="num">6+</div><div class="label">Cities Served</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="num">28+</div><div class="label">Years of Service</div></div>
+  </div>
+</div>
+
+<!-- Partnership section -->
+<div class="partner-section">
+  <div class="vol-wrap">
+    <div class="partner-grid">
+
+      <div>
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;">
+          <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          Partner With Us
+        </div>
+        <h2>Community Leaders &amp; Business Partners Welcome</h2>
+        <div class="gold-rule"></div>
+        <p>We actively encourage partnerships with community leaders, organizations, and businesses who share our passion for civic engagement and service. Whether you want to volunteer alongside our brothers or invite us to serve within your initiative, we are ready to build something meaningful together.</p>
+        <p>Strong communities are built through collaboration. The Denton-Lewisville Alumni Chapter is committed to showing up as a reliable, dedicated partner in every endeavor we undertake.</p>
+      </div>
+
+      <div class="partner-types">
+        <div class="partner-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <div>
+            <h4>Local Businesses</h4>
+            <p>Sponsor a community event, co-host a service day, or connect your team with volunteer opportunities that give back to North Texas.</p>
+          </div>
+        </div>
+        <div class="partner-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div>
+            <h4>Community Organizations</h4>
+            <p>Partner on outreach programs, youth initiatives, health fairs, and civic projects that strengthen our shared communities.</p>
+          </div>
+        </div>
+        <div class="partner-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div>
+            <h4>Civic &amp; Government Leaders</h4>
+            <p>Engage the chapter in civic forums, town halls, and community-wide initiatives that drive meaningful change across Denton and Lewisville.</p>
+          </div>
+        </div>
+        <div class="partner-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <div>
+            <h4>Schools &amp; Educational Institutions</h4>
+            <p>Collaborate on mentorship, literacy, and after-school programs that prepare the next generation of leaders.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Second image placeholder -->
+<div style="background:#fff;">
+  <div class="vol-wrap" style="padding-bottom:4rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+      <div class="img-placeholder" style="aspect-ratio:3/2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Volunteer Event Photo</span>
+      </div>
+      <div class="img-placeholder" style="aspect-ratio:3/2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Community Partnership Photo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to Serve With Us?</h2>
+  <p>Whether you're an individual, a business, or a community organization — we want to hear from you. Let's build something that matters for Denton-Lewisville together.</p>
+  <div class="cta-buttons">
+    <a class="btn-cta-gold" href="mailto:csc@dlakappa.org">Volunteer Inquiries</a>
+    <a class="btn-cta-ghost" href="mailto:info@dlakappa.org">Partnership Inquiries</a>
+  </div>
+  <div class="contact-note">
+    Questions? Email us at <a href="mailto:csc@dlakappa.org">csc@dlakappa.org</a> or <a href="mailto:info@dlakappa.org">info@dlakappa.org</a>
+  </div>
+</div>
+
+<div id="site-footer-placeholder"></div>
+<script src="/js/nav.js"></script>
+</body>
+</html>
