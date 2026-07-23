@@ -206,8 +206,8 @@
         <h4>Contact Us</h4>
         <div class="line"><b>Mailing Address</b>1501 S. Loop 288, Suite 104, PMB 190<br>Denton, TX 76205</div>
         <div class="line"><b>Email</b><a href="mailto:info@dlakappa.org">info@dlakappa.org</a></div>
-        <div class="line"><b>Membership &amp; Partnerships</b>We welcome members, partners, and supporters.</div>
-        <a class="portal-btn" href="/portal/login.html">Member Portal</a>
+        <div class="line"><b>Membership Access</b>This area is for Chapter members only.</div>
+        <a class="portal-btn" href="/portal/login.html">Membership Access</a>
       </div>
     </div>
   </div>
