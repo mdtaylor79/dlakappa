@@ -166,13 +166,71 @@
   </div>
 </section>
 
-<!-- Contact form -->
-<section style="background:#f7f4ef; padding:3rem 2rem 5rem;">
-  <div class="contact-wrap">
-    <div class="form-wrap">
-      <h2>Send Us a Message</h2>
+<!-- Contact form — two-column -->
+<section style="background:#f7f4ef; padding:0 0 5rem;">
+  <div style="max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;min-height:560px;">
+
+    <!-- Left: crimson info panel -->
+    <div style="background:#70110c;padding:3.5rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+      <!-- Diamond watermark -->
+      <div style="position:absolute;right:-60px;bottom:-60px;width:280px;height:280px;border:1px solid rgba(198,154,63,.18);transform:rotate(45deg);pointer-events:none;"></div>
+
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.75rem;">Reach Out</div>
+        <h2 style="font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:#f2ebd7;line-height:1.25;margin-bottom:2rem;">We'd love to<br>hear from you</h2>
+
+        <!-- Contact items -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Mailing Address</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);line-height:1.6;">1501 S. Loop 288, Suite 104<br>PMB 190 · Denton, TX 76205</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">General Inquiries</div>
+              <a href="mailto:info@dlakappa.org" style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);text-decoration:none;">info@dlakappa.org</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Membership</div>
+              <a href="mailto:membership@dlakappa.org" style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);text-decoration:none;">membership@dlakappa.org</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Response Time</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);line-height:1.6;">We respond within 2–3 business days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crest -->
+      <div style="margin-top:2.5rem;">
+        <img src="/img/kappa-crest.png" alt="Chapter Crest" style="width:56px;opacity:.35;">
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div style="background:#fff;padding:3.5rem 3rem;">
+      <h2 style="font-family:'Cinzel',serif;font-size:1.35rem;font-weight:700;color:#1a1a1a;margin-bottom:.4rem;">Send Us a Message</h2>
       <div class="gold-bar"></div>
-      <p class="sub">Fill out the form below and a chapter representative will respond within 2–3 business days.</p>
+      <p class="sub" style="font-size:.88rem;color:#8a7a72;margin-bottom:2rem;line-height:1.6;">Fill out the form and a chapter representative will be in touch.</p>
 
       <form id="contactForm" novalidate>
         <div class="form-row">
@@ -185,7 +243,6 @@
             <input type="text" id="cf-last" placeholder="Jenkins" required>
           </div>
         </div>
-
         <div class="form-row">
           <div class="form-group">
             <label for="cf-email">Email Address *</label>
@@ -196,7 +253,6 @@
             <input type="tel" id="cf-phone" placeholder="(555) 000-0000">
           </div>
         </div>
-
         <div class="form-group">
           <label for="cf-subject">Subject *</label>
           <select id="cf-subject" required>
@@ -210,18 +266,25 @@
             <option value="Other">Other</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="cf-message">Message *</label>
           <textarea id="cf-message" placeholder="Tell us how we can help…" required></textarea>
         </div>
-
         <button type="submit" class="form-submit" id="cf-submit">Send Message</button>
         <div class="form-msg" id="cf-msg"></div>
       </form>
     </div>
+
   </div>
 </section>
+
+<style>
+@media(max-width:760px){
+  section > div[style*="grid-template-columns:1fr 1.6fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
 <!-- Social media -->
 <section style="background:#fff; padding:3rem 2rem; border-top:1px solid #e8e0d4; text-align:center;">
