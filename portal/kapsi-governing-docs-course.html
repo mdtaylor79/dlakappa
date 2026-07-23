@@ -3,1186 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Constitution &amp; Statutes of Kappa Alpha Psi® — Member Governance Training</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Constitutions &amp; Statutes — DLA Member Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --crimson:#70010c;
-    --crimson-deep:#550109;
-    --maroon:#5c0912;
-    --sidebar:#70110c;
-    --cream:#f2ebd7;
-    --cream-2:#e7dcbf;
-    --ink:#20232a;
-    --ink-soft:#4a4f5a;
-    --line:#dccfab;
-    --gold:#a9781f;
-    --gold-2:#c99a35;
-    --ok:#1f7a4d;
-    --ok-bg:#e6f4ec;
-    --no:#b0243a;
-    --shadow:0 10px 34px rgba(40,20,10,.12);
-    --shadow-sm:0 2px 10px rgba(40,20,10,.06);
-    --radius:16px;
-    --navw:300px;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--cream);line-height:1.62;-webkit-font-smoothing:antialiased}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; min-height: 100vh; }
 
-  /* ---------- floating nav toggle ---------- */
-  .navtoggle{position:fixed;top:14px;left:14px;z-index:95;width:42px;height:42px;border-radius:11px;border:1px solid var(--line);
-    background:#fff;color:var(--crimson);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    box-shadow:var(--shadow-sm);transition:left .28s cubic-bezier(.4,0,.2,1),.15s}
-  .navtoggle:hover{border-color:var(--crimson)}
+.portal-nav {
+  background: #fff; border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem; display: flex; align-items: center;
+  height: 64px; gap: 1rem; position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
+.portal-nav .brand img { width: 44px; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; line-height: 1.1;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #888;
+}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.portal-nav .nav-links a {
+  font-size: .82rem; font-weight: 600; color: #70110c; text-decoration: none; letter-spacing: .03em;
+}
+.portal-nav .nav-links a:hover { text-decoration: underline; }
+.portal-nav .nav-links .signout { color: #888; font-weight: 500; }
 
-  /* ---------- sidebar ---------- */
-  .scrim{position:fixed;inset:0;background:rgba(30,15,8,.45);opacity:0;pointer-events:none;transition:.25s;z-index:70}
-  .drawer{position:fixed;top:0;left:0;height:100%;width:var(--navw);max-width:86vw;background:var(--sidebar);z-index:80;
-    transform:translateX(-102%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;
-    border-right:1px solid rgba(0,0,0,.25);box-shadow:10px 0 40px rgba(0,0,0,.28)}
-  .dhead{padding:16px 18px 14px;border-bottom:1px solid rgba(255,255,255,.15)}
-  .dhead .bx{display:flex;align-items:center;gap:10px;justify-content:space-between}
-  .dhead .lft{display:flex;align-items:center;gap:10px;min-width:0}
-  .dhead .mk{width:34px;height:34px;border-radius:9px;background:var(--cream);color:var(--crimson);display:flex;align-items:center;
-    justify-content:center;font-weight:800;font-size:12px;flex:none}
-  .dhead b{font-size:13.5px;color:#fff;display:block;line-height:1.2}
-  .dhead .dsub{font-size:11px;color:rgba(255,255,255,.65)}
-  .dhead .close{border:none;background:none;font-size:22px;cursor:pointer;color:rgba(255,255,255,.85);line-height:1}
-  .dprog{margin-top:13px}
-  .dprow{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.8);font-weight:700;margin-bottom:5px}
-  .dprow #cpPct{color:#f2d59a}
-  .cptrack{height:8px;background:rgba(0,0,0,.28);border-radius:20px;overflow:hidden}
-  .cpfill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),#f2d59a);transition:width .5s}
-  .dlist{overflow-y:auto;padding:10px 12px 34px;flex:1}
-  .dgroup{font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:#e9c891;font-weight:800;padding:15px 10px 5px}
-  .dItem{display:flex;gap:11px;align-items:flex-start;padding:10px 10px;border-radius:10px;cursor:pointer;transition:.15s}
-  .dItem:hover{background:rgba(255,255,255,.12)}
-  .dItem.current{background:rgba(255,255,255,.18)}
-  .dItem .idx{width:25px;height:25px;border-radius:7px;background:var(--cream);border:1px solid rgba(0,0,0,.12);display:flex;
-    align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--crimson);flex:none}
-  .dItem.done .idx{background:var(--ok);border-color:var(--ok);color:#fff}
-  .dItem.special .idx{background:transparent;border-color:rgba(255,255,255,.4);color:#f2d59a}
-  .dItem .t{font-size:13px;font-weight:600;line-height:1.32;color:#fbf3e4}
-  .dItem .m{font-size:11px;color:rgba(255,255,255,.62)}
+.course-hero {
+  background: linear-gradient(110deg, #1a0303 0%, #70110c 60%, #8a1a13 100%);
+  padding: 2.75rem 2rem 2.5rem; position: relative; overflow: hidden;
+}
+.course-hero::before {
+  content: ''; position: absolute; inset: 0; opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><path d='M40 4L76 40L40 76L4 40Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 80px 80px;
+}
+.course-hero .inner { max-width: 1100px; margin: 0 auto; position: relative; }
+.breadcrumb {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(242,235,215,.5); margin-bottom: 1.1rem;
+}
+.breadcrumb a { color: rgba(242,235,215,.5); text-decoration: none; transition: color .15s; }
+.breadcrumb a:hover { color: #c69a3f; }
+.course-tag {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .6rem; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: #c69a3f; margin-bottom: .75rem;
+}
+.course-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700;
+  color: #f2ebd7; letter-spacing: .03em; line-height: 1.25; margin-bottom: .75rem;
+}
+.course-hero .meta {
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  font-size: .78rem; color: rgba(242,235,215,.6);
+}
+.course-hero .meta span { display: flex; align-items: center; gap: .35rem; }
 
-  /* ---------- layout ---------- */
-  main{margin:0;padding:0;transition:margin .28s cubic-bezier(.4,0,.2,1)}
-  footer{transition:margin .28s cubic-bezier(.4,0,.2,1)}
-  .container{max-width:1040px;margin:0 auto;padding:0 28px 90px}
-  #view-module .container,#view-references .container,#view-final .container{padding-top:64px}
-  .view{display:none}
-  .view.active{display:block;animation:fade .4s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  body.sidebar-open .drawer{transform:none}
-  body.sidebar-open .scrim{opacity:1;pointer-events:auto}
-  @media(min-width:960px){
-    .drawer{transform:none;box-shadow:none;z-index:65}
-    .drawer .close{display:none}
-    .scrim{display:none!important}
-    main,footer{margin-left:var(--navw)}
-    .navtoggle{left:calc(var(--navw) + 14px)}
-    body.sidebar-collapsed .drawer{transform:translateX(-102%)}
-    body.sidebar-collapsed main,body.sidebar-collapsed footer{margin-left:0}
-    body.sidebar-collapsed .navtoggle{left:14px}
-  }
+/* ── TWO-COLUMN LAYOUT ── */
+.course-layout {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 2rem; padding: 2.5rem 2rem 4rem; align-items: start;
+}
+@media(max-width:820px) { .course-layout { grid-template-columns: 1fr; } }
 
-  /* ---------- full-bleed hero ---------- */
-  .hero{background:radial-gradient(120% 140% at 80% 0%,#71121b 0%,var(--maroon) 55%,var(--crimson-deep) 100%);
-    color:#fff;padding:70px 28px 74px;text-align:center;position:relative;overflow:hidden}
-  .hero .pill{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:30px;
-    padding:7px 18px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#f4e7c9}
-  .hero h1{font-size:44px;line-height:1.08;margin:20px auto 14px;font-weight:800;letter-spacing:-.5px;max-width:820px}
-  .hero .lede{font-size:17px;opacity:.94;max-width:640px;margin:0 auto;line-height:1.55}
-  .hbadges{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;margin-top:30px}
-  .hbadge{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:#f4e7c9}
-  .hbadge .bi{font-size:16px}
-  .hero .begin{margin-top:30px}
-  .btn-begin{background:#f2d59a;color:var(--crimson-deep);border:none;border-radius:12px;padding:15px 32px;font-weight:800;font-size:15.5px;
-    cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:.16s}
-  .btn-begin:hover{transform:translateY(-2px);background:#f7e0b0}
+/* ── SIDEBAR ── */
+.course-sidebar { position: sticky; top: 82px; }
+.sidebar-inner { background: #fff; border: 1px solid #e4ddd4; border-radius: 8px; overflow: hidden; }
+.sidebar-head {
+  background: #70110c; padding: .75rem 1rem;
+  font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: rgba(242,235,215,.7);
+}
+.sidebar-nav a {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .7rem 1rem; font-size: .81rem; font-weight: 500; color: #444;
+  text-decoration: none; border-left: 3px solid transparent;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.sidebar-nav a + a { border-top: 1px solid #f0ece6; }
+.sidebar-nav a:hover, .sidebar-nav a.active {
+  background: #faf8f5; border-left-color: #c69a3f; color: #70110c;
+}
+.sidebar-nav a svg { flex: none; opacity: .5; }
+.sidebar-nav a:hover svg, .sidebar-nav a.active svg { opacity: 1; }
+.sidebar-external {
+  margin: .75rem 1rem 1rem;
+}
+.sidebar-external a {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .7rem 1rem; background: #fdf3e0;
+  border: 1px solid #e8c97a; border-radius: 6px;
+  font-size: .75rem; font-weight: 700; color: #7a5a10;
+  text-decoration: none; transition: background .15s;
+}
+.sidebar-external a:hover { background: #fbe8b0; }
+.sidebar-external a svg { flex: none; }
 
-  /* ---------- objectives card ---------- */
-  .section-label{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);font-weight:800;margin:34px 0 4px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px;margin:14px 0;box-shadow:var(--shadow-sm)}
-  .objcard{margin-top:-38px;position:relative;z-index:3}
-  .objcard h3{margin:0 0 16px;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--crimson);font-weight:800}
-  .objgrid{display:grid;grid-template-columns:1fr;gap:14px 40px}
-  @media(min-width:720px){.objgrid{grid-template-columns:1fr 1fr}}
-  .objgrid li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:14.5px}
-  .objgrid .di{color:var(--crimson);font-size:12px;margin-top:5px;flex:none}
-
-  /* module path */
-  .track-head{display:flex;align-items:center;gap:12px;margin:28px 0 2px}
-  .track-head .bar{width:32px;height:4px;border-radius:3px;background:var(--crimson)}
-  .track-head h3{margin:0;font-size:17px}
-  .mlist{display:grid;gap:12px;margin-top:12px}
-  .mrow{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;
-    cursor:pointer;transition:.16s;box-shadow:var(--shadow-sm)}
-  .mrow:hover{transform:translateX(3px);border-color:var(--crimson);box-shadow:var(--shadow)}
-  .mrow .num{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--crimson),var(--crimson-deep));color:#fff;
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;flex:none}
-  .mrow.done .num{background:linear-gradient(135deg,var(--ok),#0f5f3a)}
-  .mrow.exam .num{background:linear-gradient(135deg,var(--gold),#8a5f16)}
-  .mrow .mid{flex:1;min-width:0}
-  .mrow h4{margin:0 0 3px;font-size:16px}
-  .mrow p{margin:0;font-size:12.8px;color:var(--ink-soft)}
-  .mrow .arrow{color:var(--crimson);font-size:20px;flex:none}
-  .mrow .st{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--cream-2);color:var(--ink-soft);flex:none}
-  .mrow.done .st{background:var(--ok-bg);color:var(--ok)}
-
-  /* ---------- module view ---------- */
-  .backlink{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--crimson);cursor:pointer;margin:0 0 4px;background:none;border:none;padding:6px 0}
-  .backlink:hover{text-decoration:underline}
-  .m-top{display:flex;align-items:center;justify-content:space-between;margin:8px 0 2px;flex-wrap:wrap;gap:10px}
-  .m-of{font-size:12.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
-  .m-track{font-size:12px;color:var(--ink-soft);font-weight:600}
-  .m-head h2{font-size:27px;margin:8px 0 8px;line-height:1.2}
-  .m-head .lede{font-size:15.5px;color:var(--ink-soft);max-width:700px;margin:0}
-  .mbar{height:6px;background:var(--cream-2);border-radius:20px;overflow:hidden;margin:16px 0 4px;border:1px solid var(--line)}
-  .mbar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--crimson))}
-  .obj-box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--crimson);border-radius:14px;padding:18px 24px;margin:20px 0}
-  .obj-box h3{margin:0 0 4px;font-size:13.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--crimson)}
-  .obj-box ul{margin:10px 0 0;padding-left:20px}
-  .obj-box li{margin:6px 0;font-size:14.5px}
-
-  .block{margin:26px 0}
-  .block h3.bh{font-size:20px;margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid var(--cream-2);display:flex;align-items:center;gap:10px}
-  .block h3.bh .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none}
-  .block p{margin:11px 0;font-size:15px}
-  .block ul,.block ol{font-size:15px}
-  .block li{margin:6px 0}
-  em.term{font-style:normal;font-weight:700;color:var(--crimson-deep)}
-  .src{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:4px}
-
-  .imgph{border:2px dashed #c9b98c;background:repeating-linear-gradient(45deg,#faf5e8,#faf5e8 12px,#f4eddb 12px,#f4eddb 24px);
-    border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    color:var(--ink-soft);margin:18px 0;padding:22px;gap:5px;min-height:150px}
-  .imgph .ic{font-size:30px;opacity:.7}
-  .imgph .l{font-weight:800;color:var(--crimson-deep);font-size:14.5px}
-  .imgph .c{font-size:12.5px;max-width:460px}
-  .infoph{border:2px dashed var(--gold);background:#fff;border-radius:16px;padding:20px 22px;margin:20px 0;text-align:center;position:relative}
-  .infoph .tag{position:absolute;top:-11px;left:20px;background:var(--gold);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3px 12px;border-radius:20px}
-  .infoph .ic{font-size:28px}
-  .infoph .l{font-weight:800;font-size:15.5px;color:var(--crimson-deep);margin-top:4px}
-  .infoph .c{font-size:13px;color:var(--ink-soft);margin-top:3px;max-width:560px;margin-left:auto;margin-right:auto}
-  .infoph .nodes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
-  .infoph .nodes span{background:var(--cream);border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:600}
-
-  .def{background:#fff;border:1px solid var(--line);border-left:4px solid var(--crimson);border-radius:14px;padding:15px 20px;margin:14px 0}
-  .def .dl{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:var(--crimson);margin-bottom:3px}
-  .def b{font-size:15.5px}
-  .def p{margin:4px 0 0;font-size:14px}
-
-  .cal{border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:12px;padding:14px 18px;margin:16px 0;background:#fff;display:flex;gap:13px}
-  .cal .ci{font-size:22px;flex:none;line-height:1.3}
-  .cal .cc b{display:block;margin-bottom:2px;font-size:14.5px}
-  .cal .cc p{margin:0;font-size:14px}
-  .cal.info{border-left-color:#2a6ea6}
-  .cal.warn{border-left-color:#c9761d;background:#fff9f0}
-  .cal.key{border-left-color:var(--crimson)}
-  .cal.do{border-left-color:var(--ok);background:var(--ok-bg)}
-
-  .ctable{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.6px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .ctable th{background:var(--crimson);color:#fff;text-align:left;padding:11px 13px;font-size:12.5px}
-  .ctable td{padding:10px 13px;border-top:1px solid var(--line);vertical-align:top}
-  .ctable tr:nth-child(even) td{background:var(--cream)}
-  .tcap{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:-6px}
-  .tscroll{overflow-x:auto}
-
-  .tabs{margin:18px 0}
-  .tabs .tabbtns{display:flex;flex-wrap:wrap;gap:8px}
-  .tabbtn{border:1px solid var(--line);background:#fff;border-radius:10px 10px 0 0;padding:10px 16px;font-weight:700;font-size:13.5px;cursor:pointer;color:var(--ink-soft);transition:.14s;border-bottom:none}
-  .tabbtn:hover{color:var(--crimson)}
-  .tabbtn.active{background:var(--crimson);color:#fff;border-color:var(--crimson)}
-  .tabpanel{display:none;border:1px solid var(--line);border-radius:0 12px 12px 12px;padding:18px 20px;background:#fff;font-size:14.5px}
-  .tabpanel.active{display:block;animation:fade .25s}
-  .tabpanel p{margin:8px 0}
-
-  .acc{margin:18px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
-  .accitem{border-top:1px solid var(--line)}
-  .accitem:first-child{border-top:none}
-  .acchead{width:100%;text-align:left;background:#fff;border:none;padding:15px 18px;font-weight:700;font-size:14.8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--ink)}
-  .acchead:hover{background:var(--cream)}
-  .acchead .chev{transition:.2s;color:var(--crimson);font-size:16px;flex:none}
-  .accitem.open .acchead .chev{transform:rotate(180deg)}
-  .accbody{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--cream)}
-  .accbody .inner{padding:4px 18px 16px;font-size:14.3px}
-  .accbody .inner p{margin:8px 0}
-
-  .carousel{margin:20px 0;border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:var(--shadow-sm)}
-  .carhead{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--cream)}
-  .carhead .clab{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px}
-  .carhead .cnum{font-size:12.5px;font-weight:700;color:var(--ink-soft)}
-  .carview{overflow:hidden}
-  .cartrack{display:flex;transition:transform .35s cubic-bezier(.4,0,.2,1)}
-  .carslide{min-width:100%;padding:26px 30px}
-  .carslide .stag{display:inline-block;border:1px solid var(--crimson);color:var(--crimson);font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px}
-  .carslide h4{margin:0 0 8px;font-size:19px;color:var(--crimson-deep)}
-  .carslide p{margin:8px 0;font-size:14.6px}
-  .carfoot{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--line)}
-  .carbtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 16px;font-weight:700;font-size:13.5px;cursor:pointer;transition:.14s;color:var(--ink)}
-  .carbtn:hover:not(:disabled){border-color:var(--crimson);color:var(--crimson)}
-  .carbtn:disabled{opacity:.35;cursor:not-allowed}
-  .cardots{display:flex;gap:7px}
-  .cardot{width:9px;height:9px;border-radius:50%;background:var(--cream-2);border:1px solid var(--line);cursor:pointer;transition:.15s}
-  .cardot.active{background:var(--crimson);border-color:var(--crimson);transform:scale(1.15)}
-
-  .flipgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:18px 0}
-  .flipcard{perspective:1200px;height:190px;cursor:pointer}
-  .flipinner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
-  .flipcard.flipped .flipinner{transform:rotateY(180deg)}
-  .flipface{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
-  .flipfront{background:var(--crimson);color:#fff}
-  .flipfront .ft{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;opacity:.8;font-weight:800;margin-bottom:6px}
-  .flipfront .fm{font-size:16px;font-weight:700}
-  .flipfront .hint{position:absolute;bottom:12px;left:18px;font-size:11px;opacity:.75}
-  .flipback{background:#fff;transform:rotateY(180deg)}
-  .flipback .bt{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:var(--ok);font-weight:800;margin-bottom:5px}
-  .flipback .bm{font-size:13.4px;line-height:1.5}
-
-  .scenario{border:1px solid var(--line);border-left:5px solid var(--crimson-deep);border-radius:12px;padding:16px 20px;margin:16px 0;background:#fff}
-  .scenario .stg{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--crimson);margin-bottom:5px}
-  .scenario h4{margin:0 0 6px;font-size:16px}
-  .scenario p{margin:6px 0;font-size:14.4px}
-
-  .activity{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;margin:24px 0;box-shadow:var(--shadow-sm)}
-  .activity .al{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800;color:var(--gold);display:flex;align-items:center;gap:8px}
-  .activity h4{margin:8px 0 8px;font-size:17px}
-  .activity p,.activity ol{font-size:14.5px}
-  .reveal-btn{margin-top:12px;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-weight:700;font-size:13.5px;cursor:pointer;transition:.15s}
-  .reveal-btn:hover{background:var(--crimson)}
-  .reveal-body{margin-top:14px;padding:16px 18px;background:var(--cream);border:1px solid var(--line);border-radius:12px;display:none;font-size:14.3px}
-  .reveal-body.show{display:block;animation:fade .3s}
-  /* interactive classify / sort activity */
-  .classify{display:grid;gap:10px;margin:14px 0}
-  .clrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;background:var(--cream)}
-  .clt{flex:1;min-width:170px;font-weight:600;font-size:14.5px}
-  .clbtns{display:flex;gap:8px;flex-wrap:wrap}
-  .pickrow{flex-direction:column;align-items:stretch;gap:10px}
-  .pickrow .clt{min-width:0}
-  .clbtn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink);transition:.13s}
-  .clbtn:hover:not(:disabled){border-color:var(--crimson);color:var(--crimson)}
-  .clbtn:disabled{cursor:default}
-  .clbtn.cok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
-  .clbtn.cno{background:#fff;border-color:var(--no);color:var(--no)}
-  .clfb{flex-basis:100%;font-size:13px;display:none;margin-top:2px}
-  .clfb.show{display:block}
-  .clfb.g{color:#155e39}
-  .clfb.b{color:#8a1c2c}
-  .clscore{margin-top:12px;font-weight:800;font-size:14px;color:var(--crimson)}
-  .clscore.done{color:var(--ok)}
-  .clreset{margin-top:10px}
-
-  .kc{background:#fff;border:2px solid var(--crimson);border-radius:18px;padding:24px 26px;margin:32px 0 10px;box-shadow:var(--shadow)}
-  .kc .kh{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-  .kc .kh .ic{width:40px;height:40px;border-radius:11px;background:#fff;border:1px solid var(--line);color:var(--crimson);display:flex;align-items:center;justify-content:center;font-size:19px;flex:none}
-  .kc .kh h3{margin:0;font-size:19px}
-  .kc .kh p{margin:2px 0 0;font-size:12.5px;color:var(--ink-soft)}
-  .q{margin:20px 0;padding-top:16px;border-top:1px solid var(--cream-2)}
-  .q:first-of-type{border-top:none}
-  .q .qt{font-weight:700;font-size:15px;margin-bottom:4px;display:flex;gap:8px}
-  .q .qt .qn{color:var(--crimson);font-weight:800}
-  .q .qtype{font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
-  .opt{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--line);border-radius:11px;padding:11px 15px;margin:7px 0;cursor:pointer;transition:.13s;font-size:14.4px;background:var(--cream)}
-  .opt:hover{border-color:var(--crimson);background:#fff}
-  .opt .mk{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;transition:.13s}
-  .opt.sel{border-color:var(--crimson);background:#fff}
-  .opt.sel .mk{border-color:var(--crimson);background:var(--crimson)}
-  .opt.correct{border-color:var(--ok);background:var(--ok-bg)}
-  .opt.correct .mk{border-color:var(--ok);background:var(--ok)}
-  .opt.wrong{border-color:var(--no);background:#fff}
-  .opt.wrong .mk{border-color:var(--no);background:var(--no)}
-  .opt.locked{cursor:default}
-  .fb{margin-top:10px;padding:12px 16px;border-radius:11px;font-size:13.8px;display:none}
-  .fb.show{display:block;animation:fade .3s}
-  .fb.good{background:var(--ok-bg);border:1px solid #b7e0c8;color:#155e39}
-  .fb.bad{background:#fff;border:1px solid var(--line);color:#8a1c2c}
-  .fb b{display:block;margin-bottom:2px}
-  .kc-actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-  .btn{border:none;border-radius:11px;padding:12px 22px;font-weight:700;font-size:14.2px;cursor:pointer;transition:.15s}
-  .btn-primary{background:var(--crimson);color:#fff}
-  .btn-primary:hover{background:var(--crimson-deep)}
-  .btn-primary:disabled{background:#c9a9ad;cursor:not-allowed}
-  .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
-  .btn-ghost:hover{border-color:var(--crimson);color:var(--crimson)}
-  .score{font-weight:800;font-size:14.5px}
-  .score .pill{background:#fff;border:1px solid var(--line);color:var(--crimson);border-radius:20px;padding:4px 13px;margin-left:4px}
-  .score.pass .pill{background:var(--ok-bg);border-color:#b7e0c8;color:var(--ok)}
-
-  .complete-banner{background:linear-gradient(150deg,var(--ok),#0f5f3a);color:#fff;border-radius:16px;padding:20px 24px;margin:22px 0;display:none;align-items:center;gap:16px}
-  .complete-banner.show{display:flex;animation:fade .4s}
-  .complete-banner .cbi{font-size:28px}
-  .complete-banner b{font-size:16px}
-  .complete-banner p{margin:3px 0 0;font-size:13px;opacity:.95}
-
-  .mnav{display:flex;justify-content:space-between;gap:14px;margin:34px 0 0;flex-wrap:wrap}
-  .mnav button{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;cursor:pointer;transition:.15s;text-align:left}
-  .mnav button:hover:not(:disabled){border-color:var(--crimson);box-shadow:var(--shadow-sm)}
-  .mnav button:disabled{opacity:.4;cursor:not-allowed}
-  .mnav .lab{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
-  .mnav .ti{font-size:14px;font-weight:700;margin-top:2px}
-  .mnav .next{text-align:right}
-
-  /* references */
-  .refsec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 26px;margin:16px 0;box-shadow:var(--shadow-sm)}
-  .refsec h4{margin:0 0 10px;font-size:16px;color:var(--crimson)}
-  .refsec ul{margin:0;padding-left:20px;font-size:14.3px}
-  .refsec li{margin:6px 0}
-
-  /* final exam / certificate */
-  .exam-intro{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 28px;margin:16px 0;box-shadow:var(--shadow-sm)}
-  .exam-intro h3{margin:0 0 6px;font-size:20px}
-  .lock-note{display:none;background:#fff9f0;border:1px solid #eccf9e;border-left:5px solid var(--gold);border-radius:12px;padding:14px 18px;margin:14px 0;font-size:14px}
-  .lock-note.show{display:block}
-  .namebox{margin:16px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
-  .namebox label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margin-bottom:5px}
-  .namebox input{border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:15px;min-width:280px;font-family:inherit}
-  .namebox input:focus{outline:none;border-color:var(--crimson)}
-
-  .certwrap{display:none;margin:22px 0}
-  .certwrap.show{display:block;animation:fade .4s}
-  .certificate{background:#fffdf7;border:2px solid var(--gold);border-radius:10px;padding:8px;box-shadow:var(--shadow);position:relative}
-  .certificate .inner{border:2px solid var(--crimson);border-radius:6px;padding:40px 44px;text-align:center;position:relative}
-  .cert-mk{width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--crimson),var(--crimson-deep));color:#f2d59a;
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 14px;border:3px solid var(--gold)}
-  .cert-kick{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:800}
-  .certificate h2{font-size:34px;margin:8px 0 4px;color:var(--crimson-deep);letter-spacing:.5px}
-  .cert-sub{font-size:13.5px;color:var(--ink-soft)}
-  .cert-name{font-size:32px;font-weight:800;color:var(--ink);margin:22px 0 6px;border-bottom:2px solid var(--gold);display:inline-block;padding:0 24px 6px}
-  .cert-body{font-size:14.5px;color:var(--ink);max-width:520px;margin:14px auto 0;line-height:1.6}
-  .cert-course{font-weight:800;color:var(--crimson-deep)}
-  .cert-meta{display:flex;justify-content:center;gap:40px;margin-top:26px;flex-wrap:wrap}
-  .cert-meta .cm{font-size:12.5px;color:var(--ink-soft)}
-  .cert-meta .cm b{display:block;font-size:14px;color:var(--ink);margin-top:2px}
-  .cert-sigs{display:flex;justify-content:space-around;gap:30px;margin-top:34px;flex-wrap:wrap}
-  .cert-sig{font-size:12px;color:var(--ink-soft)}
-  .cert-sig .line{width:180px;border-top:1.5px solid var(--ink);margin:0 auto 5px}
-  .cert-seal{position:absolute;right:34px;bottom:30px;width:78px;height:78px;border-radius:50%;border:2px dashed var(--gold);
-    display:flex;align-items:center;justify-content:center;text-align:center;font-size:9px;font-weight:800;color:var(--gold);
-    text-transform:uppercase;letter-spacing:.5px;transform:rotate(-12deg);line-height:1.3}
-  .cert-actions{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
-
-  footer{text-align:center;padding:32px 22px;color:var(--ink-soft);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
-  footer b{color:var(--crimson)}
-  .disclaimer{max-width:720px;margin:10px auto 0;font-size:11.4px;line-height:1.5;opacity:.85}
-
-  @media(max-width:640px){
-    .hero{padding:56px 20px 60px}.hero h1{font-size:30px}
-    .card{padding:20px}.objcard{margin-top:-30px}
-    .m-head h2{font-size:22px}.container{padding-left:16px;padding-right:16px}
-    .certificate .inner{padding:26px 20px}.cert-name{font-size:24px}.certificate h2{font-size:26px}
-    .cert-seal{display:none}
-  }
-  @media print{
-    body *{visibility:hidden!important}
-    .certificate,.certificate *{visibility:visible!important}
-    .certificate{position:absolute;left:0;top:0;width:100%;box-shadow:none;border:none}
-    .cert-actions,.navtoggle,.drawer{display:none!important}
-  }
+/* ── MAIN CONTENT ── */
+.video-block {
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 8px;
+  overflow: hidden; margin-bottom: 1.5rem;
+}
+.video-block .video-header {
+  padding: 1.1rem 1.5rem; border-bottom: 1px solid #f0ece6;
+  display: flex; align-items: center; gap: .75rem; background: #faf8f5;
+}
+.video-header .v-icon {
+  width: 32px; height: 32px; border-radius: 6px; background: #70110c;
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.video-header .v-title {
+  font-family: 'Cinzel', serif; font-size: .76rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: #1a1a1a;
+}
+.video-wrapper {
+  position: relative; width: 100%; padding-bottom: 56.25%; background: #111;
+}
+.video-wrapper iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block;
+}
+.info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;
+}
+@media(max-width:580px) { .info-grid { grid-template-columns: 1fr; } }
+.info-card {
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 8px; padding: 1.5rem;
+}
+.info-card h3 {
+  font-family: 'Cinzel', serif; font-size: .73rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: #70110c;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;
+}
+.info-card ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.info-card ul li {
+  font-size: .83rem; color: #444; line-height: 1.5;
+  display: flex; align-items: flex-start; gap: .55rem;
+}
+.info-card ul li::before {
+  content: ''; width: 5px; height: 5px; background: #c69a3f;
+  transform: rotate(45deg); flex-shrink: 0; margin-top: .45rem;
+}
+.back-strip {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 8px; padding: 1.1rem 1.5rem;
+}
+.back-strip a {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: 'Cinzel', serif; font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: #70110c; text-decoration: none;
+}
+.back-strip a:hover { text-decoration: underline; }
+.back-strip .note { font-size: .78rem; color: #888; }
 </style>
 </head>
 <body>
 
-<button class="navtoggle" onclick="toggleNav()" title="Show / hide menu" aria-label="Toggle menu">☰</button>
-
-<div class="scrim" id="scrim" onclick="closeNav()"></div>
-<aside class="drawer" id="drawer">
-  <div class="dhead">
-    <div class="bx"><div class="lft"><span class="mk">ΚΑΨ</span><div><b>Constitution &amp; Statutes</b><span class="dsub">Member Governance Training · 2025–27</span></div></div>
-      <button class="close" onclick="closeNav()">×</button></div>
-    <div class="dprog"><div class="dprow"><span>Course Progress</span><span id="cpPct">0%</span></div><div class="cptrack"><div class="cpfill" id="cpFill"></div></div></div>
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Crest">
+    <div class="brand-text">
+      <div class="chapter-name">DLA Member Portal</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
   </div>
-  <div class="dlist" id="drawerList"></div>
-</aside>
+  <div class="nav-links">
+    <a href="/" style="display:flex;align-items:center;gap:.35rem;color:#888;font-weight:500;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+      Main Site
+    </a>
+    <a href="/portal/training.html">My Training</a>
+    <a href="#" class="signout" id="signOutBtn">Sign Out</a>
+  </div>
+</nav>
 
-<main>
-  <section class="view active" id="view-home"></section>
-  <section class="view" id="view-module"><div class="container"><button class="backlink" onclick="goHome()">← Course overview</button><div id="moduleBody"></div></div></section>
-  <section class="view" id="view-references"><div class="container"><button class="backlink" onclick="goHome()">← Course overview</button><div id="refBody"></div></div></section>
-  <section class="view" id="view-final"><div class="container"><button class="backlink" onclick="goHome()">← Course overview</button><div id="finalBody"></div></div></section>
-</main>
+<div class="course-hero">
+  <div class="inner">
+    <div class="breadcrumb">
+      <a href="/portal/dashboard.html">Dashboard</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/portal/training.html">My Training</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Constitutions &amp; Statutes</span>
+    </div>
+    <div class="course-tag">
+      <svg viewBox="0 0 8 8" fill="#c69a3f" width="7" height="7"><path d="M4 0L8 4L4 8L0 4Z"/></svg>
+      Chapter Operations
+    </div>
+    <h1>Understanding the Constitutions and Statutes</h1>
+    <div class="meta">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Kappa Alpha Psi Fraternity, Inc.
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2025–2027 Edition
+      </span>
+    </div>
+  </div>
+</div>
 
-<footer>
-  <div><b>Kappa Alpha Psi Fraternity, Inc.®</b> — Achievement in Every Field of Human Endeavor</div>
-  <div style="margin-top:5px">Interactive member governance training · Constitution &amp; Statutes 2025–27</div>
-  <div class="disclaimer">A study aid that summarizes and interprets the governing documents for education. Image and infographic placeholders mark where final artwork should be added. Esoteric/ritual content is intentionally omitted. Always consult the current official Constitution &amp; Statutes and your chapter leadership for authoritative guidance. Marks belong to the Fraternity.</div>
-</footer>
+<div class="course-layout">
 
+  <!-- SIDEBAR -->
+  <aside class="course-sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-head">Course Contents</div>
+      <nav class="sidebar-nav">
+        <a href="#video" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          2025–2027 Presentation
+        </a>
+        <a href="#what-youll-learn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          What You'll Learn
+        </a>
+        <a href="#course-details">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          Course Details
+        </a>
+      </nav>
+      <div class="sidebar-external">
+        <a href="https://kappaalphapsi1911-my.sharepoint.com/personal/gkor_kappaalphapsi1911_com/_layouts/15/embed.aspx?UniqueId=86e44b97-f2df-4cc6-82b7-db1df6bbf3d6" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Open in SharePoint
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <div id="video" style="scroll-margin-top:90px;">
+      <div class="video-block">
+        <div class="video-header">
+          <div class="v-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div class="v-title">2025–2027 Constitution and Statutes</div>
+        </div>
+        <div class="video-wrapper">
+          <iframe src="https://kappaalphapsi1911-my.sharepoint.com/personal/gkor_kappaalphapsi1911_com/_layouts/15/embed.aspx?UniqueId=86e44b97-f2df-4cc6-82b7-db1df6bbf3d6" frameborder="0" scrolling="no" allowfullscreen title="NEW - 2025-2027 Constitution and Statutes"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div id="what-youll-learn" class="info-card" style="scroll-margin-top:90px;">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          What You'll Learn
+        </h3>
+        <ul>
+          <li>The governing framework of Kappa Alpha Psi Fraternity, Inc.</li>
+          <li>Rights and responsibilities of all members under the Statutes</li>
+          <li>Chapter obligations and compliance requirements</li>
+          <li>How the Constitutions and Statutes guide chapter operations</li>
+          <li>Updates and changes in the 2025–2027 edition</li>
+        </ul>
+      </div>
+      <div id="course-details" class="info-card" style="scroll-margin-top:90px;">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 12 11 14 15 10"/></svg>
+          Course Details
+        </h3>
+        <ul>
+          <li>Category: Chapter Operations</li>
+          <li>Edition: 2025–2027</li>
+          <li>Source: Grand Chapter — Kappa Alpha Psi</li>
+          <li>Access: DLA Members Only</li>
+          <li>Format: Video presentation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="back-strip">
+      <a href="/portal/training.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to My Training
+      </a>
+      <span class="note">Questions? Contact <a href="mailto:webmaster@dlakappa.org" style="color:#70110c;">webmaster@dlakappa.org</a></span>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* ============================================================
-   COURSE DATA
-   ============================================================ */
-const COURSE_OBJECTIVES = [
-  "Distinguish the Constitution, the Statutes, and chapter Bylaws by purpose, scope, authority, and how each is amended.",
-  "Explain the order of precedence and how governance aligns from the National (IHQ) level, through the Province, to the Chapter.",
-  "Trace how Bylaws, Fraternity Regulations, policies, guides, and SOPs/procedures derive from and align with the C&amp;S.",
-  "Describe how the laws generate policy and procedure without those details living inside the laws themselves.",
-  "Navigate the Constitution (Articles) and the Statutes (numbered Statutes &amp; Sections) to locate the authority behind a decision.",
-  "Break down the high-level governance, financial, membership, and disciplinary provisions and apply them to real scenarios.",
-  "Separate common myths about the governing documents from what the documents actually say.",
-  "Demonstrate mastery on a comprehensive final assessment to earn a Certificate of Completion."
-];
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-const MODULES = [
-/* ==================== M0 — Whole System ==================== */
-{
-  track:"Foundations", minutes:18,
-  title:"Constitution, Statutes &amp; Bylaws — The Whole System",
-  lede:"How the three governing documents fit together, align from IHQ to your chapter, and where policies, guides, and procedures come from.",
-  objectives:[
-    "Define the Constitution, the Statutes, and chapter Bylaws and state the distinct job each does.",
-    "Place the documents in the correct order of precedence and explain what happens when they appear to conflict.",
-    "Trace how authority aligns from the National (IHQ) level down to the chapter.",
-    "Preview how the laws feed policies, guides, and procedures — and why each is amended differently.",
-    "Correct the most common myths members hold about the governing documents."
-  ],
-  blocks:[
-    {type:"image", label:"Cover image — the three governing documents", caption:"Suggested: the Constitution & Statutes book beside a chapter Bylaws binder and a stack of policy/guide/SOP documents."},
-    {type:"text", h:"Three documents, one system", dot:true, body:`<p>Members often talk about "the C&amp;S" as if it were one rulebook. In practice you are dealing with a <em class="term">layered system</em> of governing instruments, each with a different job. Knowing the division of labor tells you <strong>where to look</strong> for any answer — and where the day-to-day policies, guides, and procedures come from.</p><p>Think of it as a pyramid: the <strong>Constitution</strong> is the foundational law; the <strong>Statutes</strong> carry out and amplify it in operational detail; the <strong>Ritual</strong> is the esoteric law; and beneath the law sits a family of <em class="term">derived instruments</em> — Fraternity Regulations, policies, guides, and SOPs — that put the law into daily practice. Each chapter's <strong>Bylaws</strong> govern that chapter's own internal affairs, aligned to everything above.</p>`},
-    {type:"infographic", label:"The governing-document pyramid", caption:"Suggested: a pyramid — Constitution at the apex, Statutes below, then Ritual and Fraternity Regulations, then policies/guides/SOPs, with chapter Bylaws shown as an aligned local layer. (Module 2 breaks this stack down fully.)", nodes:["Constitution","Statutes","Ritual","Fraternity Regulations","Policies / Guides / SOPs","Chapter Bylaws (local)"]},
-    {type:"tabs", title:"Compare the core instruments — tap each tab", tabs:[
-      {label:"Constitution", body:`<p><strong>The foundational law.</strong> Establishes the Fraternity's name and objectives, the levels and bodies of government, the national offices, membership in principle, and how the Constitution itself is amended. It answers <em class="term">who we are</em> and <em class="term">how we are governed</em>. Amended by a <strong>¾ vote</strong> of the Grand Chapter.</p>`},
-      {label:"Statutes", body:`<p><strong>The operational law.</strong> Amplifies and carries out the Constitution — revenues, accounting, funds, elections, intake, awards, publications, discipline. It answers <em class="term">how it runs</em>. Amended by a <strong>⅔ vote</strong> of the Grand Chapter.</p>`},
-      {label:"Bylaws", body:`<p><strong>Local chapter law.</strong> The internal rules a single chapter or alumni association adopts for itself — meeting nights, local committees, dues specifics. Bylaws must stay consistent with the Constitution and Statutes; they fill in local specifics, never override national law. Amended <strong>locally</strong>, within national limits.</p>`},
-      {label:"Derived", body:`<p><strong>Regulations, policies, guides &amp; SOPs.</strong> Issued by the Grand Board and its bodies to put the laws into practice — the detailed "how." Binding, but ranked below the law and changeable <strong>without</strong> a Grand Chapter amendment. Module 2 breaks these down in full.</p>`}
-    ]},
-    {type:"text", h:"The order of precedence — who wins a conflict", dot:true, body:`<p>Because several instruments govern at once, the Constitution fixes an explicit <em class="term">order of precedence</em>. When two provisions seem to collide, the higher-ranking law controls. Article III, Section 5 lists it in order:</p><ol><li><strong>The Constitution</strong> — foundational law, highest authority.</li><li><strong>The Statutes</strong> — operational law that amplifies the Constitution.</li><li><strong>The Ritual</strong> — esoteric law.</li><li><strong>Fraternity Regulations</strong> — and the policies, guides, and SOPs that flow from them.</li></ol><p>Chapter <strong>Bylaws</strong> are <em>not</em> in this national order — they are local, and always subordinate. A Bylaw that conflicts with the Constitution, Statutes, or Regulations is invalid to the extent of the conflict.</p><p class="src">Source: Constitution, Article III, Section 5.</p>`},
-    {type:"callout", variant:"key", ci:"⚖️", title:"Quick test of the ladder", body:"Statute vs. Constitution → the Constitution wins. Policy/Regulation vs. Statute → the Statute wins. A chapter Bylaw or SOP vs. any of them → it yields."},
-    {type:"text", h:"Alignment from IHQ to the chapter", dot:true, body:`<p>The Constitution's <strong>three governing levels</strong> (Article III, Section 1) answer "who governs where." Authority flows <em class="term">downward and consistent</em> — each level operates within the frame set above it.</p>`},
-    {type:"infographic", label:"IHQ → Province → Chapter alignment", caption:"Suggested: a top-down flow — National (Grand Board, national officers, Grand Chapter) → Province (boards, officers, Council) → Chapter (boards, officers, members) — captioned that nothing lower may contradict something higher.", nodes:["National / IHQ","Province","Chapter"]},
-    {type:"text", body:`<p>A chapter cannot lawfully adopt a Bylaw, and a Province cannot adopt a rule, that contradicts national law. Each layer <strong>amplifies</strong> the one above with local specifics — it never rewrites it. Trace the authority upward until you find permission or hit a wall.</p><p class="src">Source: Constitution, Article III, Sections 1–5.</p>`},
-    {type:"text", h:"A first look at where policy &amp; procedure come from", dot:true, body:`<p>Here is what trips up even experienced members: <strong>the laws deliberately do not contain most procedures.</strong> The Constitution and Statutes state <em class="term">what</em> must happen, <em class="term">who</em> has authority, and the <em class="term">standards</em>. The detailed <em class="term">how</em> — timelines, forms, step-by-step processes — lives in <strong>Fraternity Regulations, policies, guides, and SOPs</strong>. The law points; the regulation walks. <strong>Module 2 breaks this whole derived-governance stack down in depth.</strong></p>`},
-    {type:"callout", variant:"tip", ci:"💡", title:"Memory hook", body:"¾ for the Constitution, ⅔ for the Statutes. The bigger the fraction, the bigger the deal."},
-    {type:"flip", title:"Myth vs. Truth — tap a card to flip", cards:[
-      {front:"“The Constitution and Statutes are basically the same — one big rulebook.”", back:"Separate instruments, different jobs and thresholds (¾ vs. ⅔). The Constitution is foundational; the Statutes amplify it operationally."},
-      {front:"“Our chapter Bylaws can set our own rules however we want.”", back:"Bylaws are local and always subordinate. A Bylaw conflicting with the Constitution or Statutes is invalid to that extent."},
-      {front:"“If a procedure isn't in the Statutes, it isn't official.”", back:"Most procedures live in Fraternity Regulations, policies, guides, and SOPs that flow from the laws — binding, but kept out of the laws so they can adapt."},
-      {front:"“When two rules conflict, the newest one wins.”", back:"Conflicts are resolved by the order of precedence — Constitution > Statutes > Ritual > Regulations — not by which was written most recently."}
-    ]},
-    {type:"classify", label:"Apply it · Which document governs?", title:"Tap the instrument that governs each question", intro:`Choose the instrument that answers each — instant feedback and a running score.`, cats:["Constitution","Statutes","Bylaws","Policy/SOP"], items:[
-      {t:"What are the objectives of the Fraternity?", c:0, why:"Constitution — identity and objectives (Article II)."},
-      {t:"What vote changes an operating rule about revenues?", c:1, why:"Statutes — revenues are Statute-level (⅔ to change)."},
-      {t:"What night does our chapter hold its meeting?", c:2, why:"Chapter Bylaws — a purely local, internal detail."},
-      {t:"What are the exact steps of the current intake process?", c:3, why:"A derived policy/SOP — detailed procedures flow from the law, not written into it."},
-      {t:"A Bylaw contradicts a Statute — which controls?", c:1, why:"The Statute — national law outranks a local Bylaw."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"Which document sits at the top of the order of precedence?",opts:["The Statutes","The Constitution","Chapter Bylaws","Fraternity Regulations"],correct:1,why:"Article III §5 ranks the laws Constitution > Statutes > Ritual > Regulations."},
-    {t:"recall",q:"What vote amends the Constitution vs. the Statutes?",opts:["Both a simple majority","Constitution ⅔, Statutes ¾","Constitution ¾, Statutes ⅔","The Grand Polemarch decides"],correct:2,why:"Constitution ¾, Statutes ⅔ — the higher bar protects the foundational document."},
-    {t:"application",q:"A chapter Bylaw contradicts a Statute. Result?",opts:["The Bylaw controls (more local)","The newest rule wins","The Bylaw is invalid where it conflicts","Both suspended until Grand Chapter"],correct:2,why:"Bylaws are subordinate; national law outranks them."},
-    {t:"application",q:"A detailed step-by-step procedure most likely lives in:",opts:["The Constitution, verbatim","Fraternity Regulations, policies, guides, or SOPs","Nowhere unless in the Statutes","Only in chapter Bylaws"],correct:1,why:"Laws name authority; procedures live in derived instruments so they can adapt."}
-  ]
-},
-/* ==================== M1 — Governance Hierarchy (NEW) ==================== */
-{
-  track:"Foundations", minutes:17,
-  title:"The Governance Hierarchy — Bylaws, Policies, Guides &amp; SOPs",
-  lede:"The heart of the request: exactly how chapter Bylaws, Fraternity Regulations, policies, guides, and SOPs/procedures derive from — and stay aligned with — the Constitution &amp; Statutes.",
-  objectives:[
-    "Map the full governance stack from the C&amp;S down to chapter Bylaws, policies, guides, and SOPs.",
-    "Explain how each derived instrument DERIVES FROM and ALIGNS WITH the Constitution &amp; Statutes.",
-    "Distinguish a policy, a guide, and an SOP/procedure — and where each lives.",
-    "Apply the alignment rule: nothing lower may conflict with anything higher."
-  ],
-  blocks:[
-    {type:"image", label:"Image — from law to practice", caption:"Suggested: a flow graphic or desk scene showing the C&S book giving rise to a policy manual, a guide, and an SOP checklist."},
-    {type:"text", h:"The law sets the frame; everything else fills it in", dot:true, body:`<p>The Constitution and Statutes are the <strong>law</strong>. But almost nothing gets done on the strength of the law alone — the law is carried into action by a family of <em class="term">derived instruments</em> that sit <strong>beneath</strong> it and <strong>flow from</strong> it: Fraternity Regulations, policies, guides and manuals, standard operating procedures (SOPs), and — at the local level — chapter Bylaws. None of these are part of the C&amp;S. Every one of them must <strong>derive from</strong> an authority granted in the law and <strong>align with</strong> it. The moment a derived instrument contradicts the law, the law controls and the instrument is void to that extent.</p><p>This is the single most practical governance skill a chapter leader can have: knowing that a rule exists is not enough — you must know <em>what instrument it lives in</em>, <em>who has authority over it</em>, and <em>what it must stay consistent with</em>.</p>`},
-    {type:"infographic", label:"The full governance stack", caption:"Suggested infographic: a vertical stack with downward arrows — Constitution → Statutes → Ritual → Fraternity Regulations → Policies → Guides/Manuals → SOPs/Procedures, with Chapter Bylaws shown as a local column aligned to the whole stack. Label the arrows 'derives from / must align with.'", nodes:["Constitution","Statutes","Ritual","Fraternity Regulations","Policies","Guides / Manuals","SOPs / Procedures","Chapter Bylaws (local)"]},
-    {type:"text", h:"The instruments, defined", dot:true, body:`<p>Precise terms prevent sloppy governance. Learn the working definition of each derived instrument:</p>`},
-    {type:"def", items:[
-      {t:"Fraternity Regulations", d:"The body of rules established by the Grand Board to carry the Constitution and Statutes into practice. Ranked fourth in precedence — binding on all levels, but subordinate to the Constitution, Statutes, and Ritual. The Grand Board can create or revise them <b>without</b> a Grand Chapter amendment."},
-      {t:"Policy", d:"A standing decision or rule of conduct adopted under an authority the law grants — e.g., a risk-management, conflict-of-interest, or financial-controls policy. A policy states <b>what</b> is required and <b>why</b>; it must trace back to a governing authority and never contradict the C&S."},
-      {t:"Guide / Manual", d:"An explanatory document that helps members correctly apply a policy or law — an officer's manual, a membership/intake guide, a treasurer's handbook. A guide <b>explains and instructs</b>; it has no authority of its own beyond the law and policy it interprets."},
-      {t:"SOP / Procedure", d:"A Standard Operating Procedure: the exact, repeatable <b>steps</b> for doing a task — the forms, sequence, approvals, and timeline. An SOP describes <b>how</b>; it operationalizes a policy and must stay within it."},
-      {t:"Chapter Bylaws", d:"The local governing rules a chapter or alumni association adopts for its own internal operations. Bylaws are derived local law: valid only so far as they align with the Constitution, Statutes, and Regulations."}
-    ]},
-    {type:"text", h:"How each derives from and aligns with the C&amp;S", dot:true, body:`<p>Use this map to place any rule you encounter. Read the two right-hand columns together — they answer "where does its authority come from?" and "how flexible is it?"</p>`},
-    {type:"table", headers:["Instrument","What it governs","Who issues / adopts it","Derives from &amp; must align with","Changed by"], rows:[
-      ["Constitution","Identity, objectives, structure of government, offices, amendment","The Grand Chapter","— (the foundation)","¾ Grand Chapter vote"],
-      ["Statutes","Operations: money, elections, intake, awards, discipline","The Grand Chapter","The Constitution","⅔ Grand Chapter vote"],
-      ["Ritual","Esoteric ceremony","Grand Board revises; Grand Chapter approves","The Constitution &amp; Statutes","¾ Grand Chapter vote"],
-      ["Fraternity Regulations","Fraternity-wide procedures &amp; controls","The Grand Board","The Constitution &amp; Statutes","Grand Board (no Grand Chapter vote)"],
-      ["Policies","Standing rules of conduct (COI, risk, finance)","Grand Board / commissions / committees","The C&amp;S &amp; Regulations","The issuing body"],
-      ["Guides / Manuals","How to apply a policy or law","IHQ / commissions / officers","The policy &amp; law they explain","The issuing body"],
-      ["SOPs / Procedures","Exact steps for a task","IHQ, provinces, or chapters","The policy they operationalize","The owning unit"],
-      ["Chapter Bylaws","A single chapter's internal rules","The chapter / alumni association","The C&amp;S &amp; Regulations","The chapter, within national limits"]
-    ], caption:"Read down the stack: each row derives its authority from the rows above and must never contradict them."},
-    {type:"callout", variant:"key", ci:"🧭", title:"The alignment rule (memorize this)", body:"Every derived instrument must (1) trace its authority upward to the C&S and (2) stay consistent with everything above it. It may add detail; it may never override. Where it conflicts, the higher instrument controls and the lower is void to that extent."},
-    {type:"text", h:"From law to practice — a worked example", dot:true, body:`<p>Follow a single subject — <strong>membership intake</strong> — all the way down the stack, and the system clicks into place:</p><ol><li><strong>Constitution (law):</strong> establishes membership and that it is limited to those initiated per the laws.</li><li><strong>Statute 21 (law):</strong> frames membership intake and names the authority over it.</li><li><strong>Fraternity Regulations / policy (derived):</strong> set the binding intake requirements and standards.</li><li><strong>Guide/manual (derived):</strong> an official intake guide explains how members apply those requirements.</li><li><strong>SOP/procedure (derived):</strong> the exact steps, forms, approvals, and timeline the chapter follows.</li><li><strong>Chapter Bylaws (local):</strong> may add consistent local detail (e.g., which committee assists), never anything that conflicts with the above.</li></ol><p>Notice what moved and what didn't: the <em>law</em> (steps 1–2) is stable and changes only at a Grand Chapter; the <em>derived</em> layers (steps 3–6) can be updated by the proper authority as conditions change. That is the whole point of keeping procedure out of the law.</p>`},
-    {type:"tabs", title:"Policy vs. Guide vs. SOP — tap to compare", tabs:[
-      {label:"Policy", body:`<p><strong>Answers “what &amp; why.”</strong> A standing rule of conduct adopted under granted authority. <em>Example:</em> a Financial Controls Policy requiring dual authorization for disbursements. It must trace to the C&amp;S/Regulations and applies until changed by the issuing body.</p>`},
-      {label:"Guide / Manual", body:`<p><strong>Answers “how do I understand this.”</strong> Explains and instructs so members apply the law/policy correctly. <em>Example:</em> a Keeper of Exchequer's Manual walking through the disbursement policy. It carries no authority beyond what it explains.</p>`},
-      {label:"SOP / Procedure", body:`<p><strong>Answers “what are the exact steps.”</strong> The repeatable sequence, forms, approvals, and timing. <em>Example:</em> the step-by-step warrant-and-payment SOP a chapter treasurer follows. It must stay within its policy.</p>`}
-    ]},
-    {type:"accordion", title:"Common derived instruments — where each comes from", items:[
-      {q:"Risk Management / Safety Policy", a:"<p><strong>Derives from</strong> the Grand Board's authority to regulate operations and protect the Fraternity's interests. <strong>Aligns with</strong> the Constitution's objectives and the Statutes' disciplinary provisions. A chapter cannot adopt a Bylaw or event SOP that waives it.</p>"},
-      {q:"Financial Controls & Disbursement SOP", a:"<p><strong>Derives from</strong> the Statutes on revenues, accounting, and fund disbursement, plus the constitutional officer structure (Keeper of Records signs warrants; Keeper of Exchequer pays). <strong>Aligns with</strong> those two-key controls — an SOP can add steps but not remove the separation of duties.</p>"},
-      {q:"Membership Intake Guide", a:"<p><strong>Derives from</strong> Statute 21 and the Fraternity Regulations that frame intake. <strong>Aligns with</strong> the law's standards; a local chapter cannot shorten or alter the required process by SOP or Bylaw.</p>"},
-      {q:"Co-sponsored Event / MOU Procedure", a:"<p><strong>Derives from</strong> the Grand Board's authority over contracts and Fraternity interests. <strong>Aligns with</strong> the Constitution/Statutes; the procedure documents the arrangement but cannot authorize anything the law forbids.</p>"},
-      {q:"Chapter Bylaws", a:"<p><strong>Derives from</strong> the chapter's authority to manage its own affairs (recognized in the Constitution and Statutes, e.g., the required Bylaws kept in the chapter archive). <strong>Aligns with</strong> all national law; invalid to the extent of any conflict.</p>"}
-    ]},
-    {type:"flip", title:"Law or derived? — tap to check", frontLabel:"Which is it?", backLabel:"Answer", cards:[
-      {front:"The Statutes", back:"LAW. Adopted by the Grand Chapter; amended by ⅔ vote."},
-      {front:"A chapter's event SOP", back:"DERIVED. Local procedure — must align with policy and the C&S."},
-      {front:"A Conflict-of-Interest Policy", back:"DERIVED. A standing rule adopted under granted authority."},
-      {front:"The Constitution", back:"LAW. The foundation; amended by ¾ vote."},
-      {front:"An officer's manual", back:"DERIVED (guide). Explains how to apply law and policy."},
-      {front:"Chapter Bylaws", back:"DERIVED local law. Valid only if aligned with the C&S."}
-    ]},
-    {type:"scenario", tag:"Scenario · alignment failure", title:"A chapter SOP that shortcuts the law", body:`<p>A chapter writes an internal SOP that skips a step the Statutes and intake Regulations require, arguing “it's just our procedure.” <strong>This is invalid.</strong> An SOP is a derived instrument — it may add detail within the law, never remove a requirement the law sets. The fix: rewrite the SOP to sit <em>inside</em> the governing requirements, and route any genuine concern upward through the proper authority, not around the law.</p>`},
-    {type:"callout", variant:"do", ci:"✅", title:"The leader's habit", body:"Before enforcing any rule, ask three questions: What instrument is this in? Who has authority over it? What must it stay consistent with? If a rule can't answer all three, it isn't ready to enforce."},
-    {type:"classify", label:"Apply it · Sort the instruments", title:"Law or Derived? Tap a button for each", intro:`Decide whether each instrument is <strong>Law</strong> (adopted at a Grand Chapter — the Constitution, Statutes, and Ritual) or <strong>Derived</strong> (everything issued below the Grand Chapter that must align with the law). Tap a button — you'll get instant feedback and a running score.`, cats:["Law","Derived"], items:[
-      {t:"The Constitution", c:0, why:"Law — adopted and amended by the Grand Chapter (¾ vote)."},
-      {t:"The Statutes", c:0, why:"Law — adopted and amended by the Grand Chapter (⅔ vote)."},
-      {t:"The Ritual", c:0, why:"Law — one of the four ranked laws; approved at the Grand Chapter."},
-      {t:"Fraternity Regulations", c:1, why:"Derived — issued by the Grand Board, with no Grand Chapter vote."},
-      {t:"A Conflict-of-Interest Policy", c:1, why:"Derived — a standing rule adopted under granted authority."},
-      {t:"A chapter's event SOP", c:1, why:"Derived — steps that operationalize a policy; must stay within the law."},
-      {t:"An officer's manual (guide)", c:1, why:"Derived — explains how to apply the law and policy; no authority of its own."},
-      {t:"Chapter Bylaws", c:1, why:"Derived local law — valid only when aligned with the C&S."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"Which best describes an SOP (procedure)?",opts:["A foundational law amended by the Grand Chapter","The exact repeatable steps that operationalize a policy","A national officer","A defined term in the Glossary only"],correct:1,why:"An SOP is the step-by-step 'how' that operationalizes a policy and must stay within it."},
-    {t:"application",q:"A Conflict-of-Interest policy and a chapter Bylaw conflict. Which governs?",opts:["The Bylaw — it's more local","The policy — Bylaws must align with instruments that derive from the C&S","Whichever is newer","Neither is binding"],correct:1,why:"A policy adopted under national authority outranks a local Bylaw; the Bylaw must align."},
-    {t:"recall",q:"Fraternity Regulations can be changed by:",opts:["A ¾ Grand Chapter vote","A ⅔ Grand Chapter vote","The Grand Board, without a Grand Chapter vote","Any chapter"],correct:2,why:"Regulations are Grand Board instruments — changeable without amending the C&S, which is why procedures live there."},
-    {t:"application",q:"Why keep detailed procedures in derived instruments rather than the Statutes?",opts:["They're unimportant","So they can adapt through the proper authority while the law stays stable","So chapters can ignore them","So only officers can read them"],correct:1,why:"Derived instruments can be updated as conditions change; the law stays durable."},
-    {t:"application",q:"A chapter guide 'explains' a rule differently than the Statute says. Which controls?",opts:["The guide — it's more detailed","The Statute — a guide only explains and cannot override the law","Whichever the Polemarch prefers","Both are void"],correct:1,why:"A guide has no authority beyond the law/policy it explains; the Statute controls."}
-  ]
-},
-/* ==================== M2 — Navigating ==================== */
-{
-  track:"Foundations", minutes:12,
-  title:"Navigating the Governing Documents",
-  lede:"A working map of how the book is built — and a repeatable method for finding the authority behind any question fast.",
-  objectives:[
-    "Describe the structure: the Glossary, the Constitution's Articles, and the Statutes' numbered Statutes and Sections.",
-    "Apply a subject-matter method to decide which document governs a question.",
-    "Use the Glossary as load-bearing law.",
-    "Resolve apparent conflicts by applying the order of precedence."
-  ],
-  blocks:[
-    {type:"image", label:"Image — navigating the C&S", caption:"Suggested: a member using the tabbed Constitution & Statutes, or a stylized table-of-contents graphic."},
-    {type:"text", h:"Anatomy of the book", dot:true, body:`<p>The official volume is organized so you can find things by structure, not memory: a <strong>Glossary</strong> of defined terms, then the <strong>Constitution</strong>, then the <strong>Statutes</strong>.</p><ul><li><strong>The Constitution</strong> → <strong>Articles</strong> (Roman numerals I–XXXIX), each with numbered <strong>Sections</strong> and lettered subsections. Cite as "Article III, Section 5."</li><li><strong>The Statutes</strong> → numbered <strong>Statutes</strong> (1–40), each with <strong>Sections</strong>. Cite as "Statute 21, Section 1."</li></ul>`},
-    {type:"callout", variant:"warn", ci:"⚠️", title:"Two numbering systems — don't mix them", body:"The Constitution counts in Articles (I–XXXIX). The Statutes count in Statutes (1–40). \"Article XXII\" and \"Statute 22\" are completely different places."},
-    {type:"infographic", label:"Anatomy of the document", caption:"Suggested: a labeled diagram — Glossary → Constitution (Article ▸ Section ▸ subsection) → Statutes (Statute ▸ Section) — with sample citations.", nodes:["Glossary","Constitution · 39 Articles","Statutes · 40 Statutes"]},
-    {type:"text", h:"The 'which document?' method", dot:true, body:`<p>You rarely read the whole book — you jump to the right neighborhood. This method resolves most questions in seconds.</p>`},
-    {type:"accordion", title:"Where does each kind of question go?", items:[
-      {q:"Identity, structure, offices, amendment?", a:"<p><strong>Constitution.</strong> Who we are, the levels of government, the Grand Chapter/Board/Executive Committee, the national officers, provinces and chapters in principle, how to amend.</p>"},
-      {q:"Money, elections, intake, awards, discipline, operations?", a:"<p><strong>Statutes.</strong> Revenues, accounting, funds, travel, elections, intake and membership classes, publications, commissions, awards, disciplinary action.</p>"},
-      {q:"A single chapter's internal, local rule?", a:"<p>That chapter's <strong>Bylaws</strong> — set locally, within national limits.</p>"},
-      {q:"An exact step, form, or timeline?", a:"<p><strong>Fraternity Regulations, policies, guides, or SOPs</strong> that flow from the laws (see Module 2 of this course).</p>"}
-    ]},
-    {type:"text", h:"The Glossary is law, not decoration", dot:true, body:`<p>New readers skip the Glossary; skilled readers start there. Defined terms carry exact, controlling meaning — many disputes dissolve the moment you check a definition. Consider the difference between an <em class="term">alumni chapter</em> (at least ten sustaining members) and an <em class="term">alumni association</em> (five to nine, where no alumni chapter exists), or what counts as <em class="term">good standing</em>.</p>`},
-    {type:"def", items:[
-      {t:"Reading tip", d:"When a provision uses a capitalized or technical term, assume it is <b>defined</b> and means exactly what the Glossary says. Substituting an everyday meaning is the most common way members misread the law."}
-    ]},
-    {type:"text", h:"Resolving a conflict", dot:true, body:`<p>When two provisions seem to point different ways, apply the order of precedence top-down: does the <strong>Constitution</strong> speak to it? If not, the <strong>Statutes</strong>? Then <strong>Regulations/policies</strong>, then local <strong>Bylaws</strong> — each valid only so far as it doesn't contradict something above. When interpretation itself is unclear, the authority to confirm interpretations runs through the Fraternity's leadership and processes, not individual opinion.</p>`},
-    {type:"classify", label:"Apply it · Navigation drill", title:"Which part of the document holds the answer?", intro:`Tap the source you'd open first for each question.`, cats:["Constitution","Statutes","Glossary"], items:[
-      {t:"How many members form a Grand Chapter quorum?", c:0, why:"Constitution, Article IV — the Grand Chapter and its quorum."},
-      {t:"What are the designated funds and how are they used?", c:1, why:"Statutes (≈8–13) — the designated funds."},
-      {t:"The precise difference between an alumni chapter and an alumni association?", c:2, why:"Glossary — both are defined terms."},
-      {t:"How are the Statutes amended?", c:1, why:"Statute 40 — the ⅔ amendment process."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"How are the Constitution and Statutes subdivided?",opts:["Both into Chapters","Constitution into Articles; Statutes into numbered Statutes","Constitution into Titles; Statutes into Books","Both into Sections only"],correct:1,why:"Constitution → Articles (I–XXXIX); Statutes → numbered Statutes (1–40)."},
-    {t:"application",q:"To settle the precise meaning of a membership-unit term, look first at:",opts:["The Ritual","The Glossary","A chapter's Bylaws","The footnotes"],correct:1,why:"Defined terms carry controlling meaning; the Glossary is fastest and authoritative."},
-    {t:"application",q:"A question about the powers of the Grand Board belongs in:",opts:["Statutes, near the awards","Constitution, Article V","The chapter Bylaws","Regulations only"],correct:1,why:"Governing bodies and their powers are structural — Constitution, Article V."},
-    {t:"recall",q:"When two provisions conflict, what settles it?",opts:["The most recent one","The order of precedence","A chapter majority vote","The Historian's records"],correct:1,why:"Rank in the order of precedence settles conflicts, not date."}
-  ]
-},
-/* ==================== M3 — Constitution I ==================== */
-{
-  track:"The Constitution", minutes:14,
-  title:"Constitution I — Identity, Objectives &amp; Government",
-  lede:"The opening Articles establish who the Fraternity is, what it exists to do, and the architecture of its government.",
-  objectives:[
-    "State the Fraternity's official name and the five constitutional objectives.",
-    "Identify the three governing levels and the bodies in each.",
-    "Distinguish the elected Grand Board members from the elected national officers.",
-    "Explain the place of the Ritual within the laws and how it is protected."
-  ],
-  blocks:[
-    {type:"image", label:"Image — founding & identity", caption:"Suggested: founders imagery or the Fraternity coat of arms/shield."},
-    {type:"text", h:"Nomenclature — the name (Article I)", dot:true, body:`<p>Article I is short but foundational: the organization is <strong>Kappa Alpha Psi Fraternity, Inc.</strong> ("Fraternity"). Establishing the legal name first is deliberate — everything that follows binds this named entity, setting <em>identity</em> before <em>operation</em>.</p>`},
-    {type:"text", h:"The five Objectives (Article II)", dot:true, body:`<p>Article II states why the Fraternity exists — and it's the standard against which programs, awards, and even discipline are measured. Step through them:</p>`},
-    {type:"carousel", label:"Slider · The Five Objectives", slides:[
-      {tag:"Objective A", title:"Unite", body:"<p>To unite college men of culture, patriotism, and honor in a bond of fraternity.</p>"},
-      {tag:"Objective B", title:"Encourage Achievement", body:"<p>To encourage honorable achievement in every field of human endeavor — the root of <em>“Achievement in Every Field of Human Endeavor.”</em></p>"},
-      {tag:"Objective C", title:"Promote Welfare", body:"<p>To promote the spiritual, social, intellectual, and moral welfare of its members.</p>"},
-      {tag:"Objective D", title:"Assist Colleges", body:"<p>To assist the aims and purposes of colleges and universities.</p>"},
-      {tag:"Objective E", title:"Inspire Service", body:"<p>To inspire service in the public interest.</p>"}
-    ]},
-    {type:"text", h:"Organization &amp; government (Article III)", dot:true, body:`<p>Article III is the structural heart: the three governing levels, the national leaders, and the order of precedence. Two lists are easy to confuse — separate them:</p>`},
-    {type:"tabs", title:"Grand Board members vs. National officers — tap to compare", tabs:[
-      {label:"Grand Board (11)", body:`<p><strong>Elected members of the Grand Board of Directors:</strong> the Grand Polemarch, Senior &amp; Junior Grand Vice Polemarchs, Grand Keeper of Records, Grand Keeper of Exchequer, plus <strong>three undergraduate</strong> and <strong>three alumni</strong> members who hold no elected national office. These 11 govern between Grand Chapters.</p>`},
-      {label:"National Officers", body:`<p><strong>Elected national officers:</strong> the Grand Polemarch, Senior &amp; Junior Grand Vice Polemarchs, Grand Keeper of Records, Grand Keeper of Exchequer, Grand Historian, Grand Strategus, Grand Lieutenant Strategus, and the Grand Chapter Nominating Committee Chairman. The top five overlap both lists; below them the lists diverge.</p>`}
-    ]},
-    {type:"text", h:"The Ritual within the laws", dot:true, body:`<p>Article III, Section 4 establishes the <strong>Ritual</strong>, places its revision with the Grand Board, and requires a ¾ vote to amend. The Ritual is <em class="term">esoteric</em>: divulging its contents without authorization is subject to discipline. The takeaway is structural — it is one of the four ranked laws (third in precedence), it is protected, and its contents are not reproduced here.</p><p class="src">Source: Constitution, Article III, Sections 4–5.</p>`},
-    {type:"callout", variant:"info", ci:"🏛️", title:"Why this matters", body:"The five objectives are the yardstick for measuring the Fraternity's programs and standards. Know them well enough to recognize them in action."},
-    {type:"classify", label:"Apply it · Two lists, one filter", title:"Board member, national officer, or both?", intro:`Tap where each role belongs. The top-five roles sit on both lists; below them they diverge.`, cats:["Board only","Officer only","Both"], items:[
-      {t:"Grand Polemarch", c:2, why:"Both — an elected national officer who also sits on the Grand Board."},
-      {t:"Grand Historian", c:1, why:"National officer only — not one of the 11 Grand Board members."},
-      {t:"Three sustaining alumni holding no national office", c:0, why:"Grand Board only — Board members precisely because they hold no national office."},
-      {t:"Grand Strategus", c:1, why:"National officer only — not a listed Grand Board member."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"Which phrase comes from the Constitution's objectives?",opts:["\"Service before self\"","\"Honorable achievement in every field of human endeavor\"","\"One for all and all for one\"","\"Excellence is the standard\""],correct:1,why:"Objective B — the source of the motto."},
-    {t:"recall",q:"How many members make up the Grand Board?",opts:["7","9","11","15"],correct:2,why:"Eleven: five top officers plus three undergraduates and three alumni holding no national office."},
-    {t:"application",q:"Is the Grand Historian a member of the Grand Board?",opts:["Yes — all national officers are Board members","No — a national officer but not one of the 11","Yes — the Historian chairs the Board","Only during a Grand Chapter"],correct:1,why:"The lists overlap only at the top five. The Historian is a national officer, not a Board member."},
-    {t:"application",q:"Where does the Ritual rank, and how is it treated?",opts:["First, freely shared","Third in precedence, protected as esoteric","Second, amended by the Grand Polemarch alone","Not one of the laws"],correct:1,why:"Third after Constitution and Statutes; contents protected."}
-  ]
-},
-/* ==================== M4 — Constitution II ==================== */
-{
-  track:"The Constitution", minutes:15,
-  title:"Constitution II — The National Governing Bodies",
-  lede:"How power is held and exercised nationally: the Grand Chapter, the Grand Board, the Executive Committee, and the national officers.",
-  objectives:[
-    "Explain the Grand Chapter as the supreme governing power, with representation and quorum.",
-    "Describe the Grand Board's composition and key powers between Grand Chapters.",
-    "State what the Executive Committee supervises day to day.",
-    "Match the principal national officers to their core responsibilities."
-  ],
-  blocks:[
-    {type:"image", label:"Image — Grand Chapter in session", caption:"Suggested: a wide shot of a Grand Chapter or national meeting."},
-    {type:"text", h:"The Grand Chapter — supreme governing power (Article IV)", dot:true, body:`<p>The <strong>Grand Chapter</strong> is the highest authority — the assembled body that legislates, elects national leadership, and sets direction. Anchors: it is the <strong>supreme governing power</strong> (§2); each chapter and province may send <strong>three delegates</strong> and holds <strong>three votes</strong>; each alumni association sends <strong>one delegate</strong>; and a quorum is <strong>75 members</strong> (§12). Legislation that amplifies the Constitution becomes operating law — the direct link to how Statutes are born.</p><p class="src">Source: Constitution, Article IV.</p>`},
-    {type:"infographic", label:"National governance layers", caption:"Suggested: concentric layers — Grand Chapter (supreme, biennial) ▸ Grand Board (between sessions) ▸ Executive Committee (daily operations) ▸ officers (portfolios).", nodes:["Grand Chapter","Grand Board","Executive Committee","National Officers"]},
-    {type:"accordion", title:"The three national bodies — expand each", items:[
-      {q:"Grand Chapter — Article IV", a:"<p>The supreme governing power. Meets to legislate and elect. Representation by delegates; quorum of 75.</p>"},
-      {q:"Grand Board of Directors — Article V", a:"<p>Governs between Grand Chapters. Fills vacancies (majority); establishes procedures/regulations; on <strong>nine</strong> affirmative votes may remove for cause, suspend or revoke a charter, or suspend/expel a member; oversees discipline; enters contracts; delegates authority.</p>"},
-      {q:"Executive Committee — Article VI", a:"<p>Active, continuous supervision of operations: written procedures and controls, IHQ staff, the annual operating budget, required bonds, and investigating petitions/installations.</p>"}
-    ]},
-    {type:"callout", variant:"warn", ci:"🔒", title:"Notice the vote thresholds", body:"Routine acts take a majority; the gravest — removals, charter revocation, expulsion — require nine affirmative votes of the 11-member Board. Higher stakes, higher bar."},
-    {type:"text", h:"The national officers at a glance (Articles XIV–XXIV)", dot:true, body:`<p>Match each office to its core purpose. Tap the cards to check yourself.</p>`},
-    {type:"flip", title:"Officer → core purpose — tap to flip", frontLabel:"Officer", backLabel:"Core purpose", cards:[
-      {front:"Grand Polemarch", back:"Chief executive officer; confirms interpretations of the law; broad executive authority. (Art. XIV)"},
-      {front:"Grand Keeper of Records", back:"Records, correspondence, and retention of official documents. (Art. XVII)"},
-      {front:"Grand Keeper of Exchequer", back:"The Fraternity's treasurer; financial reporting. (Art. XVIII)"},
-      {front:"Grand Strategus", back:"Guards access to Grand Chapter sessions; ensures only qualified members enter. (Art. XX)"},
-      {front:"Executive Director", back:"Professional staff leader; publishes the Confidential Bulletin. (Art. XXIII)"},
-      {front:"General Counsel", back:"Legal advisor, appointed by the Grand Polemarch with approval. (Art. XXIV)"}
-    ]},
-    {type:"classify", label:"Apply it · Who acts here?", title:"Route each action to the right body or officer", intro:`Tap who acts. Think in layers — supreme body, governs-between, daily ops, individual officer.`, cats:["Grand Chapter","Grand Board","Exec Committee","Grand Polemarch"], items:[
-      {t:"Pass new legislation and elect national leaders", c:0, why:"The Grand Chapter — the supreme governing power."},
-      {t:"Fill a national vacancy between Grand Chapters", c:1, why:"The Grand Board — fills vacancies by majority vote."},
-      {t:"Prepare the annual operating budget", c:2, why:"The Executive Committee — daily operations and budget."},
-      {t:"Confirm an official interpretation of the Constitution", c:3, why:"The Grand Polemarch — confirms interpretations of the law."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"What is the supreme governing power of the Fraternity?",opts:["The Grand Polemarch","The Grand Board","The Grand Chapter","The Executive Committee"],correct:2,why:"Article IV §2 — the Grand Chapter."},
-    {t:"recall",q:"Grand Chapter quorum is the presence of how many members?",opts:["25","50","75","100"],correct:2,why:"Article IV §12 sets it at 75."},
-    {t:"application",q:"Revoking a chapter's charter requires:",opts:["A simple majority present","Nine affirmative votes of the 11-member Board","Unanimous consent","A ⅔ Grand Chapter vote"],correct:1,why:"The gravest Grand Board actions require nine affirmative votes."},
-    {t:"application",q:"Day-to-day operations, budget, and IHQ staff fall to:",opts:["The Grand Historian","The Executive Committee","The Grand Chapter","The General Counsel"],correct:1,why:"Article VI — the Executive Committee supervises operations."}
-  ]
-},
-/* ==================== M5 — Constitution III ==================== */
-{
-  track:"The Constitution", minutes:14,
-  title:"Constitution III — Provinces, Chapters, Membership &amp; Change",
-  lede:"How the Constitution extends government into the regions and chapters, defines membership and chapter types, and provides for its own amendment.",
-  objectives:[
-    "Describe the Province level and the councils that support national governance.",
-    "Distinguish the chapter types and the alumni chapter vs. alumni association.",
-    "Identify the principal chapter officers and their core duties.",
-    "Explain the constitutional amendment process and its ¾ threshold."
-  ],
-  blocks:[
-    {type:"image", label:"Image — province & chapter life", caption:"Suggested: a chapter meeting or province council photo."},
-    {type:"text", h:"Provinces and their councils (Articles VII–XIII, XXII)", dot:true, body:`<p>The Fraternity groups chapters and alumni associations into <strong>Provinces</strong> — the regional level. Each holds an annual <strong>Council</strong>, elects officers, and may fix its own fees — within national law. Several standing councils convene leaders who share a role to coordinate and recommend (but not legislate): <strong>COPP, SPVPC, JPVPC, PGPC, COPKOR, COPKOE</strong>. Only the Grand Chapter legislates. The <strong>Province Polemarch</strong> (Article XXII) leads each Province and appoints undergraduate chapter advisors.</p>`},
-    {type:"text", h:"Membership and chapter types (Articles XXVIII–XXXII)", dot:true, body:`<p>The Constitution establishes <strong>membership</strong> in principle (limited to those initiated per the laws) and defines the units members organize into. Tap to compare:</p>`},
-    {type:"tabs", title:"Chapter & unit types", tabs:[
-      {label:"Undergraduate", body:`<p>A unit at a degree-granting institution — at least <strong>seven</strong> active undergraduate members.</p>`},
-      {label:"Alumni Chapter", body:`<p>At least <strong>ten</strong> sustaining alumni members, authorized by the Grand Board or at a Grand Chapter.</p>`},
-      {label:"Alumni Association", body:`<p>At least <strong>five but fewer than ten</strong> sustaining alumni members, where no alumni chapter exists. Represented by <strong>one</strong> delegate.</p>`}
-    ]},
-    {type:"text", h:"Chapter officers (Article XXXII)", dot:true, body:`<p>Every chapter runs on a slate of principal officers — the people who apply the law locally. Tap the cards.</p>`},
-    {type:"flip", title:"Chapter officer → duty — tap to flip", frontLabel:"Officer", backLabel:"Duty", cards:[
-      {front:"Polemarch", back:"The elected chief executive officer of the chapter."},
-      {front:"Keeper of Records", back:"Keeps records, conducts correspondence, and signs warrants for payments."},
-      {front:"Keeper of Exchequer", back:"The treasurer; pays out funds only on approved warrants."},
-      {front:"Strategus / Lt. Strategus", back:"Guard the approaches to the chapter meeting."},
-      {front:"Historian", back:"Collects and preserves chapter history."},
-      {front:"Reporter", back:"Forwards local news for the Kappa Alpha Psi Journal."}
-    ]},
-    {type:"callout", variant:"do", ci:"✅", title:"Built-in financial control", body:"The Keeper of Records signs the warrant; only then does the Keeper of Exchequer pay. That two-key design is an internal control written into the structure — and the root of chapter financial SOPs."},
-    {type:"text", h:"Amending the Constitution (Article XXXIX)", dot:true, body:`<p>The Constitution governs its own change: a <strong>¾</strong> vote at a Grand Chapter, with a written proposal submitted <strong>only by a Council or the Grand Board</strong> to IHQ at least <strong>90 days</strong> ahead, routed through a standing amendments committee (advised by the General Counsel). The steep bar protects the foundational law.</p><p class="src">Source: Constitution, Article XXXIX.</p>`},
-    {type:"pick", label:"Apply it · Unit & officer check", title:"Pick the correct answer for each", intro:`Tap your answer — you'll get instant feedback and a running score.`, items:[
-      {t:"Eight sustaining alumni in a region with no alumni chapter form a…", opts:["Alumni chapter","Alumni association","Undergraduate chapter"], c:1, why:"Five to nine sustaining members where no alumni chapter exists = an alumni association."},
-      {t:"Which officer pays out funds only on an approved warrant?", opts:["Keeper of Records","Keeper of Exchequer","Polemarch"], c:1, why:"The Keeper of Exchequer pays only on approved warrants; the Keeper of Records signs them."},
-      {t:"Which body convenes Province Polemarchs to coordinate and recommend (not legislate)?", opts:["COPP","Grand Board","Grand Chapter"], c:0, why:"The Council of Province Polemarchs — a coordinating, non-legislative body."},
-      {t:"What vote amends the Constitution?", opts:["Simple majority","Two-thirds (⅔)","Three-fourths (¾)"], c:2, why:"A ¾ Grand Chapter vote, with a 90-day written proposal from a Council or the Grand Board."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"Alumni association vs. alumni chapter?",opts:["The association has more members","Association = 5–9 sustaining members where no alumni chapter exists","They are the same","Associations exist only on campus"],correct:1,why:"A chapter needs ≥10 sustaining members; an association is 5–9 where no chapter exists."},
-    {t:"application",q:"Before the treasurer pays an expense, what must exist?",opts:["Nothing — pay at will","An approved warrant (KR signs; KE pays)","The Polemarch hands over cash","Province approval for every expense"],correct:1,why:"KR signs the warrant; KE pays only on an approved warrant."},
-    {t:"recall",q:"The province councils (COPP, SPVPC, …) primarily:",opts:["Legislate new Statutes","Coordinate and recommend, without legislative power","Amend the Constitution","Elect the Grand Polemarch"],correct:1,why:"They are non-legislative; only the Grand Chapter legislates."},
-    {t:"application",q:"Amending the Constitution by a simple chapter majority is wrong because:",opts:["Nothing — that's the process","It needs a ¾ Grand Chapter vote with 90-day notice from a Council/Grand Board","Only the Grand Polemarch can amend it","It requires a unanimous chapter vote"],correct:1,why:"Constitutional amendment is a ¾ Grand Chapter action with a structured process."}
-  ]
-},
-/* ==================== M6 — Statutes I ==================== */
-{
-  track:"The Statutes", minutes:14,
-  title:"Statutes I — Money, Funds &amp; Operations",
-  lede:"The Statutes turn the Constitution into a working organization — how it meets, raises revenue, accounts for it, and manages its funds.",
-  objectives:[
-    "Explain how the Grand Chapter operates procedurally under the Statutes.",
-    "Describe how revenues are set and the principle behind accounting and disbursement.",
-    "Identify the major designated funds and each one's purpose.",
-    "Recognize how operational Statutes support the constitutional bodies."
-  ],
-  blocks:[
-    {type:"image", label:"Image — stewardship & finance", caption:"Suggested: a treasurer/finance visual or a stylized ledger."},
-    {type:"text", h:"Grand Chapter mechanics (Statute 1)", dot:true, body:`<p>Where the Constitution says the Grand Chapter is supreme, Statute 1 says how it runs: it meets <strong>biennially</strong>; <strong>Robert's Rules of Order, Revised</strong> governs business; sites are selected well in advance; and the <strong>State of the Fraternity</strong> report opens each meeting, delivered by the Grand Polemarch, the Grand Board (or designee), and the Grand Keeper of Exchequer.</p><p class="src">Source: Statute 1.</p>`},
-    {type:"text", h:"Revenues and accounting (Statutes 3–4)", dot:true, body:`<p>The <strong>initiation fee</strong> is set by a <strong>majority of the Grand Board</strong>, then <strong>approved by a ⅔ vote of the Grand Chapter</strong> — leadership proposes, the supreme body ratifies. Statute 4 and the fund Statutes establish disciplined stewardship: funds are accounted for, disbursed, and placed by defined rules, not discretion — the authority behind the Fraternity's financial policies and SOPs.</p><p class="src">Source: Statutes 3–4.</p>`},
-    {type:"carousel", label:"Slider · The Designated Funds", slides:[
-      {tag:"Statute 8", title:"Chapter Designated Fund", body:"<p>A dedicated pool tied to chapter-level purposes.</p>"},
-      {tag:"Statute 9", title:"Undergraduate Chapter Expansion Fund", body:"<p>Supports chartering and growing new undergraduate chapters.</p>"},
-      {tag:"Statute 10", title:"Student Aid", body:"<p>Advances members' education — a direct expression of the mission to encourage achievement.</p>"},
-      {tag:"Statute 11", title:"Life Membership Fund", body:"<p>Backs the lifelong-membership category.</p>"},
-      {tag:"Statute 12", title:"Publications Designated Fund", body:"<p>Sustains the Fraternity's official publications.</p>"},
-      {tag:"Statute 13", title:"IHQ Designated Fund", body:"<p>Supports the International Headquarters operation.</p>"}
-    ]},
-    {type:"callout", variant:"key", ci:"💰", title:"Purpose + process", body:"A “designated” fund isn't spare cash — it's money the Statutes earmark for a defined purpose, and spending it follows the fund-disbursement rules (Statutes 5–6)."},
-    {type:"text", h:"Travel, IHQ &amp; supplies (Statutes 14, 16–17)", dot:true, body:`<p>The Statutes also cover the practical scaffolding: <strong>Travel</strong> (14), <strong>International Headquarters</strong> (16) as the operational home the Executive Committee staffs, and <strong>Equipment and Supplies</strong> (17) — exactly the operating detail the Constitution leaves to the Statutes.</p><p class="src">Source: Statutes 14, 16–17.</p>`},
-    {type:"pick", label:"Apply it · Follow the money", title:"Match each need to the right fund or rule", intro:`Tap the correct answer for each — instant feedback and a running score.`, items:[
-      {t:"Resources to charter and grow new undergraduate chapters", opts:["Student Aid","Undergraduate Chapter Expansion Fund","Life Membership Fund"], c:1, why:"The Undergraduate Chapter Expansion Fund (Statute 9)."},
-      {t:"Who sets the initiation fee, and how?", opts:["The Grand Polemarch alone","Grand Board majority, then ⅔ Grand Chapter","Each chapter sets its own"], c:1, why:"Statute 3 — the Board proposes; the Grand Chapter ratifies by ⅔."},
-      {t:"The parliamentary authority for Grand Chapter business", opts:["Robert's Rules of Order, Revised","The Ritual","Chapter Bylaws"], c:0, why:"Statute 1 names Robert's Rules of Order, Revised."},
-      {t:"Money reserved to advance members' education", opts:["Publications Fund","Student Aid","IHQ Designated Fund"], c:1, why:"The Student Aid fund (Statute 10)."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"How often does the Grand Chapter meet?",opts:["Yearly","Every two years (biennially)","Every four years","Only when called"],correct:1,why:"Statute 1 — biennially."},
-    {t:"application",q:"Who sets the initiation fee, and how?",opts:["The Grand Polemarch alone","A majority of the Grand Board, then ⅔ of the Grand Chapter","Each chapter sets its own","The Executive Director"],correct:1,why:"Statute 3 — Board sets by majority; Grand Chapter approves by ⅔."},
-    {t:"recall",q:"A 'designated fund' is:",opts:["Discretionary spending money","Money reserved by the Statutes for a specific purpose","A chapter's local dues account","A rule-free reserve"],correct:1,why:"Designated funds (8–13) earmark money for defined purposes."},
-    {t:"application",q:"Why are accounting and travel rules in the Statutes, not the Constitution?",opts:["They were forgotten","Operational detail belongs in the more-adaptable Statutes (⅔ vs. ¾)","They're unimportant","Only Statutes are binding"],correct:1,why:"Operational detail lives in the Statutes so it can be updated more readily."}
-  ]
-},
-/* ==================== M7 — Statutes II ==================== */
-{
-  track:"The Statutes", minutes:14,
-  title:"Statutes II — Elections, Chapters &amp; Membership",
-  lede:"How leaders are elected, how chapters are chartered and equipped, and how the Fraternity structures membership.",
-  objectives:[
-    "Outline how national and chapter officers are elected under the Statutes.",
-    "State what an undergraduate chapter must keep in its archives — and connect Bylaws back to the governance stack.",
-    "Explain that membership intake is framed by Statute but detailed in Regulations.",
-    "Distinguish the membership classifications the Statutes address."
-  ],
-  blocks:[
-    {type:"image", label:"Image — chartering & membership", caption:"Suggested: a charter presentation or new-member induction photo."},
-    {type:"text", h:"Elections — national and chapter (Statutes 15, 20)", dot:true, body:`<p>The Constitution says which offices exist; the Statutes say how they're filled. <strong>Statute 15</strong> governs electing national officers; <strong>Statute 20</strong> governs the parallel chapter process — a clean split of office (Constitution) versus election mechanics (Statute).</p><p class="src">Source: Statutes 15, 20.</p>`},
-    {type:"text", h:"Chartering and equipping chapters (Statutes 18–19)", dot:true, body:`<p>Statute 18 (Charters) and Statute 19 (Undergraduate Chapters) carry out the constitutional charter provisions. One requirement is a perfect callback to the governance stack: every undergraduate chapter keeps a defined set of official items <em>under lock and key</em> — national law and local law, together.</p>`},
-    {type:"infographic", label:"The chapter archive — under lock and key", caption:"Suggested: a locked cabinet with labeled items, highlighting that national law (Constitution & Statutes) and local law (Bylaws) sit together.", nodes:["Charter","Constitution & Statutes","5+ Rituals","Songbook","Story of Kappa Alpha Psi","One copy of its Bylaws","Bible / Ritual property"]},
-    {type:"callout", variant:"info", ci:"🗝️", title:"The whole system on one shelf", body:"The chapter physically holds national law (Constitution & Statutes) and local law (its Bylaws) side by side — the governance stack from Module 2, made real."},
-    {type:"text", h:"Membership intake — framed here, detailed elsewhere (Statute 21)", dot:true, body:`<p><strong>Statute 21</strong> establishes the framework and authority for intake — but the <em>detailed</em> process, timelines, and requirements are carried in <strong>Fraternity Regulations, official guides, and SOPs</strong>, not written line-by-line into the Statute. Intake procedures can be updated by the appropriate authority without amending the Statutes.</p>`},
-    {type:"callout", variant:"warn", ci:"✔️", title:"Reinforce the truth", body:"“It's not spelled out in the Statute” does NOT mean “there's no rule.” For intake especially, the binding procedures live in official Regulations/guides that the laws authorize."},
-    {type:"accordion", title:"Membership classifications (Statutes 22–24)", items:[
-      {q:"Membership (Statute 22)", a:"<p>Addresses membership generally — the kinds and standing of members.</p>"},
-      {q:"Life Membership (Statute 23)", a:"<p>Defines the lifelong-membership category, backed by the Life Membership Fund (Statute 11).</p>"},
-      {q:"Continuous Membership (Statute 24)", a:"<p>Addresses continuity of membership over time — membership as a lasting status.</p>"}
-    ]},
-    {type:"classify", label:"Apply it · The archive test", title:"Is it required in the chapter archive (Statute 19)?", intro:`Tap Required or Not required for each — instant feedback and a running score.`, cats:["Required","Not required"], items:[
-      {t:"The chapter's Bylaws", c:0, why:"Required — the chapter's local law, kept in the archive."},
-      {t:"The Constitution and Statutes", c:0, why:"Required — the national law."},
-      {t:"The chapter's social-media passwords", c:1, why:"Not required by Statute 19 — an operational detail, not part of the mandated archive."},
-      {t:"At least five Rituals", c:0, why:"Required — the esoteric law, kept secure."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"Statute 19 requires an undergraduate chapter to keep in its archives:",opts:["Only the Charter","Charter, Constitution & Statutes, 5+ Rituals, Songbook, Story, one copy of its Bylaws, and Ritual property","Just the Bylaws and dues records","Whatever the Polemarch chooses"],correct:1,why:"Statute 19 §1 lists the specific archive, including one copy of its Bylaws."},
-    {t:"application",q:"Intake has 'no real rules' because steps aren't in Statute 21 — correct them:",opts:["They're right — nothing binds intake","Statute 21 frames it; binding procedures live in Regulations/guides","Each chapter sets intake freely","Only the Grand Historian knows"],correct:1,why:"The Statute frames intake; detailed binding procedures are derived instruments."},
-    {t:"recall",q:"Each undergraduate chapter must have, in good standing:",opts:["A paid consultant","An alumni advisor","A faculty president","A province treasurer on campus"],correct:1,why:"Statute 19 requires an alumni advisor in good standing."},
-    {t:"application",q:"Constitution & Statutes plus the Bylaws together in one archive illustrates:",opts:["The documents are interchangeable","The layered system — national plus aligned local law — coexisting","Bylaws outrank the Statutes","Archives are optional"],correct:1,why:"National and local law held together embodies the alignment principle."}
-  ]
-},
-/* ==================== M8 — Statutes III ==================== */
-{
-  track:"The Statutes", minutes:15,
-  title:"Statutes III — Programs, Awards, Ritual &amp; Discipline",
-  lede:"The Statutes that carry the mission into the world — publications and service, the major awards, the Ritual, discipline, and amendment.",
-  objectives:[
-    "Identify the Fraternity's official publications and the commissions that sustain its programs.",
-    "Name the six major awards and what each recognizes.",
-    "Explain how the Statutes treat the Ritual and unauthorized disclosure.",
-    "Describe disciplinary authority and the ⅔ process for amending the Statutes."
-  ],
-  blocks:[
-    {type:"image", label:"Image — programs, service & recognition", caption:"Suggested: an awards banquet, service project, or publications montage."},
-    {type:"text", h:"Publications, service &amp; commissions (Statutes 25–29)", dot:true, body:`<p>These Statutes operationalize the public mission. <strong>Publications</strong> (25) provide the official record and voice — the <strong>Story of Kappa Alpha Psi</strong>, the <strong>Kappa Alpha Psi Journal</strong>, the esoteric <strong>Confidential Bulletin</strong>, and the <strong>Songbook</strong> — sustained by the <strong>Publicity &amp; Publications Commission</strong> (26). The <strong>National Service Program</strong> (27) carries the aim to inspire service; the <strong>Achievement Commission</strong> (28) advances recognition; the <strong>Military and Veterans Affairs Commission</strong> (29) serves members connected to military service.</p>`},
-    {type:"carousel", label:"Slider · The Six Major Awards", slides:[
-      {tag:"Statute 30", title:"Laurel Wreath", body:"<p>For extra-meritorious achievement by members in good standing — the Fraternity's high honor.</p>"},
-      {tag:"Statute 31", title:"Elder Watson Diggs Award", body:"<p>For meritorious achievement.</p>"},
-      {tag:"Statute 32", title:"Guy Levis Grant Award", body:"<p>For meritorious achievement by undergraduate members.</p>"},
-      {tag:"Statute 33", title:"Byron Kenneth Armstrong Award", body:"<p>For outstanding academic achievement by undergraduates.</p>"},
-      {tag:"Statute 34", title:"Paul Waymond Caine Award", body:"<p>For outstanding achievement by alumni chapters.</p>"},
-      {tag:"Statute 35", title:"Edward Giles Irvin Award", body:"<p>For outstanding achievement by undergraduate chapters.</p>"}
-    ]},
-    {type:"callout", variant:"key", ci:"🏅", title:"Read awards on two axes", body:"Who is eligible (individual vs. chapter; undergraduate vs. all) and what is recognized (academic, meritorious, outstanding). Those two axes tell the awards apart."},
-    {type:"tabs", title:"Insignia, Ritual, Discipline & Amendment", tabs:[
-      {label:"Insignia & Induction", body:`<p><strong>Statute 36</strong> governs official marks, jewelry, and regalia; <strong>Statute 37</strong> formalizes the induction of national officers.</p>`},
-      {label:"The Ritual", body:`<p><strong>Statute 38</strong> addresses the esoteric ceremony. This training does not reproduce its content; the rule is that the Ritual is one of the four ranked laws and unauthorized disclosure of its contents is a disciplinary matter.</p>`},
-      {label:"Discipline", body:`<p><strong>Statute 39</strong> operationalizes disciplinary authority — the process to hold members, chapters, and associations accountable. The gravest sanctions sit with the Grand Board under high vote thresholds.</p>`},
-      {label:"Amendment", body:`<p><strong>Statute 40</strong> — the Statutes are amended by a <strong>⅔</strong> Grand Chapter vote with a 90-day written proposal from a Council or the Grand Board. Lower bar than the Constitution's ¾, by design.</p>`}
-    ]},
-    {type:"scenario", tag:"Scenario · handle with care", title:"A member posts Ritual content online", body:`<p>A member shares esoteric Ritual material publicly without authorization. Under the Statutes this is a <strong>disciplinary matter</strong> — the Ritual's contents are protected regardless of whether they seem “already out there.” Report it through proper channels rather than spreading it further.</p>`},
-    {type:"pick", label:"Apply it · Recognize the honor", title:"Match each recognition to the award", intro:`Tap the correct award for each — instant feedback and a running score.`, items:[
-      {t:"Outstanding academic achievement by an undergraduate member", opts:["Laurel Wreath","Byron Kenneth Armstrong","Guy Levis Grant"], c:1, why:"The Byron Kenneth Armstrong Award (Statute 33)."},
-      {t:"Outstanding achievement by an undergraduate chapter", opts:["Edward Giles Irvin","Paul Waymond Caine","Elder Watson Diggs"], c:0, why:"The Edward Giles Irvin Award (Statute 35)."},
-      {t:"Extra-meritorious achievement by a member in good standing", opts:["Laurel Wreath","Guy Levis Grant","Paul Waymond Caine"], c:0, why:"The Laurel Wreath (Statute 30)."},
-      {t:"Outstanding achievement by an alumni chapter", opts:["Edward Giles Irvin","Paul Waymond Caine","Byron Kenneth Armstrong"], c:1, why:"The Paul Waymond Caine Award (Statute 34)."}
-    ]}
-  ],
-  quiz:[
-    {t:"recall",q:"Which is an official publication named in the Statutes?",opts:["The Crimson Times","The Kappa Alpha Psi Journal","The Nupe Gazette","The Province Ledger"],correct:1,why:"Statute 25 — Story, Journal, Confidential Bulletin, Songbook."},
-    {t:"application",q:"An undergraduate chapter's outstanding work is recognized by:",opts:["The Laurel Wreath","The Edward Giles Irvin Award","The Guy Levis Grant Award","The Elder Watson Diggs Award"],correct:1,why:"The Edward Giles Irvin Award (35) recognizes undergraduate chapters."},
-    {t:"application",q:"Posting esoteric Ritual content without authorization is:",opts:["Permitted, since it's public","A disciplinary matter — contents are protected","Only a chapter Bylaw issue","Encouraged for recruitment"],correct:1,why:"The Ritual is protected; unauthorized disclosure is subject to discipline."},
-    {t:"recall",q:"What vote amends the Statutes vs. the Constitution?",opts:["¾ — same as the Constitution","⅔ — lower than the Constitution's ¾","A simple majority","Grand Board vote only"],correct:1,why:"Statute 40 — a ⅔ Grand Chapter vote, lower than the Constitution's ¾."}
-  ]
-}
-];
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+})();
 
-/* ---------- References ---------- */
-const REFERENCES = [
-  {h:"The Constitution — key Articles cited", items:[
-    "Article I — Nomenclature (the Fraternity's name)",
-    "Article II — Objectives (the five objectives)",
-    "Article III — Organization &amp; Government (three levels; order of precedence, §5)",
-    "Article IV — The Grand Chapter (supreme power; representation; quorum of 75)",
-    "Article V — The Grand Board of Directors (powers; vote thresholds)",
-    "Article VI — The Executive Committee (daily operations; budget)",
-    "Articles VII–XIII — Provinces &amp; the province councils",
-    "Articles XIV–XXIV — National officers; Executive Director; General Counsel",
-    "Articles XXVIII–XXXIII — Membership, chapters, alumni units, chapter officers, charters",
-    "Article XXXIX — Amendment (¾ vote)"
-  ]},
-  {h:"The Statutes — key Statutes cited", items:[
-    "Statute 1 — Grand Chapter (biennial; Robert's Rules; State of the Fraternity)",
-    "Statutes 3–6 — Revenues, accounting, fund disbursement &amp; placement",
-    "Statutes 8–13 — The designated funds",
-    "Statutes 14, 16–17 — Travel, International Headquarters, equipment",
-    "Statutes 15 &amp; 20 — Election of national and chapter officers",
-    "Statutes 18–19 — Charters; undergraduate chapters (including the required Bylaws archive)",
-    "Statute 21 — Membership intake (framework)",
-    "Statutes 22–24 — Membership, Life, and Continuous membership",
-    "Statutes 25–29 — Publications, commissions, service program",
-    "Statutes 30–35 — The six major awards",
-    "Statutes 36–39 — Insignia, induction, the Ritual, disciplinary action",
-    "Statute 40 — Amendments (⅔ vote)"
-  ]},
-  {h:"Derived governance (aligned with the C&amp;S)", items:[
-    "Fraternity Regulations — Grand Board rules that carry the law into practice",
-    "Policies — standing rules of conduct (e.g., conflict-of-interest, risk, financial controls)",
-    "Guides &amp; Manuals — officer manuals, membership/intake guides that explain how to apply law and policy",
-    "SOPs / Procedures — the exact steps for a task, operationalizing a policy",
-    "Chapter Bylaws — local rules adopted by each chapter, valid only when aligned with national law"
-  ]},
-  {h:"Important note", items:[
-    "This training is an educational study aid, not the official document. Where a question of law arises, the current official <em>Constitution &amp; Statutes of Kappa Alpha Psi® (2025–27)</em> and interpretations confirmed through the Fraternity's own processes always control."
-  ]}
-];
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await sb.auth.signOut();
+  window.location.href = '/portal/login.html';
+});
 
-/* ---------- Comprehensive final exam ---------- */
-const FINAL_EXAM = [
-  {q:"Which instrument sits at the top of the order of precedence?",opts:["The Statutes","The Constitution","Chapter Bylaws","Fraternity Regulations"],correct:1},
-  {q:"The Constitution is amended by a ____ vote; the Statutes by a ____ vote.",opts:["⅔ ; ¾","¾ ; ⅔","majority ; ⅔","¾ ; majority"],correct:1},
-  {q:"A chapter SOP removes a step the Statutes require. The SOP is:",opts:["Valid — it's the chapter's procedure","Invalid to that extent — derived instruments can't override the law","Valid if the Polemarch approves","Valid until the next Grand Chapter"],correct:1},
-  {q:"Fraternity Regulations can be changed by:",opts:["A ¾ Grand Chapter vote","The Grand Board, without a Grand Chapter vote","Any chapter","A province council"],correct:1},
-  {q:"Which best distinguishes a guide from a policy?",opts:["A guide is law; a policy is not","A guide explains how to apply a rule; a policy is a standing rule of conduct","They are identical","A policy only exists at the chapter level"],correct:1},
-  {q:"Authority in the Fraternity aligns:",opts:["Upward from chapters to IHQ","Downward and consistent — National to Province to Chapter","Only within a single chapter","Randomly by topic"],correct:1},
-  {q:"The supreme governing power of the Fraternity is:",opts:["The Grand Polemarch","The Grand Board","The Grand Chapter","The Executive Committee"],correct:2},
-  {q:"Grand Chapter quorum is the presence of:",opts:["25 members","50 members","75 members","100 members"],correct:2},
-  {q:"An alumni association consists of:",opts:["At least ten sustaining members","Five to nine sustaining members where no alumni chapter exists","Only undergraduates","Any number of members"],correct:1},
-  {q:"Before a chapter treasurer pays an expense:",opts:["Nothing is required","An approved warrant must exist (KR signs; KE pays)","The Province must approve it","The Grand Board must vote"],correct:1},
-  {q:"Detailed membership-intake procedures live primarily in:",opts:["The Constitution","Fraternity Regulations, guides, and SOPs that flow from Statute 21","The Ritual","Nowhere official"],correct:1},
-  {q:"Unauthorized disclosure of the Ritual's contents is:",opts:["Permitted if already online","A disciplinary matter — the Ritual is protected","Only a local Bylaw issue","Encouraged"],correct:1},
-  {q:"Which document is NOT part of the national order of precedence?",opts:["The Constitution","The Statutes","Chapter Bylaws","The Ritual"],correct:2},
-  {q:"The Edward Giles Irvin Award recognizes:",opts:["An individual alumnus","Outstanding achievement by an undergraduate chapter","Academic achievement by one undergraduate","A province"],correct:1},
-  {q:"When two provisions appear to conflict, the tie-breaker is:",opts:["Whichever is newest","The order of precedence","A chapter vote","The Historian's records"],correct:1}
-];
-const FINAL_PASS = 0.8;
-
-/* ============================================================
-   STATE + RENDER
-   ============================================================ */
-const state={completed:new Set(),current:null,examPassed:false};
-const TRACK_ORDER=["Foundations","The Constitution","The Statutes"];
-function el(h){const t=document.createElement("template");t.innerHTML=h.trim();return t.content.firstElementChild;}
-const totalMin=MODULES.reduce((a,m)=>a+(m.minutes||0),0)+15;
-
-function toggleNav(){if(window.matchMedia("(min-width:960px)").matches){document.body.classList.toggle("sidebar-collapsed");}else{document.body.classList.toggle("sidebar-open");}}
-function closeNav(){document.body.classList.remove("sidebar-open");}
-
-/* ---------- home ---------- */
-function renderHome(){
-  const v=document.getElementById("view-home");
-  let h=`<div class="hero">
-    <span class="pill">Kappa Alpha Psi® · Constitution &amp; Statutes 2025–27</span>
-    <h1>Understanding the Laws That Govern Us</h1>
-    <p class="lede">A member training on the Constitution, the Statutes, and everything that derives from them — Bylaws, policies, guides, and SOPs — how they align from International Headquarters to the chapter room, and how to find the authority behind any decision.</p>
-    <div class="hbadges">
-      <span class="hbadge"><span class="bi">📋</span> ${MODULES.length} Modules + References</span>
-      <span class="hbadge"><span class="bi">⏱</span> ~${totalMin} Minutes</span>
-      <span class="hbadge"><span class="bi">✅</span> Knowledge Checks</span>
-      <span class="hbadge"><span class="bi">🏅</span> Certificate Awarded</span>
-    </div>
-    <div class="begin"><button class="btn-begin" onclick="openModule(0)">Begin Course →</button></div>
-  </div>
-  <div class="container">
-    <div class="card objcard"><h3>Course Learning Objectives</h3><ul class="objgrid">${COURSE_OBJECTIVES.map(o=>`<li><span class="di">◆</span><span>${o}</span></li>`).join("")}</ul></div>
-    <div class="section-label">Your learning path</div><div id="pathC"></div>
-  </div>`;
-  v.innerHTML=h;
-  const pc=v.querySelector("#pathC");
-  TRACK_ORDER.forEach(tr=>{
-    const mods=MODULES.map((m,i)=>({m,i})).filter(x=>x.m.track===tr);
-    if(!mods.length)return;
-    pc.appendChild(el(`<div class="track-head"><span class="bar"></span><h3>${tr}</h3></div>`));
-    const list=el(`<div class="mlist"></div>`);
-    mods.forEach(({m,i})=>{
-      const done=state.completed.has(i);
-      const row=el(`<div class="mrow ${done?'done':''}"><div class="num">${done?'✓':i+1}</div><div class="mid"><h4>${m.title}</h4><p>${m.blocks.filter(b=>b.type==='text').length} lessons · interactive · ~${m.minutes} min</p></div><div class="st">${done?'Completed':'Start'}</div><div class="arrow">→</div></div>`);
-      row.addEventListener("click",()=>openModule(i));list.appendChild(row);
-    });
-    pc.appendChild(list);
+// Sidebar active highlight on scroll
+const sections = ['video','what-youll-learn','course-details'];
+const links = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
   });
-  // extra section: references + final
-  pc.appendChild(el(`<div class="track-head"><span class="bar"></span><h3>Complete the Course</h3></div>`));
-  const extra=el(`<div class="mlist"></div>`);
-  const refRow=el(`<div class="mrow"><div class="num" style="background:linear-gradient(135deg,#6b6256,#4a433a)">📚</div><div class="mid"><h4>References &amp; Resources</h4><p>Cited Articles, Statutes, and derived-governance sources</p></div><div class="st">Open</div><div class="arrow">→</div></div>`);
-  refRow.addEventListener("click",openReferences);extra.appendChild(refRow);
-  const finRow=el(`<div class="mrow exam ${state.examPassed?'done':''}"><div class="num">${state.examPassed?'✓':'🏅'}</div><div class="mid"><h4>Final Assessment &amp; Certificate</h4><p>Comprehensive ${FINAL_EXAM.length}-question exam · earn your certificate</p></div><div class="st">${state.examPassed?'Passed':'Start'}</div><div class="arrow">→</div></div>`);
-  finRow.addEventListener("click",openFinal);extra.appendChild(finRow);
-  pc.appendChild(extra);
-  updateCourseProgress();
-}
-
-/* ---------- drawer ---------- */
-function renderDrawer(){
-  const dl=document.getElementById("drawerList");dl.innerHTML="";
-  const home=el(`<div class="dItem ${state.current===null?'current':''}"><div class="idx">⌂</div><div><div class="t">Course Overview</div><div class="m">Objectives &amp; path</div></div></div>`);
-  home.addEventListener("click",()=>{goHome();closeNav();});dl.appendChild(home);
-  let last="";
-  MODULES.forEach((m,i)=>{
-    if(m.track!==last){dl.appendChild(el(`<div class="dgroup">${m.track}</div>`));last=m.track;}
-    const done=state.completed.has(i),cur=state.current===i;
-    const it=el(`<div class="dItem ${done?'done':''} ${cur?'current':''}"><div class="idx">${done?'✓':i+1}</div><div><div class="t">${m.title}</div><div class="m">Module ${i+1} · ~${m.minutes} min</div></div></div>`);
-    it.addEventListener("click",()=>{openModule(i);closeNav();});dl.appendChild(it);
+  links.forEach(l => {
+    const match = l.getAttribute('href') === '#' + current;
+    l.classList.toggle('active', match);
   });
-  dl.appendChild(el(`<div class="dgroup">Complete the Course</div>`));
-  const ref=el(`<div class="dItem special ${state.current==='ref'?'current':''}"><div class="idx">📚</div><div><div class="t">References &amp; Resources</div><div class="m">Sources cited</div></div></div>`);
-  ref.addEventListener("click",()=>{openReferences();closeNav();});dl.appendChild(ref);
-  const fin=el(`<div class="dItem special ${state.examPassed?'done':''} ${state.current==='final'?'current':''}"><div class="idx">${state.examPassed?'✓':'🏅'}</div><div><div class="t">Final Assessment &amp; Certificate</div><div class="m">Course completion</div></div></div>`);
-  fin.addEventListener("click",()=>{openFinal();closeNav();});dl.appendChild(fin);
-}
-
-/* ---------- block renderers ---------- */
-function blockHTML(b,mi,bi){
-  const id=`b${mi}_${bi}`;
-  switch(b.type){
-    case"text":return `<div class="block">${b.h?`<h3 class="bh">${b.dot?'<span class="dot"></span>':''}${b.h}</h3>`:''}${b.body}</div>`;
-    case"image":return `<div class="imgph"><div class="ic">🖼️</div><div class="l">${b.label}</div><div class="c">${b.caption||'Image placeholder — replace with final artwork.'}</div></div>`;
-    case"infographic":return `<figure class="infoph"><span class="tag">Infographic</span><div class="ic">📊</div><div class="l">${b.label}</div>${b.caption?`<div class="c">${b.caption}</div>`:''}${b.nodes?`<div class="nodes">${b.nodes.map(n=>`<span>${n}</span>`).join("")}</div>`:''}</figure>`;
-    case"def":return `<div class="block">${b.items.map(d=>`<div class="def"><div class="dl">Definition</div><b>${d.t}</b><p>${d.d}</p></div>`).join("")}</div>`;
-    case"callout":return `<div class="cal ${b.variant||'tip'}"><div class="ci">${b.ci||'💡'}</div><div class="cc">${b.title?`<b>${b.title}</b>`:''}<p>${b.body}</p></div></div>`;
-    case"table":return `<div class="block"><div class="tscroll"><table class="ctable"><thead><tr>${b.headers.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>${b.caption?`<div class="tcap">${b.caption}</div>`:''}</div>`;
-    case"tabs":return `<div class="block"><div class="tabs" id="${id}">${b.title?`<h3 class="bh"><span class="dot"></span>${b.title}</h3>`:''}<div class="tabbtns">${b.tabs.map((t,k)=>`<button class="tabbtn ${k===0?'active':''}" data-k="${k}">${t.label}</button>`).join("")}</div>${b.tabs.map((t,k)=>`<div class="tabpanel ${k===0?'active':''}" data-k="${k}">${t.body}</div>`).join("")}</div></div>`;
-    case"accordion":return `<div class="block">${b.title?`<h3 class="bh"><span class="dot"></span>${b.title}</h3>`:''}<div class="acc" id="${id}">${b.items.map(it=>`<div class="accitem"><button class="acchead">${it.q}<span class="chev">▾</span></button><div class="accbody"><div class="inner">${it.a}</div></div></div>`).join("")}</div></div>`;
-    case"carousel":return `<div class="block"><div class="carousel" id="${id}"><div class="carhead"><span class="clab">🎞 ${b.label||'Slider'}</span><span class="cnum"><span class="cur">1</span> / ${b.slides.length}</span></div><div class="carview"><div class="cartrack">${b.slides.map(s=>`<div class="carslide">${s.tag?`<span class="stag">${s.tag}</span>`:''}<h4>${s.title}</h4>${s.body}</div>`).join("")}</div></div><div class="carfoot"><button class="carbtn prev" disabled>← Prev</button><div class="cardots">${b.slides.map((s,k)=>`<span class="cardot ${k===0?'active':''}" data-k="${k}"></span>`).join("")}</div><button class="carbtn next">Next →</button></div></div></div>`;
-    case"flip":return `<div class="block">${b.title?`<h3 class="bh"><span class="dot"></span>${b.title}</h3>`:''}<div class="flipgrid" id="${id}">${b.cards.map(c=>`<div class="flipcard"><div class="flipinner"><div class="flipface flipfront"><div class="ft">${b.frontLabel||'Tap to reveal'}</div><div class="fm">${c.front}</div><div class="hint">↻ tap</div></div><div class="flipface flipback"><div class="bt">${b.backLabel||'Truth'}</div><div class="bm">${c.back}</div></div></div></div>`).join("")}</div></div>`;
-    case"scenario":return `<div class="block"><div class="scenario"><div class="stg">${b.tag||'Scenario'}</div><h4>${b.title}</h4>${b.body}</div></div>`;
-    case"activity":return `<div class="activity"><div class="al">◆ ${b.label}</div><h4>${b.title}</h4>${b.body}<button class="reveal-btn" data-rev="${id}">Reveal</button><div class="reveal-body" id="${id}"><strong>${b.revealTitle}</strong>${b.reveal}</div></div>`;
-    case"classify":return `<div class="activity"><div class="al">◆ ${b.label}</div><h4>${b.title}</h4>${b.intro?`<p>${b.intro}</p>`:''}<div class="classify">${b.items.map(it=>`<div class="clrow" data-c="${it.c}"><div class="clt">${it.t}</div><div class="clbtns">${b.cats.map((cat,ci)=>`<button class="clbtn" data-ci="${ci}">${cat}</button>`).join("")}</div><div class="clfb"></div><span class="clwhy" style="display:none">${it.why}</span></div>`).join("")}</div><div class="clscore">0 / ${b.items.length} correct</div><button class="reveal-btn clreset">Reset activity</button></div>`;
-    case"pick":return `<div class="activity"><div class="al">◆ ${b.label}</div><h4>${b.title}</h4>${b.intro?`<p>${b.intro}</p>`:''}<div class="classify">${b.items.map(it=>`<div class="clrow pickrow" data-c="${it.c}"><div class="clt">${it.t}</div><div class="clbtns">${it.opts.map((o,ci)=>`<button class="clbtn" data-ci="${ci}">${o}</button>`).join("")}</div><div class="clfb"></div><span class="clwhy" style="display:none">${it.why}</span></div>`).join("")}</div><div class="clscore">0 / ${b.items.length} correct</div><button class="reveal-btn clreset">Reset activity</button></div>`;
-    default:return "";
-  }
-}
-
-/* ---------- module ---------- */
-function openModule(i){
-  const m=MODULES[i];state.current=i;
-  const body=document.getElementById("moduleBody");
-  let h=`<div class="m-top"><span class="m-of">Module ${i+1} of ${MODULES.length}</span><span class="m-track">${m.track} · ~${m.minutes} min</span></div>
-    <div class="m-head"><h2>${m.title}</h2><p class="lede">${m.lede}</p></div>
-    <div class="mbar"><span style="width:${(i)/MODULES.length*100}%"></span></div>
-    <div class="obj-box"><h3>Module learning objectives</h3><p style="margin:0;font-size:13.5px;color:var(--ink-soft)">After this module you will be able to:</p><ul>${m.objectives.map(o=>`<li>${o}</li>`).join("")}</ul></div>`;
-  m.blocks.forEach((b,bi)=>{h+=blockHTML(b,i,bi);});
-  h+=`<div class="kc" id="kc${i}"><div class="kh"><div class="ic">✓</div><div><h3>Knowledge Check</h3><p>${m.quiz.length} questions · recall &amp; application · answer all, then check</p></div></div><div id="qwrap${i}"></div><div class="kc-actions"><button class="btn btn-primary" id="submit${i}" disabled>Check Answers</button><button class="btn btn-ghost" id="reset${i}" style="display:none">Try again</button><span class="score" id="score${i}" style="display:none"></span></div></div>`;
-  h+=`<div class="complete-banner" id="cb${i}"><div class="cbi">🎉</div><div><b>Module complete!</b><p>Progress saved for this session. Continue to the next module.</p></div></div>`;
-  h+=`<div class="mnav"><button id="prevBtn">${i===0?'<span class="lab">Start of course</span><div class="ti">Course overview</div>':'<span class="lab">← Module '+i+'</span><div class="ti">'+MODULES[i-1].title+'</div>'}</button><button class="next" id="nextBtn">${i===MODULES.length-1?'<span class="lab">Next →</span><div class="ti">Final Assessment &amp; Certificate</div>':'<span class="lab">Next Module →</span><div class="ti">'+MODULES[i+1].title+'</div>'}</button></div>`;
-  body.innerHTML=h;
-
-  const qwrap=document.getElementById("qwrap"+i);const answers={};
-  m.quiz.forEach((q,qi)=>{
-    const qEl=el(`<div class="q"><div class="qt"><span class="qn">Q${qi+1}.</span><span>${q.q}</span></div><div class="qtype">${q.t==='recall'?'Recall':'Application'}</div><div class="opts" id="opts${i}_${qi}"></div><div class="fb" id="fb${i}_${qi}"></div></div>`);
-    const ob=qEl.querySelector(".opts");
-    q.opts.forEach((opt,oi)=>{const o=el(`<div class="opt" data-o="${oi}"><div class="mk">${String.fromCharCode(65+oi)}</div><div>${opt}</div></div>`);
-      o.addEventListener("click",()=>{if(o.classList.contains("locked"))return;ob.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel"));o.classList.add("sel");answers[qi]=oi;if(Object.keys(answers).length===m.quiz.length)document.getElementById("submit"+i).disabled=false;});
-      ob.appendChild(o);});
-    qwrap.appendChild(qEl);
-  });
-  document.getElementById("submit"+i).addEventListener("click",()=>{
-    let c=0;
-    m.quiz.forEach((q,qi)=>{const ch=answers[qi];const ob=document.getElementById(`opts${i}_${qi}`);
-      ob.querySelectorAll(".opt").forEach(o=>{o.classList.add("locked");const oi=+o.dataset.o;if(oi===q.correct)o.classList.add("correct");else if(oi===ch)o.classList.add("wrong");});
-      const fb=document.getElementById(`fb${i}_${qi}`);const ok=ch===q.correct;if(ok)c++;fb.className="fb show "+(ok?'good':'bad');fb.innerHTML=`<b>${ok?'Correct':'Not quite'}</b>${q.why}`;});
-    const pass=c/m.quiz.length>=0.7;const sc=document.getElementById("score"+i);sc.style.display="inline";sc.className="score"+(pass?" pass":"");sc.innerHTML=`Score: <span class="pill">${c} / ${m.quiz.length}</span>`;
-    document.getElementById("submit"+i).style.display="none";document.getElementById("reset"+i).style.display="inline-block";
-    state.completed.add(i);document.getElementById("cb"+i).classList.add("show");updateCourseProgress();renderDrawer();
-    document.getElementById("cb"+i).scrollIntoView({behavior:"smooth",block:"center"});
-  });
-  document.getElementById("reset"+i).addEventListener("click",()=>openModule(i));
-  attachInteractions(body);
-  document.getElementById("prevBtn").addEventListener("click",()=>{i===0?goHome():openModule(i-1);});
-  document.getElementById("nextBtn").addEventListener("click",()=>{i===MODULES.length-1?openFinal():openModule(i+1);});
-  showView("view-module");renderDrawer();window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* ---------- references ---------- */
-function openReferences(){
-  state.current='ref';
-  const b=document.getElementById("refBody");
-  let h=`<div class="m-top"><span class="m-of">References</span><span class="m-track">Sources &amp; further reading</span></div><div class="m-head"><h2>References &amp; Resources</h2><p class="lede">The governing-document provisions cited throughout this course, plus the derived-governance instruments that align with them.</p></div>`;
-  REFERENCES.forEach(s=>{h+=`<div class="refsec"><h4>${s.h}</h4><ul>${s.items.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;});
-  h+=`<div class="mnav"><button id="rprev"><span class="lab">← Back</span><div class="ti">Course overview</div></button><button class="next" id="rnext"><span class="lab">Next →</span><div class="ti">Final Assessment &amp; Certificate</div></button></div>`;
-  b.innerHTML=h;
-  document.getElementById("rprev").addEventListener("click",goHome);
-  document.getElementById("rnext").addEventListener("click",openFinal);
-  showView("view-references");renderDrawer();window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* ---------- final exam + certificate ---------- */
-function openFinal(){
-  state.current='final';
-  const b=document.getElementById("finalBody");
-  const doneCount=state.completed.size;
-  let h=`<div class="m-top"><span class="m-of">Final Assessment</span><span class="m-track">Course Completion · Certificate</span></div>
-    <div class="m-head"><h2>Final Assessment &amp; Certificate</h2><p class="lede">A comprehensive ${FINAL_EXAM.length}-question exam spanning every module. Score ${Math.round(FINAL_PASS*100)}% or higher to earn your Certificate of Completion.</p></div>`;
-  h+=`<div class="lock-note ${doneCount<MODULES.length?'show':''}"><b>Tip:</b> You've completed ${doneCount} of ${MODULES.length} modules. You can take the exam now, but working through all modules first will help you pass.</div>`;
-  h+=`<div class="kc"><div class="kh"><div class="ic">📝</div><div><h3>Comprehensive Exam</h3><p>${FINAL_EXAM.length} questions · pass mark ${Math.round(FINAL_PASS*100)}% · answer all, then submit</p></div></div><div id="fwrap"></div>
-    <div class="kc-actions"><button class="btn btn-primary" id="fsubmit" disabled>Submit Final Exam</button><button class="btn btn-ghost" id="freset" style="display:none">Retake Exam</button><span class="score" id="fscore" style="display:none"></span></div></div>`;
-  h+=`<div class="certwrap" id="certwrap"></div>`;
-  h+=`<div class="mnav"><button id="fprev"><span class="lab">← Back</span><div class="ti">Course overview</div></button><button class="next" id="fnext"><span class="lab">References →</span><div class="ti">Sources &amp; resources</div></button></div>`;
-  b.innerHTML=h;
-  const fw=document.getElementById("fwrap");const ans={};
-  FINAL_EXAM.forEach((q,qi)=>{
-    const qEl=el(`<div class="q"><div class="qt"><span class="qn">Q${qi+1}.</span><span>${q.q}</span></div><div class="opts" id="fopts${qi}"></div><div class="fb" id="ffb${qi}"></div></div>`);
-    const ob=qEl.querySelector(".opts");
-    q.opts.forEach((opt,oi)=>{const o=el(`<div class="opt" data-o="${oi}"><div class="mk">${String.fromCharCode(65+oi)}</div><div>${opt}</div></div>`);
-      o.addEventListener("click",()=>{if(o.classList.contains("locked"))return;ob.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel"));o.classList.add("sel");ans[qi]=oi;if(Object.keys(ans).length===FINAL_EXAM.length)document.getElementById("fsubmit").disabled=false;});
-      ob.appendChild(o);});
-    fw.appendChild(qEl);
-  });
-  document.getElementById("fsubmit").addEventListener("click",()=>{
-    let c=0;
-    FINAL_EXAM.forEach((q,qi)=>{const ch=ans[qi];const ob=document.getElementById(`fopts${qi}`);
-      ob.querySelectorAll(".opt").forEach(o=>{o.classList.add("locked");const oi=+o.dataset.o;if(oi===q.correct)o.classList.add("correct");else if(oi===ch)o.classList.add("wrong");});
-      const fb=document.getElementById(`ffb${qi}`);const ok=ch===q.correct;if(ok)c++;fb.className="fb show "+(ok?'good':'bad');fb.innerHTML=`<b>${ok?'Correct':'Review this'}</b>${ok?'':'The correct answer is highlighted in green.'}`;});
-    const pct=Math.round(c/FINAL_EXAM.length*100);const pass=c/FINAL_EXAM.length>=FINAL_PASS;
-    const sc=document.getElementById("fscore");sc.style.display="inline";sc.className="score"+(pass?" pass":"");sc.innerHTML=`Score: <span class="pill">${c} / ${FINAL_EXAM.length} · ${pct}%</span>`;
-    document.getElementById("fsubmit").style.display="none";document.getElementById("freset").style.display="inline-block";
-    if(pass){state.examPassed=true;updateCourseProgress();renderDrawer();buildCertificateForm(pct);}
-    else{const cw=document.getElementById("certwrap");cw.className="certwrap show";cw.innerHTML=`<div class="cal warn" style="margin:0"><div class="ci">📈</div><div class="cc"><b>Almost there — ${pct}%</b><p>You need ${Math.round(FINAL_PASS*100)}% to earn the certificate. Review the highlighted answers, revisit any module, and retake the exam.</p></div></div>`;cw.scrollIntoView({behavior:"smooth",block:"center"});}
-  });
-  document.getElementById("freset").addEventListener("click",openFinal);
-  document.getElementById("fprev").addEventListener("click",goHome);
-  document.getElementById("fnext").addEventListener("click",openReferences);
-  showView("view-final");renderDrawer();window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function buildCertificateForm(pct){
-  const cw=document.getElementById("certwrap");cw.className="certwrap show";
-  cw.innerHTML=`<div class="exam-intro"><h3>🎉 You passed — ${pct}%!</h3><p style="margin:6px 0 0;font-size:14.5px">Enter the name that should appear on the certificate, then generate it.</p>
-    <div class="namebox"><div><label for="certname">Full name</label><input id="certname" type="text" placeholder="e.g., Bro. John Q. Member" /></div>
-    <button class="btn btn-primary" id="genCert">Generate Certificate</button></div>
-    <div id="certHolder"></div></div>`;
-  document.getElementById("genCert").addEventListener("click",()=>{
-    const name=(document.getElementById("certname").value||"").trim()||"Member of Kappa Alpha Psi";
-    renderCertificate(name,pct);
-  });
-  cw.scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-function renderCertificate(name,pct){
-  const d=new Date();
-  const dateStr=d.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
-  const holder=document.getElementById("certHolder");
-  holder.innerHTML=`
-  <div class="certificate" id="certificate">
-    <div class="inner">
-      <div class="cert-mk">ΚΑΨ</div>
-      <div class="cert-kick">Certificate of Completion</div>
-      <h2>Constitution &amp; Statutes Governance Training</h2>
-      <div class="cert-sub">Kappa Alpha Psi Fraternity, Inc.® · 2025–27</div>
-      <div class="cert-body">This certifies that</div>
-      <div class="cert-name">${name}</div>
-      <div class="cert-body">has successfully completed the <span class="cert-course">Constitution &amp; Statutes Member Governance Training</span>, demonstrating mastery of the governing documents and the policies, guides, and procedures that derive from and align with them.</div>
-      <div class="cert-meta"><div class="cm">Date<b>${dateStr}</b></div><div class="cm">Final Score<b>${pct}%</b></div><div class="cm">Modules<b>${MODULES.length} + Final Exam</b></div></div>
-      <div class="cert-sigs"><div class="cert-sig"><div class="line"></div>Course Facilitator</div><div class="cert-sig"><div class="line"></div>Chapter Polemarch</div></div>
-      <div class="cert-seal">Achievement in Every Field of Human Endeavor</div>
-    </div>
-  </div>
-  <div class="cert-actions"><button class="btn btn-primary" onclick="window.print()">🖨 Print / Save as PDF</button><button class="btn btn-ghost" id="editName">Edit name</button></div>`;
-  document.getElementById("editName").addEventListener("click",()=>{holder.innerHTML="";document.getElementById("certname").focus();});
-  holder.scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-/* ---------- interactions ---------- */
-function attachInteractions(root){
-  root.querySelectorAll(".tabs").forEach(t=>{const btns=t.querySelectorAll(".tabbtn"),pans=t.querySelectorAll(".tabpanel");
-    btns.forEach(b=>b.addEventListener("click",()=>{btns.forEach(x=>x.classList.remove("active"));pans.forEach(x=>x.classList.remove("active"));b.classList.add("active");t.querySelector(`.tabpanel[data-k="${b.dataset.k}"]`).classList.add("active");}));});
-  root.querySelectorAll(".accitem").forEach(it=>{const head=it.querySelector(".acchead"),bodyEl=it.querySelector(".accbody");
-    head.addEventListener("click",()=>{const open=it.classList.contains("open");it.classList.toggle("open");bodyEl.style.maxHeight=open?null:bodyEl.scrollHeight+"px";});});
-  root.querySelectorAll(".carousel").forEach(c=>{const track=c.querySelector(".cartrack"),slides=c.querySelectorAll(".carslide"),prev=c.querySelector(".prev"),next=c.querySelector(".next"),dots=c.querySelectorAll(".cardot"),cur=c.querySelector(".cur");let idx=0;const n=slides.length;
-    function go(k){idx=Math.max(0,Math.min(n-1,k));track.style.transform=`translateX(-${idx*100}%)`;prev.disabled=idx===0;next.disabled=idx===n-1;cur.textContent=idx+1;dots.forEach((d,j)=>d.classList.toggle("active",j===idx));}
-    prev.addEventListener("click",()=>go(idx-1));next.addEventListener("click",()=>go(idx+1));dots.forEach((d,j)=>d.addEventListener("click",()=>go(j)));});
-  root.querySelectorAll(".flipcard").forEach(f=>f.addEventListener("click",()=>f.classList.toggle("flipped")));
-  root.querySelectorAll(".reveal-btn:not(.clreset)").forEach(b=>b.addEventListener("click",()=>{const tgt=document.getElementById(b.dataset.rev);tgt.classList.toggle("show");b.textContent=tgt.classList.contains("show")?"Hide":"Reveal";}));
-  // interactive classify / sort activity
-  root.querySelectorAll(".classify").forEach(cl=>{
-    const rows=cl.querySelectorAll(".clrow");const total=rows.length;
-    const scoreEl=cl.parentElement.querySelector(".clscore");
-    let answered=0,score=0;
-    function refresh(){scoreEl.textContent=`${score} / ${total} correct`;scoreEl.classList.toggle("done",answered===total&&score===total);}
-    rows.forEach(row=>{
-      const correct=+row.dataset.c;const btns=row.querySelectorAll(".clbtn");const fb=row.querySelector(".clfb");
-      const whyEl=row.querySelector(".clwhy");const why=whyEl?whyEl.innerHTML:"";
-      btns.forEach(btn=>btn.addEventListener("click",()=>{
-        if(row.classList.contains("done"))return;
-        row.classList.add("done");answered++;
-        const ci=+btn.dataset.ci;const ok=ci===correct;
-        if(ok){btn.classList.add("cok");score++;}else{btn.classList.add("cno");btns[correct].classList.add("cok");}
-        btns.forEach(x=>x.disabled=true);
-        fb.className="clfb show "+(ok?"g":"b");fb.innerHTML=(ok?"✓ ":"✕ ")+why;
-        refresh();
-      }));
-    });
-    const reset=cl.parentElement.querySelector(".clreset");
-    if(reset)reset.addEventListener("click",()=>{
-      answered=0;score=0;
-      rows.forEach(row=>{row.classList.remove("done");row.querySelectorAll(".clbtn").forEach(x=>{x.disabled=false;x.classList.remove("cok","cno");});const fb=row.querySelector(".clfb");fb.className="clfb";fb.innerHTML="";});
-      scoreEl.classList.remove("done");scoreEl.textContent=`0 / ${total} correct`;
-    });
-  });
-}
-
-function showView(id){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));document.getElementById(id).classList.add("active");}
-function goHome(){state.current=null;showView("view-home");renderHome();renderDrawer();window.scrollTo({top:0,behavior:"smooth"});}
-function updateCourseProgress(){
-  const units=MODULES.length+1; // modules + final exam
-  const done=state.completed.size+(state.examPassed?1:0);
-  const pct=Math.round(done/units*100);
-  document.getElementById("cpFill").style.width=pct+"%";document.getElementById("cpPct").textContent=pct+"%";
-}
-
-renderHome();renderDrawer();
+}, { passive: true });
 </script>
 </body>
 </html>
