@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Constitutions &amp; Statutes — DLA Member Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; min-height: 100vh; }
+
+.portal-nav {
+  background: #fff; border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem; display: flex; align-items: center;
+  height: 64px; gap: 1rem; position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
+.portal-nav .brand img { width: 44px; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; line-height: 1.1;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #888;
+}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.portal-nav .nav-links a {
+  font-size: .82rem; font-weight: 600; color: #70110c; text-decoration: none; letter-spacing: .03em;
+}
+.portal-nav .nav-links a:hover { text-decoration: underline; }
+.portal-nav .nav-links .signout { color: #888; font-weight: 500; }
+
+.course-hero {
+  background: linear-gradient(110deg, #1a0303 0%, #70110c 60%, #8a1a13 100%);
+  padding: 2.75rem 2rem 2.5rem; position: relative; overflow: hidden;
+}
+.course-hero::before {
+  content: ''; position: absolute; inset: 0; opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><path d='M40 4L76 40L40 76L4 40Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 80px 80px;
+}
+.course-hero .inner { max-width: 1000px; margin: 0 auto; position: relative; }
+.breadcrumb {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(242,235,215,.5);
+  margin-bottom: 1.1rem;
+}
+.breadcrumb a { color: rgba(242,235,215,.5); text-decoration: none; transition: color .15s; }
+.breadcrumb a:hover { color: #c69a3f; }
+.breadcrumb svg { opacity: .5; }
+.course-tag {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .6rem; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: #c69a3f; margin-bottom: .75rem;
+}
+.course-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700;
+  color: #f2ebd7; letter-spacing: .03em; line-height: 1.25;
+  margin-bottom: .75rem;
+}
+.course-hero .meta {
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  font-size: .78rem; color: rgba(242,235,215,.6);
+}
+.course-hero .meta span { display: flex; align-items: center; gap: .35rem; }
+
+.course-body { max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+.video-block {
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 8px;
+  overflow: hidden; margin-bottom: 2rem;
+}
+.video-block .video-header {
+  padding: 1.25rem 1.5rem; border-bottom: 1px solid #f0ece6;
+  display: flex; align-items: center; gap: .75rem;
+  background: #faf8f5;
+}
+.video-header .v-icon {
+  width: 32px; height: 32px; border-radius: 6px; background: #70110c;
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.video-header .v-title {
+  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: #1a1a1a;
+}
+.video-wrapper {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: #111;
+}
+.video-wrapper iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  border: none; display: block;
+}
+
+.info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+@media(max-width:580px) { .info-grid { grid-template-columns: 1fr; } }
+
+.info-card {
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 8px;
+  padding: 1.5rem;
+}
+.info-card h3 {
+  font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: #70110c;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;
+}
+.info-card ul {
+  list-style: none; display: flex; flex-direction: column; gap: .6rem;
+}
+.info-card ul li {
+  font-size: .84rem; color: #444; line-height: 1.5;
+  display: flex; align-items: flex-start; gap: .55rem;
+}
+.info-card ul li::before {
+  content: ''; width: 5px; height: 5px; background: #c69a3f;
+  transform: rotate(45deg); flex-shrink: 0; margin-top: .45rem;
+}
+
+.back-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  background: #fff; border: 1px solid #e4ddd4; border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+.back-strip a {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: 'Cinzel', serif; font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: #70110c; text-decoration: none;
+}
+.back-strip a:hover { text-decoration: underline; }
+.back-strip .note { font-size: .78rem; color: #888; }
+</style>
+</head>
+<body>
+
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Crest">
+    <div class="brand-text">
+      <div class="chapter-name">DLA Member Portal</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/" style="display:flex;align-items:center;gap:.35rem;color:#888;font-weight:500;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+      Main Site
+    </a>
+    <a href="/portal/training.html">My Training</a>
+    <a href="#" class="signout" id="signOutBtn">Sign Out</a>
+  </div>
+</nav>
+
+<div class="course-hero">
+  <div class="inner">
+    <div class="breadcrumb">
+      <a href="/portal/dashboard.html">Dashboard</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/portal/training.html">My Training</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Constitutions &amp; Statutes</span>
+    </div>
+    <div class="course-tag">
+      <svg viewBox="0 0 8 8" fill="#c69a3f" width="7" height="7"><path d="M4 0L8 4L4 8L0 4Z"/></svg>
+      Chapter Operations
+    </div>
+    <h1>Understanding the Constitutions and Statutes</h1>
+    <div class="meta">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Kappa Alpha Psi Fraternity, Inc.
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2025–2027 Edition
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="course-body">
+
+  <!-- VIDEO EMBED -->
+  <div class="video-block">
+    <div class="video-header">
+      <div class="v-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+      <div class="v-title">2025–2027 Constitution and Statutes</div>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://kappaalphapsi1911-my.sharepoint.com/personal/gkor_kappaalphapsi1911_com/_layouts/15/embed.aspx?UniqueId=86e44b97-f2df-4cc6-82b7-db1df6bbf3d6" frameborder="0" scrolling="no" allowfullscreen title="NEW - 2025-2027 Constitution and Statutes"></iframe>
+    </div>
+  </div>
+
+  <!-- INFO CARDS -->
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        What You'll Learn
+      </h3>
+      <ul>
+        <li>The governing framework of Kappa Alpha Psi Fraternity, Inc.</li>
+        <li>Rights and responsibilities of all members under the Statutes</li>
+        <li>Chapter obligations and compliance requirements</li>
+        <li>How the Constitutions and Statutes guide chapter operations</li>
+        <li>Updates and changes in the 2025–2027 edition</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#70110c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 12 11 14 15 10"/></svg>
+        Course Details
+      </h3>
+      <ul>
+        <li>Category: Chapter Operations</li>
+        <li>Edition: 2025–2027</li>
+        <li>Source: Grand Chapter — Kappa Alpha Psi</li>
+        <li>Access: DLA Members Only</li>
+        <li>Format: Video presentation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BACK STRIP -->
+  <div class="back-strip">
+    <a href="/portal/training.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to My Training
+    </a>
+    <span class="note">For questions, contact <a href="mailto:webmaster@dlakappa.org" style="color:#70110c;">webmaster@dlakappa.org</a></span>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+})();
+
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await sb.auth.signOut();
+  window.location.href = '/portal/login.html';
+});
+</script>
+</body>
+</html>
