@@ -669,6 +669,36 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .training-item .t-text p { font-size: .74rem; color: #777; margin-top: .15rem; line-height: 1.4; }
 .training-item .t-arrow { margin-left: auto; color: #c69a3f; font-weight: 700; flex: none; }
 
+/* ── APP GRID ── */
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+@media(max-width:640px) { .app-grid { grid-template-columns: 1fr; } }
+
+.app-panel {
+  border: 1px solid #e8e0d5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.app-panel-header {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: #70110c;
+  color: #f2ebd7;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .55rem 1rem;
+}
+.app-panel > .app-card {
+  padding: 1.25rem 1rem;
+}
+
 /* ── APP CARD ── */
 .app-card {
   display: flex;
@@ -981,15 +1011,39 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         <div class="section-block-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-        <div class="section-block-title">DLA Kappa App</div>
+        <div class="section-block-title">Chapter App</div>
       </div>
       <div class="section-block-body compact">
-        <div class="app-card">
-          <img src="/img/dla_app_mobile.png" alt="DLA Kappa Mobile App" style="width:90px;border-radius:12px;flex:none;object-fit:contain;align-self:center;">
-          <div class="app-text">
-            <h4>DLA Kappa Member App</h4>
-            <p>Stay connected with your brothers — chapter news, upcoming events, meeting resources, and brotherhood updates all in one place.</p>
-            <a class="btn-launch" href="https://dlakappas.flipsideapps.com/" target="_blank" rel="noopener">Launch App →</a>
+        <div class="app-grid">
+          <!-- DLA App -->
+          <div class="app-panel">
+            <div class="app-panel-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>DLA KAPPA APP</span>
+            </div>
+            <div class="app-card">
+              <img src="/img/dla_app_mobile.png" alt="DLA Kappa Mobile App" style="width:90px;border-radius:12px;flex:none;object-fit:contain;align-self:center;">
+              <div class="app-text">
+                <h4>DLA Kappa Member App</h4>
+                <p>Stay connected with your brothers — chapter news, upcoming events, meeting resources, and brotherhood updates all in one place.</p>
+                <a class="btn-launch" href="https://dlakappas.flipsideapps.com/" target="_blank" rel="noopener">Launch App →</a>
+              </div>
+            </div>
+          </div>
+          <!-- IHQ App -->
+          <div class="app-panel">
+            <div class="app-panel-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>IHQ MOBILE APP</span>
+            </div>
+            <div class="app-card">
+              <img src="/img/samsung_flip_phone.png" alt="KappaLoop Mobile App" style="width:90px;flex:none;object-fit:contain;align-self:center;">
+              <div class="app-text">
+                <h4>KappaLoop Member App</h4>
+                <p>This first version of the mobile app will allow you to update your member profile and perform searches in the membership directory.</p>
+                <a class="btn-launch" href="https://www.kappaalphapsi1911.com/kappa-loop-mobile-app/" target="_blank" rel="noopener">Launch App →</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
