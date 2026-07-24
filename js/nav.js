@@ -191,14 +191,14 @@
         </ul>
         <h5>Undergraduate Chapters</h5>
         <ul>
-          <li>Alpha Chi Chapter</li>
-          <li>Beta Beta Chapter</li>
-          <li>Eta Phi Chapter</li>
-          <li>Iota Alpha Chapter</li>
-          <li>Kappa Epsilon Chapter</li>
-          <li>Lambda Lambda Chapter</li>
+          <li><a href="https://www.instagram.com/kx_nupes/" target="_blank" rel="noopener">Alpha Chi Chapter</a></li>
+          <li><a href="https://www.instagram.com/betabeta_nupes/" target="_blank" rel="noopener">Beta Beta Chapter</a></li>
+          <li><a href="https://www.instagram.com/etaphi_nupes/" target="_blank" rel="noopener">Eta Phi Chapter</a></li>
+          <li><a href="https://www.facebook.com/ianupes1977/" target="_blank" rel="noopener">Iota Alpha Chapter</a></li>
+          <li><a href="http://www.kenupes.com/" target="_blank" rel="noopener">Kappa Epsilon Chapter</a></li>
+          <li><a href="https://www.lambdalambdanupes.com/" target="_blank" rel="noopener">Lambda Lambda Chapter</a></li>
           <li>Nu Beta Chapter</li>
-          <li>Zeta Upsilon Chapter</li>
+          <li><a href="https://untnupes.com/" target="_blank" rel="noopener">Zeta Upsilon Chapter</a></li>
         </ul>
       </div>
       <div class="brand-col">
