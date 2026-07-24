@@ -808,6 +808,11 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Conference Calls
         </a>
+        <hr class="sidebar-divider">
+        <a href="#account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Account
+        </a>
       </nav>
     </div>
   </aside>
@@ -1234,6 +1239,85 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
+    <!-- ── MY ACCOUNT ── -->
+    <div id="account" class="section-block" style="scroll-margin-top:90px;">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="section-block-title">My Account</div>
+      </div>
+      <div class="section-block-body" style="display:flex;flex-direction:column;gap:2rem;">
+
+        <!-- Profile Info -->
+        <div>
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem;">Profile Information</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+            <div>
+              <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">First Name</label>
+              <input id="accFirstName" type="text" placeholder="First name"
+                style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#1a1a1a;background:#faf9f7;outline:none;transition:border-color .15s;"
+                onfocus="this.style.borderColor='#c69a3f'" onblur="this.style.borderColor='#e0d8cc'">
+            </div>
+            <div>
+              <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">Last Name</label>
+              <input id="accLastName" type="text" placeholder="Last name"
+                style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#1a1a1a;background:#faf9f7;outline:none;transition:border-color .15s;"
+                onfocus="this.style.borderColor='#c69a3f'" onblur="this.style.borderColor='#e0d8cc'">
+            </div>
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">Email Address</label>
+            <input id="accEmail" type="email" placeholder="Email"
+              style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#888;background:#f4f2ef;outline:none;" readonly>
+            <div style="font-size:.72rem;color:#aaa;margin-top:.35rem;">To change your email address, contact <a href="mailto:webmaster@dlakappa.org" style="color:#70110c;">webmaster@dlakappa.org</a>.</div>
+          </div>
+          <div style="margin-bottom:1.25rem;">
+            <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">Phone Number</label>
+            <input id="accPhone" type="tel" placeholder="e.g. (214) 555-0100"
+              style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#1a1a1a;background:#faf9f7;outline:none;transition:border-color .15s;"
+              onfocus="this.style.borderColor='#c69a3f'" onblur="this.style.borderColor='#e0d8cc'">
+          </div>
+          <button onclick="saveProfile()"
+            style="padding:.65rem 1.75rem;background:#70110c;color:#f2ebd7;border:none;border-radius:5px;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;"
+            onmouseover="this.style.background='#5a0e09'" onmouseout="this.style.background='#70110c'">
+            Save Profile
+          </button>
+          <span id="profileMsg" style="margin-left:1rem;font-size:.78rem;color:#4caf50;display:none;"></span>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #f0ece6;">
+
+        <!-- Change Password -->
+        <div>
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem;">Change Password</div>
+          <div style="max-width:420px;display:flex;flex-direction:column;gap:.85rem;">
+            <div>
+              <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">New Password</label>
+              <input id="accNewPw" type="password" placeholder="At least 8 characters"
+                style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#1a1a1a;background:#faf9f7;outline:none;transition:border-color .15s;"
+                onfocus="this.style.borderColor='#c69a3f'" onblur="this.style.borderColor='#e0d8cc'">
+            </div>
+            <div>
+              <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">Confirm New Password</label>
+              <input id="accConfirmPw" type="password" placeholder="Repeat new password"
+                style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#1a1a1a;background:#faf9f7;outline:none;transition:border-color .15s;"
+                onfocus="this.style.borderColor='#c69a3f'" onblur="this.style.borderColor='#e0d8cc'">
+            </div>
+            <div>
+              <button onclick="changePassword()"
+                style="padding:.65rem 1.75rem;background:#70110c;color:#f2ebd7;border:none;border-radius:5px;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;"
+                onmouseover="this.style.background='#5a0e09'" onmouseout="this.style.background='#70110c'">
+                Update Password
+              </button>
+              <span id="pwMsg" style="margin-left:1rem;font-size:.78rem;display:none;"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -1403,6 +1487,58 @@ document.getElementById('signOutBtn').addEventListener('click', async (e) => {
     input.value = '';
   });
 })();
+
+// ── ACCOUNT: populate fields ──────────────────────────────────────────────────
+(async function loadAccount() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return;
+  const meta = session.user.user_metadata || {};
+  function toTitle(s) { return (s||'').replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase()); }
+  document.getElementById('accFirstName').value = toTitle(meta.firstName || meta.first_name || '');
+  document.getElementById('accLastName').value  = toTitle(meta.lastName  || meta.last_name  || '');
+  document.getElementById('accEmail').value     = session.user.email || '';
+  document.getElementById('accPhone').value     = meta.phone || '';
+})();
+
+async function saveProfile() {
+  const firstName = document.getElementById('accFirstName').value.trim();
+  const lastName  = document.getElementById('accLastName').value.trim();
+  const phone     = document.getElementById('accPhone').value.trim();
+  const msg       = document.getElementById('profileMsg');
+  const { error } = await sb.auth.updateUser({ data: { firstName, lastName, phone } });
+  msg.style.display = 'inline';
+  if (error) {
+    msg.style.color = '#e55'; msg.textContent = 'Error: ' + error.message;
+  } else {
+    msg.style.color = '#4caf50'; msg.textContent = 'Profile saved!';
+    // Update displayed name
+    const full = (firstName + ' ' + lastName).trim();
+    if (full) document.getElementById('memberName').textContent = full.toUpperCase();
+  }
+  setTimeout(() => { msg.style.display = 'none'; }, 3500);
+}
+
+async function changePassword() {
+  const newPw  = document.getElementById('accNewPw').value;
+  const confPw = document.getElementById('accConfirmPw').value;
+  const msg    = document.getElementById('pwMsg');
+  msg.style.display = 'inline';
+  if (!newPw || newPw.length < 8) {
+    msg.style.color = '#e55'; msg.textContent = 'Password must be at least 8 characters.'; return;
+  }
+  if (newPw !== confPw) {
+    msg.style.color = '#e55'; msg.textContent = 'Passwords do not match.'; return;
+  }
+  const { error } = await sb.auth.updateUser({ password: newPw });
+  if (error) {
+    msg.style.color = '#e55'; msg.textContent = 'Error: ' + error.message;
+  } else {
+    msg.style.color = '#4caf50'; msg.textContent = 'Password updated!';
+    document.getElementById('accNewPw').value = '';
+    document.getElementById('accConfirmPw').value = '';
+  }
+  setTimeout(() => { msg.style.display = 'none'; }, 3500);
+}
 
 // Sidebar active link highlight on scroll
 (function() {
