@@ -438,7 +438,7 @@ const MODULES = [
     "Correct the most common myths members hold about the governing documents."
   ],
   blocks:[
-    {type:"image", label:"Cover image — the three governing documents", caption:"Suggested: the Constitution & Statutes book beside a chapter Bylaws binder and a stack of policy/guide/SOP documents."},
+    {type:"iframe", src:"https://kappaalphapsi1911-my.sharepoint.com/personal/gkor_kappaalphapsi1911_com/_layouts/15/embed.aspx?UniqueId=86e44b97-f2df-4cc6-82b7-db1df6bbf3d6", title:"NEW - 2025-2027 Constitution and Statutes"},
     {type:"text", h:"Three documents, one system", dot:true, body:`<p>Members often talk about "the C&amp;S" as if it were one rulebook. In practice you are dealing with a <em class="term">layered system</em> of governing instruments, each with a different job. Knowing the division of labor tells you <strong>where to look</strong> for any answer — and where the day-to-day policies, guides, and procedures come from.</p><p>Think of it as a pyramid: the <strong>Constitution</strong> is the foundational law; the <strong>Statutes</strong> carry out and amplify it in operational detail; the <strong>Ritual</strong> is the esoteric law; and beneath the law sits a family of <em class="term">derived instruments</em> — Fraternity Regulations, policies, guides, and SOPs — that put the law into daily practice. Each chapter's <strong>Bylaws</strong> govern that chapter's own internal affairs, aligned to everything above.</p>`},
     {type:"infographic", label:"The governing-document pyramid", caption:"Suggested: a pyramid — Constitution at the apex, Statutes below, then Ritual and Fraternity Regulations, then policies/guides/SOPs, with chapter Bylaws shown as an aligned local layer. (Module 2 breaks this stack down fully.)", nodes:["Constitution","Statutes","Ritual","Fraternity Regulations","Policies / Guides / SOPs","Chapter Bylaws (local)"]},
     {type:"tabs", title:"Compare the core instruments — tap each tab", tabs:[
@@ -989,6 +989,7 @@ function blockHTML(b,mi,bi){
   switch(b.type){
     case"text":return `<div class="block">${b.h?`<h3 class="bh">${b.dot?'<span class="dot"></span>':''}${b.h}</h3>`:''}${b.body}</div>`;
     case"image":return `<div class="imgph"><div class="ic">🖼️</div><div class="l">${b.label}</div><div class="c">${b.caption||'Image placeholder — replace with final artwork.'}</div></div>`;
+    case"iframe":return `<div style="position:relative;width:100%;padding-bottom:56.25%;background:#111;margin:18px 0;border-radius:8px;overflow:hidden;"><iframe style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;" src="${b.src}" frameborder="0" scrolling="no" allowfullscreen title="${b.title||''}"></iframe></div>`;
     case"infographic":return `<figure class="infoph"><span class="tag">Infographic</span><div class="ic">📊</div><div class="l">${b.label}</div>${b.caption?`<div class="c">${b.caption}</div>`:''}${b.nodes?`<div class="nodes">${b.nodes.map(n=>`<span>${n}</span>`).join("")}</div>`:''}</figure>`;
     case"def":return `<div class="block">${b.items.map(d=>`<div class="def"><div class="dl">Definition</div><b>${d.t}</b><p>${d.d}</p></div>`).join("")}</div>`;
     case"callout":return `<div class="cal ${b.variant||'tip'}"><div class="ci">${b.ci||'💡'}</div><div class="cc">${b.title?`<b>${b.title}</b>`:''}<p>${b.body}</p></div></div>`;
