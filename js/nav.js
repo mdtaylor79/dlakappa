@@ -189,6 +189,17 @@
           <li><a href="https://themacnupes.com/" target="_blank" rel="noopener">Mansfield - Cedar Hill (TX) Alumni Chapter</a></li>
           <li><a href="https://www.rpakappas.com/" target="_blank" rel="noopener">Richardson - Plano (TX) Alumni Chapter</a></li>
         </ul>
+        <h5>Undergraduate Chapters</h5>
+        <ul>
+          <li>Alpha Chi Chapter</li>
+          <li>Beta Beta Chapter</li>
+          <li>Eta Phi Chapter</li>
+          <li>Iota Alpha Chapter</li>
+          <li>Kappa Epsilon Chapter</li>
+          <li>Lambda Lambda Chapter</li>
+          <li>Nu Beta Chapter</li>
+          <li>Zeta Upsilon Chapter</li>
+        </ul>
       </div>
       <div class="brand-col">
         <img class="crest" src="/img/kappa-crest.png" alt="Denton-Lewisville (TX) Alumni Chapter crest">

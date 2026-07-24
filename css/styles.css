@@ -1127,15 +1127,15 @@ body{background:#ffffff !important;min-height:100vh;}
 
   footer .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(242,235,215,.14);align-items:start}
 
-  footer h4{font-family:var(--font-display);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:20px}
+  footer h4{font-family:var(--font-display);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:16px}
 
-  footer h5{font-family:var(--font-display);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);margin:24px 0 14px}
+  footer h5{font-family:var(--font-display);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);margin:20px 0 10px}
 
   footer ul{list-style:none}
 
-  footer ul li{margin-bottom:11px}
+  footer ul li{margin-bottom:8px}
 
-  footer a{color:rgba(242,235,215,.80);text-decoration:none;font-size:.92rem;transition:color .2s ease}
+  footer a{color:rgba(242,235,215,.80);text-decoration:none;font-size:.78rem;transition:color .2s ease}
 
   footer a:hover{color:var(--gold-bright)}
 
