@@ -351,6 +351,61 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .section-block-body { padding: 1.5rem; }
 .section-block-body.compact { padding: 1.25rem 1.5rem; }
 
+/* ── SHOP ── */
+.vendor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.vendor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 8px;
+  padding: 1.5rem 1rem 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow .2s, border-color .2s, transform .15s;
+  gap: .75rem;
+}
+.vendor-card:hover {
+  border-color: #c69a3f;
+  box-shadow: 0 4px 18px rgba(0,0,0,.1);
+  transform: translateY(-2px);
+}
+.vendor-logo-ph {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2a0604 0%, #70110c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.vendor-logo-ph svg { opacity: .7; }
+.vendor-name {
+  font-family: 'Cinzel', serif;
+  font-size: .78rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+.vendor-btn {
+  font-family: 'Cinzel', serif;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #70110c;
+  margin-top: auto;
+}
+.vendor-card:hover .vendor-btn { color: #c69a3f; }
+
 /* ── DUES ── */
 .dues-grid {
   display: grid;
@@ -800,6 +855,10 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Conference Calls
         </a>
+        <a href="#" onclick="showSection('shop',this);return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Shop
+        </a>
         <hr class="sidebar-divider">
         <a href="#" onclick="showSection('account',this);return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1187,6 +1246,82 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
+    <!-- ── SHOP ── -->
+    <div id="shop" class="section-block" style="scroll-margin-top:90px;">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <div class="section-block-title">Shop</div>
+      </div>
+      <div class="section-block-body">
+        <p style="font-size:.85rem;color:#666;margin-bottom:.25rem;">Support Kappa Alpha Psi vendors. Browse fraternity apparel, accessories, and gear from trusted community vendors.</p>
+        <div class="vendor-grid">
+
+          <a class="vendor-card" href="https://721nupe.com/" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">721 NUPE</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://www.nupemall.com/" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">NUPEMALL</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://nupemarket.com/" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">Nupe Market</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://nupekave.com/" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">Nupe Kave Official</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://anthonymichaelsbrand.com/diamond-kollection-1/diamond-kollection" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">Diamond Kollection</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://www.hjgreek.com/index.cfm?event=Products.showCategories&Organization_ID=61" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">HJGreek</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://www.topknotchgreekapparel.com/kappa-alpha-psi" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">Top Notch Greek Apparel</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://www.weight2wear.com/?page=2" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">weight2wear</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://tbandsenterprises.com/" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">The Kappa Kouture</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://www.divinegiftaccessories.com/collections/kappa-alpha-psi" target="_blank" rel="noopener">
+            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="vendor-name">Divine Gift Accessories</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
     <!-- ── MY ACCOUNT ── -->
     <div id="account" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
@@ -1489,7 +1624,7 @@ async function changePassword() {
 }
 
 // ── SECTION SWITCHER ──────────────────────────────────────────────────────────
-const DASH_SECTIONS = ['dues','polemarch-address','app','training','news','documents','assessments','calls','account'];
+const DASH_SECTIONS = ['dues','polemarch-address','app','training','news','documents','assessments','calls','shop','account'];
 
 function showSection(id, clickedLink) {
   // Hide all sections
