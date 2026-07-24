@@ -388,6 +388,13 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   flex-shrink: 0;
 }
 .vendor-logo-ph svg { opacity: .7; }
+.vendor-logo-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 .vendor-name {
   font-family: 'Cinzel', serif;
   font-size: .78rem;
@@ -863,7 +870,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         </a>
         <a href="#" onclick="showSection('app',this);return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          Chapter App
+          Apps
         </a>
         <a href="#" onclick="showSection('training',this);return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
@@ -1011,7 +1018,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         <div class="section-block-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-        <div class="section-block-title">Chapter App</div>
+        <div class="section-block-title">Apps</div>
       </div>
       <div class="section-block-body compact">
         <div class="app-grid">
@@ -1022,7 +1029,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
               <span>DLA KAPPA APP</span>
             </div>
             <div class="app-card">
-              <img src="/img/dla_app_mobile.png" alt="DLA Kappa Mobile App" style="width:90px;border-radius:12px;flex:none;object-fit:contain;align-self:center;">
+              <img src="/img/dla_app_mobile.png" alt="DLA Kappa Mobile App" style="width:90px;height:130px;border-radius:12px;flex:none;object-fit:contain;align-self:center;">
               <div class="app-text">
                 <h4>DLA Kappa Member App</h4>
                 <p>Stay connected with your brothers — chapter news, upcoming events, meeting resources, and brotherhood updates all in one place.</p>
@@ -1037,7 +1044,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
               <span>IHQ MOBILE APP</span>
             </div>
             <div class="app-card">
-              <img src="/img/samsung_flip_phone.png" alt="KappaLoop Mobile App" style="width:90px;flex:none;object-fit:contain;align-self:center;">
+              <img src="/img/samsung_flip_phone.png" alt="KappaLoop Mobile App" style="width:90px;height:130px;flex:none;object-fit:contain;align-self:center;">
               <div class="app-text">
                 <h4>KappaLoop Member App</h4>
                 <p>This first version of the mobile app will allow you to update your member profile and perform searches in the membership directory.</p>
@@ -1311,45 +1318,44 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       <div class="section-block-body">
         <p style="font-size:.85rem;color:#666;margin-bottom:.25rem;">Support Kappa Alpha Psi vendors. Browse fraternity apparel, accessories, and gear from trusted community vendors.</p>
         <div class="vendor-grid">
-
           <a class="vendor-card" href="https://721nupe.com/" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/721_Logo_with_Text_Trans.png" alt="721 Nupe">
             <div class="vendor-name">721 NUPE</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
           <a class="vendor-card" href="https://www.nupemall.com/" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/nupe_mall.png" alt="Nupe Mall">
             <div class="vendor-name">NUPEMALL</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
           <a class="vendor-card" href="https://nupemarket.com/" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/Nupe_market.png" alt="Nupe Market">
             <div class="vendor-name">Nupe Market</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
           <a class="vendor-card" href="https://nupekave.com/" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/nupe_kave.png" alt="Nupe Kave">
             <div class="vendor-name">Nupe Kave Official</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
           <a class="vendor-card" href="https://anthonymichaelsbrand.com/diamond-kollection-1/diamond-kollection" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-            <div class="vendor-name">Diamond Kollection</div>
+            <img class="vendor-logo-img" src="/img/anthony_michael.png" alt="Anthony Michael">
+            <div class="vendor-name">Anthony Michael</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
           <a class="vendor-card" href="https://www.hjgreek.com/index.cfm?event=Products.showCategories&Organization_ID=61" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/Herff_Jones_Logo.png" alt="HJGreek">
             <div class="vendor-name">HJGreek</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
           <a class="vendor-card" href="https://www.topknotchgreekapparel.com/kappa-alpha-psi" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/tkg_apparel.png" alt="Top Notch Greek Apparel">
             <div class="vendor-name">Top Notch Greek Apparel</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
@@ -1361,7 +1367,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           </a>
 
           <a class="vendor-card" href="https://tbandsenterprises.com/" target="_blank" rel="noopener">
-            <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <img class="vendor-logo-img" src="/img/tbs_ent.png" alt="The Kappa Kouture">
             <div class="vendor-name">The Kappa Kouture</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
@@ -1369,6 +1375,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           <a class="vendor-card" href="https://www.divinegiftaccessories.com/collections/kappa-alpha-psi" target="_blank" rel="noopener">
             <div class="vendor-logo-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.5" width="32" height="32"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
             <div class="vendor-name">Divine Gift Accessories</div>
+            <span class="vendor-btn">Visit Shop →</span>
+          </a>
+
+          <a class="vendor-card" href="https://www.theringcreator.com/?Category=KAPPA%2520ALPHA%2520PSI" target="_blank" rel="noopener">
+            <img class="vendor-logo-img" src="/img/RC_Gold_Logo.png" alt="The Ring Creator">
+            <div class="vendor-name">The Ring Creator</div>
             <span class="vendor-btn">Visit Shop →</span>
           </a>
 
