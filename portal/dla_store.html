@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>DLA Store — DLA Kappa Alpha Psi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min-height: 100vh; }
+
+/* ── TOP NAV ── */
+.portal-nav {
+  background: #fff;
+  border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
+.portal-nav .brand img { width: 42px; }
+.portal-nav .brand-text .chapter-name { font-family:'Cinzel',serif; font-size:.95rem; font-weight:700; color:#70110c; line-height:1.1; }
+.portal-nav .brand-text .frat-name { font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#999; }
+.portal-nav .nav-links { display:flex; align-items:center; gap:1.5rem; }
+.portal-nav .nav-links a { font-size:.82rem; font-weight:600; color:#70110c; text-decoration:none; letter-spacing:.03em; transition:opacity .15s; }
+.portal-nav .nav-links a:hover { opacity:.75; }
+.portal-nav .nav-links .back { color:#888; font-weight:500; }
+.portal-nav .nav-links .back:hover { color:#70110c; opacity:1; }
+.cart-btn-nav { display:flex; align-items:center; gap:.5rem; background:#70110c; color:#f2ebd7; border:none; border-radius:5px; padding:.5rem 1rem; font-family:'Cinzel',serif; font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
+.cart-btn-nav:hover { background:#5a0e09; }
+.cart-count-badge { background:#c69a3f; color:#2a0604; border-radius:50%; width:18px; height:18px; font-size:.65rem; font-weight:900; display:inline-flex; align-items:center; justify-content:center; }
+
+/* ── STORE HERO ── */
+.store-hero { line-height:0; }
+
+/* ── MAIN LAYOUT ── */
+.store-wrap { max-width:1200px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+
+/* ── CATEGORY TABS ── */
+.cat-tabs { display:flex; gap:0; border-bottom:2px solid #e8e0d5; margin-bottom:1.75rem; overflow-x:auto; }
+.cat-tab { background:none; border:none; border-bottom:2px solid transparent; margin-bottom:-2px; padding:.7rem 1.2rem; font-size:.82rem; font-weight:600; color:#888; cursor:pointer; white-space:nowrap; transition:color .2s, border-color .2s; }
+.cat-tab.active { color:#70110c; border-bottom-color:#70110c; }
+.cat-tab:hover { color:#70110c; }
+
+/* ── PRODUCT GRID ── */
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:1.5rem; }
+.product-card { background:#fff; border:1px solid #e8e0d5; border-radius:10px; overflow:hidden; transition:box-shadow .2s, transform .15s; display:flex; flex-direction:column; }
+.product-card:hover { box-shadow:0 6px 24px rgba(0,0,0,.12); transform:translateY(-3px); }
+.product-img { width:100%; aspect-ratio:1; background:#f5f2ed; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.product-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.product-img img.img-contain { object-fit:contain; padding:.75rem; background:#faf8f5; }
+.product-img-ph { width:100%; aspect-ratio:1; background:linear-gradient(135deg,#f5f2ed,#ede6d9); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem; }
+.product-img-ph svg { opacity:.25; }
+.product-img-ph span { font-size:.62rem; color:#bbb; letter-spacing:.1em; text-transform:uppercase; }
+.product-body { padding:1rem; flex:1; display:flex; flex-direction:column; }
+.product-name { font-weight:700; font-size:.9rem; color:#1a1a1a; margin-bottom:.25rem; line-height:1.3; min-height:2.4rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.product-cat { font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; font-weight:600; margin-bottom:.5rem; }
+.product-price { font-size:.95rem; color:#70110c; font-weight:700; margin-bottom:.75rem; }
+.product-actions { margin-top:auto; display:flex; gap:.5rem; }
+.btn-cart { flex:1; background:#70110c; color:#f2ebd7; border:none; border-radius:4px; padding:.55rem; font-family:'Cinzel',serif; font-size:.65rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
+.btn-cart:hover { background:#5a0e09; }
+.btn-details { background:none; border:1.5px solid #e0d8cc; border-radius:4px; padding:.55rem .75rem; color:#888; font-size:.75rem; cursor:pointer; transition:border-color .2s, color .2s; white-space:nowrap; }
+.btn-details:hover { border-color:#70110c; color:#70110c; }
+
+/* ── VARIANT SWATCHES (card) ── */
+.prod-swatches {
+  display: flex;
+  gap: 6px;
+  padding: .45rem .85rem .35rem;
+  background: #fff;
+  border-top: 1px solid #f0ebe3;
+}
+.prod-swatch {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.prod-swatch.active { border-color: #c69a3f; transform: scale(1.25); }
+.prod-swatch:hover  { border-color: #70110c; }
+.prod-swatch[data-label="White"] { background: #fff; border-color: #ccc; }
+.prod-swatch[data-label="Crimson"] { background: #70110c; }
+.prod-swatch[data-label="Cream"]   { background: #f0e4c8; }
+.prod-swatch[data-label="All"]     { background: linear-gradient(135deg, #70110c 50%, #f0e4c8 50%); }
+.prod-swatch[data-label="All"].active { border-color: #c69a3f; }
+
+/* ── VARIANT SWATCHES (modal) ── */
+.pm-swatches {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: .6rem 0 1rem;
+}
+.pm-swatch {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 2.5px solid #ddd;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s;
+  flex-shrink: 0;
+  position: relative;
+}
+.pm-swatch.active { border-color: #c69a3f; transform: scale(1.18); }
+.pm-swatch:hover  { border-color: #70110c; }
+.pm-swatch[data-label="White"]   { background: #fff; border-color: #ccc; }
+.pm-swatch[data-label="Crimson"] { background: #70110c; }
+.pm-swatch[data-label="Cream"]   { background: #f0e4c8; }
+.pm-swatch[data-label="All"]     { background: linear-gradient(135deg, #70110c 50%, #f0e4c8 50%); }
+.pm-swatch-label {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .58rem;
+  font-weight: 600;
+  color: #888;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.pm-swatch:hover .pm-swatch-label { opacity: 1; }
+
+/* ── TRUST BAR ── */
+.trust-bar { display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; margin-top:3rem; padding:1.5rem; background:#fff; border-radius:10px; border:1px solid #e8e0d5; }
+.trust-item { display:flex; align-items:center; gap:.75rem; }
+.trust-item svg { color:#70110c; flex-shrink:0; }
+.trust-item strong { font-size:.8rem; color:#1a1a1a; display:block; }
+.trust-item span { font-size:.74rem; color:#888; }
+
+/* ── CART MODAL ── */
+.cart-modal { display:none; position:fixed; inset:0; z-index:9999; }
+.cart-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.45); }
+.cart-panel { position:absolute; right:0; top:0; bottom:0; width:380px; max-width:95vw; background:#fff; display:flex; flex-direction:column; box-shadow:-4px 0 32px rgba(0,0,0,.18); }
+.cart-head { display:flex; align-items:center; justify-content:space-between; padding:1.25rem 1.5rem; border-bottom:1px solid #e8e0d5; }
+.cart-head h3 { font-family:'Cinzel',serif; font-size:.95rem; font-weight:700; color:#1a1a1a; }
+.cart-close { background:none; border:none; font-size:1.3rem; color:#888; cursor:pointer; line-height:1; }
+.cart-items { flex:1; overflow-y:auto; padding:1rem 1.5rem; }
+.cart-empty { text-align:center; color:#bbb; font-size:.88rem; padding:2.5rem 0; }
+.cart-item { display:flex; gap:.85rem; align-items:center; padding:.85rem 0; border-bottom:1px solid #f0ebe3; }
+.cart-item-img { width:56px; height:56px; border-radius:6px; object-fit:cover; background:#f5f2ed; flex-shrink:0; }
+.cart-item-info { flex:1; min-width:0; }
+.cart-item-name { font-size:.84rem; font-weight:600; color:#1a1a1a; }
+.cart-item-price { font-size:.8rem; color:#70110c; font-weight:700; margin-top:2px; }
+.cart-qty { display:flex; align-items:center; gap:.4rem; margin-top:.35rem; }
+.cart-qty button { width:22px; height:22px; border-radius:50%; border:1px solid #ddd; background:#fff; cursor:pointer; font-size:.8rem; font-weight:700; color:#555; transition:background .15s; display:flex; align-items:center; justify-content:center; }
+.cart-qty button:hover { background:#f0ebe3; }
+.cart-qty span { font-size:.8rem; font-weight:600; min-width:16px; text-align:center; }
+.cart-remove { background:none; border:none; color:#ccc; cursor:pointer; font-size:.85rem; transition:color .2s; }
+.cart-remove:hover { color:#70110c; }
+.cart-footer { padding:1.25rem 1.5rem; border-top:1px solid #e8e0d5; }
+.cart-subtotal { display:flex; justify-content:space-between; font-size:.88rem; color:#888; margin-bottom:.4rem; }
+.cart-total { display:flex; justify-content:space-between; font-weight:700; font-size:1rem; color:#1a1a1a; margin-bottom:1.1rem; }
+.btn-checkout { width:100%; background:#70110c; color:#f2ebd7; border:none; border-radius:5px; padding:.85rem; font-family:'Cinzel',serif; font-size:.74rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
+.btn-checkout:hover { background:#5a0e09; }
+
+/* ── PRODUCT MODAL ── */
+.product-modal { display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; }
+.product-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.5); }
+.product-modal-inner { position:relative; background:#fff; border-radius:12px; max-width:560px; width:95vw; max-height:90vh; overflow-y:auto; padding:2rem; z-index:1; box-shadow:0 16px 64px rgba(0,0,0,.25); }
+.pm-close { position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.4rem; color:#888; cursor:pointer; }
+.pm-img { width:100%; aspect-ratio:1; border-radius:8px; background:#f5f2ed; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:1.25rem; }
+.pm-img img { width:100%; height:100%; object-fit:cover; }
+.pm-cat { font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; font-weight:700; }
+.pm-name { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:700; color:#1a1a1a; margin:.35rem 0 .5rem; }
+.pm-price { font-size:1.3rem; color:#70110c; font-weight:700; margin-bottom:1rem; }
+.pm-desc { font-size:.88rem; color:#666; line-height:1.6; margin-bottom:1.25rem; }
+.pm-btn { width:100%; background:#70110c; color:#f2ebd7; border:none; border-radius:5px; padding:.8rem; font-family:'Cinzel',serif; font-size:.74rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
+.pm-btn:hover { background:#5a0e09; }
+
+/* ── MOBILE HAMBURGER ── */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.nav-hamburger span { display:block; width:22px; height:2px; background:#70110c; border-radius:2px; }
+
+@media(max-width:640px) {
+  .portal-nav { height:auto; min-height:56px; padding:.5rem 1rem; flex-wrap:wrap; align-items:center; gap:.25rem; }
+  .portal-nav .brand img { width:36px; }
+  .portal-nav .brand-text .frat-name { display:none; }
+  .portal-nav .brand-text .chapter-name { font-size:.82rem; }
+  .nav-hamburger { display:flex; }
+  .portal-nav .nav-links {
+    display:none;
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:.4rem 0 .5rem;
+    border-top:1px solid #e8e0d5;
+    margin-top:.25rem;
+  }
+  .portal-nav .nav-links.mob-open { display:flex; }
+  .portal-nav .nav-links a { padding:.6rem .25rem; width:100%; border-bottom:1px solid #f5f0ea; }
+  .portal-nav .nav-links a:last-child { border-bottom:none; }
+  .store-wrap { padding:1.25rem 1rem 3rem; }
+  .product-grid { grid-template-columns:1fr 1fr; gap:1rem; }
+  .trust-bar { flex-direction:column; gap:1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<nav class="portal-nav">
+  <div class="brand">
+    <img src="/img/kappa-crest.png" alt="DLA Kappa Crest">
+    <div class="brand-text">
+      <div class="chapter-name">DLA Member Portal</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="storeBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="storeNavLinks">
+    <a href="/portal/dashboard.html" class="back">← Dashboard</a>
+    <button class="cart-btn-nav" disabled style="opacity:.45;cursor:not-allowed;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cart <span class="cart-count-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── STORE HERO ── -->
+<div class="store-hero">
+  <img src="/img/hero_1_store.jpg" alt="DLA Chapter Store — Represent. Support. Stay Connected." style="width:100%;display:block;max-height:480px;object-fit:cover;object-position:center top;">
+</div>
+
+<!-- ── COMING SOON BANNER ── -->
+<div style="background:#2a0604;color:#f2ebd7;text-align:center;padding:1.1rem 1.5rem;border-bottom:2px solid #c69a3f;">
+  <div style="font-family:'Cinzel',serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Store Coming Soon</div>
+  <div style="font-family:'Archivo',sans-serif;font-size:.88rem;opacity:.85;">We are not currently taking orders. Check back soon for the official launch.</div>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div class="store-wrap">
+
+  <!-- Product Grid -->
+  <div class="product-grid" id="productGrid"></div>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div><strong>100% OFFICIAL</strong><span>Licensed DLA Chapter Products</span></div>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <div><strong>FAST SHIPPING</strong><span>Orders ship within 3–5 business days</span></div>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div><strong>SECURE PAYMENTS</strong><span>Your payment information is safe with us</span></div>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <div><strong>QUESTIONS?</strong><span>info@dlakappa.org</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── CART MODAL ── -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-backdrop" onclick="closeCart()"></div>
+  <div class="cart-panel">
+    <div class="cart-head">
+      <h3>Your Cart</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Your cart is empty.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+      <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── PRODUCT DETAIL MODAL ── -->
+<div class="product-modal" id="productModal">
+  <div class="product-backdrop" onclick="closeProduct()"></div>
+  <div class="product-modal-inner">
+    <button class="pm-close" onclick="closeProduct()">✕</button>
+    <div class="pm-img" id="pmImg"></div>
+    <div class="pm-swatches" id="pmSwatches" style="display:none;"></div>
+    <div class="pm-cat" id="pmCat"></div>
+    <div class="pm-name" id="pmName"></div>
+    <div class="pm-price" id="pmPrice"></div>
+    <div class="pm-desc" id="pmDesc"></div>
+    <button class="pm-btn" id="pmAddBtn">Add to Cart</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ── AUTH GUARD ──────────────────────────────────────────────────────────────
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; }
+})();
+
+// ── PRODUCT DATA ────────────────────────────────────────────────────────────
+const PRODUCTS = [
+  {
+    id:1, name:'DLA Classic Hoodie', price:55, cat:'apparel',
+    img:'/img/classic_hoodie_2.jpg', bulkOrder:true,
+    desc:'Official DLA chapter hoodie in crimson and gold. Heavyweight fleece, embroidered chapter logo. Available for bulk orders — contact us for group pricing.'
+  },
+  {
+    id:2, name:'DLA Classic Polo', price:45, cat:'apparel',
+    img:'/img/dla_polo_2_crimson.png', bulkOrder:false,
+    variants:[
+      { label:'Crimson', img:'/img/dla_polo_2_crimson.png' },
+      { label:'White',   img:'/img/dla_polo_2_white.png' },
+      { label:'Cream',   img:'/img/dla_polo_2_cream.png' },
+      { label:'All',     img:'/img/dla_polo_2_group.png' },
+    ],
+    desc:'DLA Classic Polo featuring the DLA KAΨ chapter seal in a bold embroidered circular design. Available in White, Crimson, and Cream.'
+  },
+  {
+    id:3, name:'DLA Chapter Polo', price:45, cat:'apparel',
+    img:'/img/dla_polo-cream.png', bulkOrder:false,
+    variants:[
+      { label:'Cream',   img:'/img/dla_polo-cream.png' },
+      { label:'White',   img:'/img/dla_polo_white.png' },
+      { label:'Crimson', img:'/img/dla_polo_crimson.png' },
+      { label:'All',     img:'/img/dla_polo_group.png' },
+    ],
+    desc:'Professional polo shirt with the DLA chapter crest — Denton · Lewisville in crimson and gold. Perfect for chapter events and Brotherhood functions. Available in White, Crimson, and Cream.'
+  },
+  { id:4, name:'DLA Cufflinks', price:25, cat:'accessories', img:'/img/cufflikns_1.png',   bulkOrder:false, desc:'Gold-tone cufflinks featuring the DLA chapter seal. Presented in a gift box.' },
+  { id:7, name:'KAΨ SWP Cufflinks',  price:15, cat:'accessories', img:'/img/swp_cufflinks.png', bulkOrder:false, desc:'Gold-tone enamel cufflinks featuring the Kappa Alpha Psi Fraternity, Inc. crest with Southwestern Province detail. Est. 1930.' },
+  { id:5, name:'DLA Tumbler',         price:25, cat:'accessories', img:'/img/dla_tumbler_1.png', bulkOrder:false, desc:'Insulated stainless steel tumbler with DLA chapter branding. Keeps beverages hot or cold for hours.' },
+  { id:6, name:'Chapter Lapel Pin',   price:15, cat:'accessories', img:'/img/lapel_pin_1.png',   bulkOrder:false, desc:'Enamel lapel pin with the DLA chapter seal in crimson and gold. Perfect for suits, blazers, and formal wear.' },
+];
+
+let cart = [];
+let activeProduct = null;
+
+// ── RENDER PRODUCTS ─────────────────────────────────────────────────────────
+function imgFallback(el) {
+  const wrap = el.closest('.prod-img-wrap');
+  if (wrap) wrap.innerHTML = '<div class="product-img-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" width="48" height="48"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Coming Soon</span></div>';
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = PRODUCTS.map(p => {
+    const imgHtml = p.img
+      ? `<div class="product-img"><img src="${p.img}" alt="${p.name}" id="card-img-${p.id}" class="${p.cat==='accessories'?'img-contain':''}" onerror="imgFallback(this)" loading="lazy"></div>`
+      : `<div class="product-img-ph"><svg viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" width="48" height="48"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Coming Soon</span></div>`;
+    const bulkBadge = p.bulkOrder
+      ? `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;">
+           <div style="background:rgba(42,6,4,.75);color:#c69a3f;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.45rem 1.1rem;border:1.5px solid rgba(198,154,63,.65);transform:rotate(-12deg);white-space:nowrap;">Bulk Order Available</div>
+         </div>`
+      : '';
+    const swatchBar = (p.variants && p.variants.length)
+      ? `<div class="prod-swatches">${p.variants.map((v,i) =>
+          `<button class="prod-swatch${i===0?' active':''}" data-label="${v.label}" title="${v.label}" onclick="swapCardImg(${p.id},'${v.img}',this)"></button>`
+        ).join('')}</div>`
+      : '';
+    return `
+    <div class="product-card">
+      <div class="prod-img-wrap" style="position:relative;overflow:hidden;">
+        ${imgHtml}
+        ${bulkBadge}
+      </div>
+      ${swatchBar}
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">$${p.price.toFixed(2)}</div>
+        <div class="product-actions">
+          <button class="btn-cart" disabled style="opacity:.45;cursor:not-allowed;">Coming Soon</button>
+          <button class="btn-details" onclick="openProduct(${p.id})">Details</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function swapCardImg(productId, imgSrc, btn) {
+  var img = document.getElementById('card-img-' + productId);
+  if (img) img.src = imgSrc;
+  btn.closest('.prod-swatches').querySelectorAll('.prod-swatch').forEach(function(s) { s.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+// ── CART ────────────────────────────────────────────────────────────────────
+function addToCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  const existing = cart.find(i => i.id === id);
+  if (existing) { existing.qty++; } else { cart.push({...p, qty:1}); }
+  updateCartUI();
+  // Brief flash on cart button
+  const btn = document.getElementById('cartCount');
+  btn.style.transform = 'scale(1.4)';
+  setTimeout(() => btn.style.transform = '', 200);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  updateCartUI();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { cart = cart.filter(i => i.id !== id); }
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const count = cart.reduce((s,i) => s+i.qty, 0);
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartSubtotal').textContent = '$'+total.toFixed(2);
+  document.getElementById('cartTotal').textContent = '$'+total.toFixed(2);
+  const el = document.getElementById('cartItems');
+  if (cart.length === 0) { el.innerHTML = '<div class="cart-empty">Your cart is empty.</div>'; return; }
+  el.innerHTML = cart.map(i => `
+    <div class="cart-item">
+      ${i.img ? `<img class="cart-item-img" src="${i.img}" alt="${i.name}">` : `<div class="cart-item-img"></div>`}
+      <div class="cart-item-info">
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-price">$${(i.price*i.qty).toFixed(2)}</div>
+        <div class="cart-qty">
+          <button onclick="changeQty(${i.id},-1)">−</button>
+          <span>${i.qty}</span>
+          <button onclick="changeQty(${i.id},1)">+</button>
+        </div>
+      </div>
+      <button class="cart-remove" onclick="removeFromCart(${i.id})">✕</button>
+    </div>`).join('');
+}
+
+function openCart() {
+  document.getElementById('cartModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cartModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function checkout() {
+  if (cart.length === 0) { alert('Your cart is empty.'); return; }
+  const items = cart.map(i => `${i.qty}× ${i.name} ($${(i.price*i.qty).toFixed(2)})`).join('\n');
+  const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  alert(`To complete your order, please email info@dlakappa.org with the subject "DLA Store Order" and include:\n\n${items}\n\nTotal: $${total.toFixed(2)}\n\nWe will confirm availability and send payment instructions.`);
+}
+
+// ── PRODUCT DETAIL MODAL ────────────────────────────────────────────────────
+function swatchBg(label) {
+  return { White:'#ffffff', Crimson:'#70110c', Cream:'#f0e4c8', All:'linear-gradient(135deg,#70110c 50%,#f0e4c8 50%)' }[label] || '#ccc';
+}
+
+function swapModalImg(src, btn) {
+  var img = document.getElementById('pm-main-img');
+  if (img) img.src = src;
+  btn.closest('.pm-swatches').querySelectorAll('.pm-swatch').forEach(function(s) { s.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function openProduct(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  activeProduct = p;
+  const ph = `<svg viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" width="64" height="64"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+  document.getElementById('pmImg').innerHTML = p.img
+    ? `<img src="${p.img}" alt="${p.name}" id="pm-main-img" style="width:100%;height:100%;object-fit:${p.cat==='accessories'?'contain':'cover'};${p.cat==='accessories'?'padding:.75rem;background:#faf8f5;':''}">`
+    : ph;
+
+  // Modal variant swatches
+  const pmSw = document.getElementById('pmSwatches');
+  if (p.variants && p.variants.length) {
+    pmSw.innerHTML = p.variants.map((v, i) =>
+      `<button class="pm-swatch${i===0?' active':''}" data-label="${v.label}"
+        style="background:${swatchBg(v.label)};"
+        title="${v.label}" onclick="swapModalImg('${v.img}',this)">
+        <span class="pm-swatch-label">${v.label}</span>
+       </button>`
+    ).join('');
+    pmSw.style.display = 'flex';
+  } else {
+    pmSw.style.display = 'none';
+    pmSw.innerHTML = '';
+  }
+
+  document.getElementById('pmCat').textContent = p.cat;
+  document.getElementById('pmName').textContent = p.name;
+  document.getElementById('pmPrice').textContent = '$'+p.price.toFixed(2);
+  document.getElementById('pmDesc').textContent = p.desc;
+  const pmBtn = document.getElementById('pmAddBtn');
+  pmBtn.textContent = 'Coming Soon';
+  pmBtn.disabled = true;
+  pmBtn.style.opacity = '.45';
+  pmBtn.style.cursor = 'not-allowed';
+  const modal = document.getElementById('productModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeProduct() {
+  document.getElementById('productModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// ── MOBILE HAMBURGER ────────────────────────────────────────────────────────
+(function() {
+  var burger = document.getElementById('storeBurger');
+  var links  = document.getElementById('storeNavLinks');
+  if (!burger || !links) return;
+  burger.addEventListener('click', function() { links.classList.toggle('mob-open'); });
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { links.classList.remove('mob-open'); });
+  });
+})();
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+renderProducts();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Keep member portal out of search indexes
+Disallow: /portal/
+
+Sitemap: https://dlakappa.org/sitemap.xml

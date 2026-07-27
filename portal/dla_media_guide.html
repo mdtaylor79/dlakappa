@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media & Communications Guide | DLA Kappa Alpha Psi</title>
+<link rel="icon" type="image/png" href="assets/dla-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ── Home page specifics ── */
+.home-hero {
+ background: linear-gradient(150deg, var(--crimson-dark) 0%, var(--crimson) 60%, #9b1c16 100%);
+ color: var(--cream);
+ padding: 64px 40px 56px;
+ margin: -40px -40px 40px;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+}
+.home-hero::before {
+ content: '';
+ position: absolute; inset: 0;
+ background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F2EBD7' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.home-logo {
+ width: 140px; height: 140px;
+ object-fit: contain;
+ margin: 0 auto 24px;
+ display: block;
+ filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+ position: relative;
+}
+.home-chapter {
+ font-family: var(--font-display);
+ font-size: 0.72rem;
+ letter-spacing: 0.25em;
+ text-transform: uppercase;
+ color: rgba(242,235,215,0.65);
+ margin-bottom: 10px;
+ position: relative;
+}
+.home-title {
+ font-family: var(--font-display);
+ font-size: 2.4rem;
+ font-weight: 400;
+ letter-spacing: 0.04em;
+ margin-bottom: 8px;
+ position: relative;
+ line-height: 1.2;
+}
+.home-subtitle {
+ font-size: 1rem;
+ color: rgba(242,235,215,0.75);
+ margin-bottom: 28px;
+ position: relative;
+}
+.home-meta {
+ display: inline-flex;
+ gap: 24px;
+ background: rgba(0,0,0,0.2);
+ padding: 10px 24px;
+ border-radius: 40px;
+ font-size: 0.78rem;
+ color: rgba(242,235,215,0.7);
+ position: relative;
+}
+.home-meta span::before { content: '•'; margin-right: 8px; opacity: 0.5; }
+.home-meta span:first-child::before { display: none; }
+
+.chapter-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+ gap: 14px;
+ margin: 24px 0;
+}
+.chapter-card {
+ background: var(--white);
+ border: 1px solid var(--gray-light);
+ border-left: 4px solid var(--crimson);
+ border-radius: var(--radius);
+ padding: 16px 18px;
+ cursor: pointer;
+ transition: all var(--transition);
+ text-decoration: none;
+ color: inherit;
+ display: flex;
+ align-items: flex-start;
+ gap: 14px;
+}
+.chapter-card:hover {
+ border-color: var(--crimson);
+ box-shadow: var(--shadow-lg);
+ transform: translateY(-2px);
+ background: #fdfaf6;
+}
+.chapter-card-num {
+ font-family: var(--font-display);
+ font-size: 1.4rem;
+ color: var(--crimson);
+ opacity: 0.3;
+ line-height: 1;
+ flex-shrink: 0;
+ min-width: 32px;
+}
+.chapter-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+.chapter-card-body { flex: 1; }
+.chapter-card-title { font-family: var(--font-display); font-size: 0.82rem; color: var(--crimson); margin-bottom: 4px; letter-spacing: 0.02em; }
+.chapter-card-desc { font-size: 0.76rem; color: var(--gray-mid); line-height: 1.45; }
+</style>
+</head>
+<body>
+
+<!-- ── MOBILE TOP BAR ── -->
+<div id="mob-topbar">
+  <button id="mob-menu-btn" onclick="mobToggle()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mob-title">Media Guide</span>
+  <a href="/portal/dashboard.html" style="color:rgba(242,235,215,.8);font-size:.72rem;text-decoration:none;font-weight:600;">← Portal</a>
+</div>
+<div id="mob-backdrop" onclick="mobClose()"></div>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav id="sidebar">
+ <div class="sidebar-brand">
+ <img src="assets/dla-logo.png" alt="DLA Kappa Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+ <div class="logo-placeholder" style="display:none">KAΨ</div>
+ <div class="brand-text">
+ <div class="brand-title">Denton-Lewisville<br>Alumni Chapter</div>
+ <div class="brand-sub">Kappa Alpha Psi Fraternity, Inc.</div>
+ </div>
+ </div>
+
+ <div class="sidebar-search">
+ <input type="text" id="search-input" placeholder=" Search the guide..." autocomplete="off">
+ </div>
+
+ <div id="sidebar-nav">
+ <a href="/portal/dashboard.html" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;margin-bottom:.75rem;background:rgba(242,235,215,.08);border:1px solid rgba(242,235,215,.15);border-radius:5px;color:rgba(242,235,215,.8);text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.06em;transition:background .2s;" onmouseover="this.style.background='rgba(242,235,215,.15)'" onmouseout="this.style.background='rgba(242,235,215,.08)'">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+   Back to Portal
+ </a>
+ <div class="nav-section-label">Getting Started</div>
+ <a class="nav-item active" onclick="showPage('home')" href="#home">
+ <span class="nav-label">Overview</span>
+ </a>
+ <a class="nav-item" onclick="showPage('intro')" href="#intro">
+ <span class="nav-label">Introduction</span>
+ </a>
+
+ <div class="nav-section-label">Chapters</div>
+ <a class="nav-item" onclick="showPage('ch1')" href="#ch1"><span class="nav-icon">️</span><span class="nav-label">1. About the Chapter</span></a>
+ <a class="nav-item" onclick="showPage('ch2')" href="#ch2"><span class="nav-icon">️</span><span class="nav-label">2. Communications Governance</span></a>
+ <a class="nav-item" onclick="showPage('ch3')" href="#ch3"><span class="nav-icon">️</span><span class="nav-label">3. Brand Communications</span></a>
+ <a class="nav-item" onclick="showPage('ch4')" href="#ch4"><span class="nav-label">4. Visual Identity</span></a>
+ <a class="nav-item" onclick="showPage('ch5')" href="#ch5"><span class="nav-label">5. Website Standards</span></a>
+ <a class="nav-item" onclick="showPage('ch6')" href="#ch6"><span class="nav-label">6. Social Media</span></a>
+ <a class="nav-item" onclick="showPage('ch7')" href="#ch7"><span class="nav-label">7. Email Communications</span></a>
+ <a class="nav-item" onclick="showPage('ch8')" href="#ch8"><span class="nav-label">8. Mobile Communications</span></a>
+ <a class="nav-item" onclick="showPage('ch9')" href="#ch9"><span class="nav-label">9. Photography</span></a>
+ <a class="nav-item" onclick="showPage('ch10')" href="#ch10"><span class="nav-label">10. Videography</span></a>
+ <a class="nav-item" onclick="showPage('ch11')" href="#ch11"><span class="nav-icon">️</span><span class="nav-label">11. Graphic Design</span></a>
+ <a class="nav-item" onclick="showPage('ch12')" href="#ch12"><span class="nav-label">12. Content Creation</span></a>
+ <a class="nav-item" onclick="showPage('ch13')" href="#ch13"><span class="nav-label">13. Event Promotions</span></a>
+ <a class="nav-item" onclick="showPage('ch14')" href="#ch14"><span class="nav-label">14. Live Event Coverage</span></a>
+ <a class="nav-item" onclick="showPage('ch15')" href="#ch15"><span class="nav-label">15. Post-Event Comms</span></a>
+ <a class="nav-item" onclick="showPage('ch16')" href="#ch16"><span class="nav-label">16. Media Relations</span></a>
+ <a class="nav-item" onclick="showPage('ch17')" href="#ch17"><span class="nav-icon">️</span><span class="nav-label">17. Digital Asset Mgmt</span></a>
+ <a class="nav-item" onclick="showPage('ch18')" href="#ch18"><span class="nav-icon">️</span><span class="nav-label">18. Legal & Compliance</span></a>
+ <a class="nav-item" onclick="showPage('ch19')" href="#ch19"><span class="nav-label">19. AI Standards</span></a>
+ <a class="nav-item" onclick="showPage('ch20')" href="#ch20"><span class="nav-label">20. Training</span></a>
+
+ <div class="nav-section-label">Appendices</div>
+ <a class="nav-item" onclick="showPage('appendix')" href="#appendix"><span class="nav-label">Forms & Templates</span></a>
+ <a class="nav-item" onclick="showPage('glossary')" href="#glossary"><span class="nav-label">Glossary & Acronyms</span></a>
+ </div>
+</nav>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar"></button>
+
+<!-- ═══ MAIN ═══ -->
+<div id="main">
+ <div id="topbar">
+ <div id="breadcrumb">Media &amp; Communications Guide &nbsp;›&nbsp; <span id="breadcrumb-current">Overview</span></div>
+ <div class="topbar-actions">
+ <button class="btn btn-outline" onclick="window.print()"> Print</button>
+ <a class="btn btn-primary" href="../DLA_Kappa_Media_Communications_Guide_v1.0.docx" download> Download .docx</a>
+ </div>
+ </div>
+
+ <div id="content">
+
+ <!-- ══════════════════════════════════════════════════════════
+ HOME PAGE
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-home" class="page active">
+ <div class="home-hero">
+ <img src="assets/dla-logo.png" alt="Denton-Lewisville Kappa Alpha Psi Logo" class="home-logo">
+ <div class="home-chapter">Denton-Lewisville (TX) Alumni Chapter &nbsp;·&nbsp; Kappa Alpha Psi Fraternity, Inc.</div>
+ <h1 class="home-title">Media &amp; Communications Guide</h1>
+ <p class="home-subtitle">The Official Standards and Procedures Manual for Chapter Communications</p>
+ <div class="home-meta">
+ <span>Version 1.0</span>
+ <span>2025 Edition</span>
+ <span>20 Chapters</span>
+ <span>80+ Pages</span>
+ </div>
+ </div>
+
+ <div class="stat-row">
+ <div class="stat-box"><div class="stat-num">20</div><div class="stat-label">Chapters</div></div>
+ <div class="stat-box"><div class="stat-num">10</div><div class="stat-label">Appendices</div></div>
+ <div class="stat-box"><div class="stat-num">80+</div><div class="stat-label">Pages</div></div>
+ <div class="stat-box"><div class="stat-num">1997</div><div class="stat-label">Chapter Founded</div></div>
+ </div>
+
+ <h2>About This Guide</h2>
+ <p>This guide is the authoritative communications manual for the Denton-Lewisville (TX) Alumni Chapter. It establishes the policies, procedures, and standards that govern how the chapter communicates — internally with its Brotherhood and externally with the community, media, sponsors, and the public.</p>
+
+ <div class="callout policy">
+ <div class="callout-label"> Chapter Motto</div>
+ <p><strong>"Brotherhood First"</strong> — Every communication we produce reflects the character, values, and reputation of Kappa Alpha Psi Fraternity, Inc. We speak with one unified voice.</p>
+ </div>
+
+ <h2>All Chapters</h2>
+ <div class="chapter-grid">
+ <a class="chapter-card" onclick="showPage('ch1')" href="#ch1"><span class="chapter-card-num">01</span><span class="chapter-card-icon">️</span><div class="chapter-card-body"><div class="chapter-card-title">About the Chapter</div><div class="chapter-card-desc">History, mission, vision, Five Objectives, core values, and strategic communication goals.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch2')" href="#ch2"><span class="chapter-card-num">02</span><span class="chapter-card-icon">️</span><div class="chapter-card-body"><div class="chapter-card-title">Communications Governance</div><div class="chapter-card-desc">Media Committee roles, Approval Matrix, and escalation procedures.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch3')" href="#ch3"><span class="chapter-card-num">03</span><span class="chapter-card-icon">️</span><div class="chapter-card-body"><div class="chapter-card-title">Brand Communications</div><div class="chapter-card-desc">Voice, tone, writing standards, officer titles, capitalization, and accessibility.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch4')" href="#ch4"><span class="chapter-card-num">04</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Visual Identity</div><div class="chapter-card-desc">Official logos, color standards, typography, photography style, and brand consistency.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch5')" href="#ch5"><span class="chapter-card-num">05</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Website Standards</div><div class="chapter-card-desc">Structure, accessibility, SEO, security, and content standards for dlakappa.org.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch6')" href="#ch6"><span class="chapter-card-num">06</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Social Media</div><div class="chapter-card-desc">Approved platforms, posting frequency, content calendar, hashtags, and moderation.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch7')" href="#ch7"><span class="chapter-card-num">07</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Email Communications</div><div class="chapter-card-desc">Official email standards, templates, distribution lists, and BCC policies.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch8')" href="#ch8"><span class="chapter-card-num">08</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Mobile Communications</div><div class="chapter-card-desc">DLA Mobile App governance, communication priority order, event timeline, push notification standards, and emergency protocols.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch9')" href="#ch9"><span class="chapter-card-num">09</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Photography</div><div class="chapter-card-desc">Event coverage, portrait standards, editing, consent, naming conventions, and storage.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch10')" href="#ch10"><span class="chapter-card-num">10</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Videography</div><div class="chapter-card-desc">Planning, production, audio, livestreams, editing, captions, and music licensing.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch11')" href="#ch11"><span class="chapter-card-num">11</span><span class="chapter-card-icon">️</span><div class="chapter-card-body"><div class="chapter-card-title">Graphic Design</div><div class="chapter-card-desc">Flyers, programs, certificates, PowerPoint, infographics, and social media graphics.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch12')" href="#ch12"><span class="chapter-card-num">12</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Content Creation</div><div class="chapter-card-desc">News articles, spotlights, press releases, newsletters, and writing templates.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch13')" href="#ch13"><span class="chapter-card-num">13</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Event Promotions</div><div class="chapter-card-desc">90-day marketing timeline, promotion checklist, and social media templates.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch14')" href="#ch14"><span class="chapter-card-num">14</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Live Event Coverage</div><div class="chapter-card-desc">Media team assignments, photo/video schedule, livestream, and press table.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch15')" href="#ch15"><span class="chapter-card-num">15</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Post-Event Comms</div><div class="chapter-card-desc">Recap articles, photo albums, sponsor recognition, and lessons learned.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch16')" href="#ch16"><span class="chapter-card-num">16</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Media Relations</div><div class="chapter-card-desc">Press releases, press kits, spokespersons, interview procedures, and community relations.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch17')" href="#ch17"><span class="chapter-card-num">17</span><span class="chapter-card-icon">️</span><div class="chapter-card-body"><div class="chapter-card-title">Digital Asset Management</div><div class="chapter-card-desc">Cloud storage, folder structure, naming standards, access permissions, and archiving.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch18')" href="#ch18"><span class="chapter-card-num">18</span><span class="chapter-card-icon">️</span><div class="chapter-card-body"><div class="chapter-card-title">Legal &amp; Compliance</div><div class="chapter-card-desc">Copyright, trademark, photography releases, privacy, and prohibited content.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch19')" href="#ch19"><span class="chapter-card-num">19</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">AI Standards</div><div class="chapter-card-desc">Approved AI tools, acceptable uses, human review requirements, and privacy rules.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch20')" href="#ch20"><span class="chapter-card-num">20</span><span class="chapter-card-icon"></span><div class="chapter-card-body"><div class="chapter-card-title">Training</div><div class="chapter-card-desc">Officer training, media training, certification requirements, and onboarding checklist.</div></div></a>
+ <a class="chapter-card" onclick="showPage('ch21')" href="#ch21"><span class="chapter-card-num">21</span><span class="chapter-card-icon">📋</span><div class="chapter-card-body"><div class="chapter-card-title">MAC Operations Manual</div><div class="chapter-card-desc">Full governance framework: scope, authority, submission timelines, file standards, DAM, copyright, accessibility, crisis communications, and media workflow.</div></div></a>
+ </div>
+
+ <h2>Quick Reference</h2>
+ <div class="card-grid">
+ <div class="card" onclick="showPage('ch4')">
+ <div class="card-icon"></div>
+ <div class="card-title">Brand Colors</div>
+ <div class="card-desc">Official Crimson (#70110C) &amp; Cream (#F2EBD7) hex codes and full color system.</div>
+ </div>
+ <div class="card" onclick="showPage('ch2')">
+ <div class="card-icon"></div>
+ <div class="card-title">Approval Matrix</div>
+ <div class="card-desc">Who approves what — every communication type and required approver.</div>
+ </div>
+ <div class="card" onclick="showPage('appendix')">
+ <div class="card-icon"></div>
+ <div class="card-title">Forms & Templates</div>
+ <div class="card-desc">Press release, photo release, minor consent, and event checklist templates.</div>
+ </div>
+ <div class="card" onclick="showPage('ch6')">
+ <div class="card-icon"></div>
+ <div class="card-title">Hashtags</div>
+ <div class="card-desc">#DLAKappa #DLANupes #AchievementInAction and all official chapter tags.</div>
+ </div>
+ </div>
+ </div><!-- /home -->
+
+ <!-- ══════════════════════════════════════════════════════════
+ INTRODUCTION
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-intro" class="page">
+ <div class="page-hero">
+ <div class="hero-chapter-num">Introduction</div>
+ <h1 class="hero-title">Introduction</h1>
+ <p class="hero-desc">Purpose, audience, how to use this guide, and the Brotherhood First communication philosophy.</p>
+ </div>
+ <h2>Purpose of This Guide</h2>
+ <p>The Denton-Lewisville (TX) Alumni Chapter Media & Communications Guide is the chapter's authoritative reference for all matters related to brand identity, communications strategy, digital media, event promotion, photography, videography, graphic design, and media relations.</p>
+ <p>This guide is not simply a style manual. It is an operational framework that ensures every officer, committee member, media volunteer, photographer, webmaster, designer, and vendor represents the chapter and Kappa Alpha Psi Fraternity, Inc., with precision, consistency, and excellence — every time.</p>
+
+ <h2>Audience</h2>
+ <ul>
+ <li>Chapter officers and elected leadership</li>
+ <li>Media Committee members and chairpersons</li>
+ <li>Photographers, videographers, and graphic designers</li>
+ <li>Webmasters and digital platform administrators</li>
+ <li>Event coordinators and promotions volunteers</li>
+ <li>Vendors, contractors, and external partners</li>
+ <li>Incoming officers and future chapter leadership</li>
+ </ul>
+
+ <h2>Communication Philosophy: Brotherhood First</h2>
+ <p>Our chapter motto — <strong>"Brotherhood First"</strong> — is not merely a tagline. It is the philosophical foundation of everything we communicate. Brotherhood-first communication means:</p>
+ <ul>
+ <li>We speak with one unified voice.</li>
+ <li>We protect the dignity of every Brother.</li>
+ <li>We elevate the chapter's mission in every message.</li>
+ <li>We engage the community with integrity, professionalism, and purpose.</li>
+ <li>We hold ourselves to a higher standard because the world is watching.</li>
+ </ul>
+
+ <h2>Guiding Principles</h2>
+ <div class="table-wrap">
+ <table>
+ <thead><tr><th>Principle</th><th>Definition</th></tr></thead>
+ <tbody>
+ <tr><td><strong>Unity</strong></td><td>All communication reinforces the Brotherhood's collective mission and values.</td></tr>
+ <tr><td><strong>Clarity</strong></td><td>Information is presented clearly, concisely, and accessibly.</td></tr>
+ <tr><td><strong>Respect</strong></td><td>Every message upholds respect for the Fraternity, its members, and the public.</td></tr>
+ <tr><td><strong>Excellence</strong></td><td>Every communication is produced with care, precision, and professionalism.</td></tr>
+ <tr><td><strong>Accountability</strong></td><td>Every communicator is responsible for what they publish, post, or present.</td></tr>
+ <tr><td><strong>Consistency</strong></td><td>Brand standards are applied uniformly across all channels and formats.</td></tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+
+ <!-- ══════════════════════════════════════════════════════════
+ CHAPTER 1
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-ch1" class="page">
+ <div class="page-hero">
+ <div class="hero-chapter-num">Chapter 1</div>
+ <h1 class="hero-title">About the Chapter</h1>
+ <p class="hero-desc">History, mission, vision, Five Objectives, core values, and strategic communication goals.</p>
+ </div>
+ <h2>1.1 History</h2>
+ <p>Kappa Alpha Psi Fraternity, Inc., was founded on <strong>January 5, 1911</strong>, at Indiana University in Bloomington, Indiana. Established with the motto <em>"Achievement in Every Field of Human Endeavor,"</em> the Fraternity has grown into one of the most respected collegiate Greek-letter organizations in the United States.</p>
+ <p>The <strong>Denton-Lewisville (TX) Alumni Chapter</strong> was chartered in <strong>1997</strong>, extending the Fraternity's enduring legacy into the North Texas region. Since its chartering, the chapter has grown into a cornerstone of community engagement, mentorship, and leadership development.</p>
+
+ <h2>1.2 Mission</h2>
+ <p>To advance the Five Objectives of Kappa Alpha Psi Fraternity, Inc., through purposeful programming, meaningful service, and sustained community engagement — guided always by the principles of brotherhood, integrity, and achievement.</p>
+
+ <h2>1.3 Vision</h2>
+ <p>To be recognized as the leading fraternal organization in North Texas for academic excellence, civic impact, mentorship, and professional development — setting the standard by which other chapters are measured.</p>
+
+ <h2>1.4 The Five Objectives</h2>
+ <ol>
+ <li>To unite college men of culture, patriotism, and honor in a bond of fraternity.</li>
+ <li>To encourage honorable achievement in every field of human endeavor.</li>
+ <li>To promote the spiritual, social, intellectual, and moral welfare of its members.</li>
+ <li>To aid the aims and purposes of colleges and universities.</li>
+ <li>To inspire service in the public interest.</li>
+ </ol>
+
+ <h2>1.5 Core Values</h2>
+ <div class="table-wrap">
+ <table>
+ <thead><tr><th>Value</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td><strong>Scholarship</strong></td><td>Academic excellence and intellectual growth form the foundation of our brotherhood and service.</td></tr>
+ <tr><td><strong>Fellowship</strong></td><td>Brotherhood is sacred. We build lasting bonds through shared purpose, mutual respect, and unwavering support.</td></tr>
+ <tr><td><strong>Character</strong></td><td>Integrity, discipline, and ethical leadership define who we are and how we serve our communities.</td></tr>
+ <tr><td><strong>Achievement</strong></td><td>We pursue excellence in every endeavor — personal, professional, and communal.</td></tr>
+ <tr><td><strong>Service</strong></td><td>We are committed to inspiring service in the public interest and giving back to our communities.</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <h2>1.6 Mottos</h2>
+ <div class="callout">
+ <div class="callout-label">Chapter Motto</div>
+ <p><strong>"Brotherhood First"</strong> — The lens through which every communication decision is made.</p>
+ </div>
+ <div class="callout">
+ <div class="callout-label">Fraternity Motto</div>
+ <p><strong>"Achievement in Every Field of Human Endeavor"</strong> — The founding motto adopted in 1911.</p>
+ </div>
+ <div class="callout tip">
+ <div class="callout-label">Training for Leadership</div>
+ <p><strong>"Training for Leadership"</strong> — The chapter's public motto; may appear on official chapter media and materials.</p>
+ </div>
+
+ <h2>1.7 Strategic Communication Goals</h2>
+ <ul>
+ <li>Amplify chapter achievements, programs, and impact across all communication channels.</li>
+ <li>Strengthen fraternal bonds through transparent and regular internal communication.</li>
+ <li>Engage and inform the North Texas community through professional, values-driven messaging.</li>
+ <li>Project a unified, consistent, and dignified brand identity at all times.</li>
+ <li>Build and maintain meaningful relationships with media, sponsors, community partners, and the public.</li>
+ <li>Preserve the chapter's history and legacy through accurate documentation and digital archiving.</li>
+ </ul>
+ </div>
+
+ <!-- ══════════════════════════════════════════════════════════
+ CHAPTER 2
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-ch2" class="page">
+ <div class="page-hero">
+ <div class="hero-chapter-num">Chapter 2</div>
+ <h1 class="hero-title">Communications Governance</h1>
+ <p class="hero-desc">Media Committee structure, roles, Approval Matrix, and escalation procedures.</p>
+ </div>
+
+ <h2>2.1 Media & Communications Committee</h2>
+ <p>The Media & Communications Committee ("Media Committee") is the primary body responsible for planning, producing, approving, and publishing all chapter communications. It operates under the authority of the Chapter Polemarch and Board of Directors.</p>
+
+ <h2>2.2 Roles & Responsibilities</h2>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Marketing and Communications Director (MAC) — Brother Colen Skinner <span class="accordion-icon"></span></div>
+ <div class="accordion-body">
+ <ul>
+ <li>Develops and executes the chapter's overall communications and marketing strategy.</li>
+ <li>Serves as the primary vendor correspondent — managing relationships with licensed vendors, print shops, designers, and external media partners.</li>
+ <li>Reviews and approves all promotional materials before publication or distribution.</li>
+ <li>Ensures all chapter and Kappa Alpha Psi brand standards are correctly applied across all media.</li>
+ <li>Coordinates with all committees to ensure communications support their programs and events.</li>
+ <li>Develops relationships with local businesses, sponsors, and community organizations on behalf of the chapter.</li>
+ <li>Oversees the chapter's advertising budget and procurement of media services.</li>
+ </ul>
+ </div>
+ </div>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Reporter — Brother MD Taylor <span class="accordion-icon"></span></div>
+ <div class="accordion-body"><ul><li>Produces newsletters, press releases, website articles, and event recaps.</li><li>Documents chapter activities and submits reports to the Keeper of Records.</li><li>Maintains the chapter's narrative voice across written communications.</li></ul></div>
+ </div>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Historian — Brother Imani Dowell-Simmons <span class="accordion-icon"></span></div>
+ <div class="accordion-body"><ul><li>Maintains a comprehensive archive of chapter history, photographs, documents, and milestones.</li><li>Curates the chapter's institutional memory and ensures historical accuracy in all communications.</li></ul></div>
+ </div>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Photographer — Brother Imani Dowell-Simmons <span class="accordion-icon"></span></div>
+ <div class="accordion-body"><ul><li>Provides professional-quality photo coverage at all chapter events and programs.</li><li>Delivers edited, properly named image files to chapter cloud storage within 72 hours of each event.</li></ul></div>
+ </div>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Videographer — Brother MD Taylor <span class="accordion-icon"></span></div>
+ <div class="accordion-body"><ul><li>Plans, records, and edits video content for events, promotional campaigns, and social media.</li><li>Delivers finalized video files to the chapter media library within 7 days of each event.</li></ul></div>
+ </div>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Webmaster — Brother MD Taylor <span class="accordion-icon"></span></div>
+ <div class="accordion-body"><ul><li>Manages and maintains the chapter's official website at www.dlakappa.org.</li><li>Publishes approved content within 48 hours of approval.</li><li>Conducts monthly website audits.</li></ul></div>
+ </div>
+ <div class="accordion">
+ <div class="accordion-header" onclick="toggleAccordion(this)">Keeper of Records (KOR) — Brother Julian Dozier <span class="accordion-icon"></span></div>
+ <div class="accordion-body">
+ <div class="callout policy"><div class="callout-label">Policy</div><p>ALL official email correspondence must be submitted to the Keeper of Records. No communication is considered official unless received and filed by the KOR.</p></div>
+ </div>
+ </div>
+
+ <h2>2.3 Communication Approval Matrix</h2>
+ <div class="table-wrap">
+ <table>
+ <thead><tr><th>Communication Type</th><th>Prepared By</th><th>Reviewed By</th><th>Final Approval</th></tr></thead>
+ <tbody>
+ <tr><td>Social Media Post (Routine)</td><td>Media Committee</td><td>MAC</td><td>MAC</td></tr>
+ <tr><td>Social Media Post (Sensitive/Crisis)</td><td>Media Committee / Polemarch</td><td>MAC + Vice Polemarch</td><td>Polemarch</td></tr>
+ <tr><td>Press Release</td><td>Reporter</td><td>MAC + Vice Polemarch</td><td>Polemarch</td></tr>
+ <tr><td>Event Flyer / Graphic</td><td>Designer / Media Committee</td><td>MAC</td><td>MAC</td></tr>
+ <tr><td>Newsletter</td><td>Reporter</td><td>MAC</td><td>Polemarch</td></tr>
+ <tr><td>Website Content</td><td>Reporter / Webmaster</td><td>MAC</td><td>MAC</td></tr>
+ <tr><td>Email to Members</td><td>Originating Officer / Committee</td><td>KOR</td><td>KOR</td></tr>
+ <tr><td>Email to Public / Media</td><td>Reporter / MAC</td><td>MAC</td><td>Polemarch</td></tr>
+ <tr><td>Official Statement / Crisis</td><td>Polemarch / MAC</td><td>Board of Directors</td><td>Polemarch</td></tr>
+ <tr><td>Vendor / Sponsor Communication</td><td>MAC (Bro. Colen Skinner)</td><td>Vice Polemarch</td><td>Polemarch</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <h2>2.4 Escalation Procedures</h2>
+ <div class="timeline">
+ <div class="timeline-item"><div class="timeline-date">Step 1</div><div class="timeline-title">Marketing and Communications Director (MAC)</div><div class="timeline-body">First point of contact for any communications question or issue.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 2</div><div class="timeline-title">Vice Polemarch</div><div class="timeline-body">Escalation when MAC is unavailable or matter exceeds committee authority.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 3</div><div class="timeline-title">Polemarch</div><div class="timeline-body">Final authority on all chapter communications decisions.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 4</div><div class="timeline-title">Board of Directors</div><div class="timeline-body">Consulted for matters affecting chapter policy or organizational reputation.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 5</div><div class="timeline-title">International Headquarters (IHQ)</div><div class="timeline-body">For Fraternity-level policy, legal concerns, or conduct requiring IHQ notification. IHQIP@KappaAlphaPsi1911.com</div></div>
+ </div>
+ </div>
+
+ <!-- ══════════════════════════════════════════════════════════
+ CHAPTER 4: VISUAL IDENTITY (Color-rich chapter — show early)
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-ch4" class="page">
+ <div class="page-hero">
+ <div class="hero-chapter-num">Chapter 4</div>
+ <h1 class="hero-title">Visual Identity</h1>
+ <p class="hero-desc">Official colors, typography, logos, safe areas, prohibited usage, and brand consistency standards.</p>
+ </div>
+
+ <h2>4.1 Official Colors</h2>
+ <p>All color specifications must use numeric values — never describe colors in plain English. Precise codes are the only acceptable standard when communicating with vendors, designers, and printers.</p>
+
+ <h3>Primary Palette — Crimson & Cream</h3>
+ <div class="color-grid">
+ <div class="swatch"><div class="swatch-color" style="background:#70110C"></div><div class="swatch-info"><div class="swatch-name">Crimson</div><div class="swatch-hex">#70110C</div><div class="swatch-hex">R:112 G:17 B:12</div><div class="swatch-hex">PMS 199 C</div></div></div>
+ <div class="swatch"><div class="swatch-color" style="background:#F2EBD7; border:1px solid #ddd"></div><div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#F2EBD7</div><div class="swatch-hex">R:242 G:235 B:215</div><div class="swatch-hex">PMS 461 C</div></div></div>
+ <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #ddd"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-hex">R:255 G:255 B:255</div><div class="swatch-hex">Outlines only</div></div></div>
+ </div>
+
+ <h3>Alternate Palette 1 — Red & White (Print / Textile)</h3>
+ <div class="color-grid">
+ <div class="swatch"><div class="swatch-color" style="background:#FF0000"></div><div class="swatch-info"><div class="swatch-name">Red (Alt.)</div><div class="swatch-hex">#FF0000</div><div class="swatch-hex">PMS 032 C</div></div></div>
+ <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #ddd"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div></div></div>
+ </div>
+
+ <h3>Alternate Palette 2 — Digital (Screen-Optimized)</h3>
+ <div class="color-grid">
+ <div class="swatch"><div class="swatch-color" style="background:#70110C"></div><div class="swatch-info"><div class="swatch-name">Crimson Digital</div><div class="swatch-hex">#70110C</div></div></div>
+ <div class="swatch"><div class="swatch-color" style="background:#EDEBEB; border:1px solid #ddd"></div><div class="swatch-info"><div class="swatch-name">Cream Digital</div><div class="swatch-hex">#EDEBEB</div></div></div>
+ </div>
+
+ <h2>4.2 Typography</h2>
+ <div class="table-wrap">
+ <table>
+ <thead><tr><th>Typeface</th><th>Role</th><th>Use</th></tr></thead>
+ <tbody>
+ <tr><td><strong>Trajan Pro / Cinzel</strong></td><td>Primary display/heading</td><td>All headings, titles, formal documents, website headers</td></tr>
+ <tr><td><strong>Cloister Black</strong></td><td>Formal ceremonial headings</td><td>Certificates, awards, official recognitions only</td></tr>
+ <tr><td><strong>Garamond</strong></td><td>Subheadings, pull quotes</td><td>Secondary headings in print documents</td></tr>
+ <tr><td><strong>Source Sans Pro</strong></td><td>Primary body copy</td><td>All body text in Fraternity materials</td></tr>
+ <tr><td><strong>Open Sans</strong></td><td>Secondary body</td><td>Digital and print body copy</td></tr>
+ <tr><td><strong>Roboto</strong></td><td>UI elements, captions</td><td>Mobile-first, digital interface elements</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <h2>4.3 Official Logos</h2>
+ <p>The chapter maintains three logo families. Each has approved color variations for different applications. Always use the highest-resolution file available. Never recreate logos from scratch.</p>
+
+ <!-- LOGO FAMILY 1: DLA SEAL -->
+ <h3 style="margin-top:32px;">DLA Seal — Primary Mark</h3>
+ <p>The circular seal is the chapter's primary identifier. Use on all official chapter communications, letterhead, and digital properties.</p>
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; margin:24px 0;">
+  <div style="text-align:center; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="assets/dla-logo.png" alt="DLA Seal — Crimson (Original)" style="max-width:180px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Seal — Crimson on Cream</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Primary use — all standard communications</p>
+  </div>
+  <div style="text-align:center; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="assets/dla-seal-v1.png" alt="DLA Seal — Elegant V1" style="max-width:180px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Seal — Elegant (V1)</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Formal publications, event programs, print</p>
+  </div>
+  <div style="text-align:center; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="assets/dla-seal-v2.png" alt="DLA Seal — Elegant V2" style="max-width:180px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Seal — Elegant (V2)</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Digital headers, presentations, merch</p>
+  </div>
+ </div>
+
+ <!-- LOGO FAMILY 2: DLA CREST / COLLABORATOR -->
+ <h3 style="margin-top:36px;">DLA Crest — Secondary Mark</h3>
+ <p>The shield/crest mark is the secondary chapter identifier. Use in co-branded materials, apparel, and contexts where the circular seal is too detailed at small sizes.</p>
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; margin:24px 0;">
+  <div style="text-align:center; padding:28px; background:#fff; border-radius:var(--radius); border:2px solid #222;">
+   <img src="assets/dla-crest-black.png" alt="DLA Crest — Black" style="max-width:160px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:#333; font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Crest — Black</p>
+   <p style="font-size:0.72rem; color:#666; margin-top:4px;">One-color print, fax, photocopy</p>
+  </div>
+  <div style="text-align:center; padding:28px; background:#70110C; border-radius:var(--radius); border:2px solid #70110C;">
+   <img src="assets/dla-crest-cream.png" alt="DLA Crest — Cream" style="max-width:160px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:#F2EBD7; font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Crest — Cream</p>
+   <p style="font-size:0.72rem; color:#F2EBD7; margin-top:4px;">Reversed — crimson backgrounds only</p>
+  </div>
+  <div style="text-align:center; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="assets/dla-crest-crimson.png" alt="DLA Crest — Crimson" style="max-width:160px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Crest — Crimson</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Default — cream or white backgrounds</p>
+  </div>
+  <div style="text-align:center; padding:28px; background:#111; border-radius:var(--radius); border:2px solid #333;">
+   <img src="assets/dla-crest-white.png" alt="DLA Crest — White" style="max-width:160px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:#fff; font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Crest — White</p>
+   <p style="font-size:0.72rem; color:#aaa; margin-top:4px;">Dark backgrounds, merchandise</p>
+  </div>
+ </div>
+
+ <!-- LOGO FAMILY 3: PROGRAM MARKS -->
+ <h3 style="margin-top:36px;">Program Marks</h3>
+ <p>Program-specific marks are used exclusively for their designated programs. They may not be substituted for the chapter's primary marks.</p>
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; margin:24px 0;">
+  <div style="text-align:center; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="assets/dla-kappa-league.png" alt="Denton-Lewisville Kappa League" style="max-width:190px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Denton-Lewisville Kappa League</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Kappa League youth program materials only</p>
+  </div>
+  <div style="text-align:center; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="assets/dla-guideright.png" alt="Guide Right Program Mark" style="max-width:160px; width:100%; height:auto;">
+   <p style="margin-top:12px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">Guide Right Program Mark</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">dlaguideright.org, Guide Right collateral only</p>
+  </div>
+ </div>
+
+ <!-- KL MARKS -->
+ <h4 style="margin-top:32px; font-family:var(--font-display); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--crimson); padding-bottom:8px; border-bottom:2px solid var(--cream-dark);">Kappa League Marks — KL Monogram Variants</h4>
+ <p style="font-size:0.88rem; margin:12px 0 20px;">The KL monogram is the primary sub-brand mark for Kappa League programming. Use the appropriate variant based on background color and context.</p>
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; margin-bottom:28px;">
+  <div style="text-align:center; padding:24px; background:#fff; border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="/img/KL 2.png" alt="KL Monogram — Crimson Fill" style="max-width:150px; width:100%; height:auto;">
+   <p style="margin-top:10px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">KL — Crimson Fill</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Light / white backgrounds</p>
+  </div>
+  <div style="text-align:center; padding:24px; background:#fff; border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="/img/KL3.png" alt="KL Monogram — Outline (Crimson/Gold)" style="max-width:150px; width:100%; height:auto;">
+   <p style="margin-top:10px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">KL — Outline (Crimson/Gold)</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">Light backgrounds, secondary use</p>
+  </div>
+  <div style="text-align:center; padding:24px; background:#2a0604; border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="/img/KL.png" alt="KL Monogram — Gold Outline on Dark" style="max-width:150px; width:100%; height:auto;">
+   <p style="margin-top:10px; font-size:0.75rem; color:rgba(242,235,215,.7); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">KL — Gold Outline</p>
+   <p style="font-size:0.72rem; color:rgba(242,235,215,.55); margin-top:4px;">Dark / crimson backgrounds</p>
+  </div>
+ </div>
+
+ <h4 style="margin-top:8px; font-family:var(--font-display); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--crimson); padding-bottom:8px; border-bottom:2px solid var(--cream-dark);">Kappa League Golf Marks</h4>
+ <p style="font-size:0.88rem; margin:12px 0 20px;">The Golf shield mark is used exclusively for Kappa League Golf tournament and related programming.</p>
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-bottom:28px;">
+  <div style="text-align:center; padding:24px; background:#fff; border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="/img/Kappa League Golf.png" alt="Kappa League Golf — Crimson Text" style="max-width:200px; width:100%; height:auto;">
+   <p style="margin-top:10px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">KL Golf — Crimson Text</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">White / light backgrounds</p>
+  </div>
+  <div style="text-align:center; padding:24px; background:#fff; border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="/img/Kappa League Golf 2.png" alt="Kappa League Golf — Gold Text" style="max-width:200px; width:100%; height:auto;">
+   <p style="margin-top:10px; font-size:0.75rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">KL Golf — Gold Text</p>
+   <p style="font-size:0.72rem; color:var(--gray-mid); margin-top:4px;">White / light backgrounds, alternate</p>
+  </div>
+  <div style="text-align:center; padding:24px; background:#70110c; border-radius:var(--radius); border:1px solid var(--cream-dark);">
+   <img src="/img/Kappa League Golf.jpg" alt="Kappa League Golf — Dark Background" style="max-width:100%; width:100%; height:auto; border-radius:4px;">
+   <p style="margin-top:10px; font-size:0.75rem; color:rgba(242,235,215,.7); font-family:var(--font-display); letter-spacing:0.06em; text-transform:uppercase;">KL Golf — Dark Background</p>
+   <p style="font-size:0.72rem; color:rgba(242,235,215,.55); margin-top:4px;">Crimson / dark event materials</p>
+  </div>
+ </div>
+
+ <div class="callout legal">
+ <div class="callout-label">Legal Notice</div>
+ <p>The Kappa Diamond (the Fraternity badge) and its facsimile are restricted to use as a badge only. It may not appear on programs, apparel, jewelry, announcements, or invitations. <em>(Statute 35, Section 7)</em></p>
+ </div>
+
+ <h3>Prohibited Logo Usage</h3>
+ <p>The six prohibited uses below apply to all chapter and Fraternity marks. When in doubt, don't — always use the official logo files provided by the Chapter or IHQ. For approvals or questions: <strong>dlakapsi@gmail.com</strong></p>
+ <div style="margin:20px 0; border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+  <img src="assets/dla-prohibited-usage.png" alt="Prohibited Logo Usage — Protecting Our Brand, Honoring Our Legacy" style="width:100%; display:block;">
+ </div>
+ <div class="callout legal" style="margin-top:16px;">
+  <div class="callout-label">Summary of Prohibitions</div>
+  <p>1. Altering colors, proportions, or design &nbsp;|&nbsp; 2. Stretching or distorting &nbsp;|&nbsp; 3. Low-legibility backgrounds &nbsp;|&nbsp; 4. Program marks as primary seal &nbsp;|&nbsp; 5. Playboy Bunny facsimile — <strong>strictly prohibited</strong> &nbsp;|&nbsp; 6. Commercial reproduction without IHQ vendor license</p>
+ </div>
+
+ <h2>4.4 Logo Color Variations Summary</h2>
+ <div class="table-wrap">
+ <table>
+ <thead><tr><th>Mark</th><th>Variation</th><th>Background</th><th>Use</th></tr></thead>
+ <tbody>
+ <tr><td>Seal (All)</td><td>Crimson</td><td>Cream #F2EBD7 or White</td><td>Default — most communications</td></tr>
+ <tr><td>Crest</td><td>Crimson</td><td>Cream #F2EBD7 or White</td><td>Default secondary mark</td></tr>
+ <tr><td>Crest</td><td>Cream</td><td>Crimson #70110C</td><td>Dark / reversed backgrounds</td></tr>
+ <tr><td>Crest</td><td>Black</td><td>White #FFFFFF</td><td>One-color print, fax, photocopy</td></tr>
+ <tr><td>Crest</td><td>White</td><td>Black or dark solid</td><td>Dark one-color applications, merch</td></tr>
+ <tr><td>Kappa League</td><td>Full color</td><td>White or Cream</td><td>Kappa League program only</td></tr>
+ <tr><td>Guide Right</td><td>Gold/black</td><td>White or Cream</td><td>Guide Right / dlaguideright.org only</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <!-- LETTERHEAD -->
+ <h2 style="margin-top:48px;">4.5 Official Letterheads</h2>
+ <p>The chapter maintains two official letterhead formats. Use only the approved digital files — never recreate letterheads manually. Both are available in the chapter's cloud storage under <code>/Brand Assets/Letterheads/</code>.</p>
+
+ <h3 style="margin-top:28px;">Letterhead 1 — Official Chapter (Centered)</h3>
+ <p style="font-size:0.85rem; color:var(--gray-mid);">Use for: General chapter correspondence, announcements, official statements</p>
+ <div style="padding:32px; background:#fff; border:1px solid #ddd; border-radius:var(--radius); margin:16px 0 28px;">
+  <img src="assets/dla-letterhead-centered.png" alt="DLA Official Chapter Letterhead — Centered" style="width:100%; max-width:680px; display:block; margin:0 auto;">
+ </div>
+
+ <h3 style="margin-top:8px;">Letterhead 2 — Polemarch Stationery (Inline)</h3>
+ <p style="font-size:0.85rem; color:var(--gray-mid);">Use for: Official communications from the Office of the Polemarch only</p>
+ <div style="padding:32px; background:#fff; border:1px solid #ddd; border-radius:var(--radius); margin:16px 0 28px;">
+  <img src="assets/dla-letterhead-polemarch.png" alt="DLA Polemarch Stationery — Inline" style="width:100%; max-width:680px; display:block; margin:0 auto;">
+ </div>
+
+ <h3>Letterhead Usage Rules</h3>
+ <div class="table-wrap"><table><thead><tr><th>Rule</th><th>Required</th></tr></thead><tbody>
+  <tr><td>Use only official digital files — never retype or recreate the header</td><td>Always</td></tr>
+  <tr><td>Letterhead 2 (Polemarch) is reserved exclusively for the Polemarch's use</td><td>Always</td></tr>
+  <tr><td>Do not crop, resize, recolor, or alter any element of the letterhead</td><td>Always</td></tr>
+  <tr><td>Body text begins no less than 0.5 inches below the letterhead rule line</td><td>Always</td></tr>
+  <tr><td>Font for body: Garamond or Source Sans Pro, minimum 11pt, color: Black</td><td>Always</td></tr>
+  <tr><td>Margins: 1 inch on all sides</td><td>Always</td></tr>
+  <tr><td>Do not place letterhead on colored or patterned backgrounds</td><td>Never</td></tr>
+  <tr><td>Do not combine letterheads or mix elements from both formats</td><td>Never</td></tr>
+ </tbody></table></div>
+
+ <h3 style="margin-top:36px;">What NOT To Do — Incorrect Letterhead Usage</h3>
+ <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin:20px 0;">
+  <div style="border:2px solid #c0392b; border-radius:var(--radius); padding:20px;">
+   <p style="color:#c0392b; font-weight:700; font-family:var(--font-display); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 10px;">Do Not — Stretch or distort</p>
+   <div style="background:#f9f9f9; padding:12px; border-radius:4px; overflow:hidden;">
+    <img src="assets/dla-letterhead-centered.png" alt="Incorrect: Stretched letterhead" style="width:100%; height:60px; object-fit:fill; display:block; filter:opacity(0.6);">
+   </div>
+   <p style="font-size:0.78rem; color:#666; margin-top:8px;">Never force the letterhead into a fixed height or stretch it horizontally. Always maintain original proportions.</p>
+  </div>
+  <div style="border:2px solid #c0392b; border-radius:var(--radius); padding:20px;">
+   <p style="color:#c0392b; font-weight:700; font-family:var(--font-display); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 10px;">Do Not — Place on colored background</p>
+   <div style="background:linear-gradient(135deg,#1a1a2e,#16213e); padding:12px; border-radius:4px;">
+    <img src="assets/dla-letterhead-centered.png" alt="Incorrect: Letterhead on dark background" style="width:100%; display:block; filter:opacity(0.7);">
+   </div>
+   <p style="font-size:0.78rem; color:#666; margin-top:8px;">Letterheads are designed for white or cream paper only. Never use on colored, dark, or patterned backgrounds.</p>
+  </div>
+  <div style="border:2px solid #c0392b; border-radius:var(--radius); padding:20px;">
+   <p style="color:#c0392b; font-weight:700; font-family:var(--font-display); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 10px;">Do Not — Use Polemarch letterhead for non-Polemarch comms</p>
+   <div style="background:#f9f9f9; padding:12px; border-radius:4px;">
+    <img src="assets/dla-letterhead-polemarch.png" alt="Incorrect: Wrong letterhead use" style="width:100%; display:block; filter:opacity(0.6);">
+   </div>
+   <p style="font-size:0.78rem; color:#666; margin-top:8px;">Letterhead 2 is restricted to the Office of the Polemarch. MAC, KOR, and other officers use Letterhead 1 only.</p>
+  </div>
+  <div style="border:2px solid #c0392b; border-radius:var(--radius); padding:20px;">
+   <p style="color:#c0392b; font-weight:700; font-family:var(--font-display); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 10px;">Do Not — Recreate or retype the header</p>
+   <div style="background:#f9f9f9; padding:16px; border-radius:4px; text-align:center; border:1px dashed #ccc;">
+    <p style="margin:0; font-size:0.8rem; color:#999; font-style:italic;">Denton Lewisville TX Alumni Chapter<br>Kappa Alpha Psi Fraternity Inc</p>
+    <hr style="border-color:#ccc;">
+   </div>
+   <p style="font-size:0.78rem; color:#666; margin-top:8px;">Never manually type or recreate the header. Always use the official file from cloud storage — unauthorized versions are not permitted.</p>
+  </div>
+ </div>
+
+ <!-- IHQ REGISTERED TRADEMARKS -->
+ <h2 style="margin-top:48px;">4.6 IHQ Registered Trademarks</h2>
+ <p>The following marks are federally registered trademarks of Kappa Alpha Psi Fraternity, Inc. No chapter member, affiliate, or vendor may reproduce, alter, or commercially use these marks without a current IHQ Vendor License. Prosecution of violators is actively enforced by IHQ.</p>
+
+ <div class="callout legal"><div class="callout-label">Legal Notice</div><p>Use of any registered trademark without authorization constitutes infringement. IHQ will act to prosecute violations. A current vendor license is required for any commercial reproduction of these marks. Contact IHQ at <strong>IHQIP@KappaAlphaPsi1911.com</strong> for licensing inquiries.</p></div>
+
+ <h3>Registered Trademark Reference — Word Marks</h3>
+ <div style="margin:20px 0; border:1px solid #ddd; border-radius:var(--radius); overflow:hidden;">
+  <img src="assets/dla-trademarks-1.png" alt="KAP Registered Word Marks — Kappa Alpha Psi, NUPE" style="width:100%; display:block;">
+ </div>
+
+ <h3>Registered Trademark Reference — Device Marks</h3>
+ <div style="margin:20px 0; border:1px solid #ddd; border-radius:var(--radius); overflow:hidden;">
+  <img src="assets/dla-trademarks-2.png" alt="KAP Registered Device Marks — Coat of Arms, Diamond K, Yo" style="width:100%; display:block;">
+ </div>
+
+ <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:20px 0;">
+  <div style="border:1px solid #ddd; border-radius:var(--radius); overflow:hidden;">
+   <img src="assets/dla-trademarks-3.png" alt="KAP Registered Marks — KAY, Psi, Kappa League" style="width:100%; display:block;">
+  </div>
+  <div style="border:1px solid #ddd; border-radius:var(--radius); overflow:hidden;">
+   <img src="assets/dla-trademarks-4.png" alt="KAP Registered Marks — Kappa Kamp, Diamond K, 1911" style="width:100%; display:block;">
+  </div>
+ </div>
+
+ <div class="callout warning"><div class="callout-label">Key Restrictions</div>
+ <p>The following are specifically prohibited without a vendor license: reproducing the Coat of Arms, using "NUPE" on merchandise, printing "KAΨ" or the Psi symbol on apparel or products, and using "1911" in any commercial context associated with the Fraternity. The Diamond K mark requires written IHQ approval for any use.</p>
+ </div>
+
+ </div>
+
+ <!-- CHAPTERS 3, 5–20 as simplified but complete pages -->
+ <div id="page-ch3" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Chapter 3</div><h1 class="hero-title">Brand Communications</h1><p class="hero-desc">Voice, tone, professional language, writing standards, and accessibility.</p></div>
+ <h2>3.1 Voice</h2><p>The chapter's communications voice is <strong>authoritative yet approachable</strong>. Confident, not arrogant. Warm, not casual. Informative, not academic. Inspiring, not preachy.</p>
+ <h2>3.2 Tone by Context</h2>
+ <div class="table-wrap"><table><thead><tr><th>Context</th><th>Appropriate Tone</th><th>Example</th></tr></thead><tbody>
+ <tr><td>Event Announcements</td><td>Enthusiastic, welcoming</td><td>"Join us as we celebrate another year of achievement and brotherhood."</td></tr>
+ <tr><td>Member Communications</td><td>Professional, collegial</td><td>"Brothers, please review the attached agenda for our upcoming meeting."</td></tr>
+ <tr><td>Community Outreach</td><td>Warm, community-focused</td><td>"We are proud to partner with the City of Denton to serve our neighbors."</td></tr>
+ <tr><td>Press Releases</td><td>Formal, newsworthy</td><td>"The Denton-Lewisville Alumni Chapter today announced..."</td></tr>
+ <tr><td>Social Media</td><td>Engaging, accessible</td><td>"Big things happening in North Texas! See you Saturday."</td></tr>
+ <tr><td>Crisis Communications</td><td>Calm, factual, measured</td><td>"We are aware of the situation and are addressing it."</td></tr>
+ </tbody></table></div>
+ <h2>3.3 Writing Standards</h2>
+ <ul><li>Write in <strong>active voice</strong>.</li><li>Use the <strong>Oxford comma</strong> in all lists.</li><li>Proofread every communication before publication.</li><li>Avoid slang, colloquialisms, and profanity in all official communications.</li><li>No emojis in press releases, newsletters, or formal emails.</li><li>Capitalize "Fraternity," "Brotherhood," "Chapter," and "Brothers" as proper nouns.</li></ul>
+ <div class="callout tip"><div class="callout-label"> Best Practice</div><p>Before publishing any communication, ask: <em>"Would I be proud if the Grand Polemarch read this?"</em> If the answer is no — revise it.</p></div>
+ </div>
+
+ <div id="page-ch5" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Chapter 5</div><h1 class="hero-title">Website Standards</h1><p class="hero-desc">Structure, accessibility, SEO, security, backups, and certification requirements for dlakappa.org.</p></div>
+ <h2>5.1 Official Domains</h2>
+ <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Purpose</th></tr></thead><tbody>
+ <tr><td><a href="https://www.dlakappa.org" target="_blank">www.dlakappa.org</a></td><td>Primary chapter website</td></tr>
+ <tr><td><a href="https://www.dlaguideright.org" target="_blank">www.dlaguideright.org</a></td><td>Guide Right / Kappa League program website</td></tr>
+ </tbody></table></div>
+ <h2>5.2 Required Content</h2>
+ <ul><li>Chapter Overview — History, mission, vision, and leadership</li><li>Programs & Initiatives — Guide Right, Kappa League, community service</li><li>Events — Upcoming events and past recaps</li><li>Contact — Email, mailing address, social media links</li><li>Membership information</li><li><strong>Anti-hazing statement</strong> (required by IHQ)</li></ul>
+ <h2>5.3 Security Requirements</h2>
+ <ul><li>SSL certificate active at all times (https:// required)</li><li>All software and plugins updated within 30 days of release</li><li>Weekly automated backups stored off-site</li><li>Password transfer required immediately at officer transition</li></ul>
+ <h2>5.4 Website Audit Checklist</h2>
+ <ul class="checklist"><li>SSL certificate valid and active</li><li>All pages load without errors</li><li>All links are functional</li><li>Anti-hazing statement present</li><li>All images have alt text</li><li>All videos have closed captions</li><li>Contact information is current</li><li>No autoplaying audio or video</li><li>Recent backup confirmed</li><li>SEO audit completed</li><li>WCAG 2.1 AA accessibility audit passed</li></ul>
+ </div>
+
+ <div id="page-ch6" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Chapter 6</div><h1 class="hero-title">Social Media</h1><p class="hero-desc">Approved platforms, posting frequency, content calendar, hashtags, moderation, and crisis response.</p></div>
+ <h2>6.1 Approved Platforms</h2>
+ <div class="table-wrap"><table><thead><tr><th>Platform</th><th>Primary Use</th><th>Frequency</th></tr></thead><tbody>
+ <tr><td> Facebook</td><td>Events, announcements, community outreach</td><td>3–5 posts/week</td></tr>
+ <tr><td> Instagram</td><td>Visual storytelling, reels, stories</td><td>4–6 posts/week + daily stories</td></tr>
+ <tr><td> X (Twitter)</td><td>Real-time updates, commentary</td><td>Daily</td></tr>
+ <tr><td> LinkedIn</td><td>Professional achievements, impact</td><td>1–2 posts/week</td></tr>
+ <tr><td>️ YouTube</td><td>Event recaps, interviews, livestreams</td><td>Monthly minimum</td></tr>
+ <tr><td> Chapter App Comms</td><td>Internal Brotherhood coordination only</td><td>As needed — official business only</td></tr>
+ </tbody></table></div>
+ <h2>6.2 Official Hashtags</h2>
+ <div class="card-grid">
+ <div class="card"><div class="card-title">#DLAKappa</div><div class="card-desc">All official chapter posts across all platforms.</div></div>
+ <div class="card"><div class="card-title">#DLANupes</div><div class="card-desc">Brotherhood-focused posts; informal recognition content.</div></div>
+ <div class="card"><div class="card-title">#AchievementInAction</div><div class="card-desc">Service events, scholarship, and community impact posts.</div></div>
+ <div class="card"><div class="card-title">#KappaAlphaPsi</div><div class="card-desc">Posts connecting chapter to national Fraternity community.</div></div>
+ <div class="card"><div class="card-title">#BrotherhoodFirst</div><div class="card-desc">Chapter motto-driven content; fraternal bond events.</div></div>
+ <div class="card"><div class="card-title">#GuideRight</div><div class="card-desc">All Kappa League and Guide Right program content.</div></div>
+ </div>
+ <div class="callout warning"><div class="callout-label">️ Chapter App Comms Policy</div><p>Chapter App Comms effectively functions as a public space — messages can be screenshot and distributed externally. All Brothers should communicate in Chapter App Comms as if the message may become public. Brothers not financially active at all three levels will be removed.</p></div>
+ </div>
+
+ <!-- Remaining chapters — condensed but complete -->
+ <div id="page-ch7" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 7</div><h1 class="hero-title">Email Communications</h1><p class="hero-desc">Official email accounts, content standards, templates, distribution lists, and best practices.</p></div>
+ <h2>7.1 Official Email Standard</h2><p>All chapter business must be conducted through official <strong>@dlakappa.org</strong> email addresses. Personal email accounts must never be used for chapter communications.</p>
+ <div class="callout policy"><div class="callout-label"> Policy</div><p>ALL official correspondence must be submitted to the Keeper of Records. No communication is official until received and filed by the KOR.</p></div>
+ <h2>7.2 Email Types</h2>
+ <div class="table-wrap"><table><thead><tr><th>Type</th><th>From</th><th>Approval</th></tr></thead><tbody>
+ <tr><td>Meeting Notice</td><td>KOR</td><td>KOR</td></tr>
+ <tr><td>Event Announcement</td><td>MAC / Media Committee</td><td>MAC</td></tr>
+ <tr><td>Newsletter</td><td>Reporter / MAC</td><td>Polemarch</td></tr>
+ <tr><td>Press Release (Email)</td><td>MAC / Reporter</td><td>Polemarch</td></tr>
+ <tr><td>Emergency Communication</td><td>Polemarch</td><td>Polemarch</td></tr>
+ </tbody></table></div>
+ <h2>7.3 Best Practices</h2>
+ <ul class="checklist"><li>Proofread every email before sending</li><li>Respond to chapter emails within 24–48 business hours</li><li>Test all hyperlinks and attachments before sending</li><li>Use BCC for large group emails to protect privacy</li><li>Always include the standardized email signature</li><li>Submit all correspondence to the KOR</li></ul>
+ </div>
+
+ <div id="page-ch8" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Chapter 8</div><h1 class="hero-title">Mobile Communications</h1><p class="hero-desc">The DLA Chapter App, communication priority order, official uses, event communication timeline, push notification standards, approval workflow, and emergency protocols.</p></div>
+
+ <h2>8.1 The DLA Chapter App — <em>Denton Lewisville Kappas</em></h2>
+ <p>The official chapter mobile app is <strong>Denton Lewisville Kappas</strong>, powered by Flipside Apps. It serves as the chapter's primary digital hub for member resources, announcements, events, and internal communications.</p>
+
+ <div style="display:flex; align-items:flex-start; gap:28px; flex-wrap:wrap; margin:24px 0; padding:28px; background:var(--cream); border-radius:var(--radius); border:1px solid var(--cream-dark);">
+  <div style="flex:0 0 auto; text-align:center;">
+   <div style="width:90px; height:90px; background:#70110C; border-radius:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">
+    <span style="color:#F2EBD7; font-family:var(--font-display); font-size:1.4rem; font-weight:700; letter-spacing:0.05em;">DLA</span>
+   </div>
+   <p style="font-size:0.72rem; color:var(--gray-mid); font-family:var(--font-display); letter-spacing:0.05em; text-transform:uppercase; margin:0;">Chapter App</p>
+  </div>
+  <div style="flex:1; min-width:220px;">
+   <p style="margin:0 0 10px;"><strong>App Name:</strong> Denton Lewisville Kappas</p>
+   <p style="margin:0 0 10px;"><strong>Platform:</strong> Flipside Apps (Progressive Web App)</p>
+   <p style="margin:0 0 10px;"><strong>URL:</strong> <a href="https://dlakappas.flipsideapps.com/" target="_blank" style="color:var(--crimson);">dlakappas.flipsideapps.com</a></p>
+   <p style="margin:0 0 10px;"><strong>Access:</strong> Members only — login required</p>
+   <p style="margin:0;"><strong>Administrator:</strong> Webmaster (Bro. MD Taylor) in coordination with MAC</p>
+  </div>
+ </div>
+
+ <h3>8.1.1 Purpose &amp; Scope</h3>
+ <p>The chapter app centralizes member-facing resources and communications in a single, branded environment. It is the authoritative source for chapter announcements and replaces ad-hoc messaging threads for official business.</p>
+ <div class="table-wrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody>
+  <tr><td>Announcements</td><td>Official chapter news, decisions, and updates pushed to all members</td></tr>
+  <tr><td>Event Calendar</td><td>Chapter events, deadlines, and meeting schedules</td></tr>
+  <tr><td>Member Directory</td><td>Contact information for active chapter members</td></tr>
+  <tr><td>Document Library</td><td>Key chapter documents, forms, and resources</td></tr>
+  <tr><td>Push Notifications</td><td>Time-sensitive alerts for meetings, events, and urgent business</td></tr>
+  <tr><td>Chapter App Comms</td><td>Internal brotherhood messaging (see Section 8.3)</td></tr>
+ </tbody></table></div>
+
+ <h3>8.1.2 Access &amp; Onboarding</h3>
+ <ul>
+  <li>All active members in good financial standing must be registered in the app.</li>
+  <li>New members are added by the Webmaster within 7 days of joining the chapter.</li>
+  <li>Members who become financially inactive are removed from the app after 30 days' notice.</li>
+  <li>The app is accessed via browser at <a href="https://dlakappas.flipsideapps.com/" target="_blank" style="color:var(--crimson);">dlakappas.flipsideapps.com</a> or by installing it as a PWA (add to home screen).</li>
+ </ul>
+
+ <div class="callout tip"><div class="callout-label">How to Install</div><p>On iPhone: Open Safari → navigate to <strong>dlakappas.flipsideapps.com</strong> → tap the Share button → select <em>Add to Home Screen</em>. On Android: Open Chrome → navigate to the URL → tap the menu → select <em>Add to Home Screen</em>.</p></div>
+
+ <h3>8.1.3 Content Governance</h3>
+ <div class="table-wrap"><table><thead><tr><th>Content Type</th><th>Who Can Post</th><th>Approval Required</th></tr></thead><tbody>
+  <tr><td>Official Announcements</td><td>Polemarch, MAC</td><td>Polemarch</td></tr>
+  <tr><td>Event Listings</td><td>MAC, KOR</td><td>MAC</td></tr>
+  <tr><td>Document Uploads</td><td>KOR, Asst. KOR</td><td>KOR</td></tr>
+  <tr><td>Push Notifications</td><td>Webmaster, MAC</td><td>Polemarch or VP</td></tr>
+  <tr><td>Directory Updates</td><td>Webmaster</td><td>Webmaster</td></tr>
+ </tbody></table></div>
+
+ <h3>8.1.4 Member Usage Guide</h3>
+ <p>The DLA Chapter App is your primary hub for chapter information, events, documents, and brother-to-brother communication. This section walks you through each feature of the app.</p>
+
+ <div class="callout tip"><div class="callout-label">Getting Started</div><p>Navigate to <a href="https://dlakappas.flipsideapps.com/" target="_blank" style="color:var(--crimson);">dlakappas.flipsideapps.com</a> in your browser. Sign in with your chapter-issued credentials. For the best experience, install the app to your home screen using the instructions in Section 8.1.2.</p></div>
+
+ <h4 style="margin:1.5rem 0 0.5rem; color:var(--crimson); font-family:var(--font-display); letter-spacing:0.04em;">Announcements</h4>
+ <p>Announcements are the official voice of the chapter. Only MAC-approved content appears here.</p>
+ <ul>
+  <li><strong>Reading:</strong> Tap the Announcements section from the app home screen. Scroll to view the full post. Tap any announcement to read its full text and attachments.</li>
+  <li><strong>Sharing:</strong> Use the in-app share icon to forward an announcement to external contacts. Do not screenshot and redistribute — share only via the official share function so context is preserved.</li>
+  <li><strong>Notifications:</strong> You will receive a push notification each time a new announcement is posted. Do not disable these — announcements include time-sensitive chapter business.</li>
+ </ul>
+
+ <h4 style="margin:1.5rem 0 0.5rem; color:var(--crimson); font-family:var(--font-display); letter-spacing:0.04em;">Events</h4>
+ <p>The Events section is the authoritative chapter calendar. All chapter events, community service opportunities, and social functions are listed here.</p>
+ <ul>
+  <li><strong>Viewing Events:</strong> Tap Events to browse the calendar. Switch between list view and calendar view using the toggle at the top.</li>
+  <li><strong>RSVPing:</strong> Tap an event and select RSVP. Provide a headcount if prompted. RSVP deadlines are set per event — observe them so MAC can plan accordingly.</li>
+  <li><strong>Adding to Personal Calendar:</strong> After tapping an event, select <em>Add to Calendar</em> to sync it to your phone's native calendar app (iPhone Calendar or Google Calendar).</li>
+  <li><strong>Event Details:</strong> Each listing includes date, time, location, attire requirements, and any pre-event obligations. Read the full detail before contacting an officer with questions that are already answered there.</li>
+ </ul>
+
+ <h4 style="margin:1.5rem 0 0.5rem; color:var(--crimson); font-family:var(--font-display); letter-spacing:0.04em;">Member Directory</h4>
+ <p>The Directory contains contact information for all active chapter members.</p>
+ <ul>
+  <li><strong>Searching:</strong> Use the search bar at the top of the Directory section. You can search by name, role, or line name.</li>
+  <li><strong>Contacting a Brother:</strong> Tap a brother's card to view his profile. Tap the phone or email icon to initiate contact directly from the app.</li>
+  <li><strong>Keeping Your Profile Current:</strong> Your profile information is maintained by the Webmaster (Bro. MD Taylor). If your phone number, email, or other information changes, notify the Webmaster immediately.</li>
+ </ul>
+
+ <h4 style="margin:1.5rem 0 0.5rem; color:var(--crimson); font-family:var(--font-display); letter-spacing:0.04em;">Document Library</h4>
+ <p>All official chapter documents — bylaws, forms, minutes, financial reports, and reference materials — are stored here.</p>
+ <ul>
+  <li><strong>Finding Documents:</strong> Navigate to the Documents section. Documents are organized by category (Governance, Financial, Forms, Archive). Use the search bar to find documents by name.</li>
+  <li><strong>Downloading:</strong> Tap a document and select Download or Open. PDFs open natively in your browser or phone's PDF viewer.</li>
+  <li><strong>Submitting Forms:</strong> Some forms (e.g., reimbursement requests, committee sign-ups) may be submitted directly through the app. Follow the on-screen instructions for each form.</li>
+  <li><strong>Requesting a Document:</strong> If you cannot find a document you believe should be in the library, contact KOR Bro. Julian Dozier or Asst. KOR Bro. Omari Souza.</li>
+ </ul>
+
+ <h4 style="margin:1.5rem 0 0.5rem; color:var(--crimson); font-family:var(--font-display); letter-spacing:0.04em;">Chapter App Comms (In-App Messaging)</h4>
+ <p>Chapter App Comms is the in-app group messaging channel for internal brotherhood coordination. See Section 8.3 for the full messaging policy. Key usage points:</p>
+ <ul>
+  <li><strong>Posting:</strong> Tap the Comms or Chat section. Type your message and tap Send. Keep messages professional and relevant to chapter business.</li>
+  <li><strong>Replying:</strong> Tap and hold a message (or use the reply icon) to reply in-thread. Use threaded replies for topic-specific discussions to keep the main feed clean.</li>
+  <li><strong>Tagging a Brother:</strong> Type <code>@</code> followed by a brother's name to tag him directly. Only tag brothers when their specific attention is required — avoid mass-tagging.</li>
+  <li><strong>Media:</strong> You may attach images to messages for chapter-business purposes (event photos, documents, proofs). Do not share personal or unofficial content in Chapter App Comms.</li>
+ </ul>
+
+ <h4 style="margin:1.5rem 0 0.5rem; color:var(--crimson); font-family:var(--font-display); letter-spacing:0.04em;">Push Notifications</h4>
+ <ul>
+  <li>Enable push notifications when prompted during app installation. Without them, you will miss time-sensitive chapter communications.</li>
+  <li>Notifications are sent for: new announcements, new events, urgent chapter alerts, and direct tags in Chapter App Comms.</li>
+  <li>If you stop receiving notifications, verify your device notification settings for the app and your browser/PWA permissions.</li>
+ </ul>
+
+ <h3 style="margin:2rem 0 0.75rem;">8.1.5 Member Do's &amp; Don'ts</h3>
+ <div class="table-wrap"><table><thead><tr><th style="width:50%">✅ Do</th><th style="width:50%">🚫 Don't</th></tr></thead><tbody>
+  <tr><td>Keep your profile information current</td><td>Share your login credentials with anyone</td></tr>
+  <tr><td>RSVP to events by the stated deadline</td><td>Screenshot and redistribute announcements or Comms messages externally</td></tr>
+  <tr><td>Use Chapter App Comms for chapter business only</td><td>Use Chapter App Comms for personal conversations or off-topic content</td></tr>
+  <tr><td>Tag brothers only when their attention is specifically needed</td><td>Mass-tag (@everyone) without officer authorization</td></tr>
+  <tr><td>Report technical issues to Bro. MD Taylor (Webmaster)</td><td>Attempt to access, edit, or delete another brother's content</td></tr>
+  <tr><td>Download official documents from the Document Library</td><td>Distribute documents outside the chapter without KOR approval</td></tr>
+  <tr><td>Keep push notifications enabled</td><td>Post unofficial chapter communications on the app without MAC approval</td></tr>
+ </tbody></table></div>
+
+ <h3 style="margin:2rem 0 0.75rem;">8.1.6 Frequently Asked Questions</h3>
+
+ <div class="accordion-group">
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">I can't log in to the app. <span class="accordion-icon"></span></div>
+   <div class="accordion-body"><p>First, verify you are navigating to <strong>dlakappas.flipsideapps.com</strong> (not a search engine result). If your credentials are not working, contact Webmaster Bro. MD Taylor to reset your access. Do not attempt to create a new account — accounts are provisioned centrally.</p></div>
+  </div>
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">I'm not receiving push notifications. <span class="accordion-icon"></span></div>
+   <div class="accordion-body"><p><strong>iPhone:</strong> Go to Settings → Notifications → your browser (Safari) or the app, and ensure "Allow Notifications" is on. <strong>Android:</strong> Go to Settings → Apps → Chrome (or your browser) → Notifications and enable them. If notifications were previously blocked, you may need to re-grant permission from your browser settings. Contact Bro. MD Taylor if the issue persists.</p></div>
+  </div>
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">How do I find a brother's phone number or email? <span class="accordion-icon"></span></div>
+   <div class="accordion-body"><p>Open the app → tap Directory → search by name. Tap the brother's card to view his contact details and tap the phone or email icon to contact him directly. If a brother's information is missing or incorrect, notify Bro. MD Taylor.</p></div>
+  </div>
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">How do I add an event to my personal calendar? <span class="accordion-icon"></span></div>
+   <div class="accordion-body"><p>Open the Events section → tap the event → tap <em>Add to Calendar</em>. This exports the event to your phone's native calendar (iCal or Google Calendar). If the option doesn't appear, ensure your browser has calendar access permissions.</p></div>
+  </div>
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">A document I need isn't in the library. <span class="accordion-icon"></span></div>
+   <div class="accordion-body"><p>Contact KOR Bro. Julian Dozier or Asst. KOR Bro. Omari Souza to request the document be added. If the document is time-sensitive, reach out via Chapter App Comms and tag the KOR directly.</p></div>
+  </div>
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">The app seems outdated or isn't loading correctly. <span class="accordion-icon"></span></div>
+   <div class="accordion-body"><p>PWA apps are cached for offline use. Force a refresh: <strong>iPhone (Safari):</strong> Close and reopen the app, or clear the Safari website data for dlakappas.flipsideapps.com. <strong>Android (Chrome):</strong> Open Chrome → tap the three-dot menu → Settings → Privacy → Clear Browsing Data (check Cached Images and Files). If the issue persists, contact Bro. MD Taylor.</p></div>
+  </div>
+  <div class="accordion-item">
+   <div class="accordion-header" onclick="toggleAccordion(this)">Who do I contact for help? <span class="accordion-icon"></span></div>
+   <div class="accordion-body">
+    <ul>
+     <li><strong>Technical issues (login, notifications, app errors):</strong> Webmaster — Bro. MD Taylor</li>
+     <li><strong>Content questions (announcements, events, documents):</strong> MAC or KOR Bro. Julian Dozier</li>
+     <li><strong>Messaging policy questions:</strong> VP Bro. Kirk Nobles or Polemarch Bro. Duncan E. Brown</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+
+ <h2>8.2 Communication Priority Order</h2>
+ <p>Unless otherwise directed by the Polemarch, official chapter communications shall follow this priority order. Members are expected to regularly monitor the DLA Mobile App for official chapter information.</p>
+ <div class="table-wrap"><table><thead><tr><th>#</th><th>Platform</th><th>Purpose</th></tr></thead><tbody>
+ <tr><td><strong>1</strong></td><td><strong>DLA Mobile App</strong></td><td>Official Chapter Communications — primary platform</td></tr>
+ <tr><td>2</td><td>Email</td><td>Official Notices &amp; Supporting Documents</td></tr>
+ <tr><td>3</td><td>Text Message</td><td>Emergency Notifications Only</td></tr>
+ <tr><td>4</td><td>Chapter Website</td><td>Public Information</td></tr>
+ <tr><td>5</td><td>Social Media</td><td>Public Promotion &amp; Recruitment</td></tr>
+ </tbody></table></div>
+ <div class="callout policy"><div class="callout-label">Policy</div><p>Failure to monitor the DLA Mobile App or enable notifications does not exempt members from published deadlines or chapter requirements.</p></div>
+
+ <h2>8.3 Chapter App Comms — Internal Messaging</h2>
+ <p>Chapter App Comms is the in-app messaging feature used for internal Brotherhood coordination. It supplements, but does not replace, official email communications.</p>
+ <div class="callout warning"><div class="callout-label">Policy</div><p>Chapter App Comms effectively functions as a public space — messages can be screenshot and distributed externally. All Brothers must communicate in Chapter App Comms as if the message may become public. Brothers not financially active at all three levels will be removed.</p></div>
+ <ul>
+  <li>Chapter App Comms is for chapter business only — not personal conversations or social exchanges.</li>
+  <li>No sensitive financial, disciplinary, or personnel matters are to be discussed in the app.</li>
+  <li>Profanity, disrespect toward brothers, and any content that violates the Fraternity's Code of Conduct is prohibited.</li>
+  <li>The Webmaster or Polemarch may remove members from channels for violations.</li>
+ </ul>
+
+ <h2>8.4 Notification Standards</h2>
+ <ul>
+  <li>All push notifications must be approved by the Polemarch or Vice Polemarch before sending.</li>
+  <li>Messages must include: who, what, when, and where.</li>
+  <li>Do not send push notifications between 10:00 PM and 7:00 AM except in genuine emergencies.</li>
+  <li>Proofread all messages before sending — notifications cannot be recalled.</li>
+  <li>Limit push notifications to no more than 3 per week absent an emergency.</li>
+ </ul>
+
+ <h3>Checklist — App Content Review</h3>
+ <ul class="checklist">
+  <li>Event listings reviewed and approved before publishing</li>
+  <li>All documents in the library are current (no outdated versions)</li>
+  <li>Member directory reviewed at the start of each fiscal year</li>
+  <li>Inactive members removed within 30 days of losing good standing</li>
+  <li>App credentials secured and accessible only to Webmaster and Polemarch</li>
+  <li>App URL (dlakappas.flipsideapps.com) current and accessible</li>
+ </ul>
+ <h2>8.5 Official Uses of the Mobile App</h2>
+ <p>The app shall serve as the official source for the following content types:</p>
+ <div class="table-wrap"><table><thead><tr><th>Category</th><th>Content</th></tr></thead><tbody>
+ <tr><td>Announcements</td><td>Chapter announcements, decisions, and official updates</td></tr>
+ <tr><td>Events</td><td>Event information, registration links, and RSVP management</td></tr>
+ <tr><td>Notifications</td><td>Push notifications for time-sensitive information</td></tr>
+ <tr><td>Committees</td><td>Committee pages and information</td></tr>
+ <tr><td>Training</td><td>Training materials and certification resources</td></tr>
+ <tr><td>Calendar</td><td>Chapter calendar, meeting agendas and documents</td></tr>
+ <tr><td>Financial</td><td>Financial information (when authorized)</td></tr>
+ <tr><td>Forms &amp; Surveys</td><td>Chapter forms, surveys, and approved voting</td></tr>
+ <tr><td>Member Resources</td><td>Kappa League, Guide Right, scholarship information</td></tr>
+ <tr><td>Archive</td><td>Archived communications for institutional continuity</td></tr>
+ </tbody></table></div>
+
+ <h2>8.6 Event Communication Timeline</h2>
+ <p>Each event published to the Mobile App shall follow this communication timeline. The Event Insurance Checklist (see Chapter 13) must be approved before any event is advertised.</p>
+ <div class="timeline">
+ <div class="timeline-item"><div class="timeline-date">30 Days Prior</div><div class="timeline-title">Launch</div><div class="timeline-body">Event published in Mobile App · Event added to Chapter Calendar · Registration opened · Initial Push Notification sent · Website updated</div></div>
+ <div class="timeline-item"><div class="timeline-date">21 Days Prior</div><div class="timeline-title">Promotion Begins</div><div class="timeline-body">Event Flyer published · Social Media Campaign begins · Email Campaign begins</div></div>
+ <div class="timeline-item"><div class="timeline-date">14 Days Prior</div><div class="timeline-title">Reminder</div><div class="timeline-body">Reminder Push Notification sent · Committee Reminder issued</div></div>
+ <div class="timeline-item"><div class="timeline-date">7 Days Prior</div><div class="timeline-title">Final Details</div><div class="timeline-body">Final event details published: Parking information · Dress Code · Required Documents · QR Codes</div></div>
+ <div class="timeline-item"><div class="timeline-date">3 Days Prior</div><div class="timeline-title">Final Push</div><div class="timeline-body">Final Push Notification to all members</div></div>
+ <div class="timeline-item"><div class="timeline-date">Event Day</div><div class="timeline-title">Live</div><div class="timeline-body">Live updates (if needed) · Schedule changes · Emergency notifications</div></div>
+ <div class="timeline-item"><div class="timeline-date">Within 5 Business Days</div><div class="timeline-title">Post-Event</div><div class="timeline-body">Photos published · Thank you message posted · Event Recap published · Survey posted</div></div>
+ </div>
+
+ <h2>8.7 Required App Content Per Event</h2>
+ <p>Each chapter event published to the app must include all of the following fields. Incomplete event listings will not be approved for publication.</p>
+ <div class="table-wrap"><table><thead><tr><th>Required Field</th><th>Notes</th></tr></thead><tbody>
+ <tr><td>Event Title</td><td>Official name as approved by MAC</td></tr>
+ <tr><td>Description</td><td>Full event description, purpose, and target audience</td></tr>
+ <tr><td>Date &amp; Time</td><td>Start and end time</td></tr>
+ <tr><td>Location</td><td>Full address and parking information</td></tr>
+ <tr><td>Registration Link</td><td>Active link or "No registration required"</td></tr>
+ <tr><td>Contact Person</td><td>Name and email of event chair</td></tr>
+ <tr><td>Sponsoring Committee</td><td>Committee responsible for the event</td></tr>
+ <tr><td>Dress Code</td><td>Attire requirements</td></tr>
+ <tr><td>Event Flyer</td><td>MAC-approved flyer image</td></tr>
+ <tr><td>Event Insurance Approval</td><td>Checklist completed (internal — not displayed publicly)</td></tr>
+ <tr><td>Applicable Forms</td><td>Any required forms attached or linked</td></tr>
+ </tbody></table></div>
+
+ <h2>8.8 Mobile App Content Standards</h2>
+ <p>All content published within the app shall follow chapter Branding Standards (see Chapter 4). Content shall be:</p>
+ <div class="table-wrap"><table><thead><tr><th>Standard</th><th>Requirement</th></tr></thead><tbody>
+ <tr><td>Accurate</td><td>Verified by the submitting committee before submission</td></tr>
+ <tr><td>Professional</td><td>Free of profanity, slang, or inappropriate content</td></tr>
+ <tr><td>Timely</td><td>Published on schedule per Section 8.6 event timeline</td></tr>
+ <tr><td>Accessible</td><td>Alt text on images; readable font sizes; plain language</td></tr>
+ <tr><td>Family Friendly</td><td>No alcohol imagery, sexually explicit content, or offensive material</td></tr>
+ <tr><td>Properly Branded</td><td>Approved logos, colors, and typography only</td></tr>
+ <tr><td>ADA Conscious</td><td>Accessible to members with disabilities where practical</td></tr>
+ </tbody></table></div>
+ <div class="callout warning"><div class="callout-label">Prohibited App Content</div><p>The following shall never appear in official app content: alcohol consumption imagery, sexually explicit material, nudity, profanity, hate speech, political endorsements, gambling promotion, offensive memes, copyrighted material without license, defamatory statements, or misleading information.</p></div>
+
+ <h2>8.9 App Publication Approval Workflow</h2>
+ <div class="timeline">
+ <div class="timeline-item"><div class="timeline-date">Step 1</div><div class="timeline-title">Committee Planning</div><div class="timeline-body">Sponsoring committee prepares the event request with all required fields and completes the Event Insurance Checklist.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 2</div><div class="timeline-title">Event Request Submitted</div><div class="timeline-body">Event request submitted to MAC with all supporting materials per submission timeline.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 3</div><div class="timeline-title">Media &amp; Communications Review</div><div class="timeline-body">MAC reviews for branding compliance, completeness, and content standards.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 4</div><div class="timeline-title">Vice Polemarch Review</div><div class="timeline-body">Vice Polemarch review when required (major events, Province/National events, fundraisers).</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 5</div><div class="timeline-title">Publication to DLA Mobile App</div><div class="timeline-body">Webmaster publishes to the app after final approval.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 6</div><div class="timeline-title">Push Notification</div><div class="timeline-body">Push notification sent to all members per Notification Standards (Section 8.4).</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 7</div><div class="timeline-title">Email Distribution</div><div class="timeline-body">Email sent to chapter distribution list.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 8</div><div class="timeline-title">Website Update</div><div class="timeline-body">Chapter website updated if the event is public-facing.</div></div>
+ </div>
+
+ <h2>8.10 Administrator Responsibilities</h2>
+ <p>Only authorized administrators designated by the Media &amp; Communications Committee may perform the following functions. Administrative access shall be limited and reviewed annually.</p>
+ <ul>
+  <li>Publish announcements and push notifications</li>
+  <li>Update event calendar listings</li>
+  <li>Upload and archive documents</li>
+  <li>Publish event pages</li>
+  <li>Manage member groups and access levels</li>
+  <li>Edit navigation and app structure</li>
+  <li>Archive content at the end of each fiscal year</li>
+ </ul>
+ <div class="callout policy"><div class="callout-label">Access Policy</div><p>No committee, officer, or chapter entity shall independently publish official chapter announcements, event promotions, or mass member communications without MAC review and approval. Administrative credentials shall be secured and accessible only to the Webmaster and Polemarch.</p></div>
+
+ <h2>8.11 Emergency Communications via the App</h2>
+ <p>The Mobile App shall serve as the primary emergency communication platform. Emergency messages may also be distributed by email and text message when appropriate.</p>
+ <p>Examples of emergency communications:</p>
+ <ul>
+  <li>Meeting cancellations or venue changes</li>
+  <li>Inclement weather or safety notices</li>
+  <li>Emergency chapter announcements</li>
+  <li>Schedule changes affecting members</li>
+  <li>Province updates affecting chapter operations</li>
+ </ul>
+
+ <h2>8.12 Communication Governance</h2>
+ <p>To ensure consistent messaging and preserve institutional continuity across administrations:</p>
+ <ul>
+  <li>All chapter communications shall originate through the Media &amp; Communications Committee.</li>
+  <li>No committee, commission, officer, or chapter entity shall independently publish official announcements without MAC review and approval.</li>
+  <li>The MAC Committee serves as the chapter's communications clearinghouse — ensuring message accuracy, branding consistency, legal compliance, archival preservation, and coordinated timing.</li>
+  <li>Communication requests shall follow the established submission timelines and approval workflow.</li>
+  <li>The Mobile App shall remain the chapter's official repository for member communications, supporting long-term continuity between administrations.</li>
+ </ul>
+
+ </div>
+
+ <div id="page-ch9" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 9</div><h1 class="hero-title">Photography</h1><p class="hero-desc">Event coverage, portrait standards, editing, consent forms, naming conventions, and storage.</p></div>
+ <h2>9.1 Required Shot List</h2>
+ <div class="table-wrap"><table><thead><tr><th>Shot Type</th><th>Description</th><th>Qty</th></tr></thead><tbody>
+ <tr><td>Venue / Establishing</td><td>Wide-angle exterior and interior before guests arrive</td><td>3–5</td></tr>
+ <tr><td>Leadership Portraits</td><td>Individual, in-focus, well-lit portraits of officers</td><td>1+ per officer</td></tr>
+ <tr><td>Full Chapter Group Photo</td><td>Official group of all attending Brothers</td><td>3–5 variations</td></tr>
+ <tr><td>Program Action</td><td>Candid and posed shots of the event program</td><td>20–50+</td></tr>
+ <tr><td>Award / Recognition</td><td>Handshake shots for each recipient</td><td>3–5 per recipient</td></tr>
+ </tbody></table></div>
+ <h2>9.2 File Naming Convention</h2>
+ <div class="callout"><div class="callout-label">Standard Format</div><p><code>YYYY-MM-DD_EventName_###.jpg</code><br>Example: <code>2025-03-15_AchievementGala_001.jpg</code></p></div>
+ <h2>9.3 Consent Requirements</h2>
+ <div class="table-wrap"><table><thead><tr><th>Situation</th><th>Consent Required</th></tr></thead><tbody>
+ <tr><td>General public event</td><td>Verbal consent acceptable</td></tr>
+ <tr><td>Identifiable portrait in publications</td><td>Written Photo Release Form</td></tr>
+ <tr><td>Minor participants (under 18)</td><td>Written parental/guardian consent required</td></tr>
+ <tr><td>Images used in advertising</td><td>Written Photo Release Form</td></tr>
+ </tbody></table></div>
+ <h2>9.4 Photography Checklist</h2>
+ <ul class="checklist"><li>Assignment confirmed with Media Committee</li><li>All equipment tested and backup batteries charged</li><li>Consent forms obtained where required</li><li>Shot list reviewed and confirmed</li><li>All photos backed up from memory card post-event</li><li>Editing completed within 72 hours</li><li>Files named per naming convention</li><li>Final images uploaded to chapter cloud storage</li></ul>
+ </div>
+
+ <div id="page-ch10" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 10</div><h1 class="hero-title">Videography</h1><p class="hero-desc">Planning, production, audio, livestreams, editing, captions, music licensing, and publishing.</p></div>
+ <h2>10.1 Platform Specs</h2>
+ <div class="table-wrap"><table><thead><tr><th>Platform</th><th>Format</th><th>Max Resolution</th></tr></thead><tbody>
+ <tr><td>YouTube</td><td>MP4, H.264</td><td>4K (preferred) / 1080p minimum</td></tr>
+ <tr><td>Facebook</td><td>MP4, H.264</td><td>1080p</td></tr>
+ <tr><td>Instagram Reels</td><td>MP4, vertical 9:16</td><td>Up to 90 seconds</td></tr>
+ <tr><td>Instagram Stories</td><td>MP4, vertical 9:16</td><td>Up to 60 seconds/clip</td></tr>
+ <tr><td>YouTube Shorts</td><td>MP4, vertical 9:16</td><td>Up to 60 seconds</td></tr>
+ </tbody></table></div>
+ <h2>10.2 Music Licensing</h2>
+ <div class="callout legal"><div class="callout-label">️ Legal</div><p>Using copyrighted music without a license may result in content takedowns and legal liability. Always use properly licensed music.</p></div>
+ <ul><li>YouTube Audio Library (free for YouTube content)</li><li>Epidemic Sound (subscription)</li><li>Artlist (subscription; covers social media)</li><li>Kappa Klassics — <a href="https://kappaklassiks.bandcamp.com/album/kappa-klassics" target="_blank">kappaklassiks.bandcamp.com</a></li></ul>
+ </div>
+
+ <div id="page-ch11" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 11</div><h1 class="hero-title">Graphic Design</h1><p class="hero-desc">Flyer standards, required and prohibited elements, online event posting standards, social media image sizes, and design approval workflow.</p></div>
+ <h2>11.1 Social Media Image Sizes</h2>
+ <div class="table-wrap"><table><thead><tr><th>Platform</th><th>Post Size</th><th>Story / Reel</th><th>Cover Photo</th></tr></thead><tbody>
+ <tr><td>Facebook</td><td>1200×630px</td><td>1080×1920px</td><td>820×312px</td></tr>
+ <tr><td>Instagram</td><td>1080×1080px</td><td>1080×1920px</td><td>320×320px (profile)</td></tr>
+ <tr><td>Twitter / X</td><td>1200×675px</td><td>N/A</td><td>1500×500px</td></tr>
+ <tr><td>LinkedIn</td><td>1200×627px</td><td>N/A</td><td>1584×396px</td></tr>
+ <tr><td>YouTube</td><td>1280×720px (thumbnail)</td><td>N/A</td><td>2560×1440px</td></tr>
+ </tbody></table></div>
+ <h2>11.2 Design Approval Workflow</h2>
+ <div class="timeline">
+ <div class="timeline-item"><div class="timeline-date">Step 1</div><div class="timeline-title">Create Draft</div><div class="timeline-body">Designer creates draft using approved template from chapter asset library.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 2</div><div class="timeline-title">Submit to MAC</div><div class="timeline-body">Draft submitted to Marketing and Communications Director for review.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 3</div><div class="timeline-title">MAC Review</div><div class="timeline-body">MAC approves, requests revisions, or escalates to Polemarch.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 4</div><div class="timeline-title">Upload to Library</div><div class="timeline-body">Approved final uploaded to chapter digital asset library.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 5</div><div class="timeline-title">Distribute</div><div class="timeline-body">Material distributed through approved channels.</div></div>
+ </div>
+ <h2>11.3 Flyer Standards</h2>
+ <p>Every official chapter flyer shall be created using MAC-approved templates and must pass brand compliance review before publication. Flyers are official chapter communications and reflect the chapter's image and brand standards.</p>
+
+ <h3>11.3.1 Required Elements</h3>
+ <p>Every flyer shall include all of the following:</p>
+ <div class="table-wrap"><table><thead><tr><th>Required Element</th><th>Standard</th></tr></thead><tbody>
+ <tr><td>Official Chapter Logo</td><td>Approved mark only — no distortion or modification</td></tr>
+ <tr><td>Approved Colors</td><td>Crimson (#70110C) and Cream (#F2EBD7) — no unauthorized colors</td></tr>
+ <tr><td>Event Title</td><td>Official event name as approved by MAC</td></tr>
+ <tr><td>Date</td><td>Day of week, full date</td></tr>
+ <tr><td>Time</td><td>Start time and end time</td></tr>
+ <tr><td>Location</td><td>Venue name and full address</td></tr>
+ <tr><td>Registration Information</td><td>Link, QR code, or "No registration required"</td></tr>
+ <tr><td>Contact Information</td><td>Official chapter email or event chair contact</td></tr>
+ <tr><td>Sponsoring Committee</td><td>Name of the committee presenting the event</td></tr>
+ <tr><td>Required Disclaimers</td><td>Any IHQ-required language or chapter disclaimers</td></tr>
+ </tbody></table></div>
+
+ <h3>11.3.2 Prohibited Content</h3>
+ <div class="callout warning"><div class="callout-label">Prohibited on All Chapter Flyers</div><p>The following shall never appear on any official chapter flyer or promotional material:</p></div>
+ <div class="table-wrap"><table><thead><tr><th>Prohibited Item</th><th>Why</th></tr></thead><tbody>
+ <tr><td>Alcohol imagery or references</td><td>Chapter policy and IHQ compliance</td></tr>
+ <tr><td>Sexually explicit or suggestive imagery</td><td>Chapter policy — family-friendly standard required</td></tr>
+ <tr><td>Nudity</td><td>Chapter policy and IHQ compliance</td></tr>
+ <tr><td>Pixelated or low-resolution images</td><td>Minimum 300 DPI for print; 72 DPI for digital</td></tr>
+ <tr><td>Distorted logos</td><td>Violates IHQ trademark requirements — see Chapter 4</td></tr>
+ <tr><td>Unlicensed or copyrighted graphics</td><td>Legal liability — see Chapter 18</td></tr>
+ <tr><td>Clipart without license</td><td>Legal liability</td></tr>
+ <tr><td>Offensive material</td><td>Chapter policy</td></tr>
+ <tr><td>Political endorsements</td><td>Chapter policy and 501(c) compliance</td></tr>
+ <tr><td>Unauthorized sponsor logos</td><td>Requires MAC and Polemarch approval</td></tr>
+ <tr><td>Profanity</td><td>Chapter policy</td></tr>
+ <tr><td>Hate speech or hate imagery</td><td>Chapter policy and fraternity law</td></tr>
+ </tbody></table></div>
+
+ <h3>11.3.3 Online Event Posting Standards</h3>
+ <p>When promoting chapter events online — on social media, the chapter website, the DLA Mobile App, or third-party platforms — the following standards apply in addition to the Flyer Standards above.</p>
+ <ul>
+  <li><strong>All online event posts must use the MAC-approved event flyer.</strong> Improvised or unofficial graphics are not permitted.</li>
+  <li><strong>Event information must exactly match the DLA Mobile App listing.</strong> Discrepancies between platforms create confusion and must be corrected immediately by notifying the Webmaster.</li>
+  <li><strong>Registration links must be active and tested before posting.</strong> Broken links must be corrected within 24 hours of discovery.</li>
+  <li><strong>No event may be posted publicly until the Event Insurance Checklist is approved.</strong> See Chapter 13 for the checklist.</li>
+  <li><strong>Social media event posts must tag official chapter accounts only.</strong> Personal social accounts of brothers shall not be tagged as event organizers.</li>
+  <li><strong>Hashtags must follow the chapter hashtag standards.</strong> See Chapter 6 for official hashtag list.</li>
+  <li><strong>External event platforms</strong> (Eventbrite, Facebook Events, etc.) may be used only when approved by MAC and must mirror the official app listing exactly.</li>
+ </ul>
+
+ <h3>11.3.4 Flyer Submission Lead Times</h3>
+ <div class="table-wrap"><table><thead><tr><th>Event Type</th><th>Minimum Lead Time</th></tr></thead><tbody>
+ <tr><td>Major Fundraisers</td><td>90 days</td></tr>
+ <tr><td>Province / National Events</td><td>60 days</td></tr>
+ <tr><td>Public Programs</td><td>45 days</td></tr>
+ <tr><td>Standard Chapter Events</td><td>30 days minimum</td></tr>
+ <tr><td>Emergency Communications</td><td>VP &amp; Polemarch approval required</td></tr>
+ </tbody></table></div>
+ <div class="callout warning"><div class="callout-label">Deadline Policy</div><p>Requests submitted with fewer than 30 days' lead time are not guaranteed publication. Rush requests require Polemarch approval and do not exempt the submission from brand compliance review.</p></div>
+
+ </div>
+
+ <div id="page-ch12" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 12</div><h1 class="hero-title">Content Creation</h1><p class="hero-desc">News articles, member spotlights, press releases, newsletters, and writing templates.</p></div>
+ <h2>12.1 Press Release Structure</h2>
+ <div class="table-wrap"><table><thead><tr><th>Element</th><th>Content</th></tr></thead><tbody>
+ <tr><td>Logo / Letterhead</td><td>Chapter official logo and contact information — top of document</td></tr>
+ <tr><td>Release Designation</td><td>"FOR IMMEDIATE RELEASE" or "EMBARGOED UNTIL [Date]"</td></tr>
+ <tr><td>Headline</td><td>Active voice; maximum 12 words; present tense verb</td></tr>
+ <tr><td>Dateline</td><td>City, State — Date —</td></tr>
+ <tr><td>Body (3–5 paragraphs)</td><td>Who, what, when, where, why; supporting quotes; background</td></tr>
+ <tr><td>Boilerplate</td><td>Standard "About" paragraph for the chapter</td></tr>
+ <tr><td>End Mark</td><td>"###" centered — final line</td></tr>
+ </tbody></table></div>
+ </div>
+
+ <div id="page-ch13" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 13</div><h1 class="hero-title">Event Promotions</h1><p class="hero-desc">Event submission requirements, Event Insurance Checklist, app communication timeline, and event promotion standards.</p></div>
+ <h2>13.1 Pre-Event Marketing Timeline</h2>
+ <div class="timeline">
+ <div class="timeline-item"><div class="timeline-date">90 Days Out</div><div class="timeline-title">Strategy & Planning</div><div class="timeline-body">Define objectives, target audience, and promotional budget. Draft event name and key messages.</div></div>
+ <div class="timeline-item"><div class="timeline-date">60 Days Out</div><div class="timeline-title">Materials & Launch</div><div class="timeline-body">Finalize and approve all promotional materials. Open event registration.</div></div>
+ <div class="timeline-item"><div class="timeline-date">45 Days Out</div><div class="timeline-title">Campaign Launch</div><div class="timeline-body">Begin social media campaign: teaser posts, event announcement. Send save-the-date.</div></div>
+ <div class="timeline-item"><div class="timeline-date">30 Days Out</div><div class="timeline-title">Full Launch</div><div class="timeline-body">Launch full social media campaign. Send formal event invitation email. Distribute press release.</div></div>
+ <div class="timeline-item"><div class="timeline-date">14 Days Out</div><div class="timeline-title">Intensify</div><div class="timeline-body">Increase posting frequency. Send reminder emails. Follow up with media contacts.</div></div>
+ <div class="timeline-item"><div class="timeline-date">7 Days Out</div><div class="timeline-title">Countdown</div><div class="timeline-body">Countdown posts on all platforms. Final reminder email. Confirm all media assignments.</div></div>
+ <div class="timeline-item"><div class="timeline-date">24 Hours Out</div><div class="timeline-title">Final Push</div><div class="timeline-body">Final social reminder. Confirm equipment readiness. Test livestream if applicable.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Day Of</div><div class="timeline-title">Live Coverage</div><div class="timeline-body">Real-time social media updates, photography, videography, and press management.</div></div>
+ <div class="timeline-item"><div class="timeline-date">24–48 Hrs Post</div><div class="timeline-title">Immediate Follow-Up</div><div class="timeline-body">Thank-you post with highlight photos. Begin editing assets.</div></div>
+ <div class="timeline-item"><div class="timeline-date">1 Week Post</div><div class="timeline-title">Full Recap</div><div class="timeline-body">Publish recap article, photo album, and recap video. Send thank-you emails to sponsors.</div></div>
+ </div>
+ <h2>13.2 Event Submission Package</h2>
+ <p>Every event request submitted to MAC shall include the complete event submission package. Incomplete submissions will be returned to the sponsoring committee without action.</p>
+ <div class="table-wrap"><table><thead><tr><th>Required Item</th><th>Status</th></tr></thead><tbody>
+ <tr><td>Event Request Form</td><td>Completed and signed by Committee Chair</td></tr>
+ <tr><td>Event Insurance Checklist</td><td>Completed — see Section 13.3</td></tr>
+ <tr><td>Approved Budget</td><td>Committee budget authorization on file</td></tr>
+ <tr><td>Event Description &amp; Purpose</td><td>One-paragraph summary</td></tr>
+ <tr><td>Date, Time &amp; Location</td><td>Confirmed — not tentative</td></tr>
+ <tr><td>Registration Link</td><td>Active or "No registration required"</td></tr>
+ <tr><td>Event Chair</td><td>Named individual responsible for the event</td></tr>
+ <tr><td>Sponsoring Committee</td><td>Official committee name</td></tr>
+ <tr><td>Target Audience</td><td>Members only / Public / Youth / Families</td></tr>
+ <tr><td>Guest Speaker Information</td><td>Name, title, bio (if applicable)</td></tr>
+ <tr><td>Vendor Information</td><td>Any contracted vendors (if applicable)</td></tr>
+ <tr><td>Event Flyer Request</td><td>Design brief or existing flyer attached</td></tr>
+ </tbody></table></div>
+
+ <h2>13.3 Event Insurance Checklist</h2>
+ <div class="callout warning"><div class="callout-label">Required Before Advertising</div><p>No event shall be advertised — in the Mobile App, on social media, by email, or on any platform — until the Event Insurance Checklist has been completed and approved. This requirement has no exceptions.</p></div>
+
+ <h3>13.3.1 Venue &amp; Logistics</h3>
+ <ul class="checklist">
+  <li>Chapter approval obtained from Polemarch</li>
+  <li>Venue confirmed and reservation documentation on file</li>
+  <li>Event insurance obtained or venue insurance confirmed</li>
+  <li>Parking plan documented and communicated</li>
+  <li>Accessibility compliance verified (ADA requirements)</li>
+ </ul>
+
+ <h3>13.3.2 Safety &amp; Security</h3>
+ <ul class="checklist">
+  <li>Security plan in place (if required by venue or event size)</li>
+  <li>Emergency response plan documented</li>
+  <li>Medical contacts identified for the event</li>
+  <li>Risk assessment completed</li>
+ </ul>
+
+ <h3>13.3.3 Vendor &amp; Permit Compliance</h3>
+ <ul class="checklist">
+  <li>Vendor agreements signed (if applicable)</li>
+  <li>Food permits obtained (if food is served)</li>
+  <li>IHQ requirements reviewed and met</li>
+ </ul>
+
+ <h3>13.3.4 Youth &amp; Privacy</h3>
+ <ul class="checklist">
+  <li>Youth Protection Requirements satisfied (if minors will be present)</li>
+  <li>Photography consent plan in place</li>
+  <li>Video consent plan in place</li>
+ </ul>
+
+ <h3>13.3.5 Content &amp; Alcohol Policy</h3>
+ <div class="callout warning"><div class="callout-label">Strict Prohibition</div><p>Alcohol shall not appear in any official chapter photography, videography, flyers, promotional materials, or Mobile App content associated with this event. Sexually explicit imagery is strictly prohibited in all event-related media regardless of context.</p></div>
+ <ul class="checklist">
+  <li>Alcohol Compliance verified — no alcohol imagery in any chapter media</li>
+  <li>Event media plan reviewed — no sexually explicit images or content</li>
+  <li>All promotional materials reviewed for prohibited content (see Chapter 12)</li>
+  <li>Social media plan reviewed — no prohibited content will be posted</li>
+ </ul>
+
+ <h3>13.3.6 Final Sign-Off</h3>
+ <div class="table-wrap"><table><thead><tr><th>Reviewer</th><th>Responsibility</th><th>Required For</th></tr></thead><tbody>
+ <tr><td>Event Chair</td><td>Submits completed checklist</td><td>All events</td></tr>
+ <tr><td>MAC Chair</td><td>Reviews for brand &amp; content compliance</td><td>All events</td></tr>
+ <tr><td>Vice Polemarch</td><td>Review and authorization</td><td>Public programs, fundraisers, Province/National events</td></tr>
+ <tr><td>Polemarch</td><td>Final approval authority</td><td>All events requiring insurance or external venues</td></tr>
+ </tbody></table></div>
+
+ </div>
+
+ <div id="page-ch14" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 14</div><h1 class="hero-title">Live Event Coverage</h1><p class="hero-desc">Media team roles, photography schedule, social live updates, and press table management.</p></div>
+ <h2>14.1 Media Team Assignments</h2>
+ <div class="table-wrap"><table><thead><tr><th>Role</th><th>Responsibilities</th></tr></thead><tbody>
+ <tr><td>Lead Photographer</td><td>Group shots, action, awards, VIP portraits</td></tr>
+ <tr><td>Secondary Photographer</td><td>Candid coverage, audience shots, detail photography</td></tr>
+ <tr><td>Videographer</td><td>Program video, B-roll, speaker coverage</td></tr>
+ <tr><td>Livestream Operator</td><td>Platform management, viewer engagement</td></tr>
+ <tr><td>Social Media Updater</td><td>Real-time stories, posts, quotes during event</td></tr>
+ <tr><td>Press Table Coordinator</td><td>Media credentialing, press kit distribution</td></tr>
+ </tbody></table></div>
+ <div class="callout policy"><div class="callout-label">Policy</div><p>No member other than the designated spokesperson (Polemarch or approved designee) may speak to media on behalf of the chapter. All media inquiries must be directed to the Polemarch.</p></div>
+ </div>
+
+ <div id="page-ch15" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 15</div><h1 class="hero-title">Post-Event Communications</h1><p class="hero-desc">Recap articles, photo albums, sponsor recognition, and lessons learned documentation.</p></div>
+ <h2>15.1 Post-Event Timeline</h2>
+ <div class="table-wrap"><table><thead><tr><th>Timeframe</th><th>Action</th><th>Owner</th></tr></thead><tbody>
+ <tr><td>Within 2 hours</td><td>Post event highlight photo to Stories and X</td><td>Social Media Updater</td></tr>
+ <tr><td>Within 24 hours</td><td>Publish thank-you post with select event photos</td><td>Media Committee</td></tr>
+ <tr><td>Within 48 hours</td><td>Deliver final photos to chapter cloud storage</td><td>Photographer</td></tr>
+ <tr><td>Within 7 days</td><td>Publish full event recap article on website and newsletter</td><td>Reporter</td></tr>
+ <tr><td>Within 7 days</td><td>Send written thank-you to sponsors and partners</td><td>Polemarch / MAC</td></tr>
+ <tr><td>Within 14 days</td><td>Publish recap video to YouTube; embed on website</td><td>Videographer + Webmaster</td></tr>
+ <tr><td>Within 30 days</td><td>Compile event impact report; conduct media team debrief</td><td>MAC + Reporter</td></tr>
+ </tbody></table></div>
+ </div>
+
+ <div id="page-ch16" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 16</div><h1 class="hero-title">Media Relations</h1><p class="hero-desc">Press releases, press kits, designated spokespersons, interview procedures, and community relations.</p></div>
+ <div class="callout policy"><div class="callout-label">Policy — Official Spokespersons</div><p>Only the Chapter Polemarch or a specifically designated spokesperson approved by the Polemarch is authorized to speak to the media on behalf of the chapter. All media inquiries must be referred immediately to the Polemarch or Media Committee Chair.</p></div>
+ <h2>16.1 Media Interview Procedure</h2>
+ <ol><li>All media interview requests directed to the Polemarch or MAC.</li><li>Polemarch approves and assigns the appropriate spokesperson.</li><li>Spokesperson prepares talking points, reviewed by MAC.</li><li>Interviews conducted only after key messages are confirmed.</li><li>"Off the record" comments are never acceptable — any statement may be quoted.</li><li>Summary of interview filed with KOR within 24 hours.</li></ol>
+ </div>
+
+ <div id="page-ch17" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 17</div><h1 class="hero-title">Digital Asset Management</h1><p class="hero-desc">Cloud storage, folder structure, naming standards, access permissions, and archive policy.</p></div>
+ <h2>17.1 Official Folder Structure</h2>
+ <div class="table-wrap"><table><thead><tr><th>Folder</th><th>Contents</th></tr></thead><tbody>
+ <tr><td>/Brand Assets</td><td>Logos, brand guidelines, color swatches, official fonts</td></tr>
+ <tr><td>/Templates</td><td>Flyer templates, social graphics, email headers, certificates</td></tr>
+ <tr><td>/Photography/YYYY/[Event]</td><td>RAW and edited photos organized by year and event</td></tr>
+ <tr><td>/Videography/YYYY/[Event]</td><td>Raw footage, edited video, and exported final videos</td></tr>
+ <tr><td>/Documents/Governance</td><td>Constitution, bylaws, board minutes, officer records</td></tr>
+ <tr><td>/Documents/Communications</td><td>Press releases, newsletter archives, official correspondence</td></tr>
+ <tr><td>/Archive</td><td>Files older than 3 years — read-only access</td></tr>
+ </tbody></table></div>
+ <h2>17.2 File Naming Convention</h2>
+ <div class="callout"><div class="callout-label">Standard</div><p><code>YYYY-MM-DD_CategoryOrEvent_Description_Version.ext</code><br>Example: <code>2025-11-15_AchievementGala_FlyerFinal_v3.pdf</code></p></div>
+ </div>
+
+ <div id="page-ch18" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 18</div><h1 class="hero-title">Legal & Compliance</h1><p class="hero-desc">Copyright, trademark, photography releases, privacy standards, and prohibited content.</p></div>
+ <h2>18.1 Kappa Alpha Psi Trademarks</h2>
+ <p>Kappa Alpha Psi owns numerous marks registered with the U.S. Patent & Trademark Office: the name "Kappa Alpha Psi," the Greek letters KAΨ, the Coat of Arms, all official chapter logos. No person or entity may reproduce these marks for commercial purposes without a current IHQ vendor license.</p>
+ <h2>18.2 Prohibited Content</h2>
+ <div class="callout policy"><div class="callout-label"> Strict Prohibition</div><p>The following content is strictly prohibited in all chapter communications. Violations may result in immediate disciplinary action and escalation to IHQ.</p></div>
+ <ul><li>Any facsimile or representation of the Playboy bunny logo</li><li>Sexually explicit images, language, or content of any kind</li><li>Imagery or references to alcohol, drug use, or paraphernalia</li><li>Unauthorized reproduction of the Kappa Diamond badge</li><li>Content promoting hazing, harassment, or illegal activity</li><li>Membership Intake Process information in any form</li></ul>
+ </div>
+
+ <div id="page-ch19" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 19</div><h1 class="hero-title">AI Standards</h1><p class="hero-desc">Approved AI tools, acceptable uses, human review requirements, privacy rules, and quality control.</p></div>
+ <div class="callout policy"><div class="callout-label">Mandatory Policy</div><p>No AI-generated content — text, images, or audio — may be published in any official chapter communication without review, editing, and approval by a qualified human team member following the standard Approval Matrix. AI tools are assistants, not decision-makers.</p></div>
+ <h2>19.1 Acceptable Uses</h2>
+ <div class="table-wrap"><table><thead><tr><th>Use Case</th><th>AI Role</th><th>Human Review</th></tr></thead><tbody>
+ <tr><td>Drafting newsletter articles</td><td>Generate initial draft</td><td>Yes — Reporter must revise and verify all facts</td></tr>
+ <tr><td>Social media captions</td><td>Generate options</td><td>Yes — MAC or designee must select and refine</td></tr>
+ <tr><td>Video caption generation</td><td>Auto-transcribe audio</td><td>Yes — all captions reviewed for accuracy</td></tr>
+ <tr><td>Press release drafting</td><td>Generate initial draft</td><td>Yes — Reporter and Polemarch must approve final</td></tr>
+ </tbody></table></div>
+ <h2>19.2 Privacy Rules</h2>
+ <ul><li>Do not input member personally identifiable information into AI tools.</li><li>Do not share confidential chapter information with AI tools.</li><li>Treat all AI prompts as potentially accessible to third parties.</li></ul>
+ </div>
+
+ <div id="page-ch20" class="page"><div class="page-hero"><div class="hero-chapter-num">Chapter 20</div><h1 class="hero-title">Training</h1><p class="hero-desc">Officer training, media training, certification requirements, and new officer onboarding checklist.</p></div>
+ <h2>20.1 Certification Requirements</h2>
+ <p>All Media Committee members must complete within 30 days of appointment:</p>
+ <ul class="checklist"><li>Read and sign the Media & Communications Guide Acknowledgment Form</li><li>Complete Brand & Visual Identity Standards module</li><li>Complete Social Media Management training</li><li>Complete Legal & Compliance module</li><li>Score 80% or higher on the Knowledge Assessment</li></ul>
+ <h2>20.2 New Officer Onboarding Checklist</h2>
+ <ul class="checklist"><li>Issue @dlakappa.org email account</li><li>Grant cloud storage access at appropriate permission level</li><li>Add to chapter Chapter App Comms</li><li>Grant social media admin access (if applicable)</li><li>Brief on Approval Matrix and escalation procedures</li><li>Deliver this guide and require signature of acknowledgment</li><li>Complete Brand & Visual Identity training</li><li>Complete Legal & Compliance training</li><li>Complete Knowledge Assessment with 80% or higher</li></ul>
+ </div>
+
+ <div id="page-ch21" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Chapter 21</div><h1 class="hero-title">MAC Operations Manual</h1><p class="hero-desc">The full governance framework for the Media &amp; Communications Committee — scope, authority, submission standards, content policy, file management, legal compliance, and media production workflow.</p></div>
+
+ <div class="callout policy"><div class="callout-label">Authority</div><p>The Media &amp; Communications (MAC) Committee serves as the official communications authority for the chapter. No committee, officer, commission, program, or appointed chairman shall bypass the MAC Committee. This policy exists to protect the chapter, ensure operational continuity, preserve institutional knowledge, and maintain a structured communication process.</p></div>
+
+ <h2>21.1 Guiding Principles</h2>
+ <p>All chapter communications shall reflect:</p>
+ <div class="table-wrap"><table><thead><tr><th>Principle</th><th>Application</th></tr></thead><tbody>
+ <tr><td>Professionalism</td><td>Every communication represents Kappa Alpha Psi, Fraternity, Inc.</td></tr>
+ <tr><td>Brotherhood</td><td>Communications strengthen bonds among members</td></tr>
+ <tr><td>Achievement</td><td>Highlight member and chapter accomplishments</td></tr>
+ <tr><td>Scholarship</td><td>Support Guide Right and educational mission</td></tr>
+ <tr><td>Service</td><td>Promote chapter service to the community</td></tr>
+ <tr><td>Integrity</td><td>Accurate, honest, and unmanipulated content only</td></tr>
+ <tr><td>Family-Friendly Content</td><td>No alcohol imagery, explicit content, or offensive material</td></tr>
+ <tr><td>Historical Accuracy</td><td>Archive and preserve institutional knowledge</td></tr>
+ <tr><td>Brand Consistency</td><td>Every touchpoint reflects approved brand standards</td></tr>
+ </tbody></table></div>
+
+ <h2>21.2 Scope</h2>
+ <p>These standards apply to every form of chapter communication, including but not limited to: flyers, posters, invitations, newsletters, the chapter website, the DLA Mobile App, social media, email, SMS/text messaging, push notifications, podcasts, livestreams, YouTube, Vimeo, photography, videography, printed programs, presentations, merchandise, digital signage, event registration pages, AI-generated media, and digital advertisements.</p>
+
+ <h2>21.3 MAC Authority</h2>
+ <p>The Media &amp; Communications Committee has authority over:</p>
+ <div class="table-wrap"><table><thead><tr><th>Domain</th><th>MAC Responsibility</th></tr></thead><tbody>
+ <tr><td>Graphic Design</td><td>Approval of all chapter graphic materials</td></tr>
+ <tr><td>Chapter Branding</td><td>Enforcement of brand standards across all channels</td></tr>
+ <tr><td>Social Media</td><td>Publishing schedules, moderation, account security</td></tr>
+ <tr><td>Website Updates</td><td>Content review and publication approval</td></tr>
+ <tr><td>Photography &amp; Videography</td><td>Standards, consent, archiving</td></tr>
+ <tr><td>Marketing Campaigns</td><td>Planning, execution, and review</td></tr>
+ <tr><td>Printed &amp; Digital Publications</td><td>Layout, content, and distribution</td></tr>
+ <tr><td>Promotional Videos &amp; Livestreams</td><td>Production standards and post-production review</td></tr>
+ <tr><td>Chapter Archives</td><td>Storage, naming conventions, retention</td></tr>
+ </tbody></table></div>
+ <div class="callout policy"><div class="callout-label">No Communication Without MAC Approval</div><p>No communication shall be released publicly without MAC approval. This applies to all channels and all chapter entities.</p></div>
+
+ <h2>21.4 Required Submission Timelines</h2>
+ <div class="table-wrap"><table><thead><tr><th>Item</th><th>Minimum Lead Time</th></tr></thead><tbody>
+ <tr><td>Major Fundraisers</td><td>90 Days</td></tr>
+ <tr><td>Province / National Events</td><td>60 Days</td></tr>
+ <tr><td>Public Programs</td><td>45 Days</td></tr>
+ <tr><td>Standard Chapter Events</td><td>30 Days Minimum</td></tr>
+ <tr><td>Emergency Communications</td><td>VP &amp; Polemarch Approval Required</td></tr>
+ </tbody></table></div>
+ <p>Requests submitted with fewer than 30 days' lead time are not guaranteed publication.</p>
+
+ <h2>21.5 Photography Standards</h2>
+ <p>Images should represent actual chapter activities, be high resolution (minimum 300 DPI for print), reflect professionalism and brotherhood, include appropriate attire, respect privacy of members and guests, and have appropriate consent when required. Kappa League participants require all youth protection and media release requirements.</p>
+ <div class="callout warning"><div class="callout-label">Prohibited Photography</div><p>The following are strictly prohibited in all chapter photography: sexually suggestive images, alcohol consumption, illegal drugs, smoking or vaping, weapons (unless ceremonial or official), gang symbolism, hate imagery, offensive gestures, and misleading or fabricated event photos.</p></div>
+
+ <h2>21.6 Video Production Standards</h2>
+ <p>Applies to: YouTube, Vimeo, Facebook, Instagram, TikTok, the chapter website, and the training portal. Videos must include: opening branding, closing branding, approved lower-thirds, official logos, proper credits, licensed music, and accessible captions.</p>
+
+ <h2>21.7 Audio Standards</h2>
+ <p>Applies to: podcasts, voiceovers, announcements, radio programming, and promotional videos. All audio production must comply with Copyright Law, Music Licensing, Performance Rights requirements, and Trademark Regulations. No copyrighted music or audio may be used without a valid license.</p>
+
+ <h2>21.8 AI &amp; Digital Editing Policy</h2>
+ <h3>Approved Uses of AI</h3>
+ <p>AI tools may be used only when legally permissible and ethically appropriate. Approved uses include: background removal, color correction, image restoration, noise reduction, audio cleanup, subtitle generation, caption generation, translation, video enhancement, removal of prohibited imagery, graphic layout assistance, and accessibility improvements.</p>
+ <h3>Approved Software</h3>
+ <p>Adobe Photoshop, Adobe Illustrator, Adobe InDesign, Adobe Premiere Pro, Adobe Audition, Adobe After Effects, Adobe Lightroom, DaVinci Resolve, Final Cut Pro, Canva (approved templates only).</p>
+ <div class="callout warning"><div class="callout-label">AI Shall Not Be Used To</div><p>Fabricate chapter events, create fake attendance, misrepresent members, alter official records, modify official logos, remove trademarks, or create deceptive media of any kind.</p></div>
+
+ <h2>21.9 Copyright &amp; Trademark Compliance</h2>
+ <p>The chapter shall comply with all applicable Copyright Laws, Trademark Laws, Fair Use Limitations, Software Licenses, Music Licenses, Image Licenses, and Commercial Use Restrictions. No copyrighted image, audio, video, font, logo, or artwork may be used without authorization or a valid license. See Chapter 18 for complete legal and compliance standards.</p>
+
+ <h2>21.10 Prohibited Content</h2>
+ <p>The following shall never appear in official chapter media:</p>
+ <div class="table-wrap"><table><thead><tr><th>Prohibited</th><th>Prohibited</th></tr></thead><tbody>
+ <tr><td>Alcohol consumption</td><td>Sexually explicit imagery</td></tr>
+ <tr><td>Illegal drugs</td><td>Nudity</td></tr>
+ <tr><td>Smoking or vaping</td><td>Profanity</td></tr>
+ <tr><td>Hate speech</td><td>Political endorsements</td></tr>
+ <tr><td>Gambling promotion</td><td>Offensive memes</td></tr>
+ <tr><td>Copyright infringement</td><td>Defamatory statements</td></tr>
+ <tr><td>Misleading information</td><td>Unauthorized endorsements</td></tr>
+ </tbody></table></div>
+
+ <h2>21.11 Accessibility Standards</h2>
+ <p>All digital media shall comply with accessibility best practices. Requirements include: alternative (Alt) text for all images, closed captions for all videos, transcripts for audio recordings, high color contrast, readable font sizes (minimum 12pt body), accessible PDFs, screen-reader compatible documents, keyboard-accessible web content, and WCAG 2.1 AA compliance where practical. Accessibility shall be considered during design — not added as an afterthought.</p>
+
+ <h2>21.12 Privacy &amp; Consent</h2>
+ <p>Photography and video involving minors or non-members shall require appropriate consent when applicable. The chapter shall respect privacy rights, honor photo restrictions, remove media upon approved request when legally required, protect confidential information, and avoid publishing personal contact information without permission. Kappa League participants shall follow all youth protection and media release requirements.</p>
+
+ <h2>21.13 Social Media Governance</h2>
+ <p>Only authorized administrators may post using official chapter accounts. The MAC Committee shall oversee publishing schedules, comment moderation, account security, password management, platform branding, crisis messaging, and content calendars. Posts containing misinformation, offensive comments, spam, or violations of chapter policy may be removed. See Chapter 6 for complete social media standards.</p>
+
+ <h2>21.14 Crisis Communications</h2>
+ <p>During emergencies, investigations, or sensitive matters, only the following may issue official statements:</p>
+ <ul>
+  <li>Polemarch</li>
+  <li>Vice Polemarch (if delegated by the Polemarch)</li>
+  <li>Media &amp; Communications Chairman</li>
+  <li>Approved spokesperson designated by the Polemarch</li>
+ </ul>
+ <p>Members shall not speak on behalf of the chapter without authorization. All media inquiries shall be directed immediately to the Polemarch or MAC Chairman.</p>
+
+ <h2>21.15 Digital Asset Management (DAM)</h2>
+ <p>All chapter media shall be stored within the official chapter repository. Assets include: logos, fonts, brand guidelines, flyers, RAW and edited photos, RAW and edited video, audio masters, podcast files, presentation templates, project files, AI prompt documentation, website assets, and training materials.</p>
+ <p>Storage requirements: organized folder structure, standardized naming conventions, version control, off-site backups, access controls, and annual archival reviews. See Chapter 17 for complete DAM standards.</p>
+
+ <h2>21.16 File Naming Convention</h2>
+ <p>All files shall follow this standard naming format to ensure continuity across administrations:</p>
+ <div class="callout"><div class="callout-label">Standard Format</div><p><code>YYYY-MM-DD_EventName_FileType_Version</code></p><p>Examples:<br>
+ <code>2026-09-12_FoundersDay_Flyer_v03.psd</code><br>
+ <code>2026-09-12_FoundersDay_FinalFlyer.jpg</code><br>
+ <code>2026-09-12_FoundersDay_Photos_RAW</code><br>
+ <code>2026-09-12_FoundersDay_HighlightVideo_v2.mp4</code></p></div>
+
+ <h2>21.17 Records Retention</h2>
+ <div class="table-wrap"><table><thead><tr><th>Record Type</th><th>Minimum Retention</th></tr></thead><tbody>
+ <tr><td>Flyers</td><td>Permanent</td></tr>
+ <tr><td>Photos</td><td>Permanent</td></tr>
+ <tr><td>Videos</td><td>Permanent</td></tr>
+ <tr><td>Meeting Graphics</td><td>Permanent</td></tr>
+ <tr><td>Audio Recordings</td><td>Permanent</td></tr>
+ <tr><td>Project Files</td><td>Permanent</td></tr>
+ <tr><td>Social Media Posts</td><td>Archive Annually</td></tr>
+ <tr><td>Website Content</td><td>Archive Annually</td></tr>
+ <tr><td>Event Documents</td><td>Seven Years</td></tr>
+ </tbody></table></div>
+ <div class="callout warning"><div class="callout-label">Policy</div><p>Historical records shall never be deleted without chapter approval. The chapter archive is institutional property that survives individual administrations.</p></div>
+
+ <h2>21.18 Brand Asset Repository</h2>
+ <p>The official chapter repository shall serve as the single source of truth for: chapter logos, approved colors, typography, templates, motion graphics, intro/outro videos, watermarks, lower thirds, social media templates, and merchandise artwork. Members shall not recreate official assets from scratch when approved files are available in the repository.</p>
+
+ <h2>21.19 Revision &amp; Approval Tracking</h2>
+ <p>Each publication shall maintain a revision history documenting: Project Name, Version Number, Designer, Reviewer, Date Submitted, Date Approved, Date Published, Revision Notes, and Final Approval Authority. This ensures accountability, quality control, and continuity across chapter administrations.</p>
+
+ <h2>21.20 Media Production Workflow</h2>
+ <div class="timeline">
+ <div class="timeline-item"><div class="timeline-date">Step 1</div><div class="timeline-title">Committee Planning</div><div class="timeline-body">Sponsoring committee develops event concept, assigns Event Chair, and prepares the event request package.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 2</div><div class="timeline-title">Event Request Submitted</div><div class="timeline-body">Complete event submission package (including Event Insurance Checklist) submitted to MAC per required lead times.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 3</div><div class="timeline-title">Event Insurance Checklist</div><div class="timeline-body">Insurance, venue, safety, and compliance items verified before any advertising may begin.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 4</div><div class="timeline-title">MAC Review</div><div class="timeline-body">MAC reviews for completeness, branding compliance, content standards, and copyright compliance.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 5</div><div class="timeline-title">Brand Compliance Review</div><div class="timeline-body">All graphics and written materials reviewed against Chapter 4 brand standards.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 6</div><div class="timeline-title">Copyright &amp; Trademark Review</div><div class="timeline-body">All media reviewed for copyright clearance and IHQ trademark compliance.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 7</div><div class="timeline-title">Accessibility Review</div><div class="timeline-body">Digital materials reviewed for alt text, captions, color contrast, and ADA compliance.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 8</div><div class="timeline-title">Polemarch Approval</div><div class="timeline-body">Polemarch final approval when required (major events, public programs, Province/National events).</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 9</div><div class="timeline-title">Publication</div><div class="timeline-body">Content published to DLA Mobile App, followed by push notification, email distribution, and website update.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 10</div><div class="timeline-title">Event Coverage</div><div class="timeline-body">Media team executes live coverage per the approved media plan.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 11</div><div class="timeline-title">Post-Production</div><div class="timeline-body">Editing, captioning, and review completed within 72 hours of event.</div></div>
+ <div class="timeline-item"><div class="timeline-date">Step 12</div><div class="timeline-title">Archive</div><div class="timeline-body">All final assets archived to the chapter repository per file naming convention and retention schedule.</div></div>
+ </div>
+
+ </div>
+
+ <!-- ══════════════════════════════════════════════════════════
+ APPENDIX
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-appendix" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Appendices</div><h1 class="hero-title">Forms & Templates</h1><p class="hero-desc">Press release template, photo release form, minor consent form, and event promotion checklist.</p></div>
+
+ <h2>Appendix A: Press Release Template</h2>
+ <div style="background:var(--white); border:2px solid var(--crimson); border-radius:var(--radius); padding:28px; font-family:var(--font-body); margin-bottom:24px;">
+ <div style="text-align:center; margin-bottom:20px;">
+ <img src="assets/dla-logo.png" alt="DLA Logo" style="height:80px; width:auto;">
+ <p style="font-size:0.7rem; color:var(--gray-mid); margin-top:8px;">Denton-Lewisville (TX) Alumni Chapter | Kappa Alpha Psi Fraternity, Inc.<br>communications@dlakappa.org | www.dlakappa.org</p>
+ </div>
+ <p style="font-weight:700; color:var(--crimson); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">FOR IMMEDIATE RELEASE</p>
+ <p style="font-size:0.8rem; color:var(--gray-mid); margin-bottom:20px;">Contact: [Name] | [Title] | [Phone] | communications@dlakappa.org<br>Date: [MM/DD/YYYY]</p>
+ <p style="font-size:1.1rem; font-weight:700; font-family:var(--font-display); margin-bottom:8px; text-align:center;">[HEADLINE: ACTIVE VERB + ANNOUNCEMENT — MAXIMUM 12 WORDS]</p>
+ <p style="font-size:0.85rem; color:var(--gray-mid); text-align:center; margin-bottom:20px; font-style:italic;">[Subheadline: One additional line of context — optional]</p>
+ <p style="font-size:0.85rem; margin-bottom:10px;"><strong>DENTON, TX, [Date]</strong> — [Opening paragraph: Who, what, when, where, and the most important result. Lead with the news, not with background. Write in third person.]</p>
+ <p style="font-size:0.85rem; margin-bottom:10px;">[Paragraph 2: Supporting details — event highlights, program description, community benefit, notable attendees.]</p>
+ <p style="font-size:0.85rem; margin-bottom:10px; font-style:italic;">"[Direct quote from Polemarch or spokesperson]," said [Full Name], [Title], Denton-Lewisville (TX) Alumni Chapter, Kappa Alpha Psi Fraternity, Inc.</p>
+ <p style="font-size:0.82rem; margin-bottom:20px;"><strong>ABOUT THE DENTON-LEWISVILLE (TX) ALUMNI CHAPTER:</strong> The Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc., was chartered in 1997 and is dedicated to advancing the Fraternity's Five Objectives through community service, mentorship, and leadership development in the North Texas region. Visit www.dlakappa.org.</p>
+ <p style="text-align:center; font-size:1.2rem; font-weight:700;">###</p>
+ </div>
+
+ <h2>Appendix B: Photo Release Form</h2>
+ <div style="background:var(--white); border:1px solid var(--gray-light); border-radius:var(--radius); padding:24px; margin-bottom:24px; font-size:0.87rem;">
+ <p>I, the undersigned, hereby grant the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. the right to photograph and/or record me and to use, publish, reproduce, or distribute such photographs and/or recordings in any chapter communications.</p>
+ <table style="margin-top:16px; width:100%;"><tbody>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light); width:40%;"><strong>Printed Name</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light);"><strong>Signature</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light);"><strong>Date</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ </tbody></table>
+ </div>
+
+ <h2>Appendix C: Minor Consent Form</h2>
+ <div style="background:var(--white); border:1px solid var(--gray-light); border-radius:var(--radius); padding:24px; margin-bottom:24px; font-size:0.87rem;">
+ <p>I, the undersigned parent or legal guardian of the minor named below, consent to the Denton-Lewisville (TX) Alumni Chapter photographing and/or recording my child and using such materials in chapter communications.</p>
+ <table style="margin-top:16px; width:100%;"><tbody>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light); width:40%;"><strong>Minor's Full Name</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light);"><strong>Minor's Age</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light);"><strong>Parent/Guardian Name</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light);"><strong>Signature</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ <tr><td style="padding:8px 4px; border-bottom:1px solid var(--gray-light);"><strong>Date</strong></td><td style="border-bottom:1px solid var(--gray-light);">___________________________________</td></tr>
+ </tbody></table>
+ </div>
+
+ <h2>Appendix D: Key Contacts</h2>
+ <div class="table-wrap"><table><thead><tr><th>Role</th><th>Name</th><th>Email</th></tr></thead><tbody>
+ <tr><td>Polemarch</td><td>Brother Duncan E. Brown</td><td>polemarch@dlakappa.org</td></tr>
+ <tr><td>Vice Polemarch</td><td>Brother Kirk Nobles</td><td>vicepolemarch@dlakappa.org</td></tr>
+ <tr><td>Marketing and Communications Director</td><td>Colen Skinner</td><td>communications@dlakappa.org</td></tr>
+ <tr><td>Reporter</td><td>Brother MD Taylor</td><td>reporter@dlakappa.org</td></tr>
+ <tr><td>Webmaster</td><td>Brother MD Taylor</td><td>webmaster@dlakappa.org</td></tr>
+ <tr><td>Videographer</td><td>Brother MD Taylor</td><td>communications@dlakappa.org</td></tr>
+ <tr><td>Historian</td><td>Brother Imani Dowell-Simmons</td><td>historian@dlakappa.org</td></tr>
+ <tr><td>Photographer</td><td>Brother Imani Dowell-Simmons</td><td>historian@dlakappa.org</td></tr>
+ <tr><td>Keeper of Records</td><td>Brother Julian Dozier</td><td>kor@dlakappa.org</td></tr>
+ <tr><td>Assistant Keeper of Records</td><td>Brother Omari Souza</td><td>akor@dlakappa.org</td></tr>
+ <tr><td>IHQ</td><td>International Headquarters</td><td>IHQIP@KappaAlphaPsi1911.com</td></tr>
+ </tbody></table></div>
+ </div>
+
+ <!-- ══════════════════════════════════════════════════════════
+ GLOSSARY
+ ══════════════════════════════════════════════════════════════ -->
+ <div id="page-glossary" class="page">
+ <div class="page-hero"><div class="hero-chapter-num">Appendices</div><h1 class="hero-title">Glossary & Acronyms</h1><p class="hero-desc">Definitions for all terms, acronyms, and abbreviations used throughout this guide.</p></div>
+ <h2>Glossary of Terms</h2>
+ <div class="table-wrap"><table><thead><tr><th>Term</th><th>Definition</th></tr></thead><tbody>
+ <tr><td><strong>BCC</strong></td><td>Blind Carbon Copy — email copies to recipients whose addresses are hidden from other recipients.</td></tr>
+ <tr><td><strong>Boilerplate</strong></td><td>A standardized paragraph describing the chapter, used at the end of every press release.</td></tr>
+ <tr><td><strong>Coat of Arms</strong></td><td>The official fraternal crest of Kappa Alpha Psi Fraternity, Inc.</td></tr>
+ <tr><td><strong>Content Calendar</strong></td><td>A planning tool that organizes and schedules content publication across multiple platforms.</td></tr>
+ <tr><td><strong>DAM</strong></td><td>Digital Asset Management — the system for organizing, storing, and managing digital files.</td></tr>
+ <tr><td><strong>DPI</strong></td><td>Dots Per Inch — a measure of image resolution. 72 DPI for web; 300 DPI for print.</td></tr>
+ <tr><td><strong>Five Objectives</strong></td><td>The five commitments of Kappa Alpha Psi Fraternity, Inc., defining its core purpose.</td></tr>
+ <tr><td><strong>Hex / Hexadecimal</strong></td><td>A six-digit code used to specify digital colors (e.g., #70110C for Crimson).</td></tr>
+ <tr><td><strong>Inverted Pyramid</strong></td><td>A journalism writing structure: most important information first, supporting details after.</td></tr>
+ <tr><td><strong>WCAG</strong></td><td>Web Content Accessibility Guidelines — international standards for digital accessibility.</td></tr>
+ </tbody></table></div>
+ <h2>Acronyms</h2>
+ <div class="table-wrap"><table><thead><tr><th>Acronym</th><th>Full Term</th></tr></thead><tbody>
+ <tr><td>DLA</td><td>Denton-Lewisville Alumni (Chapter)</td></tr>
+ <tr><td>IHQ</td><td>International Headquarters (Kappa Alpha Psi)</td></tr>
+ <tr><td>KAΨ</td><td>Kappa Alpha Psi (Greek letter abbreviation)</td></tr>
+ <tr><td>KOE</td><td>Keeper of Exchequer</td></tr>
+ <tr><td>KOR</td><td>Keeper of Records</td></tr>
+ <tr><td>MAC</td><td>Marketing and Communications Director</td></tr>
+ <tr><td>MIP</td><td>Membership Intake Process</td></tr>
+ <tr><td>SEO</td><td>Search Engine Optimization</td></tr>
+ <tr><td>SSL</td><td>Secure Sockets Layer</td></tr>
+ <tr><td>WCAG</td><td>Web Content Accessibility Guidelines</td></tr>
+ </tbody></table></div>
+ </div>
+
+ </div><!-- /content -->
+
+ <footer id="page-footer">
+ <img src="assets/dla-logo.png" alt="DLA Kappa" style="height:40px; width:auto; opacity:0.7; margin-bottom:8px; display:block; margin-left:auto; margin-right:auto;">
+ <p>© 2025 Denton-Lewisville (TX) Alumni Chapter, Kappa Alpha Psi Fraternity, Inc. | <a href="mailto:communications@dlakappa.org">communications@dlakappa.org</a> | <a href="https://www.dlakappa.org" target="_blank">www.dlakappa.org</a></p>
+ <p style="margin-top:4px; opacity:0.6;">Confidential — For Chapter Use Only | Version 1.0 | "Brotherhood First"</p>
+ </footer>
+</div><!-- /main -->
+
+<script>
+// ── Page navigation ──────────────────────────────────────────────
+const pageMap = {
+ home:'Overview', intro:'Introduction',
+ ch1:'Ch. 1 — About the Chapter', ch2:'Ch. 2 — Governance',
+ ch3:'Ch. 3 — Brand Comms', ch4:'Ch. 4 — Visual Identity',
+ ch5:'Ch. 5 — Website', ch6:'Ch. 6 — Social Media',
+ ch7:'Ch. 7 — Email', ch8:'Ch. 8 — Mobile Comms',
+ ch9:'Ch. 9 — Photography', ch10:'Ch. 10 — Videography',
+ ch11:'Ch. 11 — Graphic Design', ch12:'Ch. 12 — Content Creation',
+ ch13:'Ch. 13 — Event Promotions', ch14:'Ch. 14 — Live Coverage',
+ ch15:'Ch. 15 — Post-Event', ch16:'Ch. 16 — Media Relations',
+ ch17:'Ch. 17 — Digital Assets', ch18:'Ch. 18 — Legal',
+ ch19:'Ch. 19 — AI Standards', ch20:'Ch. 20 — Training',
+ appendix:'Appendices — Forms & Templates', glossary:'Glossary & Acronyms'
+};
+
+function showPage(id) {
+ document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+ document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+ const page = document.getElementById('page-' + id);
+ if (page) page.classList.add('active');
+
+ const navItem = document.querySelector(`.nav-item[onclick="showPage('${id}')"]`);
+ if (navItem) navItem.classList.add('active');
+
+ document.getElementById('breadcrumb-current').textContent = pageMap[id] || id;
+ document.getElementById('content').scrollTop = 0;
+ window.scrollTo(0, 0);
+
+ // Update URL hash without scrolling
+ history.replaceState(null, '', '#' + id);
+ return false;
+}
+
+// Handle direct URL hash navigation
+window.addEventListener('load', () => {
+ const hash = window.location.hash.replace('#','');
+ if (hash && document.getElementById('page-' + hash)) {
+ showPage(hash);
+ }
+});
+
+// ── Sidebar toggle ────────────────────────────────────────────────
+function toggleSidebar() {
+ const sb = document.getElementById('sidebar');
+ const main = document.getElementById('main');
+ const btn = document.getElementById('sidebar-toggle');
+ sb.classList.toggle('collapsed');
+ main.classList.toggle('expanded');
+ btn.classList.toggle('collapsed');
+ btn.textContent = sb.classList.contains('collapsed') ? '' : '';
+}
+
+// ── Accordion ─────────────────────────────────────────────────────
+function toggleAccordion(header) {
+ const body = header.nextElementSibling;
+ const isOpen = header.classList.contains('open');
+ // Close all
+ document.querySelectorAll('.accordion-header').forEach(h => {
+ h.classList.remove('open');
+ if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
+ });
+ // Open this one if it was closed
+ if (!isOpen) {
+ header.classList.add('open');
+ body.classList.add('open');
+ }
+}
+
+// ── Search ────────────────────────────────────────────────────────
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('input', function() {
+ const q = this.value.toLowerCase().trim();
+ if (!q) {
+ document.querySelectorAll('.nav-item').forEach(i => i.style.display = '');
+ document.querySelectorAll('.nav-section-label').forEach(l => l.style.display = '');
+ return;
+ }
+ document.querySelectorAll('.nav-item').forEach(item => {
+ const label = item.querySelector('.nav-label');
+ if (label) {
+ const match = label.textContent.toLowerCase().includes(q);
+ item.style.display = match ? '' : 'none';
+ }
+ });
+ document.querySelectorAll('.nav-section-label').forEach(label => {
+ label.style.display = 'none';
+ });
+});
+
+// ── Keyboard shortcut: / to focus search ─────────────────────────
+document.addEventListener('keydown', e => {
+ if (e.key === '/' && document.activeElement !== searchInput) {
+ e.preventDefault();
+ searchInput.focus();
+ }
+});
+</script>
+<script>
+// ── MOBILE SIDEBAR TOGGLE ──────────────────────────────────────────────────
+function mobToggle() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('mob-backdrop');
+  const isOpen = sidebar.classList.contains('mobile-open');
+  if (isOpen) { mobClose(); } else {
+    sidebar.classList.add('mobile-open');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function mobClose() {
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('mob-backdrop').classList.remove('active');
+  document.body.style.overflow = '';
+}
+// Close sidebar when a nav item is clicked on mobile
+document.querySelectorAll('.nav-item').forEach(function(el) {
+  el.addEventListener('click', function() {
+    if (window.innerWidth <= 768) mobClose();
+  });
+});
+</script>
+</body>
+</html>

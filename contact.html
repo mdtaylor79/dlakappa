@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Contact — DLA Kappa Alpha Psi</title>
+<meta name="description" content="Contact the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. Reach us for Brotherhood inquiries, events, and programs.">
+<link rel="canonical" href="https://dlakappa.org/contact.html">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Denton-Lewisville (TX) Alumni Chapter — Kappa Alpha Psi">
+<meta property="og:title" content="Contact — DLA Kappa Alpha Psi">
+<meta property="og:description" content="Contact the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. Reach us for Brotherhood inquiries, events, and programs.">
+<meta property="og:url" content="https://dlakappa.org/contact.html">
+<meta property="og:image" content="https://dlakappa.org/img/white_jacket.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — DLA Kappa Alpha Psi">
+<meta name="twitter:description" content="Contact the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. Reach us for Brotherhood inquiries, events, and programs.">
+<meta name="twitter:image" content="https://dlakappa.org/img/white_jacket.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+.contact-wrap { max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+
+/* Info cards */
+.contact-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-bottom: 4rem;
+}
+.contact-card {
+  background: #faf8f4; border: 1px solid #e4ddd4;
+  padding: 1.75rem 1.5rem; text-align: center;
+}
+.contact-card .icon {
+  width: 44px; height: 44px; margin: 0 auto 1rem;
+  background: #70110c; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-card .icon svg { color: #f2ebd7; }
+.contact-card h3 {
+  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: #70110c; margin-bottom: .6rem;
+}
+.contact-card p, .contact-card a {
+  font-family: 'Archivo', sans-serif; font-size: .88rem;
+  color: #5a4a42; line-height: 1.6; text-decoration: none;
+}
+.contact-card a:hover { color: #70110c; text-decoration: underline; }
+
+/* Social row */
+.social-row {
+  display: flex; gap: .85rem; justify-content: center;
+  flex-wrap: wrap; margin-top: 1.5rem;
+}
+.social-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .6rem 1.25rem; border: 1.5px solid #e0d4c0;
+  color: #5a4a42; text-decoration: none; transition: all .2s;
+}
+.social-btn:hover { background: #70110c; color: #f2ebd7; border-color: #70110c; }
+
+/* Contact form */
+.form-wrap {
+  background: #fff; border: 1px solid #e4ddd4;
+  padding: 3rem; max-width: 680px; margin: 0 auto;
+}
+.form-wrap h2 {
+  font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 700;
+  color: #1a1a1a; margin-bottom: .4rem;
+}
+.form-wrap .sub {
+  font-size: .88rem; color: #8a7a72; margin-bottom: 2rem; line-height: 1.6;
+}
+.gold-bar { width: 48px; height: 3px; background: #c69a3f; margin: .75rem 0 1.5rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label {
+  display: block; font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #444; margin-bottom: .4rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: .72rem .9rem;
+  border: 1.5px solid #ddd; border-radius: 3px;
+  background: #fafafa; font-family: 'Archivo', sans-serif;
+  font-size: .92rem; color: #222; outline: none;
+  transition: border-color .2s; box-sizing: border-box;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: #c69a3f; background: #fff; }
+.form-group textarea { resize: vertical; min-height: 130px; }
+
+.form-submit {
+  width: 100%; padding: .95rem;
+  background: #70110c; color: #f2ebd7; border: none; border-radius: 3px;
+  font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  cursor: pointer; transition: background .2s; margin-top: .5rem;
+}
+.form-submit:hover { background: #5a0e09; }
+.form-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+.form-msg {
+  display: none; padding: .85rem 1rem; border-radius: 3px;
+  font-size: .84rem; margin-top: 1rem;
+}
+.form-msg.success { background: #f0fff4; border: 1px solid #b2e6c8; color: #1a6e3a; }
+.form-msg.error   { background: #fff0f0; border: 1px solid #f0c0c0; color: #a00; }
+
+@media(max-width:760px){
+  .contact-cards { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-wrap { padding: 2rem 1.25rem; }
+  .contact-wrap { padding: 0 1rem; }
+}
+</style>
+</head>
+<body data-page="contact">
+<div id="site-nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h1>Get in Touch</h1>
+    <div class="gold-bar"></div>
+    <p>We welcome members, partners, supporters, and community members to connect with us.</p>
+  </div>
+</div>
+
+<!-- Intro / How can we help -->
+<section style="background:#fff; padding:4rem 2rem 4rem; border-bottom:1px solid #e4ddd4;">
+  <div class="contact-wrap" style="max-width:860px;">
+    <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">How Can We Help?</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;color:#1a1a1a;margin-bottom:1rem;line-height:1.25;">We're Here to Connect, Serve, and Uplift</h2>
+    <div style="width:48px;height:3px;background:#c69a3f;margin-bottom:1.5rem;"></div>
+    <p style="font-family:'Archivo',sans-serif;font-size:1rem;color:#5a4a42;line-height:1.85;margin-bottom:2rem;">Whether you're a prospective member, a community partner, a student seeking mentorship, or a brother looking to reconnect — the Denton-Lewisville Alumni Chapter welcomes your message. Use the form below or reach us directly through the contact information provided. We respond to all inquiries within 2–3 business days.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+
+      <div style="border-left:3px solid #c69a3f;padding:.75rem 0 .75rem 1.25rem;">
+        <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">General Inquiries</div>
+        <p style="font-family:'Archivo',sans-serif;font-size:.84rem;color:#6a5a52;line-height:1.65;margin:0;">Community engagement, media, partnerships, events, and general questions about the chapter.</p>
+      </div>
+
+      <div style="border-left:3px solid #c69a3f;padding:.75rem 0 .75rem 1.25rem;">
+        <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Membership</div>
+        <p style="font-family:'Archivo',sans-serif;font-size:.84rem;color:#6a5a52;line-height:1.65;margin:0;">Interest in joining, reclamation for inactive brothers, or questions about the membership process and requirements.</p>
+      </div>
+
+      <div style="border-left:3px solid #c69a3f;padding:.75rem 0 .75rem 1.25rem;">
+        <div style="font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Guide Right &amp; Mentorship</div>
+        <p style="font-family:'Archivo',sans-serif;font-size:.84rem;color:#6a5a52;line-height:1.65;margin:0;">Youth mentorship program inquiries, Kappa League interest, school partnerships, and volunteer opportunities.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact form — two-column -->
+<section style="background:#f7f4ef; padding:0 0 5rem;">
+  <div style="max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;min-height:560px;">
+
+    <!-- Left: crimson info panel -->
+    <div style="background:#70110c;padding:3.5rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+      <!-- Diamond watermark -->
+      <div style="position:absolute;right:-60px;bottom:-60px;width:280px;height:280px;border:1px solid rgba(198,154,63,.18);transform:rotate(45deg);pointer-events:none;"></div>
+
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.75rem;">Reach Out</div>
+        <h2 style="font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:#f2ebd7;line-height:1.25;margin-bottom:2rem;">We'd love to<br>hear from you</h2>
+
+        <!-- Contact items -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Mailing Address</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);line-height:1.6;">1501 S. Loop 288, Suite 104<br>PMB 190 · Denton, TX 76205</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">General Inquiries</div>
+              <a href="mailto:info@dlakappa.org" style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);text-decoration:none;">info@dlakappa.org</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Membership</div>
+              <a href="mailto:membership@dlakappa.org" style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);text-decoration:none;">membership@dlakappa.org</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:36px;height:36px;border:1px solid rgba(198,154,63,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c69a3f;margin-bottom:.25rem;">Response Time</div>
+              <div style="font-family:'Archivo',sans-serif;font-size:.84rem;color:rgba(242,235,215,.85);line-height:1.6;">We respond within 2–3 business days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crest -->
+      <div style="margin-top:2.5rem;">
+        <img src="/img/kappa-crest.png" alt="Chapter Crest" style="width:56px;opacity:.35;">
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div style="background:#fff;padding:3.5rem 3rem;">
+      <h2 style="font-family:'Cinzel',serif;font-size:1.35rem;font-weight:700;color:#1a1a1a;margin-bottom:.4rem;">Send Us a Message</h2>
+      <div class="gold-bar"></div>
+      <p class="sub" style="font-size:.88rem;color:#8a7a72;margin-bottom:2rem;line-height:1.6;">Fill out the form and a chapter representative will be in touch.</p>
+
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-first">First Name *</label>
+            <input type="text" id="cf-first" placeholder="John" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-last">Last Name *</label>
+            <input type="text" id="cf-last" placeholder="Jenkins" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-email">Email Address *</label>
+            <input type="email" id="cf-email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Phone (optional)</label>
+            <input type="tel" id="cf-phone" placeholder="(555) 000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-subject">Subject *</label>
+          <select id="cf-subject" required>
+            <option value="">Select a topic…</option>
+            <option value="General Inquiry">General Inquiry</option>
+            <option value="Membership">Membership / Reclamation</option>
+            <option value="Partnership">Partnership / Sponsorship</option>
+            <option value="Guide Right">Guide Right / Mentorship</option>
+            <option value="Volunteering">Volunteering</option>
+            <option value="Media">Media / Press</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf-message">Message *</label>
+          <textarea id="cf-message" placeholder="Tell us how we can help…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="cf-submit">Send Message</button>
+        <div class="form-msg" id="cf-msg"></div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<style>
+@media(max-width:760px){
+  section > div[style*="grid-template-columns:1fr 1.6fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+<!-- Social media -->
+<section style="background:#fff; padding:3rem 2rem; border-top:1px solid #e8e0d4; text-align:center;">
+  <div class="contact-wrap">
+    <div style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.5rem;">Stay Connected</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:1.2rem;color:#1a1a1a;margin-bottom:.5rem;">Follow Us on Social Media</h2>
+    <p style="font-size:.88rem;color:#8a7a72;margin-bottom:1.5rem;">Get the latest chapter news, events, and community highlights.</p>
+    <div class="social-row">
+      <a class="social-btn" href="https://www.facebook.com/dlanupes/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a class="social-btn" href="https://www.instagram.com/dlanupes/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@DLAKappas" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        YouTube
+      </a>
+      <a class="social-btn" href="https://x.com/DNupes" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X / Twitter
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer-placeholder"></div>
+<script src="/js/nav.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('cf-submit');
+  const msg = document.getElementById('cf-msg');
+
+  const first   = document.getElementById('cf-first').value.trim();
+  const last    = document.getElementById('cf-last').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value;
+  const message = document.getElementById('cf-message').value.trim();
+
+  if (!first || !last || !email || !subject || !message) {
+    msg.textContent = 'Please fill in all required fields.';
+    msg.className = 'form-msg error';
+    msg.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  // Send via Formspree (replace YOUR_FORM_ID with your Formspree endpoint)
+  try {
+    const res = await fetch('https://formspree.io/f/mdaqlbjz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name:    `${first} ${last}`,
+        email,
+        phone:   document.getElementById('cf-phone').value.trim() || 'Not provided',
+        subject,
+        message
+      })
+    });
+
+    if (res.ok) {
+      msg.textContent = 'Thank you! Your message has been sent. We\'ll be in touch within 2–3 business days.';
+      msg.className = 'form-msg success';
+      document.getElementById('contactForm').reset();
+    } else {
+      throw new Error('Server error');
+    }
+  } catch {
+    msg.textContent = 'Something went wrong. Please email us directly at info@dlakappa.org.';
+    msg.className = 'form-msg error';
+  }
+
+  msg.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = 'Send Message';
+});
+</script>
+</body>
+</html>

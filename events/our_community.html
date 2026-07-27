@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Our Community — Events — DLA Kappa Alpha Psi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+  .sub-nav { display:block!important; position:sticky; top:58px; z-index:9998; }
+
+  /* ── HIGHLIGHT CARDS (top grid) ── */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin: 2.5rem 0;
+  }
+  @media(max-width:700px){ .highlight-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:480px){ .highlight-grid { grid-template-columns:1fr; } }
+  .hl-card {
+    border: 1px solid #e0d8cc;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fff;
+    text-align: center;
+  }
+  .hl-card .hl-img {
+    width: 100%; height: 160px;
+    overflow: hidden;
+    display: block;
+  }
+  .hl-card .hl-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .4s ease;
+  }
+  .hl-card:hover .hl-img img { transform: scale(1.04); }
+  .hl-card a.hl-link { text-decoration: none; color: inherit; display: block; }
+  .hl-card a.hl-link h4:hover { text-decoration: underline; }
+  .hl-card .hl-body { padding: .85rem 1rem 1rem; }
+  .hl-card h4 { font-family:'Cinzel',serif; font-size:.82rem; color:#70110c; margin-bottom:.3rem; font-weight:700; }
+  .hl-card p { font-size:.78rem; color:#6a5a52; line-height:1.55; margin:0; }
+
+  /* ── SPLIT SECTION ── */
+  .split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 72px 0;
+  }
+  @media(max-width:760px){ .split-section { grid-template-columns:1fr; } }
+  @media(max-width:760px){ .split-section .split-img { height:320px; } }
+  .split-section .split-img {
+    border-radius: 3px;
+    overflow: hidden;
+    background: linear-gradient(135deg,#1a0a08,#70110c);
+    height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .split-section .split-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: #70110c;
+    padding: 2.5rem 2rem;
+  }
+  .stats-bar-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; flex-wrap: wrap;
+    justify-content: space-around; align-items: center;
+    gap: 2rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .stat-num {
+    font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700;
+    color: #fff; line-height: 1;
+  }
+  .stat-item .stat-label {
+    font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+    color: #c69a3f; margin-top: .35rem;
+  }
+  .stat-divider { width:1px; height:48px; background:rgba(198,154,63,.3); }
+  @media(max-width:600px){ .stat-divider { display:none; } }
+
+  /* ── QUOTE BAND ── */
+  .quote-band {
+    background: #f2ebd7;
+    border-top: 3px solid #c69a3f;
+    border-bottom: 3px solid #c69a3f;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .quote-band blockquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem,3vw,1.65rem);
+    color: #2a0604;
+    max-width: 720px;
+    margin: 0 auto .75rem;
+    line-height: 1.5;
+  }
+  .quote-band cite {
+    font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+    color: #70110c; font-style: normal; font-weight: 600;
+  }
+
+  /* ── EXPLORE GRID ── */
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  @media(max-width:540px){ .explore-grid { grid-template-columns: 1fr; } }
+  .explore-card {
+    background: #fff;
+    border: 1px solid #e0d8cc;
+    overflow: hidden;
+  }
+  .explore-card .ec-img { width:100%; height:160px; overflow:hidden; }
+  .explore-card .ec-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .explore-card:hover .ec-img img { transform:scale(1.04); }
+  .explore-card .ec-body { padding:1.1rem 1.25rem 1.25rem; border-top:3px solid #c69a3f; }
+  .explore-card h4 { font-family:'Cinzel',serif; font-size:.82rem; color:#70110c; margin-bottom:.4rem; }
+  .explore-card h4 a { color:#70110c; text-decoration:none; }
+  .explore-card h4 a:hover { text-decoration:underline; }
+  .explore-card p { font-size:.8rem; color:#5a4a42; line-height:1.65; margin:0; }
+
+  /* ── WHY SECTION ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+  .why-item {
+    display: flex; gap: .75rem; align-items: flex-start;
+    background: #faf6ec; padding: 1rem 1.25rem;
+  }
+  .why-item .why-dot {
+    flex: none; margin-top: .3rem;
+  }
+  .why-item p { font-size: .88rem; color: #3a2e28; line-height: 1.6; margin: 0; }
+
+  /* ── EDUCATION SECTION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media(max-width:680px){ .edu-grid { grid-template-columns:1fr; } }
+  .edu-block { background:#fff; border:1px solid #e0d8cc; padding:1.5rem; border-left:4px solid #70110c; }
+  .edu-block h4 { font-family:'Cinzel',serif; font-size:.9rem; color:#70110c; margin-bottom:.75rem; }
+  .edu-block ul { padding-left:1.1rem; margin:0; }
+  .edu-block li { font-size:.82rem; color:#4a3c35; line-height:1.75; }
+
+  /* EYEBROW */
+  .oc-eyebrow {
+    font-size:.65rem; font-weight:600; letter-spacing:.18em;
+    text-transform:uppercase; color:#c69a3f;
+    margin-bottom:1rem;
+    display:flex; align-items:center; gap:.5rem;
+  }
+</style>
+</head>
+<body data-page="events">
+<div id="site-nav-placeholder"></div>
+<div class="sub-nav">
+  <div class="wrap">
+    <a href="/events.html">Events &amp; Calendar</a>
+    <a href="/events/our_community.html" class="active">Our Community</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Events — Our Community</div>
+    <h1>Life in Denton &amp; Lewisville</h1>
+    <div class="gold-bar"></div>
+    <p>Experience the unique blend of education, culture, innovation, and community that defines Denton County.</p>
+  </div>
+</div>
+
+<!-- ── SECTION 1: HIGHLIGHT CARDS ── -->
+<div style="background:#f9f6ef; padding:64px 0;">
+  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+    <div class="highlight-grid">
+
+      <div class="hl-card">
+        <a class="hl-link" href="https://www.unt.edu/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/unt_denton.jpg" alt="University of North Texas"></div>
+          <div class="hl-body">
+            <h4>University of North Texas</h4>
+            <p>One of the nation's leading public research universities with over 46,000 students.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="hl-card">
+        <a class="hl-link" href="https://www.twu.edu/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/twu.jpg" alt="Texas Woman's University"></div>
+          <div class="hl-body">
+            <h4>Texas Woman's University</h4>
+            <p>The nation's largest university primarily for women, renowned for healthcare and leadership.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="hl-card">
+        <a class="hl-link" href="https://www.nctc.edu/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/nctc.jpg" alt="North Central Texas College"></div>
+          <div class="hl-body">
+            <h4>North Central Texas College</h4>
+            <p>A premier community college serving students across Denton County with affordable, quality education.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="hl-card">
+        <a class="hl-link" href="https://www.aubreytx.gov/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/aubrey.jpg" alt="Aubrey, TX"></div>
+          <div class="hl-body">
+            <h4>Aubrey</h4>
+            <p>A charming small-town community in Denton County with a welcoming spirit and room to grow.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="hl-card">
+        <a class="hl-link" href="https://www.grandscape.com/" target="_blank" rel="noopener">
+          <div class="hl-img"><img src="/img/Grandscape.jpg" alt="Grandscape"></div>
+          <div class="hl-body">
+            <h4>Grandscape</h4>
+            <p>One of the largest mixed-use entertainment developments in America.</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="hl-card">
+        <div class="hl-img"><img src="/img/little_elm.jpg" alt="Little Elm"></div>
+        <div class="hl-body">
+          <h4><a href="https://www.discoverlittleelm.com/Events" target="_blank" rel="noopener">Little Elm</a></h4>
+          <p>A fast-growing lakeside community with vibrant events, outdoor recreation, and family-friendly living.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 2: THRIVING COMMUNITY SPLIT ── -->
+<div style="background:#fff;">
+  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+    <div class="split-section">
+
+      <div>
+        <div class="oc-eyebrow">
+          <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+          A Thriving Community
+        </div>
+        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:#70110c;margin-bottom:1.25rem;line-height:1.15;">Growing Together in North Texas</h2>
+        <div style="width:40px;height:2px;background:#c69a3f;margin-bottom:1.5rem;"></div>
+        <p style="line-height:1.85;color:#3a2e28;margin-bottom:1.25rem;">The Denton–Lewisville area sits within one of the fastest-growing regions in the United States. Located in Denton County and connected to the greater Dallas–Fort Worth Metroplex, the area combines nationally recognized universities, thriving businesses, expanding residential communities, and abundant recreational opportunities.</p>
+        <p style="line-height:1.85;color:#3a2e28;">As families, professionals, entrepreneurs, veterans, educators, and community leaders continue relocating to North Texas, the Denton-Lewisville (TX) Alumni Chapter serves as a fraternal home dedicated to achievement in every field of human endeavor while strengthening the communities we serve.</p>
+      </div>
+
+      <div class="split-img" style="display:flex;flex-direction:column;gap:1rem;">
+        <img src="/img/LewisvilleTexas7.jpg" alt="Lewisville, TX" style="width:100%;height:50%;object-fit:cover;flex:1;">
+        <img src="/img/Denton9.jpg" alt="Denton, TX" style="width:100%;height:50%;object-fit:cover;flex:1;">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+
+    <div class="stat-item">
+      <div class="stat-num">1M+</div>
+      <div class="stat-label">Residents in<br>Denton County</div>
+    </div>
+    <div class="stat-divider"></div>
+
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Tier-One<br>Universities</div>
+    </div>
+    <div class="stat-divider"></div>
+
+    <div class="stat-item">
+      <div class="stat-num">29K+</div>
+      <div class="stat-label">Acres —<br>Lewisville Lake</div>
+    </div>
+    <div class="stat-divider"></div>
+
+    <div class="stat-item">
+      <div class="stat-num">150K+</div>
+      <div class="stat-label">College<br>Students</div>
+    </div>
+    <div class="stat-divider"></div>
+
+    <div class="stat-item">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">Miles of<br>Trails &amp; Parks</div>
+    </div>
+    <div class="stat-divider"></div>
+
+    <div class="stat-item">
+      <div class="stat-num">4th</div>
+      <div class="stat-label">Largest Metro<br>Area in the U.S.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── QUOTE ── -->
+<div class="quote-band">
+  <blockquote>"Achievement in Every Field of Human Endeavor."</blockquote>
+  <cite>— Kappa Alpha Psi Fraternity, Inc.</cite>
+</div>
+
+<!-- ── SECTION 3: EDUCATION & INNOVATION ── -->
+<div style="position:relative;overflow:hidden;background:#1a0603;">
+  <!-- Background campus image -->
+  <div style="position:absolute;inset:0;background:url('/img/unt_twu_campus.jpg') center/cover no-repeat;opacity:.35;"></div>
+  <!-- Gradient overlay left side -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(26,6,3,.92) 38%,rgba(26,6,3,.55) 70%,rgba(26,6,3,.2) 100%);"></div>
+
+  <div class="wrap" style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:72px 2rem;">
+
+    <!-- Header text -->
+    <div style="max-width:520px;margin-bottom:2.5rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:.75rem;">
+        <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+        EDUCATION
+        <svg width="7" height="7" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+        INNOVATION
+      </div>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#f2ebd7;line-height:1.2;margin-bottom:.9rem;">A Center for Higher Education &amp; Growth</h2>
+      <p style="color:#d4c8bc;line-height:1.85;font-size:.95rem;">Denton County has become one of Texas' leading centers for higher education, healthcare innovation, aviation, logistics, advanced manufacturing and technology.</p>
+    </div>
+
+    <!-- Two cards -->
+    <div class="edu-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1060px;">
+
+      <!-- Healthcare card -->
+      <div style="background:rgba(255,255,255,.97);border-radius:3px;padding:1.75rem 1.75rem 1.5rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;">
+          <div style="width:38px;height:38px;background:#70110c;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4 style="font-family:'Cinzel',serif;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#70110c;margin:0;">Top Healthcare Systems</h4>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0 0 1.5rem;display:flex;flex-direction:column;gap:.6rem;">
+          <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#70110c"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/><circle cx="12" cy="12" r="10" fill="none" stroke="#70110c" stroke-width="2"/><path d="M9 12l2 2 4-4" fill="none" stroke="#c69a3f" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="12" r="9" fill="#f2ebd7"/><path d="M8 12l3 3 5-5" fill="none" stroke="#70110c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Medical City Lewisville</li>
+          <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Texas Health Presbyterian Denton</li>
+          <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Children's Medical Center</li>
+          <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Numerous specialty healthcare providers</li>
+        </ul>
+        <!-- Healthcare logos -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:nowrap;border-top:1px solid #e8ddd3;padding-top:1.1rem;">
+          <img src="/img/medical_city_logo.png" alt="Medical City Lewisville" style="height:38px;object-fit:contain;max-width:110px;flex:1;">
+          <img src="/img/texas_health_logo.png" alt="Texas Health Presbyterian" style="height:38px;object-fit:contain;max-width:110px;flex:1;">
+          <img src="/img/childrens_health_logo.png" alt="Children's Health" style="height:38px;object-fit:contain;max-width:110px;flex:1;">
+        </div>
+      </div>
+
+      <!-- Employers card -->
+      <div style="background:rgba(255,255,255,.97);border-radius:3px;padding:1.75rem 1.75rem 1.5rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;">
+          <div style="width:38px;height:38px;background:#70110c;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+          <h4 style="font-family:'Cinzel',serif;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#70110c;margin:0;">Major Employers</h4>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:.6rem 1rem;align-items:start;">
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem;">
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>University of North Texas</li>
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Texas Woman's University</li>
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Peterbilt Motors / PACCAR</li>
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>FEMA Region VI</li>
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Medical City Healthcare</li>
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>WinCo Foods Distribution</li>
+            <li style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:#2a1a16;"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#f2ebd7" stroke="#70110c" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="#70110c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Sally Beauty Holdings</li>
+          </ul>
+          <!-- Employer logos stacked -->
+          <div style="display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;min-width:120px;">
+            <img src="/img/unt_logo.png" alt="UNT" style="height:44px;object-fit:contain;max-width:120px;">
+            <img src="/img/twu_logo.png" alt="TWU" style="height:44px;object-fit:contain;max-width:120px;">
+            <img src="/img/winco_logo.png" alt="WinCo Foods" style="height:36px;object-fit:contain;max-width:120px;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats bar -->
+    <div class="edu-stats-bar" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2rem;background:rgba(42,6,4,.85);border:1px solid rgba(198,154,63,.3);">
+      <div style="padding:1.5rem;text-align:center;border-right:1px solid rgba(198,154,63,.25);">
+        <div style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:#c69a3f;line-height:1;">150,000+</div>
+        <div style="font-size:.72rem;color:#d4c8bc;margin-top:.35rem;letter-spacing:.05em;">College Students</div>
+      </div>
+      <div style="padding:1.5rem;text-align:center;border-right:1px solid rgba(198,154,63,.25);">
+        <div style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:#c69a3f;line-height:1;">1 Million+</div>
+        <div style="font-size:.72rem;color:#d4c8bc;margin-top:.35rem;letter-spacing:.05em;">Denton County Residents</div>
+      </div>
+      <div style="padding:1.5rem;text-align:center;border-right:1px solid rgba(198,154,63,.25);">
+        <div style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:#c69a3f;line-height:1;">AAA</div>
+        <div style="font-size:.72rem;color:#d4c8bc;margin-top:.35rem;letter-spacing:.05em;">School Rating</div>
+      </div>
+      <div style="padding:1.5rem;text-align:center;">
+        <div style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:#c69a3f;line-height:1;">DFW Metroplex</div>
+        <div style="font-size:.72rem;color:#d4c8bc;margin-top:.35rem;letter-spacing:.05em;">4th Largest in the United States</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SECTION 4: EXPLORE ── -->
+<div style="background:#f2ebd7; padding:72px 0;">
+  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+    <div class="oc-eyebrow">
+      <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+      Discover
+    </div>
+    <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.5rem,3vw,2rem);color:#70110c;margin-bottom:.5rem;">Explore Denton &amp; Lewisville</h2>
+    <p style="color:#4a3c35;line-height:1.8;max-width:620px;margin-bottom:0;">From world-class attractions to family-friendly destinations, there's something for everyone.</p>
+
+    <div class="explore-grid">
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/Old_Courthouse_Denton_TX-scaled.jpg" alt="Historic Downtown Denton"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.discoverdenton.com/visitor-guide" target="_blank" rel="noopener">Historic Downtown Denton</a></h4>
+          <p>Live music, independent dining, shopping, and festivals on a nationally recognized square.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/lake_lewisville.jpg" alt="Lewisville Lake"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.visitlewisville.com/" target="_blank" rel="noopener">Lewisville Lake</a></h4>
+          <p>Water recreation, marinas, beaches, and outdoor adventure across 29,000+ acres.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/llea_nature_preserve.jpg" alt="LLELA Nature Preserve"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.llela.org/" target="_blank" rel="noopener">LLELA Nature Preserve</a></h4>
+          <p>Nearly 2,600 acres of hiking, wildlife, camping, and environmental education.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/Ray-Roberts_lake.jpg" alt="Ray Roberts Lake State Park"></div>
+        <div class="ec-body">
+          <h4><a href="https://tpwd.texas.gov/state-parks/ray-roberts-lake" target="_blank" rel="noopener">Ray Roberts Lake State Park</a></h4>
+          <p>Camping, fishing, horseback riding, cycling, kayaking, and hiking.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/flower_mound.jpg" alt="Flower Mound"></div>
+        <div class="ec-body">
+          <h4><a href="https://flowermound.gov/" target="_blank" rel="noopener">Flower Mound</a></h4>
+          <p>A premier master-planned community known for top-rated schools, parks, and quality of life.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/Old_Town_lewisville.jpg" alt="Old Town Lewisville"></div>
+        <div class="ec-body">
+          <h4><a href="https://oldtownlewisville.com/" target="_blank" rel="noopener">Old Town Lewisville</a></h4>
+          <p>Historic downtown district with restaurants, community events, and public art.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/mcl_Grand_Theater.jpg" alt="MCL Grand Theater"></div>
+        <div class="ec-body">
+          <h4><a href="https://www.lewisvillegrand.com/" target="_blank" rel="noopener">MCL Grand Theater</a></h4>
+          <p>Arts performances, concerts, exhibits, and cultural programming.</p>
+        </div>
+      </div>
+
+      <div class="explore-card">
+        <div class="ec-img"><img src="/img/denton_jazz_fest.jpg" alt="Denton Arts & Jazz Festival"></div>
+        <div class="ec-body">
+          <h4><a href="https://dentonjazzfest.com/" target="_blank" rel="noopener">Denton Arts &amp; Jazz Festival</a></h4>
+          <p>One of Texas' premier free music festivals attracting hundreds of thousands of visitors annually.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 5: WHY BROTHERS CHOOSE DLA ── -->
+<div style="background:#2a0604; padding:72px 0;">
+  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+    <div style="font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c69a3f;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">
+      <svg width="8" height="8" viewBox="0 0 8 8"><path d="M4 0L8 4L4 8L0 4Z" fill="#c69a3f"/></svg>
+      Brotherhood &amp; Community
+    </div>
+    <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.5rem,3vw,2rem);color:#f2ebd7;margin-bottom:2rem;">Why Brothers Choose Denton-Lewisville</h2>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Growing professional community with expanding opportunity</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Strong educational foundation anchored by UNT and TWU</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Family-oriented neighborhoods with highly rated schools</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Active civic engagement and community leadership</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Rich arts, music, and cultural identity centered on the Denton Square</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Expanding business opportunities across multiple industries</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Convenient access to the entire DFW Metroplex — 20–30 min to DFW Airport</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-dot" width="10" height="10" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+        <p style="color:#70110c;">Commitment to youth mentorship and community service through Kappa League</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── COMMUNITIES WE SERVE BANNER ── -->
+<div style="position:relative;overflow:hidden;background:#2a0604;">
+  <div style="position:absolute;inset:0;background:url('/img/denton_skyline.jpg') center/cover no-repeat;opacity:.18;"></div>
+  <div style="position:relative;z-index:1;text-align:center;padding:56px 2rem 48px;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">
+      <svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+      PROUDLY SERVING
+      <svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 0L10 5L5 10L0 5Z" fill="#c69a3f"/></svg>
+    </div>
+    <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.6rem);color:#f2ebd7;font-weight:700;letter-spacing:.04em;margin-bottom:.75rem;">The Denton &ndash; Lewisville Community</h2>
+    <div style="width:40px;height:2px;background:#c69a3f;margin:0 auto .9rem;"></div>
+    <p style="color:#d4c8bc;font-size:.92rem;margin-bottom:2.5rem;">Uniting and uplifting communities across Denton County. Together, building a stronger future.</p>
+
+    <!-- Logo strip -->
+    <div style="background:rgba(242,235,215,.97);border:1px solid rgba(198,154,63,.4);border-radius:3px;display:flex;align-items:center;justify-content:space-around;flex-wrap:nowrap;gap:0;max-width:1100px;margin:0 auto;padding:1.25rem .5rem;overflow-x:auto;">
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/argyle_citylogo.png" alt="Argyle, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Argyle, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/aubrey_citylogo.png" alt="Aubrey, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Aubrey, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/corinth_citylogo.png" alt="Corinth, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Corinth, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/denton_citylogo.png" alt="Denton, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Denton, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/flower_mound_logo.png" alt="Flower Mound, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Flower Mound, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/highland_village_citylogo.png" alt="Highland Village, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Highland Village, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.5rem .6rem;border-right:1px solid #e0d8cc;min-width:0;flex:1;">
+        <img src="/img/lewisville_citylogo.png" alt="Lewisville, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Lewisville, TX</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.75rem 1rem;min-width:120px;">
+        <img src="/img/little_elm_citylogo.png" alt="Little Elm, TX" style="height:52px;object-fit:contain;max-width:90px;">
+        <span style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2a1a16;">Little Elm, TX</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="site-footer-placeholder"></div>
+<script src="/js/nav.js"></script>
+</body>
+</html>

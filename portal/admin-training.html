@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Training Admin | DLA Kappas Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #7D110C;
+    --cream: #F2EBD7;
+    --text: #2A2A2A;
+    --pending: #C9971C;
+    --complete: #1E7145;
+    --expired: #A31F1F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+  }
+  header {
+    background: var(--crimson);
+    color: #fff;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  header h1 { margin: 0; font-size: 1.4rem; font-weight: 700; }
+  header a { color: #fff; text-decoration: none; font-size: 0.85rem; opacity: 0.85; }
+  main { max-width: 1000px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .card h2 { margin-top: 0; font-size: 1.05rem; color: var(--crimson); }
+
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
+  input, select, textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+  button {
+    background: var(--crimson);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  button.secondary {
+    background: #eee;
+    color: var(--text);
+  }
+  button.danger { background: var(--expired); }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid #eee; }
+  th { background: var(--crimson); color: #fff; font-weight: 600; }
+  .badge {
+    display: inline-block; padding: 3px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700; color: #fff;
+  }
+  .badge.Complete { background: var(--complete); }
+  .badge.Pending { background: var(--pending); }
+  .badge.Expired { background: var(--expired); }
+  .actions button { padding: 5px 10px; font-size: 0.75rem; margin-right: 4px; }
+  .msg { padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 14px; }
+  .msg.ok { background: #e3f6ea; color: var(--complete); }
+  .msg.err { background: #fbe6e6; color: var(--expired); }
+  .loading, .empty { text-align: center; padding: 24px; color: #666; }
+  #gate { padding: 40px; text-align: center; }
+</style>
+</head>
+<body>
+
+<div id="gate" class="loading">Checking access&hellip;</div>
+
+<div id="app" style="display:none;">
+  <header>
+    <h1>Training Admin</h1>
+    <a href="admin.html">&larr; Back to Admin Panel</a>
+  </header>
+
+  <main>
+    <div id="msgBox"></div>
+
+    <div class="card">
+      <h2 id="formTitle">Add Training Record</h2>
+      <form id="trainingForm">
+        <input type="hidden" id="recordId" />
+        <div>
+          <label for="memberSelect">Member</label>
+          <select id="memberSelect" required></select>
+        </div>
+        <div>
+          <label for="trainingName">Training Name</label>
+          <input type="text" id="trainingName" required placeholder="e.g. Guide Right Orientation" />
+        </div>
+        <div>
+          <label for="completedDate">Completed Date</label>
+          <input type="date" id="completedDate" />
+        </div>
+        <div>
+          <label for="status">Status</label>
+          <select id="status">
+            <option>Pending</option>
+            <option>Complete</option>
+            <option>Expired</option>
+          </select>
+        </div>
+        <div>
+          <label for="verifiedBy">Verified By</label>
+          <input type="text" id="verifiedBy" placeholder="Officer name" />
+        </div>
+        <div class="full">
+          <label for="notes">Notes</label>
+          <textarea id="notes" rows="2"></textarea>
+        </div>
+        <div class="full" style="display:flex; gap:10px;">
+          <button type="submit" id="submitBtn">Add Record</button>
+          <button type="button" class="secondary" id="cancelEditBtn" style="display:none;">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>All Training Records</h2>
+      <div id="tableWrap" class="loading">Loading&hellip;</div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/admin-training.js"></script>
+</body>
+</html>
