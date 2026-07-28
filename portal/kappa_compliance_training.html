@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>501(c)(3) & 501(c)(7) Compliance Training | Denton-Lewisville Kappa</title>
@@ -277,11 +276,6 @@
     .content-area, .welcome-body { padding: 24px; }
     .hero { padding: 36px 24px; }
   }
-
-/* ── Diamond Section Divider ── */
-.diamond-divider{display:flex;align-items:center;gap:1.1rem;max-width:520px;margin:0 auto;padding:8px 2rem;pointer-events:none;}
-.diamond-divider::before,.diamond-divider::after{content:"";flex:1;height:1px;background:rgba(198,154,63,.38);}
-.diamond-divider span{display:block;width:7px;height:7px;background:#c69a3f;transform:rotate(45deg);flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -662,15 +656,15 @@
       </div>
 
       <div class="kc-question" id="kc1q2">
-        <div class="kc-q-text">2. Where should Kappa League membership dues be deposited?</div>
+        <div class="kc-q-text">2. Where should Kappa League membership dues be deposited by default?</div>
         <div class="kc-options">
-          <div class="kc-option" onclick="selectOption(this,'kc1q2','A')"><div class="kc-option-letter">A</div>The Alumni Chapter bank account, since brothers run the program</div>
+          <div class="kc-option" onclick="selectOption(this,'kc1q2','A')"><div class="kc-option-letter">A</div>The Alumni Chapter (501(c)(7)) bank account — KL is a Chapter program and its dues fund operations, clothing, and member activities, not charitable public purposes</div>
           <div class="kc-option" onclick="selectOption(this,'kc1q2','B')"><div class="kc-option-letter">B</div>A joint account accessible by both organizations</div>
-          <div class="kc-option" onclick="selectOption(this,'kc1q2','C')"><div class="kc-option-letter">C</div>The Guide Right Foundation's separate bank account</div>
-          <div class="kc-option" onclick="selectOption(this,'kc1q2','D')"><div class="kc-option-letter">D</div>Either account, as long as expenses match</div>
+          <div class="kc-option" onclick="selectOption(this,'kc1q2','C')"><div class="kc-option-letter">C</div>The Guide Right Foundation's separate bank account, because Kappa League is an educational program</div>
+          <div class="kc-option" onclick="selectOption(this,'kc1q2','D')"><div class="kc-option-letter">D</div>Either account, as long as expenses match the deposit account</div>
         </div>
         <div class="kc-feedback" id="kc1q2-fb"></div>
-        <button class="kc-check-btn" onclick="checkAnswer('kc1q2','C','Kappa League dues are revenue of the Guide Right Foundation — a 501(c)(3) — because the Kappa League is the Foundation\'s educational youth program. These funds must go directly to the Foundation\'s account.')">Check Answer</button>
+        <button class="kc-check-btn" onclick="checkAnswer('kc1q2','A','Kappa League is a Chapter program (501(c)(7)), not a Foundation program. KL dues are membership-based revenue — they pay for operations, clothing, supplies, and activities that benefit the KL members directly. That is not a charitable public benefit; it is a member benefit, exactly like fraternity dues for brothers. Dues that primarily benefit members belong in the 501(c)(7) Chapter account (the Keeper of Exchequer). KL funds would only route to the Foundation if the Foundation\'s EIN was deliberately registered as the payout account in a fundraising platform — a separate, intentional choice. By default, KL dues → Chapter exchequer.')">Check Answer</button>
       </div>
 
       <div class="kc-question" id="kc1q3">
@@ -888,7 +882,7 @@
       <ul>
         <li>Write a proper budget/sponsorship request from the Foundation for Guide Right activities</li>
         <li>Identify chapter expenditures that are and are not permissible from dues revenue</li>
-        <li>Distinguish between Kappa League dues (Foundation) and fraternity dues (Chapter)</li>
+        <li>Confirm that Kappa League dues are Chapter (501(c)(7)) revenue by default — member-benefit funds, not charitable public-benefit funds</li>
         <li>Apply the rule on travel expenses: when they belong to the Foundation vs. the Chapter</li>
       </ul>
     </div>
@@ -956,7 +950,7 @@
         <h4>Budget states: "The ask of the Chapter is to contribute $3,000 to Guide Right, and the rest of the $10,120 will be generated from dues and fundraising."</h4>
         <p>This framing is well-intentioned but creates a direct compliance problem. A voluntary transfer of $3,000 from the DLA Alumni Chapter (501(c)(7)) to the Guide Right Foundation (501(c)(3)) is an inter-entity fund transfer that bypasses proper grant structure.</p>
         <span class="verdict violation">❌ Must Be Revised</span>
-        <p style="margin-top:10px; font-size:14px; color:#555;"><strong>The fix:</strong> The Foundation's full $13,120 budget must be funded through Foundation-appropriate revenue — Kappa League dues, public/corporate donations made directly to the Foundation, Foundation fundraisers. Brothers who personally want to support Guide Right can donate individually to the Foundation and take a personal tax deduction. The chapter cannot write a check to the Foundation from its treasury without a formal, attorney-reviewed grant agreement.</p>
+        <p style="margin-top:10px; font-size:14px; color:#555;"><strong>The fix:</strong> The Foundation's full $13,120 budget must be funded through Foundation-appropriate revenue — public/corporate donations made directly to the Foundation, Foundation fundraisers, grants, and individual brother donations (which are tax-deductible). KL dues are Chapter revenue and fund KL operations, not Foundation programming. The chapter cannot write a check to the Foundation from its treasury without a formal, attorney-reviewed grant agreement.</p>
       </div>
 
       <div class="scenario">
@@ -1149,7 +1143,7 @@
         <h4>The Myth: Any chapter fundraising effort automatically benefits the Foundation.</h4>
         <p>Some members reason that since the chapter's goal is to support Guide Right, fundraising by the chapter is effectively fundraising for the Foundation — so there's no need to do Foundation-specific fundraising.</p>
         <span class="verdict violation">❌ False and Problematic</span>
-        <p style="margin-top:10px; font-size:14px; color:#555;">Chapter fundraising generates chapter revenue. Foundation fundraising generates Foundation revenue. They are completely separate activities. If the chapter raises money at a social event, that money belongs to the chapter and can only be used for chapter purposes. The Foundation must build its own independent revenue base — through direct solicitation of donors, corporate sponsorships addressed to the Foundation, Foundation fundraisers, and Kappa League dues — to fund its programming. Treating chapter fundraising as Foundation fundraising is exactly the thinking that leads to fund commingling.</p>
+        <p style="margin-top:10px; font-size:14px; color:#555;">Chapter fundraising generates chapter revenue. Foundation fundraising generates Foundation revenue. They are completely separate activities. If the chapter raises money at a social event, that money belongs to the chapter and can only be used for chapter purposes. The Foundation must build its own independent revenue base — through direct solicitation of donors, corporate sponsorships addressed to the Foundation, Foundation fundraisers, grants, and individual donations from brothers or the public — to fund its programming. KL dues are Chapter revenue and go to the Chapter exchequer to fund KL operations. Treating chapter fundraising as Foundation fundraising is exactly the thinking that leads to fund commingling.</p>
       </div>
     </div>
 
@@ -2896,7 +2890,7 @@ Alumni Chapter (501(c)(7))   Community Groups
         <div class="cert-topic">UBIT &amp; intermediate sanctions</div>
         <div class="cert-topic">Political activity prohibition</div>
       </div>
-      <div class="diamond-divider" aria-hidden="true"><span></span></div>
+      <hr style="border-color: var(--cream-border); margin: 20px 0;">
       <p style="font-size:13px; color:var(--text-light);">Issued by the Denton-Lewisville Guide Right Foundation &amp; Alumni Chapter<br>
       Based on IRS Publication 557, IRC §501(c)(3), IRC §501(c)(7), and IRS Stay Exempt Workshop materials</p>
       <p style="font-size:12px; color:var(--text-light); margin-top:8px;">Date Completed: <span id="cert-date"></span></p>
@@ -3008,7 +3002,6 @@ function printCertificate() {
   const html = `<!DOCTYPE html>
 <html>
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
 <meta charset="UTF-8">
 <title>Certificate of Completion</title>
 <style>
@@ -3053,7 +3046,7 @@ function printCertificate() {
     <div class="topic">UBIT &amp; intermediate sanctions</div>
     <div class="topic">Political activity prohibition</div>
   </div>
-  <div class="diamond-divider" aria-hidden="true"><span></span></div>
+  <hr>
   <div class="footer">
     Issued by the Denton-Lewisville Guide Right Foundation &amp; Alumni Chapter<br>
     Based on IRS Publication 557, IRC §501(c)(3), IRC §501(c)(7), and IRS Stay Exempt Workshop materials<br>
