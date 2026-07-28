@@ -1034,10 +1034,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     <div class="sidebar-inner">
       <div class="sidebar-header">Navigation</div>
       <nav class="sidebar-nav" id="dashNav">
-        <a href="#" onclick="showSection('welcome',this);return false;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Welcome
-        </a>
         <a href="#" onclick="showSection('dues',this);return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
           Pay Dues
@@ -1095,11 +1091,34 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   <main class="dash-main">
 
     <!-- ── QUICK ACTIONS ── -->
-    <div id="welcome" style="background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);border-radius:10px;padding:2rem 2.25rem;color:#f2ebd7;position:relative;overflow:hidden;margin-bottom:1.5rem;">
-      <div style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:7rem;font-weight:700;color:rgba(198,154,63,.12);line-height:1;pointer-events:none;user-select:none;">&#922;</div>
-      <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Denton-Lewisville Alumni Chapter</div>
-      <h2 id="welcomeName" style="font-family:'Cinzel',serif;font-size:1.45rem;font-weight:700;margin:0 0 .55rem;color:#f2ebd7;">Welcome, Brother.</h2>
-      <p style="font-family:'Archivo',sans-serif;font-size:.92rem;line-height:1.65;color:#e8dcc8;margin:0;max-width:560px;">This is your chapter member portal — your single destination for chapter news, resources, training, and business. Use the navigation menu on the left to access each section.</p>
+    <div id="quick-actions" style="scroll-margin-top:90px;">
+      <div style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-bottom:.85rem;">Quick Actions</div>
+      <div class="quick-actions-grid">
+        <a class="quick-action-card" href="https://cash.app/$DLAKappas" target="_blank" rel="noopener">
+          <div class="qa-icon qa-crimson">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+          <h4>Pay Chapter Dues</h4>
+          <p>Submit dues payment via Cash App, Venmo, PayPal, Stripe, or check.</p>
+          <div class="qa-arrow">Pay Now →</div>
+        </a>
+        <a class="quick-action-card" href="https://dlakappas.flipsideapps.com/" target="_blank" rel="noopener">
+          <div class="qa-icon qa-gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h4>DLA Kappa App</h4>
+          <p>Access news, events, and chapter updates in one place.</p>
+          <div class="qa-arrow">Open App →</div>
+        </a>
+        <a class="quick-action-card" href="https://form.jotform.com/261490578388068" target="_blank" rel="noopener">
+          <div class="qa-icon qa-dark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h4>Climate Survey</h4>
+          <p>Complete the 2026–2027 chapter climate assessment survey.</p>
+          <div class="qa-arrow">Take Survey →</div>
+        </a>
+      </div>
     </div>
 
     <!-- ── PAY CHAPTER DUES ── -->
@@ -1760,8 +1779,6 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
   const joined    = (session.user.created_at || '').split('T')[0];
 
   document.getElementById('memberName').textContent      = fullName;
-  var welEl = document.getElementById('welcomeName');
-  if (welEl) { var fn = meta.first_name || meta.firstName || fullName.split(' ')[0]; welEl.textContent = 'Welcome, Brother ' + fn + '.'; }
   document.getElementById('memberEmailGold').textContent = session.user.email;
   document.getElementById('memberEmailWhite').style.display = 'none';
   document.getElementById('memberTier').textContent      = tier;
@@ -2065,7 +2082,7 @@ function loadPolemarchVideo() {
 }
 
 // ── SECTION SWITCHER ──────────────────────────────────────────────────────────
-const DASH_SECTIONS = ['welcome','dues','polemarch-address','app','training','news','documents','assessments','calls','store','shop','account'];
+const DASH_SECTIONS = ['dues','polemarch-address','app','training','news','documents','assessments','calls','store','shop','account'];
 
 function showSection(id, clickedLink) {
   // Hide all sections
