@@ -1034,7 +1034,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     <div class="sidebar-inner">
       <div class="sidebar-header">Navigation</div>
       <nav class="sidebar-nav" id="dashNav">
-        <a href="#" onclick="showSection('welcome',this);return false;">
+        <a href="#" onclick="
+          document.querySelectorAll('.sidebar-nav a').forEach(function(a){a.style.borderLeftColor='transparent';a.style.color='';a.style.background='';});
+          this.style.borderLeftColor='#c69a3f';this.style.color='#70110c';this.style.background='#faf8f5';
+          ['dues','polemarch-address','app','training','news','documents','assessments','calls','store','shop','account'].forEach(function(s){var e=document.getElementById(s);if(e)e.style.display='none';});
+          var wb=document.getElementById('welcome');if(wb)wb.style.display='block';
+          return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           Welcome
         </a>
@@ -2065,9 +2070,12 @@ function loadPolemarchVideo() {
 }
 
 // ── SECTION SWITCHER ──────────────────────────────────────────────────────────
-const DASH_SECTIONS = ['welcome','dues','polemarch-address','app','training','news','documents','assessments','calls','store','shop','account'];
+const DASH_SECTIONS = ['dues','polemarch-address','app','training','news','documents','assessments','calls','store','shop','account'];
 
 function showSection(id, clickedLink) {
+  // Hide welcome banner when navigating to a section
+  var wb = document.getElementById('welcome');
+  if (wb) wb.style.display = 'none';
   // Hide all sections
   DASH_SECTIONS.forEach(function(s) {
     var el = document.getElementById(s);
