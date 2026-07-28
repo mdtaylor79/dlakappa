@@ -1765,6 +1765,9 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
   const joined    = (session.user.created_at || '').split('T')[0];
 
   document.getElementById('memberName').textContent      = fullName;
+  // Always show welcome on login
+  var wb = document.getElementById('welcome');
+  if (wb) wb.style.display = 'block';
   var welEl = document.getElementById('welcomeName');
   if (welEl) { var fn = meta.first_name || meta.firstName || fullName.split(' ')[0]; welEl.textContent = 'Welcome, Brother ' + fn + '.'; }
   document.getElementById('memberEmailGold').textContent = session.user.email;
