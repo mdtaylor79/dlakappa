@@ -502,22 +502,26 @@
       <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#fff;margin:0;">Our Kappa League in Action</h2>
     </div>
 
-    <!-- Large main viewer -->
-    <div style="position:relative;background:#111;border-radius:10px;overflow:hidden;margin-bottom:1.25rem;box-shadow:0 8px 32px rgba(42,6,4,.18);" id="klMain">
-      <img id="klMainImg" src="" alt="" style="width:100%;max-height:520px;object-fit:cover;object-position:center;display:block;transition:opacity .22s;">
-      <!-- caption bar -->
-      <div style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.5rem;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%);">
+    <!-- Fixed 16:9 carousel container -->
+    <div style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(42,6,4,.22);aspect-ratio:16/9;background:#111;">
+      <img id="klMainImg" src="" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:opacity .22s;">
+
+      <!-- caption -->
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem 4.5rem 1.25rem 1.5rem;background:linear-gradient(to top,rgba(0,0,0,.68) 0%,transparent 100%);">
         <div id="klCounter" style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;color:#c69a3f;margin-bottom:.3rem;"></div>
         <div id="klCaption" style="font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.3;"></div>
         <div id="klSubcaption" style="font-family:'Archivo',sans-serif;font-size:.8rem;color:rgba(255,255,255,.72);margin-top:.2rem;"></div>
       </div>
-      <!-- prev/next arrows -->
-      <button onclick="klNav(-1)" aria-label="Previous" style="position:absolute;top:50%;left:.85rem;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;" onmouseover="this.style.background='rgba(112,17,12,.85)'" onmouseout="this.style.background='rgba(0,0,0,.45)'">&#8592;</button>
-      <button onclick="klNav(1)"  aria-label="Next"     style="position:absolute;top:50%;right:.85rem;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;" onmouseover="this.style.background='rgba(112,17,12,.85)'" onmouseout="this.style.background='rgba(0,0,0,.45)'">&#8594;</button>
+
+      <!-- Left arrow -->
+      <button onclick="klNav(-1)" aria-label="Previous" style="position:absolute;top:50%;left:1rem;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;" onmouseover="this.style.background='rgba(112,17,12,.85)'" onmouseout="this.style.background='rgba(0,0,0,.45)'">&#8592;</button>
+
+      <!-- Right arrow -->
+      <button onclick="klNav(1)" aria-label="Next" style="position:absolute;top:50%;right:1rem;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;" onmouseover="this.style.background='rgba(112,17,12,.85)'" onmouseout="this.style.background='rgba(0,0,0,.45)'">&#8594;</button>
     </div>
 
-    <!-- Horizontal scroll thumbnail strip -->
-    <div id="klThumbs" style="display:flex;gap:.6rem;overflow-x:auto;padding-bottom:.5rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#c69a3f #e8dcc8;"></div>
+    <!-- Dot indicators -->
+    <div id="klDots" style="display:flex;justify-content:center;gap:.45rem;margin-top:1rem;"></div>
 
   </div>
 </section>
@@ -545,61 +549,87 @@ const KL_PHOTOS = [
   { src: '/img/KL_Gallery_View (18).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' }
 ];
 
+var klActive = [];  // only photos that successfully loaded
 var klCurrent = 0;
-var klInitialized = false;
 
 function klShow(idx) {
-  if (idx < 0) idx = KL_PHOTOS.length - 1;
-  if (idx >= KL_PHOTOS.length) idx = 0;
+  if (!klActive.length) return;
+  if (idx < 0) idx = klActive.length - 1;
+  if (idx >= klActive.length) idx = 0;
   klCurrent = idx;
-  var p = KL_PHOTOS[idx];
+  var p = klActive[idx];
   var img = document.getElementById('klMainImg');
   img.style.opacity = 0;
   setTimeout(function() {
     img.src = p.src;
     img.alt = p.caption;
-    img.onerror = function() {
-      // try .jpg if .png failed and vice versa
-      var s = img.src;
-      if (s.endsWith('.png')) img.src = s.replace('.png', '.jpg');
-      else if (s.endsWith('.jpg')) img.src = s.replace('.jpg', '.PNG');
-      img.onerror = null;
-    };
     if (img.complete && img.naturalWidth) { img.style.opacity = 1; }
     else { img.onload = function() { img.style.opacity = 1; }; }
   }, 150);
-  document.getElementById('klCounter').textContent  = (idx + 1) + ' of ' + KL_PHOTOS.length;
+  document.getElementById('klCounter').textContent  = (idx + 1) + ' of ' + klActive.length;
   document.getElementById('klCaption').innerHTML    = p.caption;
   document.getElementById('klSubcaption').innerHTML = p.sub;
-  // update thumb highlight; only scroll into view after initial load
-  document.querySelectorAll('.kl-thumb').forEach(function(t, i) {
-    t.style.outline = i === idx ? '3px solid #c69a3f' : '3px solid transparent';
-    t.style.opacity = i === idx ? '1' : '0.6';
-    if (i === idx && klInitialized) t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+  document.querySelectorAll('.kl-dot').forEach(function(d, i) {
+    d.style.background = i === idx ? '#fff' : 'rgba(255,255,255,.35)';
+    d.style.transform  = i === idx ? 'scale(1.3)' : 'scale(1)';
   });
 }
 
 function klNav(dir) { klShow(klCurrent + dir); }
 
-// Build thumbnail strip
-(function() {
-  var strip = document.getElementById('klThumbs');
-  KL_PHOTOS.forEach(function(p, i) {
-    var btn = document.createElement('button');
-    btn.className = 'kl-thumb';
-    btn.title = p.caption;
-    btn.onclick = function() { klShow(i); };
-    btn.style.cssText = 'flex:0 0 140px;height:90px;border:none;padding:0;cursor:pointer;border-radius:6px;overflow:hidden;outline:3px solid transparent;transition:outline .15s,opacity .15s;opacity:.6;scroll-snap-align:start;background:#ddd;';
-    var img = document.createElement('img');
-    img.src = p.src;
-    img.alt = p.caption;
-    img.onerror = function() { var s=img.src; if(s.endsWith('.png'))img.src=s.replace('.png','.jpg'); else if(s.endsWith('.jpg'))img.src=s.replace('.jpg','.PNG'); img.onerror=null; };
-    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;';
-    btn.appendChild(img);
-    strip.appendChild(btn);
+function klBuildDots() {
+  var dotsEl = document.getElementById('klDots');
+  dotsEl.innerHTML = '';
+  klActive.forEach(function(_, i) {
+    var d = document.createElement('button');
+    d.className = 'kl-dot';
+    d.onclick = function() { klShow(i); };
+    d.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:background .2s,transform .2s;background:rgba(255,255,255,.35);';
+    dotsEl.appendChild(d);
   });
-  klShow(0);
-  klInitialized = true;
+}
+
+// Preload all images — only keep ones that load successfully
+(function() {
+  var remaining = KL_PHOTOS.length;
+  var results = new Array(KL_PHOTOS.length).fill(null);
+
+  function tryLoad(photo, idx, src, exts) {
+    var img = new Image();
+    img.onload = function() {
+      results[idx] = { src: src, caption: photo.caption, sub: photo.sub };
+      done();
+    };
+    img.onerror = function() {
+      // try next extension
+      if (exts.length) {
+        var next = exts.shift();
+        var newSrc = src.replace(/\.[^.]+$/, next);
+        tryLoad(photo, idx, newSrc, exts);
+      } else {
+        results[idx] = null; // image not found — skip it
+        done();
+      }
+    };
+    img.src = src;
+  }
+
+  function done() {
+    remaining--;
+    if (remaining > 0) return;
+    // Build active list preserving original order, skipping nulls
+    klActive = results.filter(function(r) { return r !== null; });
+    klBuildDots();
+    if (klActive.length) klShow(0);
+  }
+
+  KL_PHOTOS.forEach(function(photo, i) {
+    var src = photo.src;
+    // Try .png first, then .jpg, then .JPG, then .jpeg
+    var base = src.replace(/\.[^.]+$/, '');
+    var exts = ['.jpg', '.JPG', '.jpeg', '.PNG'];
+    tryLoad(photo, i, src, exts.slice());
+  });
 })();
 
 document.addEventListener('keydown', function(e) {
