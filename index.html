@@ -524,28 +524,29 @@
 
 <script>
 const KL_PHOTOS = [
-  { src: '/img/KL_Gallery_View.png',      caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(1).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(2).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(3).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(4).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(5).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(6).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(7).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(8).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(9).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(10).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(11).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(12).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(13).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(14).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(15).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(16).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(17).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
-  { src: '/img/KL_Gallery_View(18).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' }
+  { src: '/img/KL_Gallery_View.png',       caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (1).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (2).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (3).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (4).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (5).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (6).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (7).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (8).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (9).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (10).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (11).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (12).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (13).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (14).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (15).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (16).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (17).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' },
+  { src: '/img/KL_Gallery_View (18).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' }
 ];
 
 var klCurrent = 0;
+var klInitialized = false;
 
 function klShow(idx) {
   if (idx < 0) idx = KL_PHOTOS.length - 1;
@@ -557,17 +558,24 @@ function klShow(idx) {
   setTimeout(function() {
     img.src = p.src;
     img.alt = p.caption;
+    img.onerror = function() {
+      // try .jpg if .png failed and vice versa
+      var s = img.src;
+      if (s.endsWith('.png')) img.src = s.replace('.png', '.jpg');
+      else if (s.endsWith('.jpg')) img.src = s.replace('.jpg', '.PNG');
+      img.onerror = null;
+    };
     if (img.complete && img.naturalWidth) { img.style.opacity = 1; }
     else { img.onload = function() { img.style.opacity = 1; }; }
   }, 150);
   document.getElementById('klCounter').textContent  = (idx + 1) + ' of ' + KL_PHOTOS.length;
   document.getElementById('klCaption').innerHTML    = p.caption;
   document.getElementById('klSubcaption').innerHTML = p.sub;
-  // update thumb highlight + scroll active thumb into view
+  // update thumb highlight; only scroll into view after initial load
   document.querySelectorAll('.kl-thumb').forEach(function(t, i) {
     t.style.outline = i === idx ? '3px solid #c69a3f' : '3px solid transparent';
     t.style.opacity = i === idx ? '1' : '0.6';
-    if (i === idx) t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    if (i === idx && klInitialized) t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
   });
 }
 
@@ -585,11 +593,13 @@ function klNav(dir) { klShow(klCurrent + dir); }
     var img = document.createElement('img');
     img.src = p.src;
     img.alt = p.caption;
+    img.onerror = function() { var s=img.src; if(s.endsWith('.png'))img.src=s.replace('.png','.jpg'); else if(s.endsWith('.jpg'))img.src=s.replace('.jpg','.PNG'); img.onerror=null; };
     img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;';
     btn.appendChild(img);
     strip.appendChild(btn);
   });
   klShow(0);
+  klInitialized = true;
 })();
 
 document.addEventListener('keydown', function(e) {
