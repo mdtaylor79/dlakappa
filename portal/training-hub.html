@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Member Training — Denton-Lewisville Alumni Chapter</title>
+  <link rel="icon" href="/img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Archivo', sans-serif; background: #fff; color: #2a0604; }
+
+    /* ── NAV (portal pattern) ── */
+    .portal-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .85rem 2rem; gap: 1.5rem;
+    }
+    .portal-nav .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .portal-nav .brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .portal-nav .brand-text { font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700; letter-spacing: .06em; color: #2a0604; line-height: 1.25; }
+    .portal-nav .brand-text span { display: block; font-size: .58rem; color: #c69a3f; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: #2a0604; text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: #c69a3f; }
+    .nav-links .signout { color: #c69a3f; cursor: pointer; background: none; border: none; font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-links .signout:hover { color: #fff; }
+
+    /* ── HERO ── */
+    .hub-hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex; align-items: center;
+      background: #111;
+      overflow: hidden;
+    }
+    .hub-hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('/img/500_0296.jpg');
+      background-size: cover; background-position: center top;
+      filter: brightness(.45);
+    }
+    .hub-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(112,17,12,.85) 40%, rgba(112,17,12,.1) 100%);
+    }
+    .hub-hero-content {
+      position: relative; z-index: 2;
+      max-width: 640px;
+      padding: 5rem 2rem 5rem 6vw;
+    }
+    .hub-hero .eyebrow {
+      display: flex; align-items: center; gap: .75rem;
+      font-family: 'Archivo', sans-serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: #fff; margin-bottom: 1.5rem;
+    }
+    .hub-hero .eyebrow::before {
+      content: ''; display: block;
+      width: 4px; height: 1.2em; background: #70110c; border-radius: 2px; flex-shrink: 0;
+    }
+    .hub-hero h1 {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 800; line-height: 1.1; color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .hub-hero h1 span { color: #c69a3f; }
+    .hub-hero p {
+      font-size: 1rem; line-height: 1.75;
+      color: rgba(255,255,255,.78); max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: #f2ebd7; color: #70110c;
+      font-family: 'Archivo', sans-serif; font-size: .82rem; font-weight: 700;
+      letter-spacing: .04em;
+      padding: .9rem 1.75rem; border-radius: 4px; text-decoration: none;
+      transition: background .2s, transform .15s;
+      border: none; cursor: pointer; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary:hover { background: #e8ddc8; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: #fff;
+      font-family: 'Archivo', sans-serif; font-size: .82rem; font-weight: 700;
+      padding: .9rem 1.75rem; border-radius: 4px; text-decoration: none;
+      border-bottom: 2px solid #fff; cursor: pointer;
+      transition: border-color .2s, color .2s;
+      display: inline-flex; align-items: center;
+    }
+    .btn-outline:hover { border-color: #c69a3f; color: #c69a3f; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: #f2ebd7; border-bottom: 1px solid #e0d5c4;
+      padding: 1.5rem 2rem;
+    }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: #70110c;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: #8a7060; margin-top: .3rem;
+    }
+
+    /* ── SECTION SHARED ── */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section-eyebrow {
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: #c69a3f;
+      margin-bottom: .65rem;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 700; color: #70110c; line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-body { font-size: .95rem; line-height: 1.8; color: #4a3c35; max-width: 640px; }
+
+    /* ── TRAINING TRACKS ── */
+    .tracks-section { background: #fff; padding: 80px 0; }
+    .tracks-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .track-card {
+      border: 1px solid #e8e0d4; border-radius: 10px; overflow: hidden;
+      text-decoration: none; color: inherit;
+      transition: box-shadow .2s, transform .2s;
+      display: flex; flex-direction: column;
+    }
+    .track-card:hover { box-shadow: 0 8px 28px rgba(112,17,12,.12); transform: translateY(-3px); }
+    .track-card-img {
+      height: 180px; background: linear-gradient(135deg, #70110c, #2a0604);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: 3.5rem; color: rgba(198,154,63,.35);
+      position: relative; overflow: hidden;
+    }
+    .track-card-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.25));
+    }
+    .track-badge {
+      position: absolute; top: .85rem; right: .85rem; z-index: 1;
+      background: #c69a3f; color: #2a0604;
+      font-family: 'Cinzel', serif; font-size: .55rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem .65rem; border-radius: 3px;
+    }
+    .track-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .65rem; }
+    .track-label {
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: #c69a3f;
+    }
+    .track-title { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: #2a0604; line-height: 1.3; }
+    .track-desc { font-size: .85rem; line-height: 1.65; color: #6a5a50; flex: 1; }
+    .track-meta { display: flex; gap: 1rem; font-size: .75rem; color: #8a7060; padding-top: .5rem; border-top: 1px solid #f0ebe4; }
+    .track-cta {
+      display: inline-block; margin-top: .75rem;
+      font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: #70110c;
+      text-decoration: none; border-bottom: 1px solid #c69a3f; padding-bottom: 1px;
+    }
+
+    /* ── MISSION ── */
+    .mission-section { background: #f2ebd7; padding: 80px 0; }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+    .mission-pillars { display: flex; flex-direction: column; gap: 1.5rem; }
+    .pillar { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .pillar-icon {
+      width: 44px; height: 44px; border-radius: 8px;
+      background: #70110c; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pillar-icon svg { width: 20px; height: 20px; }
+    .pillar-text h4 { font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700; color: #2a0604; margin-bottom: .35rem; }
+    .pillar-text p { font-size: .85rem; line-height: 1.65; color: #5a4a40; }
+    .mission-visual {
+      border-radius: 12px; overflow: hidden;
+      position: relative; min-height: 380px;
+      display: flex; align-items: flex-end;
+      background-image: url('/img/500_0253.jpg');
+      background-size: cover; background-position: center;
+    }
+    .mission-visual-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(42,6,4,.88) 30%, rgba(42,6,4,.2) 100%);
+    }
+    .mission-visual-content {
+      position: relative; z-index: 1;
+      padding: 2rem 2.25rem; text-align: left;
+    }
+    .mission-visual blockquote { font-family: 'Cinzel', serif; font-size: 1.05rem; line-height: 1.65; color: #f2ebd7; font-style: italic; }
+    .mission-visual cite { display: block; margin-top: .75rem; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; }
+
+    /* ── REQUIREMENTS ── */
+    .req-section { background: #fff; padding: 80px 0; }
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1.25rem; margin-top: 3rem; }
+    .req-card {
+      background: #faf8f5; border: 1px solid #e8e0d4; border-radius: 8px;
+      padding: 1.5rem; text-align: center;
+    }
+    .req-card .req-num {
+      font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700;
+      color: #70110c; line-height: 1; margin-bottom: .5rem;
+    }
+    .req-card .req-label { font-size: .8rem; line-height: 1.55; color: #5a4a40; }
+
+    /* ── CTA BANNER ── */
+    .cta-section {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #a8201a 0%, #70110c 100%);
+      min-height: 420px;
+      display: flex; align-items: center;
+    }
+    .cta-bg-img {
+      position: absolute; inset: 0;
+      background-image: url('/img/500_0291.jpg');
+      background-size: cover; background-position: center;
+      opacity: .28;
+    }
+    .cta-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(42,6,4,.92) 45%, rgba(42,6,4,.5) 100%);
+    }
+    .cta-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 3rem;
+      max-width: 1100px; margin: 0 auto; padding: 5rem 2rem;
+      width: 100%;
+    }
+    .cta-text { }
+    .cta-img-panel {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cta-img-panel img {
+      width: 100%; max-width: 440px; height: 320px;
+      object-fit: cover; object-position: center;
+      border-radius: 10px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.45);
+      border: 3px solid rgba(198,154,63,.3);
+    }
+    .cta-section .section-title { color: #f2ebd7; margin-bottom: .75rem; }
+    .cta-section p { color: rgba(242,235,215,.75); font-size: .95rem; line-height: 1.7; margin-bottom: 2rem; }
+    @media (max-width: 768px) {
+      .cta-inner { grid-template-columns: 1fr; }
+      .cta-img-panel { display: none; }
+    }
+
+    /* ── FOOTER ── */
+    .hub-footer {
+      background: #ffffff; color: #6a5a50;
+      text-align: center; padding: 1.5rem 2rem;
+      font-size: .75rem;
+    }
+    .hub-footer a { color: #70110c; text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .mission-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-inner { gap: 2rem; }
+      .hub-hero::before { font-size: 10rem; }
+    }
+    @media (max-width: 480px) {
+      .hub-hero { padding: 4rem 1.25rem 3.5rem; }
+      .tracks-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PORTAL NAV -->
+<nav class="portal-nav">
+  <a class="brand" href="/portal/dashboard.html">
+    <img src="/img/dla-logo.png" alt="DLA" onerror="this.style.display='none'">
+    <div class="brand-text">
+      Denton-Lewisville
+      <span>Alumni Chapter · ΚΑΨ</span>
+    </div>
+  </a>
+  <div class="nav-links" id="hubNavLinks">
+    <a href="/portal/dashboard.html">Dashboard</a>
+    <a href="#tracks">Courses</a>
+    <button class="signout" id="signOutBtn">Sign Out</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hub-hero">
+  <div class="hub-hero-bg"></div>
+  <div class="hub-hero-overlay"></div>
+  <div class="hub-hero-content">
+    <div class="eyebrow">The DLA Advantage</div>
+    <h1>Member Training<br>for <span>Chapter</span><br>Excellence</h1>
+    <p>Strengthen your chapter knowledge, fulfill compliance requirements, and grow as a leader through structured training built specifically for DLA brothers.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="#tracks">&#8596;&nbsp; View Training Courses</a>
+      <a class="btn-outline" href="/portal/dashboard.html">Back to Dashboard</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- HIGHLIGHT STRIP -->
+<style>
+  .hl-strip { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .hl-card {
+    position: relative; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 2.25rem 2rem;
+    overflow: hidden; text-decoration: none;
+    height: 340px; /* fixed equal height for all cards */
+  }
+  .hl-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .4s; }
+  .hl-card:hover .hl-card-bg { transform: scale(1.04); }
+  .hl-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,6,4,.88) 30%, rgba(30,6,4,.3) 100%); }
+  .hl-card-plain { background: #fff; border-right: 1px solid #e8e0d4; justify-content: center; }
+  .hl-card-plain:hover { background: #faf8f5; }
+  .hl-card-content { position: relative; z-index: 1; }
+  .hl-title { font-family: 'Archivo', sans-serif; font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: .6rem; line-height: 1.2; }
+  .hl-card-plain .hl-title { color: #2a0604; font-size: 1.25rem; }
+  .hl-desc { font-size: .82rem; line-height: 1.6; color: rgba(255,255,255,.78); margin-bottom: 1rem; }
+  .hl-card-plain .hl-desc { color: #6a5a50; }
+  .hl-link { font-family: 'Archivo', sans-serif; font-size: .8rem; font-weight: 700; color: #fff; text-decoration: none; border-bottom: 2px solid #70110c; padding-bottom: 2px; display: inline-flex; align-items: center; gap: .4rem; transition: color .2s, border-color .2s; }
+  .hl-card-plain .hl-link { color: #2a0604; border-bottom-color: #c69a3f; }
+  .hl-link:hover { color: #c69a3f; border-bottom-color: #c69a3f; }
+  @media (max-width: 900px) {
+    .hl-strip { grid-template-columns: 1fr 1fr; }
+    .hl-card { height: 280px; }
+  }
+  @media (max-width: 480px) {
+    .hl-strip { grid-template-columns: 1fr; }
+    .hl-card { height: 240px; }
+  }
+</style>
+
+<div class="hl-strip">
+
+  <!-- 1: My Training (photo bg) -->
+  <div class="hl-card">
+    <div class="hl-card-bg" style="background-image:url('/img/500_0253.jpg');"></div>
+    <div class="hl-card-overlay"></div>
+    <div class="hl-card-content">
+      <div class="hl-title">My Training</div>
+      <p class="hl-desc">Access your assigned chapter training modules and track your progress toward completion.</p>
+      <a class="hl-link" href="#tracks">View My Courses +</a>
+    </div>
+  </div>
+
+  <!-- 2: Chapter Training (photo bg) -->
+  <div class="hl-card">
+    <div class="hl-card-bg" style="background-image:url('/img/chapter_training.jpg');"></div>
+    <div class="hl-card-overlay"></div>
+    <div class="hl-card-content">
+      <div class="hl-title">Chapter Training</div>
+      <p class="hl-desc">Organization-specific compliance and leadership training for active DLA members only.</p>
+      <a class="hl-link" href="#tracks">View Courses +</a>
+    </div>
+  </div>
+
+  <!-- 3: Continuous Fraternal Learning (photo bg) -->
+  <div class="hl-card">
+    <div class="hl-card-bg" style="background-image:url('/img/presentationa_training.jpg');"></div>
+    <div class="hl-card-overlay"></div>
+    <div class="hl-card-content">
+      <div class="hl-title">Continuous Fraternal Learning</div>
+      <p class="hl-desc">Growth doesn't stop at initiation. Ongoing education keeps every brother sharp, current, and chapter-ready.</p>
+      <a class="hl-link" href="#tracks">Learn More +</a>
+    </div>
+  </div>
+
+  <!-- 4: Kappa League Development (photo bg) -->
+  <div class="hl-card">
+    <div class="hl-card-bg" style="background-image:url('/img/KL_learning.jpg');"></div>
+    <div class="hl-card-overlay"></div>
+    <div class="hl-card-content">
+      <div class="hl-title">Kappa League Development</div>
+      <p class="hl-desc">Equip yourself to mentor young men through the Guide Right program and make a lasting impact in our community.</p>
+      <a class="hl-link" href="/portal/Guide_Right_Kappa_League_Mentor_Training.html">Start Mentor Training +</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- MISSION STATEMENT -->
+<section style="background:#ffffff;padding:80px 0;" id="tracks">
+  <div class="wrap">
+    <div style="margin-bottom:3.5rem;">
+      <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.5rem;">Our Mission</div>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#2a0604;margin:0 0 1rem;line-height:1.2;">Building a Culture of Excellence</h2>
+      <p style="font-size:.95rem;line-height:1.75;color:#4a3c35;max-width:680px;margin:0;">Creating an environment that supports the initiatives of Kappa Alpha Psi Fraternity, Inc., the DLA Chapter, and the Southwestern Province — while equipping brothers for career and professional success.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #e8e0d4;border-radius:12px;overflow:hidden;background:#f9f6f1;">
+
+      <div style="padding:2rem 1.75rem;border-right:1px solid #e8e0d4;position:relative;">
+        <div style="font-family:'Cinzel',serif;font-size:3rem;font-weight:700;color:rgba(112,17,12,.12);line-height:1;margin-bottom:1.25rem;">01</div>
+        <div style="width:32px;height:2px;background:#c69a3f;margin-bottom:1.25rem;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Fraternity Initiatives</div>
+        <div style="font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:#2a0604;line-height:1.35;margin-bottom:.75rem;">Kappa Alpha Psi, Inc.</div>
+        <div style="font-size:.8rem;line-height:1.7;color:#6a5a50;">Reinforcing the national programs, policies, and standards that unite every brother under a shared fraternal mission.</div>
+      </div>
+
+      <div style="padding:2rem 1.75rem;border-right:1px solid #e8e0d4;position:relative;">
+        <div style="font-family:'Cinzel',serif;font-size:3rem;font-weight:700;color:rgba(112,17,12,.12);line-height:1;margin-bottom:1.25rem;">02</div>
+        <div style="width:32px;height:2px;background:#c69a3f;margin-bottom:1.25rem;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Chapter Excellence</div>
+        <div style="font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:#2a0604;line-height:1.35;margin-bottom:.75rem;">Denton-Lewisville Alumni</div>
+        <div style="font-size:.8rem;line-height:1.7;color:#6a5a50;">Investing in every DLA brother so our chapter leads with integrity, governance, and purpose in all we do locally.</div>
+      </div>
+
+      <div style="padding:2rem 1.75rem;border-right:1px solid #e8e0d4;position:relative;">
+        <div style="font-family:'Cinzel',serif;font-size:3rem;font-weight:700;color:rgba(112,17,12,.12);line-height:1;margin-bottom:1.25rem;">03</div>
+        <div style="width:32px;height:2px;background:#c69a3f;margin-bottom:1.25rem;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Regional Alignment</div>
+        <div style="font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:#2a0604;line-height:1.35;margin-bottom:.75rem;">Southwestern Province</div>
+        <div style="font-size:.8rem;line-height:1.7;color:#6a5a50;">Keeping DLA connected, compliant, and contributing to the broader priorities of the Southwestern Province.</div>
+      </div>
+
+      <div style="padding:2rem 1.75rem;position:relative;">
+        <div style="font-family:'Cinzel',serif;font-size:3rem;font-weight:700;color:rgba(112,17,12,.12);line-height:1;margin-bottom:1.25rem;">04</div>
+        <div style="width:32px;height:2px;background:#c69a3f;margin-bottom:1.25rem;"></div>
+        <div style="font-family:'Cinzel',serif;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Professional Development</div>
+        <div style="font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:#2a0604;line-height:1.35;margin-bottom:.75rem;">Career &amp; Skill Training</div>
+        <div style="font-size:.8rem;line-height:1.7;color:#6a5a50;">Delivering career development, leadership skills, and professional growth resources to help brothers thrive beyond the chapter.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="wrap">
+    <div class="section-eyebrow">Our Purpose</div>
+    <h2 class="section-title">Why Training Matters</h2>
+    <div class="mission-grid">
+      <div class="mission-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
+          </div>
+          <div class="pillar-text">
+            <h4>Learn</h4>
+            <p>Engage with structured content built around the real obligations and opportunities of chapter membership in Kappa Alpha Psi.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="pillar-text">
+            <h4>Lead</h4>
+            <p>Training equips every brother to take an active, informed role in chapter governance, mentorship, and community service.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="pillar-text">
+            <h4>Deliver Results</h4>
+            <p>Trained members add measurable value to the chapter, to Kappa League youth, and to the Denton-Lewisville community.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mission-visual">
+        <div class="mission-visual-overlay"></div>
+        <div class="mission-visual-content">
+          <blockquote>"Achievement in every field of human endeavor."</blockquote>
+          <cite>— Kappa Alpha Psi Fraternity, Inc.</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SCOOP BLOG -->
+<section style="background:#fff;padding:80px 0;" id="the-scoop">
+  <div class="wrap">
+
+    <!-- Header row: label + title left, Read All button right -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#70110c;margin-bottom:.4rem;">Good Reads</div>
+        <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#1a1a1a;margin:0;line-height:1.2;">The Scoop</h2>
+      </div>
+      <a href="#" style="display:inline-flex;align-items:center;gap:.6rem;background:#70110c;color:#fff;font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:.75rem 1.4rem;border-radius:6px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        Read All
+      </a>
+    </div>
+
+    <!-- 3-column card grid -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+
+      <!-- Post 1 -->
+      <article style="border-radius:10px;overflow:hidden;border:1px solid #eee;">
+        <div style="position:relative;height:220px;background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);overflow:hidden;">
+          <img src="/img/500_0296.jpg" alt="Portal Launch" style="width:100%;height:100%;object-fit:cover;opacity:.55;">
+          <span style="position:absolute;top:1rem;left:1rem;background:#fff;color:#333;font-size:.7rem;font-weight:600;padding:.3rem .7rem;border-radius:20px;font-family:'Archivo',sans-serif;">chapter update</span>
+        </div>
+        <div style="padding:1.4rem 1.5rem 1.5rem;">
+          <h3 style="font-size:1.05rem;font-weight:700;color:#1a1a1a;line-height:1.35;margin:0 0 .85rem;">DLA Training Portal is Now Live</h3>
+          <a href="#" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;color:#1a1a1a;text-decoration:none;font-family:'Archivo',sans-serif;">Read More <span style="font-size:1rem;">→</span></a>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article style="border-radius:10px;overflow:hidden;border:1px solid #eee;">
+        <div style="position:relative;height:220px;background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);overflow:hidden;">
+          <img src="/img/KL_learning.jpg" alt="Kappa League" style="width:100%;height:100%;object-fit:cover;opacity:.55;">
+          <span style="position:absolute;top:1rem;left:1rem;background:#c69a3f;color:#fff;font-size:.7rem;font-weight:600;padding:.3rem .7rem;border-radius:20px;font-family:'Archivo',sans-serif;">new course</span>
+        </div>
+        <div style="padding:1.4rem 1.5rem 1.5rem;">
+          <h3 style="font-size:1.05rem;font-weight:700;color:#1a1a1a;line-height:1.35;margin:0 0 .85rem;">Kappa League Mentor Training Now Available</h3>
+          <a href="#" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;color:#1a1a1a;text-decoration:none;font-family:'Archivo',sans-serif;">Read More <span style="font-size:1rem;">→</span></a>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article style="border-radius:10px;overflow:hidden;border:1px solid #eee;">
+        <div style="position:relative;height:220px;background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);overflow:hidden;">
+          <img src="/img/presentationa_training.jpg" alt="Professional Skills" style="width:100%;height:100%;object-fit:cover;opacity:.55;">
+          <span style="position:absolute;top:1rem;left:1rem;background:#2a6049;color:#fff;font-size:.7rem;font-weight:600;padding:.3rem .7rem;border-radius:20px;font-family:'Archivo',sans-serif;">career development</span>
+        </div>
+        <div style="padding:1.4rem 1.5rem 1.5rem;">
+          <h3 style="font-size:1.05rem;font-weight:700;color:#1a1a1a;line-height:1.35;margin:0 0 .85rem;">Professional Skills Track — Coming This Fall</h3>
+          <a href="#" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;color:#1a1a1a;text-decoration:none;font-family:'Archivo',sans-serif;">Read More <span style="font-size:1rem;">→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg-img"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="section-eyebrow" style="color:#c69a3f;font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.65rem;">Ready to Begin?</div>
+      <h2 class="section-title">Start Your Training Today</h2>
+      <p>Select a course above or go straight into the first required module — 501(c)(3) &amp; Chapter Compliance Training.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="/portal/kappa_compliance_training.html">Begin Compliance Training</a>
+        <a class="btn-outline" href="#tracks">View All Courses</a>
+      </div>
+    </div>
+    <div class="cta-img-panel">
+      <img src="/img/500_0291.jpg" alt="DLA Chapter Training">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="hub-footer">
+  &copy; <script>document.write(new Date().getFullYear())</script> Denton-Lewisville Alumni Chapter &middot; Kappa Alpha Psi Fraternity, Inc. &middot;
+  <a href="/portal/dashboard.html">Back to Portal</a>
+</footer>
+
+<!-- AUTH -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+
+  // Check admin — inject links
+  const { data: memberRow } = await sb.from('members').select('is_admin').eq('id', session.user.id).single();
+  if (memberRow && memberRow.is_admin) {
+    const signout = document.getElementById('signOutBtn');
+    const mkLink = (href, text) => {
+      const a = document.createElement('a'); a.href = href; a.textContent = text;
+      a.style.cssText = 'color:#c69a3f;font-weight:700;'; return a;
+    };
+    signout.before(mkLink('/portal/admin.html', 'Admin'));
+    signout.before(mkLink('/portal/blog-admin.html', 'Blog Admin'));
+  }
+
+  // Sign out
+  document.getElementById('signOutBtn').addEventListener('click', async () => {
+    await sb.auth.signOut();
+    window.location.href = '/portal/login.html';
+  });
+})();
+</script>
+
+</body>
+</html>
