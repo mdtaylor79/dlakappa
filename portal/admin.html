@@ -9,6 +9,54 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  /* ── Mobile nav (hamburger) — overrides style.css since !important always wins ── */
+  .nav-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.6rem; line-height: 1; padding: .25rem .5rem;
+    color: inherit;
+  }
+  @media (max-width: 768px) {
+    .site-header .nav { flex-wrap: wrap; position: relative; }
+    .nav-toggle { display: block !important; }
+    .nav-links {
+      display: none !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: .25rem !important;
+      background: #fff;
+      border-top: 1px solid #eee;
+      margin-top: .75rem;
+      padding-top: .75rem;
+    }
+    .nav-links.open { display: flex !important; }
+    .nav-links li { width: 100%; }
+    .nav-links li a { display: block; padding: .6rem .25rem; }
+  }
+
+  /* ── Admin tabs — scroll instead of wrapping/cutting off ── */
+  @media (max-width: 768px) {
+    .admin-tabs {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      gap: .5rem;
+    }
+    .admin-tab-btn { flex: 0 0 auto; }
+  }
+
+  /* ── Header text — don't clip long emails ── */
+  .dash-header h1, .dash-header p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  @media (max-width: 480px) {
+    .dash-header { padding: 1.5rem 1rem !important; }
+  }
+</style>
 </head>
 <body>
 
@@ -18,7 +66,8 @@
       <span class="diamond"></span>
       <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
     </a>
-    <ul class="nav-links" style="display:flex;">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links" id="nav-links" style="display:flex;">
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="../events.html">Events</a></li>
       <li><a href="admin-training.html">Training Admin</a></li>
@@ -26,6 +75,14 @@
     </ul>
   </nav>
 </header>
+
+<script>
+  document.getElementById('nav-toggle').addEventListener('click', function () {
+    var links = document.getElementById('nav-links');
+    var open = links.classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
 
 <div class="admin-guard" id="admin-guard">
   <p class="section-label" style="justify-content:center;"><span class="diamond"></span> Restricted</p>
