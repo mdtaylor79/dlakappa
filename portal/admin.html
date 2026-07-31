@@ -66,7 +66,7 @@
       <span class="diamond"></span>
       <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
     </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">&#9776;</button>
     <ul class="nav-links" id="nav-links" style="display:flex;">
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="../events.html">Events</a></li>
@@ -75,14 +75,6 @@
     </ul>
   </nav>
 </header>
-
-<script>
-  document.getElementById('nav-toggle').addEventListener('click', function () {
-    var links = document.getElementById('nav-links');
-    var open = links.classList.toggle('open');
-    this.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-</script>
 
 <div class="admin-guard" id="admin-guard">
   <p class="section-label" style="justify-content:center;"><span class="diamond"></span> Restricted</p>
