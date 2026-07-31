@@ -48,6 +48,17 @@
 
   form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   form .full { grid-column: 1 / -1; }
+  @media (max-width: 600px) {
+    form { grid-template-columns: 1fr; }
+    form .full { grid-column: 1; }
+    main { padding: 16px 12px 40px; }
+    header { padding: 16px; }
+    .card { padding: 14px; }
+  }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  @media (max-width: 700px) {
+    table { min-width: 640px; }
+  }
   label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
   input, select, textarea {
     width: 100%;
@@ -145,7 +156,7 @@
 
     <div class="card">
       <h2>All Training Records</h2>
-      <div id="tableWrap" class="loading">Loading&hellip;</div>
+      <div id="tableWrap" class="loading table-scroll">Loading&hellip;</div>
     </div>
   </main>
 </div>
