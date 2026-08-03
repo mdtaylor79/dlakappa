@@ -1,7 +1,3 @@
-https://raw.githubusercontent.com/mdtaylor79/dlakappa/main/portal/dashboard.html
-→ https://raw.githubusercontent.com/mdtaylor79/dlakappa/main/portal/dashboard.html
-Content-Type: text/plain; charset=utf-8
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -967,6 +963,8 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     </a>
     <a href="/portal/news.html">News</a>
     <a href="/portal/training-hub.html">Training</a>
+    <a href="/portal/admin.html" id="nav-admin" style="display:none;">Admin</a>
+    <a href="/portal/admin-blog.html" id="nav-blog-admin" style="display:none;">Blog Admin</a>
     <a href="/portal/login.html" id="signOutBtn" class="signout">Sign Out</a>
   </div>
 </nav>
@@ -1923,10 +1921,12 @@ document.addEventListener('DOMContentLoaded', async function() {
       if (icon) icon.style.display = 'none';
     }
 
-    // Admin nav link
+    // Admin nav links
     if (member.is_admin) {
       var adminLink = document.getElementById('nav-admin');
       if (adminLink) adminLink.style.display = '';
+      var blogAdminLink = document.getElementById('nav-blog-admin');
+      if (blogAdminLink) blogAdminLink.style.display = '';
     }
   }
 
