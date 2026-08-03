@@ -438,10 +438,18 @@
     <div class="success-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-    <h2>Request Submitted</h2>
-    <p>Your budget request has been received and is under review by the Finance Committee. You will be contacted at the email address provided.</p>
+    <h2>Request Submitted Successfully</h2>
+    <p>Your budget request has been received by the <strong>Finance Committee</strong>. It will be reviewed and you will be contacted at the email address you provided with a decision.</p>
     <div class="success-ref" id="successRef"></div>
-    <button onclick="resetForm()" style="margin-top:.5rem;background:none;border:1px solid #d8cfc5;color:#6a5a50;font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.65rem 1.5rem;border-radius:4px;cursor:pointer;">Submit Another</button>
+    <div style="background:#fff;border:1px solid #e4dbd0;border-radius:8px;padding:1.25rem 1.5rem;max-width:420px;text-align:left;margin-top:.5rem;">
+      <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">What happens next?</div>
+      <ul style="font-size:.82rem;color:#6a5a50;line-height:1.8;padding-left:1.1rem;">
+        <li>Your request is saved in the chapter database</li>
+        <li>The Finance Committee will review it</li>
+        <li>You will receive a decision via email</li>
+      </ul>
+    </div>
+    <button onclick="resetForm()" style="margin-top:1rem;background:linear-gradient(135deg,#70110c,#2a0604);color:#f2ebd7;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.8rem 2rem;border:none;border-radius:4px;cursor:pointer;">Submit Another Request</button>
   </div>
 
 </div><!-- /form-shell -->
@@ -550,8 +558,11 @@ document.getElementById('budgetForm').addEventListener('submit', async (e) => {
   // Show success
   document.getElementById('budgetForm').style.display = 'none';
   const ref = data?.id ? data.id.substring(0, 8).toUpperCase() : 'PENDING';
-  document.getElementById('successRef').textContent = 'Reference: DLA-BR-' + ref;
-  document.getElementById('successScreen').classList.add('show');
+  document.getElementById('successRef').textContent = 'Reference #: DLA-BR-' + ref;
+  const screen = document.getElementById('successScreen');
+  screen.classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  screen.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
 function resetForm() {
