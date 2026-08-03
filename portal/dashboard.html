@@ -1710,4 +1710,229 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           <div style="margin-bottom:1rem;">
             <label style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem;">Email Address</label>
             <input id="accEmail" type="email" placeholder="Email"
-              style="width:100%;border:
+              style="width:100%;border:1px solid #e0d8cc;border-radius:5px;padding:.65rem .85rem;font-size:.88rem;color:#1a1a1a;background:#faf9f7;outline:none;transition:border-color .15s;"
+              onfocus="this.style.borderColor='#c69a3f'" onblur="this.style.borderColor='#e0d8cc'" readonly>
+          </div>
+          <button id="accSaveBtn" onclick="saveAccount()"
+            style="background:#70110c;color:#f2ebd7;border:none;border-radius:5px;padding:.65rem 1.5rem;font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;"
+            onmouseover="this.style.background='#5a0e09'" onmouseout="this.style.background='#70110c'">
+            Save Changes
+          </button>
+          <span id="accSaveMsg" style="display:none;margin-left:.75rem;font-size:.78rem;color:#4a7c4e;font-weight:600;"></span>
+        </div>
+
+        <!-- Change Password -->
+        <div>
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem;">Security</div>
+          <button onclick="dlaSupabase.auth.resetPasswordForEmail(document.getElementById('accEmail').value).then(()=>alert('Password reset email sent.'))"
+            style="background:none;border:1px solid #e0d8cc;border-radius:5px;padding:.6rem 1.25rem;font-size:.8rem;font-weight:600;color:#555;cursor:pointer;transition:border-color .15s,color .15s;"
+            onmouseover="this.style.borderColor='#70110c';this.style.color='#70110c'" onmouseout="this.style.borderColor='#e0d8cc';this.style.color='#555'">
+            Send Password Reset Email
+          </button>
+        </div>
+
+        <!-- Sign Out -->
+        <div style="padding-top:.5rem;border-top:1px solid #f0ece6;">
+          <button onclick="dlaSupabase.auth.signOut().then(()=>{window.location.href='login.html';})"
+            style="background:none;border:none;font-size:.82rem;font-weight:600;color:#888;cursor:pointer;padding:0;letter-spacing:.02em;transition:color .15s;"
+            onmouseover="this.style.color='#70110c'" onmouseout="this.style.color='#888'">
+            Sign Out →
+          </button>
+        </div>
+
+      </div>
+    </div><!-- /account section-block -->
+
+  </main><!-- /dash-main -->
+</div><!-- /dash-layout -->
+
+<!-- ── SCRIPTS ── -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/supabase-client.js"></script>
+
+<script>
+// ── SECTION SWITCHER ────────────────────────────────────────────────────────
+const DASH_SECTIONS = ['dues','polemarch-address','app','training','news','documents','assessments','calls','store','shop','account'];
+
+function showSection(id, clickedLink) {
+  // Hide welcome banner
+  var wb = document.getElementById('welcome');
+  if (wb) wb.style.display = 'none';
+  // Hide all sections
+  DASH_SECTIONS.forEach(function(s) {
+    var el = document.getElementById(s);
+    if (el) el.style.display = 'none';
+  });
+  // Show target
+  var target = document.getElementById(id);
+  if (target) target.style.display = 'block';
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
+    a.style.borderLeftColor = 'transparent';
+    a.style.color = '';
+    a.style.background = '';
+  });
+  if (clickedLink) {
+    clickedLink.style.borderLeftColor = '#c69a3f';
+    clickedLink.style.color = '#70110c';
+    clickedLink.style.background = '#faf8f5';
+  }
+}
+
+function mobNavActivate(btn) {
+  document.querySelectorAll('.msn-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+// ── POLEMARCH VIDEO ──────────────────────────────────────────────────────────
+function loadPolemarchVideo() {
+  var facade = document.getElementById('yt-facade');
+  if (!facade) return;
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/GsjNPVjQPso?autoplay=1';
+  iframe.allow = 'autoplay; encrypted-media';
+  iframe.allowFullscreen = true;
+  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+  facade.style.paddingBottom = '56.25%';
+  facade.innerHTML = '';
+  facade.appendChild(iframe);
+}
+
+// ── AVATAR UPLOAD ────────────────────────────────────────────────────────────
+(function() {
+  var wrap = document.querySelector('.avatar-wrap');
+  var input = document.getElementById('avatarInput');
+  var img = document.getElementById('avatarImg');
+  var icon = document.getElementById('avatarDefaultIcon');
+  var toast = document.getElementById('avatarToast');
+
+  if (!wrap || !input) return;
+
+  wrap.addEventListener('click', function() { input.click(); });
+
+  input.addEventListener('change', async function() {
+    var file = input.files[0];
+    if (!file) return;
+    wrap.classList.add('avatar-uploading');
+    try {
+      var { data: { session } } = await dlaSupabase.auth.getSession();
+      if (!session) return;
+      var path = session.user.id + '/avatar.' + file.name.split('.').pop();
+      var { error: upErr } = await dlaSupabase.storage.from('avatars').upload(path, file, { upsert: true });
+      if (upErr) throw upErr;
+      var { data: urlData } = dlaSupabase.storage.from('avatars').getPublicUrl(path);
+      if (img) { img.src = urlData.publicUrl + '?t=' + Date.now(); img.style.display = 'block'; }
+      if (icon) icon.style.display = 'none';
+      showToast('Photo updated!');
+    } catch(e) {
+      showToast('Upload failed');
+    } finally {
+      wrap.classList.remove('avatar-uploading');
+    }
+  });
+
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 3000);
+  }
+})();
+
+// ── NEWS LOADER ──────────────────────────────────────────────────────────────
+async function loadNews() {
+  var grid = document.getElementById('dashNewsGrid');
+  if (!grid) return;
+  var { data: posts, error } = await dlaSupabase
+    .from('news_posts')
+    .select('id, title, summary, category, published_at')
+    .eq('published', true)
+    .order('published_at', { ascending: false })
+    .limit(3);
+  if (error || !posts || !posts.length) {
+    grid.innerHTML = '<p style="font-size:.84rem;color:#aaa;grid-column:1/-1;">No news yet.</p>';
+    return;
+  }
+  grid.innerHTML = posts.map(function(p) {
+    var d = p.published_at ? new Date(p.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+    return '<a class="news-card" href="/portal/news.html"><div class="news-body"><div class="news-cat">' + (p.category||'News') + '</div><h4>' + p.title + '</h4><p>' + (p.summary||'Read more →') + '</p><div class="news-date">' + d + '</div></div></a>';
+  }).join('');
+}
+
+// ── ACCOUNT SAVE ─────────────────────────────────────────────────────────────
+async function saveAccount() {
+  var btn = document.getElementById('accSaveBtn');
+  var msg = document.getElementById('accSaveMsg');
+  var firstName = document.getElementById('accFirstName').value.trim();
+  var lastName = document.getElementById('accLastName').value.trim();
+  if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
+  var { data: { session } } = await dlaSupabase.auth.getSession();
+  if (session) {
+    await dlaSupabase.from('members').update({ first_name: firstName, last_name: lastName }).eq('id', session.user.id);
+  }
+  if (btn) { btn.disabled = false; btn.textContent = 'Save Changes'; }
+  if (msg) { msg.textContent = 'Saved!'; msg.style.display = 'inline'; setTimeout(function(){ msg.style.display='none'; }, 3000); }
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async function() {
+  // Hide all sections, show only welcome banner
+  DASH_SECTIONS.forEach(function(s) {
+    var el = document.getElementById(s);
+    if (el) el.style.display = 'none';
+  });
+  var wb = document.getElementById('welcome');
+  if (wb) wb.style.display = 'block';
+
+  // Auth check
+  var { data: { session } } = await dlaSupabase.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+
+  // Load member data
+  var { data: member } = await dlaSupabase
+    .from('members')
+    .select('*')
+    .eq('id', session.user.id)
+    .single();
+
+  if (member) {
+    var fullName = (member.first_name && member.last_name)
+      ? (member.first_name + ' ' + member.last_name)
+      : (member.first_name || member.email);
+    var nameEl = document.getElementById('memberName');
+    var emailGold = document.getElementById('memberEmailGold');
+    var welcomeEl = document.getElementById('welcomeName');
+    if (nameEl) nameEl.textContent = fullName;
+    if (emailGold) emailGold.textContent = member.email;
+    if (welcomeEl) welcomeEl.textContent = 'Welcome, Brother ' + (member.first_name || 'Brother') + '.';
+
+    // Prefill account form
+    var fn = document.getElementById('accFirstName');
+    var ln = document.getElementById('accLastName');
+    var em = document.getElementById('accEmail');
+    if (fn) fn.value = member.first_name || '';
+    if (ln) ln.value = member.last_name || '';
+    if (em) em.value = member.email || '';
+
+    // Avatar
+    if (member.avatar_url) {
+      var img = document.getElementById('avatarImg');
+      var icon = document.getElementById('avatarDefaultIcon');
+      if (img) { img.src = member.avatar_url; img.style.display = 'block'; }
+      if (icon) icon.style.display = 'none';
+    }
+
+    // Admin nav link
+    if (member.is_admin) {
+      var adminLink = document.getElementById('nav-admin');
+      if (adminLink) adminLink.style.display = '';
+    }
+  }
+
+  // Load news
+  loadNews();
+});
+</script>
+</body>
+</html>
