@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Budget Requests — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; min-height: 100vh; }
+
+    /* ── NAV ── */
+    .portal-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid #e4dbd0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .75rem 2rem; gap: 1rem;
+    }
+    .nav-brand { font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700; color: #70110c; letter-spacing: .06em; }
+    .nav-links { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-links a { font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #2a0604; text-decoration: none; }
+    .nav-links a:hover { color: #c69a3f; }
+
+    /* ── HERO BAR ── */
+    .page-hero {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      padding: 2rem 2.5rem;
+    }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .page-hero .eyebrow { font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #c69a3f; margin-bottom: .4rem; }
+    .page-hero h1 { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; color: #f2ebd7; }
+    .export-btn {
+      background: #c69a3f; color: #2a0604;
+      font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .65rem 1.4rem; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap;
+      transition: filter .2s;
+    }
+    .export-btn:hover { filter: brightness(1.1); }
+
+    /* ── ANALYTICS CARDS ── */
+    .analytics-bar { max-width: 1200px; margin: 1.75rem auto 0; padding: 0 2rem; }
+    .analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .stat-card {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+    }
+    .stat-card .num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #70110c; line-height: 1; }
+    .stat-card .lbl { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8a7060; margin-top: .3rem; }
+    .stat-card .sub { font-size: .75rem; color: #aaa; margin-top: .2rem; }
+
+    /* ── FILTERS ── */
+    .filters-bar { max-width: 1200px; margin: 1.5rem auto 0; padding: 0 2rem; display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+    .filter-select {
+      padding: .5rem .9rem; border: 1px solid #d8cfc5; border-radius: 4px;
+      font-family: 'Archivo', sans-serif; font-size: .82rem; color: #1a1a1a;
+      background: #fff; appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right .65rem center; padding-right: 1.75rem;
+    }
+    .search-input {
+      padding: .5rem .9rem; border: 1px solid #d8cfc5; border-radius: 4px;
+      font-family: 'Archivo', sans-serif; font-size: .82rem; background: #fff;
+      min-width: 220px;
+    }
+    .search-input:focus, .filter-select:focus { outline: none; border-color: #70110c; }
+
+    /* ── TABLE ── */
+    .table-wrap { max-width: 1200px; margin: 1.25rem auto 3rem; padding: 0 2rem; }
+    .table-shell { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    thead { background: #f0e8e0; }
+    th {
+      padding: .65rem 1rem; text-align: left;
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: #70110c;
+      border-bottom: 2px solid #e0d4c8; white-space: nowrap;
+    }
+    td { padding: .65rem 1rem; border-bottom: 1px solid #f0e8e0; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #faf6f2; }
+
+    .badge {
+      display: inline-block; padding: .2rem .65rem; border-radius: 12px;
+      font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .badge-pending  { background: #fef3c7; color: #92400e; }
+    .badge-approved { background: #d1fae5; color: #065f46; }
+    .badge-denied   { background: #fee2e2; color: #991b1b; }
+    .badge-review   { background: #e0e7ff; color: #3730a3; }
+
+    .priority-dot {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: .35rem;
+    }
+    .p-low    { background: #86efac; }
+    .p-medium { background: #fcd34d; }
+    .p-high   { background: #f97316; }
+    .p-urgent { background: #ef4444; }
+
+    .amount-cell { font-family: 'Cinzel', serif; font-weight: 700; color: #70110c; white-space: nowrap; }
+
+    .action-btn {
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .3rem .65rem; border-radius: 3px; border: 1px solid; cursor: pointer;
+      transition: background .2s;
+    }
+    .action-approve { border-color: #86efac; color: #065f46; background: #f0fdf4; }
+    .action-approve:hover { background: #86efac; }
+    .action-deny    { border-color: #fca5a5; color: #991b1b; background: #fef2f2; }
+    .action-deny:hover { background: #fca5a5; }
+
+    .empty-row td { text-align: center; padding: 3rem; color: #aaa; font-size: .88rem; }
+
+    /* ── MODAL (detail view) ── */
+    .modal-bg {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200;
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-bg.open { display: flex; }
+    .modal {
+      background: #fff; border-radius: 10px; max-width: 640px; width: 100%;
+      max-height: 85vh; overflow-y: auto;
+    }
+    .modal-head {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-head h3 { font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700; color: #f2ebd7; }
+    .modal-close { background: none; border: none; color: rgba(242,235,215,.6); font-size: 1.3rem; cursor: pointer; }
+    .modal-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 1.25rem; }
+    .detail-item .lbl { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8a7060; margin-bottom: .2rem; }
+    .detail-item .val { font-size: .88rem; color: #1a1a1a; }
+    .detail-item.full { grid-column: 1 / -1; }
+    .line-mini { background: #f5f0eb; border-radius: 6px; padding: .75rem 1rem; font-size: .8rem; }
+    .line-mini table { width: 100%; }
+    .line-mini th { font-size: .62rem; font-weight: 700; color: #8a7060; letter-spacing: .06em; text-transform: uppercase; padding: 0 0 .4rem; border: none; background: none; }
+    .line-mini td { padding: .25rem 0; border: none; }
+    .modal-actions { display: flex; gap: .75rem; justify-content: flex-end; padding: 1rem 1.5rem; border-top: 1px solid #f0e8e0; }
+
+    .loading { text-align: center; padding: 3rem; color: #aaa; font-size: .88rem; }
+  </style>
+</head>
+<body>
+
+<nav class="portal-nav">
+  <div class="nav-brand">DLA Admin — Budget Requests</div>
+  <div class="nav-links">
+    <a href="/portal/dashboard.html">← Dashboard</a>
+    <a href="/portal/budget-request.html">View Form</a>
+    <a href="#" id="signOutBtn">Sign Out</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="eyebrow">Finance Committee</div>
+      <h1>Budget Request Submissions</h1>
+    </div>
+    <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+  </div>
+</div>
+
+<!-- Analytics -->
+<div class="analytics-bar">
+  <div class="analytics-grid">
+    <div class="stat-card">
+      <div class="num" id="statTotal">—</div>
+      <div class="lbl">Total Requests</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="statPending">—</div>
+      <div class="lbl">Pending Review</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="statApproved">—</div>
+      <div class="lbl">Approved</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="statAmount">—</div>
+      <div class="lbl">Total Requested</div>
+      <div class="sub">FY 2025–2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="statApprovedAmt">—</div>
+      <div class="lbl">Approved Amount</div>
+    </div>
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="filters-bar">
+  <input class="search-input" id="searchInput" type="text" placeholder="Search by name, committee…" oninput="applyFilters()">
+  <select class="filter-select" id="filterStatus" onchange="applyFilters()">
+    <option value="">All Statuses</option>
+    <option>Pending</option>
+    <option>Under Review</option>
+    <option>Approved</option>
+    <option>Denied</option>
+  </select>
+  <select class="filter-select" id="filterPriority" onchange="applyFilters()">
+    <option value="">All Priorities</option>
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+    <option>Urgent</option>
+  </select>
+  <select class="filter-select" id="filterCommittee" onchange="applyFilters()">
+    <option value="">All Committees</option>
+  </select>
+</div>
+
+<!-- Table -->
+<div class="table-wrap">
+  <div class="table-shell">
+    <div class="loading" id="loadingMsg">Loading submissions…</div>
+    <table id="mainTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Brother</th>
+          <th>Committee</th>
+          <th>Priority</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Request Detail</h3>
+      <button class="modal-close" onclick="document.getElementById('modalBg').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let allRows = [];
+
+// ── Auth guard (admin only) ──
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+  const { data: member } = await sb.from('members').select('is_admin').eq('id', session.user.id).single();
+  if (!member || !member.is_admin) { window.location.href = '/portal/dashboard.html'; return; }
+  loadData();
+})();
+
+document.getElementById('signOutBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await sb.auth.signOut();
+  window.location.href = '/portal/login.html';
+});
+
+// ── Load data ──
+async function loadData() {
+  const { data, error } = await sb
+    .from('budget_requests')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  document.getElementById('loadingMsg').style.display = 'none';
+  document.getElementById('mainTable').style.display = '';
+
+  if (error || !data) {
+    document.getElementById('tableBody').innerHTML = '<tr class="empty-row"><td colspan="7">Error loading data. Check Supabase table name.</td></tr>';
+    return;
+  }
+
+  allRows = data;
+  updateAnalytics(data);
+  populateCommitteeFilter(data);
+  renderTable(data);
+}
+
+function updateAnalytics(data) {
+  const pending  = data.filter(r => r.status === 'Pending').length;
+  const approved = data.filter(r => r.status === 'Approved').length;
+  const total    = data.reduce((s, r) => s + (r.total_amount || 0), 0);
+  const approvedAmt = data.filter(r => r.status === 'Approved').reduce((s, r) => s + (r.total_amount || 0), 0);
+  document.getElementById('statTotal').textContent      = data.length;
+  document.getElementById('statPending').textContent    = pending;
+  document.getElementById('statApproved').textContent   = approved;
+  document.getElementById('statAmount').textContent     = '$' + total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  document.getElementById('statApprovedAmt').textContent = '$' + approvedAmt.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function populateCommitteeFilter(data) {
+  const committees = [...new Set(data.map(r => r.committee).filter(Boolean))].sort();
+  const sel = document.getElementById('filterCommittee');
+  committees.forEach(c => {
+    const opt = document.createElement('option'); opt.value = c; opt.textContent = c; sel.appendChild(opt);
+  });
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('tableBody');
+  if (!data.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">No requests found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(r => {
+    const date   = r.request_date ? new Date(r.request_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
+    const amount = r.total_amount != null ? '$' + Number(r.total_amount).toLocaleString('en-US', { minimumFractionDigits: 2 }) : '—';
+    const status = r.status || 'Pending';
+    const badgeClass = { Pending: 'badge-pending', Approved: 'badge-approved', Denied: 'badge-denied', 'Under Review': 'badge-review' }[status] || 'badge-pending';
+    const pClass = { Low: 'p-low', Medium: 'p-medium', High: 'p-high', Urgent: 'p-urgent' }[r.priority] || 'p-medium';
+    return `<tr>
+      <td style="white-space:nowrap;color:#6a5a50;font-size:.78rem;">${date}</td>
+      <td><strong>${esc(r.full_name || '—')}</strong><br><span style="font-size:.75rem;color:#aaa;">${esc(r.email || '')}</span></td>
+      <td>${esc(r.committee || '—')}</td>
+      <td><span class="priority-dot ${pClass}"></span>${esc(r.priority || 'Medium')}</td>
+      <td class="amount-cell">${amount}</td>
+      <td><span class="badge ${badgeClass}">${status}</span></td>
+      <td style="white-space:nowrap;display:flex;gap:.4rem;align-items:center;">
+        <button class="action-btn" style="border-color:#c69a3f;color:#8a6020;background:#fffbf0;" onclick="openModal('${r.id}')">View</button>
+        ${status !== 'Approved' ? `<button class="action-btn action-approve" onclick="updateStatus('${r.id}','Approved')">✓</button>` : ''}
+        ${status !== 'Denied'   ? `<button class="action-btn action-deny" onclick="updateStatus('${r.id}','Denied')">✕</button>` : ''}
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Filters ──
+function applyFilters() {
+  const search    = document.getElementById('searchInput').value.toLowerCase();
+  const status    = document.getElementById('filterStatus').value;
+  const priority  = document.getElementById('filterPriority').value;
+  const committee = document.getElementById('filterCommittee').value;
+  const filtered  = allRows.filter(r =>
+    (!search    || (r.full_name||'').toLowerCase().includes(search) || (r.committee||'').toLowerCase().includes(search) || (r.email||'').toLowerCase().includes(search)) &&
+    (!status    || r.status === status) &&
+    (!priority  || r.priority === priority) &&
+    (!committee || r.committee === committee)
+  );
+  renderTable(filtered);
+}
+
+// ── Status update ──
+async function updateStatus(id, newStatus) {
+  const { error } = await sb.from('budget_requests').update({ status: newStatus }).eq('id', id);
+  if (!error) {
+    const row = allRows.find(r => r.id === id);
+    if (row) row.status = newStatus;
+    updateAnalytics(allRows);
+    applyFilters();
+    document.getElementById('modalBg').classList.remove('open');
+  }
+}
+
+// ── Modal ──
+function openModal(id) {
+  const r = allRows.find(r => r.id === id);
+  if (!r) return;
+  document.getElementById('modalTitle').textContent = r.full_name + ' — ' + (r.committee || '');
+  const lines = Array.isArray(r.line_items) ? r.line_items : [];
+  const linesHtml = lines.length ? `
+    <div class="detail-item full"><div class="lbl">Line Items</div>
+    <div class="line-mini"><table>
+      <thead><tr><th>Description</th><th>Qty</th><th>Unit</th><th>Total</th></tr></thead>
+      <tbody>${lines.map(l => `<tr><td>${esc(l.description||'')}</td><td>${l.qty}</td><td>$${Number(l.unit_cost).toFixed(2)}</td><td>$${Number(l.total).toFixed(2)}</td></tr>`).join('')}</tbody>
+    </table></div></div>` : '';
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="detail-grid">
+      <div class="detail-item"><div class="lbl">Name</div><div class="val">${esc(r.full_name||'—')}</div></div>
+      <div class="detail-item"><div class="lbl">Email</div><div class="val">${esc(r.email||'—')}</div></div>
+      <div class="detail-item"><div class="lbl">Committee</div><div class="val">${esc(r.committee||'—')}</div></div>
+      <div class="detail-item"><div class="lbl">Role</div><div class="val">${esc(r.role||'—')}</div></div>
+      <div class="detail-item"><div class="lbl">Request Date</div><div class="val">${r.request_date||'—'}</div></div>
+      <div class="detail-item"><div class="lbl">Event Date</div><div class="val">${r.event_date||'—'}</div></div>
+      <div class="detail-item"><div class="lbl">Priority</div><div class="val">${r.priority||'—'}</div></div>
+      <div class="detail-item"><div class="lbl">Total Requested</div><div class="val" style="font-family:'Cinzel',serif;font-weight:700;color:#70110c;">$${Number(r.total_amount||0).toFixed(2)}</div></div>
+      <div class="detail-item full"><div class="lbl">Purpose</div><div class="val">${esc(r.purpose||'—')}</div></div>
+      <div class="detail-item full"><div class="lbl">Expected Impact</div><div class="val">${esc(r.impact||'—')}</div></div>
+      ${linesHtml}
+      <div class="detail-item"><div class="lbl">Vendor</div><div class="val">${esc(r.vendor||'—')}</div></div>
+      <div class="detail-item"><div class="lbl">Payment Method</div><div class="val">${esc(r.pay_method||'—')}</div></div>
+      <div class="detail-item full"><div class="lbl">Notes</div><div class="val">${esc(r.notes||'—')}</div></div>
+    </div>`;
+
+  const status = r.status || 'Pending';
+  document.getElementById('modalActions').innerHTML = `
+    ${status !== 'Approved' ? `<button class="action-btn action-approve" onclick="updateStatus('${r.id}','Approved')">✓ Approve</button>` : ''}
+    ${status !== 'Under Review' ? `<button class="action-btn" style="border-color:#c7d7f0;color:#3730a3;background:#eef2ff;" onclick="updateStatus('${r.id}','Under Review')">⏳ Under Review</button>` : ''}
+    ${status !== 'Denied' ? `<button class="action-btn action-deny" onclick="updateStatus('${r.id}','Denied')">✕ Deny</button>` : ''}`;
+
+  document.getElementById('modalBg').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalBg'))
+    document.getElementById('modalBg').classList.remove('open');
+}
+
+// ── CSV Export ──
+function exportCSV() {
+  const headers = ['Date','Name','Email','Committee','Role','Priority','Total','Status','Purpose','Vendor','Pay Method','Notes'];
+  const rows = allRows.map(r => [
+    r.request_date, r.full_name, r.email, r.committee, r.role,
+    r.priority, r.total_amount, r.status, r.purpose, r.vendor, r.pay_method, r.notes
+  ].map(v => '"' + String(v||'').replace(/"/g,'""') + '"'));
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = 'DLA_BudgetRequests_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+}
+
+function esc(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>

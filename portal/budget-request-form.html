@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Request Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: #f5f0eb;
+      color: #1a1a1a;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .form-shell {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Section header */
+    .form-section {
+      background: #fff;
+      border: 1px solid #e4dbd0;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .section-head {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      color: #f2ebd7;
+      padding: .75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .section-head h2 {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #c69a3f;
+    }
+    .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* Field rows */
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field-row.full { grid-template-columns: 1fr; }
+    .field-row.thirds { grid-template-columns: 1fr 1fr 1fr; }
+
+    .field { display: flex; flex-direction: column; gap: .35rem; }
+    label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #6a5a50;
+    }
+    label .req { color: #70110c; margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: .6rem .8rem;
+      border: 1px solid #d8cfc5;
+      border-radius: 4px;
+      font-family: 'Archivo', sans-serif;
+      font-size: .88rem;
+      color: #1a1a1a;
+      background: #faf8f5;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #70110c;
+      box-shadow: 0 0 0 3px rgba(112,17,12,.08);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem; }
+
+    /* Line items table */
+    .line-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .line-table th {
+      background: #f0e8e0;
+      padding: .5rem .65rem;
+      text-align: left;
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #70110c;
+      border-bottom: 2px solid #e0d4c8;
+    }
+    .line-table td {
+      padding: .4rem .4rem;
+      border-bottom: 1px solid #f0e8e0;
+      vertical-align: middle;
+    }
+    .line-table input[type="text"],
+    .line-table input[type="number"] {
+      padding: .4rem .6rem;
+      font-size: .82rem;
+    }
+    .line-table .td-total { font-weight: 700; color: #70110c; text-align: right; padding-right: .6rem; }
+    .add-line-btn {
+      margin-top: .6rem;
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #70110c;
+      background: none;
+      border: 1px dashed #c69a3f;
+      border-radius: 4px;
+      padding: .45rem 1rem;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .add-line-btn:hover { background: #f5f0eb; }
+    .remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #aaa;
+      font-size: 1rem;
+      padding: .2rem .4rem;
+      transition: color .2s;
+    }
+    .remove-btn:hover { color: #70110c; }
+
+    /* Grand total */
+    .grand-total {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+      padding: .75rem 1.5rem;
+      background: #f0e8e0;
+      border-top: 2px solid #e0d4c8;
+    }
+    .grand-total .lbl {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #6a5a50;
+    }
+    .grand-total .amount {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #70110c;
+      min-width: 120px;
+      text-align: right;
+    }
+
+    /* Priority selector */
+    .priority-group { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .priority-opt { display: none; }
+    .priority-opt + label {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem 1rem;
+      border: 1px solid #d8cfc5;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-transform: none;
+      color: #6a5a50;
+      transition: border-color .2s, background .2s, color .2s;
+    }
+    .priority-opt:checked + label { border-color: #70110c; background: #70110c; color: #f2ebd7; }
+
+    /* Checkbox */
+    .check-row { display: flex; align-items: flex-start; gap: .6rem; cursor: pointer; }
+    .check-row input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: #70110c; flex-shrink: 0; }
+    .check-row span { font-size: .82rem; color: #4a3c35; line-height: 1.5; }
+
+    /* Submit */
+    .submit-row { display: flex; justify-content: flex-end; gap: 1rem; margin-top: .5rem; }
+    .btn-submit {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      color: #f2ebd7;
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .85rem 2.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: filter .2s, transform .15s;
+    }
+    .btn-submit:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .btn-reset {
+      background: none;
+      border: 1px solid #d8cfc5;
+      color: #8a7060;
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .85rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Status message */
+    .status-msg {
+      padding: .75rem 1rem;
+      border-radius: 4px;
+      font-size: .85rem;
+      margin-top: .5rem;
+      display: none;
+    }
+    .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+    .status-msg.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; display: block; }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      gap: 1rem;
+    }
+    .success-screen.show { display: flex; }
+    .success-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #70110c, #2a0604);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-screen h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #70110c; }
+    .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 420px; line-height: 1.7; }
+    .success-ref { font-family: 'Cinzel', serif; font-size: .8rem; color: #c69a3f; background: #f5f0eb; padding: .5rem 1.25rem; border-radius: 4px; border: 1px solid #e0d4c8; }
+
+    @media(max-width: 600px) {
+      .field-row, .field-row.thirds { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-shell">
+
+  <!-- FORM -->
+  <form id="budgetForm">
+
+    <!-- 1. Requestor Info -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h2>Requestor Information</h2>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" required placeholder="Brother First Last">
+          </div>
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="email" required placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Committee / Program <span class="req">*</span></label>
+            <select id="committee" required>
+              <option value="">Select Committee…</option>
+              <option>Chapter Programs</option>
+              <option>Guide Right / Kappa League</option>
+              <option>Social Action</option>
+              <option>Membership</option>
+              <option>Finance</option>
+              <option>Technology</option>
+              <option>Communications</option>
+              <option>Scholarship</option>
+              <option>Luncheon / Events</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Role / Title</label>
+            <input type="text" id="role" placeholder="e.g. Committee Chairman">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Date of Request <span class="req">*</span></label>
+            <input type="date" id="requestDate" required>
+          </div>
+          <div class="field">
+            <label>Event / Activity Date</label>
+            <input type="date" id="eventDate">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Request Details -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <h2>Request Details</h2>
+      </div>
+      <div class="section-body">
+        <div class="field-row full">
+          <div class="field">
+            <label>Purpose / Description <span class="req">*</span></label>
+            <textarea id="purpose" required placeholder="Describe the purpose of this budget request and how it supports chapter goals…"></textarea>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Expected Outcome / Impact</label>
+            <textarea id="impact" placeholder="How will this expenditure benefit the chapter or community?"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <label>Priority Level <span class="req">*</span></label>
+          <div class="priority-group">
+            <input class="priority-opt" type="radio" name="priority" id="p-low" value="Low">
+            <label for="p-low">Low</label>
+            <input class="priority-opt" type="radio" name="priority" id="p-medium" value="Medium" checked>
+            <label for="p-medium">Medium</label>
+            <input class="priority-opt" type="radio" name="priority" id="p-high" value="High">
+            <label for="p-high">High</label>
+            <input class="priority-opt" type="radio" name="priority" id="p-urgent" value="Urgent">
+            <label for="p-urgent">Urgent</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Budget Line Items -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h2>Budget Line Items</h2>
+      </div>
+      <div class="section-body" style="padding-bottom:0;">
+        <table class="line-table">
+          <thead>
+            <tr>
+              <th style="width:40%">Item Description</th>
+              <th style="width:15%">Qty</th>
+              <th style="width:20%">Unit Cost ($)</th>
+              <th style="width:18%">Total</th>
+              <th style="width:7%"></th>
+            </tr>
+          </thead>
+          <tbody id="lineItems">
+            <tr>
+              <td><input type="text" class="desc" placeholder="e.g. Venue rental"></td>
+              <td><input type="number" class="qty" min="1" value="1" placeholder="1"></td>
+              <td><input type="number" class="unit" min="0" step="0.01" placeholder="0.00"></td>
+              <td class="td-total">$0.00</td>
+              <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="add-line-btn" onclick="addRow()">+ Add Line Item</button>
+      </div>
+      <div class="grand-total">
+        <span class="lbl">Total Requested</span>
+        <span class="amount" id="grandTotal">$0.00</span>
+      </div>
+    </div>
+
+    <!-- 4. Vendor / Payment -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <h2>Vendor &amp; Payment Details</h2>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Vendor / Payee Name</label>
+            <input type="text" id="vendor" placeholder="Company or person to be paid">
+          </div>
+          <div class="field">
+            <label>Payment Method Requested</label>
+            <select id="payMethod">
+              <option value="">Select…</option>
+              <option>Check</option>
+              <option>Zelle / ACH</option>
+              <option>Reimbursement to Member</option>
+              <option>Credit Card (Chapter)</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Additional Notes</label>
+            <textarea id="notes" placeholder="Any other relevant information for the Finance Committee…"></textarea>
+          </div>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="certify" required>
+          <span>I certify that the information provided is accurate and that this request supports the goals and mission of the Denton-Lewisville Alumni Chapter of Kappa Alpha Psi Fraternity, Inc.</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="status-msg" id="statusMsg"></div>
+
+    <div class="submit-row">
+      <button type="button" class="btn-reset" onclick="resetForm()">Clear Form</button>
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Request →</button>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS STATE -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Request Submitted</h2>
+    <p>Your budget request has been received and is under review by the Finance Committee. You will be contacted at the email address provided.</p>
+    <div class="success-ref" id="successRef"></div>
+    <button onclick="resetForm()" style="margin-top:.5rem;background:none;border:1px solid #d8cfc5;color:#6a5a50;font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.65rem 1.5rem;border-radius:4px;cursor:pointer;">Submit Another</button>
+  </div>
+
+</div><!-- /form-shell -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// ── Line item logic ──
+function addRow() {
+  const tbody = document.getElementById('lineItems');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" class="desc" placeholder="Item description"></td>
+    <td><input type="number" class="qty" min="1" value="1"></td>
+    <td><input type="number" class="unit" min="0" step="0.01" placeholder="0.00"></td>
+    <td class="td-total">$0.00</td>
+    <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>`;
+  tbody.appendChild(tr);
+  attachRowListeners(tr);
+}
+
+function removeRow(btn) {
+  const rows = document.querySelectorAll('#lineItems tr');
+  if (rows.length <= 1) return;
+  btn.closest('tr').remove();
+  recalc();
+}
+
+function recalc() {
+  let grand = 0;
+  document.querySelectorAll('#lineItems tr').forEach(tr => {
+    const qty  = parseFloat(tr.querySelector('.qty')?.value)  || 0;
+    const unit = parseFloat(tr.querySelector('.unit')?.value) || 0;
+    const total = qty * unit;
+    grand += total;
+    const td = tr.querySelector('.td-total');
+    if (td) td.textContent = '$' + total.toFixed(2);
+  });
+  document.getElementById('grandTotal').textContent = '$' + grand.toFixed(2);
+}
+
+function attachRowListeners(tr) {
+  tr.querySelectorAll('input').forEach(inp => inp.addEventListener('input', recalc));
+}
+
+// Init first row listeners
+document.querySelectorAll('#lineItems tr').forEach(attachRowListeners);
+
+// ── Set today as default date ──
+document.getElementById('requestDate').value = new Date().toISOString().split('T')[0];
+
+// ── Submit ──
+document.getElementById('budgetForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('statusMsg');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  msg.className = 'status-msg';
+  msg.style.display = 'none';
+
+  // Build line items array
+  const lineItems = [];
+  document.querySelectorAll('#lineItems tr').forEach(tr => {
+    const desc = tr.querySelector('.desc')?.value?.trim();
+    const qty  = parseFloat(tr.querySelector('.qty')?.value)  || 0;
+    const unit = parseFloat(tr.querySelector('.unit')?.value) || 0;
+    if (desc) lineItems.push({ description: desc, qty, unit_cost: unit, total: qty * unit });
+  });
+
+  const grandTotal = lineItems.reduce((s, i) => s + i.total, 0);
+  const priority   = document.querySelector('input[name="priority"]:checked')?.value || 'Medium';
+
+  const payload = {
+    full_name:      document.getElementById('fullName').value.trim(),
+    email:          document.getElementById('email').value.trim(),
+    committee:      document.getElementById('committee').value,
+    role:           document.getElementById('role').value.trim(),
+    request_date:   document.getElementById('requestDate').value,
+    event_date:     document.getElementById('eventDate').value || null,
+    purpose:        document.getElementById('purpose').value.trim(),
+    impact:         document.getElementById('impact').value.trim(),
+    priority,
+    vendor:         document.getElementById('vendor').value.trim(),
+    pay_method:     document.getElementById('payMethod').value,
+    notes:          document.getElementById('notes').value.trim(),
+    line_items:     lineItems,
+    total_amount:   grandTotal,
+    status:         'Pending',
+    fiscal_year:    '2025-2026'
+  };
+
+  const { data, error } = await sb.from('budget_requests').insert([payload]).select().single();
+
+  if (error) {
+    msg.textContent = 'Submission failed: ' + (error.message || 'Please try again.');
+    msg.className = 'status-msg error';
+    btn.disabled = false;
+    btn.textContent = 'Submit Request →';
+    return;
+  }
+
+  // Show success
+  document.getElementById('budgetForm').style.display = 'none';
+  const ref = data?.id ? data.id.substring(0, 8).toUpperCase() : 'PENDING';
+  document.getElementById('successRef').textContent = 'Reference: DLA-BR-' + ref;
+  document.getElementById('successScreen').classList.add('show');
+});
+
+function resetForm() {
+  document.getElementById('budgetForm').reset();
+  document.getElementById('budgetForm').style.display = '';
+  document.getElementById('successScreen').classList.remove('show');
+  document.getElementById('requestDate').value = new Date().toISOString().split('T')[0];
+  // Reset line items to one empty row
+  document.getElementById('lineItems').innerHTML = `<tr>
+    <td><input type="text" class="desc" placeholder="e.g. Venue rental"></td>
+    <td><input type="number" class="qty" min="1" value="1"></td>
+    <td><input type="number" class="unit" min="0" step="0.01" placeholder="0.00"></td>
+    <td class="td-total">$0.00</td>
+    <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>
+  </tr>`;
+  document.querySelectorAll('#lineItems tr').forEach(attachRowListeners);
+  recalc();
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Submit Request →';
+}
+</script>
+</body>
+</html>
