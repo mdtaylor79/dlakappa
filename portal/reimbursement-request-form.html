@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Budget Request Form</title>
+  <title>Reimbursement Request Form</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,7 +24,6 @@
     }
     .section-head {
       background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
-      color: #f2ebd7;
       padding: .75rem 1.25rem;
       display: flex;
       align-items: center;
@@ -44,7 +43,6 @@
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .field-row.full { grid-template-columns: 1fr; }
     .field-row.thirds { grid-template-columns: 1fr 1fr 1fr; }
-    .field-row.four { grid-template-columns: 1fr 1fr 1fr 1fr; }
 
     .field { display: flex; flex-direction: column; gap: .35rem; }
     label {
@@ -79,7 +77,7 @@
       border-color: #70110c;
       box-shadow: 0 0 0 3px rgba(112,17,12,.08);
     }
-    textarea { resize: vertical; min-height: 90px; }
+    textarea { resize: vertical; min-height: 80px; }
     select {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
       background-repeat: no-repeat;
@@ -89,7 +87,7 @@
 
     /* Line items */
     .line-table-wrap { overflow-x: auto; }
-    .line-table { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 620px; }
+    .line-table { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 560px; }
     .line-table th {
       background: #f0e8e0;
       padding: .5rem .65rem;
@@ -107,20 +105,7 @@
       border-bottom: 1px solid #f0e8e0;
       vertical-align: middle;
     }
-    .line-table input[type="text"],
-    .line-table input[type="number"],
-    .line-table input[type="date"] {
-      padding: .4rem .55rem;
-      font-size: .82rem;
-    }
-    .line-table .td-num {
-      font-family: 'Cinzel', serif;
-      font-size: .72rem;
-      font-weight: 700;
-      color: #c69a3f;
-      text-align: center;
-      width: 32px;
-    }
+    .line-table input { padding: .4rem .55rem; font-size: .82rem; }
     .add-line-btn {
       margin-top: .6rem;
       font-family: 'Cinzel', serif;
@@ -138,12 +123,8 @@
     }
     .add-line-btn:hover { background: #f5f0eb; }
     .remove-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #aaa;
-      font-size: 1rem;
-      padding: .2rem .4rem;
+      background: none; border: none; cursor: pointer;
+      color: #aaa; font-size: 1rem; padding: .2rem .4rem;
       transition: color .2s;
     }
     .remove-btn:hover { color: #70110c; }
@@ -170,58 +151,49 @@
       font-size: 1.35rem;
       font-weight: 700;
       color: #70110c;
-      min-width: 120px;
+      min-width: 130px;
       text-align: right;
     }
 
-    /* Yes/No radio pills */
-    .yn-group { display: flex; gap: .6rem; }
-    .yn-opt { display: none; }
-    .yn-opt + label {
+    /* Payment method pills */
+    .method-group { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .method-opt { display: none; }
+    .method-opt + label {
       display: inline-flex;
       align-items: center;
-      padding: .4rem 1.2rem;
+      padding: .42rem 1rem;
       border: 1px solid #d8cfc5;
       border-radius: 4px;
       cursor: pointer;
-      font-size: .82rem;
+      font-size: .78rem;
       font-weight: 600;
       color: #6a5a50;
       transition: all .2s;
       text-transform: none;
       letter-spacing: 0;
     }
-    .yn-opt:checked + label { border-color: #70110c; background: #70110c; color: #f2ebd7; }
+    .method-opt:checked + label { border-color: #70110c; background: #70110c; color: #f2ebd7; }
 
-    /* Pillar checkboxes */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .6rem;
-    }
-    .pillar-item {
-      display: flex;
-      align-items: center;
-      gap: .55rem;
-      padding: .55rem .75rem;
-      border: 1px solid #e4dbd0;
+    /* Conditional */
+    .conditional { display: none; }
+    .conditional.show { display: flex; flex-direction: column; gap: .35rem; }
+
+    /* Info callout */
+    .info-box {
+      background: #fdf9f0;
+      border: 1px solid #e8d9b0;
+      border-left: 3px solid #c69a3f;
       border-radius: 4px;
-      cursor: pointer;
-      transition: border-color .2s, background .2s;
+      padding: .75rem 1rem;
+      font-size: .8rem;
+      color: #6a5a50;
+      line-height: 1.6;
     }
-    .pillar-item:hover { border-color: #c69a3f; background: #faf8f5; }
-    .pillar-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: #70110c; flex-shrink: 0; }
-    .pillar-item span { font-size: .82rem; color: #3a2c25; line-height: 1.3; }
-    .pillar-item.checked { border-color: #70110c; background: #fdf5f5; }
 
-    /* Certification checkbox */
+    /* Checkbox */
     .check-row { display: flex; align-items: flex-start; gap: .6rem; cursor: pointer; }
     .check-row input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: #70110c; flex-shrink: 0; }
     .check-row span { font-size: .82rem; color: #4a3c35; line-height: 1.5; }
-
-    /* Conditional field */
-    .conditional { display: none; }
-    .conditional.show { display: flex; flex-direction: column; gap: .35rem; }
 
     /* Submit */
     .submit-row { display: flex; justify-content: flex-end; gap: 1rem; margin-top: .5rem; }
@@ -234,9 +206,7 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       padding: .85rem 2.5rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      border: none; border-radius: 4px; cursor: pointer;
       transition: filter .2s, transform .15s;
     }
     .btn-submit:hover { filter: brightness(1.15); transform: translateY(-1px); }
@@ -251,28 +221,20 @@
       letter-spacing: .08em;
       text-transform: uppercase;
       padding: .85rem 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
+      border-radius: 4px; cursor: pointer;
     }
 
     .status-msg {
-      padding: .75rem 1rem;
-      border-radius: 4px;
-      font-size: .85rem;
-      margin-top: .5rem;
-      display: none;
+      padding: .75rem 1rem; border-radius: 4px;
+      font-size: .85rem; margin-top: .5rem; display: none;
     }
     .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
 
-    /* Success screen */
+    /* Success */
     .success-screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      gap: 1rem;
+      display: none; flex-direction: column;
+      align-items: center; text-align: center;
+      padding: 4rem 2rem; gap: 1rem;
     }
     .success-screen.show { display: flex; }
     .success-icon {
@@ -282,30 +244,43 @@
       display: flex; align-items: center; justify-content: center;
     }
     .success-screen h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #70110c; }
-    .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 420px; line-height: 1.7; }
+    .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 440px; line-height: 1.7; }
     .success-ref { font-family: 'Cinzel', serif; font-size: .8rem; color: #c69a3f; background: #f5f0eb; padding: .5rem 1.25rem; border-radius: 4px; border: 1px solid #e0d4c8; }
 
-    @media(max-width: 640px) {
-      .field-row, .field-row.thirds, .field-row.four { grid-template-columns: 1fr; }
-      .pillars-grid { grid-template-columns: 1fr; }
+    @media(max-width: 600px) {
+      .field-row, .field-row.thirds { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 <div class="form-shell">
 
-  <form id="budgetForm">
+  <form id="reimbForm">
 
-    <!-- A. Committee Information -->
+    <!-- 1. Member Information -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <h2>Committee Information</h2>
+        <h2>Member Information</h2>
       </div>
       <div class="section-body">
         <div class="field-row">
           <div class="field">
-            <label>Committee Name <span class="req">*</span></label>
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" required placeholder="Brother First Last">
+          </div>
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="email" required placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="field-row thirds">
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="(000) 000-0000">
+          </div>
+          <div class="field">
+            <label>Committee / Program <span class="req">*</span></label>
             <select id="committee" required>
               <option value="">Select Committee…</option>
               <option>Chapter Programs</option>
@@ -321,134 +296,130 @@
             </select>
           </div>
           <div class="field">
-            <label>Chairman Name <span class="req">*</span></label>
-            <input type="text" id="fullName" required placeholder="Brother First Last">
-          </div>
-        </div>
-        <div class="field-row thirds">
-          <div class="field">
-            <label>Email Address <span class="req">*</span></label>
-            <input type="email" id="email" required placeholder="your@email.com">
-          </div>
-          <div class="field">
-            <label>Phone Number</label>
-            <input type="tel" id="phone" placeholder="(000) 000-0000">
-          </div>
-          <div class="field">
-            <label>Date Submitted <span class="req">*</span></label>
+            <label>Date of Request <span class="req">*</span></label>
             <input type="date" id="requestDate" required>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- B. Budget Overview -->
+    <!-- 2. Expense Details -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <h2>A. Budget Overview</h2>
+        <h2>Expense Details</h2>
       </div>
       <div class="section-body" style="padding-bottom:0;">
         <div class="line-table-wrap">
           <table class="line-table">
             <thead>
               <tr>
-                <th style="width:30px;">#</th>
-                <th style="width:28%;">Line Item Description</th>
-                <th style="width:16%;">Estimated Cost</th>
-                <th style="width:30%;">Justification / Purpose</th>
-                <th style="width:16%;">Date of Use</th>
-                <th style="width:30px;"></th>
+                <th style="width:32%;">Description of Expense</th>
+                <th style="width:16%;">Receipt / Invoice #</th>
+                <th style="width:16%;">Date of Purchase</th>
+                <th style="width:14%;">Where Purchased</th>
+                <th style="width:13%;">Amount ($)</th>
+                <th style="width:9%;"></th>
               </tr>
             </thead>
             <tbody id="lineItems">
               <tr>
-                <td class="td-num">1</td>
-                <td><input type="text" class="desc" placeholder="Item description"></td>
-                <td><input type="number" class="cost" min="0" step="0.01" placeholder="0.00"></td>
-                <td><input type="text" class="justif" placeholder="Why is this needed?"></td>
-                <td><input type="date" class="dateuse"></td>
+                <td><input type="text" class="desc" placeholder="What was purchased?"></td>
+                <td><input type="text" class="receipt" placeholder="REC-0000"></td>
+                <td><input type="date" class="purchdate"></td>
+                <td><input type="text" class="vendor" placeholder="Store / vendor"></td>
+                <td><input type="number" class="amount" min="0" step="0.01" placeholder="0.00"></td>
                 <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <button type="button" class="add-line-btn" onclick="addRow()">+ Add Line Item</button>
+        <button type="button" class="add-line-btn" onclick="addRow()">+ Add Expense</button>
       </div>
       <div class="grand-total">
-        <span class="lbl">Total Estimated Budget</span>
+        <span class="lbl">Total Reimbursement Requested</span>
         <span class="amount" id="grandTotal">$0.00</span>
       </div>
     </div>
 
-    <!-- C. Additional Budget Notes -->
+    <!-- 3. Purpose -->
     <div class="form-section">
       <div class="section-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <h2>B. Additional Budget Notes</h2>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <h2>Purpose &amp; Event</h2>
       </div>
       <div class="section-body">
-        <div class="field">
-          <label>Has this expense occurred in previous years? <span class="req">*</span></label>
-          <div class="yn-group">
-            <input class="yn-opt" type="radio" name="prevExpense" id="prev-yes" value="yes">
-            <label for="prev-yes">Yes</label>
-            <input class="yn-opt" type="radio" name="prevExpense" id="prev-no" value="no">
-            <label for="prev-no">No</label>
+        <div class="field-row">
+          <div class="field">
+            <label>Event / Activity Name <span class="req">*</span></label>
+            <input type="text" id="eventName" required placeholder="e.g. Annual Scholarship Luncheon">
           </div>
-        </div>
-        <div class="conditional" id="prevDetailsWrap">
-          <label>If Yes, what was the cost and outcome?</label>
-          <textarea id="prevDetails" placeholder="Describe the previous cost and outcome…"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- D. Strategic Alignment -->
-    <div class="form-section">
-      <div class="section-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <h2>C. Strategic Alignment</h2>
-      </div>
-      <div class="section-body">
-        <div class="field">
-          <label>Which Strategic Pillar(s) does this budget support? <span class="req">*</span></label>
-          <div class="pillars-grid" id="pillarsGrid">
-            <label class="pillar-item">
-              <input type="checkbox" name="pillar" value="Guide Right / Youth Engagement">
-              <span>Guide Right / Youth Engagement</span>
-            </label>
-            <label class="pillar-item">
-              <input type="checkbox" name="pillar" value="Social Action / Civic Engagement">
-              <span>Social Action / Civic Engagement</span>
-            </label>
-            <label class="pillar-item">
-              <input type="checkbox" name="pillar" value="Fundraising & Development">
-              <span>Fundraising &amp; Development</span>
-            </label>
-            <label class="pillar-item">
-              <input type="checkbox" name="pillar" value="Membership & Brotherhood">
-              <span>Membership &amp; Brotherhood</span>
-            </label>
-            <label class="pillar-item">
-              <input type="checkbox" name="pillar" value="Public Relations & Branding">
-              <span>Public Relations &amp; Branding</span>
-            </label>
-            <label class="pillar-item">
-              <input type="checkbox" name="pillar" value="Training / Leadership Development">
-              <span>Training / Leadership Development</span>
-            </label>
-            <label class="pillar-item" id="otherPillarItem">
-              <input type="checkbox" name="pillar" value="other" id="otherPillarCb">
-              <span>Other:</span>
-              <input type="text" id="otherPillarText" placeholder="Specify…" style="margin-left:.4rem;flex:1;padding:.25rem .5rem;font-size:.8rem;" onclick="event.stopPropagation()">
-            </label>
+          <div class="field">
+            <label>Event Date</label>
+            <input type="date" id="eventDate">
           </div>
         </div>
         <div class="field-row full">
           <div class="field">
-            <label>How does this expense support the mission of the chapter? <span class="req">*</span></label>
-            <textarea id="missionSupport" required placeholder="Explain how this request aligns with the chapter's mission and goals…"></textarea>
+            <label>Description / Justification <span class="req">*</span></label>
+            <textarea id="purpose" required placeholder="Explain why this expense was necessary and how it benefited the chapter…"></textarea>
+          </div>
+        </div>
+        <div class="info-box">
+          <strong>Receipts Required:</strong> Original receipts or invoices must be submitted with this request. Email copies to <strong>finance@dlakappa.org</strong> or bring originals to the next chapter meeting. Requests without receipts may be delayed or denied.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Reimbursement Payment Preference -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <h2>Reimbursement Payment Preference</h2>
+      </div>
+      <div class="section-body">
+        <div class="field">
+          <label>How would you like to be reimbursed? <span class="req">*</span></label>
+          <div class="method-group">
+            <input class="method-opt" type="radio" name="payMethod" id="pm-zelle" value="Zelle">
+            <label for="pm-zelle">Zelle</label>
+            <input class="method-opt" type="radio" name="payMethod" id="pm-check" value="Check">
+            <label for="pm-check">Check</label>
+            <input class="method-opt" type="radio" name="payMethod" id="pm-ach" value="ACH / Direct Deposit">
+            <label for="pm-ach">ACH / Direct Deposit</label>
+          </div>
+        </div>
+
+        <!-- Zelle -->
+        <div class="conditional" id="zelleWrap">
+          <label>Zelle Phone Number or Email <span class="req">*</span></label>
+          <input type="text" id="zelleInfo" placeholder="Phone or email registered with Zelle">
+        </div>
+
+        <!-- Check -->
+        <div class="conditional" id="checkWrap">
+          <label>Mailing Address for Check <span class="req">*</span></label>
+          <input type="text" id="mailingAddress" placeholder="Street, City, State, ZIP">
+        </div>
+
+        <!-- ACH -->
+        <div class="conditional" id="achWrap">
+          <div class="field-row">
+            <div class="field">
+              <label>Bank Name</label>
+              <input type="text" id="bankName" placeholder="e.g. Chase, Wells Fargo">
+            </div>
+            <div class="field">
+              <label>Account Type</label>
+              <select id="accountType">
+                <option value="">Select…</option>
+                <option>Checking</option>
+                <option>Savings</option>
+              </select>
+            </div>
+          </div>
+          <div class="info-box" style="margin-top:.25rem;">
+            The Finance Committee will contact you securely to collect routing and account numbers.
           </div>
         </div>
       </div>
@@ -459,7 +430,7 @@
       <div class="section-body">
         <label class="check-row">
           <input type="checkbox" id="certify" required>
-          <span>I certify that the information provided is accurate and that this request supports the goals and mission of the Denton-Lewisville Alumni Chapter of Kappa Alpha Psi Fraternity, Inc.</span>
+          <span>I certify that the expenses listed above were personally paid by me, are legitimate chapter expenses, and that receipts or supporting documentation are available upon request.</span>
         </label>
       </div>
     </div>
@@ -478,15 +449,16 @@
     <div class="success-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-    <h2>Request Submitted Successfully</h2>
-    <p>Your budget request has been received by the <strong>Finance Committee</strong>. It will be reviewed and you will be contacted at the email address you provided with a decision.</p>
+    <h2>Reimbursement Request Submitted</h2>
+    <p>Your request has been received by the <strong>Finance Committee</strong>. Please ensure receipts are submitted to <strong>finance@dlakappa.org</strong>.</p>
     <div class="success-ref" id="successRef"></div>
-    <div style="background:#fff;border:1px solid #e4dbd0;border-radius:8px;padding:1.25rem 1.5rem;max-width:420px;text-align:left;margin-top:.5rem;">
+    <div style="background:#fff;border:1px solid #e4dbd0;border-radius:8px;padding:1.25rem 1.5rem;max-width:440px;text-align:left;margin-top:.5rem;">
       <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">What happens next?</div>
       <ul style="font-size:.82rem;color:#6a5a50;line-height:1.8;padding-left:1.1rem;">
-        <li>Your request is saved in the chapter database</li>
-        <li>The Finance Committee will review it</li>
-        <li>You will receive a decision via email</li>
+        <li>Submit receipts to finance@dlakappa.org</li>
+        <li>Finance Committee reviews and approves</li>
+        <li>Reimbursement processed within 5–10 business days</li>
+        <li>You will be notified at your email address</li>
       </ul>
     </div>
     <button onclick="resetForm()" style="margin-top:1rem;background:linear-gradient(135deg,#70110c,#2a0604);color:#f2ebd7;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.8rem 2rem;border:none;border-radius:4px;cursor:pointer;">Submit Another Request</button>
@@ -500,71 +472,51 @@ const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// ── Row numbering ──
-function updateRowNumbers() {
-  document.querySelectorAll('#lineItems tr').forEach((tr, i) => {
-    const td = tr.querySelector('.td-num');
-    if (td) td.textContent = i + 1;
-  });
-}
-
-// ── Line item logic ──
 function addRow() {
   const tbody = document.getElementById('lineItems');
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td class="td-num">${tbody.rows.length + 1}</td>
-    <td><input type="text" class="desc" placeholder="Item description"></td>
-    <td><input type="number" class="cost" min="0" step="0.01" placeholder="0.00"></td>
-    <td><input type="text" class="justif" placeholder="Why is this needed?"></td>
-    <td><input type="date" class="dateuse"></td>
+    <td><input type="text" class="desc" placeholder="What was purchased?"></td>
+    <td><input type="text" class="receipt" placeholder="REC-0000"></td>
+    <td><input type="date" class="purchdate"></td>
+    <td><input type="text" class="vendor" placeholder="Store / vendor"></td>
+    <td><input type="number" class="amount" min="0" step="0.01" placeholder="0.00"></td>
     <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>`;
   tbody.appendChild(tr);
   attachRowListeners(tr);
 }
 
 function removeRow(btn) {
-  const rows = document.querySelectorAll('#lineItems tr');
-  if (rows.length <= 1) return;
+  if (document.querySelectorAll('#lineItems tr').length <= 1) return;
   btn.closest('tr').remove();
-  updateRowNumbers();
   recalc();
 }
 
 function recalc() {
   let grand = 0;
   document.querySelectorAll('#lineItems tr').forEach(tr => {
-    const cost = parseFloat(tr.querySelector('.cost')?.value) || 0;
-    grand += cost;
+    grand += parseFloat(tr.querySelector('.amount')?.value) || 0;
   });
   document.getElementById('grandTotal').textContent = '$' + grand.toFixed(2);
 }
 
 function attachRowListeners(tr) {
-  tr.querySelectorAll('input').forEach(inp => inp.addEventListener('input', recalc));
+  tr.querySelectorAll('input').forEach(i => i.addEventListener('input', recalc));
 }
 document.querySelectorAll('#lineItems tr').forEach(attachRowListeners);
 
-// ── Previous expense toggle ──
-document.querySelectorAll('input[name="prevExpense"]').forEach(r => {
+// Payment method conditionals
+document.querySelectorAll('input[name="payMethod"]').forEach(r => {
   r.addEventListener('change', () => {
-    const wrap = document.getElementById('prevDetailsWrap');
-    wrap.classList.toggle('show', r.value === 'yes' && r.checked);
+    document.getElementById('zelleWrap').classList.toggle('show', r.value === 'Zelle' && r.checked);
+    document.getElementById('checkWrap').classList.toggle('show', r.value === 'Check' && r.checked);
+    document.getElementById('achWrap').classList.toggle('show', r.value === 'ACH / Direct Deposit' && r.checked);
   });
 });
 
-// ── Pillar checkbox styling ──
-document.querySelectorAll('.pillar-item input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', () => {
-    cb.closest('.pillar-item').classList.toggle('checked', cb.checked);
-  });
-});
-
-// ── Set today's date ──
 document.getElementById('requestDate').value = new Date().toISOString().split('T')[0];
 
-// ── Submit ──
-document.getElementById('budgetForm').addEventListener('submit', async (e) => {
+document.getElementById('reimbForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   const msg = document.getElementById('statusMsg');
@@ -573,48 +525,40 @@ document.getElementById('budgetForm').addEventListener('submit', async (e) => {
   msg.className = 'status-msg';
   msg.style.display = 'none';
 
-  // Build line items
   const lineItems = [];
   document.querySelectorAll('#lineItems tr').forEach(tr => {
-    const desc   = tr.querySelector('.desc')?.value?.trim();
-    const cost   = parseFloat(tr.querySelector('.cost')?.value) || 0;
-    const justif = tr.querySelector('.justif')?.value?.trim() || '';
-    const dateuse= tr.querySelector('.dateuse')?.value || null;
-    if (desc) lineItems.push({ description: desc, estimated_cost: cost, justification: justif, date_of_use: dateuse });
+    const desc    = tr.querySelector('.desc')?.value?.trim();
+    const receipt = tr.querySelector('.receipt')?.value?.trim() || null;
+    const date    = tr.querySelector('.purchdate')?.value || null;
+    const vendor  = tr.querySelector('.vendor')?.value?.trim() || null;
+    const amount  = parseFloat(tr.querySelector('.amount')?.value) || 0;
+    if (desc) lineItems.push({ description: desc, receipt_number: receipt, purchase_date: date, vendor, amount });
   });
 
-  const grandTotal = lineItems.reduce((s, i) => s + i.estimated_cost, 0);
-
-  // Strategic pillars
-  const pillars = [];
-  document.querySelectorAll('input[name="pillar"]:checked').forEach(cb => {
-    if (cb.value === 'other') {
-      const txt = document.getElementById('otherPillarText').value.trim();
-      if (txt) pillars.push('Other: ' + txt);
-    } else {
-      pillars.push(cb.value);
-    }
-  });
-
-  const prevExpense = document.querySelector('input[name="prevExpense"]:checked')?.value || null;
+  const totalAmount = lineItems.reduce((s, i) => s + i.amount, 0);
+  const payMethod   = document.querySelector('input[name="payMethod"]:checked')?.value || null;
 
   const payload = {
-    full_name:               document.getElementById('fullName').value.trim(),
-    email:                   document.getElementById('email').value.trim(),
-    phone:                   document.getElementById('phone').value.trim() || null,
-    committee:               document.getElementById('committee').value,
-    request_date:            document.getElementById('requestDate').value,
-    line_items:              lineItems,
-    total_amount:            grandTotal,
-    previous_expense:        prevExpense === 'yes',
-    previous_expense_details:prevExpense === 'yes' ? document.getElementById('prevDetails').value.trim() : null,
-    strategic_pillars:       pillars,
-    mission_support:         document.getElementById('missionSupport').value.trim(),
-    status:                  'Pending',
-    fiscal_year:             '2025-2026'
+    full_name:       document.getElementById('fullName').value.trim(),
+    email:           document.getElementById('email').value.trim(),
+    phone:           document.getElementById('phone').value.trim() || null,
+    committee:       document.getElementById('committee').value,
+    request_date:    document.getElementById('requestDate').value,
+    line_items:      lineItems,
+    total_amount:    totalAmount,
+    event_name:      document.getElementById('eventName').value.trim(),
+    event_date:      document.getElementById('eventDate').value || null,
+    purpose:         document.getElementById('purpose').value.trim(),
+    pay_method:      payMethod,
+    zelle_info:      document.getElementById('zelleInfo').value.trim() || null,
+    mailing_address: document.getElementById('mailingAddress').value.trim() || null,
+    bank_name:       document.getElementById('bankName').value.trim() || null,
+    account_type:    document.getElementById('accountType').value || null,
+    status:          'Pending',
+    fiscal_year:     '2025-2026'
   };
 
-  const { data, error } = await sb.from('budget_requests').insert([payload]).select().single();
+  const { data, error } = await sb.from('reimbursement_requests').insert([payload]).select().single();
 
   if (error) {
     msg.textContent = 'Submission failed: ' + (error.message || 'Please try again.');
@@ -625,27 +569,25 @@ document.getElementById('budgetForm').addEventListener('submit', async (e) => {
     return;
   }
 
-  document.getElementById('budgetForm').style.display = 'none';
+  document.getElementById('reimbForm').style.display = 'none';
   const ref = data?.id ? String(data.id).padStart(6, '0') : '------';
-  document.getElementById('successRef').textContent = 'Reference #: DLA-BR-' + ref;
-  const screen = document.getElementById('successScreen');
-  screen.classList.add('show');
+  document.getElementById('successRef').textContent = 'Reference #: DLA-RR-' + ref;
+  document.getElementById('successScreen').classList.add('show');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 function resetForm() {
-  document.getElementById('budgetForm').reset();
-  document.getElementById('budgetForm').style.display = '';
+  document.getElementById('reimbForm').reset();
+  document.getElementById('reimbForm').style.display = '';
   document.getElementById('successScreen').classList.remove('show');
   document.getElementById('requestDate').value = new Date().toISOString().split('T')[0];
-  document.getElementById('prevDetailsWrap').classList.remove('show');
-  document.querySelectorAll('.pillar-item').forEach(el => el.classList.remove('checked'));
+  ['zelleWrap','checkWrap','achWrap'].forEach(id => document.getElementById(id).classList.remove('show'));
   document.getElementById('lineItems').innerHTML = `<tr>
-    <td class="td-num">1</td>
-    <td><input type="text" class="desc" placeholder="Item description"></td>
-    <td><input type="number" class="cost" min="0" step="0.01" placeholder="0.00"></td>
-    <td><input type="text" class="justif" placeholder="Why is this needed?"></td>
-    <td><input type="date" class="dateuse"></td>
+    <td><input type="text" class="desc" placeholder="What was purchased?"></td>
+    <td><input type="text" class="receipt" placeholder="REC-0000"></td>
+    <td><input type="date" class="purchdate"></td>
+    <td><input type="text" class="vendor" placeholder="Store / vendor"></td>
+    <td><input type="number" class="amount" min="0" step="0.01" placeholder="0.00"></td>
     <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>
   </tr>`;
   document.querySelectorAll('#lineItems tr').forEach(attachRowListeners);
