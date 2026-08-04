@@ -1854,8 +1854,8 @@ async function loadNews() {
   var grid = document.getElementById('dashNewsGrid');
   if (!grid) return;
   var { data: posts, error } = await dlaSupabase
-    .from('news_posts')
-    .select('id, title, summary, category, published_at')
+    .from('posts')
+    .select('id, title, slug, excerpt, category, published_at, created_at')
     .eq('published', true)
     .order('published_at', { ascending: false })
     .limit(3);
@@ -1864,8 +1864,9 @@ async function loadNews() {
     return;
   }
   grid.innerHTML = posts.map(function(p) {
-    var d = p.published_at ? new Date(p.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
-    return '<a class="news-card" href="/portal/news.html"><div class="news-body"><div class="news-cat">' + (p.category||'News') + '</div><h4>' + p.title + '</h4><p>' + (p.summary||'Read more →') + '</p><div class="news-date">' + d + '</div></div></a>';
+    var d = new Date(p.published_at || p.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    var href = p.slug ? '/blog/post.html?slug=' + p.slug : '/portal/news.html';
+    return '<a class="news-card" href="' + href + '"><div class="news-body"><div class="news-cat">' + (p.category||'News') + '</div><h4>' + p.title + '</h4><p>' + (p.excerpt||'Read more →') + '</p><div class="news-date">' + d + '</div></div></a>';
   }).join('');
 }
 
