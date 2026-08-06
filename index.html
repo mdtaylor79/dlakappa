@@ -95,6 +95,9 @@
     <div class="slide">
       <img src="/img/kl_grads.jpg" alt="Kappa League Graduates">
     </div>
+    <div class="slide">
+      <img src="/img/kl_ty_golf.jpg" alt="Kappa League Golf Outing">
+    </div>
   </div>
 
   <!-- Dark gradient overlay -->
@@ -455,7 +458,6 @@
           <div><div style="font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1;">46</div><div style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-top:.2rem;">Kappa League Participants</div></div>
         </div>
 
-
       </div>
     </div>
   </section>
@@ -549,7 +551,7 @@ const KL_PHOTOS = [
   { src: '/img/KL_Gallery_View (18).png', caption: 'Kappa League in Action', sub: 'Denton-Lewisville Alumni Chapter' }
 ];
 
-var klActive = [];  // only photos that successfully loaded
+var klActive = [];
 var klCurrent = 0;
 
 function klShow(idx) {
@@ -589,7 +591,6 @@ function klBuildDots() {
   });
 }
 
-// Preload all images — only keep ones that load successfully
 (function() {
   var remaining = KL_PHOTOS.length;
   var results = new Array(KL_PHOTOS.length).fill(null);
@@ -601,13 +602,12 @@ function klBuildDots() {
       done();
     };
     img.onerror = function() {
-      // try next extension
       if (exts.length) {
         var next = exts.shift();
         var newSrc = src.replace(/\.[^.]+$/, next);
         tryLoad(photo, idx, newSrc, exts);
       } else {
-        results[idx] = null; // image not found — skip it
+        results[idx] = null;
         done();
       }
     };
@@ -617,7 +617,6 @@ function klBuildDots() {
   function done() {
     remaining--;
     if (remaining > 0) return;
-    // Build active list preserving original order, skipping nulls
     klActive = results.filter(function(r) { return r !== null; });
     klBuildDots();
     if (klActive.length) klShow(0);
@@ -625,8 +624,6 @@ function klBuildDots() {
 
   KL_PHOTOS.forEach(function(photo, i) {
     var src = photo.src;
-    // Try .png first, then .jpg, then .JPG, then .jpeg
-    var base = src.replace(/\.[^.]+$/, '');
     var exts = ['.jpg', '.JPG', '.jpeg', '.PNG'];
     tryLoad(photo, i, src, exts.slice());
   });
