@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; }
+    body { font-family: 'Archivo', sans-serif; background: #1a0302; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; }
 
     /* ── Banner ── */
     .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
@@ -22,10 +22,9 @@
     .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
     .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
     .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
-    .nav-strip a { color: #c69a3f; text-decoration: none; }
-    .nav-strip a:hover { text-decoration: underline; }
 
-    .main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .main { flex: 1; background: #f5f0eb; max-width: 100%; }
+    .main-inner { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
     /* ── Page heading ── */
     .page-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
@@ -165,9 +164,9 @@
 </div>
 
 <div class="main">
+<div class="main-inner">
 
   <div class="page-head">
-    <h1>Volunteer Dashboard</h1>
     <span class="season-tag" id="seasonTag"></span>
   </div>
 
@@ -246,7 +245,8 @@
     </div>
   </div>
 
-</div>
+</div><!-- /.main-inner -->
+</div><!-- /.main -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
