@@ -8,10 +8,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; min-height: 100vh; }
+    body { font-family: 'Archivo', sans-serif; background: #1a0302; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* ── NAV ── */
-    .portal-nav {
+    /* ── Banner ── */
+    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
+    .org-text { flex: 1; }
+    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
+    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
+    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
+    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
+    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
+    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ── NAV (legacy, hidden) ── */
+    .portal-nav { display: none; }
+    .portal-nav-hidden {
       position: sticky; top: 0; z-index: 100;
       background: #fff; border-bottom: 1px solid #e4dbd0;
       display: flex; align-items: center; justify-content: space-between;
@@ -22,8 +37,11 @@
     .nav-links a { font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #2a0604; text-decoration: none; }
     .nav-links a:hover { color: #c69a3f; }
 
-    /* ── HERO BAR ── */
-    .page-hero {
+    main { flex: 1; background: #f5f0eb; }
+
+    /* ── HERO BAR (legacy, hidden) ── */
+    .page-hero { display: none; }
+    .page-hero-hidden {
       background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
       padding: 2rem 2.5rem;
     }
@@ -144,24 +162,32 @@
 </head>
 <body>
 
-<nav class="portal-nav">
-  <div class="nav-brand">DLA Admin — Budget Requests</div>
-  <div class="nav-links">
-    <a href="/portal/dashboard.html">← Dashboard</a>
-    <a href="/portal/budget-request.html">View Form</a>
-    <a href="#" id="signOutBtn">Sign Out</a>
-  </div>
-</nav>
-
-<div class="page-hero">
-  <div class="page-hero-inner">
-    <div>
-      <div class="eyebrow">Finance Committee</div>
-      <h1>Budget Request Submissions</h1>
+<header class="banner">
+  <div class="banner-inner">
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
     </div>
-    <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
+  </div>
+</header>
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Budget Requests Admin
+</nav>
+<div class="page-label">
+  <h1>Budget Request Submissions</h1>
+  <div style="display:flex;gap:.75rem;align-items:center;">
+    <button class="export-btn" onclick="exportCSV()">&#8595; Export CSV</button>
+    <span class="fy-tag">FY 2026&ndash;2027</span>
   </div>
 </div>
+
+<main>
 
 <!-- Analytics -->
 <div class="analytics-bar">
@@ -425,5 +451,6 @@ function exportCSV() {
 
 function esc(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 </script>
+</main>
 </body>
 </html>
