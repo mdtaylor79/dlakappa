@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLGRF AT&T Stadium Volunteer Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; padding: 2rem 1.5rem 4rem; }
+    .form-shell { max-width: 680px; margin: 0 auto; }
+
+    /* ── Banner ── */
+    .form-banner {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      border-radius: 8px; padding: 1.75rem 2rem; margin-bottom: 1.75rem;
+      box-shadow: 0 4px 20px rgba(112,17,12,.25);
+    }
+    .form-banner .org-line {
+      font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: rgba(242,235,215,.6);
+      margin-bottom: .5rem;
+    }
+    .form-banner h1 {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase; color: #c69a3f;
+      line-height: 1.4; margin-bottom: .65rem;
+    }
+    .form-banner p { font-size: .8rem; color: rgba(242,235,215,.75); line-height: 1.65; }
+
+    /* ── Progress Bar ── */
+    .progress-wrap { margin-bottom: 2rem; }
+    .progress-steps {
+      display: flex; align-items: center; justify-content: center; gap: 0;
+    }
+    .prog-step { display: flex; flex-direction: column; align-items: center; gap: .3rem; flex: 1; }
+    .prog-circle {
+      width: 32px; height: 32px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700;
+      border: 2px solid #d8cfc5; background: #fff; color: #9a8878;
+      transition: all .3s; flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .prog-circle.active { border-color: #70110c; background: #70110c; color: #f2ebd7; }
+    .prog-circle.done { border-color: #c69a3f; background: #c69a3f; color: #2a0604; }
+    .prog-label {
+      font-size: .58rem; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; color: #9a8878; text-align: center;
+      white-space: nowrap;
+    }
+    .prog-label.active { color: #70110c; }
+    .prog-label.done { color: #c69a3f; }
+    .prog-line {
+      flex: 1; height: 2px; background: #d8cfc5; margin-bottom: 1.2rem;
+      transition: background .3s;
+    }
+    .prog-line.done { background: #c69a3f; }
+
+    /* ── Step panels ── */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    /* ── Form section card ── */
+    .form-section {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      margin-bottom: 1.5rem; overflow: hidden;
+    }
+    .section-head {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      padding: .75rem 1.25rem; display: flex; align-items: center; gap: .65rem;
+    }
+    .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .section-head h2 {
+      font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; flex: 1;
+    }
+    .section-num {
+      background: rgba(198,154,63,.2); color: #c69a3f;
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .1em; padding: .2rem .55rem; border-radius: 3px;
+    }
+    .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* ── Fields ── */
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field-row.full { grid-template-columns: 1fr; }
+    .field { display: flex; flex-direction: column; gap: .3rem; }
+    label { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #6a5a50; }
+    label .req { color: #70110c; margin-left: 2px; }
+    .field-hint { font-size: .72rem; color: #9a8878; font-style: italic; line-height: 1.45; }
+    .field-error { font-size: .72rem; color: #991b1b; display: none; }
+    .field-error.show { display: block; }
+
+    input[type="text"], input[type="email"], input[type="tel"],
+    input[type="number"], input[type="date"], select, textarea {
+      width: 100%; padding: .6rem .8rem; border: 1px solid #d8cfc5;
+      border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .88rem;
+      color: #1a1a1a; background: #faf8f5;
+      transition: border-color .2s, box-shadow .2s; appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: #70110c; box-shadow: 0 0 0 3px rgba(112,17,12,.08);
+    }
+    input.invalid, select.invalid { border-color: #dc2626; }
+    textarea { resize: vertical; min-height: 100px; }
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem;
+    }
+
+    /* ── Calendar ── */
+    .cal-wrap { border: 1px solid #e4dbd0; border-radius: 6px; overflow: hidden; }
+    .cal-nav {
+      background: #f0e8e0; padding: .65rem 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cal-nav-btn {
+      background: none; border: 1px solid #d8cfc5; border-radius: 4px;
+      width: 30px; height: 30px; cursor: pointer; font-size: 1rem; color: #70110c;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .cal-nav-btn:hover { background: #e0d4c8; }
+    .cal-nav-btn:disabled { color: #ccc; cursor: not-allowed; }
+    .cal-month-label {
+      font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: #70110c;
+    }
+    .cal-season-label {
+      font-size: .65rem; color: #9a8878; text-align: center;
+      padding: .35rem; background: #fdf5f5; border-bottom: 1px solid #f0e8e0;
+    }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      background: #fff; padding: .5rem;
+    }
+    .cal-dow {
+      text-align: center; font-family: 'Cinzel', serif; font-size: .58rem;
+      font-weight: 700; letter-spacing: .06em; color: #9a8878;
+      padding: .3rem 0; text-transform: uppercase;
+    }
+    .cal-day {
+      text-align: center; padding: .35rem .1rem; cursor: pointer;
+      border-radius: 4px; font-size: .82rem; color: #3a2c25;
+      transition: background .15s, color .15s; margin: 1px;
+      border: none; background: none; width: 100%;
+    }
+    .cal-day:hover:not(:disabled) { background: #f0e8e0; }
+    .cal-day.selected { background: #70110c; color: #f2ebd7; font-weight: 600; }
+    .cal-day.today { border: 1px solid #c69a3f; }
+    .cal-day:disabled { color: #ccc; cursor: not-allowed; }
+    .cal-day.out-of-season { color: #ddd; cursor: not-allowed; pointer-events: none; }
+    .cal-empty { padding: .35rem; }
+
+    .selected-dates-wrap { margin-top: .75rem; }
+    .selected-dates-label {
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; color: #6a5a50; margin-bottom: .4rem;
+    }
+    .date-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .date-chip {
+      display: flex; align-items: center; gap: .35rem;
+      background: #f0e8e0; border: 1px solid #e0d4c8; border-radius: 4px;
+      padding: .25rem .6rem; font-size: .75rem; color: #3a2c25;
+    }
+    .date-chip button {
+      background: none; border: none; cursor: pointer; color: #9a8878;
+      font-size: .85rem; padding: 0; line-height: 1; transition: color .2s;
+    }
+    .date-chip button:hover { color: #70110c; }
+    .no-dates { font-size: .78rem; color: #9a8878; font-style: italic; }
+
+    /* ── TABC conditional ── */
+    .conditional { display: none; }
+    .conditional.show { display: flex; flex-direction: column; gap: 1rem; }
+
+    /* ── File upload ── */
+    .file-drop-zone {
+      border: 2px dashed #d8cfc5; border-radius: 6px; padding: 1.5rem;
+      text-align: center; cursor: pointer;
+      transition: border-color .2s, background .2s; background: #faf8f5;
+    }
+    .file-drop-zone:hover, .file-drop-zone.dragover { border-color: #70110c; background: rgba(112,17,12,.03); }
+    .file-drop-zone p { font-size: .82rem; color: #6a5a50; }
+    .file-drop-zone strong { color: #70110c; }
+    .file-drop-zone small { font-size: .7rem; color: #9a8878; display: block; margin-top: .25rem; }
+    .file-name { font-size: .78rem; color: #3a2c25; margin-top: .5rem; }
+
+    /* ── Certification ── */
+    .cert-statement {
+      background: #f5f0eb; border: 1px solid #e4dbd0; border-radius: 6px;
+      padding: 1rem 1.25rem; font-size: .84rem; color: #3a2c25; line-height: 1.7;
+      font-style: italic; margin-bottom: .5rem;
+    }
+    .check-row { display: flex; align-items: flex-start; gap: .6rem; cursor: pointer; }
+    .check-row input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: #70110c; flex-shrink: 0; }
+    .check-row span { font-size: .82rem; color: #4a3c35; line-height: 1.5; }
+
+    /* ── Navigation buttons ── */
+    .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; gap: 1rem; }
+    .btn-back {
+      background: none; border: 1px solid #d8cfc5; color: #8a7060;
+      font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; padding: .8rem 1.5rem;
+      border-radius: 4px; cursor: pointer;
+    }
+    .btn-next, .btn-submit {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      color: #f2ebd7; font-family: 'Cinzel', serif; font-size: .78rem;
+      font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .85rem 2.5rem; border: none; border-radius: 4px; cursor: pointer;
+      transition: filter .2s, transform .15s; margin-left: auto;
+    }
+    .btn-next:hover, .btn-submit:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .status-msg { padding: .75rem 1rem; border-radius: 4px; font-size: .85rem; margin-top: .5rem; display: none; }
+    .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+
+    /* ── Success ── */
+    .success-screen { display: none; flex-direction: column; align-items: center; text-align: center; padding: 4rem 2rem; gap: 1rem; }
+    .success-screen.show { display: flex; }
+    .success-icon { width: 80px; height: 80px; background: linear-gradient(135deg,#70110c,#2a0604); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .success-screen h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #70110c; }
+    .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 460px; line-height: 1.7; }
+    .success-ref { font-family: 'Cinzel', serif; font-size: .8rem; color: #c69a3f; background: #f5f0eb; padding: .5rem 1.25rem; border-radius: 4px; border: 1px solid #e0d4c8; }
+
+    @media(max-width: 540px) {
+      .field-row { grid-template-columns: 1fr; }
+      .prog-label { display: none; }
+      .prog-circle { width: 26px; height: 26px; font-size: .65rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-shell">
+
+  <!-- Banner -->
+  <div class="form-banner">
+    <div class="org-line">Denton-Lewisville Guide Right Foundation</div>
+    <h1>AT&amp;T Stadium Volunteer Registration</h1>
+    <p>Register to volunteer at AT&amp;T Stadium fundraising events. The volunteer season runs August&nbsp;1 through July&nbsp;31. Complete all sections below &mdash; your registration will be reviewed by the Volunteer Coordinator.</p>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-wrap">
+    <div class="progress-steps" id="progressSteps">
+      <div class="prog-step">
+        <div class="prog-circle active" id="pc1">1</div>
+        <div class="prog-label active" id="pl1">Info</div>
+      </div>
+      <div class="prog-line" id="pline1"></div>
+      <div class="prog-step">
+        <div class="prog-circle" id="pc2">2</div>
+        <div class="prog-label" id="pl2">Dates</div>
+      </div>
+      <div class="prog-line" id="pline2"></div>
+      <div class="prog-step">
+        <div class="prog-circle" id="pc3">3</div>
+        <div class="prog-label" id="pl3">Experience</div>
+      </div>
+      <div class="prog-line" id="pline3"></div>
+      <div class="prog-step">
+        <div class="prog-circle" id="pc4">4</div>
+        <div class="prog-label" id="pl4">Assignment</div>
+      </div>
+      <div class="prog-line" id="pline4"></div>
+      <div class="prog-step">
+        <div class="prog-circle" id="pc5">5</div>
+        <div class="prog-label" id="pl5">TABC</div>
+      </div>
+      <div class="prog-line" id="pline5"></div>
+      <div class="prog-step">
+        <div class="prog-circle" id="pc6">6</div>
+        <div class="prog-label" id="pl6">Notes</div>
+      </div>
+      <div class="prog-line" id="pline6"></div>
+      <div class="prog-step">
+        <div class="prog-circle" id="pc7">7</div>
+        <div class="prog-label" id="pl7">Certify</div>
+      </div>
+    </div>
+  </div>
+
+  <form id="volForm" novalidate>
+
+    <!-- STEP 1: Volunteer Information -->
+    <div class="step active" data-step="1">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <h2>Volunteer Information</h2>
+          <span class="section-num">Section 1 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="field-row full">
+            <div class="field">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" placeholder="First and Last Name">
+              <div class="field-error" id="err-fullName">Full name is required.</div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Email Address <span class="req">*</span></label>
+              <input type="email" id="email" placeholder="your@email.com">
+              <div class="field-error" id="err-email">A valid email address is required.</div>
+            </div>
+            <div class="field">
+              <label>Mobile Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" placeholder="(000) 000-0000">
+              <div class="field-error" id="err-phone">Mobile phone number is required.</div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Emergency Contact Name</label>
+              <input type="text" id="ecName" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label>Emergency Contact Phone</label>
+              <input type="tel" id="ecPhone" placeholder="Optional">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <span></span>
+        <button type="button" class="btn-next" onclick="goNext(1)">Next: Availability &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Volunteer Availability -->
+    <div class="step" data-step="2">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <h2>Volunteer Availability</h2>
+          <span class="section-num">Section 2 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="field">
+            <label>Select Your Available Date(s) <span class="req">*</span></label>
+            <div class="field-hint">Select one or more dates you are available to volunteer. Only dates within the current volunteer season are selectable.</div>
+          </div>
+          <div class="cal-wrap">
+            <div class="cal-season-label" id="calSeasonLabel"></div>
+            <div class="cal-nav">
+              <button type="button" class="cal-nav-btn" id="calPrev" onclick="calChangeMo(-1)">&#8249;</button>
+              <span class="cal-month-label" id="calTitle"></span>
+              <button type="button" class="cal-nav-btn" id="calNext" onclick="calChangeMo(1)">&#8250;</button>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
+          </div>
+          <div class="selected-dates-wrap">
+            <div class="selected-dates-label">Selected Dates</div>
+            <div class="date-chips" id="dateChips"><span class="no-dates">No dates selected yet.</span></div>
+          </div>
+          <div class="field-error" id="err-dates">Please select at least one volunteer date.</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="goBack(2)">&#8592; Back</button>
+        <button type="button" class="btn-next" onclick="goNext(2)">Next: Experience &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Volunteer Experience -->
+    <div class="step" data-step="3">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <h2>Volunteer Experience</h2>
+          <span class="section-num">Section 3 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="field-row">
+            <div class="field">
+              <label>Previous AT&amp;T Stadium Events <span class="req">*</span></label>
+              <input type="number" id="prevEvents" min="0" step="1" placeholder="0">
+              <div class="field-hint">Enter the total number of AT&amp;T Stadium events you have previously volunteered.</div>
+              <div class="field-error" id="err-prevEvents">This field is required.</div>
+            </div>
+            <div class="field">
+              <label>Total Volunteer Hours <span class="req">*</span></label>
+              <input type="number" id="totalHours" min="0" step="0.5" placeholder="0">
+              <div class="field-hint">Enter your accumulated volunteer hours.</div>
+              <div class="field-error" id="err-totalHours">This field is required.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="goBack(3)">&#8592; Back</button>
+        <button type="button" class="btn-next" onclick="goNext(3)">Next: Assignment &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Assignment Preference -->
+    <div class="step" data-step="4">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h2>Volunteer Assignment Preference</h2>
+          <span class="section-num">Section 4 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="field">
+            <label>Preferred Volunteer Assignment</label>
+            <select id="assignment">
+              <option value="">No preference &mdash; Anywhere Needed</option>
+              <option value="Cashier">Cashier</option>
+              <option value="Concessions">Concessions</option>
+              <option value="Stand Lead">Stand Lead</option>
+              <option value="Anywhere Needed">Anywhere Needed</option>
+            </select>
+            <div class="field-hint">This preference is optional. Final assignments are determined by operational needs.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="goBack(4)">&#8592; Back</button>
+        <button type="button" class="btn-next" onclick="goNext(4)">Next: TABC &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: TABC Certification -->
+    <div class="step" data-step="5">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h2>TABC Certification</h2>
+          <span class="section-num">Section 5 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="field">
+            <label>Are you currently TABC Certified? <span class="req">*</span></label>
+            <select id="tabcCertified" onchange="toggleTABC()" required>
+              <option value="">Select&hellip;</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <div class="field-error" id="err-tabc">Please indicate your TABC certification status.</div>
+          </div>
+          <div class="conditional" id="tabcFields">
+            <div class="field">
+              <label>TABC Certification Expiration Date <span class="req">*</span></label>
+              <input type="date" id="tabcExpiry">
+              <div class="field-error" id="err-tabcExpiry">Expiration date is required.</div>
+            </div>
+            <div class="field">
+              <label>Upload TABC Certificate <span class="req">*</span></label>
+              <div class="file-drop-zone" id="tabcDropZone" onclick="document.getElementById('tabcFile').click()">
+                <p><strong>Click to browse</strong> or drag and drop</p>
+                <small>Accepted: PDF, JPG, PNG</small>
+              </div>
+              <input type="file" id="tabcFile" accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="onTabcFileSelect()">
+              <div class="file-name" id="tabcFileName"></div>
+              <div class="field-error" id="err-tabcFile">Please upload your TABC certificate.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="goBack(5)">&#8592; Back</button>
+        <button type="button" class="btn-next" onclick="goNext(5)">Next: Comments &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Additional Comments -->
+    <div class="step" data-step="6">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h2>Additional Comments</h2>
+          <span class="section-num">Section 6 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="field">
+            <label>Comments</label>
+            <textarea id="comments" style="min-height:130px;" placeholder="Provide any additional information that may assist with volunteer scheduling or assignments."></textarea>
+            <div class="field-hint">Optional &mdash; include any scheduling conflicts, accessibility needs, or special considerations.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="goBack(6)">&#8592; Back</button>
+        <button type="button" class="btn-next" onclick="goNext(6)">Next: Certification &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 7: Volunteer Certification -->
+    <div class="step" data-step="7">
+      <div class="form-section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <h2>Volunteer Certification</h2>
+          <span class="section-num">Section 7 of 7</span>
+        </div>
+        <div class="section-body">
+          <div class="cert-statement">
+            &ldquo;I certify that the information provided is accurate to the best of my knowledge. I understand that volunteer assignments are based upon event availability, operational needs, and Foundation requirements.&rdquo;
+          </div>
+          <label class="check-row">
+            <input type="checkbox" id="certify">
+            <span>I agree to the above certification statement.</span>
+          </label>
+          <div class="field-error" id="err-certify">You must agree to the certification statement.</div>
+        </div>
+      </div>
+      <div class="status-msg" id="statusMsg"></div>
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="goBack(7)">&#8592; Back</button>
+        <button type="submit" class="btn-submit" id="submitBtn">Register for Volunteer Service &rarr;</button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Thank You!</h2>
+    <p>Your volunteer registration has been successfully submitted. You will receive a confirmation email shortly. The Volunteer Coordinator will contact you regarding event assignments and scheduling.</p>
+    <div class="success-ref" id="successRef"></div>
+    <p style="font-size:.82rem;color:#9a8878;">Thank you for supporting the Denton-Lewisville Guide Right Foundation.</p>
+    <div style="background:#fff;border:1px solid #e4dbd0;border-radius:8px;padding:1.25rem 1.5rem;max-width:420px;text-align:left;margin-top:.5rem;">
+      <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">What Happens Next?</div>
+      <ul style="font-size:.82rem;color:#6a5a50;line-height:1.8;padding-left:1.1rem;">
+        <li>A confirmation email will be sent to you</li>
+        <li>The Volunteer Coordinator will review your registration</li>
+        <li>You will be contacted with your event assignment</li>
+        <li>TABC certifications will be verified for compliance</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// ── Volunteer season ──
+function getVolunteerSeason() {
+  const today = new Date();
+  const yr = today.getFullYear();
+  const mo = today.getMonth(); // 0-indexed; 7 = August
+  const startYear = mo >= 7 ? yr : yr - 1;
+  return {
+    start: new Date(startYear, 7, 1),
+    end:   new Date(startYear + 1, 6, 31),
+    startYear, endYear: startYear + 1
+  };
+}
+const season = getVolunteerSeason();
+let calYear = season.start.getFullYear();
+let calMonth = season.start.getMonth();
+let selectedDates = [];
+
+// ── Calendar ──
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DOWS   = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+function renderCalendar() {
+  document.getElementById('calTitle').textContent = MONTHS[calMonth] + ' ' + calYear;
+  document.getElementById('calSeasonLabel').textContent =
+    'Volunteer Season: Aug 1, ' + season.startYear + ' – Jul 31, ' + season.endYear;
+
+  // Nav button states
+  const prevMo = calMonth === 0 ? { y: calYear-1, m: 11 } : { y: calYear, m: calMonth-1 };
+  const nextMo = calMonth === 11 ? { y: calYear+1, m: 0 } : { y: calYear, m: calMonth+1 };
+  document.getElementById('calPrev').disabled =
+    new Date(prevMo.y, prevMo.m, 1) < new Date(season.start.getFullYear(), season.start.getMonth(), 1);
+  document.getElementById('calNext').disabled =
+    new Date(nextMo.y, nextMo.m, 1) > new Date(season.end.getFullYear(), season.end.getMonth(), 1);
+
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  // Day-of-week headers
+  DOWS.forEach(d => {
+    const h = document.createElement('div');
+    h.className = 'cal-dow'; h.textContent = d;
+    grid.appendChild(h);
+  });
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  for (let i = 0; i < firstDay; i++) {
+    const e = document.createElement('div'); e.className = 'cal-empty'; grid.appendChild(e);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(calYear, calMonth, d);
+    const dateStr = dateToStr(date);
+    const inSeason = date >= season.start && date <= season.end;
+    const isSelected = selectedDates.includes(dateStr);
+    const isToday = date.getTime() === today.getTime();
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = d;
+    btn.className = 'cal-day' +
+      (isSelected ? ' selected' : '') +
+      (isToday ? ' today' : '') +
+      (!inSeason ? ' out-of-season' : '');
+    if (!inSeason) { btn.disabled = true; }
+    else {
+      btn.onclick = () => toggleDate(dateStr);
+    }
+    grid.appendChild(btn);
+  }
+}
+
+function calChangeMo(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+function dateToStr(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
+function formatDateDisplay(str) {
+  const [y,m,d] = str.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[parseInt(m)-1]} ${parseInt(d)}, ${y}`;
+}
+
+function toggleDate(dateStr) {
+  const idx = selectedDates.indexOf(dateStr);
+  if (idx === -1) selectedDates.push(dateStr);
+  else selectedDates.splice(idx, 1);
+  selectedDates.sort();
+  renderCalendar();
+  renderDateChips();
+}
+
+function renderDateChips() {
+  const wrap = document.getElementById('dateChips');
+  if (!selectedDates.length) {
+    wrap.innerHTML = '<span class="no-dates">No dates selected yet.</span>';
+    return;
+  }
+  wrap.innerHTML = selectedDates.map(d => `
+    <div class="date-chip">
+      <span>${formatDateDisplay(d)}</span>
+      <button type="button" onclick="removeDate('${d}')">&#x2715;</button>
+    </div>`).join('');
+}
+
+function removeDate(dateStr) {
+  selectedDates = selectedDates.filter(d => d !== dateStr);
+  renderCalendar();
+  renderDateChips();
+}
+
+// ── TABC conditional ──
+function toggleTABC() {
+  const val = document.getElementById('tabcCertified').value;
+  document.getElementById('tabcFields').classList.toggle('show', val === 'Yes');
+}
+
+function onTabcFileSelect() {
+  const file = document.getElementById('tabcFile').files[0];
+  document.getElementById('tabcFileName').textContent = file ? '📎 ' + file.name : '';
+}
+
+const tabcDrop = document.getElementById('tabcDropZone');
+tabcDrop.addEventListener('dragover', e => { e.preventDefault(); tabcDrop.classList.add('dragover'); });
+tabcDrop.addEventListener('dragleave', () => tabcDrop.classList.remove('dragover'));
+tabcDrop.addEventListener('drop', e => {
+  e.preventDefault(); tabcDrop.classList.remove('dragover');
+  const dt = new DataTransfer();
+  Array.from(e.dataTransfer.files).slice(0,1).forEach(f => dt.items.add(f));
+  document.getElementById('tabcFile').files = dt.files;
+  onTabcFileSelect();
+});
+
+// ── Step wizard ──
+let currentStep = 1;
+const totalSteps = 7;
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.querySelector(`.step[data-step="${n}"]`).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateProgress(n);
+}
+
+function updateProgress(current) {
+  for (let i = 1; i <= totalSteps; i++) {
+    const circle = document.getElementById('pc' + i);
+    const label  = document.getElementById('pl' + i);
+    circle.classList.remove('active','done');
+    label.classList.remove('active','done');
+    if (i < current) { circle.classList.add('done'); label.classList.add('done'); circle.textContent = '✓'; }
+    else if (i === current) { circle.classList.add('active'); label.classList.add('active'); circle.textContent = i; }
+    else { circle.textContent = i; }
+    if (i < totalSteps) {
+      document.getElementById('pline' + i).classList.toggle('done', i < current);
+    }
+  }
+}
+
+function clearErrors(step) {
+  document.querySelectorAll(`.step[data-step="${step}"] .field-error`).forEach(e => e.classList.remove('show'));
+  document.querySelectorAll(`.step[data-step="${step}"] input, .step[data-step="${step}"] select`).forEach(el => el.classList.remove('invalid'));
+}
+
+function showError(id, fieldId) {
+  const err = document.getElementById(id);
+  if (err) err.classList.add('show');
+  const field = fieldId ? document.getElementById(fieldId) : null;
+  if (field) field.classList.add('invalid');
+}
+
+function validateStep(step) {
+  clearErrors(step);
+  let valid = true;
+
+  if (step === 1) {
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    if (!name) { showError('err-fullName','fullName'); valid = false; }
+    if (!email || !/\S+@\S+\.\S+/.test(email)) { showError('err-email','email'); valid = false; }
+    if (!phone) { showError('err-phone','phone'); valid = false; }
+  }
+  if (step === 2) {
+    if (!selectedDates.length) { document.getElementById('err-dates').classList.add('show'); valid = false; }
+  }
+  if (step === 3) {
+    const prev = document.getElementById('prevEvents').value;
+    const hrs  = document.getElementById('totalHours').value;
+    if (prev === '') { showError('err-prevEvents','prevEvents'); valid = false; }
+    if (hrs  === '') { showError('err-totalHours','totalHours'); valid = false; }
+  }
+  if (step === 5) {
+    const tabc = document.getElementById('tabcCertified').value;
+    if (!tabc) { showError('err-tabc','tabcCertified'); valid = false; }
+    if (tabc === 'Yes') {
+      if (!document.getElementById('tabcExpiry').value) { showError('err-tabcExpiry','tabcExpiry'); valid = false; }
+      if (!document.getElementById('tabcFile').files.length) { showError('err-tabcFile'); valid = false; }
+    }
+  }
+  if (step === 7) {
+    if (!document.getElementById('certify').checked) { document.getElementById('err-certify').classList.add('show'); valid = false; }
+  }
+  return valid;
+}
+
+function goNext(step) {
+  if (!validateStep(step)) return;
+  currentStep = step + 1;
+  showStep(currentStep);
+}
+
+function goBack(step) {
+  currentStep = step - 1;
+  showStep(currentStep);
+}
+
+// ── Submit ──
+document.getElementById('volForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!validateStep(7)) return;
+
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('statusMsg');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  // Upload TABC cert if needed
+  let tabcCertUrl = null;
+  const tabcVal = document.getElementById('tabcCertified').value;
+  if (tabcVal === 'Yes') {
+    const file = document.getElementById('tabcFile').files[0];
+    if (file) {
+      btn.textContent = 'Uploading certificate…';
+      const path = `tabc-certs/${Date.now()}_${file.name.replace(/\s+/g,'_')}`;
+      const { error: upErr } = await sb.storage.from('volunteer-certs').upload(path, file);
+      if (!upErr) {
+        const { data } = sb.storage.from('volunteer-certs').getPublicUrl(path);
+        tabcCertUrl = data.publicUrl;
+      }
+    }
+  }
+
+  btn.textContent = 'Saving registration…';
+  const payload = {
+    full_name:             document.getElementById('fullName').value.trim(),
+    email:                 document.getElementById('email').value.trim(),
+    mobile_phone:          document.getElementById('phone').value.trim(),
+    ec_name:               document.getElementById('ecName').value.trim() || null,
+    ec_phone:              document.getElementById('ecPhone').value.trim() || null,
+    volunteer_dates:       selectedDates,
+    previous_events:       parseInt(document.getElementById('prevEvents').value) || 0,
+    total_hours:           parseFloat(document.getElementById('totalHours').value) || 0,
+    preferred_assignment:  document.getElementById('assignment').value || null,
+    tabc_certified:        tabcVal === 'Yes',
+    tabc_expiry:           tabcVal === 'Yes' ? document.getElementById('tabcExpiry').value : null,
+    tabc_cert_url:         tabcCertUrl,
+    additional_comments:   document.getElementById('comments').value.trim() || null,
+    status:                'Registered',
+    season:                season.startYear + '-' + season.endYear
+  };
+
+  const { data, error } = await sb.from('volunteers').insert([payload]).select().single();
+
+  if (error) {
+    msg.textContent = 'Submission failed: ' + (error.message || 'Please try again.');
+    msg.className = 'status-msg error';
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Register for Volunteer Service →';
+    return;
+  }
+
+  document.getElementById('volForm').style.display = 'none';
+  document.querySelector('.progress-wrap').style.display = 'none';
+  const ref = data?.id ? String(data.id).padStart(6,'0') : '------';
+  document.getElementById('successRef').textContent = 'Registration #: DLGRF-VOL-' + ref;
+  document.getElementById('successScreen').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Init ──
+renderCalendar();
+</script>
+</body>
+</html>

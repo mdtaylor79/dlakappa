@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLGRF Volunteer Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; }
+
+    /* ── Banner ── */
+    .banner {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      padding: 1.1rem 2rem; display: flex; align-items: center;
+      justify-content: space-between; box-shadow: 0 3px 16px rgba(0,0,0,.4);
+    }
+    .banner-left .org { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #c69a3f; letter-spacing: .06em; }
+    .banner-left .sub { font-size: .72rem; color: rgba(242,235,215,.6); margin-top: .25rem; }
+    .banner-right a {
+      font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: #c69a3f;
+      text-decoration: none; border: 1px solid rgba(198,154,63,.4);
+      padding: .45rem .9rem; border-radius: 4px;
+    }
+
+    .main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ── Page heading ── */
+    .page-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
+    .page-head h1 { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; color: #70110c; letter-spacing: .05em; }
+    .page-head .season-tag {
+      background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif;
+      font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem .9rem; border-radius: 20px;
+    }
+
+    /* ── Stat cards ── */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .4rem;
+    }
+    .stat-card.alert { border-left: 4px solid #dc2626; }
+    .stat-card .stat-label {
+      font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: #9a8878;
+    }
+    .stat-card .stat-value {
+      font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: #70110c; line-height: 1;
+    }
+    .stat-card.alert .stat-value { color: #dc2626; }
+    .stat-card .stat-sub { font-size: .75rem; color: #9a8878; }
+
+    /* ── Filters ── */
+    .filters-bar {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end;
+    }
+    .filter-field { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 150px; }
+    .filter-field label { font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
+    .filter-field input, .filter-field select {
+      padding: .5rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px;
+      font-family: 'Archivo', sans-serif; font-size: .84rem; background: #faf8f5;
+      appearance: none;
+    }
+    .filter-field select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem;
+    }
+    .filter-field input:focus, .filter-field select:focus { outline: none; border-color: #70110c; }
+
+    /* ── Action buttons ── */
+    .action-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+    .btn-action {
+      font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; padding: .55rem 1.1rem;
+      border-radius: 4px; cursor: pointer; border: none; transition: filter .2s;
+    }
+    .btn-primary { background: linear-gradient(135deg,#70110c,#2a0604); color: #f2ebd7; }
+    .btn-secondary { background: #f0e8e0; color: #70110c; border: 1px solid #e0d4c8; }
+    .btn-action:hover { filter: brightness(1.1); }
+
+    /* ── TABC expiry section ── */
+    .expiry-section {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      margin-bottom: 1.5rem; overflow: hidden;
+    }
+    .expiry-head {
+      background: linear-gradient(135deg,#70110c,#2a0604); padding: .7rem 1.25rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .expiry-head h3 { font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
+
+    /* ── Data table ── */
+    .table-wrap {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      overflow: hidden;
+    }
+    .table-header {
+      background: linear-gradient(135deg,#70110c,#2a0604); padding: .75rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .table-header h3 { font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
+    .table-count { font-size:.72rem; color:rgba(242,235,215,.6); }
+
+    .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .data-table th {
+      background: #f0e8e0; padding: .55rem .75rem; text-align: left;
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: #70110c;
+      border-bottom: 2px solid #e0d4c8; white-space: nowrap; cursor: pointer;
+    }
+    .data-table th:hover { background: #e8ddd0; }
+    .data-table td { padding: .55rem .75rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #faf8f5; }
+    .badge {
+      display: inline-block; padding: .15rem .55rem; border-radius: 10px;
+      font-size: .68rem; font-weight: 600; letter-spacing: .04em;
+    }
+    .badge-yes { background: #dcfce7; color: #166534; }
+    .badge-no  { background: #fee2e2; color: #991b1b; }
+    .badge-expiring { background: #fef9c3; color: #854d0e; }
+
+    .loading { text-align: center; padding: 3rem; color: #9a8878; font-size: .9rem; }
+    .empty { text-align: center; padding: 3rem; color: #9a8878; font-size: .88rem; }
+
+    @media(max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .banner { flex-direction: column; gap: .75rem; }
+    }
+    @media(max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+    @print {
+      .filters-bar, .action-row, .btn-action { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="banner">
+  <div class="banner-left">
+    <div class="org">DLGRF Volunteer Management</div>
+    <div class="sub">AT&amp;T Stadium Volunteer Registry &mdash; Administrative Dashboard</div>
+  </div>
+  <div class="banner-right">
+    <a href="/portal/dashboard.html">&#8592; Portal</a>
+  </div>
+</header>
+
+<div class="main">
+
+  <div class="page-head">
+    <h1>Volunteer Dashboard</h1>
+    <span class="season-tag" id="seasonTag"></span>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card"><div class="stat-label">Total Registered</div><div class="stat-value" id="statTotal">—</div><div class="stat-sub">Volunteers this season</div></div>
+    <div class="stat-card"><div class="stat-label">TABC Certified</div><div class="stat-value" id="statTabc">—</div><div class="stat-sub">Current certifications</div></div>
+    <div class="stat-card alert"><div class="stat-label">Expiring Within 30 Days</div><div class="stat-value" id="statExpiring">—</div><div class="stat-sub">TABC certs needing renewal</div></div>
+    <div class="stat-card"><div class="stat-label">Total Volunteer Hours</div><div class="stat-value" id="statHours">—</div><div class="stat-sub">Cumulative hours logged</div></div>
+    <div class="stat-card"><div class="stat-label">Avg Events Worked</div><div class="stat-value" id="statAvgEvents">—</div><div class="stat-sub">Per volunteer</div></div>
+    <div class="stat-card"><div class="stat-label">Upcoming Dates</div><div class="stat-value" id="statUpcoming">—</div><div class="stat-sub">Volunteer dates selected</div></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="filter-field" style="flex:2;min-width:200px;">
+      <label>Search by Name or Email</label>
+      <input type="text" id="filterName" placeholder="Type to search…" oninput="applyFilters()">
+    </div>
+    <div class="filter-field">
+      <label>TABC Status</label>
+      <select id="filterTabc" onchange="applyFilters()">
+        <option value="">All</option>
+        <option value="yes">Certified</option>
+        <option value="no">Not Certified</option>
+        <option value="expiring">Expiring Soon</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label>Assignment</label>
+      <select id="filterAssignment" onchange="applyFilters()">
+        <option value="">All</option>
+        <option>Cashier</option>
+        <option>Concessions</option>
+        <option>Stand Lead</option>
+        <option>Anywhere Needed</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label>Volunteer Date</label>
+      <input type="date" id="filterDate" onchange="applyFilters()">
+    </div>
+    <div class="action-row">
+      <button class="btn-action btn-secondary" onclick="clearFilters()">Clear</button>
+      <button class="btn-action btn-primary" onclick="exportCSV()">Export CSV</button>
+      <button class="btn-action btn-secondary" onclick="window.print()">Print</button>
+    </div>
+  </div>
+
+  <!-- Data table -->
+  <div class="table-wrap">
+    <div class="table-header">
+      <h3>Volunteer Registry</h3>
+      <span class="table-count" id="tableCount"></span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="data-table" id="dataTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable('full_name')">Name &#8597;</th>
+            <th onclick="sortTable('email')">Email &#8597;</th>
+            <th>Phone</th>
+            <th onclick="sortTable('volunteer_dates')">Dates Selected &#8597;</th>
+            <th onclick="sortTable('previous_events')">Prev Events &#8597;</th>
+            <th onclick="sortTable('total_hours')">Hours &#8597;</th>
+            <th>Assignment</th>
+            <th onclick="sortTable('tabc_certified')">TABC &#8597;</th>
+            <th onclick="sortTable('tabc_expiry')">TABC Expiry &#8597;</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr><td colspan="10" class="loading">Loading volunteer data&hellip;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let allVolunteers = [];
+let filtered = [];
+let sortKey = 'full_name';
+let sortAsc = true;
+
+function getVolunteerSeason() {
+  const today = new Date();
+  const yr = today.getFullYear();
+  const mo = today.getMonth();
+  const startYear = mo >= 7 ? yr : yr - 1;
+  return { startYear, endYear: startYear + 1, label: startYear + '–' + (startYear+1) };
+}
+
+const season = getVolunteerSeason();
+document.getElementById('seasonTag').textContent = 'Season ' + season.label;
+
+function isExpiringSoon(dateStr) {
+  if (!dateStr) return false;
+  const exp = new Date(dateStr);
+  const today = new Date();
+  const diff = (exp - today) / (1000 * 60 * 60 * 24);
+  return diff >= 0 && diff <= 30;
+}
+
+function isExpired(dateStr) {
+  if (!dateStr) return false;
+  return new Date(dateStr) < new Date();
+}
+
+function formatDate(str) {
+  if (!str) return '—';
+  const [y,m,d] = str.split('-');
+  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return mo[parseInt(m)-1] + ' ' + parseInt(d) + ', ' + y;
+}
+
+async function loadData() {
+  const { data, error } = await sb
+    .from('volunteers')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    document.getElementById('tableBody').innerHTML =
+      '<tr><td colspan="10" class="empty">Error loading data: ' + error.message + '</td></tr>';
+    return;
+  }
+
+  allVolunteers = data || [];
+  computeStats();
+  applyFilters();
+}
+
+function computeStats() {
+  const today = new Date();
+  let totalHours = 0, tabcCount = 0, expiringCount = 0, upcomingDates = new Set();
+
+  allVolunteers.forEach(v => {
+    totalHours += parseFloat(v.total_hours) || 0;
+    if (v.tabc_certified) tabcCount++;
+    if (v.tabc_certified && isExpiringSoon(v.tabc_expiry)) expiringCount++;
+    (v.volunteer_dates || []).forEach(d => {
+      if (new Date(d) >= today) upcomingDates.add(d);
+    });
+  });
+
+  const avgEvents = allVolunteers.length
+    ? (allVolunteers.reduce((s,v) => s + (v.previous_events||0), 0) / allVolunteers.length).toFixed(1)
+    : 0;
+
+  document.getElementById('statTotal').textContent    = allVolunteers.length;
+  document.getElementById('statTabc').textContent     = tabcCount;
+  document.getElementById('statExpiring').textContent = expiringCount;
+  document.getElementById('statHours').textContent    = totalHours.toFixed(0);
+  document.getElementById('statAvgEvents').textContent = avgEvents;
+  document.getElementById('statUpcoming').textContent = upcomingDates.size;
+}
+
+function applyFilters() {
+  const name  = document.getElementById('filterName').value.toLowerCase();
+  const tabc  = document.getElementById('filterTabc').value;
+  const assn  = document.getElementById('filterAssignment').value;
+  const date  = document.getElementById('filterDate').value;
+
+  filtered = allVolunteers.filter(v => {
+    if (name && !((v.full_name||'').toLowerCase().includes(name) || (v.email||'').toLowerCase().includes(name))) return false;
+    if (tabc === 'yes' && !v.tabc_certified) return false;
+    if (tabc === 'no'  &&  v.tabc_certified) return false;
+    if (tabc === 'expiring' && !isExpiringSoon(v.tabc_expiry)) return false;
+    if (assn && v.preferred_assignment !== assn) return false;
+    if (date && !(v.volunteer_dates || []).includes(date)) return false;
+    return true;
+  });
+
+  sortData();
+  renderTable();
+}
+
+function sortTable(key) {
+  if (sortKey === key) sortAsc = !sortAsc;
+  else { sortKey = key; sortAsc = true; }
+  sortData();
+  renderTable();
+}
+
+function sortData() {
+  filtered.sort((a, b) => {
+    let va = a[sortKey], vb = b[sortKey];
+    if (Array.isArray(va)) va = (va[0] || '');
+    if (Array.isArray(vb)) vb = (vb[0] || '');
+    if (va == null) va = '';
+    if (vb == null) vb = '';
+    if (typeof va === 'boolean') return sortAsc ? (va===vb?0:va?-1:1) : (va===vb?0:va?1:-1);
+    return sortAsc ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+  });
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  document.getElementById('tableCount').textContent = filtered.length + ' volunteer' + (filtered.length !== 1 ? 's' : '');
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="10" class="empty">No volunteers match the current filters.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(v => {
+    const certified = v.tabc_certified;
+    const expiring  = certified && isExpiringSoon(v.tabc_expiry);
+    const expired   = certified && isExpired(v.tabc_expiry);
+    const tabcBadge = !certified
+      ? '<span class="badge badge-no">No</span>'
+      : expiring
+        ? '<span class="badge badge-expiring">Expiring</span>'
+        : expired
+          ? '<span class="badge badge-no">Expired</span>'
+          : '<span class="badge badge-yes">Yes</span>';
+
+    const dates = (v.volunteer_dates || []).map(formatDate).join('<br>') || '—';
+
+    return `<tr>
+      <td><strong>${v.full_name || '—'}</strong></td>
+      <td>${v.email || '—'}</td>
+      <td>${v.mobile_phone || '—'}</td>
+      <td style="font-size:.78rem;">${dates}</td>
+      <td style="text-align:center;">${v.previous_events ?? 0}</td>
+      <td style="text-align:center;">${v.total_hours ?? 0}</td>
+      <td>${v.preferred_assignment || '—'}</td>
+      <td>${tabcBadge}</td>
+      <td style="font-size:.78rem;${expiring ? 'color:#854d0e;font-weight:600;' : ''}">${formatDate(v.tabc_expiry)}</td>
+      <td><span class="badge badge-yes">${v.status || 'Registered'}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function clearFilters() {
+  document.getElementById('filterName').value = '';
+  document.getElementById('filterTabc').value = '';
+  document.getElementById('filterAssignment').value = '';
+  document.getElementById('filterDate').value = '';
+  applyFilters();
+}
+
+function exportCSV() {
+  const headers = ['Name','Email','Phone','Volunteer Dates','Previous Events','Total Hours','Assignment','TABC Certified','TABC Expiry','Status'];
+  const rows = filtered.map(v => [
+    v.full_name, v.email, v.mobile_phone,
+    (v.volunteer_dates||[]).join('; '),
+    v.previous_events, v.total_hours,
+    v.preferred_assignment||'',
+    v.tabc_certified ? 'Yes' : 'No',
+    v.tabc_expiry||'',
+    v.status||'Registered'
+  ].map(c => '"' + String(c||'').replace(/"/g,'""') + '"'));
+
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'dlgrf-volunteers-' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+loadData();
+setInterval(loadData, 120000); // refresh every 2 min
+</script>
+</body>
+</html>
