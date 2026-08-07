@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website, Member Portal &amp; Training System Orientation | DLA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #70110c;
+  --crimson-dark: #2a0604;
+  --cream: #f2ebd7;
+  --gold: #c69a3f;
+  --gold-light: #d4aa42;
+  --white: #fff;
+  --gray-100: #f5f2ee;
+  --gray-200: #e8e0d4;
+  --gray-600: #666;
+  --text: #1a1a1a;
+  --sidebar-w: 220px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: 'Archivo', sans-serif; color: var(--text); background: var(--gray-100); min-height: 100vh; }
+h1,h2,h3,h4,.label-font { font-family: 'Cinzel', serif; }
+a { color: var(--crimson); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { cursor: pointer; font-family: 'Archivo', sans-serif; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ── TOP BAR ── */
+#topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--crimson-dark);
+  color: var(--cream);
+  display: flex; align-items: center; gap: 12px;
+  height: 52px; padding: 0 16px;
+  border-bottom: 2px solid var(--gold);
+}
+#topbar .brand { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--gold); white-space: nowrap; }
+#topbar .course-title { font-size: 0.75rem; color: var(--cream); opacity: 0.85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+#hamburger { display: none; background: none; border: none; color: var(--cream); padding: 4px; }
+@media(max-width:768px){ #hamburger { display: flex; align-items: center; } }
+
+/* ── OVERALL PROGRESS BAR ── */
+#overall-progress-bar {
+  position: fixed; top: 52px; left: 0; right: 0; z-index: 199;
+  height: 4px; background: var(--gray-200);
+}
+#overall-progress-fill {
+  height: 100%; background: var(--gold);
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ── LAYOUT ── */
+#layout { display: flex; padding-top: 56px; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+#sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  background: var(--crimson-dark);
+  position: fixed; top: 56px; left: 0; bottom: 0;
+  overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+  transition: transform 0.3s ease;
+}
+#sidebar .sidebar-inner { padding: 16px 0 40px; flex: 1; }
+.sidebar-section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); padding: 16px 16px 6px; opacity: 0.8;
+}
+.sidebar-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px; color: rgba(242,235,215,0.75);
+  font-size: 0.8rem; cursor: pointer; border: none; background: none;
+  width: 100%; text-align: left; transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+}
+.sidebar-item:hover { background: rgba(255,255,255,0.07); color: var(--cream); }
+.sidebar-item.active { background: rgba(198,154,63,0.15); color: var(--gold); border-left-color: var(--gold); }
+.sidebar-item.completed { color: rgba(242,235,215,0.9); }
+.sidebar-item .si-check {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1px solid rgba(198,154,63,0.4); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.sidebar-item.completed .si-check { background: var(--gold); border-color: var(--gold); }
+.sidebar-item .si-label { flex: 1; }
+.sidebar-item .si-num { font-size: 0.65rem; opacity: 0.6; font-family: 'Cinzel', serif; }
+
+@media(max-width:768px){
+  #sidebar { transform: translateX(-100%); top: 52px; }
+  #sidebar.open { transform: translateX(0); }
+  #overlay { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(0,0,0,0.5); }
+  #overlay.show { display: block; }
+}
+
+/* ── MAIN CONTENT ── */
+#main { margin-left: var(--sidebar-w); flex: 1; padding: 32px 24px 80px; max-width: 860px; }
+@media(max-width:768px){ #main { margin-left: 0; padding: 20px 16px 60px; } }
+
+/* ── SCREEN BASE ── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ── INTRO ── */
+.course-hero {
+  background: var(--crimson-dark); color: var(--cream);
+  border-radius: 8px; padding: 40px 36px; margin-bottom: 28px;
+  border: 1px solid rgba(198,154,63,0.3);
+}
+.course-hero .kap-badge {
+  display: inline-block; font-family: 'Cinzel', serif;
+  font-size: 0.65rem; letter-spacing: 0.12em;
+  color: var(--gold); text-transform: uppercase;
+  border: 1px solid var(--gold); padding: 3px 10px; border-radius: 2px; margin-bottom: 16px;
+}
+.course-hero h1 { font-size: 1.45rem; line-height: 1.3; margin-bottom: 8px; color: var(--cream); }
+.course-hero .subtitle { font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
+.meta-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+.meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: rgba(242,235,215,0.75); }
+.meta-item svg { color: var(--gold); flex-shrink: 0; }
+
+.objectives-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 8px; padding: 24px 28px; margin-bottom: 20px;
+}
+.objectives-card h3 { font-size: 0.9rem; color: var(--crimson); margin-bottom: 14px; letter-spacing: 0.03em; }
+.objectives-card ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.objectives-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; line-height: 1.5; }
+.objectives-card li::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0; margin-top: 6px;
+}
+
+.modules-overview { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 14px; margin-bottom: 28px; }
+.mod-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 6px; padding: 16px;
+  border-top: 3px solid var(--gray-200); transition: border-color 0.2s;
+}
+.mod-card:hover { border-top-color: var(--crimson); }
+.mod-card .mod-num { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 6px; }
+.mod-card h4 { font-size: 0.82rem; color: var(--crimson-dark); margin-bottom: 6px; line-height: 1.3; }
+.mod-card .mod-dur { font-size: 0.75rem; color: var(--gray-600); }
+
+.start-btn {
+  background: var(--crimson); color: var(--white);
+  border: none; border-radius: 4px;
+  padding: 13px 32px; font-size: 0.9rem;
+  font-family: 'Cinzel', serif; letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+.start-btn:hover { background: var(--crimson-dark); }
+
+/* ── MODULE SCREENS ── */
+.module-header {
+  background: var(--crimson-dark); color: var(--cream);
+  border-radius: 8px; padding: 24px 28px; margin-bottom: 24px;
+  border-left: 4px solid var(--gold);
+}
+.module-header .mod-label { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 8px; }
+.module-header h2 { font-size: 1.2rem; margin-bottom: 8px; }
+.module-header .mod-meta { font-size: 0.8rem; opacity: 0.75; display: flex; gap: 16px; flex-wrap: wrap; }
+
+.module-progress-bar {
+  height: 3px; background: var(--gray-200); border-radius: 2px;
+  margin-bottom: 24px; overflow: hidden;
+}
+.module-progress-fill { height: 100%; background: var(--gold); transition: width 0.4s; }
+
+/* ── CONTENT CARDS ── */
+.content-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 8px; padding: 24px 28px; margin-bottom: 20px;
+}
+.content-card h3 { font-size: 1rem; color: var(--crimson); margin-bottom: 14px; }
+.content-card h4 { font-size: 0.88rem; color: var(--crimson-dark); margin-bottom: 10px; }
+.content-card p { font-size: 0.875rem; line-height: 1.65; margin-bottom: 12px; color: var(--text); }
+.content-card p:last-child { margin-bottom: 0; }
+.content-card ul, .content-card ol { padding-left: 20px; }
+.content-card li { font-size: 0.875rem; line-height: 1.6; margin-bottom: 6px; }
+
+.info-box {
+  background: rgba(198,154,63,0.08); border: 1px solid rgba(198,154,63,0.3);
+  border-left: 3px solid var(--gold); border-radius: 4px;
+  padding: 12px 16px; margin: 14px 0; font-size: 0.85rem; line-height: 1.6;
+}
+.info-box strong { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.05em; font-family: 'Cinzel', serif; display: block; margin-bottom: 4px; }
+
+.warning-box {
+  background: rgba(112,17,12,0.06); border: 1px solid rgba(112,17,12,0.2);
+  border-left: 3px solid var(--crimson); border-radius: 4px;
+  padding: 12px 16px; margin: 14px 0; font-size: 0.85rem; line-height: 1.6;
+}
+.warning-box strong { color: var(--crimson); font-size: 0.75rem; letter-spacing: 0.05em; font-family: 'Cinzel', serif; display: block; margin-bottom: 4px; }
+
+/* ── THREE-ENV DIAGRAM ── */
+.env-diagram { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 16px 0; }
+@media(max-width:600px){ .env-diagram { grid-template-columns: 1fr; } }
+.env-block {
+  border: 1px solid var(--gray-200); border-radius: 6px; padding: 16px;
+  text-align: center; background: var(--gray-100);
+}
+.env-block.highlight { border-color: var(--gold); background: rgba(198,154,63,0.06); }
+.env-block .env-icon { margin-bottom: 10px; color: var(--crimson); }
+.env-block h4 { font-size: 0.78rem; color: var(--crimson-dark); margin-bottom: 8px; }
+.env-block ul { list-style: none; text-align: left; }
+.env-block li { font-size: 0.75rem; color: var(--gray-600); padding: 2px 0; padding-left: 10px; position: relative; }
+.env-block li::before { content: '–'; position: absolute; left: 0; }
+.env-url { font-family: 'Cinzel', serif; font-size: 0.62rem; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 8px; }
+
+/* ── CARD FLIP ACTIVITY ── */
+.card-flip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; margin: 16px 0; }
+.flip-card-wrap { perspective: 800px; height: 130px; cursor: pointer; }
+.flip-card-inner {
+  width: 100%; height: 100%; position: relative;
+  transform-style: preserve-3d; transition: transform 0.5s;
+}
+.flip-card-wrap.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back {
+  position: absolute; inset: 0; border-radius: 6px;
+  backface-visibility: hidden; display: flex; align-items: center; justify-content: center;
+  padding: 12px; text-align: center;
+  border: 1px solid var(--gray-200);
+}
+.flip-front { background: var(--white); flex-direction: column; gap: 8px; }
+.flip-front .flip-num { font-family: 'Cinzel', serif; font-size: 0.62rem; color: var(--gold); }
+.flip-front p { font-size: 0.8rem; line-height: 1.4; color: var(--text); }
+.flip-back { background: var(--crimson-dark); color: var(--cream); transform: rotateY(180deg); flex-direction: column; gap: 6px; }
+.flip-back .flip-answer { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold); }
+.flip-back .flip-reason { font-size: 0.72rem; opacity: 0.85; line-height: 1.4; }
+.flip-hint { text-align: center; font-size: 0.75rem; color: var(--gray-600); margin-top: 8px; }
+
+/* ── SIDEBAR NAV TABLE ── */
+.nav-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.82rem; }
+.nav-table th { background: var(--crimson-dark); color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.05em; padding: 8px 12px; text-align: left; }
+.nav-table td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; line-height: 1.5; }
+.nav-table tr:last-child td { border-bottom: none; }
+.nav-table tr:nth-child(even) td { background: var(--gray-100); }
+
+/* ── PAYMENT METHODS GRID ── */
+.payment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 10px; margin: 14px 0; }
+.payment-item {
+  background: var(--gray-100); border: 1px solid var(--gray-200);
+  border-radius: 6px; padding: 14px 12px;
+}
+.payment-item .pm-label { font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--crimson); margin-bottom: 4px; }
+.payment-item .pm-detail { font-size: 0.78rem; color: var(--text); line-height: 1.45; }
+
+/* ── DOCUMENT FOLDERS GRID ── */
+.folders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 10px; margin: 14px 0; }
+.folder-item {
+  background: var(--gray-100); border: 1px solid var(--gray-200);
+  border-radius: 6px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+}
+.folder-item svg { color: var(--gold); flex-shrink: 0; }
+.folder-item span { font-size: 0.78rem; color: var(--text); line-height: 1.3; }
+
+/* ── FORMS LIST ── */
+.forms-list { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+.form-item {
+  background: var(--gray-100); border: 1px solid var(--gray-200);
+  border-radius: 6px; padding: 14px 16px; display: flex; gap: 14px; align-items: flex-start;
+}
+.form-item .form-num { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold); flex-shrink: 0; min-width: 24px; }
+.form-item .form-name { font-size: 0.82rem; font-weight: 600; color: var(--crimson-dark); margin-bottom: 3px; }
+.form-item .form-desc { font-size: 0.78rem; color: var(--gray-600); line-height: 1.4; }
+
+/* ── DECISION ACTIVITY ── */
+.decision-activity { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.decision-activity h4 { font-size: 0.88rem; color: var(--crimson); margin-bottom: 14px; }
+.decision-scenario { background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; padding: 14px; margin-bottom: 12px; }
+.decision-scenario p { font-size: 0.85rem; margin-bottom: 10px; }
+.decision-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.decision-btn {
+  border: 1px solid var(--gray-200); background: var(--white);
+  border-radius: 4px; padding: 7px 14px; font-size: 0.78rem; color: var(--text);
+  transition: all 0.15s;
+}
+.decision-btn:hover { border-color: var(--gold); color: var(--crimson); }
+.decision-btn.correct { background: #e8f5e9; border-color: #4caf50; color: #1b5e20; }
+.decision-btn.incorrect { background: #ffebee; border-color: #ef9a9a; color: #b71c1c; }
+.decision-feedback { margin-top: 10px; font-size: 0.82rem; padding: 8px 12px; border-radius: 4px; display: none; }
+.decision-feedback.show { display: block; }
+.decision-feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+.decision-feedback.incorrect-fb { background: #ffebee; color: #b71c1c; border: 1px solid #ef9a9a; }
+
+/* ── COURSE CATALOG ── */
+.course-catalog { display: flex; flex-direction: column; gap: 12px; margin: 14px 0; }
+.course-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 6px; padding: 16px; display: flex; gap: 14px; align-items: flex-start;
+}
+.course-badge-area { flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; }
+.badge-pill {
+  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.06em;
+  padding: 2px 7px; border-radius: 2px; white-space: nowrap; text-align: center;
+}
+.badge-required { background: var(--crimson); color: var(--white); }
+.badge-foundation { background: var(--crimson-dark); color: var(--gold); border: 1px solid var(--gold); }
+.badge-new { background: var(--gold); color: var(--crimson-dark); }
+.badge-coming { background: var(--gray-200); color: var(--gray-600); }
+.badge-draft { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+.course-info { flex: 1; }
+.course-info .cc-category { font-size: 0.7rem; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 0.05em; margin-bottom: 4px; }
+.course-info .cc-title { font-size: 0.9rem; font-weight: 600; color: var(--crimson-dark); margin-bottom: 6px; }
+.course-info .cc-meta { font-size: 0.75rem; color: var(--gray-600); display: flex; gap: 14px; flex-wrap: wrap; }
+.course-info .cc-status { font-size: 0.72rem; font-style: italic; color: var(--gray-600); margin-top: 4px; }
+.course-action { flex-shrink: 0; }
+.btn-launch {
+  background: var(--crimson); color: var(--white); border: none;
+  border-radius: 4px; padding: 7px 14px; font-size: 0.75rem;
+  font-family: 'Cinzel', serif; letter-spacing: 0.04em; cursor: not-allowed; opacity: 0.7;
+}
+.btn-preview {
+  background: var(--white); color: var(--crimson); border: 1px solid var(--crimson);
+  border-radius: 4px; padding: 7px 14px; font-size: 0.75rem;
+  font-family: 'Cinzel', serif; letter-spacing: 0.04em; cursor: not-allowed; opacity: 0.7;
+}
+.btn-na { background: var(--gray-200); color: var(--gray-600); border: none; border-radius: 4px; padding: 7px 14px; font-size: 0.75rem; cursor: not-allowed; }
+
+/* ── KNOWLEDGE CHECK ── */
+.kcheck {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 8px; overflow: hidden; margin: 20px 0;
+}
+.kcheck-header {
+  background: var(--crimson-dark); color: var(--gold);
+  font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.08em;
+  padding: 12px 20px;
+}
+.kcheck-body { padding: 20px; }
+.kq { margin-bottom: 22px; }
+.kq:last-child { margin-bottom: 0; }
+.kq-text { font-size: 0.88rem; font-weight: 500; margin-bottom: 12px; color: var(--crimson-dark); }
+.kq-options { display: flex; flex-direction: column; gap: 8px; }
+.kq-option {
+  display: flex; align-items: center; gap: 10px;
+  border: 1px solid var(--gray-200); border-radius: 4px;
+  padding: 10px 14px; cursor: pointer; font-size: 0.85rem;
+  transition: all 0.15s; background: var(--white);
+  text-align: left; width: 100%;
+}
+.kq-option:hover { border-color: var(--gold); background: rgba(198,154,63,0.04); }
+.kq-option.selected { border-color: var(--crimson); background: rgba(112,17,12,0.04); }
+.kq-option.correct { border-color: #4caf50; background: #e8f5e9; color: #1b5e20; }
+.kq-option.incorrect { border-color: #ef9a9a; background: #ffebee; color: #b71c1c; }
+.kq-option.reveal-correct { border-color: #4caf50; background: #e8f5e9; color: #1b5e20; }
+.kq-option .opt-letter {
+  width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--gray-200);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-family: 'Cinzel', serif; flex-shrink: 0;
+}
+.kq-feedback { font-size: 0.8rem; margin-top: 10px; padding: 8px 12px; border-radius: 4px; display: none; }
+.kq-feedback.show { display: block; }
+.kq-feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+.kq-feedback.incorrect-fb { background: #ffebee; color: #b71c1c; border: 1px solid #ef9a9a; }
+.kcheck-submit {
+  background: var(--crimson); color: var(--white); border: none;
+  border-radius: 4px; padding: 10px 24px; font-family: 'Cinzel', serif;
+  font-size: 0.8rem; letter-spacing: 0.05em; margin-top: 16px;
+  transition: background 0.2s;
+}
+.kcheck-submit:hover { background: var(--crimson-dark); }
+.kcheck-result {
+  margin-top: 14px; padding: 12px 16px; border-radius: 4px;
+  font-size: 0.88rem; display: none;
+}
+.kcheck-result.show { display: block; }
+.kcheck-result.pass { background: #e8f5e9; border: 1px solid #a5d6a7; color: #1b5e20; }
+.kcheck-result.partial { background: #fff3cd; border: 1px solid #ffc107; color: #856404; }
+
+/* ── SCENARIO CHALLENGE (MODULE 5) ── */
+.scenario-list { display: flex; flex-direction: column; gap: 16px; margin: 16px 0; }
+.scenario-item {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 8px; overflow: hidden;
+}
+.scenario-item-header {
+  background: var(--gray-100); padding: 12px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.scenario-num { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold); background: var(--crimson-dark); padding: 3px 8px; border-radius: 2px; }
+.scenario-q { font-size: 0.85rem; font-weight: 500; color: var(--crimson-dark); flex: 1; }
+.scenario-body { padding: 14px 16px; }
+.scenario-options { display: flex; flex-direction: column; gap: 7px; }
+.scenario-opt {
+  border: 1px solid var(--gray-200); border-radius: 4px;
+  padding: 9px 14px; font-size: 0.82rem; cursor: pointer;
+  text-align: left; background: var(--white); transition: all 0.15s; width: 100%;
+}
+.scenario-opt:hover { border-color: var(--gold); }
+.scenario-opt.correct { border-color: #4caf50; background: #e8f5e9; color: #1b5e20; }
+.scenario-opt.incorrect { border-color: #ef9a9a; background: #ffebee; color: #b71c1c; }
+.scenario-opt.reveal-correct { border-color: #4caf50; background: #e8f5e9; color: #1b5e20; }
+.scenario-feedback { font-size: 0.8rem; margin-top: 10px; padding: 8px 12px; border-radius: 4px; display: none; line-height: 1.5; }
+.scenario-feedback.show { display: block; }
+.scenario-feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+.scenario-feedback.incorrect-fb { background: #ffebee; color: #b71c1c; border: 1px solid #ef9a9a; }
+.m5-score-bar { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 6px; padding: 14px 16px; margin: 16px 0; font-size: 0.85rem; }
+
+/* ── FINAL ASSESSMENT ── */
+.assessment-header {
+  background: var(--crimson-dark); color: var(--cream);
+  border-radius: 8px; padding: 24px 28px; margin-bottom: 24px;
+  border-left: 4px solid var(--gold);
+}
+.assessment-header h2 { font-size: 1.2rem; margin-bottom: 8px; }
+.assessment-header p { font-size: 0.85rem; opacity: 0.8; }
+
+.assessment-q { background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; padding: 20px; margin-bottom: 14px; }
+.assessment-q .aq-num { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold); margin-bottom: 8px; }
+.assessment-q .aq-text { font-size: 0.9rem; font-weight: 500; color: var(--crimson-dark); margin-bottom: 12px; }
+.assessment-options { display: flex; flex-direction: column; gap: 8px; }
+.assessment-opt {
+  border: 1px solid var(--gray-200); border-radius: 4px;
+  padding: 10px 14px; cursor: pointer; font-size: 0.85rem;
+  text-align: left; background: var(--white); transition: all 0.15s; width: 100%;
+  display: flex; align-items: center; gap: 10px;
+}
+.assessment-opt:hover { border-color: var(--gold); background: rgba(198,154,63,0.04); }
+.assessment-opt.selected { border-color: var(--crimson); background: rgba(112,17,12,0.04); }
+.assessment-opt.correct { border-color: #4caf50; background: #e8f5e9; color: #1b5e20; }
+.assessment-opt.incorrect { border-color: #ef9a9a; background: #ffebee; color: #b71c1c; }
+.assessment-opt.reveal-correct { border-color: #4caf50; background: #e8f5e9; color: #1b5e20; }
+.assessment-opt .ao-letter {
+  width: 24px; height: 24px; border-radius: 50%; border: 1px solid currentColor;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-family: 'Cinzel', serif; flex-shrink: 0;
+}
+.assessment-feedback { font-size: 0.8rem; margin-top: 10px; padding: 8px 12px; border-radius: 4px; display: none; }
+.assessment-feedback.show { display: block; }
+.assessment-feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+.assessment-feedback.incorrect-fb { background: #ffebee; color: #b71c1c; border: 1px solid #ef9a9a; }
+
+.submit-assessment-btn {
+  background: var(--crimson); color: var(--white); border: none;
+  border-radius: 4px; padding: 12px 32px; font-family: 'Cinzel', serif;
+  font-size: 0.9rem; letter-spacing: 0.05em; margin-top: 8px;
+  transition: background 0.2s;
+}
+.submit-assessment-btn:hover { background: var(--crimson-dark); }
+
+.assessment-results {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 8px; padding: 28px; margin-top: 20px; text-align: center; display: none;
+}
+.assessment-results.show { display: block; }
+.result-score { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--crimson); margin-bottom: 8px; }
+.result-pct { font-size: 1rem; color: var(--gray-600); margin-bottom: 16px; }
+.result-pass { color: #1b5e20; font-family: 'Cinzel', serif; font-size: 1rem; }
+.result-fail { color: var(--crimson); font-family: 'Cinzel', serif; font-size: 1rem; }
+.retry-btn {
+  background: var(--white); color: var(--crimson); border: 1px solid var(--crimson);
+  border-radius: 4px; padding: 10px 24px; font-family: 'Cinzel', serif;
+  font-size: 0.85rem; margin-top: 14px; margin-right: 8px; transition: all 0.2s;
+}
+.retry-btn:hover { background: var(--crimson); color: var(--white); }
+.cert-btn {
+  background: var(--gold); color: var(--crimson-dark); border: none;
+  border-radius: 4px; padding: 10px 24px; font-family: 'Cinzel', serif;
+  font-size: 0.85rem; margin-top: 14px; font-weight: 600; transition: background 0.2s;
+}
+.cert-btn:hover { background: var(--gold-light); }
+
+/* ── CERTIFICATE ── */
+.certificate-screen {
+  background: var(--white); border: 2px solid var(--gold);
+  border-radius: 8px; padding: 48px 40px; text-align: center; max-width: 640px; margin: 0 auto;
+}
+.cert-kap-line { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+.cert-org-line { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--crimson-dark); margin-bottom: 28px; }
+.cert-presented { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 12px; }
+.cert-name-input {
+  border: none; border-bottom: 2px solid var(--gold); background: transparent;
+  font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--crimson-dark);
+  text-align: center; width: 100%; max-width: 400px; padding: 8px 4px; margin-bottom: 20px;
+  outline: none;
+}
+.cert-name-display { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--crimson-dark); margin-bottom: 8px; display: none; }
+.cert-course-name { font-size: 0.95rem; color: var(--gray-600); margin-bottom: 24px; }
+.cert-date { font-size: 0.8rem; color: var(--gray-600); margin-bottom: 28px; }
+.cert-divider { border: none; border-top: 1px solid var(--gray-200); margin: 20px auto; max-width: 300px; }
+.cert-footer { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold); }
+.cert-print-btn {
+  background: var(--crimson); color: var(--white); border: none;
+  border-radius: 4px; padding: 10px 28px; font-family: 'Cinzel', serif;
+  font-size: 0.85rem; margin-top: 20px; transition: background 0.2s;
+}
+.cert-print-btn:hover { background: var(--crimson-dark); }
+@media print {
+  #topbar, #sidebar, #overall-progress-bar, #nav-buttons { display: none !important; }
+  #main { margin-left: 0 !important; }
+  .screen { display: none !important; }
+  #screen-cert { display: block !important; }
+  .certificate-screen { border: 3px double var(--gold); }
+}
+
+/* ── NAV BUTTONS ── */
+#nav-buttons {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--gray-200);
+  flex-wrap: wrap; gap: 12px;
+}
+.nav-prev, .nav-next {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--gray-200); border-radius: 4px;
+  padding: 10px 20px; font-family: 'Cinzel', serif; font-size: 0.8rem;
+  letter-spacing: 0.04em; transition: all 0.2s; background: var(--white);
+  color: var(--text);
+}
+.nav-prev:hover, .nav-next:hover { border-color: var(--crimson); color: var(--crimson); }
+.nav-next { background: var(--crimson); color: var(--white); border-color: var(--crimson); }
+.nav-next:hover { background: var(--crimson-dark); border-color: var(--crimson-dark); }
+.nav-prev:disabled, .nav-next:disabled { opacity: 0.4; cursor: not-allowed; }
+.nav-progress-text { font-size: 0.78rem; color: var(--gray-600); }
+
+/* ── AUTH FLOW DIAGRAM ── */
+.auth-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 16px 0; }
+.auth-step { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 6px; padding: 10px 14px; font-size: 0.78rem; text-align: center; min-width: 100px; }
+.auth-step strong { display: block; font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--crimson); margin-bottom: 3px; }
+.auth-arrow { color: var(--gold); font-size: 1.1rem; padding: 0 6px; }
+@media(max-width:600px){ .auth-flow { flex-direction: column; } .auth-arrow { transform: rotate(90deg); } }
+
+/* ── TRAINING HUB SECTIONS ── */
+.hub-sections { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; margin: 14px 0; }
+.hub-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 6px; padding: 16px; }
+.hub-card h4 { font-size: 0.82rem; color: var(--crimson); margin-bottom: 6px; }
+.hub-card p { font-size: 0.76rem; color: var(--gray-600); line-height: 1.4; }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <button id="hamburger" aria-label="Toggle navigation menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <span class="brand">DLA &mdash; Kappa Alpha Psi</span>
+  <span class="course-title">Website, Member Portal &amp; Training System Orientation</span>
+</div>
+<div id="overall-progress-bar"><div id="overall-progress-fill"></div></div>
+<div id="overlay"></div>
+
+<div id="layout">
+  <!-- SIDEBAR -->
+  <nav id="sidebar" aria-label="Course navigation">
+    <div class="sidebar-inner">
+      <div class="sidebar-section-label">Course Navigation</div>
+      <button class="sidebar-item active" data-screen="screen-intro" onclick="goToScreen('screen-intro')">
+        <span class="si-check" id="si-check-intro"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,5 4,8 9,2"/></svg></span>
+        <span class="si-label">Introduction</span>
+      </button>
+      <button class="sidebar-item" data-screen="screen-m1" onclick="goToScreen('screen-m1')">
+        <span class="si-check" id="si-check-m1"></span>
+        <span class="si-label">Module 1</span>
+        <span class="si-num">~7 min</span>
+      </button>
+      <button class="sidebar-item" data-screen="screen-m2" onclick="goToScreen('screen-m2')">
+        <span class="si-check" id="si-check-m2"></span>
+        <span class="si-label">Module 2</span>
+        <span class="si-num">~7 min</span>
+      </button>
+      <button class="sidebar-item" data-screen="screen-m3" onclick="goToScreen('screen-m3')">
+        <span class="si-check" id="si-check-m3"></span>
+        <span class="si-label">Module 3</span>
+        <span class="si-num">~15 min</span>
+      </button>
+      <button class="sidebar-item" data-screen="screen-m4" onclick="goToScreen('screen-m4')">
+        <span class="si-check" id="si-check-m4"></span>
+        <span class="si-label">Module 4</span>
+        <span class="si-num">~8 min</span>
+      </button>
+      <button class="sidebar-item" data-screen="screen-m5" onclick="goToScreen('screen-m5')">
+        <span class="si-check" id="si-check-m5"></span>
+        <span class="si-label">Module 5</span>
+        <span class="si-num">~8 min</span>
+      </button>
+      <div class="sidebar-section-label" style="margin-top:12px;">Assessment</div>
+      <button class="sidebar-item" data-screen="screen-assessment" onclick="goToScreen('screen-assessment')">
+        <span class="si-check" id="si-check-assessment"></span>
+        <span class="si-label">Final Assessment</span>
+        <span class="si-num">15 Q</span>
+      </button>
+      <button class="sidebar-item" data-screen="screen-cert" onclick="goToScreen('screen-cert')">
+        <span class="si-check" id="si-check-cert"></span>
+        <span class="si-label">Certificate</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- ══════════════ INTRO SCREEN ══════════════ -->
+    <div id="screen-intro" class="screen active">
+      <div class="course-hero">
+        <div class="kap-badge">Chapter Operations &bull; DLA Member Training</div>
+        <h1>Website, Member Portal &amp; Training System Orientation</h1>
+        <p class="subtitle">Navigating DLA's Digital Resources for Chapter Business, Communication, and Learning</p>
+        <div class="meta-row">
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            ~35&ndash;45 minutes
+          </div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+            5 Modules + Assessment
+          </div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+            Progress Tracked
+          </div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            All Chapter Members
+          </div>
+        </div>
+      </div>
+
+      <div class="objectives-card">
+        <h3>Learning Objectives</h3>
+        <ul>
+          <li>Identify the three DLA digital environments and know when to use each one</li>
+          <li>Navigate the public DLA website to find chapter information and program details</li>
+          <li>Access and use every section of the member portal dashboard</li>
+          <li>Select the correct form for any financial, event, or administrative task</li>
+          <li>Navigate the DLA Training System and understand course statuses and progress tracking</li>
+          <li>Apply digital resource knowledge to real chapter scenarios</li>
+        </ul>
+      </div>
+
+      <h3 style="font-family:'Cinzel',serif; font-size:0.85rem; color:var(--crimson); margin-bottom:14px; letter-spacing:0.03em;">COURSE MODULES</h3>
+      <div class="modules-overview">
+        <div class="mod-card"><div class="mod-num">MODULE 1</div><h4>The DLA Digital Environment</h4><div class="mod-dur">~7 min &bull; Card flip activity</div></div>
+        <div class="mod-card"><div class="mod-num">MODULE 2</div><h4>Navigating the Main DLA Website</h4><div class="mod-dur">~7 min &bull; Scenarios</div></div>
+        <div class="mod-card"><div class="mod-num">MODULE 3</div><h4>Navigating the Member Portal</h4><div class="mod-dur">~15 min &bull; Decision activities</div></div>
+        <div class="mod-card"><div class="mod-num">MODULE 4</div><h4>Using the DLA Training System</h4><div class="mod-dur">~8 min &bull; Catalog review</div></div>
+        <div class="mod-card"><div class="mod-num">MODULE 5</div><h4>Final Digital Resource Challenge</h4><div class="mod-dur">~8 min &bull; 15 scenarios</div></div>
+      </div>
+
+      <div id="nav-buttons">
+        <div></div>
+        <button class="nav-next" onclick="goToScreen('screen-m1')">
+          Begin Course
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-intro -->
+
+
+    <!-- ══════════════ MODULE 1 ══════════════ -->
+    <div id="screen-m1" class="screen">
+      <div class="module-header">
+        <div class="mod-label">MODULE 1 OF 5 &nbsp;&bull;&nbsp; ~7 MINUTES</div>
+        <h2>The DLA Digital Environment</h2>
+        <div class="mod-meta"><span>Three-environment overview</span><span>Interactive card activity</span><span>Knowledge check</span></div>
+      </div>
+      <div class="module-progress-bar"><div class="module-progress-fill" style="width:0%" id="m1-prog"></div></div>
+
+      <div class="content-card">
+        <h3>Understanding DLA's Three Digital Environments</h3>
+        <p>Denton-Lewisville Alumni Chapter operates three distinct digital environments, each serving a different audience and purpose. Knowing which environment to use&mdash;and directing others to the right one&mdash;is one of the most practical digital skills for any chapter member.</p>
+        <div class="env-diagram">
+          <div class="env-block">
+            <div class="env-url">dlakappas.com</div>
+            <div class="env-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h4>Public Website</h4>
+            <ul>
+              <li>Open to anyone</li>
+              <li>Chapter information</li>
+              <li>Programs &amp; events</li>
+              <li>Guide Right info</li>
+              <li>Contact &amp; membership interest</li>
+            </ul>
+          </div>
+          <div class="env-block highlight">
+            <div class="env-url">dlakappas.com/portal</div>
+            <div class="env-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h4>Member Portal</h4>
+            <ul>
+              <li>Login required</li>
+              <li>Pay dues</li>
+              <li>Submit forms</li>
+              <li>Access documents</li>
+              <li>Chapter news &amp; resources</li>
+            </ul>
+          </div>
+          <div class="env-block">
+            <div class="env-url">curriculead.com &amp; /portal</div>
+            <div class="env-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h4>Training System</h4>
+            <ul>
+              <li>Portal-integrated</li>
+              <li>Chapter training courses</li>
+              <li>Progress &amp; records</li>
+              <li>Curriculead platform</li>
+              <li>Certificate earning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>How the Environments Connect</h3>
+        <p>These three environments are not isolated. The public website serves as the entry point for anyone who wants to learn about DLA. From there, chapter members access the password-protected member portal for internal chapter business. The training system lives partly within the portal and partly on Curriculead, an external learning platform.</p>
+        <p>Think of it as three concentric circles: the public website is visible to all, the member portal is accessible to verified members, and the training system is the structured learning component within the member space.</p>
+        <div class="info-box">
+          <strong>Key Distinction</strong>
+          The public website is for learning <em>about</em> DLA. The member portal is for conducting chapter <em>business</em>. The training system is for completing <em>required and optional learning</em>. Each serves a distinct purpose.
+        </div>
+        <h4 style="margin-top:16px;">Quick Reference: Which Environment?</h4>
+        <table class="nav-table">
+          <thead><tr><th>Situation</th><th>Environment</th></tr></thead>
+          <tbody>
+            <tr><td>Community partner asks about chapter programs</td><td>Public Website</td></tr>
+            <tr><td>Parent wants information about Guide Right / Kappa League</td><td>Public Website</td></tr>
+            <tr><td>Member needs to pay dues</td><td>Member Portal</td></tr>
+            <tr><td>Member needs to submit a Committee Budget Request</td><td>Member Portal</td></tr>
+            <tr><td>Member wants to complete Parliamentary Procedure training</td><td>Training System</td></tr>
+            <tr><td>Prospective member wants to express interest in joining</td><td>Public Website (Membership page)</td></tr>
+            <tr><td>Brother needs the Chapter Bylaws document</td><td>Member Portal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-card">
+        <h3>Interactive Activity: Where Should I Go?</h3>
+        <p>Read each scenario below and click the card to reveal which environment and section best applies. Think about your answer before flipping.</p>
+        <div class="card-flip-grid" id="flip-grid">
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 1" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 1</div><p>A local high school student heard about Kappa League and wants to find out more.</p></div>
+              <div class="flip-back"><div class="flip-answer">Public Website</div><div class="flip-reason">Guide Right section or Programs page &mdash; public-facing information for prospective participants.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 2" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 2</div><p>A brother needs a copy of the Chapter By Laws.</p></div>
+              <div class="flip-back"><div class="flip-answer">Member Portal</div><div class="flip-reason">Documents &rarr; Chapter By Laws. Internal chapter documents are in the portal only.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 3" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 3</div><p>A member wants to complete the 501(c)(3) Compliance Training course.</p></div>
+              <div class="flip-back"><div class="flip-answer">Training System</div><div class="flip-reason">Portal &rarr; Training &rarr; My DLA Training. Courses are in the training system.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 4" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 4</div><p>A committee chair needs to submit a budget request for the upcoming fiscal year.</p></div>
+              <div class="flip-back"><div class="flip-answer">Member Portal</div><div class="flip-reason">Forms &amp; Assessments &rarr; Committee Budget Request.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 5" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 5</div><p>A journalist is writing a story and wants information about DLA's community work.</p></div>
+              <div class="flip-back"><div class="flip-answer">Public Website</div><div class="flip-reason">About page and Programs section contain public-facing information about chapter community work.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 6" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 6</div><p>A brother completed an event and needs to file the post-event report.</p></div>
+              <div class="flip-back"><div class="flip-answer">Member Portal</div><div class="flip-reason">Forms &amp; Assessments &rarr; Post Event Summary &mdash; must be submitted within 24 hours.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 7" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 7</div><p>A member wants to see how far they've progressed in the Membership Education course.</p></div>
+              <div class="flip-back"><div class="flip-answer">Training System</div><div class="flip-reason">Portal &rarr; Training &rarr; My Training Records. Progress is tracked per course.</div></div>
+            </div>
+          </div>
+          <div class="flip-card-wrap" onclick="this.classList.toggle('flipped')" tabindex="0" aria-label="Flip card 8" onkeydown="if(event.key==='Enter')this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-front"><div class="flip-num">Scenario 8</div><p>A brother who has been inactive wants to rejoin the chapter formally.</p></div>
+              <div class="flip-back"><div class="flip-answer">Member Portal</div><div class="flip-reason">Forms &amp; Assessments &rarr; Reclamation Form for brothers returning to active status.</div></div>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Click any card to flip it. Click again to flip back.</p>
+      </div>
+
+      <!-- KNOWLEDGE CHECK 1 -->
+      <div class="kcheck" id="kcheck-m1">
+        <div class="kcheck-header">KNOWLEDGE CHECK &mdash; MODULE 1</div>
+        <div class="kcheck-body">
+          <div class="kq" id="kq-m1-1">
+            <div class="kq-text">1. A community partner wants to learn about DLA's Programs. Which environment should they visit?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m1-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Member Portal</button>
+              <button class="kq-option" data-qid="m1-1" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Public Website</button>
+              <button class="kq-option" data-qid="m1-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Training System</button>
+            </div>
+            <div class="kq-feedback" id="kq-m1-1-fb"></div>
+          </div>
+          <div class="kq" id="kq-m1-2">
+            <div class="kq-text">2. Which environment requires a login and handles internal chapter business?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m1-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Public Website</button>
+              <button class="kq-option" data-qid="m1-2" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Member Portal</button>
+              <button class="kq-option" data-qid="m1-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Curriculead only</button>
+            </div>
+            <div class="kq-feedback" id="kq-m1-2-fb"></div>
+          </div>
+          <div class="kq" id="kq-m1-3">
+            <div class="kq-text">3. The Training System is accessed through which starting point?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m1-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> A separate website with no connection to the member portal</button>
+              <button class="kq-option" data-qid="m1-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">B</span> The public DLA website homepage</button>
+              <button class="kq-option" data-qid="m1-3" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">C</span> The Member Portal dashboard Training section (and externally via Curriculead)</button>
+            </div>
+            <div class="kq-feedback" id="kq-m1-3-fb"></div>
+          </div>
+          <button class="kcheck-submit" onclick="submitKCheck('m1',[{id:'m1-1',correct:'B'},{id:'m1-2',correct:'B'},{id:'m1-3',correct:'C'}])">Submit Answers</button>
+          <div class="kcheck-result" id="kcheck-m1-result"></div>
+        </div>
+      </div>
+
+      <div id="nav-buttons">
+        <button class="nav-prev" onclick="goToScreen('screen-intro')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Introduction
+        </button>
+        <span class="nav-progress-text">Module 1 of 5</span>
+        <button class="nav-next" onclick="goToScreen('screen-m2')">
+          Module 2
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-m1 -->
+
+
+    <!-- ══════════════ MODULE 2 ══════════════ -->
+    <div id="screen-m2" class="screen">
+      <div class="module-header">
+        <div class="mod-label">MODULE 2 OF 5 &nbsp;&bull;&nbsp; ~7 MINUTES</div>
+        <h2>Navigating the Main DLA Website</h2>
+        <div class="mod-meta"><span>Public website sections</span><span>Membership vs portal distinction</span><span>Knowledge check</span></div>
+      </div>
+      <div class="module-progress-bar"><div class="module-progress-fill" style="width:0%" id="m2-prog"></div></div>
+
+      <div class="content-card">
+        <h3>The Public DLA Website: Who It Serves</h3>
+        <p>The DLA public website (dlakappas.com) is the chapter's public-facing presence. It is designed for anyone who wants to learn about the chapter, its programs, and its community work. This includes prospective members, community partners, media, parents of Kappa League youth, and the general public.</p>
+        <p>As a chapter member, you should direct any non-member inquiries to the public website. You should also know its sections so you can accurately guide people to the right information.</p>
+        <div class="info-box">
+          <strong>Critical Distinction</strong>
+          The public website is for learning <strong>about</strong> membership. The member portal is for <strong>accessing</strong> member resources. If someone asks "how do I join?" &rarr; public website. If a member asks "where do I pay dues?" &rarr; member portal.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>Main Navigation Sections</h3>
+        <table class="nav-table">
+          <thead><tr><th>Section</th><th>What You'll Find</th><th>Audience</th></tr></thead>
+          <tbody>
+            <tr><td><strong>About</strong></td><td>Chapter history, mission, leadership, and overview of DLA</td><td>General public, community partners</td></tr>
+            <tr><td><strong>Membership</strong></td><td>Information about joining Kappa Alpha Psi, interest form (/membership.html)</td><td>Prospective members</td></tr>
+            <tr><td><strong>Programs</strong></td><td>Overview of chapter service programs and initiatives</td><td>General public, community partners</td></tr>
+            <tr><td><strong>Guide Right</strong></td><td>Links to dlaguideright.org (external site) for Kappa League program details</td><td>Parents, youth, community</td></tr>
+            <tr><td><strong>Events</strong></td><td>Upcoming chapter events and activities</td><td>General public, members</td></tr>
+            <tr><td><strong>Volunteering</strong></td><td>Volunteer opportunities including DLGRF AT&amp;T Stadium events</td><td>General public, members</td></tr>
+            <tr><td><strong>Contact</strong></td><td>Contact information for the chapter</td><td>General public</td></tr>
+          </tbody>
+        </table>
+        <div class="warning-box">
+          <strong>Note: Guide Right</strong>
+          Clicking Guide Right on the main website navigates to <strong>dlaguideright.org</strong>, an external site. This is not part of the main DLA portal. Members who want to access Kappa League mentor training must go through the member portal's Training section.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>Key Page: Membership vs. Member Portal Login</h3>
+        <p>Two pages on the website are commonly confused:</p>
+        <p><strong>/membership.html</strong> &mdash; This is the <em>public</em> membership information page. It explains what Kappa Alpha Psi is, what DLA offers as a chapter, and how interested individuals can express interest in becoming members. This page is for <em>prospective</em> members.</p>
+        <p><strong>/portal/login.html</strong> &mdash; This is the secure login page for <em>existing</em> chapter members. It is not linked prominently from the public navigation because it is for internal use only.</p>
+        <div class="info-box">
+          <strong>Practical Tip</strong>
+          If a brother says they can't find where to log in, direct them to <strong>/portal/login.html</strong>. The public website membership page is for prospective members, not for existing member access.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>Scenario Practice</h3>
+        <p>For each situation below, decide: Public Website section, or Member Portal?</p>
+        <div class="decision-activity">
+          <h4>Scenario Practice: Website or Portal?</h4>
+          <div class="decision-scenario" id="ds-m2-1">
+            <p><strong>A:</strong> A parent in Denton wants to know how to enroll their teenager in Kappa League.</p>
+            <div class="decision-options">
+              <button class="decision-btn" data-correct="true" onclick="decisionAnswer(this,'ds-m2-1','correct-fb','Public Website &rarr; Guide Right section (links to dlaguideright.org for Kappa League program details).')">Public Website &rarr; Guide Right</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m2-1','incorrect-fb','Kappa League information for parents and youth is on the public website, not behind a portal login.')">Member Portal</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m2-1','incorrect-fb','This information is public-facing and does not require training. The public website is correct.')">Training System</button>
+            </div>
+            <div class="decision-feedback" id="ds-m2-1-fb"></div>
+          </div>
+          <div class="decision-scenario" id="ds-m2-2">
+            <p><strong>B:</strong> A chapter member needs to access the DLA Media Guide.</p>
+            <div class="decision-options">
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m2-2','incorrect-fb','The DLA Media Guide is an internal document. It is in the Member Portal under Guidelines &amp; Manuals, not on the public website.')">Public Website</button>
+              <button class="decision-btn" data-correct="true" onclick="decisionAnswer(this,'ds-m2-2','correct-fb','Correct. The DLA Media Guide is in the Member Portal under Guidelines &amp; Manuals. Internal chapter documents are not on the public website.')">Member Portal &rarr; Guidelines &amp; Manuals</button>
+            </div>
+            <div class="decision-feedback" id="ds-m2-2-fb"></div>
+          </div>
+          <div class="decision-scenario" id="ds-m2-3">
+            <p><strong>C:</strong> A prospective member wants to know how to join the chapter.</p>
+            <div class="decision-options">
+              <button class="decision-btn" data-correct="true" onclick="decisionAnswer(this,'ds-m2-3','correct-fb','Correct. The /membership.html page on the public website is where prospective members find information about joining.')">Public Website &rarr; Membership page</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m2-3','incorrect-fb','The portal login page is for existing members only. Prospective members should go to the Membership page on the public website.')">Member Portal Login page</button>
+            </div>
+            <div class="decision-feedback" id="ds-m2-3-fb"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KNOWLEDGE CHECK 2 -->
+      <div class="kcheck" id="kcheck-m2">
+        <div class="kcheck-header">KNOWLEDGE CHECK &mdash; MODULE 2</div>
+        <div class="kcheck-body">
+          <div class="kq" id="kq-m2-1">
+            <div class="kq-text">1. A community partner wants to learn about DLA's community programs. Which website section should they visit?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m2-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Events</button>
+              <button class="kq-option" data-qid="m2-1" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Programs</button>
+              <button class="kq-option" data-qid="m2-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Contact</button>
+            </div>
+            <div class="kq-feedback" id="kq-m2-1-fb"></div>
+          </div>
+          <div class="kq" id="kq-m2-2">
+            <div class="kq-text">2. The Guide Right link on the DLA website navigates to:</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m2-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> The Member Portal Training section</button>
+              <button class="kq-option" data-qid="m2-2" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> dlaguideright.org (external site)</button>
+              <button class="kq-option" data-qid="m2-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> A page within the main DLA website</button>
+            </div>
+            <div class="kq-feedback" id="kq-m2-2-fb"></div>
+          </div>
+          <div class="kq" id="kq-m2-3">
+            <div class="kq-text">3. An existing chapter member who cannot find the portal login should be directed to:</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m2-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> /membership.html</button>
+              <button class="kq-option" data-qid="m2-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">B</span> The About page</button>
+              <button class="kq-option" data-qid="m2-3" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">C</span> /portal/login.html</button>
+            </div>
+            <div class="kq-feedback" id="kq-m2-3-fb"></div>
+          </div>
+          <button class="kcheck-submit" onclick="submitKCheck('m2',[{id:'m2-1',correct:'B'},{id:'m2-2',correct:'B'},{id:'m2-3',correct:'C'}])">Submit Answers</button>
+          <div class="kcheck-result" id="kcheck-m2-result"></div>
+        </div>
+      </div>
+
+      <div id="nav-buttons">
+        <button class="nav-prev" onclick="goToScreen('screen-m1')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Module 1
+        </button>
+        <span class="nav-progress-text">Module 2 of 5</span>
+        <button class="nav-next" onclick="goToScreen('screen-m3')">
+          Module 3
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-m2 -->
+
+
+    <!-- ══════════════ MODULE 3 ══════════════ -->
+    <div id="screen-m3" class="screen">
+      <div class="module-header">
+        <div class="mod-label">MODULE 3 OF 5 &nbsp;&bull;&nbsp; ~15 MINUTES</div>
+        <h2>Navigating the DLA Member Portal</h2>
+        <div class="mod-meta"><span>Auth flow</span><span>All dashboard sections</span><span>Forms &amp; documents</span><span>Decision activities</span></div>
+      </div>
+      <div class="module-progress-bar"><div class="module-progress-fill" style="width:0%" id="m3-prog"></div></div>
+
+      <div class="content-card">
+        <h3>3.1 Accessing the Member Portal</h3>
+        <p>The member portal is invitation-based. Access follows a defined flow: you must receive a chapter invitation before you can create your credentials. If you have not received an invitation, contact the chapter Polemarch or your committee chair.</p>
+        <div class="auth-flow">
+          <div class="auth-step"><strong>Invitation</strong>Received from chapter</div>
+          <div class="auth-arrow">&rarr;</div>
+          <div class="auth-step"><strong>Create Password</strong>Set your account credentials</div>
+          <div class="auth-arrow">&rarr;</div>
+          <div class="auth-step"><strong>Sign In</strong>Log in at /portal/login.html</div>
+          <div class="auth-arrow">&rarr;</div>
+          <div class="auth-step"><strong>Dashboard</strong>Member dashboard access</div>
+        </div>
+        <div class="info-box" style="margin-top:16px;">
+          <strong>Forgot Password?</strong>
+          Use the Forgot Password link on the login page. A reset link is sent to your registered email. Click the link, set a new password, and sign back in. If you no longer have access to your registered email, contact the chapter webmaster.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.2 Member Dashboard Overview</h3>
+        <p>After logging in, you arrive at the member dashboard. The left sidebar provides navigation to all member resources. The following sections are available to all standard members:</p>
+        <table class="nav-table">
+          <thead><tr><th>Sidebar Item</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Welcome</strong></td><td>Dashboard home; chapter announcements and quick links</td></tr>
+            <tr><td><strong>Pay Dues</strong></td><td>Multiple payment methods to submit chapter dues</td></tr>
+            <tr><td><strong>Polemarch Address</strong></td><td>Video or written messages from the chapter Polemarch</td></tr>
+            <tr><td><strong>Apps</strong></td><td>Links to DLA Kappa Member App and KappaLoop</td></tr>
+            <tr><td><strong>Training</strong></td><td>Access to Training Hub, My DLA Training, and My Training Records</td></tr>
+            <tr><td><strong>Guidelines &amp; Manuals</strong></td><td>DLA Media Guide and other official chapter guidelines</td></tr>
+            <tr><td><strong>Chapter News</strong></td><td>Internal chapter announcements and updates</td></tr>
+            <tr><td><strong>Documents</strong></td><td>12 document folders covering all chapter materials</td></tr>
+            <tr><td><strong>Forms &amp; Assessments</strong></td><td>Chapter forms and annual surveys</td></tr>
+            <tr><td><strong>Conference Calls</strong></td><td>Zoom (passcode-protected) and Google Meet links</td></tr>
+            <tr><td><strong>DLA Store</strong></td><td>Chapter merchandise and paraphernalia</td></tr>
+            <tr><td><strong>Vendors</strong></td><td>Chapter vendor directory and listings</td></tr>
+            <tr><td><strong>My Account</strong></td><td>Profile settings, password, and account management</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-card">
+        <h3>3.3 Pay Chapter Dues</h3>
+        <p>The Pay Dues section provides six payment methods to accommodate member preferences. Use the method most convenient for you. All payments are remitted to the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi.</p>
+        <div class="payment-grid">
+          <div class="payment-item"><div class="pm-label">Cash App</div><div class="pm-detail">$DLAKappas</div></div>
+          <div class="payment-item"><div class="pm-label">Venmo</div><div class="pm-detail">@DLAKappas</div></div>
+          <div class="payment-item"><div class="pm-label">PayPal</div><div class="pm-detail">Via the portal Pay Dues page</div></div>
+          <div class="payment-item"><div class="pm-label">Stripe</div><div class="pm-detail">Via the portal Pay Dues page</div></div>
+          <div class="payment-item"><div class="pm-label">Zelle</div><div class="pm-detail">dlakappa1911@gmail.com</div></div>
+          <div class="payment-item"><div class="pm-label">Check</div><div class="pm-detail">Payable to: Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi<br>Mail to: 1501 S. Loop 288, Suite 104, PMB 190, Denton, TX 76205</div></div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.4 Polemarch Address</h3>
+        <p>The Polemarch Address section contains video or written messages from the chapter Polemarch. These messages may include chapter direction, updates on chapter business, recognition of brothers, or guidance on chapter priorities. Members are expected to review new Polemarch addresses when published.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>3.5 Apps</h3>
+        <p>The Apps section provides access to two member applications:</p>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px;">
+          <div style="background:var(--gray-100); border:1px solid var(--gray-200); border-radius:6px; padding:16px;">
+            <div style="font-family:'Cinzel',serif; font-size:0.75rem; color:var(--crimson); margin-bottom:6px;">DLA Kappa Member App</div>
+            <ul style="font-size:0.8rem; padding-left:16px; color:var(--text);">
+              <li>Chapter news</li>
+              <li>Upcoming events</li>
+              <li>Meeting resources</li>
+              <li>Brotherhood updates</li>
+            </ul>
+          </div>
+          <div style="background:var(--gray-100); border:1px solid var(--gray-200); border-radius:6px; padding:16px;">
+            <div style="font-family:'Cinzel',serif; font-size:0.75rem; color:var(--crimson); margin-bottom:6px;">KappaLoop Member App</div>
+            <ul style="font-size:0.8rem; padding-left:16px; color:var(--text);">
+              <li>Update member profile</li>
+              <li>Membership directory search</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.6 Training Section (Portal Dashboard)</h3>
+        <p>The Training item in the sidebar provides three access points to the DLA Training System:</p>
+        <table class="nav-table">
+          <thead><tr><th>Link</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Curriculead Portal</strong></td><td>External link to curriculead.com &mdash; the third-party learning platform used for hosted chapter training courses</td></tr>
+            <tr><td><strong>My DLA Training</strong></td><td>Internal portal page at /portal/training-hub.html &mdash; your chapter training dashboard</td></tr>
+            <tr><td><strong>My Training Records</strong></td><td>Internal page at /portal/my-training.html &mdash; your personal training completion records and progress</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-card">
+        <h3>3.7 Guidelines &amp; Manuals</h3>
+        <p>This section contains the DLA Media Guide and other official chapter guidelines. The Media Guide covers chapter branding standards, logo usage, communication guidelines, and approved visual identity elements. Members producing any official chapter materials should consult the Media Guide before publication.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>3.8 Chapter News</h3>
+        <p>Chapter News contains internal announcements, updates from chapter leadership, and information relevant to active members. This is distinct from the public website Events section and contains information not shared with the general public.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>3.9 Documents</h3>
+        <p>The Documents section is organized into 12 named folders. Each folder groups related materials by type. Browse the folder relevant to what you need rather than searching across all documents.</p>
+        <div class="folders-grid">
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Branding</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Documents</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter By Laws</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Committees</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Forms</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Images</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Meetings</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Minutes</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Presentations</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Training</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Vendor Listing</span></div>
+          <div class="folder-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Chapter Videos</span></div>
+        </div>
+        <div class="info-box">
+          <strong>Official Logos</strong>
+          Official DLA logos, seal graphics, and branding assets are stored in <strong>Chapter Branding</strong>. Do not use images from other sources for official chapter communications. Consult the Media Guide in Guidelines &amp; Manuals for usage rules.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.10 Forms &amp; Assessments</h3>
+        <p>The Forms &amp; Assessments section contains two annual surveys and ten active member forms. Each form serves a specific administrative purpose. Submitting the wrong form creates processing delays and additional work for chapter leadership.</p>
+        <p><strong>Annual Assessments:</strong></p>
+        <ul style="font-size:0.875rem; padding-left:20px; margin-bottom:14px;">
+          <li>2026&ndash;2027 Climate Survey</li>
+          <li>End of Administration Survey</li>
+        </ul>
+        <p><strong>Member Forms:</strong></p>
+        <div class="forms-list">
+          <div class="form-item"><div class="form-num">1</div><div><div class="form-name">Committee Sign-Up</div><div class="form-desc">Indicate interest in serving on chapter committees for FY 2026&ndash;2027</div></div></div>
+          <div class="form-item"><div class="form-num">2</div><div><div class="form-name">Post Event Summary</div><div class="form-desc">Submit post-event report within 24 hours of any official event</div></div></div>
+          <div class="form-item"><div class="form-num">3</div><div><div class="form-name">Event Information Form</div><div class="form-desc">Submit event details for website update and chapter approval before the event occurs</div></div></div>
+          <div class="form-item"><div class="form-num">4</div><div><div class="form-name">Reclamation Form</div><div class="form-desc">Returning inactive brothers rejoining the chapter</div></div></div>
+          <div class="form-item"><div class="form-num">5</div><div><div class="form-name">New Candidate Form</div><div class="form-desc">Interest form for prospective new members</div></div></div>
+          <div class="form-item"><div class="form-num">6</div><div><div class="form-name">Committee Budget Request</div><div class="form-desc">Submit a budget request for your committee's planned activities and expenses</div></div></div>
+          <div class="form-item"><div class="form-num">7</div><div><div class="form-name">Payment Request</div><div class="form-desc">Request payment for vendors, contractors, or chapter expenses where the chapter pays directly</div></div></div>
+          <div class="form-item"><div class="form-num">8</div><div><div class="form-name">Member Reimbursement</div><div class="form-desc">Request reimbursement for out-of-pocket chapter expenses you personally paid</div></div></div>
+          <div class="form-item"><div class="form-num">9</div><div><div class="form-name">Bylaws Amendment Proposal</div><div class="form-desc">Submit a proposed revision or amendment to the Chapter Bylaws for consideration</div></div></div>
+          <div class="form-item"><div class="form-num">10</div><div><div class="form-name">DLGRF Volunteer Registration</div><div class="form-desc">Register to volunteer at AT&amp;T Stadium fundraising events hosted by DLGRF</div></div></div>
+        </div>
+        <div class="warning-box">
+          <strong>Admin-Only Form</strong>
+          The <strong>Volunteer Admin Dashboard</strong> is visible only to administrators. It allows admins to view and manage DLGRF volunteer registrations. This form does not appear in standard member views.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.11 Activity: Financial Form Decision</h3>
+        <p>Three financial forms address different situations. Read each scenario and select the correct form.</p>
+        <div class="decision-activity">
+          <h4>Which Financial Form Applies?</h4>
+          <div class="decision-scenario" id="ds-m3-fin1">
+            <p><strong>Scenario A:</strong> Your committee is planning a community service event next quarter and needs the chapter to allocate budget for it in the upcoming fiscal year.</p>
+            <div class="decision-options">
+              <button class="decision-btn" data-correct="true" onclick="decisionAnswer(this,'ds-m3-fin1','correct-fb','Correct. Committee Budget Request is used for planned, future budget allocations. Submit this before the fiscal year or before activities begin.')">Committee Budget Request</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m3-fin1','incorrect-fb','Payment Request is for paying a specific vendor or expense that is already incurred or needs direct payment from the chapter. This is about future budget planning.')">Payment Request</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m3-fin1','incorrect-fb','Member Reimbursement is for expenses you already paid personally. This scenario is about future budget planning, not a personal expense already made.')">Member Reimbursement</button>
+            </div>
+            <div class="decision-feedback" id="ds-m3-fin1-fb"></div>
+          </div>
+          <div class="decision-scenario" id="ds-m3-fin2">
+            <p><strong>Scenario B:</strong> A vendor provided services for a chapter event and needs to be paid directly by the chapter (you did not pay out of pocket).</p>
+            <div class="decision-options">
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m3-fin2','incorrect-fb','Committee Budget Request is for requesting planned budget allocations, not for making direct payments to vendors after services are rendered.')">Committee Budget Request</button>
+              <button class="decision-btn" data-correct="true" onclick="decisionAnswer(this,'ds-m3-fin2','correct-fb','Correct. Payment Request is used when the chapter needs to directly pay a vendor, contractor, or other chapter expense.')">Payment Request</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m3-fin2','incorrect-fb','Member Reimbursement is for expenses a member personally paid and is seeking to be paid back. This scenario involves a vendor being paid directly by the chapter.')">Member Reimbursement</button>
+            </div>
+            <div class="decision-feedback" id="ds-m3-fin2-fb"></div>
+          </div>
+          <div class="decision-scenario" id="ds-m3-fin3">
+            <p><strong>Scenario C:</strong> You personally purchased printing supplies for an approved chapter event using your own money and need to be paid back.</p>
+            <div class="decision-options">
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m3-fin3','incorrect-fb','Committee Budget Request is for planning future budget. You have already incurred and paid a personal expense for the chapter and need to recover that cost.')">Committee Budget Request</button>
+              <button class="decision-btn" data-correct="false" onclick="decisionAnswer(this,'ds-m3-fin3','incorrect-fb','Payment Request is for paying vendors or contractors directly from chapter funds. You already paid personally and need reimbursement, not a direct payment to someone else.')">Payment Request</button>
+              <button class="decision-btn" data-correct="true" onclick="decisionAnswer(this,'ds-m3-fin3','correct-fb','Correct. Member Reimbursement is specifically for situations where a member paid an approved chapter expense out-of-pocket and is seeking to recover those funds from the chapter.')">Member Reimbursement</button>
+            </div>
+            <div class="decision-feedback" id="ds-m3-fin3-fb"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.12 Event Workflow: Two Required Forms</h3>
+        <p>Every official chapter event requires two forms to be submitted at different times. Missing either form is a compliance issue.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px;">
+          <div style="background:rgba(198,154,63,0.06); border:1px solid rgba(198,154,63,0.25); border-radius:6px; padding:16px;">
+            <div style="font-family:'Cinzel',serif; font-size:0.72rem; color:var(--gold); margin-bottom:8px;">BEFORE THE EVENT</div>
+            <div style="font-size:0.88rem; font-weight:600; color:var(--crimson-dark); margin-bottom:6px;">Event Information Form</div>
+            <p style="font-size:0.8rem; color:var(--text); line-height:1.5;">Submit event details for chapter approval and website listing before the event takes place. This form is required to get chapter authorization for the event.</p>
+          </div>
+          <div style="background:rgba(112,17,12,0.04); border:1px solid rgba(112,17,12,0.15); border-radius:6px; padding:16px;">
+            <div style="font-family:'Cinzel',serif; font-size:0.72rem; color:var(--crimson); margin-bottom:8px;">AFTER THE EVENT (WITHIN 24 HOURS)</div>
+            <div style="font-size:0.88rem; font-weight:600; color:var(--crimson-dark); margin-bottom:6px;">Post Event Summary</div>
+            <p style="font-size:0.8rem; color:var(--text); line-height:1.5;">Submit the post-event report within 24 hours of any official event concluding. This documents attendance, outcomes, and any relevant details for chapter records.</p>
+          </div>
+        </div>
+        <div class="warning-box" style="margin-top:14px;">
+          <strong>Time-Sensitive</strong>
+          The Post Event Summary must be submitted within <strong>24 hours</strong> of the event. Late submissions may not be accepted and could affect the event's standing in chapter records.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>3.13 Remaining Dashboard Sections</h3>
+        <p><strong>Conference Calls:</strong> The Conference Calls section provides access to chapter meeting call links. Zoom recordings require a passcode. Google Meet is the alternative meeting platform. Check this section for call-in details before chapter meetings.</p>
+        <p><strong>DLA Store:</strong> The DLA Store carries chapter merchandise and paraphernalia. Items available through the store are official chapter products.</p>
+        <p><strong>Vendors:</strong> The Vendors section lists approved chapter vendors. Before sourcing goods or services for chapter events, check this directory for preferred vendors.</p>
+        <p><strong>My Account:</strong> Manage your profile information, update your password, and adjust account settings. Keep your contact information current so chapter communications reach you.</p>
+        <p><strong>Sign Out:</strong> Always sign out of the portal when using a shared or public device. Your member portal session contains private chapter information.</p>
+      </div>
+
+      <div class="content-card">
+        <h3>3.14 Role-Based Access: What Some Members See</h3>
+        <p>Standard members see the navigation sections described above. Some members with administrative roles will see additional items in their dashboard that are not visible to standard members:</p>
+        <table class="nav-table">
+          <thead><tr><th>Admin Item</th><th>Purpose</th><th>Who Sees It</th></tr></thead>
+          <tbody>
+            <tr><td>Admin (/portal/admin.html)</td><td>General administration panel</td><td>Administrators only</td></tr>
+            <tr><td>Blog Admin (/portal/blog-admin.html)</td><td>Manage chapter news and blog content</td><td>Content administrators only</td></tr>
+            <tr><td>Training Report (/portal/training-report.html)</td><td>View chapter-wide training completion data</td><td>Training administrators only</td></tr>
+            <tr><td>Volunteer Admin Dashboard</td><td>Manage DLGRF volunteer registrations</td><td>Event administrators only</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box">
+          <strong>If You See Admin Items</strong>
+          If your sidebar includes Admin, Blog Admin, or Training Report links, you have been assigned an administrative role. These functions carry chapter responsibilities. Do not access admin areas unless you have been briefed on those responsibilities.
+        </div>
+      </div>
+
+      <!-- KNOWLEDGE CHECK 3 -->
+      <div class="kcheck" id="kcheck-m3">
+        <div class="kcheck-header">KNOWLEDGE CHECK &mdash; MODULE 3</div>
+        <div class="kcheck-body">
+          <div class="kq" id="kq-m3-1">
+            <div class="kq-text">1. A brother needs to formally rejoin after a period of inactivity. Which form does he use?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m3-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> New Candidate Form</button>
+              <button class="kq-option" data-qid="m3-1" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Reclamation Form</button>
+              <button class="kq-option" data-qid="m3-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Committee Sign-Up</button>
+            </div>
+            <div class="kq-feedback" id="kq-m3-1-fb"></div>
+          </div>
+          <div class="kq" id="kq-m3-2">
+            <div class="kq-text">2. Which form is submitted BEFORE an event to obtain chapter approval and website listing?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m3-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Post Event Summary</button>
+              <button class="kq-option" data-qid="m3-2" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Event Information Form</button>
+              <button class="kq-option" data-qid="m3-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Committee Budget Request</button>
+            </div>
+            <div class="kq-feedback" id="kq-m3-2-fb"></div>
+          </div>
+          <div class="kq" id="kq-m3-3">
+            <div class="kq-text">3. A member paid for approved event supplies out of their own pocket. Which form do they use to recover those funds?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m3-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Payment Request</button>
+              <button class="kq-option" data-qid="m3-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">B</span> Committee Budget Request</button>
+              <button class="kq-option" data-qid="m3-3" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">C</span> Member Reimbursement</button>
+            </div>
+            <div class="kq-feedback" id="kq-m3-3-fb"></div>
+          </div>
+          <div class="kq" id="kq-m3-4">
+            <div class="kq-text">4. Official DLA logos are stored in which Documents folder?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m3-4" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Chapter Images</button>
+              <button class="kq-option" data-qid="m3-4" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Chapter Branding</button>
+              <button class="kq-option" data-qid="m3-4" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Chapter Documents</button>
+            </div>
+            <div class="kq-feedback" id="kq-m3-4-fb"></div>
+          </div>
+          <button class="kcheck-submit" onclick="submitKCheck('m3',[{id:'m3-1',correct:'B'},{id:'m3-2',correct:'B'},{id:'m3-3',correct:'C'},{id:'m3-4',correct:'B'}])">Submit Answers</button>
+          <div class="kcheck-result" id="kcheck-m3-result"></div>
+        </div>
+      </div>
+
+      <div id="nav-buttons">
+        <button class="nav-prev" onclick="goToScreen('screen-m2')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Module 2
+        </button>
+        <span class="nav-progress-text">Module 3 of 5</span>
+        <button class="nav-next" onclick="goToScreen('screen-m4')">
+          Module 4
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-m3 -->
+
+
+    <!-- ══════════════ MODULE 4 ══════════════ -->
+    <div id="screen-m4" class="screen">
+      <div class="module-header">
+        <div class="mod-label">MODULE 4 OF 5 &nbsp;&bull;&nbsp; ~8 MINUTES</div>
+        <h2>Using the DLA Training System</h2>
+        <div class="mod-meta"><span>Training Hub vs My Training</span><span>Course catalog</span><span>Progress tracking</span></div>
+      </div>
+      <div class="module-progress-bar"><div class="module-progress-fill" style="width:0%" id="m4-prog"></div></div>
+
+      <div class="content-card">
+        <h3>Training Hub vs. My Training</h3>
+        <p>The DLA Training System has two primary views accessible from the Portal's Training dashboard section. Understanding the distinction will save you time when navigating to the right area.</p>
+        <div class="hub-sections">
+          <div class="hub-card">
+            <h4>My Training</h4>
+            <p>Your personal training dashboard. Shows courses you have started, completed, or need to complete. Includes stats: Available, In Progress, and Completed counts. Use filters here to narrow by status or priority.</p>
+          </div>
+          <div class="hub-card">
+            <h4>Chapter Training</h4>
+            <p>The full catalog of courses made available to the chapter. Browse all available courses, including those you have not yet started.</p>
+          </div>
+          <div class="hub-card">
+            <h4>Continuous Fraternal Learning</h4>
+            <p>Supplemental learning resources for ongoing brotherhood development beyond chapter-required courses.</p>
+          </div>
+          <div class="hub-card">
+            <h4>Kappa League Development</h4>
+            <p>Resources and courses specifically related to the Guide Right and Kappa League youth mentorship program.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>My Training Dashboard: Filters and Stats</h3>
+        <p>The My Training dashboard displays three stat cards at the top: <strong>Available</strong> (courses you can launch now), <strong>In Progress</strong> (courses you have started but not completed), and <strong>Completed</strong> (courses with a recorded completion).</p>
+        <p>Below the stats, course filter tabs let you narrow the course list:</p>
+        <ul>
+          <li><strong>All Courses</strong> &mdash; Shows the complete catalog regardless of status</li>
+          <li><strong>In Progress</strong> &mdash; Shows only courses where partial progress has been recorded</li>
+          <li><strong>Completed</strong> &mdash; Shows only courses you have finished</li>
+          <li><strong>Required</strong> &mdash; Shows courses the chapter has designated as priority training that all members should complete</li>
+        </ul>
+        <div class="info-box">
+          <strong>Required Filter</strong>
+          The Required filter does not mean "mandatory by Kappa Alpha Psi National." It means courses the Denton-Lewisville Chapter has flagged as priority training for the current administration. Check this filter regularly.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>Course Card Anatomy</h3>
+        <p>Each course appears as a card with consistent components. Understanding what each element means prevents confusion about a course's status and availability.</p>
+        <table class="nav-table">
+          <thead><tr><th>Card Element</th><th>What It Tells You</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Badge (top-left)</strong></td><td>Status label: Required, Foundation, New, Coming Soon, or Draft / Pending Approval</td></tr>
+            <tr><td><strong>Category</strong></td><td>The subject area (e.g., Chapter Governance, Chapter Operations, Brotherhood)</td></tr>
+            <tr><td><strong>Course Title</strong></td><td>The full name of the course</td></tr>
+            <tr><td><strong>Module count</strong></td><td>Number of modules in the course (e.g., "6 Modules")</td></tr>
+            <tr><td><strong>Duration</strong></td><td>Estimated completion time (e.g., "~45 min")</td></tr>
+            <tr><td><strong>Certificate indicator</strong></td><td>A certificate icon indicates the course awards a completion certificate</td></tr>
+            <tr><td><strong>Action button</strong></td><td>Start, Continue, Completed (locked), Preview Draft, or Coming Soon (unavailable)</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:18px;">Understanding Badge Labels</h4>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;">
+          <span class="badge-pill badge-required">Required</span>
+          <span class="badge-pill badge-foundation">Foundation</span>
+          <span class="badge-pill badge-new">New</span>
+          <span class="badge-pill badge-coming">Coming Soon</span>
+          <span class="badge-pill badge-draft">Draft / Pending</span>
+        </div>
+        <table class="nav-table" style="margin-top:12px;">
+          <thead><tr><th>Badge</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Required</strong></td><td>Designated as priority training by DLA chapter administration</td></tr>
+            <tr><td><strong>Foundation</strong></td><td>Core fraternal knowledge base; essential compliance or governance content</td></tr>
+            <tr><td><strong>New</strong></td><td>Recently added to the catalog; not yet been available in previous administrations</td></tr>
+            <tr><td><strong>Coming Soon</strong></td><td>Course is in development; not yet available to launch</td></tr>
+            <tr><td><strong>Draft / Pending Approval</strong></td><td>Content exists but has not completed final review and approval; available only for preview</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-card">
+        <h3>Current Training Catalog</h3>
+        <p>The following courses make up the current DLA training catalog. Review each course's status before attempting to launch it.</p>
+
+        <p style="font-family:'Cinzel',serif; font-size:0.7rem; color:var(--gold); letter-spacing:0.08em; margin-bottom:8px;">AVAILABLE COURSES</p>
+        <div class="course-catalog">
+          <div class="course-card">
+            <div class="course-badge-area"><span class="badge-pill badge-required">Required</span></div>
+            <div class="course-info">
+              <div class="cc-category">Chapter Governance</div>
+              <div class="cc-title">Parliamentary Procedure: Robert's Rules of Order</div>
+              <div class="cc-meta"><span>6 Modules</span><span>~45 min</span><span>Certificate</span></div>
+            </div>
+            <div class="course-action"><span class="btn-launch">Start</span></div>
+          </div>
+          <div class="course-card">
+            <div class="course-badge-area"><span class="badge-pill badge-foundation">Foundation</span></div>
+            <div class="course-info">
+              <div class="cc-category">Fraternity Compliance</div>
+              <div class="cc-title">501(c)(3) &amp; 501(c)(7) Compliance Training</div>
+              <div class="cc-meta"><span>12 Modules</span><span>~60 min</span></div>
+            </div>
+            <div class="course-action"><span class="btn-launch">Start</span></div>
+          </div>
+          <div class="course-card">
+            <div class="course-badge-area"><span class="badge-pill badge-required">Required</span></div>
+            <div class="course-info">
+              <div class="cc-category">Brotherhood</div>
+              <div class="cc-title">Membership Education &amp; Standards</div>
+              <div class="cc-meta"><span>8 Modules</span><span>~50 min</span></div>
+            </div>
+            <div class="course-action"><span class="btn-launch">Start</span></div>
+          </div>
+          <div class="course-card">
+            <div class="course-badge-area"><span class="badge-pill badge-new">New</span></div>
+            <div class="course-info">
+              <div class="cc-category">Youth Development</div>
+              <div class="cc-title">Guide Right &amp; Kappa League Mentor Training</div>
+              <div class="cc-meta"><span>5 Modules</span><span>~40 min</span></div>
+            </div>
+            <div class="course-action"><span class="btn-launch">Start</span></div>
+          </div>
+          <div class="course-card">
+            <div class="course-badge-area"></div>
+            <div class="course-info">
+              <div class="cc-category">Chapter Operations</div>
+              <div class="cc-title">Understanding the Constitutions and Statutes</div>
+              <div class="cc-meta"><span>9 Modules</span><span>~148 min</span></div>
+            </div>
+            <div class="course-action"><span class="btn-launch">Start</span></div>
+          </div>
+          <div class="course-card">
+            <div class="course-badge-area"><span class="badge-pill badge-new">New</span></div>
+            <div class="course-info">
+              <div class="cc-category">Chapter Operations</div>
+              <div class="cc-title">Chapter Property Accountability</div>
+              <div class="cc-meta"><span>4 Modules</span><span>~30 min</span><span>Certificate</span></div>
+            </div>
+            <div class="course-action"><span class="btn-launch">Start</span></div>
+          </div>
+        </div>
+
+        <p style="font-family:'Cinzel',serif; font-size:0.7rem; color:var(--gold); letter-spacing:0.08em; margin:16px 0 8px;">COMING SOON</p>
+        <div class="course-catalog">
+          <div class="course-card" style="opacity:0.7;">
+            <div class="course-badge-area"><span class="badge-pill badge-new" style="background:var(--gray-200);color:var(--gray-600);">New</span><span class="badge-pill badge-coming" style="margin-top:4px;">Coming Soon</span></div>
+            <div class="course-info">
+              <div class="cc-category">Chapter Operations</div>
+              <div class="cc-title">Chapter Financial Literacy &amp; Dues Management</div>
+              <div class="cc-status">Not yet available to launch</div>
+            </div>
+            <div class="course-action"><span class="btn-na">Coming Soon</span></div>
+          </div>
+          <div class="course-card" style="opacity:0.7;">
+            <div class="course-badge-area"><span class="badge-pill badge-coming">Coming Soon</span></div>
+            <div class="course-info">
+              <div class="cc-category">Chapter Operations</div>
+              <div class="cc-title">Understanding Chapter Committees and Directorates</div>
+              <div class="cc-status">Not yet available to launch</div>
+            </div>
+            <div class="course-action"><span class="btn-na">Coming Soon</span></div>
+          </div>
+        </div>
+
+        <p style="font-family:'Cinzel',serif; font-size:0.7rem; color:var(--gold); letter-spacing:0.08em; margin:16px 0 8px;">UNDER REVIEW &amp; DRAFT</p>
+        <div class="course-catalog">
+          <div class="course-card" style="opacity:0.75; border-left:3px solid #ffc107;">
+            <div class="course-badge-area"><span class="badge-pill badge-draft">Draft</span></div>
+            <div class="course-info">
+              <div class="cc-category">Chapter Governance</div>
+              <div class="cc-title">Bylaw Amendment Submission &amp; Review SOP</div>
+              <div class="cc-meta"><span>7 Modules</span><span>~20 min</span></div>
+              <div class="cc-status">Pending Approval &mdash; content not yet final</div>
+            </div>
+            <div class="course-action"><span class="btn-preview">Preview Draft</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3>Progress Tracking: How It Works</h3>
+        <p>The DLA Training System uses browser localStorage to track your progress within supported courses. This means your progress is saved to the browser on the device you are using, not to a central server account.</p>
+        <div class="info-box">
+          <strong>What This Means Practically</strong>
+          If you complete 3 of 6 modules on your laptop and then open the training on a different computer or browser, your progress will not carry over. Always use the same browser and device for a course until completion.
+        </div>
+        <p style="margin-top:12px;">The following courses currently support localStorage-based progress tracking:</p>
+        <ul>
+          <li>Parliamentary Procedure: Robert's Rules of Order <em>(key: dla_prog_roberts)</em></li>
+          <li>501(c)(3) &amp; 501(c)(7) Compliance Training <em>(key: dla_prog_compliance)</em></li>
+          <li>Membership Education &amp; Standards <em>(key: dla_prog_membership)</em></li>
+          <li>Guide Right &amp; Kappa League Mentor Training <em>(key: dla_prog_guidright)</em></li>
+        </ul>
+        <p>Not all courses currently in the catalog are connected to progress tracking. If a course's card does not show a Continue button after you have started it, progress tracking may not be enabled for that course.</p>
+        <p>When progress tracking is active, the course action button will change from <strong>Start</strong> to <strong>Continue</strong> once you have begun a course. A Completed state locks the button once you have finished.</p>
+      </div>
+
+      <!-- KNOWLEDGE CHECK 4 -->
+      <div class="kcheck" id="kcheck-m4">
+        <div class="kcheck-header">KNOWLEDGE CHECK &mdash; MODULE 4</div>
+        <div class="kcheck-body">
+          <div class="kq" id="kq-m4-1">
+            <div class="kq-text">1. A member wants to see only courses the chapter has designated as priority. Which filter do they use?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m4-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> In Progress</button>
+              <button class="kq-option" data-qid="m4-1" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">B</span> All Courses</button>
+              <button class="kq-option" data-qid="m4-1" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">C</span> Required</button>
+            </div>
+            <div class="kq-feedback" id="kq-m4-1-fb"></div>
+          </div>
+          <div class="kq" id="kq-m4-2">
+            <div class="kq-text">2. What does a "Coming Soon" badge on a course card indicate?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m4-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> The course is available but not yet recommended</button>
+              <button class="kq-option" data-qid="m4-2" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> The course is not yet available to launch</button>
+              <button class="kq-option" data-qid="m4-2" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> The course is in draft review</button>
+            </div>
+            <div class="kq-feedback" id="kq-m4-2-fb"></div>
+          </div>
+          <div class="kq" id="kq-m4-3">
+            <div class="kq-text">3. A member started the Parliamentary Procedure course on their work laptop. They open the course on their home PC. What happens to their progress?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m4-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> Progress syncs automatically via the portal account</button>
+              <button class="kq-option" data-qid="m4-3" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> Progress will not carry over because it is stored in browser localStorage on the original device</button>
+              <button class="kq-option" data-qid="m4-3" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> Progress is deleted when switching devices</button>
+            </div>
+            <div class="kq-feedback" id="kq-m4-3-fb"></div>
+          </div>
+          <div class="kq" id="kq-m4-4">
+            <div class="kq-text">4. What does a "Draft / Pending Approval" badge mean?</div>
+            <div class="kq-options">
+              <button class="kq-option" data-qid="m4-4" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">A</span> The course has been completed by the member but not yet approved by admin</button>
+              <button class="kq-option" data-qid="m4-4" data-correct="true" onclick="selectKQ(this)"><span class="opt-letter">B</span> The course content exists but has not completed final review and approval</button>
+              <button class="kq-option" data-qid="m4-4" data-correct="false" onclick="selectKQ(this)"><span class="opt-letter">C</span> The course is the same as Coming Soon</button>
+            </div>
+            <div class="kq-feedback" id="kq-m4-4-fb"></div>
+          </div>
+          <button class="kcheck-submit" onclick="submitKCheck('m4',[{id:'m4-1',correct:'C'},{id:'m4-2',correct:'B'},{id:'m4-3',correct:'B'},{id:'m4-4',correct:'B'}])">Submit Answers</button>
+          <div class="kcheck-result" id="kcheck-m4-result"></div>
+        </div>
+      </div>
+
+      <div id="nav-buttons">
+        <button class="nav-prev" onclick="goToScreen('screen-m3')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Module 3
+        </button>
+        <span class="nav-progress-text">Module 4 of 5</span>
+        <button class="nav-next" onclick="goToScreen('screen-m5')">
+          Module 5
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-m4 -->
+
+
+    <!-- ══════════════ MODULE 5 ══════════════ -->
+    <div id="screen-m5" class="screen">
+      <div class="module-header">
+        <div class="mod-label">MODULE 5 OF 5 &nbsp;&bull;&nbsp; ~8 MINUTES</div>
+        <h2>Final Digital Resource Challenge</h2>
+        <div class="mod-meta"><span>15 scenario-based questions</span><span>System + Section + Form where applicable</span></div>
+      </div>
+      <div class="module-progress-bar"><div class="module-progress-fill" style="width:0%" id="m5-prog"></div></div>
+
+      <div class="content-card">
+        <h3>Instructions</h3>
+        <p>Each scenario below presents a real chapter situation. Select the best answer that identifies which environment, section, or form applies. These scenarios draw directly from everything covered in Modules 1 through 4. Answer all 15 before reviewing your score.</p>
+      </div>
+
+      <div class="m5-score-bar" id="m5-score-bar" style="display:none;">
+        <strong>Your Score: </strong><span id="m5-score-text"></span>
+      </div>
+
+      <div class="scenario-list" id="scenario-list">
+
+        <!-- S1 -->
+        <div class="scenario-item" id="sc-1">
+          <div class="scenario-item-header">
+            <span class="scenario-num">1</span>
+            <span class="scenario-q">A community partner wants to learn about what DLA does in the community.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="1" data-correct="true" onclick="scenarioAnswer(this,1)">Public Website &rarr; About section</button>
+              <button class="scenario-opt" data-sc="1" data-correct="false" onclick="scenarioAnswer(this,1)">Member Portal &rarr; Chapter News</button>
+              <button class="scenario-opt" data-sc="1" data-correct="false" onclick="scenarioAnswer(this,1)">Training System &rarr; Chapter Training</button>
+            </div>
+            <div class="scenario-feedback" id="sc-1-fb"></div>
+          </div>
+        </div>
+
+        <!-- S2 -->
+        <div class="scenario-item" id="sc-2">
+          <div class="scenario-item-header">
+            <span class="scenario-num">2</span>
+            <span class="scenario-q">A parent wants information about the Guide Right / Kappa League program for their teenager.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="2" data-correct="false" onclick="scenarioAnswer(this,2)">Member Portal &rarr; Training &rarr; Kappa League Development</button>
+              <button class="scenario-opt" data-sc="2" data-correct="true" onclick="scenarioAnswer(this,2)">Public Website &rarr; Guide Right (links to dlaguideright.org)</button>
+              <button class="scenario-opt" data-sc="2" data-correct="false" onclick="scenarioAnswer(this,2)">Member Portal &rarr; Apps &rarr; DLA Kappa Member App</button>
+            </div>
+            <div class="scenario-feedback" id="sc-2-fb"></div>
+          </div>
+        </div>
+
+        <!-- S3 -->
+        <div class="scenario-item" id="sc-3">
+          <div class="scenario-item-header">
+            <span class="scenario-num">3</span>
+            <span class="scenario-q">A brother needs a copy of the Chapter Bylaws.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="3" data-correct="false" onclick="scenarioAnswer(this,3)">Public Website &rarr; About section</button>
+              <button class="scenario-opt" data-sc="3" data-correct="true" onclick="scenarioAnswer(this,3)">Member Portal &rarr; Documents &rarr; Chapter By Laws</button>
+              <button class="scenario-opt" data-sc="3" data-correct="false" onclick="scenarioAnswer(this,3)">Member Portal &rarr; Guidelines &amp; Manuals</button>
+            </div>
+            <div class="scenario-feedback" id="sc-3-fb"></div>
+          </div>
+        </div>
+
+        <!-- S4 -->
+        <div class="scenario-item" id="sc-4">
+          <div class="scenario-item-header">
+            <span class="scenario-num">4</span>
+            <span class="scenario-q">A member needs an official DLA logo for a chapter communication piece.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="4" data-correct="true" onclick="scenarioAnswer(this,4)">Member Portal &rarr; Documents &rarr; Chapter Branding</button>
+              <button class="scenario-opt" data-sc="4" data-correct="false" onclick="scenarioAnswer(this,4)">Member Portal &rarr; Documents &rarr; Chapter Images</button>
+              <button class="scenario-opt" data-sc="4" data-correct="false" onclick="scenarioAnswer(this,4)">Public Website &rarr; About page</button>
+            </div>
+            <div class="scenario-feedback" id="sc-4-fb"></div>
+          </div>
+        </div>
+
+        <!-- S5 -->
+        <div class="scenario-item" id="sc-5">
+          <div class="scenario-item-header">
+            <span class="scenario-num">5</span>
+            <span class="scenario-q">A committee needs chapter-allocated funding for its planned activities for the upcoming fiscal year.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="5" data-correct="false" onclick="scenarioAnswer(this,5)">Member Portal &rarr; Forms &rarr; Payment Request</button>
+              <button class="scenario-opt" data-sc="5" data-correct="true" onclick="scenarioAnswer(this,5)">Member Portal &rarr; Forms &rarr; Committee Budget Request</button>
+              <button class="scenario-opt" data-sc="5" data-correct="false" onclick="scenarioAnswer(this,5)">Member Portal &rarr; Forms &rarr; Member Reimbursement</button>
+            </div>
+            <div class="scenario-feedback" id="sc-5-fb"></div>
+          </div>
+        </div>
+
+        <!-- S6 -->
+        <div class="scenario-item" id="sc-6">
+          <div class="scenario-item-header">
+            <span class="scenario-num">6</span>
+            <span class="scenario-q">A vendor provided services for a chapter event and needs to be paid directly by the chapter treasury.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="6" data-correct="false" onclick="scenarioAnswer(this,6)">Member Portal &rarr; Forms &rarr; Committee Budget Request</button>
+              <button class="scenario-opt" data-sc="6" data-correct="true" onclick="scenarioAnswer(this,6)">Member Portal &rarr; Forms &rarr; Payment Request</button>
+              <button class="scenario-opt" data-sc="6" data-correct="false" onclick="scenarioAnswer(this,6)">Member Portal &rarr; Forms &rarr; Member Reimbursement</button>
+            </div>
+            <div class="scenario-feedback" id="sc-6-fb"></div>
+          </div>
+        </div>
+
+        <!-- S7 -->
+        <div class="scenario-item" id="sc-7">
+          <div class="scenario-item-header">
+            <span class="scenario-num">7</span>
+            <span class="scenario-q">A member personally paid for supplies for an approved chapter event and needs to recover that expense.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="7" data-correct="false" onclick="scenarioAnswer(this,7)">Member Portal &rarr; Forms &rarr; Payment Request</button>
+              <button class="scenario-opt" data-sc="7" data-correct="false" onclick="scenarioAnswer(this,7)">Member Portal &rarr; Forms &rarr; Committee Budget Request</button>
+              <button class="scenario-opt" data-sc="7" data-correct="true" onclick="scenarioAnswer(this,7)">Member Portal &rarr; Forms &rarr; Member Reimbursement</button>
+            </div>
+            <div class="scenario-feedback" id="sc-7-fb"></div>
+          </div>
+        </div>
+
+        <!-- S8 -->
+        <div class="scenario-item" id="sc-8">
+          <div class="scenario-item-header">
+            <span class="scenario-num">8</span>
+            <span class="scenario-q">A committee chair wants to get chapter approval for an upcoming event and have it listed on the website.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="8" data-correct="true" onclick="scenarioAnswer(this,8)">Member Portal &rarr; Forms &rarr; Event Information Form</button>
+              <button class="scenario-opt" data-sc="8" data-correct="false" onclick="scenarioAnswer(this,8)">Member Portal &rarr; Forms &rarr; Post Event Summary</button>
+              <button class="scenario-opt" data-sc="8" data-correct="false" onclick="scenarioAnswer(this,8)">Member Portal &rarr; Forms &rarr; Committee Sign-Up</button>
+            </div>
+            <div class="scenario-feedback" id="sc-8-fb"></div>
+          </div>
+        </div>
+
+        <!-- S9 -->
+        <div class="scenario-item" id="sc-9">
+          <div class="scenario-item-header">
+            <span class="scenario-num">9</span>
+            <span class="scenario-q">An official chapter event just concluded. What must be submitted within 24 hours?</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="9" data-correct="false" onclick="scenarioAnswer(this,9)">Member Portal &rarr; Forms &rarr; Event Information Form</button>
+              <button class="scenario-opt" data-sc="9" data-correct="true" onclick="scenarioAnswer(this,9)">Member Portal &rarr; Forms &rarr; Post Event Summary</button>
+              <button class="scenario-opt" data-sc="9" data-correct="false" onclick="scenarioAnswer(this,9)">Member Portal &rarr; Chapter News</button>
+            </div>
+            <div class="scenario-feedback" id="sc-9-fb"></div>
+          </div>
+        </div>
+
+        <!-- S10 -->
+        <div class="scenario-item" id="sc-10">
+          <div class="scenario-item-header">
+            <span class="scenario-num">10</span>
+            <span class="scenario-q">A member wants to formally propose a change to the Chapter Bylaws.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="10" data-correct="false" onclick="scenarioAnswer(this,10)">Email the Polemarch directly</button>
+              <button class="scenario-opt" data-sc="10" data-correct="true" onclick="scenarioAnswer(this,10)">Member Portal &rarr; Forms &rarr; Bylaws Amendment Proposal</button>
+              <button class="scenario-opt" data-sc="10" data-correct="false" onclick="scenarioAnswer(this,10)">Training System &rarr; Bylaw Amendment SOP course (Draft)</button>
+            </div>
+            <div class="scenario-feedback" id="sc-10-fb"></div>
+          </div>
+        </div>
+
+        <!-- S11 -->
+        <div class="scenario-item" id="sc-11">
+          <div class="scenario-item-header">
+            <span class="scenario-num">11</span>
+            <span class="scenario-q">A member needs to understand how to make motions and conduct voting correctly at chapter meetings.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="11" data-correct="false" onclick="scenarioAnswer(this,11)">Member Portal &rarr; Documents &rarr; Chapter Meetings</button>
+              <button class="scenario-opt" data-sc="11" data-correct="true" onclick="scenarioAnswer(this,11)">Training System &rarr; Parliamentary Procedure: Robert's Rules of Order</button>
+              <button class="scenario-opt" data-sc="11" data-correct="false" onclick="scenarioAnswer(this,11)">Public Website &rarr; About section</button>
+            </div>
+            <div class="scenario-feedback" id="sc-11-fb"></div>
+          </div>
+        </div>
+
+        <!-- S12 -->
+        <div class="scenario-item" id="sc-12">
+          <div class="scenario-item-header">
+            <span class="scenario-num">12</span>
+            <span class="scenario-q">A brother wants to prepare to become a Guide Right / Kappa League mentor.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="12" data-correct="false" onclick="scenarioAnswer(this,12)">Public Website &rarr; Guide Right (dlaguideright.org)</button>
+              <button class="scenario-opt" data-sc="12" data-correct="true" onclick="scenarioAnswer(this,12)">Training System &rarr; Guide Right &amp; Kappa League Mentor Training</button>
+              <button class="scenario-opt" data-sc="12" data-correct="false" onclick="scenarioAnswer(this,12)">Member Portal &rarr; Apps &rarr; KappaLoop</button>
+            </div>
+            <div class="scenario-feedback" id="sc-12-fb"></div>
+          </div>
+        </div>
+
+        <!-- S13 -->
+        <div class="scenario-item" id="sc-13">
+          <div class="scenario-item-header">
+            <span class="scenario-num">13</span>
+            <span class="scenario-q">A course card shows "Draft / Pending Approval." What does this mean for the member?</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="13" data-correct="false" onclick="scenarioAnswer(this,13)">The course is the same as Coming Soon and has no content yet</button>
+              <button class="scenario-opt" data-sc="13" data-correct="true" onclick="scenarioAnswer(this,13)">Content exists but has not completed final approval; only a preview is available</button>
+              <button class="scenario-opt" data-sc="13" data-correct="false" onclick="scenarioAnswer(this,13)">The member's individual submission is pending review</button>
+            </div>
+            <div class="scenario-feedback" id="sc-13-fb"></div>
+          </div>
+        </div>
+
+        <!-- S14 -->
+        <div class="scenario-item" id="sc-14">
+          <div class="scenario-item-header">
+            <span class="scenario-num">14</span>
+            <span class="scenario-q">A member wants to see only courses the chapter considers essential for all members this administration.</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="14" data-correct="false" onclick="scenarioAnswer(this,14)">My Training &rarr; In Progress filter</button>
+              <button class="scenario-opt" data-sc="14" data-correct="false" onclick="scenarioAnswer(this,14)">My Training &rarr; All Courses filter</button>
+              <button class="scenario-opt" data-sc="14" data-correct="true" onclick="scenarioAnswer(this,14)">My Training &rarr; Required filter</button>
+            </div>
+            <div class="scenario-feedback" id="sc-14-fb"></div>
+          </div>
+        </div>
+
+        <!-- S15 -->
+        <div class="scenario-item" id="sc-15">
+          <div class="scenario-item-header">
+            <span class="scenario-num">15</span>
+            <span class="scenario-q">A course card shows a "Continue" button instead of "Start." What does this indicate?</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-options">
+              <button class="scenario-opt" data-sc="15" data-correct="false" onclick="scenarioAnswer(this,15)">The course is a continuation of a different course</button>
+              <button class="scenario-opt" data-sc="15" data-correct="true" onclick="scenarioAnswer(this,15)">Partial progress has been recorded in browser localStorage for that course on this device</button>
+              <button class="scenario-opt" data-sc="15" data-correct="false" onclick="scenarioAnswer(this,15)">The course was completed but needs to be retaken</button>
+            </div>
+            <div class="scenario-feedback" id="sc-15-fb"></div>
+          </div>
+        </div>
+
+      </div><!-- /scenario-list -->
+
+      <button class="submit-assessment-btn" id="m5-submit-btn" onclick="submitM5()" style="margin-top:8px;">Check My Answers</button>
+
+      <div id="nav-buttons">
+        <button class="nav-prev" onclick="goToScreen('screen-m4')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Module 4
+        </button>
+        <span class="nav-progress-text">Module 5 of 5</span>
+        <button class="nav-next" onclick="goToScreen('screen-assessment')">
+          Final Assessment
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-m5 -->
+
+
+    <!-- ══════════════ FINAL ASSESSMENT ══════════════ -->
+    <div id="screen-assessment" class="screen">
+      <div class="assessment-header">
+        <h2>Final Assessment</h2>
+        <p>15 questions &bull; 80% required to pass (12 of 15 correct) &bull; Retry allowed</p>
+      </div>
+
+      <div id="assessment-form">
+        <!-- AQ1 -->
+        <div class="assessment-q" id="aq-1">
+          <div class="aq-num">QUESTION 1 OF 15</div>
+          <div class="aq-text">Which environment is used for chapter business, forms, and internal member resources?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="1" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Public Website</button>
+            <button class="assessment-opt" data-aq="1" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Member Portal</button>
+            <button class="assessment-opt" data-aq="1" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Training System</button>
+            <button class="assessment-opt" data-aq="1" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> All three equally</button>
+          </div>
+          <div class="assessment-feedback" id="aq-1-fb"></div>
+        </div>
+
+        <!-- AQ2 -->
+        <div class="assessment-q" id="aq-2">
+          <div class="aq-num">QUESTION 2 OF 15</div>
+          <div class="aq-text">A community partner wants to learn about DLA's programs and community work. Where should they go?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="2" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">A</span> Public Website &rarr; Programs section</button>
+            <button class="assessment-opt" data-aq="2" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> Member Portal &rarr; Chapter News</button>
+            <button class="assessment-opt" data-aq="2" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Training System &rarr; Chapter Training</button>
+            <button class="assessment-opt" data-aq="2" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Member Portal &rarr; Documents</button>
+          </div>
+          <div class="assessment-feedback" id="aq-2-fb"></div>
+        </div>
+
+        <!-- AQ3 -->
+        <div class="assessment-q" id="aq-3">
+          <div class="aq-num">QUESTION 3 OF 15</div>
+          <div class="aq-text">A member needs to access the Chapter Bylaws. What is the correct path?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="3" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Public Website &rarr; About</button>
+            <button class="assessment-opt" data-aq="3" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> Member Portal &rarr; Guidelines &amp; Manuals</button>
+            <button class="assessment-opt" data-aq="3" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">C</span> Member Portal &rarr; Documents &rarr; Chapter By Laws</button>
+            <button class="assessment-opt" data-aq="3" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Training System &rarr; Understanding the Constitutions and Statutes</button>
+          </div>
+          <div class="assessment-feedback" id="aq-3-fb"></div>
+        </div>
+
+        <!-- AQ4 -->
+        <div class="assessment-q" id="aq-4">
+          <div class="aq-num">QUESTION 4 OF 15</div>
+          <div class="aq-text">Which form is submitted BEFORE an event occurs to obtain chapter approval and website listing?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="4" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Post Event Summary</button>
+            <button class="assessment-opt" data-aq="4" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Event Information Form</button>
+            <button class="assessment-opt" data-aq="4" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Committee Budget Request</button>
+            <button class="assessment-opt" data-aq="4" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Committee Sign-Up</button>
+          </div>
+          <div class="assessment-feedback" id="aq-4-fb"></div>
+        </div>
+
+        <!-- AQ5 -->
+        <div class="assessment-q" id="aq-5">
+          <div class="aq-num">QUESTION 5 OF 15</div>
+          <div class="aq-text">Which form must be submitted within 24 hours AFTER an official event concludes?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="5" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Event Information Form</button>
+            <button class="assessment-opt" data-aq="5" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Post Event Summary</button>
+            <button class="assessment-opt" data-aq="5" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Payment Request</button>
+            <button class="assessment-opt" data-aq="5" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Member Reimbursement</button>
+          </div>
+          <div class="assessment-feedback" id="aq-5-fb"></div>
+        </div>
+
+        <!-- AQ6 -->
+        <div class="assessment-q" id="aq-6">
+          <div class="aq-num">QUESTION 6 OF 15</div>
+          <div class="aq-text">A committee chair needs to request that the chapter allocate planned budget for committee activities. Which form applies?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="6" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">A</span> Committee Budget Request</button>
+            <button class="assessment-opt" data-aq="6" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> Payment Request</button>
+            <button class="assessment-opt" data-aq="6" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Member Reimbursement</button>
+            <button class="assessment-opt" data-aq="6" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Event Information Form</button>
+          </div>
+          <div class="assessment-feedback" id="aq-6-fb"></div>
+        </div>
+
+        <!-- AQ7 -->
+        <div class="assessment-q" id="aq-7">
+          <div class="aq-num">QUESTION 7 OF 15</div>
+          <div class="aq-text">The chapter needs to pay a vendor directly for services rendered. Which form is used?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="7" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Committee Budget Request</button>
+            <button class="assessment-opt" data-aq="7" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Payment Request</button>
+            <button class="assessment-opt" data-aq="7" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Member Reimbursement</button>
+            <button class="assessment-opt" data-aq="7" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Post Event Summary</button>
+          </div>
+          <div class="assessment-feedback" id="aq-7-fb"></div>
+        </div>
+
+        <!-- AQ8 -->
+        <div class="assessment-q" id="aq-8">
+          <div class="aq-num">QUESTION 8 OF 15</div>
+          <div class="aq-text">A member personally paid for an approved chapter expense out-of-pocket. Which form do they use to recover those funds?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="8" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Payment Request</button>
+            <button class="assessment-opt" data-aq="8" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> Committee Budget Request</button>
+            <button class="assessment-opt" data-aq="8" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">C</span> Member Reimbursement</button>
+            <button class="assessment-opt" data-aq="8" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> DLGRF Volunteer Registration</button>
+          </div>
+          <div class="assessment-feedback" id="aq-8-fb"></div>
+        </div>
+
+        <!-- AQ9 -->
+        <div class="assessment-q" id="aq-9">
+          <div class="aq-num">QUESTION 9 OF 15</div>
+          <div class="aq-text">True or False: Official DLA logos and branding assets are stored in Documents &rarr; Chapter Branding in the Member Portal.</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="9" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">A</span> True</button>
+            <button class="assessment-opt" data-aq="9" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> False</button>
+          </div>
+          <div class="assessment-feedback" id="aq-9-fb"></div>
+        </div>
+
+        <!-- AQ10 -->
+        <div class="assessment-q" id="aq-10">
+          <div class="aq-num">QUESTION 10 OF 15</div>
+          <div class="aq-text">What does the Required filter in My Training show?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="10" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Courses mandated by Kappa Alpha Psi National Headquarters</button>
+            <button class="assessment-opt" data-aq="10" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Courses the chapter has designated as priority training for members this administration</button>
+            <button class="assessment-opt" data-aq="10" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> Courses that must be completed before you can access other courses</button>
+            <button class="assessment-opt" data-aq="10" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Courses that award a certificate</button>
+          </div>
+          <div class="assessment-feedback" id="aq-10-fb"></div>
+        </div>
+
+        <!-- AQ11 -->
+        <div class="assessment-q" id="aq-11">
+          <div class="aq-num">QUESTION 11 OF 15</div>
+          <div class="aq-text">What does "Coming Soon" mean when it appears on a training course card?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="11" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> The course is available but not yet recommended</button>
+            <button class="assessment-opt" data-aq="11" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> The course is not yet available to launch</button>
+            <button class="assessment-opt" data-aq="11" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> The course is in draft review pending approval</button>
+            <button class="assessment-opt" data-aq="11" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> The course recently launched and is newly available</button>
+          </div>
+          <div class="assessment-feedback" id="aq-11-fb"></div>
+        </div>
+
+        <!-- AQ12 -->
+        <div class="assessment-q" id="aq-12">
+          <div class="aq-num">QUESTION 12 OF 15</div>
+          <div class="aq-text">What does "Draft / Pending Approval" indicate on a course card?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="12" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> The course has no content yet and is the same as Coming Soon</button>
+            <button class="assessment-opt" data-aq="12" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Content exists but has not completed final review and approval; preview only is available</button>
+            <button class="assessment-opt" data-aq="12" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> The member's progress is pending an administrator review</button>
+            <button class="assessment-opt" data-aq="12" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> The course is available but not yet required</button>
+          </div>
+          <div class="assessment-feedback" id="aq-12-fb"></div>
+        </div>
+
+        <!-- AQ13 -->
+        <div class="assessment-q" id="aq-13">
+          <div class="aq-num">QUESTION 13 OF 15</div>
+          <div class="aq-text">A member wants to formally propose a revision to the Chapter Bylaws. Where do they find the correct form?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="13" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Member Portal &rarr; Documents &rarr; Chapter By Laws</button>
+            <button class="assessment-opt" data-aq="13" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> Training System &rarr; Bylaw Amendment SOP</button>
+            <button class="assessment-opt" data-aq="13" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">C</span> Member Portal &rarr; Forms &amp; Assessments &rarr; Bylaws Amendment Proposal</button>
+            <button class="assessment-opt" data-aq="13" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Public Website &rarr; Contact</button>
+          </div>
+          <div class="assessment-feedback" id="aq-13-fb"></div>
+        </div>
+
+        <!-- AQ14 -->
+        <div class="assessment-q" id="aq-14">
+          <div class="aq-num">QUESTION 14 OF 15</div>
+          <div class="aq-text">A course card shows a "Continue" button rather than "Start." What does this indicate?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="14" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> The course is a prerequisite continuation of a prior course</button>
+            <button class="assessment-opt" data-aq="14" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">B</span> Partial progress has been recorded for that course on this device</button>
+            <button class="assessment-opt" data-aq="14" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">C</span> The course has been completed and needs retaking</button>
+            <button class="assessment-opt" data-aq="14" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> The course requires administrator approval before starting</button>
+          </div>
+          <div class="assessment-feedback" id="aq-14-fb"></div>
+        </div>
+
+        <!-- AQ15 -->
+        <div class="assessment-q" id="aq-15">
+          <div class="aq-num">QUESTION 15 OF 15</div>
+          <div class="aq-text">Where do members access "My DLA Training" within the portal?</div>
+          <div class="assessment-options">
+            <button class="assessment-opt" data-aq="15" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">A</span> Portal &rarr; Documents &rarr; Chapter Training folder</button>
+            <button class="assessment-opt" data-aq="15" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">B</span> Directly at curriculead.com (external only)</button>
+            <button class="assessment-opt" data-aq="15" data-correct="true" onclick="selectAQ(this)"><span class="ao-letter">C</span> Portal &rarr; Training section &rarr; My DLA Training link</button>
+            <button class="assessment-opt" data-aq="15" data-correct="false" onclick="selectAQ(this)"><span class="ao-letter">D</span> Portal &rarr; My Account</button>
+          </div>
+          <div class="assessment-feedback" id="aq-15-fb"></div>
+        </div>
+
+        <button class="submit-assessment-btn" id="assessment-submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+      </div><!-- /assessment-form -->
+
+      <div class="assessment-results" id="assessment-results">
+        <div class="result-score" id="result-score-num"></div>
+        <div class="result-pct" id="result-score-pct"></div>
+        <div id="result-verdict"></div>
+        <div style="margin-top:16px; font-size:0.85rem; color:var(--gray-600);" id="result-review-msg"></div>
+        <div style="margin-top:14px;">
+          <button class="retry-btn" id="retry-btn" onclick="retryAssessment()">Retry Assessment</button>
+          <button class="cert-btn" id="cert-btn-assess" onclick="goToScreen('screen-cert')" style="display:none;">View Certificate</button>
+        </div>
+      </div>
+
+      <div id="nav-buttons" style="margin-top:20px;">
+        <button class="nav-prev" onclick="goToScreen('screen-m5')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Module 5
+        </button>
+        <span class="nav-progress-text">Final Assessment</span>
+        <button class="nav-next" id="assessment-next-btn" onclick="goToScreen('screen-cert')" style="display:none;">
+          Certificate
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div><!-- /screen-assessment -->
+
+
+    <!-- ══════════════ CERTIFICATE ══════════════ -->
+    <div id="screen-cert" class="screen">
+      <div id="cert-locked-msg" class="content-card" style="text-align:center; padding:40px;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gray-600)" stroke-width="1.5" style="margin-bottom:12px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <h3 style="color:var(--gray-600); font-size:1rem; margin-bottom:8px;">Certificate Not Yet Available</h3>
+        <p style="font-size:0.875rem; color:var(--gray-600);">Complete all modules and pass the Final Assessment with 80% or higher to unlock your certificate.</p>
+        <button class="start-btn" style="margin-top:20px;" onclick="goToScreen('screen-assessment')">Go to Assessment</button>
+      </div>
+      <div id="cert-unlocked" style="display:none;">
+        <div class="certificate-screen">
+          <div class="cert-kap-line">Kappa Alpha Psi Fraternity, Inc.</div>
+          <div class="cert-org-line">Denton-Lewisville (TX) Alumni Chapter</div>
+          <hr class="cert-divider">
+          <div class="cert-presented">This certifies that</div>
+          <input type="text" class="cert-name-input" id="cert-name-input" placeholder="Enter your full name" oninput="updateCertName(this.value)">
+          <div class="cert-name-display" id="cert-name-display"></div>
+          <div class="cert-course-name">has successfully completed</div>
+          <h2 style="font-family:'Cinzel',serif; font-size:1rem; color:var(--crimson-dark); margin:10px 0;">Website, Member Portal &amp; Training System Orientation</h2>
+          <div class="cert-course-name" style="font-size:0.8rem;">Chapter Operations &bull; DLA Member Training</div>
+          <div class="cert-date" id="cert-date-display"></div>
+          <hr class="cert-divider">
+          <div class="cert-footer">ACHIEVEMENT OF DIGITAL CHAPTER PROFICIENCY</div>
+          <button class="cert-print-btn" onclick="window.print()">Print Certificate</button>
+        </div>
+      </div>
+
+      <div id="nav-buttons" style="margin-top:20px;">
+        <button class="nav-prev" onclick="goToScreen('screen-assessment')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          Assessment
+        </button>
+        <span class="nav-progress-text">Certificate</span>
+        <div></div>
+      </div>
+    </div><!-- /screen-cert -->
+
+  </main>
+</div><!-- /layout -->
+
+<script>
+// ══════════════════════════════════════════════
+// PROGRESS DATA STRUCTURE
+// ══════════════════════════════════════════════
+const PROGRESS_KEY = 'dla_digital_orientation_progress';
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e){}
+  return {
+    modulesViewed: [],
+    interactionsCompleted: [],
+    assessmentScore: null,
+    assessmentPassed: false,
+    courseComplete: false,
+    learnerName: '',
+    completionDate: ''
+  };
+}
+
+function saveProgress(data) {
+  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(data)); } catch(e){}
+}
+
+function markModuleViewed(num) {
+  const p = loadProgress();
+  if (!p.modulesViewed.includes(num)) {
+    p.modulesViewed.push(num);
+    saveProgress(p);
+  }
+  updateOverallProgress();
+  updateSidebar();
+}
+
+function updateOverallProgress() {
+  const p = loadProgress();
+  const total = 8; // intro + 5 modules + assessment + cert
+  let done = 0;
+  if (p.modulesViewed.includes(0)) done++;
+  [1,2,3,4,5].forEach(n => { if(p.modulesViewed.includes(n)) done++; });
+  if (p.assessmentPassed) { done += 2; }
+  else if (p.assessmentScore !== null) done++;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('overall-progress-fill').style.width = pct + '%';
+}
+
+function updateSidebar() {
+  const p = loadProgress();
+  const map = {
+    'si-check-intro': p.modulesViewed.includes(0),
+    'si-check-m1': p.modulesViewed.includes(1),
+    'si-check-m2': p.modulesViewed.includes(2),
+    'si-check-m3': p.modulesViewed.includes(3),
+    'si-check-m4': p.modulesViewed.includes(4),
+    'si-check-m5': p.modulesViewed.includes(5),
+    'si-check-assessment': p.assessmentScore !== null,
+    'si-check-cert': p.courseComplete
+  };
+  Object.entries(map).forEach(([id, done]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (done) {
+      el.innerHTML = '<svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,5 4,8 9,2"/></svg>';
+      el.closest('.sidebar-item').classList.add('completed');
+    }
+  });
+}
+
+// ══════════════════════════════════════════════
+// SCREEN NAVIGATION
+// ══════════════════════════════════════════════
+const SCREENS = ['screen-intro','screen-m1','screen-m2','screen-m3','screen-m4','screen-m5','screen-assessment','screen-cert'];
+const MODULE_NUMS = { 'screen-intro':0,'screen-m1':1,'screen-m2':2,'screen-m3':3,'screen-m4':4,'screen-m5':5 };
+
+function goToScreen(id) {
+  SCREENS.forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.classList.remove('active');
+  });
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-item').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.screen === id) btn.classList.add('active');
+  });
+  // Mark module viewed
+  if (MODULE_NUMS[id] !== undefined) markModuleViewed(MODULE_NUMS[id]);
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  // Check cert
+  if (id === 'screen-cert') checkCertLock();
+}
+
+// ══════════════════════════════════════════════
+// HAMBURGER
+// ══════════════════════════════════════════════
+document.getElementById('hamburger').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+});
+document.getElementById('overlay').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.remove('open');
+  this.classList.remove('show');
+});
+
+// ══════════════════════════════════════════════
+// KNOWLEDGE CHECKS
+// ══════════════════════════════════════════════
+function selectKQ(btn) {
+  const qid = btn.dataset.qid;
+  document.querySelectorAll(`.kq-option[data-qid="${qid}"]`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function submitKCheck(moduleId, questions) {
+  let correct = 0;
+  questions.forEach(q => {
+    const selected = document.querySelector(`.kq-option[data-qid="${q.id}"].selected`);
+    const fb = document.getElementById(`kq-${q.id}-fb`);
+    // Mark all options
+    document.querySelectorAll(`.kq-option[data-qid="${q.id}"]`).forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.correct === 'true') btn.classList.add('reveal-correct');
+    });
+    if (selected) {
+      const isCorrect = selected.dataset.correct === 'true';
+      if (isCorrect) {
+        selected.classList.add('correct');
+        correct++;
+        if (fb) { fb.textContent = 'Correct.'; fb.className = 'kq-feedback correct-fb show'; }
+      } else {
+        selected.classList.add('incorrect');
+        if (fb) { fb.textContent = 'Incorrect. The correct answer is highlighted above.'; fb.className = 'kq-feedback incorrect-fb show'; }
+      }
+    } else {
+      if (fb) { fb.textContent = 'No answer selected. The correct answer is highlighted above.'; fb.className = 'kq-feedback incorrect-fb show'; }
+    }
+  });
+  const result = document.getElementById(`kcheck-${moduleId}-result`);
+  const pct = Math.round((correct / questions.length) * 100);
+  result.innerHTML = `<strong>${correct} of ${questions.length} correct (${pct}%)</strong>`;
+  result.className = `kcheck-result show ${correct === questions.length ? 'pass' : 'partial'}`;
+  // Disable submit
+  document.querySelector(`#kcheck-${moduleId} .kcheck-submit`).disabled = true;
+}
+
+// ══════════════════════════════════════════════
+// DECISION ACTIVITIES
+// ══════════════════════════════════════════════
+function decisionAnswer(btn, scenarioId, feedbackType, msg) {
+  const scenario = document.getElementById(scenarioId);
+  scenario.querySelectorAll('.decision-btn').forEach(b => b.disabled = true);
+  const isCorrect = btn.dataset.correct === 'true';
+  btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+  const fb = document.getElementById(`${scenarioId}-fb`);
+  if (fb) {
+    fb.innerHTML = msg;
+    fb.className = `decision-feedback show ${isCorrect ? 'correct-fb' : 'incorrect-fb'}`;
+  }
+}
+
+// ══════════════════════════════════════════════
+// MODULE 5 SCENARIOS
+// ══════════════════════════════════════════════
+const SC_FEEDBACKS = {
+  1: { correct: 'Correct. The Public Website About section provides information about DLA for community partners and the general public.', incorrect: 'Not quite. A community partner wanting to learn about DLA should visit the Public Website &rarr; About section. The portal requires a member login.' },
+  2: { correct: 'Correct. Parents seeking Kappa League information should be directed to the public DLA website, where the Guide Right link connects to dlaguideright.org.', incorrect: 'Not quite. The public-facing Guide Right information is on the DLA website, linking externally to dlaguideright.org. Member training for mentors is different.' },
+  3: { correct: 'Correct. Chapter By Laws are stored in Member Portal &rarr; Documents &rarr; Chapter By Laws.', incorrect: 'Not quite. The Chapter Bylaws are an internal document found in Member Portal &rarr; Documents &rarr; Chapter By Laws.' },
+  4: { correct: 'Correct. Official DLA logos are in Member Portal &rarr; Documents &rarr; Chapter Branding. The Media Guide governs usage rules.', incorrect: 'Not quite. Official DLA logos and branding assets are in Documents &rarr; Chapter Branding, not Chapter Images or the public website.' },
+  5: { correct: 'Correct. Committee Budget Request is used for planned budget allocation requests before activities begin.', incorrect: 'Not quite. Planned future budget allocation uses Committee Budget Request. Payment Request is for paying specific incurred expenses; Member Reimbursement is for recovering personal expenses already paid.' },
+  6: { correct: 'Correct. Payment Request is used when the chapter needs to pay a vendor or contractor directly from chapter funds.', incorrect: 'Not quite. When the chapter pays a vendor directly, the Payment Request form is used. Member Reimbursement is for when a member paid personally.' },
+  7: { correct: 'Correct. Member Reimbursement is specifically for recovering out-of-pocket expenses a member personally paid for an approved chapter purpose.', incorrect: 'Not quite. When a member paid personally for an approved expense, they use Member Reimbursement to recover those funds from the chapter.' },
+  8: { correct: 'Correct. The Event Information Form is submitted before an event to get chapter approval and have it listed on the website.', incorrect: 'Not quite. Before an event, the Event Information Form is submitted for approval and website listing. Post Event Summary is submitted after.' },
+  9: { correct: 'Correct. Post Event Summary must be submitted within 24 hours of any official event concluding.', incorrect: 'Not quite. After an event concludes, the Post Event Summary must be submitted within 24 hours. The Event Information Form is for before the event.' },
+  10: { correct: 'Correct. The Bylaws Amendment Proposal form in Member Portal &rarr; Forms &amp; Assessments is the proper channel for submitting proposed bylaws changes.', incorrect: 'Not quite. Proposed bylaws changes go through the Bylaws Amendment Proposal form in Member Portal &rarr; Forms &amp; Assessments.' },
+  11: { correct: 'Correct. Parliamentary Procedure: Robert\'s Rules of Order in the Training System covers motions, voting, and proper meeting procedure.', incorrect: 'Not quite. Learning parliamentary procedure requires the Training System course &mdash; Parliamentary Procedure: Robert\'s Rules of Order.' },
+  12: { correct: 'Correct. The Guide Right &amp; Kappa League Mentor Training course in the Training System prepares brothers for mentoring roles.', incorrect: 'Not quite. Mentor preparation is through the Training System &rarr; Guide Right &amp; Kappa League Mentor Training course, not the public website.' },
+  13: { correct: 'Correct. Draft / Pending Approval means course content exists but has not completed final review; a Preview Draft button is available, but full launch is not yet possible.', incorrect: 'Not quite. Draft / Pending Approval means content exists but is awaiting final approval. It is different from Coming Soon, which has no available content yet.' },
+  14: { correct: 'Correct. The Required filter in My Training shows courses the DLA chapter has designated as priority training for the current administration.', incorrect: 'Not quite. The Required filter shows courses the chapter has designated as priority training &mdash; not the same as all courses or courses in progress.' },
+  15: { correct: 'Correct. A Continue button indicates the course\'s progress tracking (localStorage) has recorded partial progress on this device.', incorrect: 'Not quite. A Continue button means partial progress has been saved to browser localStorage on this device. It does not mean the course is a sequel to another.' }
+};
+
+let m5Answered = {};
+function scenarioAnswer(btn, num) {
+  if (m5Answered[num]) return;
+  m5Answered[num] = true;
+  const sc = document.getElementById(`sc-${num}`);
+  sc.querySelectorAll('.scenario-opt').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+  });
+  const isCorrect = btn.dataset.correct === 'true';
+  btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+  const fb = document.getElementById(`sc-${num}-fb`);
+  if (fb) {
+    fb.innerHTML = isCorrect ? SC_FEEDBACKS[num].correct : SC_FEEDBACKS[num].incorrect;
+    fb.className = `scenario-feedback show ${isCorrect ? 'correct-fb' : 'incorrect-fb'}`;
+  }
+  updateM5Score();
+}
+
+function updateM5Score() {
+  const answered = Object.keys(m5Answered).length;
+  const correct = Object.entries(m5Answered).filter(([k,v]) => {
+    // We track by checking the .correct class on the selected button
+    const sc = document.getElementById(`sc-${k}`);
+    return sc && sc.querySelector('.scenario-opt.correct') !== null;
+  }).length;
+  if (answered > 0) {
+    document.getElementById('m5-score-bar').style.display = 'block';
+    document.getElementById('m5-score-text').textContent = `${correct} of ${answered} answered correctly so far.`;
+  }
+  if (answered === 15) {
+    const p = loadProgress();
+    if (!p.interactionsCompleted.includes('m5-scenarios')) {
+      p.interactionsCompleted.push('m5-scenarios');
+      saveProgress(p);
+    }
+    markModuleViewed(5);
+  }
+}
+
+function submitM5() {
+  // Answer all remaining
+  for (let i=1; i<=15; i++) {
+    if (!m5Answered[i]) {
+      const sc = document.getElementById(`sc-${i}`);
+      if (sc) {
+        const opts = sc.querySelectorAll('.scenario-opt');
+        opts.forEach(b => {
+          b.disabled = true;
+          if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+        });
+        const fb = document.getElementById(`sc-${i}-fb`);
+        if (fb) {
+          fb.innerHTML = 'No answer selected. The correct answer is highlighted.';
+          fb.className = 'scenario-feedback show incorrect-fb';
+        }
+        m5Answered[i] = true;
+      }
+    }
+  }
+  let correct = 0;
+  for (let i=1; i<=15; i++) {
+    const sc = document.getElementById(`sc-${i}`);
+    if (sc && sc.querySelector('.scenario-opt.correct')) correct++;
+  }
+  document.getElementById('m5-score-bar').style.display = 'block';
+  document.getElementById('m5-score-text').textContent = `Final score: ${correct} of 15 correct (${Math.round(correct/15*100)}%).`;
+  document.getElementById('m5-submit-btn').disabled = true;
+  markModuleViewed(5);
+  const p = loadProgress();
+  if (!p.interactionsCompleted.includes('m5-scenarios')) {
+    p.interactionsCompleted.push('m5-scenarios');
+    saveProgress(p);
+  }
+}
+
+// ══════════════════════════════════════════════
+// FINAL ASSESSMENT
+// ══════════════════════════════════════════════
+const AQ_FEEDBACK = {
+  1: { correct: 'Correct. The Member Portal is the environment used for chapter business, forms, and internal resources.', incorrect: 'Incorrect. The Member Portal is the correct environment for chapter business and internal resources.' },
+  2: { correct: 'Correct. The Public Website Programs section is where community partners find information about DLA\'s community work.', incorrect: 'Incorrect. Community partners should be directed to the Public Website &rarr; Programs section.' },
+  3: { correct: 'Correct. Chapter Bylaws are in Member Portal &rarr; Documents &rarr; Chapter By Laws.', incorrect: 'Incorrect. The correct path is Member Portal &rarr; Documents &rarr; Chapter By Laws.' },
+  4: { correct: 'Correct. The Event Information Form is submitted BEFORE the event to obtain chapter approval.', incorrect: 'Incorrect. The Event Information Form is submitted before the event. The Post Event Summary is submitted after.' },
+  5: { correct: 'Correct. The Post Event Summary is submitted within 24 hours AFTER an official event concludes.', incorrect: 'Incorrect. The Post Event Summary is submitted after the event, within 24 hours.' },
+  6: { correct: 'Correct. Committee Budget Request is used to request planned budget allocation for committee activities.', incorrect: 'Incorrect. Planned budget allocation uses the Committee Budget Request form.' },
+  7: { correct: 'Correct. Payment Request is used when the chapter pays a vendor or contractor directly.', incorrect: 'Incorrect. The Payment Request form is for paying vendors or contractors directly from chapter funds.' },
+  8: { correct: 'Correct. Member Reimbursement is for recovering out-of-pocket expenses a member personally paid.', incorrect: 'Incorrect. When a member paid personally and needs reimbursement, they use the Member Reimbursement form.' },
+  9: { correct: 'Correct. Official DLA logos and branding assets are in Documents &rarr; Chapter Branding.', incorrect: 'Incorrect. This is True. Official DLA logos are in Member Portal &rarr; Documents &rarr; Chapter Branding.' },
+  10: { correct: 'Correct. The Required filter shows courses the DLA chapter administration has designated as priority training.', incorrect: 'Incorrect. The Required filter shows courses the chapter has designated as priority &mdash; not National HQ mandates.' },
+  11: { correct: 'Correct. Coming Soon means the course is not yet available to launch.', incorrect: 'Incorrect. Coming Soon means the course is not yet available to launch (in development).' },
+  12: { correct: 'Correct. Draft / Pending Approval means content exists but has not completed final review; only a preview is available.', incorrect: 'Incorrect. Draft / Pending Approval means content exists but has not completed final approval. It differs from Coming Soon.' },
+  13: { correct: 'Correct. The Bylaws Amendment Proposal form is in Member Portal &rarr; Forms &amp; Assessments.', incorrect: 'Incorrect. The correct path is Member Portal &rarr; Forms &amp; Assessments &rarr; Bylaws Amendment Proposal.' },
+  14: { correct: 'Correct. A Continue button means partial progress has been recorded for that course in browser localStorage on this device.', incorrect: 'Incorrect. A Continue button indicates partial progress is recorded in localStorage on this device.' },
+  15: { correct: 'Correct. My DLA Training is accessed through Portal &rarr; Training section &rarr; My DLA Training link (/portal/training-hub.html).', incorrect: 'Incorrect. My DLA Training is in the portal &rarr; Training section &rarr; My DLA Training link.' }
+};
+
+let aqSelected = {};
+function selectAQ(btn) {
+  const aqId = btn.dataset.aq;
+  if (aqSelected[aqId] && aqSelected[aqId].locked) return;
+  document.querySelectorAll(`.assessment-opt[data-aq="${aqId}"]`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  aqSelected[aqId] = { btn, locked: false };
+}
+
+function submitAssessment() {
+  let correct = 0;
+  const total = 15;
+  for (let i=1; i<=total; i++) {
+    const sel = aqSelected[i];
+    const fb = document.getElementById(`aq-${i}-fb`);
+    document.querySelectorAll(`.assessment-opt[data-aq="${i}"]`).forEach(b => {
+      b.disabled = true;
+      if (b.dataset.correct === 'true') b.classList.add('reveal-correct');
+    });
+    if (sel && sel.btn) {
+      sel.locked = true;
+      const isCorrect = sel.btn.dataset.correct === 'true';
+      if (isCorrect) {
+        sel.btn.classList.add('correct');
+        correct++;
+        if (fb) { fb.innerHTML = AQ_FEEDBACK[i].correct; fb.className = 'assessment-feedback correct-fb show'; }
+      } else {
+        sel.btn.classList.add('incorrect');
+        if (fb) { fb.innerHTML = AQ_FEEDBACK[i].incorrect; fb.className = 'assessment-feedback incorrect-fb show'; }
+      }
+    } else {
+      if (fb) { fb.innerHTML = 'No answer selected. ' + AQ_FEEDBACK[i].incorrect; fb.className = 'assessment-feedback incorrect-fb show'; }
+    }
+  }
+  const pct = Math.round((correct / total) * 100);
+  const passed = pct >= 80;
+
+  document.getElementById('assessment-submit-btn').style.display = 'none';
+  const results = document.getElementById('assessment-results');
+  results.classList.add('show');
+  document.getElementById('result-score-num').textContent = `${correct}/${total}`;
+  document.getElementById('result-score-pct').textContent = `${pct}% — ${passed ? 'PASSED' : 'NOT PASSED'}`;
+  document.getElementById('result-verdict').innerHTML = passed
+    ? '<div class="result-pass">You passed. Your certificate is available.</div>'
+    : '<div class="result-fail">You did not reach 80%. Review the feedback above and retry.</div>';
+  document.getElementById('result-review-msg').textContent = passed
+    ? 'Review any incorrect answers above for your own learning. Then proceed to your certificate.'
+    : 'Review the correct answers above, revisit any modules needed, then retry the assessment.';
+
+  if (passed) {
+    document.getElementById('cert-btn-assess').style.display = 'inline-block';
+    document.getElementById('assessment-next-btn').style.display = 'inline-block';
+    document.getElementById('retry-btn').style.display = 'none';
+  }
+
+  // Save progress
+  const p = loadProgress();
+  p.assessmentScore = pct;
+  p.assessmentPassed = passed;
+  if (passed) {
+    p.courseComplete = true;
+    p.completionDate = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    markModuleViewed(99); // assessment done
+  }
+  saveProgress(p);
+  updateSidebar();
+  updateOverallProgress();
+}
+
+function retryAssessment() {
+  aqSelected = {};
+  for (let i=1; i<=15; i++) {
+    document.querySelectorAll(`.assessment-opt[data-aq="${i}"]`).forEach(b => {
+      b.disabled = false;
+      b.classList.remove('selected','correct','incorrect','reveal-correct');
+    });
+    const fb = document.getElementById(`aq-${i}-fb`);
+    if (fb) { fb.className = 'assessment-feedback'; fb.innerHTML = ''; }
+  }
+  document.getElementById('assessment-submit-btn').style.display = 'inline-block';
+  document.getElementById('assessment-results').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════════
+// CERTIFICATE
+// ══════════════════════════════════════════════
+function checkCertLock() {
+  const p = loadProgress();
+  const allModules = [0,1,2,3,4,5].every(n => p.modulesViewed.includes(n));
+  const passed = p.assessmentPassed;
+  if (passed && allModules) {
+    document.getElementById('cert-locked-msg').style.display = 'none';
+    document.getElementById('cert-unlocked').style.display = 'block';
+    if (p.learnerName) {
+      document.getElementById('cert-name-input').value = p.learnerName;
+      updateCertName(p.learnerName);
+    }
+    const dateStr = p.completionDate || new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    document.getElementById('cert-date-display').textContent = 'Completed: ' + dateStr;
+    markModuleViewed(98); // cert viewed
+    const pr = loadProgress();
+    pr.courseComplete = true;
+    saveProgress(pr);
+    updateSidebar();
+  } else {
+    document.getElementById('cert-locked-msg').style.display = 'block';
+    document.getElementById('cert-unlocked').style.display = 'none';
+  }
+}
+
+function updateCertName(val) {
+  const display = document.getElementById('cert-name-display');
+  const input = document.getElementById('cert-name-input');
+  if (val.trim()) {
+    display.textContent = val;
+    display.style.display = 'block';
+    input.style.display = 'none';
+  } else {
+    display.style.display = 'none';
+    input.style.display = 'block';
+  }
+  const p = loadProgress();
+  p.learnerName = val;
+  saveProgress(p);
+}
+
+// ══════════════════════════════════════════════
+// MODULE PROGRESS BARS (visual)
+// ══════════════════════════════════════════════
+function setModuleProgress(moduleId, pct) {
+  const el = document.getElementById(moduleId);
+  if (el) el.style.width = pct + '%';
+}
+
+// When a module screen is shown, animate progress bar
+const modProgIds = { 'screen-m1':'m1-prog','screen-m2':'m2-prog','screen-m3':'m3-prog','screen-m4':'m4-prog','screen-m5':'m5-prog' };
+const origGoToScreen = goToScreen;
+
+// Patch goToScreen to animate module progress bars
+function goToScreen(id) {
+  // Show screen
+  SCREENS.forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.classList.remove('active');
+  });
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.sidebar-item').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.screen === id) btn.classList.add('active');
+  });
+  if (MODULE_NUMS[id] !== undefined) markModuleViewed(MODULE_NUMS[id]);
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  if (id === 'screen-cert') checkCertLock();
+  // Animate module progress bar
+  if (modProgIds[id]) {
+    setTimeout(() => setModuleProgress(modProgIds[id], 100), 300);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  updateOverallProgress();
+  updateSidebar();
+  markModuleViewed(0); // intro viewed on load
+});
+</script>
+
+</body>
+</html>
