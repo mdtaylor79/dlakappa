@@ -211,6 +211,22 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .btn-done { background: #e8f0e8; color: #2d6a2d; cursor: default; }
 .btn-soon { background: #f0ece6; color: #aaa; cursor: not-allowed; }
 
+
+.section-sub {
+  font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: #70110c;
+  display: flex; align-items: center; gap: .55rem;
+  margin: 2rem 0 1rem; padding-bottom: .5rem;
+  border-bottom: 1px solid #e4ddd4;
+}
+.section-sub::before {
+  content: ''; width: 6px; height: 6px; background: #c69a3f;
+  transform: rotate(45deg); display: inline-block; flex-shrink: 0;
+}
+.section-sub.soon::before { background: #999; }
+.section-sub.draft::before { background: #b85c00; }
+.badge-draft { background: #b85c00; color: #fff8f0; }
+
 .empty-state {
   background: #fff; border: 1px dashed #d0c8bc; border-radius: 6px;
   padding: 2.5rem; text-align: center; color: #999;
@@ -332,12 +348,13 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
     </div>
   </div>
 
-  <div class="section-label">
-    <h2>Course Catalog</h2>
+<div class="section-label">
+    <h2>Available Courses</h2>
     <span class="count" id="courseCount"></span>
   </div>
 
   <div class="course-grid" id="courseGrid">
+
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <img src="/img/roberts_rules_thumbnail.png" alt="Parliamentary Procedure">
@@ -346,11 +363,12 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <div class="progress-bar"><div class="progress-fill" id="prog-roberts" style="width:0%"></div></div>
       <div class="course-body">
         <div class="course-type">Chapter Governance</div>
-        <div class="course-title">Parliamentary Procedure: Robert's Rules of Order</div>
-        <div class="course-meta">6 modules &nbsp;·&nbsp; ~45 min</div>
+        <div class="course-title">Parliamentary Procedure: Robert&#8217;s Rules of Order</div>
+        <div class="course-meta">6 modules &nbsp;&middot;&nbsp; ~45 min</div>
         <a class="btn-course btn-start" id="btn-roberts" href="/portal/roberts_rules_training.html" target="_blank">Start Course</a>
       </div>
     </div>
+
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/501_training_thumbnail.png" alt="501c Compliance Training">
@@ -360,10 +378,11 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <div class="course-body">
         <div class="course-type">Fraternity Compliance</div>
         <div class="course-title">501(c)(3) &amp; 501(c)(7) Compliance Training</div>
-        <div class="course-meta">12 modules &nbsp;·&nbsp; ~60 min</div>
+        <div class="course-meta">12 modules &nbsp;&middot;&nbsp; ~60 min</div>
         <a class="btn-course btn-start" id="btn-compliance" href="/portal/kappa_compliance_training.html" target="_blank">Start Course</a>
       </div>
     </div>
+
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <img src="/img/member_training_thumbnail.png" alt="Membership Education">
@@ -373,10 +392,11 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <div class="course-body">
         <div class="course-type">Brotherhood</div>
         <div class="course-title">Membership Education &amp; Standards</div>
-        <div class="course-meta">8 modules &nbsp;·&nbsp; ~50 min</div>
+        <div class="course-meta">8 modules &nbsp;&middot;&nbsp; ~50 min</div>
         <a class="btn-course btn-start" id="btn-membership" href="/portal/kapsi-training-membership_course.html" target="_blank">Start Course</a>
       </div>
     </div>
+
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/guide_right_thumbnail.jpg" alt="Guide Right Mentor Training">
@@ -386,23 +406,11 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <div class="course-body">
         <div class="course-type">Youth Development</div>
         <div class="course-title">Guide Right &amp; Kappa League Mentor Training</div>
-        <div class="course-meta">5 modules &nbsp;·&nbsp; ~40 min</div>
+        <div class="course-meta">5 modules &nbsp;&middot;&nbsp; ~40 min</div>
         <a class="btn-course btn-start" id="btn-guidright" href="/portal/guide_right_mentor_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-    <div class="course-card" data-filter="all">
-      <div class="course-thumb">
-        <img src="/img/chapter_financial_management_thumbnail.png" alt="Financial Literacy">
-        <span class="course-badge badge-new">New</span>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <div class="course-body">
-        <div class="course-type">Chapter Operations</div>
-        <div class="course-title">Chapter Financial Literacy &amp; Dues Management</div>
-        <div class="course-meta">Coming soon</div>
-        <button class="btn-course btn-soon" disabled>Coming Soon</button>
-      </div>
-    </div>
+
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/thumbnail_constitution_statutes.png" alt="Understanding the Constitutions and Statutes">
@@ -411,49 +419,25 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <div class="course-body">
         <div class="course-type">Chapter Operations</div>
         <div class="course-title">Understanding the Constitutions and Statutes</div>
-        <div class="course-meta">9 Modules &nbsp;·&nbsp; ~148 min</div>
-        <a class="btn-course btn-start" href="/portal/kapsi-governing-docs-course.html">Start Course</a>
+        <div class="course-meta">9 Modules &nbsp;&middot;&nbsp; ~148 min</div>
+        <a class="btn-course btn-start" href="/portal/kapsi-governing-docs-course.html" target="_blank">Start Course</a>
       </div>
     </div>
+
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
-        <img src="/img/thumbnail_chapter_bylaws.png" alt="Chapter Bylaws">
-      </div>
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <div class="course-body">
-        <div class="course-type">Chapter Operations</div>
-        <div class="course-title">Chapter Bylaws</div>
-        <div class="course-meta">Coming soon</div>
-        <button class="btn-course btn-soon" disabled>Coming Soon</button>
-      </div>
-    </div>
-    <div class="course-card" data-filter="all">
-      <div class="course-thumb">
-        <img src="/img/thumbnail_committee_directorates.png" alt="Understanding Chapter Committees and Directorates">
-      </div>
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <div class="course-body">
-        <div class="course-type">Chapter Operations</div>
-        <div class="course-title">Understanding Chapter Committees and Directorates</div>
-        <div class="course-meta">Coming soon</div>
-        <button class="btn-course btn-soon" disabled>Coming Soon</button>
-      </div>
-    </div>
-    <div class="course-card" data-filter="all">
-      <div class="course-thumb">
-        <div style="width:100%;height:100%;background:linear-gradient(135deg,#2a0604 0%,#70110c 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;color:#f2ebd7;text-transform:uppercase;">POL-PROP-2026-01</span>
-        </div>
+        <img src="/img/chapter_property_accountabiity.png" alt="Chapter Property Accountability" style="width:100%;height:100%;object-fit:cover;display:block;">
         <span class="course-badge badge-new">New</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
       <div class="course-body">
         <div class="course-type">Chapter Operations</div>
         <div class="course-title">Chapter Property Accountability</div>
-        <div class="course-meta">4 Modules &nbsp;·&nbsp; ~30 min &nbsp;·&nbsp; Certificate</div>
+        <div class="course-meta">4 Modules &nbsp;&middot;&nbsp; ~30 min &nbsp;&middot;&nbsp; Certificate</div>
         <a class="btn-course btn-start" href="https://dlawebmaster.github.io/chapter_property_training/" target="_blank">Start Course</a>
       </div>
+    </div>
+
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/portal_orientation_thumbnail.png" alt="Website, Member Portal &amp; Training System Orientation" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -467,8 +451,62 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" href="/portal/website_member_portal_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-    </div>
+
   </div>
+
+  <!-- COMING SOON -->
+  <div class="section-sub soon">Coming Soon</div>
+  <div class="course-grid">
+
+    <div class="course-card" data-filter="all">
+      <div class="course-thumb">
+        <img src="/img/chapter_financial_management_thumbnail.png" alt="Financial Literacy">
+        <span class="course-badge badge-new">New</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Chapter Operations</div>
+        <div class="course-title">Chapter Financial Literacy &amp; Dues Management</div>
+        <div class="course-meta">Coming soon</div>
+        <button class="btn-course btn-soon" disabled>Coming Soon</button>
+      </div>
+    </div>
+
+    <div class="course-card" data-filter="all">
+      <div class="course-thumb">
+        <img src="/img/thumbnail_committee_directorates.png" alt="Understanding Chapter Committees and Directorates">
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Chapter Operations</div>
+        <div class="course-title">Understanding Chapter Committees and Directorates</div>
+        <div class="course-meta">Coming soon</div>
+        <button class="btn-course btn-soon" disabled>Coming Soon</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- UNDER REVIEW / DRAFT -->
+  <div class="section-sub draft">Under Review &amp; Draft</div>
+  <div class="course-grid">
+
+    <div class="course-card" data-filter="all">
+      <div class="course-thumb">
+        <img src="/img/16-9 bylaws thumnail.png" alt="Bylaw Amendment SOP" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="course-badge badge-draft">&#9888; Draft</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Chapter Governance</div>
+        <div class="course-title">Bylaw Amendment Submission &amp; Review SOP</div>
+        <div class="course-meta">7 modules &nbsp;&middot;&nbsp; ~20 min &nbsp;&middot;&nbsp; <span style="color:#b85c00;font-weight:600;">Pending Approval</span></div>
+        <a class="btn-course btn-start" href="/portal/dla-bylaw-amendment-sop-training.html" target="_blank">Preview Draft</a>
+      </div>
+    </div>
+
+  </div>
+
   <div class="empty-state" id="emptyState">No courses match this filter yet.</div>
 </div>
 
