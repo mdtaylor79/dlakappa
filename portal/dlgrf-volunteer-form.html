@@ -7,26 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; padding: 2rem 1.5rem 4rem; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: #1a0302;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
     .form-shell { max-width: 680px; margin: 0 auto; }
 
     /* ── Banner ── */
-    .form-banner {
-      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
-      border-radius: 8px; padding: 1.75rem 2rem; margin-bottom: 1.75rem;
-      box-shadow: 0 4px 20px rgba(112,17,12,.25);
-    }
-    .form-banner .org-line {
-      font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase; color: rgba(242,235,215,.6);
-      margin-bottom: .5rem;
-    }
-    .form-banner h1 {
-      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
-      letter-spacing: .05em; text-transform: uppercase; color: #c69a3f;
-      line-height: 1.4; margin-bottom: .65rem;
-    }
-    .form-banner p { font-size: .8rem; color: rgba(242,235,215,.75); line-height: 1.65; }
 
     /* ── Progress Bar ── */
     .progress-wrap { margin-bottom: 2rem; }
@@ -232,14 +223,30 @@
   </style>
 </head>
 <body>
-<div class="form-shell">
-
-  <!-- Banner -->
-  <div class="form-banner">
-    <div class="org-line">Denton-Lewisville Guide Right Foundation</div>
-    <h1>AT&amp;T Stadium Volunteer Registration</h1>
-    <p>Register to volunteer at AT&amp;T Stadium fundraising events. The volunteer season runs August&nbsp;1 through July&nbsp;31. Complete all sections below &mdash; your registration will be reviewed by the Volunteer Coordinator.</p>
+<header class="banner">
+  <div class="banner-inner">
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
   </div>
+</header>
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Volunteer Registration
+</nav>
+<div class="page-label">
+  <h1>AT&T Stadium Volunteer Registration</h1>
+  <span class="fy-tag">FY 2026–2027</span>
+</div>
+
+<main>
+<div class="form-shell">
 
   <!-- Progress Bar -->
   <div class="progress-wrap">
@@ -839,5 +846,6 @@ document.getElementById('volForm').addEventListener('submit', async (e) => {
 // ── Init ──
 renderCalendar();
 </script>
+</main>
 </body>
 </html>

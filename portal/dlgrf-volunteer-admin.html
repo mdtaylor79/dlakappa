@@ -10,19 +10,20 @@
     body { font-family: 'Archivo', sans-serif; background: #f5f0eb; color: #1a1a1a; }
 
     /* ── Banner ── */
-    .banner {
-      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
-      padding: 1.1rem 2rem; display: flex; align-items: center;
-      justify-content: space-between; box-shadow: 0 3px 16px rgba(0,0,0,.4);
-    }
-    .banner-left .org { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #c69a3f; letter-spacing: .06em; }
-    .banner-left .sub { font-size: .72rem; color: rgba(242,235,215,.6); margin-top: .25rem; }
-    .banner-right a {
-      font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; color: #c69a3f;
-      text-decoration: none; border: 1px solid rgba(198,154,63,.4);
-      padding: .45rem .9rem; border-radius: 4px;
-    }
+    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
+    .org-text { flex: 1; }
+    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
+    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
+    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
+    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
+    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
+    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
 
     .main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
@@ -142,14 +143,26 @@
 <body>
 
 <header class="banner">
-  <div class="banner-left">
-    <div class="org">DLGRF Volunteer Management</div>
-    <div class="sub">AT&amp;T Stadium Volunteer Registry &mdash; Administrative Dashboard</div>
-  </div>
-  <div class="banner-right">
-    <a href="/portal/dashboard.html">&#8592; Portal</a>
+  <div class="banner-inner">
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
   </div>
 </header>
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Volunteer Dashboard
+</nav>
+<div class="page-label">
+  <h1>DLGRF Volunteer Dashboard</h1>
+  <span class="fy-tag">FY 2026–2027</span>
+</div>
 
 <div class="main">
 

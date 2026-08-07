@@ -10,18 +10,20 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Archivo', sans-serif; background: #1a0302; min-height: 100vh; display: flex; flex-direction: column; }
-    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
-    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: .75rem 0; }
-    .banner-logo { width: 48px; height: 48px; object-fit: contain; }
-    .banner-text { flex: 1; }
-    .banner-chapter { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: #c69a3f; margin-bottom: .15rem; }
-    .banner-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #f2ebd7; letter-spacing: .04em; }
-    .banner-back { font-size: .78rem; color: rgba(242,235,215,.65); text-decoration: none; display: flex; align-items: center; gap: .35rem; transition: color .2s; }
-    .banner-back:hover { color: #c69a3f; }
+    /* ── Banner ── */
+    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
+    .org-text { flex: 1; }
+    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
+    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
+    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
+    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
+    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
+    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
     main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
-    .page-label { max-width: 860px; margin: 0 auto 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .page-label h1 { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; color: #2a0604; letter-spacing: .04em; }
-    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 20px; white-space: nowrap; }
     .form-shell { max-width: 860px; margin: 0 auto; }
     .form-section { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }
     .section-head { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); padding: .75rem 1.25rem; display: flex; align-items: center; gap: .6rem; }
@@ -66,25 +68,29 @@
 </head>
 <body>
 
-<div class="banner">
+<header class="banner">
   <div class="banner-inner">
-    <img src="/img/dla-logo.png" alt="DLA Logo" class="banner-logo">
-    <div class="banner-text">
-      <div class="banner-chapter">Denton-Lewisville (TX) Alumni Chapter &mdash; Kappa Alpha Psi Fraternity, Inc.</div>
-      <div class="banner-title">Member Portal</div>
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
     </div>
-    <a href="/portal/dashboard.html" class="banner-back">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M10 12L6 8l4-4"/></svg>
-      Dashboard
-    </a>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
   </div>
-</div>
-
-<main>
+</header>
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Reclamation Form
+</nav>
 <div class="page-label">
   <h1>DLA Reclamation Form</h1>
   <span class="fy-tag">FY 2026–2027</span>
 </div>
+
+<main>
 
 <div class="success-screen" id="successScreen">
   <div class="success-icon">✅</div>
