@@ -89,7 +89,7 @@
 
     /* Line items */
     .line-table-wrap { overflow-x: auto; }
-    .line-table { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 620px; }
+    .line-table { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 760px; }
     .line-table th {
       background: #f0e8e0;
       padding: .5rem .65rem;
@@ -120,6 +120,15 @@
       color: #c69a3f;
       text-align: center;
       width: 32px;
+    }
+    .line-table .row-total {
+      font-family: 'Cinzel', serif;
+      font-size: .82rem;
+      font-weight: 700;
+      color: #70110c;
+      text-align: right;
+      padding-right: .6rem;
+      white-space: nowrap;
     }
     .add-line-btn {
       margin-top: .6rem;
@@ -296,7 +305,7 @@
 
   <form id="budgetForm">
 
-    <!-- A. Committee Information -->
+    <!-- Committee Information -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -307,7 +316,7 @@
           <div class="field">
             <label>Committee Name <span class="req">*</span></label>
             <select id="committee" required>
-              <option value="">Select Committee…</option>
+              <option value="">Select Committee&hellip;</option>
               <option>Chapter Programs</option>
               <option>Guide Right / Kappa League</option>
               <option>Social Action</option>
@@ -339,10 +348,51 @@
             <input type="date" id="requestDate" required>
           </div>
         </div>
+        <div class="field-row thirds">
+          <div class="field">
+            <label>Role / Title</label>
+            <input type="text" id="role" placeholder="e.g., Guide Right Chairman">
+          </div>
+          <div class="field">
+            <label>Event Date</label>
+            <input type="date" id="eventDate">
+          </div>
+          <div class="field">
+            <label>Request Year <span class="req">*</span></label>
+            <select id="requestYear" required>
+              <option value="">Select Year&hellip;</option>
+              <option value="2025-2026">2025&ndash;2026</option>
+              <option value="2026-2027" selected>2026&ndash;2027</option>
+              <option value="2027-2028">2027&ndash;2028</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- B. Budget Overview -->
+    <!-- Request Details -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <h2>Request Details</h2>
+      </div>
+      <div class="section-body">
+        <div class="field-row full">
+          <div class="field">
+            <label>Purpose <span class="req">*</span></label>
+            <textarea id="purpose" required placeholder="What is this budget request for? Describe the event, activity, or initiative&hellip;"></textarea>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Expected Impact</label>
+            <textarea id="expectedImpact" placeholder="What is the expected outcome or community impact of this request?"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A. Budget Overview -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -354,10 +404,12 @@
             <thead>
               <tr>
                 <th style="width:30px;">#</th>
-                <th style="width:28%;">Line Item Description</th>
-                <th style="width:16%;">Estimated Cost</th>
-                <th style="width:30%;">Justification / Purpose</th>
-                <th style="width:16%;">Date of Use</th>
+                <th style="width:24%;">Line Item Description</th>
+                <th style="width:7%;">Qty</th>
+                <th style="width:12%;">Unit Cost</th>
+                <th style="width:11%;">Total</th>
+                <th style="width:24%;">Justification / Purpose</th>
+                <th style="width:13%;">Date of Use</th>
                 <th style="width:30px;"></th>
               </tr>
             </thead>
@@ -365,10 +417,12 @@
               <tr>
                 <td class="td-num">1</td>
                 <td><input type="text" class="desc" placeholder="Item description"></td>
-                <td><input type="number" class="cost" min="0" step="0.01" placeholder="0.00"></td>
+                <td><input type="number" class="qty" min="1" step="1" placeholder="1" style="width:60px;"></td>
+                <td><input type="number" class="unit-cost" min="0" step="0.01" placeholder="0.00"></td>
+                <td class="row-total">$0.00</td>
                 <td><input type="text" class="justif" placeholder="Why is this needed?"></td>
                 <td><input type="date" class="dateuse"></td>
-                <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>
+                <td><button type="button" class="remove-btn" onclick="removeRow(this)">&#x2715;</button></td>
               </tr>
             </tbody>
           </table>
@@ -381,7 +435,7 @@
       </div>
     </div>
 
-    <!-- C. Additional Budget Notes -->
+    <!-- B. Additional Budget Notes -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -399,12 +453,12 @@
         </div>
         <div class="conditional" id="prevDetailsWrap">
           <label>If Yes, what was the cost and outcome?</label>
-          <textarea id="prevDetails" placeholder="Describe the previous cost and outcome…"></textarea>
+          <textarea id="prevDetails" placeholder="Describe the previous cost and outcome&hellip;"></textarea>
         </div>
       </div>
     </div>
 
-    <!-- D. Strategic Alignment -->
+    <!-- C. Strategic Alignment -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -441,14 +495,14 @@
             <label class="pillar-item" id="otherPillarItem">
               <input type="checkbox" name="pillar" value="other" id="otherPillarCb">
               <span>Other:</span>
-              <input type="text" id="otherPillarText" placeholder="Specify…" style="margin-left:.4rem;flex:1;padding:.25rem .5rem;font-size:.8rem;" onclick="event.stopPropagation()">
+              <input type="text" id="otherPillarText" placeholder="Specify&hellip;" style="margin-left:.4rem;flex:1;padding:.25rem .5rem;font-size:.8rem;" onclick="event.stopPropagation()">
             </label>
           </div>
         </div>
         <div class="field-row full">
           <div class="field">
             <label>How does this expense support the mission of the chapter? <span class="req">*</span></label>
-            <textarea id="missionSupport" required placeholder="Explain how this request aligns with the chapter's mission and goals…"></textarea>
+            <textarea id="missionSupport" required placeholder="Explain how this request aligns with the chapter's mission and goals&hellip;"></textarea>
           </div>
         </div>
       </div>
@@ -468,7 +522,7 @@
 
     <div class="submit-row">
       <button type="button" class="btn-reset" onclick="resetForm()">Clear Form</button>
-      <button type="submit" class="btn-submit" id="submitBtn">Submit Request →</button>
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Request &rarr;</button>
     </div>
 
   </form>
@@ -500,7 +554,6 @@ const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// ── Row numbering ──
 function updateRowNumbers() {
   document.querySelectorAll('#lineItems tr').forEach((tr, i) => {
     const td = tr.querySelector('.td-num');
@@ -508,17 +561,18 @@ function updateRowNumbers() {
   });
 }
 
-// ── Line item logic ──
 function addRow() {
   const tbody = document.getElementById('lineItems');
   const tr = document.createElement('tr');
   tr.innerHTML = `
     <td class="td-num">${tbody.rows.length + 1}</td>
     <td><input type="text" class="desc" placeholder="Item description"></td>
-    <td><input type="number" class="cost" min="0" step="0.01" placeholder="0.00"></td>
+    <td><input type="number" class="qty" min="1" step="1" placeholder="1" style="width:60px;"></td>
+    <td><input type="number" class="unit-cost" min="0" step="0.01" placeholder="0.00"></td>
+    <td class="row-total">$0.00</td>
     <td><input type="text" class="justif" placeholder="Why is this needed?"></td>
     <td><input type="date" class="dateuse"></td>
-    <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>`;
+    <td><button type="button" class="remove-btn" onclick="removeRow(this)">&#x2715;</button></td>`;
   tbody.appendChild(tr);
   attachRowListeners(tr);
 }
@@ -534,18 +588,21 @@ function removeRow(btn) {
 function recalc() {
   let grand = 0;
   document.querySelectorAll('#lineItems tr').forEach(tr => {
-    const cost = parseFloat(tr.querySelector('.cost')?.value) || 0;
-    grand += cost;
+    const qty      = parseFloat(tr.querySelector('.qty')?.value) || 0;
+    const unitCost = parseFloat(tr.querySelector('.unit-cost')?.value) || 0;
+    const rowTotal = qty * unitCost;
+    const totalEl  = tr.querySelector('.row-total');
+    if (totalEl) totalEl.textContent = '$' + rowTotal.toFixed(2);
+    grand += rowTotal;
   });
   document.getElementById('grandTotal').textContent = '$' + grand.toFixed(2);
 }
 
 function attachRowListeners(tr) {
-  tr.querySelectorAll('input').forEach(inp => inp.addEventListener('input', recalc));
+  tr.querySelectorAll('.qty, .unit-cost').forEach(inp => inp.addEventListener('input', recalc));
 }
 document.querySelectorAll('#lineItems tr').forEach(attachRowListeners);
 
-// ── Previous expense toggle ──
 document.querySelectorAll('input[name="prevExpense"]').forEach(r => {
   r.addEventListener('change', () => {
     const wrap = document.getElementById('prevDetailsWrap');
@@ -553,17 +610,14 @@ document.querySelectorAll('input[name="prevExpense"]').forEach(r => {
   });
 });
 
-// ── Pillar checkbox styling ──
 document.querySelectorAll('.pillar-item input[type="checkbox"]').forEach(cb => {
   cb.addEventListener('change', () => {
     cb.closest('.pillar-item').classList.toggle('checked', cb.checked);
   });
 });
 
-// ── Set today's date ──
 document.getElementById('requestDate').value = new Date().toISOString().split('T')[0];
 
-// ── Submit ──
 document.getElementById('budgetForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
@@ -573,19 +627,26 @@ document.getElementById('budgetForm').addEventListener('submit', async (e) => {
   msg.className = 'status-msg';
   msg.style.display = 'none';
 
-  // Build line items
   const lineItems = [];
   document.querySelectorAll('#lineItems tr').forEach(tr => {
-    const desc   = tr.querySelector('.desc')?.value?.trim();
-    const cost   = parseFloat(tr.querySelector('.cost')?.value) || 0;
-    const justif = tr.querySelector('.justif')?.value?.trim() || '';
-    const dateuse= tr.querySelector('.dateuse')?.value || null;
-    if (desc) lineItems.push({ description: desc, estimated_cost: cost, justification: justif, date_of_use: dateuse });
+    const desc     = tr.querySelector('.desc')?.value?.trim();
+    const qty      = parseFloat(tr.querySelector('.qty')?.value) || 0;
+    const unitCost = parseFloat(tr.querySelector('.unit-cost')?.value) || 0;
+    const total    = qty * unitCost;
+    const justif   = tr.querySelector('.justif')?.value?.trim() || '';
+    const dateuse  = tr.querySelector('.dateuse')?.value || null;
+    if (desc) lineItems.push({
+      description:    desc,
+      qty:            qty,
+      unit_cost:      unitCost,
+      estimated_cost: total,
+      justification:  justif,
+      date_of_use:    dateuse
+    });
   });
 
   const grandTotal = lineItems.reduce((s, i) => s + i.estimated_cost, 0);
 
-  // Strategic pillars
   const pillars = [];
   document.querySelectorAll('input[name="pillar"]:checked').forEach(cb => {
     if (cb.value === 'other') {
@@ -599,19 +660,23 @@ document.getElementById('budgetForm').addEventListener('submit', async (e) => {
   const prevExpense = document.querySelector('input[name="prevExpense"]:checked')?.value || null;
 
   const payload = {
-    full_name:               document.getElementById('fullName').value.trim(),
-    email:                   document.getElementById('email').value.trim(),
-    phone:                   document.getElementById('phone').value.trim() || null,
-    committee:               document.getElementById('committee').value,
-    request_date:            document.getElementById('requestDate').value,
-    line_items:              lineItems,
-    total_amount:            grandTotal,
-    previous_expense:        prevExpense === 'yes',
-    previous_expense_details:prevExpense === 'yes' ? document.getElementById('prevDetails').value.trim() : null,
-    strategic_pillars:       pillars,
-    mission_support:         document.getElementById('missionSupport').value.trim(),
-    status:                  'Pending',
-    fiscal_year:             '2025-2026'
+    full_name:                document.getElementById('fullName').value.trim(),
+    email:                    document.getElementById('email').value.trim(),
+    phone:                    document.getElementById('phone').value.trim() || null,
+    role:                     document.getElementById('role').value.trim() || null,
+    committee:                document.getElementById('committee').value,
+    request_date:             document.getElementById('requestDate').value,
+    event_date:               document.getElementById('eventDate').value || null,
+    fiscal_year:              document.getElementById('requestYear').value,
+    purpose:                  document.getElementById('purpose').value.trim() || null,
+    expected_impact:          document.getElementById('expectedImpact').value.trim() || null,
+    line_items:               lineItems,
+    total_amount:             grandTotal,
+    previous_expense:         prevExpense === 'yes',
+    previous_expense_details: prevExpense === 'yes' ? document.getElementById('prevDetails').value.trim() : null,
+    strategic_pillars:        pillars,
+    mission_support:          document.getElementById('missionSupport').value.trim(),
+    status:                   'Pending'
   };
 
   const { data, error } = await sb.from('budget_requests').insert([payload]).select().single();
@@ -643,10 +708,12 @@ function resetForm() {
   document.getElementById('lineItems').innerHTML = `<tr>
     <td class="td-num">1</td>
     <td><input type="text" class="desc" placeholder="Item description"></td>
-    <td><input type="number" class="cost" min="0" step="0.01" placeholder="0.00"></td>
+    <td><input type="number" class="qty" min="1" step="1" placeholder="1" style="width:60px;"></td>
+    <td><input type="number" class="unit-cost" min="0" step="0.01" placeholder="0.00"></td>
+    <td class="row-total">$0.00</td>
     <td><input type="text" class="justif" placeholder="Why is this needed?"></td>
     <td><input type="date" class="dateuse"></td>
-    <td><button type="button" class="remove-btn" onclick="removeRow(this)">✕</button></td>
+    <td><button type="button" class="remove-btn" onclick="removeRow(this)">&#x2715;</button></td>
   </tr>`;
   document.querySelectorAll('#lineItems tr').forEach(attachRowListeners);
   recalc();
