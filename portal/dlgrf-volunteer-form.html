@@ -153,7 +153,21 @@
     .cal-day.today { border: 1px solid #c69a3f; }
     .cal-day:disabled { color: #ccc; cursor: not-allowed; }
     .cal-day.out-of-season { color: #ddd; cursor: not-allowed; pointer-events: none; }
+    .cal-day.game-day { background: #fdf5f5; border: 1px solid #c69a3f; font-weight: 700; color: #70110c; }
+    .cal-day.game-day:hover:not(:disabled) { background: #f0e8e0; }
+    .cal-day.game-day.selected { background: #70110c; color: #f2ebd7; border-color: #70110c; }
     .cal-empty { padding: .35rem; }
+    /* ── Game schedule list ── */
+    .game-schedule-list { margin-top: .75rem; border: 1px solid #e4dbd0; border-radius: 6px; overflow: hidden; }
+    .game-schedule-list-head { background: #f0e8e0; padding: .5rem 1rem; font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #70110c; }
+    .game-schedule-item { display: flex; align-items: center; gap: .75rem; padding: .55rem 1rem; border-top: 1px solid #f0e8e0; cursor: pointer; transition: background .15s; }
+    .game-schedule-item:hover { background: #faf5f0; }
+    .game-schedule-item.selected { background: #fdf0ef; }
+    .game-date-badge { flex-shrink: 0; background: #70110c; color: #f2ebd7; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; border-radius: 4px; padding: .25rem .55rem; min-width: 54px; text-align: center; letter-spacing: .03em; }
+    .game-date-badge.selected { background: #c69a3f; color: #2a0604; }
+    .game-matchup { font-size: .8rem; color: #3a2c25; font-weight: 500; flex: 1; }
+    .game-check { color: #c69a3f; font-size: .85rem; font-weight: 700; opacity: 0; transition: opacity .2s; }
+    .game-schedule-item.selected .game-check { opacity: 1; }
 
     .selected-dates-wrap { margin-top: .75rem; }
     .selected-dates-label {
@@ -370,6 +384,13 @@
             </div>
             <div class="cal-grid" id="calGrid"></div>
           </div>
+
+          <!-- Game Schedule List -->
+          <div class="game-schedule-list">
+            <div class="game-schedule-list-head">&#127944; 2026–2027 AT&amp;T Stadium Game Schedule — click to select</div>
+            <div id="gameScheduleList"></div>
+          </div>
+
           <div class="selected-dates-wrap">
             <div class="selected-dates-label">Selected Dates</div>
             <div class="date-chips" id="dateChips"><span class="no-dates">No dates selected yet.</span></div>
@@ -563,6 +584,19 @@ const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
+// ── Game Events ──
+const GAME_EVENTS = {
+  '2026-08-28': 'Dallas Cowboys vs. New Orleans Saints (Preseason)',
+  '2026-09-20': 'Washington Commanders vs. Dallas Cowboys',
+  '2026-10-08': 'Tampa Bay Buccaneers vs. Dallas Cowboys',
+  '2026-11-01': 'Arizona Cardinals vs. Dallas Cowboys',
+  '2026-11-15': 'San Francisco 49ers vs. Dallas Cowboys',
+  '2026-11-22': 'Tennessee Titans vs. Dallas Cowboys',
+  '2026-11-26': 'Philadelphia Eagles vs. Dallas Cowboys',
+  '2026-12-27': 'Jacksonville Jaguars vs. Dallas Cowboys',
+  '2027-01-03': 'New York Giants vs. Dallas Cowboys',
+};
+
 // ── Volunteer season ──
 function getVolunteerSeason() {
   const today = new Date();
@@ -619,6 +653,7 @@ function renderCalendar() {
     const date = new Date(calYear, calMonth, d);
     const dateStr = dateToStr(date);
     const inSeason = date >= season.start && date <= season.end;
+    const isGameDay = !!GAME_EVENTS[dateStr];
     const isSelected = selectedDates.includes(dateStr);
     const isToday = date.getTime() === today.getTime();
 
@@ -628,13 +663,31 @@ function renderCalendar() {
     btn.className = 'cal-day' +
       (isSelected ? ' selected' : '') +
       (isToday ? ' today' : '') +
-      (!inSeason ? ' out-of-season' : '');
-    if (!inSeason) { btn.disabled = true; }
+      (isGameDay ? ' game-day' : '') +
+      (!inSeason || !isGameDay ? ' out-of-season' : '');
+    if (!inSeason || !isGameDay) { btn.disabled = true; }
     else {
+      btn.title = GAME_EVENTS[dateStr];
       btn.onclick = () => toggleDate(dateStr);
     }
     grid.appendChild(btn);
   }
+}
+
+function renderGameScheduleList() {
+  const wrap = document.getElementById('gameScheduleList');
+  if (!wrap) return;
+  wrap.innerHTML = Object.entries(GAME_EVENTS).map(([dateStr, matchup]) => {
+    const isSelected = selectedDates.includes(dateStr);
+    const [y, m, d] = dateStr.split('-');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const label = months[parseInt(m)-1] + ' ' + parseInt(d);
+    return `<div class="game-schedule-item${isSelected ? ' selected' : ''}" onclick="toggleDate('${dateStr}')">
+      <span class="game-date-badge${isSelected ? ' selected' : ''}">${label}</span>
+      <span class="game-matchup">${matchup}</span>
+      <span class="game-check">&#10003;</span>
+    </div>`;
+  }).join('');
 }
 
 function calChangeMo(dir) {
@@ -664,6 +717,7 @@ function toggleDate(dateStr) {
   selectedDates.sort();
   renderCalendar();
   renderDateChips();
+  renderGameScheduleList();
 }
 
 function renderDateChips() {
@@ -672,17 +726,20 @@ function renderDateChips() {
     wrap.innerHTML = '<span class="no-dates">No dates selected yet.</span>';
     return;
   }
-  wrap.innerHTML = selectedDates.map(d => `
-    <div class="date-chip">
-      <span>${formatDateDisplay(d)}</span>
+  wrap.innerHTML = selectedDates.map(d => {
+    const game = GAME_EVENTS[d] ? ` — ${GAME_EVENTS[d]}` : '';
+    return `<div class="date-chip">
+      <span>${formatDateDisplay(d)}${game}</span>
       <button type="button" onclick="removeDate('${d}')">&#x2715;</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function removeDate(dateStr) {
   selectedDates = selectedDates.filter(d => d !== dateStr);
   renderCalendar();
   renderDateChips();
+  renderGameScheduleList();
 }
 
 // ── TABC conditional ──
@@ -857,6 +914,7 @@ document.getElementById('volForm').addEventListener('submit', async (e) => {
 
 // ── Init ──
 renderCalendar();
+renderGameScheduleList();
 </script>
 </main>
 </body>
