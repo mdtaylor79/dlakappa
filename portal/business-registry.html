@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Business Registry — DLA Kappa Alpha Psi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Archivo', sans-serif; background: #1a0302; min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
+    .form-shell { max-width: 720px; margin: 0 auto; }
+
+    /* ── Banner ── */
+    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
+    .org-text { flex: 1; }
+    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
+    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
+    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
+    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
+    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
+    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ── Form section card ── */
+    .form-section { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }
+    .section-head { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); padding: .75rem 1.25rem; display: flex; align-items: center; gap: .65rem; }
+    .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .section-head h2 { font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; flex: 1; }
+    .section-num { background: rgba(198,154,63,.2); color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .1em; padding: .2rem .55rem; border-radius: 3px; }
+    .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* ── Fields ── */
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field-row.full { grid-template-columns: 1fr; }
+    .field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .field { display: flex; flex-direction: column; gap: .3rem; }
+    label { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #6a5a50; }
+    label .req { color: #70110c; margin-left: 2px; }
+    .field-hint { font-size: .72rem; color: #9a8878; font-style: italic; line-height: 1.45; }
+    .field-error { font-size: .72rem; color: #991b1b; display: none; }
+    .field-error.show { display: block; }
+
+    input[type="text"], input[type="email"], input[type="tel"],
+    input[type="url"], input[type="number"], select, textarea {
+      width: 100%; padding: .6rem .8rem; border: 1px solid #d8cfc5;
+      border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .88rem;
+      color: #1a1a1a; background: #faf8f5;
+      transition: border-color .2s, box-shadow .2s; appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #70110c; box-shadow: 0 0 0 3px rgba(112,17,12,.08); }
+    input.invalid, select.invalid { border-color: #dc2626; }
+    textarea { resize: vertical; min-height: 80px; }
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem;
+    }
+
+    /* ── Social media row ── */
+    .social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .social-field { display: flex; align-items: center; gap: .5rem; }
+    .social-icon { width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .si-fb { background: #1877f2; }
+    .si-ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .si-x  { background: #000; }
+    .si-li { background: #0a66c2; }
+    .si-tt { background: #010101; }
+    .social-field input { flex: 1; }
+
+    /* ── Radio/checkbox toggle ── */
+    .toggle-group { display: flex; gap: .65rem; flex-wrap: wrap; }
+    .toggle-opt { display: flex; align-items: center; gap: .4rem; cursor: pointer; }
+    .toggle-opt input[type="radio"] { accent-color: #70110c; width: 15px; height: 15px; }
+    .toggle-opt span { font-size: .85rem; color: #3a2c25; }
+
+    /* ── Submit button ── */
+    .form-actions { display: flex; justify-content: flex-end; margin-top: .5rem; }
+    .btn-submit {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      color: #f2ebd7; font-family: 'Cinzel', serif; font-size: .78rem;
+      font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .9rem 2.75rem; border: none; border-radius: 4px; cursor: pointer;
+      transition: filter .2s, transform .15s;
+    }
+    .btn-submit:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .status-msg { padding: .75rem 1rem; border-radius: 4px; font-size: .85rem; margin-top: .75rem; display: none; }
+    .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+
+    /* ── Success ── */
+    .success-screen { display: none; flex-direction: column; align-items: center; text-align: center; padding: 4rem 2rem; gap: 1rem; }
+    .success-screen.show { display: flex; }
+    .success-icon { width: 80px; height: 80px; background: linear-gradient(135deg,#70110c,#2a0604); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .success-screen h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #70110c; }
+    .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 460px; line-height: 1.7; }
+    .success-ref { font-family: 'Cinzel', serif; font-size: .8rem; color: #c69a3f; background: #f5f0eb; padding: .5rem 1.25rem; border-radius: 4px; border: 1px solid #e0d4c8; }
+
+    @media(max-width:580px) {
+      .field-row { grid-template-columns: 1fr; }
+      .field-row.three { grid-template-columns: 1fr; }
+      .social-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="banner">
+  <div class="banner-inner">
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Member Business Registry
+</nav>
+
+<div class="page-label">
+  <h1>Member Business Registry</h1>
+  <span class="fy-tag">DLA Chapter</span>
+</div>
+
+<main>
+<div class="form-shell">
+
+  <form id="bizForm" novalidate>
+
+    <!-- SECTION 1: Owner Information -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h2>Business Owner</h2>
+        <span class="section-num">Section 1 of 4</span>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" placeholder="First name">
+            <div class="field-error" id="err-firstName">First name is required.</div>
+          </div>
+          <div class="field">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" id="lastName" placeholder="Last name">
+            <div class="field-error" id="err-lastName">Last name is required.</div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" id="ownerEmail" placeholder="your@email.com">
+            <div class="field-error" id="err-ownerEmail">A valid email address is required.</div>
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" id="ownerPhone" placeholder="(000) 000-0000">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Business Details -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        <h2>Business Details</h2>
+        <span class="section-num">Section 2 of 4</span>
+      </div>
+      <div class="section-body">
+        <div class="field-row full">
+          <div class="field">
+            <label>Business Name <span class="req">*</span></label>
+            <input type="text" id="businessName" placeholder="Enter your business name">
+            <div class="field-error" id="err-businessName">Business name is required.</div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Industry <span class="req">*</span></label>
+            <select id="industry">
+              <option value="">Select industry&hellip;</option>
+              <optgroup label="Professional Services">
+                <option>Accounting / Finance</option>
+                <option>Consulting</option>
+                <option>Insurance</option>
+                <option>Law / Legal Services</option>
+                <option>Marketing / Advertising</option>
+                <option>Real Estate</option>
+                <option>Staffing / HR</option>
+              </optgroup>
+              <optgroup label="Technology">
+                <option>Information Technology</option>
+                <option>Software / App Development</option>
+                <option>Cybersecurity</option>
+                <option>Telecommunications</option>
+              </optgroup>
+              <optgroup label="Health &amp; Wellness">
+                <option>Healthcare / Medical</option>
+                <option>Fitness / Personal Training</option>
+                <option>Mental Health / Counseling</option>
+                <option>Pharmacy</option>
+              </optgroup>
+              <optgroup label="Construction &amp; Trades">
+                <option>Construction / Contracting</option>
+                <option>Engineering</option>
+                <option>Architecture / Design</option>
+                <option>Landscaping</option>
+                <option>Plumbing / Electrical / HVAC</option>
+              </optgroup>
+              <optgroup label="Food &amp; Hospitality">
+                <option>Restaurant / Food Service</option>
+                <option>Catering</option>
+                <option>Event Planning</option>
+                <option>Hospitality / Tourism</option>
+              </optgroup>
+              <optgroup label="Retail &amp; E-Commerce">
+                <option>Retail</option>
+                <option>E-Commerce</option>
+                <option>Clothing / Fashion</option>
+              </optgroup>
+              <optgroup label="Education &amp; Nonprofit">
+                <option>Education / Tutoring</option>
+                <option>Nonprofit / Foundation</option>
+                <option>Community Organization</option>
+                <option>Religious Organization</option>
+              </optgroup>
+              <optgroup label="Creative &amp; Media">
+                <option>Photography / Videography</option>
+                <option>Graphic Design / Art</option>
+                <option>Music / Entertainment</option>
+                <option>Media / Publishing</option>
+              </optgroup>
+              <optgroup label="Transportation &amp; Logistics">
+                <option>Transportation / Logistics</option>
+                <option>Auto Sales / Service</option>
+              </optgroup>
+              <option value="Other">Other</option>
+            </select>
+            <div class="field-error" id="err-industry">Please select an industry.</div>
+          </div>
+          <div class="field">
+            <label>Years in Business <span class="req">*</span></label>
+            <input type="number" id="yearsOpen" min="0" step="1" placeholder="e.g. 5">
+            <div class="field-hint">Enter 0 if opened this year.</div>
+            <div class="field-error" id="err-yearsOpen">Please enter the number of years in business.</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Business Type <span class="req">*</span></label>
+          <div class="toggle-group">
+            <label class="toggle-opt"><input type="radio" name="bizType" value="For-Profit" id="bizForProfit"> <span>For-Profit</span></label>
+            <label class="toggle-opt"><input type="radio" name="bizType" value="Non-Profit" id="bizNonProfit"> <span>Non-Profit</span></label>
+          </div>
+          <div class="field-error" id="err-bizType">Please select a business type.</div>
+        </div>
+        <div class="field">
+          <label>Business Description</label>
+          <textarea id="bizDescription" placeholder="Brief description of your products or services (optional)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Contact & Location -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h2>Contact &amp; Location</h2>
+        <span class="section-num">Section 3 of 4</span>
+      </div>
+      <div class="section-body">
+        <div class="field-row full">
+          <div class="field">
+            <label>Business Address</label>
+            <input type="text" id="address" placeholder="Street address, City, State, ZIP">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Business Phone</label>
+            <input type="tel" id="bizPhone" placeholder="(000) 000-0000">
+          </div>
+          <div class="field">
+            <label>Business Email</label>
+            <input type="email" id="bizEmail" placeholder="info@yourbusiness.com">
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Website</label>
+            <input type="url" id="website" placeholder="https://www.yourbusiness.com">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: Social Media -->
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        <h2>Social Media</h2>
+        <span class="section-num">Section 4 of 4</span>
+      </div>
+      <div class="section-body">
+        <div class="field-hint">All social media fields are optional. Enter the full URL or just the handle/username.</div>
+        <div class="social-row">
+          <div class="social-field">
+            <div class="social-icon si-fb">
+              <svg viewBox="0 0 24 24" fill="#fff" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </div>
+            <input type="text" id="smFacebook" placeholder="Facebook URL or username">
+          </div>
+          <div class="social-field">
+            <div class="social-icon si-ig">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <input type="text" id="smInstagram" placeholder="Instagram URL or @handle">
+          </div>
+          <div class="social-field">
+            <div class="social-icon si-x">
+              <svg viewBox="0 0 24 24" fill="#fff" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <input type="text" id="smTwitter" placeholder="X (Twitter) URL or @handle">
+          </div>
+          <div class="social-field">
+            <div class="social-icon si-li">
+              <svg viewBox="0 0 24 24" fill="#fff" width="18" height="18"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <input type="text" id="smLinkedIn" placeholder="LinkedIn URL or username">
+          </div>
+          <div class="social-field">
+            <div class="social-icon si-tt">
+              <svg viewBox="0 0 24 24" fill="#fff" width="17" height="17"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+            </div>
+            <input type="text" id="smTikTok" placeholder="TikTok URL or @handle">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-msg" id="statusMsg"></div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Business Listing &rarr;</button>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Business Registered!</h2>
+    <p>Your business has been added to the DLA Kappa Alpha Psi Member Business Directory. It will now appear in the portal for all members to see.</p>
+    <div class="success-ref" id="successRef"></div>
+    <p style="font-size:.82rem;color:#9a8878;">Thank you for supporting our chapter&rsquo;s business community.</p>
+    <a href="/portal/dashboard.html" style="margin-top:.5rem;display:inline-block;padding:.7rem 1.75rem;background:#70110c;color:#f2ebd7;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;">Return to Portal</a>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+function showErr(id, fieldId) {
+  const e = document.getElementById(id); if (e) e.classList.add('show');
+  const f = fieldId ? document.getElementById(fieldId) : null; if (f) f.classList.add('invalid');
+}
+
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('input, select').forEach(e => e.classList.remove('invalid'));
+}
+
+function validate() {
+  clearErrors();
+  let ok = true;
+  const get = id => document.getElementById(id).value.trim();
+  if (!get('firstName'))  { showErr('err-firstName','firstName'); ok = false; }
+  if (!get('lastName'))   { showErr('err-lastName','lastName'); ok = false; }
+  const em = get('ownerEmail');
+  if (!em || !/\S+@\S+\.\S+/.test(em)) { showErr('err-ownerEmail','ownerEmail'); ok = false; }
+  if (!get('businessName')) { showErr('err-businessName','businessName'); ok = false; }
+  if (!get('industry'))   { showErr('err-industry','industry'); ok = false; }
+  if (document.getElementById('yearsOpen').value === '') { showErr('err-yearsOpen','yearsOpen'); ok = false; }
+  if (!document.querySelector('input[name="bizType"]:checked')) { showErr('err-bizType'); ok = false; }
+  return ok;
+}
+
+document.getElementById('bizForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!validate()) return;
+
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('statusMsg');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const get  = id => document.getElementById(id).value.trim();
+  const typeEl = document.querySelector('input[name="bizType"]:checked');
+
+  const payload = {
+    first_name:        get('firstName'),
+    last_name:         get('lastName'),
+    owner_email:       get('ownerEmail'),
+    owner_phone:       get('ownerPhone')   || null,
+    business_name:     get('businessName'),
+    industry:          get('industry'),
+    years_open:        parseInt(document.getElementById('yearsOpen').value) || 0,
+    business_type:     typeEl ? typeEl.value : null,
+    description:       get('bizDescription') || null,
+    address:           get('address')      || null,
+    biz_phone:         get('bizPhone')     || null,
+    biz_email:         get('bizEmail')     || null,
+    website:           get('website')      || null,
+    sm_facebook:       get('smFacebook')   || null,
+    sm_instagram:      get('smInstagram')  || null,
+    sm_twitter:        get('smTwitter')    || null,
+    sm_linkedin:       get('smLinkedIn')   || null,
+    sm_tiktok:         get('smTikTok')     || null,
+    status:            'active',
+  };
+
+  const { data, error } = await sb.from('business_directory').insert([payload]).select().single();
+
+  if (error) {
+    msg.textContent = 'Submission failed: ' + (error.message || 'Please try again.');
+    msg.className = 'status-msg error';
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Submit Business Listing →';
+    return;
+  }
+
+  document.getElementById('bizForm').style.display = 'none';
+  const ref = data?.id ? String(data.id).slice(0, 8).toUpperCase() : '--------';
+  document.getElementById('successRef').textContent = 'Listing ID: DLA-BIZ-' + ref;
+  document.getElementById('successScreen').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</main>
+</body>
+</html>
