@@ -456,6 +456,38 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .section-block-body { padding: 1.5rem; }
 .section-block-body.compact { padding: 1.25rem 1.5rem; }
 
+/* ── BUSINESS DIRECTORY ── */
+.biz-dir-toolbar { display:flex; align-items:center; gap:.75rem; margin-bottom:1.25rem; flex-wrap:wrap; }
+.biz-dir-search { flex:1; min-width:180px; padding:.55rem .85rem; border:1px solid #e0d8cc; border-radius:6px; font-family:'Archivo',sans-serif; font-size:.84rem; background:#fff; }
+.biz-dir-search:focus { outline:none; border-color:#70110c; box-shadow:0 0 0 3px rgba(112,17,12,.07); }
+.biz-dir-filter { padding:.52rem .85rem; border:1px solid #e0d8cc; border-radius:6px; font-family:'Archivo',sans-serif; font-size:.82rem; background:#fff; appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat:no-repeat; background-position:right .6rem center; padding-right:1.8rem; cursor:pointer; }
+.biz-dir-filter:focus { outline:none; border-color:#70110c; }
+.biz-register-btn { display:inline-flex; align-items:center; gap:.4rem; background:#70110c; color:#f2ebd7; border:none; border-radius:5px; padding:.55rem 1rem; font-family:'Cinzel',serif; font-size:.65rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; text-decoration:none; white-space:nowrap; transition:background .2s; }
+.biz-register-btn:hover { background:#5a0e09; }
+.biz-cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
+.biz-card { background:#fff; border:1px solid #e8e0d5; border-radius:10px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .2s, transform .15s; }
+.biz-card:hover { box-shadow:0 6px 22px rgba(112,17,12,.1); transform:translateY(-2px); }
+.biz-card-head { background:linear-gradient(135deg,#70110c 0%,#2a0604 100%); padding:1rem 1.1rem .85rem; }
+.biz-card-name { font-family:'Cinzel',serif; font-size:.95rem; font-weight:700; color:#f2ebd7; line-height:1.25; margin-bottom:.2rem; }
+.biz-card-owner { font-size:.75rem; color:rgba(242,235,215,.7); }
+.biz-card-badges { display:flex; gap:.4rem; margin-top:.6rem; flex-wrap:wrap; }
+.biz-badge { font-size:.58rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.18rem .55rem; border-radius:3px; }
+.biz-badge-industry { background:rgba(198,154,63,.2); color:#c69a3f; border:1px solid rgba(198,154,63,.35); }
+.biz-badge-type-profit { background:rgba(34,197,94,.15); color:#166534; border:1px solid rgba(34,197,94,.3); }
+.biz-badge-type-nonprofit { background:rgba(59,130,246,.15); color:#1e40af; border:1px solid rgba(59,130,246,.3); }
+.biz-badge-years { background:rgba(255,255,255,.12); color:rgba(242,235,215,.8); border:1px solid rgba(255,255,255,.18); }
+.biz-card-body { padding:1rem 1.1rem; flex:1; display:flex; flex-direction:column; gap:.6rem; }
+.biz-card-desc { font-size:.78rem; color:#666; line-height:1.5; }
+.biz-contact-row { display:flex; align-items:center; gap:.5rem; font-size:.77rem; color:#444; overflow:hidden; }
+.biz-contact-row svg { flex-shrink:0; color:#70110c; }
+.biz-contact-row a { color:#70110c; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.biz-contact-row a:hover { text-decoration:underline; }
+.biz-card-footer { padding:.75rem 1.1rem; border-top:1px solid #f0ece6; display:flex; gap:.5rem; align-items:center; }
+.biz-social-btn { width:28px; height:28px; border-radius:5px; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; transition:opacity .15s; }
+.biz-social-btn:hover { opacity:.8; }
+.biz-empty { text-align:center; padding:3rem 1rem; color:#aaa; font-size:.88rem; }
+.biz-loading { text-align:center; padding:2.5rem; color:#aaa; font-size:.84rem; }
+
 /* ── CHAPTER STORE ── */
 .cs-wrap { border:1px solid #e8e0d5; border-radius:8px; overflow:hidden; margin-bottom:2rem; }
 .cs-header { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.25rem .6rem; border-bottom:1px solid #e8e0d5; }
@@ -982,6 +1014,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   <button class="msn-btn" onclick="showSection('calls',null);mobNavActivate(this)">Calls</button>
   <button class="msn-btn" onclick="showSection('shop',null);mobNavActivate(this)">Vendors</button>
   <button class="msn-btn" onclick="window.open('https://dlakappa.org/portal/videos.html','_blank')">Videos</button>
+  <button class="msn-btn" onclick="showSection('business-directory',null);loadBusinessDirectory();mobNavActivate(this)">Businesses</button>
   <button class="msn-btn" onclick="showSection('account',null);mobNavActivate(this)">Account</button>
 </nav>
 
@@ -1094,6 +1127,10 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         <a href="https://dlakappa.org/portal/videos.html" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
           Video Library
+        </a>
+        <a href="#" onclick="showSection('business-directory',this);loadBusinessDirectory();return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          Business Directory
         </a>
         <hr class="sidebar-divider">
         <a href="#" onclick="showSection('account',this);return false;">
@@ -1792,6 +1829,35 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
+    <!-- ── BUSINESS DIRECTORY ── -->
+    <div id="business-directory" class="section-block" style="scroll-margin-top:90px;display:none;">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="section-block-title">Member Business Directory</div>
+      </div>
+      <div class="section-block-body">
+        <!-- Toolbar -->
+        <div class="biz-dir-toolbar">
+          <input class="biz-dir-search" type="text" id="bizSearch" placeholder="Search businesses, owners, industry…" oninput="filterBizCards()">
+          <select class="biz-dir-filter" id="bizFilterType" onchange="filterBizCards()">
+            <option value="">All Types</option>
+            <option value="For-Profit">For-Profit</option>
+            <option value="Non-Profit">Non-Profit</option>
+          </select>
+          <a class="biz-register-btn" href="/portal/business-registry.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Register Your Business
+          </a>
+        </div>
+        <!-- Cards -->
+        <div class="biz-cards-grid" id="bizCardsGrid">
+          <div class="biz-loading">Loading directory…</div>
+        </div>
+      </div>
+    </div>
+
     <!-- ── MY ACCOUNT ── -->
     <div id="account" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
@@ -1865,7 +1931,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 
 <script>
 // ── SECTION SWITCHER ────────────────────────────────────────────────────────
-const DASH_SECTIONS = ['dues','polemarch-address','app','training','guidelines','news','documents','assessments','calls','store','shop','video-library','account'];
+const DASH_SECTIONS = ['dues','polemarch-address','app','training','guidelines','news','documents','assessments','calls','store','shop','video-library','business-directory','account'];
 
 function showSection(id, clickedLink) {
   // Hide welcome banner
@@ -1895,6 +1961,126 @@ function showSection(id, clickedLink) {
 function mobNavActivate(btn) {
   document.querySelectorAll('.msn-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
+}
+
+// ── BUSINESS DIRECTORY ───────────────────────────────────────────────────────
+var bizData = [];
+var bizLoaded = false;
+
+function loadBusinessDirectory() {
+  if (bizLoaded) return;
+  var grid = document.getElementById('bizCardsGrid');
+  if (!grid) return;
+  grid.innerHTML = '<div class="biz-loading">Loading directory…</div>';
+
+  // Use the page's supabase client if available, else build one
+  var client = (typeof sb !== 'undefined') ? sb
+    : (typeof window.supabase !== 'undefined'
+        ? window.supabase.createClient(
+            'https://eithccduveikejdhvnmq.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ')
+        : null);
+
+  if (!client) {
+    grid.innerHTML = '<div class="biz-empty">Unable to connect to the directory. Please refresh and try again.</div>';
+    return;
+  }
+
+  client.from('business_directory')
+    .select('*')
+    .eq('status','active')
+    .order('business_name', { ascending: true })
+    .then(function(res) {
+      if (res.error) {
+        grid.innerHTML = '<div class="biz-empty">Could not load directory. Please try again.</div>';
+        return;
+      }
+      bizData = res.data || [];
+      bizLoaded = true;
+      renderBizCards(bizData);
+    });
+}
+
+function renderBizCards(items) {
+  var grid = document.getElementById('bizCardsGrid');
+  if (!grid) return;
+  if (!items.length) {
+    grid.innerHTML = '<div class="biz-empty">No businesses found. Be the first to <a href="/portal/business-registry.html" style="color:#70110c;">register yours</a>!</div>';
+    return;
+  }
+
+  grid.innerHTML = items.map(function(b) {
+    var yearsLabel = b.years_open === 0 ? 'Opened this year'
+                   : b.years_open === 1 ? '1 year in business'
+                   : (b.years_open || '?') + ' years in business';
+
+    var typeClass = b.business_type === 'Non-Profit' ? 'biz-badge-type-nonprofit' : 'biz-badge-type-profit';
+
+    var contactRows = '';
+    if (b.address)   contactRows += '<div class="biz-contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>' + escHtml(b.address) + '</span></div>';
+    if (b.biz_phone) contactRows += '<div class="biz-contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.63 19 19.5 19.5 0 0 1 5 12.63 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 5.86 5.86l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:' + escHtml(b.biz_phone) + '">' + escHtml(b.biz_phone) + '</a></div>';
+    if (b.biz_email) contactRows += '<div class="biz-contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:' + escHtml(b.biz_email) + '">' + escHtml(b.biz_email) + '</a></div>';
+    if (b.website)   contactRows += '<div class="biz-contact-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><a href="' + escHtml(b.website) + '" target="_blank" rel="noopener">' + escHtml(b.website.replace(/^https?:\/\//,'')) + '</a></div>';
+
+    var socials = '';
+    if (b.sm_facebook)  socials += socialBtn(b.sm_facebook,  '#1877f2', 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z');
+    if (b.sm_instagram) socials += socialBtnIg(b.sm_instagram);
+    if (b.sm_twitter)   socials += socialBtn(b.sm_twitter,   '#000',    'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231z', true);
+    if (b.sm_linkedin)  socials += socialBtn(b.sm_linkedin,  '#0a66c2', 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z');
+    if (b.sm_tiktok)    socials += socialBtn(b.sm_tiktok,    '#010101', 'M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.13 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z');
+
+    return '<div class="biz-card" data-name="' + escAttr((b.business_name||'').toLowerCase()) + '" data-owner="' + escAttr(((b.first_name||'')+' '+(b.last_name||'')).toLowerCase()) + '" data-industry="' + escAttr((b.industry||'').toLowerCase()) + '" data-type="' + escAttr(b.business_type||'') + '">'
+      + '<div class="biz-card-head">'
+      +   '<div class="biz-card-name">' + escHtml(b.business_name) + '</div>'
+      +   '<div class="biz-card-owner">' + escHtml((b.first_name||'') + ' ' + (b.last_name||'')) + '</div>'
+      +   '<div class="biz-card-badges">'
+      +     (b.industry ? '<span class="biz-badge biz-badge-industry">' + escHtml(b.industry) + '</span>' : '')
+      +     (b.business_type ? '<span class="biz-badge ' + typeClass + '">' + escHtml(b.business_type) + '</span>' : '')
+      +     '<span class="biz-badge biz-badge-years">' + yearsLabel + '</span>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="biz-card-body">'
+      +   (b.description ? '<div class="biz-card-desc">' + escHtml(b.description) + '</div>' : '')
+      +   contactRows
+      + '</div>'
+      + (socials ? '<div class="biz-card-footer">' + socials + '</div>' : '')
+      + '</div>';
+  }).join('');
+}
+
+function filterBizCards() {
+  var q    = (document.getElementById('bizSearch').value || '').toLowerCase();
+  var type = (document.getElementById('bizFilterType').value || '');
+  var filtered = bizData.filter(function(b) {
+    var matchQ = !q
+      || (b.business_name||'').toLowerCase().includes(q)
+      || ((b.first_name||'')+' '+(b.last_name||'')).toLowerCase().includes(q)
+      || (b.industry||'').toLowerCase().includes(q)
+      || (b.description||'').toLowerCase().includes(q);
+    var matchType = !type || b.business_type === type;
+    return matchQ && matchType;
+  });
+  renderBizCards(filtered);
+}
+
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) { return String(s||'').replace(/"/g,'&quot;'); }
+
+function socialBtn(url, bg, path, isFill) {
+  var href = url.startsWith('http') ? url : 'https://' + url;
+  var stroke = isFill ? 'none' : '#fff';
+  var fill   = isFill ? '#fff' : 'none';
+  return '<a class="biz-social-btn" href="' + escAttr(href) + '" target="_blank" rel="noopener" style="background:' + bg + ';">'
+    + '<svg viewBox="0 0 24 24" fill="' + fill + '" stroke="' + stroke + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="' + path + '"/></svg>'
+    + '</a>';
+}
+function socialBtnIg(url) {
+  var href = url.startsWith('http') ? url : 'https://' + url;
+  return '<a class="biz-social-btn" href="' + escAttr(href) + '" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">'
+    + '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>'
+    + '</a>';
 }
 
 // ── POLEMARCH VIDEO ──────────────────────────────────────────────────────────
