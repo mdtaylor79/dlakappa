@@ -2112,24 +2112,29 @@ var bizCurrentUserEmail = '';
 var bizEditId = null;
 
 function loadBusinessDirectory() {
-  if (bizLoaded) return;
+  // Always re-render so the Edit button appears once the user's email is known
+  if (bizLoaded) { renderBizCards(bizData); return; }
   var grid = document.getElementById('bizCardsGrid');
   if (!grid) return;
   grid.innerHTML = '<div class="biz-loading">Loading directory…</div>';
 
-  dlaSupabase.from('business_directory')
-    .select('*')
-    .eq('status','active')
-    .order('business_name', { ascending: true })
-    .then(function(res) {
-      if (res.error) {
-        grid.innerHTML = '<div class="biz-empty">Could not load directory. Please try again.</div>';
-        return;
-      }
-      bizData = res.data || [];
-      bizLoaded = true;
-      renderBizCards(bizData);
-    });
+  dlaSupabase.auth.getSession().then(function(sr) {
+    if (sr.data && sr.data.session && sr.data.session.user) {
+      bizCurrentUserEmail = sr.data.session.user.email || '';
+    }
+    return dlaSupabase.from('business_directory')
+      .select('*')
+      .eq('status','active')
+      .order('business_name', { ascending: true });
+  }).then(function(res) {
+    if (!res || res.error) {
+      grid.innerHTML = '<div class="biz-empty">Could not load directory. Please try again.</div>';
+      return;
+    }
+    bizData = res.data || [];
+    bizLoaded = true;
+    renderBizCards(bizData);
+  });
 }
 
 function renderBizCards(items) {
