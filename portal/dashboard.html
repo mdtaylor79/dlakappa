@@ -488,6 +488,148 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .biz-empty { text-align:center; padding:3rem 1rem; color:#aaa; font-size:.88rem; }
 .biz-loading { text-align:center; padding:2.5rem; color:#aaa; font-size:.84rem; }
 
+/* Edit button on own card */
+.biz-edit-btn {
+  margin-left:auto;
+  background: none;
+  border: 1px solid rgba(198,154,63,.5);
+  color: #c69a3f;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .3rem .7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  flex-shrink: 0;
+}
+.biz-edit-btn:hover { background: #c69a3f; color: #fff; }
+
+/* Edit modal */
+.biz-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.biz-modal-overlay.open { display: flex; }
+.biz-modal {
+  background: #fff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.biz-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid #e8e0d5;
+  background: #70110c;
+  border-radius: 10px 10px 0 0;
+}
+.biz-modal-header h3 {
+  font-family: 'Cinzel', serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .04em;
+}
+.biz-modal-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.7);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: .2rem .4rem;
+  transition: color .15s;
+}
+.biz-modal-close:hover { color: #fff; }
+.biz-modal-body {
+  padding: 1.4rem;
+  overflow-y: auto;
+  flex: 1;
+}
+.biz-modal-section-label {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #70110c;
+  margin: 1.2rem 0 .6rem;
+  border-bottom: 1px solid #f0ece6;
+  padding-bottom: .4rem;
+}
+.biz-modal-section-label:first-child { margin-top: 0; }
+.biz-modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.biz-modal-field { display: flex; flex-direction: column; gap: .3rem; margin-bottom: .75rem; }
+.biz-modal-field label { font-size: .72rem; font-weight: 600; color: #555; }
+.biz-modal-field input,
+.biz-modal-field select,
+.biz-modal-field textarea {
+  padding: .55rem .75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: .84rem;
+  font-family: 'Archivo', sans-serif;
+  color: #222;
+  transition: border-color .15s;
+  background: #faf9f7;
+}
+.biz-modal-field input:focus,
+.biz-modal-field select:focus,
+.biz-modal-field textarea:focus { outline: none; border-color: #70110c; background: #fff; }
+.biz-modal-field textarea { resize: vertical; min-height: 80px; }
+.biz-modal-type-row { display: flex; gap: 1.5rem; align-items: center; padding: .55rem 0; }
+.biz-modal-type-row label { display: flex; align-items: center; gap: .4rem; font-size: .84rem; color: #333; cursor: pointer; }
+.biz-modal-footer {
+  padding: 1rem 1.4rem;
+  border-top: 1px solid #e8e0d5;
+  display: flex;
+  gap: .75rem;
+  justify-content: flex-end;
+  background: #faf9f7;
+  border-radius: 0 0 10px 10px;
+}
+.biz-modal-save {
+  background: #70110c;
+  color: #fff;
+  border: none;
+  padding: .65rem 1.5rem;
+  border-radius: 5px;
+  font-size: .84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+.biz-modal-save:hover { background: #8e1510; }
+.biz-modal-save:disabled { background: #aaa; cursor: default; }
+.biz-modal-cancel {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: .65rem 1.25rem;
+  border-radius: 5px;
+  font-size: .84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.biz-modal-cancel:hover { border-color: #70110c; color: #70110c; }
+.biz-modal-msg { font-size: .8rem; padding: .5rem .75rem; border-radius: 4px; display: none; }
+.biz-modal-msg.success { background: #eaf7ee; color: #2d8f4e; display: block; }
+.biz-modal-msg.error   { background: #fdecea; color: #c0392b; display: block; }
+
 /* ── CHAPTER STORE ── */
 .cs-wrap { border:1px solid #e8e0d5; border-radius:8px; overflow:hidden; margin-bottom:2rem; }
 .cs-header { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.25rem .6rem; border-bottom:1px solid #e8e0d5; }
@@ -1966,6 +2108,8 @@ function mobNavActivate(btn) {
 // ── BUSINESS DIRECTORY ───────────────────────────────────────────────────────
 var bizData = [];
 var bizLoaded = false;
+var bizCurrentUserEmail = '';
+var bizEditId = null;
 
 function loadBusinessDirectory() {
   if (bizLoaded) return;
@@ -1973,20 +2117,7 @@ function loadBusinessDirectory() {
   if (!grid) return;
   grid.innerHTML = '<div class="biz-loading">Loading directory…</div>';
 
-  // Use the page's supabase client if available, else build one
-  var client = (typeof sb !== 'undefined') ? sb
-    : (typeof window.supabase !== 'undefined'
-        ? window.supabase.createClient(
-            'https://eithccduveikejdhvnmq.supabase.co',
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ')
-        : null);
-
-  if (!client) {
-    grid.innerHTML = '<div class="biz-empty">Unable to connect to the directory. Please refresh and try again.</div>';
-    return;
-  }
-
-  client.from('business_directory')
+  dlaSupabase.from('business_directory')
     .select('*')
     .eq('status','active')
     .order('business_name', { ascending: true })
@@ -2029,9 +2160,18 @@ function renderBizCards(items) {
     if (b.sm_linkedin)  socials += socialBtn(b.sm_linkedin,  '#0a66c2', 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z');
     if (b.sm_tiktok)    socials += socialBtn(b.sm_tiktok,    '#010101', 'M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.13 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z');
 
+    var isOwner = bizCurrentUserEmail && b.owner_email &&
+                  b.owner_email.toLowerCase() === bizCurrentUserEmail.toLowerCase();
+    var editBtn = isOwner
+      ? '<button class="biz-edit-btn" onclick="openBizEdit(\'' + escAttr(b.id) + '\')">✎ Edit</button>'
+      : '';
+
     return '<div class="biz-card" data-name="' + escAttr((b.business_name||'').toLowerCase()) + '" data-owner="' + escAttr(((b.first_name||'')+' '+(b.last_name||'')).toLowerCase()) + '" data-industry="' + escAttr((b.industry||'').toLowerCase()) + '" data-type="' + escAttr(b.business_type||'') + '">'
-      + '<div class="biz-card-head">'
-      +   '<div class="biz-card-name">' + escHtml(b.business_name) + '</div>'
+      + '<div class="biz-card-head" style="display:flex;flex-direction:column;gap:.35rem;">'
+      +   '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;">'
+      +     '<div class="biz-card-name">' + escHtml(b.business_name) + '</div>'
+      +     editBtn
+      +   '</div>'
       +   '<div class="biz-card-owner">' + escHtml((b.first_name||'') + ' ' + (b.last_name||'')) + '</div>'
       +   '<div class="biz-card-badges">'
       +     (b.industry ? '<span class="biz-badge biz-badge-industry">' + escHtml(b.industry) + '</span>' : '')
@@ -2081,6 +2221,115 @@ function socialBtnIg(url) {
   return '<a class="biz-social-btn" href="' + escAttr(href) + '" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">'
     + '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>'
     + '</a>';
+}
+
+// ── BUSINESS DIRECTORY EDIT ───────────────────────────────────────────────────
+function openBizEdit(id) {
+  var b = bizData.find(function(x){ return x.id === id; });
+  if (!b) return;
+  bizEditId = id;
+
+  // Populate fields
+  document.getElementById('em_business_name').value = b.business_name || '';
+  document.getElementById('em_industry').value       = b.industry     || '';
+  document.getElementById('em_years_open').value     = b.years_open != null ? b.years_open : '';
+  document.getElementById('em_description').value    = b.description  || '';
+  document.getElementById('em_address').value        = b.address      || '';
+  document.getElementById('em_biz_phone').value      = b.biz_phone    || '';
+  document.getElementById('em_biz_email').value      = b.biz_email    || '';
+  document.getElementById('em_website').value        = b.website      || '';
+  document.getElementById('em_sm_facebook').value    = b.sm_facebook  || '';
+  document.getElementById('em_sm_instagram').value   = b.sm_instagram || '';
+  document.getElementById('em_sm_twitter').value     = b.sm_twitter   || '';
+  document.getElementById('em_sm_linkedin').value    = b.sm_linkedin  || '';
+  document.getElementById('em_sm_tiktok').value      = b.sm_tiktok    || '';
+
+  // Business type radio
+  document.querySelectorAll('input[name="em_biz_type"]').forEach(function(r) {
+    r.checked = (r.value === b.business_type);
+  });
+
+  // Clear message
+  var msg = document.getElementById('bizModalMsg');
+  msg.className = 'biz-modal-msg';
+  msg.textContent = '';
+
+  var saveBtn = document.getElementById('bizModalSaveBtn');
+  saveBtn.disabled = false;
+  saveBtn.textContent = 'Save Changes';
+
+  document.getElementById('bizEditModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBizEdit() {
+  document.getElementById('bizEditModal').classList.remove('open');
+  document.body.style.overflow = '';
+  bizEditId = null;
+}
+
+async function saveBizEdit() {
+  if (!bizEditId) return;
+  var saveBtn = document.getElementById('bizModalSaveBtn');
+  var msg     = document.getElementById('bizModalMsg');
+
+  var bizName = document.getElementById('em_business_name').value.trim();
+  if (!bizName) {
+    msg.className = 'biz-modal-msg error';
+    msg.textContent = 'Business name is required.';
+    return;
+  }
+
+  var typeRadio = document.querySelector('input[name="em_biz_type"]:checked');
+
+  var payload = {
+    business_name: bizName,
+    industry:      document.getElementById('em_industry').value     || null,
+    years_open:    parseInt(document.getElementById('em_years_open').value, 10) || 0,
+    business_type: typeRadio ? typeRadio.value : null,
+    description:   document.getElementById('em_description').value.trim()  || null,
+    address:       document.getElementById('em_address').value.trim()       || null,
+    biz_phone:     document.getElementById('em_biz_phone').value.trim()     || null,
+    biz_email:     document.getElementById('em_biz_email').value.trim()     || null,
+    website:       document.getElementById('em_website').value.trim()       || null,
+    sm_facebook:   document.getElementById('em_sm_facebook').value.trim()   || null,
+    sm_instagram:  document.getElementById('em_sm_instagram').value.trim()  || null,
+    sm_twitter:    document.getElementById('em_sm_twitter').value.trim()    || null,
+    sm_linkedin:   document.getElementById('em_sm_linkedin').value.trim()   || null,
+    sm_tiktok:     document.getElementById('em_sm_tiktok').value.trim()     || null,
+  };
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = 'Saving…';
+  msg.className = 'biz-modal-msg';
+  msg.textContent = '';
+
+  var { error } = await dlaSupabase
+    .from('business_directory')
+    .update(payload)
+    .eq('id', bizEditId);
+
+  if (error) {
+    msg.className = 'biz-modal-msg error';
+    msg.textContent = 'Could not save changes. Please try again.';
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save Changes';
+    return;
+  }
+
+  // Update local cache so cards re-render without a reload
+  var idx = bizData.findIndex(function(x){ return x.id === bizEditId; });
+  if (idx !== -1) {
+    bizData[idx] = Object.assign({}, bizData[idx], payload);
+  }
+
+  msg.className = 'biz-modal-msg success';
+  msg.textContent = 'Listing updated successfully!';
+  saveBtn.textContent = 'Saved ✓';
+
+  renderBizCards(bizData);
+
+  setTimeout(function() { closeBizEdit(); }, 1200);
 }
 
 // ── POLEMARCH VIDEO ──────────────────────────────────────────────────────────
@@ -2188,6 +2437,11 @@ document.addEventListener('DOMContentLoaded', async function() {
   var { data: { session } } = await dlaSupabase.auth.getSession();
   if (!session) { window.location.href = 'login.html'; return; }
 
+  // Track logged-in email for business directory edit ownership
+  if (session.user && session.user.email) {
+    bizCurrentUserEmail = session.user.email;
+  }
+
   // Load member data
   var { data: member } = await dlaSupabase
     .from('members')
@@ -2237,5 +2491,154 @@ document.addEventListener('DOMContentLoaded', async function() {
   loadNews();
 });
 </script>
+
+<!-- ── BUSINESS DIRECTORY EDIT MODAL ── -->
+<div id="bizEditModal" class="biz-modal-overlay" onclick="if(event.target===this)closeBizEdit()">
+  <div class="biz-modal">
+    <div class="biz-modal-header">
+      <h3>Edit Your Business Listing</h3>
+      <button class="biz-modal-close" onclick="closeBizEdit()" title="Close">&times;</button>
+    </div>
+    <div class="biz-modal-body">
+      <div id="bizModalMsg" class="biz-modal-msg"></div>
+
+      <div class="biz-modal-section-label">Business Details</div>
+      <div class="biz-modal-field">
+        <label for="em_business_name">Business Name *</label>
+        <input type="text" id="em_business_name" placeholder="Your business name">
+      </div>
+      <div class="biz-modal-row">
+        <div class="biz-modal-field">
+          <label for="em_industry">Industry</label>
+          <select id="em_industry">
+            <option value="">Select industry…</option>
+            <optgroup label="Professional Services">
+              <option>Accounting / Finance</option>
+              <option>Legal Services</option>
+              <option>Consulting</option>
+              <option>Insurance</option>
+              <option>Real Estate</option>
+            </optgroup>
+            <optgroup label="Technology">
+              <option>Software / App Development</option>
+              <option>IT Services / Cybersecurity</option>
+              <option>Digital Marketing / SEO</option>
+              <option>E-Commerce / Online Business</option>
+            </optgroup>
+            <optgroup label="Health &amp; Wellness">
+              <option>Healthcare / Medical</option>
+              <option>Fitness / Personal Training</option>
+              <option>Mental Health Services</option>
+              <option>Barbershop / Salon</option>
+              <option>Spa / Wellness</option>
+            </optgroup>
+            <optgroup label="Construction &amp; Trades">
+              <option>Construction / Contracting</option>
+              <option>Landscaping / Lawn Care</option>
+              <option>Plumbing / HVAC / Electrical</option>
+              <option>Interior Design / Architecture</option>
+            </optgroup>
+            <optgroup label="Food &amp; Hospitality">
+              <option>Restaurant / Food Service</option>
+              <option>Catering</option>
+              <option>Event Planning</option>
+              <option>Hotel / Travel</option>
+            </optgroup>
+            <optgroup label="Retail &amp; E-Commerce">
+              <option>Retail Store</option>
+              <option>Clothing / Fashion</option>
+              <option>Automotive</option>
+            </optgroup>
+            <optgroup label="Education &amp; Nonprofit">
+              <option>Education / Tutoring</option>
+              <option>Nonprofit / Community Org</option>
+              <option>Faith-Based Organization</option>
+            </optgroup>
+            <optgroup label="Creative &amp; Media">
+              <option>Graphic Design / Art</option>
+              <option>Photography / Videography</option>
+              <option>Music / Entertainment</option>
+              <option>Publishing / Writing</option>
+            </optgroup>
+            <optgroup label="Transportation &amp; Logistics">
+              <option>Trucking / Freight</option>
+              <option>Moving Services</option>
+              <option>Delivery / Courier</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option>Other</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="biz-modal-field">
+          <label for="em_years_open">Years in Business</label>
+          <input type="number" id="em_years_open" min="0" max="200" placeholder="0">
+        </div>
+      </div>
+      <div class="biz-modal-field">
+        <label>Business Type</label>
+        <div class="biz-modal-type-row">
+          <label><input type="radio" name="em_biz_type" value="For-Profit"> For-Profit</label>
+          <label><input type="radio" name="em_biz_type" value="Non-Profit"> Non-Profit</label>
+        </div>
+      </div>
+      <div class="biz-modal-field">
+        <label for="em_description">Description</label>
+        <textarea id="em_description" placeholder="What does your business do?"></textarea>
+      </div>
+
+      <div class="biz-modal-section-label">Contact &amp; Location</div>
+      <div class="biz-modal-field">
+        <label for="em_address">Address</label>
+        <input type="text" id="em_address" placeholder="123 Main St, City, TX 75000">
+      </div>
+      <div class="biz-modal-row">
+        <div class="biz-modal-field">
+          <label for="em_biz_phone">Business Phone</label>
+          <input type="tel" id="em_biz_phone" placeholder="(555) 000-0000">
+        </div>
+        <div class="biz-modal-field">
+          <label for="em_biz_email">Business Email</label>
+          <input type="email" id="em_biz_email" placeholder="hello@yourbiz.com">
+        </div>
+      </div>
+      <div class="biz-modal-field">
+        <label for="em_website">Website</label>
+        <input type="url" id="em_website" placeholder="https://yourbiz.com">
+      </div>
+
+      <div class="biz-modal-section-label">Social Media</div>
+      <div class="biz-modal-row">
+        <div class="biz-modal-field">
+          <label for="em_sm_facebook">Facebook URL</label>
+          <input type="url" id="em_sm_facebook" placeholder="https://facebook.com/…">
+        </div>
+        <div class="biz-modal-field">
+          <label for="em_sm_instagram">Instagram URL</label>
+          <input type="url" id="em_sm_instagram" placeholder="https://instagram.com/…">
+        </div>
+      </div>
+      <div class="biz-modal-row">
+        <div class="biz-modal-field">
+          <label for="em_sm_twitter">X / Twitter URL</label>
+          <input type="url" id="em_sm_twitter" placeholder="https://x.com/…">
+        </div>
+        <div class="biz-modal-field">
+          <label for="em_sm_linkedin">LinkedIn URL</label>
+          <input type="url" id="em_sm_linkedin" placeholder="https://linkedin.com/in/…">
+        </div>
+      </div>
+      <div class="biz-modal-field">
+        <label for="em_sm_tiktok">TikTok URL</label>
+        <input type="url" id="em_sm_tiktok" placeholder="https://tiktok.com/@…">
+      </div>
+    </div>
+    <div class="biz-modal-footer">
+      <button class="biz-modal-cancel" onclick="closeBizEdit()">Cancel</button>
+      <button class="biz-modal-save" id="bizModalSaveBtn" onclick="saveBizEdit()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
