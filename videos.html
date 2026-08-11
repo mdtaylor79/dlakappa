@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter Video Library — DLA Kappa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #70110c;
+      --crimson-deep: #2a0604;
+      --gold: #c69a3f;
+      --gold-light: #e0bb6a;
+      --cream: #f2ebd7;
+      --dark: #0d0101;
+      --dark2: #140202;
+      --card-bg: #1e0504;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; gap: 2rem;
+      padding: 1rem 3rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,.85) 0%, transparent 100%);
+      transition: background .3s;
+    }
+    .topnav.scrolled { background: rgba(13,1,1,.96); box-shadow: 0 2px 20px rgba(0,0,0,.5); }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .nav-logo span { color: rgba(242,235,215,.55); font-size: .65rem; display: block; letter-spacing: .18em; margin-top: .1rem; }
+    .nav-links { display: flex; gap: 1.5rem; flex: 1; }
+    .nav-links a {
+      font-size: .8rem; font-weight: 500; color: rgba(255,255,255,.75);
+      text-decoration: none; transition: color .2s; letter-spacing: .02em;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; margin-left: auto; }
+    .nav-search-btn {
+      background: none; border: none; cursor: pointer; color: rgba(255,255,255,.7);
+      display: flex; align-items: center; transition: color .2s;
+    }
+    .nav-search-btn:hover { color: #fff; }
+    .nav-portal-btn {
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border: 1px solid rgba(198,154,63,.5);
+      padding: .4rem .9rem; border-radius: 3px;
+      transition: background .2s, color .2s;
+    }
+    .nav-portal-btn:hover { background: var(--gold); color: var(--crimson-deep); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%; height: 85vh; min-height: 520px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-video-wrap {
+      position: absolute; inset: 0;
+    }
+    .hero-video-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #3a0a08 0%, #1a0302 40%, #0d0101 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    /* Decorative play-like element */
+    .hero-video-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 60% 50% at 65% 45%, rgba(112,17,12,.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 30% 60%, rgba(198,154,63,.08) 0%, transparent 60%);
+    }
+    .hero-placeholder-icon {
+      width: 120px; height: 120px;
+      border: 3px solid rgba(198,154,63,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: .35;
+    }
+    .hero-placeholder-icon svg { margin-left: 8px; }
+    /* Cinematic side bars */
+    .hero-video-placeholder::after {
+      content: 'VIDEO PLACEHOLDER';
+      position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%);
+      font-family: 'Cinzel', serif; font-size: .55rem; font-weight: 700;
+      letter-spacing: .3em; color: rgba(198,154,63,.2);
+    }
+    /* Gradient overlays */
+    .hero-overlay-left {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(13,1,1,.95) 0%, rgba(13,1,1,.6) 45%, transparent 75%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,1,1,1) 0%, rgba(13,1,1,.4) 25%, transparent 50%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 4rem 4.5rem;
+      max-width: 620px;
+    }
+    .hero-badge {
+      font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .hero-badge::before {
+      content: ''; width: 24px; height: 2px; background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; line-height: 1.15;
+      color: #fff; margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,.5);
+    }
+    .hero-desc {
+      font-size: .9rem; color: rgba(255,255,255,.75);
+      line-height: 1.65; margin-bottom: 1.75rem;
+      max-width: 480px;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem; font-size: .75rem;
+    }
+    .hero-year { color: var(--gold); font-weight: 600; }
+    .hero-duration { color: rgba(255,255,255,.5); }
+    .hero-tag {
+      background: rgba(112,17,12,.6); color: var(--cream);
+      font-family: 'Cinzel', serif; font-size: .55rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .2rem .6rem; border-radius: 2px;
+      border: 1px solid rgba(112,17,12,.8);
+    }
+    .hero-actions { display: flex; gap: .75rem; }
+    .btn-play {
+      display: flex; align-items: center; gap: .6rem;
+      background: #fff; color: #0d0101;
+      font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .75rem 1.75rem; border-radius: 4px; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-play:hover { background: rgba(255,255,255,.85); transform: scale(1.02); }
+    .btn-info {
+      display: flex; align-items: center; gap: .6rem;
+      background: rgba(255,255,255,.15); color: #fff;
+      backdrop-filter: blur(8px);
+      font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: .75rem 1.75rem; border-radius: 4px; border: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-info:hover { background: rgba(255,255,255,.25); }
+
+    /* Hero slide dots */
+    .hero-dots {
+      position: absolute; bottom: 2rem; right: 3rem; z-index: 3;
+      display: flex; gap: .5rem; align-items: center;
+    }
+    .hero-dot {
+      width: 28px; height: 3px; border-radius: 2px; cursor: pointer;
+      background: rgba(255,255,255,.3); transition: background .3s, width .3s;
+    }
+    .hero-dot.active { background: var(--gold); width: 40px; }
+
+    /* ── MAIN CONTENT ── */
+    .library { padding: 0 3rem 5rem; position: relative; z-index: 2; margin-top: -80px; }
+
+    /* ── ROW ── */
+    .row { margin-bottom: 2.5rem; }
+    .row-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem; padding: 0 .25rem;
+    }
+    .row-title {
+      font-family: 'Cinzel', serif; font-size: .88rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; color: #fff;
+    }
+    .row-see-all {
+      font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none; opacity: 0;
+      transition: opacity .2s;
+    }
+    .row:hover .row-see-all { opacity: 1; }
+    .row-track-wrap { position: relative; }
+    .row-track {
+      display: flex; gap: .5rem; overflow-x: auto; scroll-snap-type: x mandatory;
+      scrollbar-width: none; padding: .5rem .25rem 1rem;
+    }
+    .row-track::-webkit-scrollbar { display: none; }
+    /* Scroll arrows */
+    .scroll-arrow {
+      position: absolute; top: 50%; transform: translateY(-60%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.15);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 10; opacity: 0; transition: opacity .2s;
+      backdrop-filter: blur(4px);
+    }
+    .row-track-wrap:hover .scroll-arrow { opacity: 1; }
+    .scroll-arrow.left { left: -16px; }
+    .scroll-arrow.right { right: -16px; }
+    .scroll-arrow:hover { background: rgba(198,154,63,.3); border-color: var(--gold); }
+
+    /* ── VIDEO CARD ── */
+    .vcard {
+      flex: 0 0 calc(25% - .4rem);
+      min-width: 200px;
+      scroll-snap-align: start;
+      position: relative;
+      border-radius: 6px; overflow: visible;
+      transition: transform .3s, z-index .3s;
+      cursor: pointer;
+    }
+    .vcard:hover { transform: scale(1.12); z-index: 20; }
+    .vcard-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      border-radius: 6px; overflow: hidden;
+      position: relative;
+    }
+    .vcard-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--card-bg) 0%, #2d0808 100%);
+      position: relative; overflow: hidden;
+    }
+    /* Color variation per card */
+    .vcard:nth-child(2n) .vcard-placeholder { background: linear-gradient(135deg, #1a0e02 0%, #2d1f05 100%); }
+    .vcard:nth-child(3n) .vcard-placeholder { background: linear-gradient(135deg, #021216 0%, #041e25 100%); }
+    .vcard:nth-child(4n) .vcard-placeholder { background: linear-gradient(135deg, #0e0218 0%, #1c0530 100%); }
+
+    .vcard-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(198,154,63,.12) 0%, transparent 60%);
+    }
+    .vcard-ph-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 2px solid rgba(198,154,63,.3);
+      display: flex; align-items: center; justify-content: center;
+      opacity: .6;
+    }
+    .vcard-ph-label {
+      font-family: 'Cinzel', serif; font-size: .45rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(198,154,63,.3);
+    }
+    /* Card number watermark */
+    .vcard-num {
+      position: absolute; bottom: -8px; left: 6px;
+      font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 700;
+      color: rgba(255,255,255,.06); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .vcard-hover-overlay {
+      position: absolute; inset: 0; border-radius: 6px;
+      background: rgba(0,0,0,.55);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .25s;
+    }
+    .vcard:hover .vcard-hover-overlay { opacity: 1; }
+    .vcard-play-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s;
+    }
+    .vcard:hover .vcard-play-btn { transform: scale(1.08); }
+    .vcard-play-btn svg { margin-left: 3px; }
+
+    /* Card info panel (expands on hover) */
+    .vcard-info {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: #1a0302; border-radius: 0 0 6px 6px;
+      padding: .75rem .85rem .65rem;
+      opacity: 0; transform: translateY(-8px);
+      transition: opacity .25s, transform .25s;
+      pointer-events: none; z-index: 5;
+      border: 1px solid rgba(255,255,255,.06);
+      border-top: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.6);
+    }
+    .vcard:hover .vcard-info { opacity: 1; transform: translateY(0); }
+    .vcard-info-title {
+      font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700;
+      color: #fff; margin-bottom: .25rem; letter-spacing: .02em;
+    }
+    .vcard-info-meta {
+      font-size: .65rem; color: rgba(255,255,255,.45);
+      display: flex; gap: .75rem; margin-bottom: .4rem;
+    }
+    .vcard-info-tag {
+      font-size: .58rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .vcard-info-actions {
+      display: flex; gap: .5rem; margin-top: .6rem;
+    }
+    .vi-btn {
+      flex: 1; padding: .38rem; border-radius: 3px; border: none; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: .3rem;
+      transition: background .2s;
+    }
+    .vi-btn.play { background: #fff; color: #0d0101; }
+    .vi-btn.play:hover { background: rgba(255,255,255,.85); }
+    .vi-btn.more { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+    .vi-btn.more:hover { background: rgba(255,255,255,.2); }
+
+    /* ── FEATURED BANNER ── */
+    .featured-banner {
+      margin: 1.5rem 0 2.5rem;
+      border-radius: 10px; overflow: hidden;
+      position: relative; height: 220px;
+      background: linear-gradient(135deg, #2a0604 0%, #3d1200 40%, #1a0302 100%);
+      display: flex; align-items: center;
+    }
+    .featured-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(198,154,63,.15) 0%, transparent 65%);
+    }
+    .featured-banner-content {
+      position: relative; z-index: 2;
+      padding: 2rem 2.5rem;
+    }
+    .featured-banner-eyebrow {
+      font-family: 'Cinzel', serif; font-size: .55rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .5rem;
+    }
+    .featured-banner h2 {
+      font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: .5rem;
+    }
+    .featured-banner p {
+      font-size: .82rem; color: rgba(255,255,255,.6); max-width: 400px;
+      line-height: 1.55; margin-bottom: 1rem;
+    }
+    .featured-banner-ph {
+      position: absolute; right: 2.5rem; top: 50%; transform: translateY(-50%);
+      width: 280px; height: 160px; border-radius: 8px;
+      background: rgba(0,0,0,.3); border: 1px solid rgba(198,154,63,.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .featured-banner-ph::before {
+      content: 'VIDEO PLACEHOLDER';
+      font-family: 'Cinzel', serif; font-size: .48rem; font-weight: 700;
+      letter-spacing: .2em; color: rgba(198,154,63,.25);
+    }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      background: var(--crimson-deep); color: rgba(242,235,215,.4);
+      text-align: center; font-size: .68rem;
+      padding: 1rem; letter-spacing: .04em;
+    }
+    .page-footer span { color: var(--gold); }
+
+    /* ── SEARCH OVERLAY ── */
+    .search-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.92);
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 120px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+    }
+    .search-overlay.open { opacity: 1; pointer-events: all; }
+    .search-overlay input {
+      width: 600px; max-width: 90vw;
+      background: rgba(255,255,255,.08); border: 2px solid rgba(198,154,63,.5);
+      border-radius: 6px; padding: 1rem 1.5rem;
+      font-family: 'Archivo', sans-serif; font-size: 1.1rem; color: #fff;
+      outline: none;
+    }
+    .search-overlay input::placeholder { color: rgba(255,255,255,.3); }
+    .search-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      background: none; border: none; color: rgba(255,255,255,.5);
+      font-size: 1.5rem; cursor: pointer;
+    }
+
+    /* ── HAMBURGER MENU ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: .25rem;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: rgba(255,255,255,.8); border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: rgba(13,1,1,.97); padding: 5rem 2rem 2rem;
+      flex-direction: column; gap: .25rem; overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(255,255,255,.75); text-decoration: none;
+      padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      background: none; border: none; color: rgba(255,255,255,.5);
+      font-size: 1.5rem; cursor: pointer; padding: .25rem;
+    }
+
+    /* ── CARD TITLE (always visible on touch) ── */
+    .vcard-title-below {
+      display: none;
+      font-family: 'Cinzel', serif; font-size: .7rem; font-weight: 700;
+      color: rgba(255,255,255,.85); margin-top: .4rem;
+      padding: 0 .1rem; line-height: 1.3;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* ── TABLET (≤ 900px) ── */
+    @media (max-width: 900px) {
+      .vcard { flex: 0 0 calc(33.33% - .35rem); }
+      .featured-banner { height: auto; padding: 2rem; }
+      .featured-banner-content { padding: 0; }
+      .featured-banner-ph { width: 200px; height: 115px; }
+    }
+
+    /* ── MOBILE (≤ 768px) ── */
+    @media (max-width: 768px) {
+      /* Nav */
+      .topnav { padding: .75rem 1.25rem; gap: .75rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-portal-btn { display: none; }
+
+      /* Hero */
+      .hero { height: 72vw; min-height: 340px; max-height: 520px; }
+      .hero-content { padding: 0 1.25rem 2.5rem; max-width: 100%; }
+      .hero-badge { font-size: .5rem; }
+      .hero-title { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+      .hero-desc { font-size: .8rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .hero-actions { flex-direction: column; gap: .5rem; align-items: flex-start; }
+      .btn-play, .btn-info { padding: .6rem 1.25rem; font-size: .68rem; }
+      .hero-dots { bottom: 1rem; right: 1.25rem; }
+      .hero-dot { width: 20px; }
+      .hero-dot.active { width: 30px; }
+
+      /* Library */
+      .library { padding: 0 1rem 4rem; margin-top: -50px; }
+
+      /* Rows */
+      .row { margin-bottom: 2rem; }
+      .row-title { font-size: .78rem; }
+      .row-see-all { opacity: 1; font-size: .62rem; }
+      .scroll-arrow { display: none; }
+
+      /* Cards — 2 per row, show title below */
+      .vcard { flex: 0 0 calc(46% - .25rem); }
+      .vcard:hover { transform: none; z-index: auto; }
+      .vcard-hover-overlay { display: none; }
+      .vcard-info { display: none; }
+      .vcard-title-below { display: block; }
+
+      /* Featured banner */
+      .featured-banner {
+        height: auto; flex-direction: column;
+        padding: 1.5rem; gap: 1rem;
+        border-radius: 8px;
+      }
+      .featured-banner-content { padding: 0; }
+      .featured-banner h2 { font-size: 1.1rem; }
+      .featured-banner p { font-size: .78rem; margin-bottom: .75rem; }
+      .featured-banner-ph { display: none; }
+    }
+
+    /* ── SMALL MOBILE (≤ 480px) ── */
+    @media (max-width: 480px) {
+      .topnav { padding: .65rem 1rem; }
+      .nav-logo { font-size: .85rem; }
+      .nav-logo span { display: none; }
+
+      .hero { height: 78vw; min-height: 300px; }
+      .hero-content { padding: 0 1rem 2rem; }
+      .hero-title { font-size: clamp(1.1rem, 6vw, 1.5rem); }
+      .hero-desc { display: none; }
+      .hero-meta { gap: .5rem; font-size: .68rem; }
+      .btn-play, .btn-info { padding: .55rem 1rem; font-size: .62rem; }
+
+      .library { padding: 0 .75rem 3rem; margin-top: -40px; }
+      .row-header { margin-bottom: .65rem; }
+      .vcard { flex: 0 0 calc(47% - .2rem); }
+      .vcard-title-below { font-size: .62rem; }
+      .featured-banner h2 { font-size: 1rem; }
+    }
+
+    /* ── EXTRA SMALL (≤ 360px) ── */
+    @media (max-width: 360px) {
+      .vcard { flex: 0 0 calc(90% - .2rem); }
+      .hero-actions { gap: .4rem; }
+      .btn-info { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<nav class="topnav" id="topnav">
+  <a href="/portal/dashboard.html" class="nav-logo">
+    DLA Kappa
+    <span>Denton-Lewisville Alumni Chapter</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Chapter Events</a>
+    <a href="#">Brotherhood</a>
+    <a href="#">Guide Right</a>
+    <a href="#">Archives</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-search-btn" onclick="toggleSearch()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <a href="/portal/dashboard.html" class="nav-portal-btn">← Portal</a>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+  <a href="#" onclick="toggleMobileMenu()">Home</a>
+  <a href="#" onclick="toggleMobileMenu()">Chapter Events</a>
+  <a href="#" onclick="toggleMobileMenu()">Brotherhood</a>
+  <a href="#" onclick="toggleMobileMenu()">Guide Right</a>
+  <a href="#" onclick="toggleMobileMenu()">Archives</a>
+  <a href="/portal/dashboard.html" style="margin-top:1rem;color:var(--gold);">← Back to Portal</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-video-wrap">
+    <div class="hero-video-placeholder">
+      <div class="hero-placeholder-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="rgba(198,154,63,.8)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-overlay-left"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Featured Event</div>
+    <h1 class="hero-title">2026 Founders Day Celebration</h1>
+    <p class="hero-desc">Relive the brotherhood, the tributes, and the moments from our annual Founders Day gathering honoring the legacy of Kappa Alpha Psi.</p>
+    <div class="hero-meta">
+      <span class="hero-year">2026</span>
+      <span class="hero-duration">1h 24m</span>
+      <span class="hero-tag">Chapter Event</span>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-play">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#0d0101"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Play
+      </button>
+      <button class="btn-info">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        More Info
+      </button>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="setSlide(0)"></div>
+    <div class="hero-dot" onclick="setSlide(1)"></div>
+    <div class="hero-dot" onclick="setSlide(2)"></div>
+    <div class="hero-dot" onclick="setSlide(3)"></div>
+  </div>
+</section>
+
+<!-- ── LIBRARY ── -->
+<div class="library">
+
+  <!-- ROW 1: Recent Events -->
+  <div class="row">
+    <div class="row-header">
+      <span class="row-title">Recent Chapter Events</span>
+      <a href="#" class="row-see-all">See All →</a>
+    </div>
+    <div class="row-track-wrap">
+      <button class="scroll-arrow left" onclick="scrollRow(this,-1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="row-track" id="row1">
+        <!-- Cards generated by JS -->
+      </div>
+      <button class="scroll-arrow right" onclick="scrollRow(this,1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ROW 2: Brotherhood & Social -->
+  <div class="row">
+    <div class="row-header">
+      <span class="row-title">Brotherhood &amp; Social</span>
+      <a href="#" class="row-see-all">See All →</a>
+    </div>
+    <div class="row-track-wrap">
+      <button class="scroll-arrow left" onclick="scrollRow(this,-1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="row-track" id="row2"></div>
+      <button class="scroll-arrow right" onclick="scrollRow(this,1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- FEATURED BANNER -->
+  <div class="featured-banner">
+    <div class="featured-banner-content">
+      <div class="featured-banner-eyebrow">Guide Right Foundation</div>
+      <h2>DLGRF Community Highlights</h2>
+      <p>Watch moments from our mentorship programs, AT&T Stadium events, and community outreach initiatives.</p>
+      <button class="btn-play" style="width:auto;padding:.6rem 1.4rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0d0101"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch Now
+      </button>
+    </div>
+    <div class="featured-banner-ph"></div>
+  </div>
+
+  <!-- ROW 3: Chapter Milestones -->
+  <div class="row">
+    <div class="row-header">
+      <span class="row-title">Chapter Milestones</span>
+      <a href="#" class="row-see-all">See All →</a>
+    </div>
+    <div class="row-track-wrap">
+      <button class="scroll-arrow left" onclick="scrollRow(this,-1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="row-track" id="row3"></div>
+      <button class="scroll-arrow right" onclick="scrollRow(this,1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ROW 4: Archived Classics -->
+  <div class="row">
+    <div class="row-header">
+      <span class="row-title">Chapter Archives</span>
+      <a href="#" class="row-see-all">See All →</a>
+    </div>
+    <div class="row-track-wrap">
+      <button class="scroll-arrow left" onclick="scrollRow(this,-1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="row-track" id="row4"></div>
+      <button class="scroll-arrow right" onclick="scrollRow(this,1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="page-footer">
+  &copy; 2026–2027 <span>Denton-Lewisville (TX) Alumni Chapter — Kappa Alpha Psi Fraternity, Inc.</span> — All Rights Reserved
+</footer>
+
+<!-- ── SEARCH OVERLAY ── -->
+<div class="search-overlay" id="searchOverlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <input type="text" placeholder="Search chapter videos..." autofocus id="searchInput">
+</div>
+
+<script>
+// ── Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── Hero slide data
+const heroSlides = [
+  { badge: 'Featured Event', title: '2026 Founders Day Celebration', desc: 'Relive the brotherhood, the tributes, and the moments from our annual Founders Day gathering honoring the legacy of Kappa Alpha Psi.', year: '2026', dur: '1h 24m', tag: 'Chapter Event' },
+  { badge: 'Brotherhood', title: 'Annual Golf Classic 2026', desc: 'A day of fellowship on the greens — highlights from the DLA annual charity golf tournament raising funds for Guide Right programs.', year: '2026', dur: '42m', tag: 'Fundraiser' },
+  { badge: 'Community', title: 'AT&T Stadium Volunteer Kickoff', desc: 'See how our brothers and volunteers prepared for another successful season of DLGRF events at AT&T Stadium.', year: '2025', dur: '28m', tag: 'Guide Right' },
+  { badge: 'Chapter History', title: 'DLA Chapter Charter Anniversary', desc: 'A special tribute video commemorating years of achievement, service, and brotherhood in Denton-Lewisville.', year: '2025', dur: '55m', tag: 'Milestone' },
+];
+
+function setSlide(i) {
+  const s = heroSlides[i];
+  document.querySelector('.hero-badge').textContent = s.badge;
+  document.querySelector('.hero-title').textContent = s.title;
+  document.querySelector('.hero-desc').textContent = s.desc;
+  document.querySelector('.hero-year').textContent = s.year;
+  document.querySelector('.hero-duration').textContent = s.dur;
+  document.querySelector('.hero-tag').textContent = s.tag;
+  document.querySelectorAll('.hero-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+}
+
+// Auto-rotate hero
+let slideIdx = 0;
+setInterval(() => { slideIdx = (slideIdx+1) % heroSlides.length; setSlide(slideIdx); }, 6000);
+
+// ── Video card data
+const rowData = {
+  row1: [
+    { title: 'Chapter Meeting Recap — June 2026', meta: '2026 · 18m', tag: 'Meeting' },
+    { title: 'Mardi Gras Scholarship Ball', meta: '2026 · 1h 12m', tag: 'Gala' },
+    { title: 'Spring Social Mixer', meta: '2026 · 34m', tag: 'Social' },
+    { title: 'Community Service Day', meta: '2026 · 46m', tag: 'Community' },
+    { title: 'Leadership Development Workshop', meta: '2026 · 52m', tag: 'Training' },
+    { title: 'Annual Awards Banquet', meta: '2025 · 1h 8m', tag: 'Gala' },
+  ],
+  row2: [
+    { title: 'Fellowship Weekend Recap', meta: '2026 · 38m', tag: 'Brotherhood' },
+    { title: 'Brother Spotlight Series — Vol. 1', meta: '2026 · 22m', tag: 'Spotlight' },
+    { title: 'New Member Crossing Ceremony', meta: '2025 · 44m', tag: 'Ceremony' },
+    { title: 'Annual Step Show & Stroll', meta: '2025 · 1h 2m', tag: 'Performance' },
+    { title: 'Holiday Social 2025', meta: '2025 · 29m', tag: 'Social' },
+    { title: 'Brother Spotlight Series — Vol. 2', meta: '2025 · 25m', tag: 'Spotlight' },
+  ],
+  row3: [
+    { title: 'Chapter Charter 5th Anniversary', meta: '2024 · 55m', tag: 'Milestone' },
+    { title: 'Province Meeting Recap', meta: '2024 · 1h 18m', tag: 'Province' },
+    { title: '10 Year Vision Presentation', meta: '2024 · 42m', tag: 'Planning' },
+    { title: 'Induction Ceremony Highlights', meta: '2024 · 38m', tag: 'Ceremony' },
+    { title: 'Chapter Photo & Video Day', meta: '2023 · 14m', tag: 'Archive' },
+    { title: 'Community Impact Report 2023', meta: '2023 · 31m', tag: 'Community' },
+  ],
+  row4: [
+    { title: 'Chapter Launch & First Meeting', meta: '2022 · 28m', tag: 'Archive' },
+    { title: 'Guide Right Pilot Program', meta: '2022 · 36m', tag: 'Archive' },
+    { title: 'First Annual Awards Dinner', meta: '2022 · 48m', tag: 'Archive' },
+    { title: 'Original Brothers Interview Series', meta: '2022 · 1h 4m', tag: 'Archive' },
+    { title: 'First Founders Day Event', meta: '2022 · 52m', tag: 'Archive' },
+    { title: 'Historical Chapter Documentary', meta: '2021 · 1h 22m', tag: 'Archive' },
+  ]
+};
+
+function makeCard(item, idx) {
+  return `
+  <div class="vcard" tabindex="0">
+    <div class="vcard-thumb">
+      <div class="vcard-placeholder">
+        <div class="vcard-ph-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(198,154,63,.7)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <span class="vcard-ph-label">Video Placeholder</span>
+      </div>
+      <div class="vcard-hover-overlay">
+        <div class="vcard-play-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0d0101"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <span class="vcard-num">${idx+1}</span>
+    </div>
+    <div class="vcard-title-below">${item.title}</div>
+    <div class="vcard-info">
+      <div class="vcard-info-title">${item.title}</div>
+      <div class="vcard-info-meta">
+        <span>${item.meta}</span>
+      </div>
+      <div class="vcard-info-tag">${item.tag}</div>
+      <div class="vcard-info-actions">
+        <button class="vi-btn play"><svg width="10" height="10" viewBox="0 0 24 24" fill="#0d0101"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play</button>
+        <button class="vi-btn more">Info</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// Populate rows
+Object.entries(rowData).forEach(([rowId, items]) => {
+  const el = document.getElementById(rowId);
+  if (el) el.innerHTML = items.map((item,i) => makeCard(item,i)).join('');
+});
+
+// ── Scroll arrows
+function scrollRow(btn, dir) {
+  const track = btn.parentElement.querySelector('.row-track');
+  const cardW = track.querySelector('.vcard').offsetWidth + 8;
+  track.scrollBy({ left: dir * cardW * 2, behavior: 'smooth' });
+}
+
+// ── Mobile menu
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── Search
+function toggleSearch() {
+  const o = document.getElementById('searchOverlay');
+  o.classList.toggle('open');
+  if (o.classList.contains('open')) document.getElementById('searchInput').focus();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('searchOverlay').classList.remove('open'); });
+</script>
+
+</body>
+</html>
