@@ -1,0 +1,3289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Membership Education & Standards Overview — Kappa Alpha Psi</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNCcgZmlsbD0nIzcwMTEwYycvPjx0ZXh0IHg9JzE2JyB5PScyMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0dlb3JnaWEsc2VyaWYnIGZvbnQtc2l6ZT0nMTMnIGZvbnQtd2VpZ2h0PSdib2xkJyBmaWxsPScjYzlhODRjJz5LQVx4Y2VceGE4PC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
+<style>
+:root{--cr:#70110c;--cr-d:#5a0e09;--cm:#f2ebd7;--go:#c9a84c;--sw:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:#f5f0e8;color:#1a1a1a;min-height:100vh}
+a{color:var(--cr);text-decoration:none}
+/*  SIDEBAR  */
+#sidebar{
+  position:fixed;top:0;left:0;width:var(--sw);height:100vh;
+  background:var(--cr);color:#fff;display:flex;flex-direction:column;
+  z-index:200;overflow-y:auto;transition:transform .3s
+}
+.sb-header{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo-badge{width:42px;height:42px;background:var(--go);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--cr-d);flex-shrink:0;font-family:'Playfair Display',serif}
+.sb-title{font-size:12px;font-weight:700;color:var(--cm);line-height:1.3;letter-spacing:.02em}
+.sb-sub{font-size:10px;color:rgba(242,235,215,.55);margin-top:2px}
+.sb-progress{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(242,235,215,.55);font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
+.prog-track{height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--go);border-radius:3px;transition:width .4s ease}
+.sb-nav{flex:1;padding:8px 0;overflow-y:auto}
+.sec-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,235,215,.38);padding:10px 16px 3px}
+.mod-item{display:flex;align-items:flex-start;gap:9px;padding:9px 14px;cursor:pointer;transition:background .2s;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.mod-item:hover{background:rgba(255,255,255,.07)}
+.mod-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.mod-item.completed .mod-badge{background:var(--go);color:var(--cr-d)}
+.mod-badge{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--cm);flex-shrink:0;margin-top:1px}
+.mod-title{font-size:12px;font-weight:600;color:var(--cm);line-height:1.3}
+.mod-sub{font-size:10px;color:rgba(242,235,215,.48);margin-top:1px}
+/*  MAIN  */
+#main{margin-left:var(--sw);min-height:100vh;display:flex;flex-direction:column}
+/* hamburger */
+#hamburger{
+  display:none;position:fixed;top:12px;left:12px;z-index:300;
+  background:var(--cr);border:none;border-radius:6px;padding:8px 10px;
+  cursor:pointer;color:#fff;font-size:1.2rem
+}
+#overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:150
+}
+/*  LANDING  */
+#landing-page{
+  min-height:100vh;display:flex;flex-direction:column
+}
+.landing-hero{
+  background:var(--cr);color:#fff;padding:60px 40px 50px;text-align:center
+}
+.landing-hero .kap-mark{font-size:3rem;color:var(--go);letter-spacing:4px;font-weight:bold}
+.landing-hero h1{font-size:1.6rem;margin:12px 0 6px;font-weight:normal}
+.landing-hero p{font-size:.85rem;opacity:.8;max-width:480px;margin:0 auto}
+.landing-body{padding:40px;max-width:680px;margin:0 auto;width:100%;flex:1}
+.landing-body h2{font-size:1.1rem;color:var(--cr);margin-bottom:16px}
+.landing-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.stat-card{
+  background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px;
+  text-align:center;border-top:3px solid var(--cr)
+}
+.stat-card .stat-num{font-size:1.6rem;font-weight:bold;color:var(--cr)}
+.stat-card .stat-lbl{font-size:.65rem;color:#666;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.name-row{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+#name-input{
+  flex:1;padding:11px 14px;border:2px solid #ddd;border-radius:6px;
+  font-family:'Georgia',serif;font-size:.9rem;min-width:200px
+}
+#name-input:focus{outline:none;border-color:var(--cr)}
+#begin-btn{
+  padding:11px 24px;background:var(--cr);color:#fff;border:none;
+  border-radius:6px;font-family:'Georgia',serif;font-size:.9rem;
+  font-weight:bold;cursor:pointer;white-space:nowrap
+}
+#begin-btn:hover{background:#8b1510}
+.landing-note{font-size:.75rem;color:#888;line-height:1.6}
+/*  CONTENT SCREENS  */
+#content-wrap{flex:1;padding:40px 48px;max-width:820px}
+.module-header{margin-bottom:28px}
+.module-label{
+  font-size:.65rem;color:var(--cr);text-transform:uppercase;letter-spacing:2px;
+  font-weight:bold;margin-bottom:6px
+}
+.module-title{font-size:1.5rem;color:#1a1a1a;margin-bottom:8px}
+.screen-indicator{font-size:.7rem;color:#888}
+/* card */
+.content-card{
+  background:#fff;border-radius:10px;border:1px solid #e8e0d0;
+  padding:28px 32px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,.05)
+}
+.content-card h3{font-size:1rem;color:var(--cr);margin-bottom:14px;border-bottom:1px solid #f0e8d8;padding-bottom:8px}
+.content-card h4{font-size:.88rem;color:#333;margin:14px 0 8px}
+.content-card p{font-size:.85rem;line-height:1.7;margin-bottom:10px;color:#333}
+.content-card ul,
+.content-card ol{font-size:.85rem;line-height:1.7;padding-left:20px;margin-bottom:10px;color:#333}
+.content-card li{margin-bottom:5px}
+.content-card table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:8px}
+.content-card table th{background:var(--cr);color:#fff;padding:8px 10px;text-align:left}
+.content-card table td{padding:7px 10px;border-bottom:1px solid #eee}
+.content-card table tr:nth-child(even) td{background:#faf7f2}
+.highlight-box{
+  background:var(--cm);border-left:4px solid var(--go);border-radius:0 6px 6px 0;
+  padding:14px 16px;margin:12px 0;font-size:.82rem;line-height:1.6;color:#333
+}
+.warning-box{
+  background:#fff8f0;border-left:4px solid #d97706;border-radius:0 6px 6px 0;
+  padding:14px 16px;margin:12px 0;font-size:.82rem;line-height:1.6;color:#333
+}
+.badge-pill{
+  display:inline-block;padding:3px 10px;border-radius:12px;font-size:.65rem;
+  font-weight:bold;text-transform:uppercase;letter-spacing:.5px;margin:2px
+}
+.pill-red{background:#fde8e8;color:#70110c}
+.pill-gold{background:#fef3c7;color:#8a6000}
+.pill-gray{background:#f0f0f0;color:#555}
+/* nav controls */
+.screen-nav{display:flex;align-items:center;justify-content:space-between;margin-top:4px;flex-wrap:wrap;gap:10px}
+.screen-nav button{
+  padding:10px 22px;border:none;border-radius:6px;font-family:'Georgia',serif;
+  font-size:.82rem;cursor:pointer;font-weight:bold
+}
+.btn-prev{background:#e8e0d0;color:#555}
+.btn-prev:hover{background:#ddd6c6}
+.btn-next{background:var(--cr);color:#fff}
+.btn-next:hover{background:#8b1510}
+.btn-next:disabled{opacity:.4;cursor:not-allowed}
+.btn-assess{background:var(--go);color:#000}
+.btn-assess:hover{background:#b8973e}
+.progress-dots{display:flex;gap:6px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:#ddd}
+.dot.visited{background:rgba(112,17,12,.3)}
+.dot.current{background:var(--cr);width:10px;height:10px}
+/*  QUIZ  */
+.quiz-q{font-size:.88rem;font-weight:bold;color:#1a1a1a;margin-bottom:14px;line-height:1.5}
+.quiz-opts{list-style:none;padding:0}
+.quiz-opts li{
+  border:2px solid #e0d8c8;border-radius:6px;padding:10px 14px;margin-bottom:8px;
+  cursor:pointer;font-size:.83rem;transition:border-color .2s,background .2s
+}
+.quiz-opts li:hover{border-color:var(--cr);background:#fdf8f0}
+.quiz-opts li.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;cursor:default}
+.quiz-opts li.wrong{border-color:#dc2626;background:#fef2f2;color:#dc2626;cursor:default}
+.quiz-opts li.reveal{border-color:#16a34a;background:#f0fdf4;color:#15803d;cursor:default}
+.quiz-feedback{
+  margin-top:12px;padding:12px 16px;border-radius:6px;font-size:.82rem;line-height:1.6
+}
+.feedback-correct{background:#f0fdf4;border:1px solid #86efac;color:#15803d}
+.feedback-wrong{background:#fef2f2;border:1px solid #fca5a5;color:#dc2626}
+/*  ASSESSMENT  */
+#assess-wrap{padding:40px 48px;max-width:820px}
+.assess-header{margin-bottom:28px}
+.assess-header h2{font-size:1.3rem;color:var(--cr);margin-bottom:6px}
+.assess-header p{font-size:.82rem;color:#666}
+.assess-q-block{
+  background:#fff;border-radius:8px;border:1px solid #e8e0d0;
+  padding:24px 28px;margin-bottom:16px
+}
+.assess-q-num{font-size:.6rem;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.assess-q-text{font-size:.88rem;font-weight:bold;color:#1a1a1a;margin-bottom:14px;line-height:1.5}
+.assess-opts{list-style:none;padding:0}
+.assess-opts li{
+  border:2px solid #e0d8c8;border-radius:6px;padding:10px 14px;margin-bottom:8px;
+  cursor:pointer;font-size:.83rem;transition:border-color .2s,background .2s
+}
+.assess-opts li:hover:not(.locked){border-color:var(--cr);background:#fdf8f0}
+.assess-opts li.selected{border-color:var(--cr);background:#fdf8f0}
+.assess-opts li.locked{cursor:default}
+.assess-opts li.a-correct{border-color:#16a34a;background:#f0fdf4;color:#15803d}
+.assess-opts li.a-wrong{border-color:#dc2626;background:#fef2f2;color:#dc2626}
+.assess-opts li.a-reveal{border-color:#16a34a;background:#f0fdf4;color:#15803d}
+#assess-submit{
+  padding:12px 32px;background:var(--cr);color:#fff;border:none;
+  border-radius:6px;font-family:'Georgia',serif;font-size:.9rem;font-weight:bold;
+  cursor:pointer;margin-top:8px
+}
+#assess-submit:hover{background:#8b1510}
+#assess-submit:disabled{opacity:.4;cursor:not-allowed}
+/*  RESULTS  */
+#results-wrap{padding:40px 48px;max-width:820px}
+.results-card{
+  background:#fff;border-radius:10px;border:1px solid #e8e0d0;
+  padding:32px 36px;margin-bottom:20px;text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.05)
+}
+.results-card .big-score{font-size:3.5rem;font-weight:bold;color:var(--cr);line-height:1}
+.results-card .score-lbl{font-size:.75rem;color:#888;margin-top:4px;text-transform:uppercase}
+.results-card h2{font-size:1.2rem;margin:16px 0 6px}
+.results-card p{font-size:.85rem;color:#666;line-height:1.6}
+.result-pass .big-score{color:#16a34a}
+.results-mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:16px}
+.rmod-card{
+  background:#fff;border-radius:8px;border:1px solid #e8e0d0;
+  padding:14px 16px;font-size:.78rem;display:flex;align-items:center;gap:10px
+}
+.rmod-icon{font-size:1.1rem}
+.rmod-name{flex:1;font-weight:bold;color:#333}
+.rmod-status{font-size:.65rem;font-weight:bold;text-transform:uppercase}
+.rmod-pass{color:#16a34a}
+.rmod-fail{color:#dc2626}
+.rmod-na{color:#999}
+.results-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.results-actions button{
+  padding:11px 24px;border:none;border-radius:6px;font-family:'Georgia',serif;
+  font-size:.85rem;font-weight:bold;cursor:pointer
+}
+.btn-retry{background:#e8e0d0;color:#555}
+.btn-retry:hover{background:#ddd6c6}
+.btn-cert{background:var(--go);color:#000}
+.btn-cert:hover{background:#b8973e}
+/*  CERTIFICATE  */
+#cert-wrap{padding:40px 48px;max-width:820px}
+.cert-outer{
+  background:#fff;border:3px solid var(--cr);border-radius:12px;
+  padding:50px 60px;text-align:center;position:relative;
+  box-shadow:0 4px 20px rgba(0,0,0,.1)
+}
+.cert-outer::before{
+  content:'';position:absolute;inset:8px;border:1px solid var(--go);
+  border-radius:8px;pointer-events:none
+}
+.cert-kap{font-size:2.5rem;color:var(--go);font-weight:bold;letter-spacing:4px;margin-bottom:4px}
+.cert-org{font-size:.65rem;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
+.cert-presents{font-size:.75rem;color:#666;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.cert-name{font-size:2rem;color:var(--cr);border-bottom:2px solid var(--go);display:inline-block;padding-bottom:4px;margin-bottom:16px}
+.cert-body{font-size:.88rem;color:#444;line-height:1.7;max-width:480px;margin:0 auto 24px}
+.cert-course{font-size:1rem;font-weight:bold;color:#1a1a1a;font-style:italic;margin-bottom:6px}
+.cert-date{font-size:.75rem;color:#888;margin-bottom:28px}
+.cert-seal{
+  width:80px;height:80px;border-radius:50%;background:var(--cr);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
+  color:var(--go);font-size:1.4rem;font-weight:bold;letter-spacing:2px;
+  border:3px solid var(--go)
+}
+.cert-footer{display:flex;justify-content:space-around;margin-top:24px;padding-top:24px;border-top:1px solid #eee}
+.cert-sig{text-align:center}
+.cert-sig-line{width:120px;height:1px;background:#333;margin:0 auto 4px}
+.cert-sig-lbl{font-size:.65rem;color:#888;text-transform:uppercase;letter-spacing:1px}
+.cert-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.cert-actions button{
+  padding:11px 24px;border:none;border-radius:6px;font-family:'Georgia',serif;
+  font-size:.85rem;font-weight:bold;cursor:pointer
+}
+.btn-print{background:var(--cr);color:#fff}
+.btn-print:hover{background:#8b1510}
+.btn-back-dash{background:#e8e0d0;color:#555}
+.btn-back-dash:hover{background:#ddd6c6}
+/*  RESPONSIVE  */
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #hamburger{display:block}
+  #overlay.show{display:block}
+  #content-wrap,#assess-wrap,#results-wrap,#cert-wrap{padding:60px 20px 24px}
+  .landing-hero{padding:70px 24px 40px}
+  .landing-body{padding:24px 20px}
+  .landing-stats{grid-template-columns:repeat(3,1fr);gap:8px}
+  .cert-outer{padding:30px 20px}
+  .cert-name{font-size:1.4rem}
+}
+@media print{
+  #hamburger,#sidebar,#overlay,.cert-actions{display:none!important}
+  #main{margin-left:0}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo">
+      <div class="logo-badge">K&#913;&#936;</div>
+      <div>
+        <div class="sb-title">Membership Education</div>
+        <div class="sb-sub">Denton-Lewisville Alumni Chapter · 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sb-progress">
+    <div class="prog-label"><span>COURSE PROGRESS</span><span id="pct">0%</span></div>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+  <div class="sb-nav" id="sbNav"></div>
+</nav>
+
+<!-- HAMBURGER + OVERLAY -->
+<button id="hamburger" onclick="toggleSidebar()">&#9776;</button>
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- MAIN -->
+<main id="main">
+  <div id="app"><!-- rendered by JS --></div>
+</main>
+
+<script>
+/* ===================================================
+   STATE
+=================================================== */
+const NS = 'DLA_MEMBERSHIP_2026';
+let S = {
+  page: 'landing',
+  mi: 0,
+  si: 0,
+  name: '',
+  done: [false,false,false,false,false,false,false,false,false],
+  visited: {},
+  ix: {},
+  aa: {},
+  aScore: null,
+  aSubmitted: false
+};
+function save(){ try{ localStorage.setItem(NS, JSON.stringify(S)); }catch(e){} }
+function load(){
+  try{
+    const d = localStorage.getItem(NS);
+    if(d){ const p=JSON.parse(d); S=Object.assign(S,p); }
+  }catch(e){}
+}
+
+/* ===================================================
+   MODULES
+=================================================== */
+const MODS = [
+  { title:'Chapter Overview',        short:'Overview',       screens:10, dur:'~30 min' },
+  { title:'Code of Conduct',         short:'Conduct',        screens:10, dur:'~30 min' },
+  { title:'Protocol & Etiquette',    short:'Protocol',       screens:10, dur:'~30 min' },
+  { title:'Risk Management',         short:'Risk Mgmt',      screens:10, dur:'~30 min' },
+  { title:'Conducting Meetings',     short:'Meetings',       screens:10, dur:'~30 min' },
+  { title:'Committee Structure',     short:'Committees',     screens:10, dur:'~30 min' },
+  { title:'Organizational Chart',    short:'Org Chart',      screens:10, dur:'~30 min' },
+  { title:'Social Media Standards',  short:'Social Media',   screens:10, dur:'~30 min' },
+  { title:'Paraphernalia & Apparel', short:'Paraphernalia',  screens:10, dur:'~30 min' }
+];
+
+const SECTIONS = [
+  { label:'FOUNDATIONS',          mods:[0,1] },
+  { label:'CONDUCT & PROTOCOL',   mods:[2,3] },
+  { label:'OPERATIONS',           mods:[4,5,6] },
+  { label:'STANDARDS',            mods:[7,8] }
+];
+
+/* ===================================================
+   HELPERS
+=================================================== */
+function calcProgress(){
+  let visited = 0, total = 0;
+  for(let m=0;m<MODS.length;m++){
+    for(let s=0;s<MODS[m].screens;s++){
+      total++;
+      if(S.visited[m+'-'+s]) visited++;
+    }
+  }
+  return total ? Math.round(visited/total*100) : 0;
+}
+
+function markVisited(){
+  S.visited[S.mi+'-'+S.si] = true;
+  let allSeen = true;
+  for(let s=0;s<MODS[S.mi].screens;s++){
+    if(!S.visited[S.mi+'-'+s]){ allSeen=false; break; }
+  }
+  if(allSeen) S.done[S.mi] = true;
+  save();
+}
+
+function allModsDone(){
+  return S.done.every(Boolean);
+}
+
+/* ===================================================
+   SIDEBAR
+=================================================== */
+function renderNav(){
+  const modSec = {};
+  SECTIONS.forEach(sec=>{ sec.mods.forEach(mi=>{ modSec[mi] = sec.label; }); });
+  let html = '', lastSec = '';
+  MODS.forEach((m,i)=>{
+    const sec = modSec[i] || '';
+    if(sec !== lastSec){
+      html += '<div class="sec-label">'+sec+'</div>';
+      lastSec = sec;
+    }
+    const active = S.mi===i && S.page==='content';
+    const done = S.done[i];
+    html += '<button class="mod-item'+(active?' active':'')+(done?' completed':'')+'" onclick="goModule('+i+')">'
+          + '<div class="mod-badge">'+(i+1)+'</div>'
+          + '<div>'
+          + '<div class="mod-title">'+m.title+'</div>'
+          + '<div class="mod-sub">Module '+(i+1)+' &middot; '+m.screens+' screens &middot; '+(m.dur||'')+'</div>'
+          + '</div>'
+          + '</button>';
+  });
+  document.getElementById('sbNav').innerHTML = html;
+}
+function updateProgress(){
+  const pct = calcProgress();
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('pct').textContent = pct+'%';
+}
+
+/* ===================================================
+   NAVIGATION
+=================================================== */
+function goModule(mi){
+  S.page='content'; S.mi=mi; S.si=0;
+  markVisited();
+  render();
+  closeSidebar();
+}
+
+function nextScreen(){
+  if(S.si < MODS[S.mi].screens-1){
+    S.si++;
+    markVisited();
+    render();
+  } else if(S.mi < MODS.length-1){
+    S.mi++;
+    S.si=0;
+    markVisited();
+    render();
+  } else {
+    goAssess();
+  }
+}
+
+function prevScreen(){
+  if(S.si > 0){ S.si--; }
+  else if(S.mi > 0){ S.mi--; S.si=MODS[S.mi].screens-1; }
+  render();
+}
+
+function goAssess(){
+  S.page='assessment';
+  save();
+  render();
+}
+
+function startCourse(){
+  const inp = document.getElementById('name-input');
+  if(inp) S.name = inp.value.trim() || 'Brother';
+  S.page='content'; S.mi=0; S.si=0;
+  markVisited();
+  render();
+}
+
+/* ===================================================
+   SIDEBAR MOBILE
+=================================================== */
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ===================================================
+   QUIZ HELPER
+=================================================== */
+function renderQuiz(key, q, opts, cor, expl){
+  const ix = S.ix[key];
+  let optsHtml = '';
+  opts.forEach(function(o,i){
+    let cls='';
+    if(ix!==undefined){
+      if(i===cor) cls='correct';
+      else if(i===ix) cls='wrong';
+    }
+    optsHtml += '<li class="'+cls+'" onclick="answerQuiz(\''+key+'\','+i+','+cor+')">'+o+'</li>';
+  });
+  let feedback='';
+  if(ix!==undefined){
+    const ok=(ix===cor);
+    feedback='<div class="quiz-feedback '+(ok?'feedback-correct':'feedback-wrong')+'">'+(ok?'&#10003; Correct &mdash; ':'&#10007; Incorrect &mdash; ')+expl+'</div>';
+  }
+  return '<div class="content-card">'
+       + '<h3>Knowledge Check</h3>'
+       + '<p class="quiz-q">'+q+'</p>'
+       + '<ul class="quiz-opts">'+optsHtml+'</ul>'
+       + feedback
+       + '</div>';
+}
+
+function answerQuiz(key,chosen,cor){
+  if(S.ix[key]!==undefined) return;
+  S.ix[key]=chosen;
+  save(); render();
+}
+
+/* ===================================================
+   SCREEN DOTS
+=================================================== */
+function screenDots(mi,si,total){
+  let d='';
+  for(let i=0;i<MODS[mi].screens;i++){
+    let cls='dot';
+    if(i===si) cls+=' current';
+    else if(S.visited[mi+'-'+i]) cls+=' visited';
+    d+='<span class="'+cls+'"></span>';
+  }
+  return '<div class="progress-dots">'+d+'</div>';
+}
+
+/* ===================================================
+   SCREEN NAV BUTTONS
+=================================================== */
+function navButtons(isFirst, isLast, isLastMod){
+  const prevBtn = isFirst
+    ? '<button class="btn-prev" onclick="prevScreen()" disabled style="opacity:.3">&#8592; Back</button>'
+    : '<button class="btn-prev" onclick="prevScreen()">&#8592; Back</button>';
+
+  let nextBtn;
+  if(isLast && isLastMod){
+    nextBtn = allModsDone()
+      ? '<button class="btn-next btn-assess" onclick="goAssess()">Take Assessment &#8594;</button>'
+      : '<button class="btn-next" onclick="nextScreen()">Next &#8594;</button>';
+  } else {
+    nextBtn = '<button class="btn-next" onclick="nextScreen()">Next &#8594;</button>';
+  }
+
+  return '<div class="screen-nav">'+prevBtn+nextBtn+'</div>';
+}
+
+/* ===================================================
+   MODULE 0 — CHAPTER OVERVIEW (3 screens)
+=================================================== */
+function m0s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Kappa Alpha Psi Fraternity, Inc.</h3>'
+    +'<p>Founded <strong>January 5, 1911</strong> at Indiana University, Bloomington, Indiana by Elder Watson Diggs and nine other men. The Fraternity\'s cardinal principle is <strong>Achievement</strong> in every field of human endeavor.</p>'
+    +'<div class="highlight-box"><strong>Mission:</strong> To unite college men of culture, patriotism, and honor; to stimulate achievement through training and leadership; and to inspire service in the public interest.</div>'
+    +'<h4>Denton-Lewisville Alumni Chapter (DLA)</h4>'
+    +'<ul>'
+    +'<li>Alumni chapter serving Denton and Lewisville, Texas metropolitan area</li>'
+    +'<li>Member of the <strong>Southwestern Province</strong> of Kappa Alpha Psi</li>'
+    +'<li>Governed by the Constitution &amp; Statutes of Kappa Alpha Psi and DLA Bylaws</li>'
+    +'<li>Reporting structure: Local &rarr; Province &rarr; Grand Chapter</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(0,0,3)
+    +navButtons(true,false,false);
+}
+
+function m0s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Chapter Leadership &amp; Structure</h3>'
+    +'<p>DLA is led by elected officers who serve one-year terms. Officers are accountable to the general body and to the Grand Chapter through the Province.</p>'
+    +'<table>'
+    +'<tr><th>Office</th><th>Primary Responsibility</th></tr>'
+    +'<tr><td>Polemarch</td><td>Chief executive; presides over all meetings</td></tr>'
+    +'<tr><td>Vice Polemarch</td><td>Assists Polemarch; chairs standing committees</td></tr>'
+    +'<tr><td>Keeper of Records &amp; Exchequer</td><td>Minutes, correspondence, and financial records</td></tr>'
+    +'<tr><td>Strategus</td><td>Sergeant-at-Arms; enforces order</td></tr>'
+    +'<tr><td>Lieutenant Strategus</td><td>Assists Strategus; manages chapter property</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box">All officers must maintain good financial standing with the chapter and Grand Chapter to remain eligible to serve.</div>'
+    +'</div>'
+    +screenDots(0,1,3)
+    +navButtons(false,false,false);
+}
+
+function m0s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m0s2',
+      'Kappa Alpha Psi was founded on what date and at which institution?',
+      ['July 4, 1906, Howard University','January 5, 1911, Indiana University','March 15, 1908, Cornell University','October 1, 1913, Ohio State University'],
+      1,
+      'Kappa Alpha Psi was founded January 5, 1911, at Indiana University by Elder Watson Diggs and nine other founders.'
+    )
+    +screenDots(0,2,3)
+    +navButtons(false,false,false);
+}
+
+function m0s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Denton-Lewisville Alumni Chapter History</h3>'
+    +'<p>The Denton-Lewisville Alumni Chapter (DLA) was chartered as an alumni chapter of Kappa Alpha Psi Fraternity, Inc., serving members who reside in the Denton and Lewisville, Texas metropolitan area. Alumni chapters are the primary operational units through which initiated brothers continue active fraternity participation after completing their undergraduate experience.</p>'
+    +'<h4>Why Alumni Chapters Matter</h4>'
+    +'<ul>'
+    +'<li>Alumni chapters sustain the Fraternity\'s mission beyond college years</li>'
+    +'<li>They serve as the anchor for community programs including Guide Right and Kappa League</li>'
+    +'<li>Alumni chapters are the most common chapter type in the Southwestern Province</li>'
+    +'<li>Membership is open to any initiated Kappa in good financial standing who resides in the chapter\'s geographic service area</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Geographic Jurisdiction:</strong> DLA serves the Denton and Lewisville areas. Members who relocate outside the service area should contact the Keeper of Records regarding their membership transfer or retention options.</div>'
+    +'<h4>Chapter Milestones</h4>'
+    +'<p>Like all chapters, DLA has built a record of community service, Guide Right programming, and scholarship awards that define its local legacy. Members are encouraged to learn the chapter\'s history by reviewing past annual reports available from the Keeper of Records.</p>'
+    +'</div>'
+    +screenDots(0,3,3)
+    +navButtons(false,false,false);
+}
+
+function m0s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>National Kappa Alpha Psi vs. Local Chapter</h3>'
+    +'<p>Understanding the distinction between what the Grand Chapter controls and what the local chapter decides is essential for every member.</p>'
+    +'<table>'
+    +'<tr><th>Authority Level</th><th>Governed By</th><th>Examples</th></tr>'
+    +'<tr><td><strong>National Policy</strong></td><td>Grand Chapter / Grand Board</td><td>MTA policy, hazing prohibition, trademark rules, insurance, intake process</td></tr>'
+    +'<tr><td><strong>Province Policy</strong></td><td>Province Polemarch</td><td>Province council resolutions, regional programs, province-wide event standards</td></tr>'
+    +'<tr><td><strong>Local Policy</strong></td><td>DLA General Body</td><td>Chapter bylaws, dues amounts, meeting schedule, local programs, committee structure</td></tr>'
+    +'</table>'
+    +'<div class="warning-box"><strong>National supersedes local:</strong> No chapter bylaw, vote, or Polemarch directive may override a Grand Chapter policy. If a conflict exists between DLA bylaws and the Kappa Alpha Psi Constitution &amp; Statutes, the Constitution &amp; Statutes control.</div>'
+    +'<h4>What Requires Grand Chapter Approval</h4>'
+    +'<ul>'
+    +'<li>Chapter website launch</li>'
+    +'<li>New intake (new member) processes</li>'
+    +'<li>Use of Fraternity marks in media or advertising</li>'
+    +'<li>Event registration via KappaOrg (notification, not approval)</li>'
+    +'<li>Amendments to the Grand Chapter-mandated sections of chapter bylaws</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(0,4,3)
+    +navButtons(false,false,false);
+}
+
+function m0s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Chapter Governance Flow</h3>'
+    +'<p>Decisions and authority in Kappa Alpha Psi flow through a structured hierarchy. Knowing where a decision originates and who has authority to make it prevents confusion and procedural errors at the chapter level.</p>'
+    +'<div class="highlight-box" style="margin-bottom:12px">'
+    +'<strong>Grand Chapter (National)</strong><br>'
+    +'Sets universal policy, owns all trademarks, administers insurance, authorizes intake.<br><br>'
+    +'&#8595;<br><br>'
+    +'<strong>Southwestern Province</strong><br>'
+    +'Executes national policy regionally, resolves chapter-level disputes, coordinates Province Council.<br><br>'
+    +'&#8595;<br><br>'
+    +'<strong>DLA Polemarch &amp; Officers</strong><br>'
+    +'Execute chapter business, preside at meetings, manage relationships with Province and Grand Chapter.<br><br>'
+    +'&#8595;<br><br>'
+    +'<strong>Standing Committees</strong><br>'
+    +'Implement programs and policies within their assigned domains under officer oversight.<br><br>'
+    +'&#8595;<br><br>'
+    +'<strong>General Body</strong><br>'
+    +'Votes on chapter business, elects officers, approves budgets, holds the chapter accountable.'
+    +'</div>'
+    +'<h4>Upward Communication</h4>'
+    +'<p>Members with concerns that cannot be resolved at the chapter level may escalate to the Province Polemarch. Province-level unresolved matters may be addressed to the Grand Chapter. This escalation path exists to protect member rights and maintain Fraternity integrity.</p>'
+    +'</div>'
+    +screenDots(0,5,3)
+    +navButtons(false,false,false);
+}
+
+function m0s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Financial Obligations &amp; Good Standing</h3>'
+    +'<p>A member in good financial standing has paid all chapter and Grand Chapter dues and assessments as required. Financial standing is not optional &mdash; it directly determines a member\'s rights and privileges.</p>'
+    +'<h4>What Financial Standing Affects</h4>'
+    +'<ul>'
+    +'<li><strong>Voting rights:</strong> Only financial members may vote on chapter business</li>'
+    +'<li><strong>Officer eligibility:</strong> Must be financial to hold or run for office</li>'
+    +'<li><strong>Province Council representation:</strong> Chapter\'s delegate count depends on financial membership</li>'
+    +'<li><strong>Insurance coverage:</strong> Fraternity insurance applies only to events with financial members</li>'
+    +'<li><strong>Access to chapter services:</strong> Non-financial members may be restricted from certain programs</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Lapsing:</strong> A member who becomes non-financial does not lose membership, but loses voting and other rights until dues are brought current. The Keeper of Records &amp; Exchequer maintains the financial roster and must be consulted before any member exercise of voting rights.</div>'
+    +'<h4>Dues Structure</h4>'
+    +'<ul>'
+    +'<li>Chapter dues: set annually by the general body and published before the new year</li>'
+    +'<li>Grand Chapter per-capita: remitted by the chapter to Grand Chapter on your behalf</li>'
+    +'<li>Province assessments: any Province Council-approved levies</li>'
+    +'<li>Special assessments: approved by majority vote of the general body for specific needs</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(0,6,3)
+    +navButtons(false,false,false);
+}
+
+function m0s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Member Lifecycle: From Pledge to Elder</h3>'
+    +'<p>Membership in Kappa Alpha Psi is a lifelong commitment that evolves through distinct phases. Understanding the lifecycle helps members navigate their responsibilities at each stage.</p>'
+    +'<table>'
+    +'<tr><th>Phase</th><th>Description</th><th>Key Obligation</th></tr>'
+    +'<tr><td><strong>Pledge / Candidate</strong></td><td>Formal MTA process; not yet initiated</td><td>Complete MTA; zero hazing tolerance</td></tr>'
+    +'<tr><td><strong>Initiated Member</strong></td><td>Full membership upon initiation</td><td>Pay dues; attend meetings; uphold standards</td></tr>'
+    +'<tr><td><strong>Active / Financial</strong></td><td>Current on all dues and obligations</td><td>Vote; serve on committees; hold office</td></tr>'
+    +'<tr><td><strong>Non-Financial</strong></td><td>Initiated but not current on dues</td><td>Cure dues delinquency to restore rights</td></tr>'
+    +'<tr><td><strong>Alumni (Elder)</strong></td><td>Member who has transitioned from undergraduate chapter</td><td>Maintain financial standing; mentorship role</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box"><strong>No expiration on membership:</strong> Initiation into Kappa Alpha Psi is permanent. Membership can only be revoked through the formal disciplinary process. Becoming non-financial suspends rights but does not terminate membership.</div>'
+    +'</div>'
+    +screenDots(0,7,3)
+    +navButtons(false,false,false);
+}
+
+function m0s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>DLA Strategic Priorities</h3>'
+    +'<p>Each chapter administration establishes strategic priorities aligned with the Grand Chapter\'s national agenda and local community needs. DLA\'s core program pillars reflect Kappa Alpha Psi\'s foundational commitment to Achievement.</p>'
+    +'<h4>Guide Right</h4>'
+    +'<p>The Fraternity\'s flagship career and professional development program. Guide Right activities at DLA include mock interview workshops, resume clinics, career panels, and professional networking events open to community members.</p>'
+    +'<h4>Kappa League</h4>'
+    +'<p>A structured mentoring program for high school males. Kappa League chapters (clubs) are affiliated with the alumni chapter. Members are expected to serve as mentors, presenters, and role models. Background checks are required for all members working with youth.</p>'
+    +'<h4>Scholarship &amp; Education</h4>'
+    +'<p>DLA administers scholarship awards to deserving students in the service area. The Finance Committee manages the scholarship fund, and all awards must follow Grand Chapter scholarship guidelines.</p>'
+    +'<h4>Community Service</h4>'
+    +'<p>Chapters are expected to log a minimum of service hours per member annually. Service activities must be documented and reported to Province. Examples include food drives, voter registration, literacy programs, and health fairs.</p>'
+    +'<div class="highlight-box"><strong>Achievement in Every Field:</strong> The cardinal principle of Kappa Alpha Psi. Every program, event, and interaction is an expression of this principle. Members are encouraged to bring excellence to every chapter activity.</div>'
+    +'</div>'
+    +screenDots(0,8,3)
+    +navButtons(false,false,false);
+}
+
+function m0s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 1 &mdash; Foundations</div>'
+    +'<div class="module-title">Chapter Overview</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m0s9a',
+      'Which level of authority sets the hazing prohibition policy that all chapters must follow?',
+      ['The local chapter Polemarch','The Province Polemarch','The Grand Chapter','The chapter Ethics Committee'],
+      2,
+      'Hazing prohibition is a Grand Chapter national policy under the MTA. No local vote or officer directive can override it.'
+    )
+    +renderQuiz('m0s9b',
+      'A member who is non-financial may NOT:',
+      ['Attend chapter meetings','Wear fraternity paraphernalia in public','Vote on chapter business or hold office','Participate in community service events'],
+      2,
+      'Non-financial members retain the right to attend meetings and participate in many activities, but lose voting rights and officer eligibility until dues are current.'
+    )
+    +screenDots(0,9,3)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 1 — CODE OF CONDUCT (4 screens)
+=================================================== */
+function m1s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Member Conduct Standards</h3>'
+    +'<p>All members are bound by the <strong>Membership Training &amp; Assessment (MTA) Policy</strong> and the Kappa Alpha Psi Constitution &amp; Statutes. Membership is a privilege, not a right.</p>'
+    +'<h4>Core Expectations</h4>'
+    +'<ul>'
+    +'<li>Conduct yourself in a manner that reflects honor upon the Fraternity at all times</li>'
+    +'<li>Comply with all local, state, and federal laws</li>'
+    +'<li>Maintain active financial standing with the chapter</li>'
+    +'<li>Attend chapter meetings and participate in programs</li>'
+    +'<li>Report any violations of the Code of Conduct to chapter leadership</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Code of Silence:</strong> Failing to report known violations &mdash; including hazing, financial misconduct, or ethics breaches &mdash; is itself a violation subject to discipline.</div>'
+    +'</div>'
+    +screenDots(1,0,4)
+    +navButtons(false,false,false);
+}
+
+function m1s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Hazing Policy &mdash; Zero Tolerance</h3>'
+    +'<p>Kappa Alpha Psi maintains an absolute prohibition on hazing in any form. Hazing includes any action or situation that:</p>'
+    +'<ul>'
+    +'<li>Creates risk of physical or emotional harm</li>'
+    +'<li>Demeans, degrades, or disgraces a person</li>'
+    +'<li>Is required as a condition of membership or acceptance</li>'
+    +'<li>Involves forced consumption of food, alcohol, or any substance</li>'
+    +'<li>Involves sleep deprivation, excessive physical activity, or isolation</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Key rule:</strong> Consent of the victim is not a defense to hazing. Participation in hazing &mdash; even voluntarily &mdash; is a violation.</div>'
+    +'<p>Any member who witnesses hazing is <strong>required</strong> to report it to the Polemarch, Province Polemarch, or Grand Chapter immediately.</p>'
+    +'</div>'
+    +screenDots(1,1,4)
+    +navButtons(false,false,false);
+}
+
+function m1s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Violation Levels &amp; Discipline Process</h3>'
+    +'<table>'
+    +'<tr><th>Level</th><th>Examples</th><th>Outcome Range</th></tr>'
+    +'<tr><td><strong>Level 1</strong></td><td>Unprofessional behavior, minor conduct issues</td><td>Written warning, probation</td></tr>'
+    +'<tr><td><strong>Level 2</strong></td><td>Hazing, financial misconduct, Code of Silence violations</td><td>Suspension up to 5 years</td></tr>'
+    +'<tr><td><strong>Level 3</strong></td><td>Falsification of intake documents, criminal conviction, aggravated misconduct</td><td>Expulsion from Fraternity</td></tr>'
+    +'</table>'
+    +'<h4>Disciplinary Procedure</h4>'
+    +'<ol>'
+    +'<li>Report or complaint received</li>'
+    +'<li>Polemarch notifies accused in writing</li>'
+    +'<li>Investigation by Ethics Committee</li>'
+    +'<li>Hearing scheduled (member may present defense)</li>'
+    +'<li>Committee recommendation to chapter vote</li>'
+    +'<li>Penalty assessed; member notified in writing</li>'
+    +'<li>Right of appeal to Province within 30 days</li>'
+    +'</ol>'
+    +'</div>'
+    +screenDots(1,2,4)
+    +navButtons(false,false,false);
+}
+
+function m1s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +renderQuiz('m1s3',
+      'A member who witnesses hazing but does not report it has committed which type of violation?',
+      ['A minor Level 1 infraction with no long-term record','A Code of Silence violation subject to discipline','No violation &mdash; only the hazer is responsible','A civil matter, not a fraternity disciplinary matter'],
+      1,
+      'Failing to report known violations is a Code of Silence violation, itself subject to discipline under the MTA Policy.'
+    )
+    +renderQuiz('m1s3b',
+      'Which of the following is a Level 3 violation subject to expulsion from the Fraternity?',
+      ['Missing three consecutive meetings','Hazing a prospective member','Falsification of intake documents','Purchasing paraphernalia from an unapproved vendor'],
+      2,
+      'Falsification of intake documents is a Level 3 violation &mdash; the most serious category &mdash; warranting expulsion from the Fraternity.'
+    )
+    +screenDots(1,3,4)
+    +navButtons(false,false,false);
+}
+
+function m1s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Specific Conduct Violations: Examples by Level</h3>'
+    +'<p>Members often ask what specific acts trigger each violation level. The following examples are drawn from Grand Chapter policy and chapter experience.</p>'
+    +'<h4><span class="badge-pill pill-gray">Level 1 &mdash; Warning / Probation</span></h4>'
+    +'<ul>'
+    +'<li>Failure to attend meetings without prior notice (three or more consecutive absences)</li>'
+    +'<li>Disrespectful behavior toward a brother during a chapter meeting</li>'
+    +'<li>Wearing chapter paraphernalia at an event that reflects poorly on the Fraternity</li>'
+    +'<li>Failure to complete an assigned committee task after multiple reminders</li>'
+    +'<li>Public intoxication while wearing or displaying Fraternity identification</li>'
+    +'</ul>'
+    +'<h4><span class="badge-pill pill-gold">Level 2 &mdash; Suspension</span></h4>'
+    +'<ul>'
+    +'<li>Hazing in any form, including verbal or psychological pressure on a prospective member</li>'
+    +'<li>Misappropriation of chapter funds (amounts below criminal threshold)</li>'
+    +'<li>Code of Silence: knowing of a violation and failing to report it</li>'
+    +'<li>Conduct unbecoming a Kappa that brings discredit to the Fraternity on social media</li>'
+    +'<li>Unauthorized disclosure of MTA process details or ritual information</li>'
+    +'</ul>'
+    +'<h4><span class="badge-pill pill-red">Level 3 &mdash; Expulsion</span></h4>'
+    +'<ul>'
+    +'<li>Falsification of intake or membership documents</li>'
+    +'<li>Criminal conviction for a felony or crime of moral turpitude</li>'
+    +'<li>Aggravated hazing resulting in serious injury</li>'
+    +'<li>Grand-scale financial fraud against the chapter or Fraternity</li>'
+    +'<li>Sexual assault or violence against any person</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(1,4,4)
+    +navButtons(false,false,false);
+}
+
+function m1s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Reporting Procedures</h3>'
+    +'<p>Every member has a duty to report conduct violations. Knowing the correct reporting path ensures your report is received by someone with authority to act.</p>'
+    +'<h4>Who to Report To (in order of preference)</h4>'
+    +'<ol>'
+    +'<li><strong>Polemarch</strong> &mdash; first point of contact for most violations; required to initiate the disciplinary process</li>'
+    +'<li><strong>Vice Polemarch</strong> &mdash; if the Polemarch is the subject of the complaint or is unavailable</li>'
+    +'<li><strong>Province Polemarch</strong> &mdash; if chapter leadership is implicated or fails to act within 30 days</li>'
+    +'<li><strong>Grand Chapter (Grand Polemarch\'s office)</strong> &mdash; for serious violations or when Province fails to act</li>'
+    +'</ol>'
+    +'<h4>How to Report</h4>'
+    +'<ul>'
+    +'<li>Preferably in writing (email or letter) to create a documented record</li>'
+    +'<li>Include: your name, the nature of the violation, date/location, persons involved, any witnesses</li>'
+    +'<li>You may request that your identity be kept confidential during initial investigation</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Timeframes:</strong> Reports should be made within 30 days of witnessing a violation whenever possible. The Polemarch must acknowledge receipt within 7 days and begin investigation within 14 days.</div>'
+    +'<h4>Anonymous Reporting</h4>'
+    +'<p>While anonymous tips are accepted, they carry less weight in formal proceedings. Documented, named reports are far more likely to result in corrective action. The Fraternity prohibits retaliation against any member who makes a good-faith report.</p>'
+    +'</div>'
+    +screenDots(1,5,4)
+    +navButtons(false,false,false);
+}
+
+function m1s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Investigation Process</h3>'
+    +'<p>The Ethics Committee is responsible for investigating conduct complaints. The process is designed to be fair to both the complainant and the accused.</p>'
+    +'<h4>Step-by-Step Investigation Process</h4>'
+    +'<ol>'
+    +'<li><strong>Complaint received</strong> &mdash; Polemarch logs complaint and notifies Ethics Committee Chair</li>'
+    +'<li><strong>Accused notified</strong> &mdash; Written notice within 7 days; specifies the nature of the allegation</li>'
+    +'<li><strong>Evidence gathering</strong> &mdash; Committee interviews witnesses, reviews documents, collects relevant materials (14–21 days)</li>'
+    +'<li><strong>Accused response</strong> &mdash; Accused member may submit a written response and/or request a hearing</li>'
+    +'<li><strong>Hearing (if requested)</strong> &mdash; Formal hearing with both sides presenting; closed session, committee members only</li>'
+    +'<li><strong>Committee recommendation</strong> &mdash; Written finding and penalty recommendation to the Polemarch</li>'
+    +'<li><strong>Chapter vote (Level 2 &amp; 3)</strong> &mdash; General body votes on proposed penalty; simple majority for Level 2; two-thirds for Level 3 expulsion</li>'
+    +'<li><strong>Written notification</strong> &mdash; Outcome communicated to accused in writing within 7 days of final vote</li>'
+    +'</ol>'
+    +'<div class="highlight-box"><strong>Presumption of Good Standing:</strong> A member is presumed to be in good standing until a violation is formally sustained. An ongoing investigation does not strip a member of rights unless the Polemarch issues an emergency suspension pending investigation (a rare measure reserved for serious immediate harm situations).</div>'
+    +'</div>'
+    +screenDots(1,6,4)
+    +navButtons(false,false,false);
+}
+
+function m1s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Appeal Rights</h3>'
+    +'<p>Every member has the right to appeal a disciplinary decision. The appeal process provides a check on the chapter\'s disciplinary authority.</p>'
+    +'<h4>Appeal Timelines</h4>'
+    +'<ul>'
+    +'<li>Member must file a written notice of appeal within <strong>30 days</strong> of receiving the written disciplinary decision</li>'
+    +'<li>Appeal is filed with the <strong>Province Polemarch</strong></li>'
+    +'<li>Province must acknowledge receipt within 14 days and schedule a Province hearing or review</li>'
+    +'<li>Province decision is final unless the member further appeals to the Grand Chapter within 30 days of Province ruling</li>'
+    +'</ul>'
+    +'<h4>Grounds for Appeal</h4>'
+    +'<ul>'
+    +'<li>Procedural error: the investigation or hearing did not follow proper procedures</li>'
+    +'<li>New evidence: significant evidence not available at the time of hearing</li>'
+    +'<li>Disproportionate penalty: the sanction is clearly excessive for the violation found</li>'
+    +'<li>Bias: documented evidence of bias or conflict of interest by the Ethics Committee</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Appeal does not automatically stay the penalty:</strong> Unless the Province Polemarch grants a stay, any suspension or other sanction remains in effect during the appeal period. Request a stay explicitly in your appeal notice if the penalty would cause immediate irreparable harm.</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Restorative vs. Punitive Approaches</h3>'
+    +'<p>DLA, consistent with Grand Chapter guidance, recognizes that not every violation requires punitive action. For Level 1 matters, restorative approaches are encouraged:</p>'
+    +'<ul>'
+    +'<li><strong>Mediated dialogue</strong> between affected parties with an Ethics Committee facilitator</li>'
+    +'<li><strong>Community service hours</strong> in lieu of or alongside a formal warning</li>'
+    +'<li><strong>Educational requirement</strong> such as completing additional training modules or attending a workshop</li>'
+    +'<li><strong>Mentoring assignment</strong> pairing the member with a senior brother for accountability</li>'
+    +'</ul>'
+    +'<p>Restorative measures require agreement by all parties and approval of the Polemarch. They do not apply to Level 2 or Level 3 violations, which require formal proceedings.</p>'
+    +'</div>'
+    +screenDots(1,7,4)
+    +navButtons(false,false,false);
+}
+
+function m1s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Social Media Conduct &amp; Conduct Violations</h3>'
+    +'<p>Social media conduct is governed by the Code of Conduct, not just the Social Media Standards module. This means a member can be disciplined for online behavior even if the post doesn\'t violate the specific social media policy, if it violates broader conduct standards.</p>'
+    +'<h4>Social Media Conduct Violations (Code of Conduct Context)</h4>'
+    +'<ul>'
+    +'<li>Posting content that demeans, harasses, or threatens any person &mdash; Level 1 or Level 2 depending on severity</li>'
+    +'<li>Sharing confidential fraternity information including MTA details, financial records, or ritual content &mdash; Level 2</li>'
+    +'<li>Creating fake accounts using the Fraternity\'s name or another member\'s identity &mdash; Level 2</li>'
+    +'<li>Public statements that falsely attribute positions to the Fraternity or chapter &mdash; Level 1 or 2</li>'
+    +'</ul>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Retaliation Protections &amp; Confidentiality</h3>'
+    +'<p>The Fraternity\'s policy is explicit: <strong>retaliation against any member who makes a good-faith conduct report is itself a violation</strong> subject to discipline.</p>'
+    +'<h4>What Constitutes Retaliation</h4>'
+    +'<ul>'
+    +'<li>Social exclusion or pressure campaigns against a reporting member</li>'
+    +'<li>Negative votes on chapter business motivated by a member\'s report (not the merits)</li>'
+    +'<li>Threats, intimidation, or hostile communication</li>'
+    +'<li>Filing a baseless counter-complaint solely to pressure a reporting member</li>'
+    +'</ul>'
+    +'<h4>Confidentiality Obligations</h4>'
+    +'<ul>'
+    +'<li>All Ethics Committee proceedings are confidential until a final decision is issued</li>'
+    +'<li>Members who participate in investigations (as witnesses or committee members) may not disclose investigation details</li>'
+    +'<li>Violating confidentiality of an ongoing investigation is itself a conduct violation</li>'
+    +'<li>The chapter may publish the outcome (name and sanction) of a completed proceeding to the general body; details of evidence are not published</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(1,8,4)
+    +navButtons(false,false,false);
+}
+
+function m1s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 2 &mdash; Foundations</div>'
+    +'<div class="module-title">Code of Conduct</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m1s9a',
+      'A member files a good-faith report about a hazing incident. Three weeks later, other members vote against his committee appointment &mdash; explicitly stating it is because he "ratted." This is:',
+      ['A legitimate exercise of the general body\'s voting rights','Retaliation &mdash; a conduct violation subject to discipline','Acceptable because the vote was by secret ballot','An internal matter the Polemarch need not address'],
+      1,
+      'Retaliation against a reporting member is explicitly prohibited. Voting against a member because they made a conduct report &mdash; regardless of ballot secrecy &mdash; constitutes retaliation.'
+    )
+    +renderQuiz('m1s9b',
+      'An Ethics Committee member tells his wife the details of an ongoing investigation over dinner. This is:',
+      ['Acceptable because his wife is not a Fraternity member','A violation of investigation confidentiality obligations','Acceptable if he does not use the member\'s name','Permitted since the spouse is not involved in the Fraternity'],
+      1,
+      'Confidentiality applies to all persons outside the investigation, including family members. Disclosing investigation details to anyone not authorized is a conduct violation.'
+    )
+    +screenDots(1,9,4)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 2 — PROTOCOL & ETIQUETTE (3 screens)
+=================================================== */
+function m2s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Forms of Address</h3>'
+    +'<p>Proper titles demonstrate respect for the Fraternity\'s traditions and for elected and appointed leaders.</p>'
+    +'<table>'
+    +'<tr><th>Role</th><th>Correct Address</th></tr>'
+    +'<tr><td>Polemarch (chapter)</td><td>"Brother Polemarch" or "Polemarch [Name]"</td></tr>'
+    +'<tr><td>Keeper of Records &amp; Exchequer</td><td>"Brother Keeper"</td></tr>'
+    +'<tr><td>Strategus</td><td>"Brother Strategus"</td></tr>'
+    +'<tr><td>Province Polemarch</td><td>"Province Polemarch [Name]"</td></tr>'
+    +'<tr><td>Grand Polemarch</td><td>"Grand Polemarch [Name]"</td></tr>'
+    +'<tr><td>General Member</td><td>"Brother [Last Name]"</td></tr>'
+    +'</table>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Fraternity Traditions</h3>'
+    +'<ul>'
+    +'<li>Rise when the Grand Polemarch enters the room</li>'
+    +'<li>Greet fellow Kappas with the fraternal grip &mdash; never in public view of non-members</li>'
+    +'<li>Refer to the organization as "Kappa Alpha Psi" &mdash; not abbreviations in formal settings</li>'
+    +'<li>The Diamond Kappa is the official symbol; display it with reverence</li>'
+    +'<li>Colors are Crimson and Cream &mdash; not red and white</li>'
+    +'<li>The cane symbolizes Achievement and dignity &mdash; never a prop for hazing</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(2,0,3)
+    +navButtons(false,false,false);
+}
+
+function m2s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Dress Code &amp; Badge Protocol</h3>'
+    +'<h4>Formal Chapter Events</h4>'
+    +'<ul>'
+    +'<li>Business formal or dress uniform unless otherwise specified</li>'
+    +'<li>Fraternity badge worn on left lapel, above the heart</li>'
+    +'<li>Badge should never be worn on casual clothing or athletic wear</li>'
+    +'</ul>'
+    +'<h4>Badge Rules</h4>'
+    +'<ul>'
+    +'<li>The badge is the property of the member &mdash; not transferable</li>'
+    +'<li>Lost or stolen badges must be reported to the Keeper of Records immediately</li>'
+    +'<li>Non-members may never wear the badge</li>'
+    +'</ul>'
+    +'<h4>Speaking Decorum</h4>'
+    +'<ul>'
+    +'<li>Obtain recognition from the Chair before speaking at meetings</li>'
+    +'<li>Address remarks to the Chair, not to other members directly</li>'
+    +'<li>Refrain from personal attacks or disrespectful language</li>'
+    +'<li>Electronic devices on silent during formal sessions</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(2,1,3)
+    +navButtons(false,false,false);
+}
+
+function m2s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m2s2',
+      'What is the correct form of address for the Keeper of Records & Exchequer?',
+      ['"Treasurer [Name]"','"Brother Exchequer"','"Brother Keeper"','"Records Officer [Name]"'],
+      2,
+      '"Brother Keeper" is the correct formal address for the Keeper of Records &amp; Exchequer.'
+    )
+    +screenDots(2,2,3)
+    +navButtons(false,false,false);
+}
+
+function m2s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Formal vs. Informal Meeting Protocols</h3>'
+    +'<p>Not every chapter gathering carries the same level of formality. Understanding when formal protocol applies prevents both under-formality (disrespect to the process) and over-formality (unnecessary rigidity in casual settings).</p>'
+    +'<table>'
+    +'<tr><th>Setting</th><th>Formality Level</th><th>Protocol Notes</th></tr>'
+    +'<tr><td>Regular Chapter Meeting</td><td><strong>Formal</strong></td><td>Robert\'s Rules apply; proper address required; business attire expected unless otherwise announced</td></tr>'
+    +'<tr><td>Special Called Meeting</td><td><strong>Formal</strong></td><td>Same as regular meeting; limited to agenda items for which meeting was called</td></tr>'
+    +'<tr><td>Committee Meetings</td><td><strong>Semi-formal</strong></td><td>Chair presides; proper address encouraged; minutes required; no full parliamentary procedure unless Chair invokes it</td></tr>'
+    +'<tr><td>Social Events</td><td><strong>Informal</strong></td><td>No formal address required; however, member conduct standards apply at all times</td></tr>'
+    +'<tr><td>Province Council</td><td><strong>Highly Formal</strong></td><td>Full parliamentary procedure; delegation roles strictly observed; Province Polemarch presides</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box"><strong>Rule of thumb:</strong> When in doubt, err toward formality. Addressing a brother by his title is never inappropriate. Failing to do so in a formal setting is always noticeable.</div>'
+    +'</div>'
+    +screenDots(2,3,3)
+    +navButtons(false,false,false);
+}
+
+function m2s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Address &amp; Salutation Standards: Extended Reference</h3>'
+    +'<p>The Fraternity maintains specific conventions for written and oral address depending on context. These standards reflect the dignity of the organization and the office held.</p>'
+    +'<h4>Written Correspondence</h4>'
+    +'<ul>'
+    +'<li><strong>Opening (formal letter):</strong> "Dear Brother Polemarch [Last Name]:" or "Dear Province Polemarch [Last Name]:"</li>'
+    +'<li><strong>Opening (email to fellow member):</strong> "Brother [Last Name]," is standard; "Bro." is acceptable in informal email</li>'
+    +'<li><strong>Closing:</strong> "Yours in Kappa," or "Fraternally," followed by your name and member number</li>'
+    +'<li><strong>Addressing the Grand Polemarch:</strong> Always use "Grand Polemarch [Full Name]" in written and oral address &mdash; never just "Polemarch"</li>'
+    +'</ul>'
+    +'<h4>During Meetings</h4>'
+    +'<ul>'
+    +'<li>Members address the Chair, never each other directly: "Brother Polemarch, I would like to address Brother Keeper\'s point..."</li>'
+    +'<li>When recognized to speak, begin: "Brother Polemarch, Brothers..." before making your point</li>'
+    +'<li>Do not interrupt a member who has been recognized; raise a Point of Order if rules are being violated</li>'
+    +'</ul>'
+    +'<h4>Province &amp; National Settings</h4>'
+    +'<ul>'
+    +'<li>At Province Council, address the presiding officer as "Province Polemarch" throughout</li>'
+    +'<li>At Grand Chapter meetings, members rise when the Grand Polemarch enters or takes the podium</li>'
+    +'<li>Never address a Grand Officer by first name in a formal setting</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(2,4,3)
+    +navButtons(false,false,false);
+}
+
+function m2s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Chapter Ritual Protocol</h3>'
+    +'<p>Kappa Alpha Psi maintains ritual practices that are integral to its identity. Members are bound by confidentiality obligations regarding ritual content, and all ritual activities are governed by strict protocol.</p>'
+    +'<div class="warning-box"><strong>Confidentiality Absolute:</strong> Ritual content &mdash; including words, ceremonies, symbols specific to ritual, and paraphernalia used exclusively in ritual &mdash; must never be disclosed to non-members. Disclosure is a Level 2 violation.</div>'
+    +'<h4>General Ritual Protocol</h4>'
+    +'<ul>'
+    +'<li>Ritual activities may only be conducted under the supervision of initiated members in good standing</li>'
+    +'<li>No video, audio, or photographic recording of ritual activities is permitted under any circumstances</li>'
+    +'<li>Ritual items must be stored securely and never left in public view</li>'
+    +'<li>Members should not discuss ritual specifics in public spaces, including restaurants, social gatherings, or over unsecured digital channels</li>'
+    +'</ul>'
+    +'<h4>Who May Participate</h4>'
+    +'<ul>'
+    +'<li>Only initiated members in good standing may participate in ritual activities</li>'
+    +'<li>Non-financial members may be restricted from ritual participation at the Polemarch\'s discretion</li>'
+    +'<li>Guests and non-members are never permitted in ritual sessions</li>'
+    +'</ul>'
+    +'<p>Members with questions about proper ritual procedures should consult the Polemarch or a senior brother &mdash; never search for information online, where inaccurate or unauthorized content may exist.</p>'
+    +'</div>'
+    +screenDots(2,5,3)
+    +navButtons(false,false,false);
+}
+
+function m2s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Regional &amp; National Event Etiquette</h3>'
+    +'<p>Attending Province Council and Grand Chapter events represents DLA and every member of Kappa Alpha Psi. Conduct at these events is held to the highest standard.</p>'
+    +'<h4>Province Council</h4>'
+    +'<ul>'
+    +'<li>Arrive on time; late arrival disrupts proceedings and reflects on the chapter</li>'
+    +'<li>Dress according to the Province\'s published dress code &mdash; typically business formal on the first day, chapter shirts for service activities</li>'
+    +'<li>Delegates vote only as authorized; alternates may vote only when replacing an absent delegate</li>'
+    +'<li>Do not engage in side conversations during floor debate; it is disrespectful to the speaker and the presiding officer</li>'
+    +'<li>All business introduced at Province Council must be submitted on the appropriate form in advance unless recognized as emergency business by two-thirds vote</li>'
+    +'</ul>'
+    +'<h4>Grand Chapter / National Conclave</h4>'
+    +'<ul>'
+    +'<li>Members represent not just themselves but DLA and the Southwestern Province</li>'
+    +'<li>Social activities at national events are still subject to the Code of Conduct &mdash; the cameras are always on when you\'re wearing letters</li>'
+    +'<li>Follow all published event schedules and hotel/venue rules</li>'
+    +'<li>Networking with national officers is encouraged; always introduce yourself with your name, chapter, and province</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(2,6,3)
+    +navButtons(false,false,false);
+}
+
+function m2s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Guest Protocols</h3>'
+    +'<p>Guests at chapter events are the chapter\'s responsibility. How we treat and manage guests reflects directly on the Fraternity\'s reputation.</p>'
+    +'<h4>Inviting Guests to Chapter Events</h4>'
+    +'<ul>'
+    +'<li>Only financial members in good standing may invite guests to chapter-sponsored events</li>'
+    +'<li>The hosting member is responsible for the conduct of their guest throughout the event</li>'
+    +'<li>Guests must not be present during ritual activities, confidential membership business, or Ethics Committee proceedings</li>'
+    +'<li>Guests should never be granted access to chapter digital platforms, shared documents, or internal communications</li>'
+    +'</ul>'
+    +'<h4>Introducing Community Guests</h4>'
+    +'<ul>'
+    +'<li>At public events, introduce distinguished guests appropriately: name, title, and affiliation</li>'
+    +'<li>The Polemarch typically makes formal introductions; members should not upstage this role</li>'
+    +'<li>Thank guests publicly and follow up with a written note from the chapter when appropriate</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Dress Code for Guests:</strong> When chapter events have a dress code, it applies to guests as well. Members should communicate the dress expectation to their guests in advance. An underdressed guest reflects on the member who invited them.</div>'
+    +'<h4>Dress Code by Event Type (Quick Reference)</h4>'
+    +'<table>'
+    +'<tr><th>Event Type</th><th>Expected Attire</th></tr>'
+    +'<tr><td>Regular Chapter Meeting</td><td>Business casual minimum; business formal preferred</td></tr>'
+    +'<tr><td>Formal Banquet / Scholarship Dinner</td><td>Business formal (suit &amp; tie) or evening wear</td></tr>'
+    +'<tr><td>Community Service</td><td>Chapter T-shirt or polo with appropriate work attire</td></tr>'
+    +'<tr><td>Guide Right / Kappa League</td><td>Business casual; professional appearance for youth role modeling</td></tr>'
+    +'<tr><td>Social Events</td><td>As specified by the event flyer; Fraternity letters permitted if appropriate</td></tr>'
+    +'</table>'
+    +'</div>'
+    +screenDots(2,7,3)
+    +navButtons(false,false,false);
+}
+
+function m2s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Phone &amp; Device Etiquette at Meetings</h3>'
+    +'<p>The presence of personal devices at chapter meetings is a persistent source of distraction and disrespect. The following standards are in effect for all formal chapter sessions.</p>'
+    +'<h4>During Regular &amp; Special Chapter Meetings</h4>'
+    +'<ul>'
+    +'<li>All personal devices must be on <strong>silent or vibrate</strong> before the Polemarch calls the meeting to order</li>'
+    +'<li>No phone calls may be taken in the meeting room during active session &mdash; step out if you must take a call</li>'
+    +'<li>No video or audio recording of chapter meetings without the explicit consent of the presiding officer and general body</li>'
+    +'<li>Tablets and laptops may be used for note-taking or reference but must not be used for social media, games, or unrelated browsing</li>'
+    +'<li>Repeated device violations may result in a Point of Order and formal warning from the Strategus</li>'
+    +'</ul>'
+    +'<h4>At Committee Meetings</h4>'
+    +'<ul>'
+    +'<li>Committee Chairs set the device policy for their meetings; follow the Chair\'s guidance</li>'
+    +'<li>Using devices to look up reference material relevant to committee work is appropriate</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Photography at Events:</strong> Always obtain consent before photographing members at events, particularly at chapter business meetings. Photos of members in a meeting context should not be posted to social media without explicit permission from all persons visible in the image.</div>'
+    +'</div>'
+    +screenDots(2,8,3)
+    +navButtons(false,false,false);
+}
+
+function m2s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 3 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Protocol &amp; Etiquette</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m2s9a',
+      'During a formal chapter meeting, a member wants to respond to a point made by another member. What is the correct protocol?',
+      ['Address the other member directly and rebut their point','Wait until they are finished, then obtain recognition from the Chair and address the Chair','Raise a Point of Order to interrupt the other member','Speak up immediately &mdash; waiting is unnecessary in a chapter meeting'],
+      1,
+      'All remarks must be addressed to the Chair, not to other members directly. A member must be recognized by the presiding officer before speaking.'
+    )
+    +renderQuiz('m2s9b',
+      'A member uses his tablet during a committee meeting to check sports scores. The Committee Chair has no stated device policy. The member is:',
+      ['Fully within his rights since the Chair set no policy','In violation of general device etiquette expectations that apply even when no explicit policy is stated','Required to leave the meeting since devices are never permitted','Exempt because committee meetings have no formal protocol'],
+      1,
+      'General device etiquette &mdash; no unrelated browsing during meetings &mdash; applies regardless of whether a chair has explicitly stated a policy.'
+    )
+    +screenDots(2,9,3)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 3 — RISK MANAGEMENT (4 screens)
+=================================================== */
+function m3s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Core Principle</h3>'
+    +'<p>Risk management is not about avoiding activity &mdash; it is about conducting activities <strong>safely, legally, and with the Fraternity\'s mission in mind</strong>. Every member shares responsibility.</p>'
+    +'<div class="highlight-box">The Fraternity maintains a <strong>$1,000,000 per occurrence / $3,000,000 aggregate</strong> liability insurance policy covering properly registered chapter events.</div>'
+    +'<h4>What the Policy Covers</h4>'
+    +'<ul>'
+    +'<li>Chapter-sponsored events registered with Grand Chapter via KappaOrg</li>'
+    +'<li>Activities conducted on approved dates and locations</li>'
+    +'<li>Events that comply with Fraternity risk management standards</li>'
+    +'</ul>'
+    +'<h4>What the Policy Does NOT Cover</h4>'
+    +'<ul>'
+    +'<li>Unregistered events or activities</li>'
+    +'<li>Hazing incidents &mdash; zero coverage, zero exceptions</li>'
+    +'<li>Individual criminal acts by members</li>'
+    +'<li>Events with alcohol unless all alcohol protocols are followed</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(3,0,4)
+    +navButtons(false,false,false);
+}
+
+function m3s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Event Registration Requirements</h3>'
+    +'<p>All chapter events must be registered through <strong>KappaOrg</strong> at least <strong>two weeks (14 days) in advance</strong>.</p>'
+    +'<h4>Registration Must Include</h4>'
+    +'<ul>'
+    +'<li>Event name, date, time, and location</li>'
+    +'<li>Expected attendance (members and guests)</li>'
+    +'<li>Type of event (service, social, fundraiser, etc.)</li>'
+    +'<li>Security plan if attendance exceeds 50 persons</li>'
+    +'<li>Alcohol acknowledgment if alcohol will be present</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Flyer &amp; Promotion Rule:</strong> Any flyer or social media post promoting a chapter event creates a record of that event. If the event is unregistered, the chapter bears full liability for any incident.</div>'
+    +'<h4>Alcohol Policy Summary</h4>'
+    +'<ul>'
+    +'<li>No open bars &mdash; all alcohol must be purchased by individuals</li>'
+    +'<li>No alcohol at events where minors are present</li>'
+    +'<li>No member may serve as a bartender at a chapter event</li>'
+    +'<li>Licensed vendor required if alcohol is sold</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(3,1,4)
+    +navButtons(false,false,false);
+}
+
+function m3s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Event Safety Checklist</h3>'
+    +'<p>Before any chapter event, the Event Chair must confirm:</p>'
+    +'<ol>'
+    +'<li>Event is registered in KappaOrg at least 14 days prior</li>'
+    +'<li>Venue has confirmed capacity and is properly permitted</li>'
+    +'<li>Security personnel are arranged (if applicable)</li>'
+    +'<li>First aid resources are identified</li>'
+    +'<li>Emergency contacts and exit plan are communicated to all staff</li>'
+    +'<li>Alcohol protocols are in place (if applicable)</li>'
+    +'<li>No chapter funds used to purchase alcohol</li>'
+    +'<li>All participants have signed any required waivers</li>'
+    +'</ol>'
+    +'<div class="highlight-box"><strong>Consent Policy:</strong> All activities involving physical contact or personal information require informed, voluntary consent &mdash; including photography and video recording.</div>'
+    +'</div>'
+    +screenDots(3,2,4)
+    +navButtons(false,false,false);
+}
+
+function m3s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +renderQuiz('m3s3',
+      'A chapter promotes a social event on a flyer before registering it with KappaOrg. What is the primary concern?',
+      ['No concern &mdash; flyers are not considered official records','The flyer creates evidence of an event, exposing the chapter to significant liability if an incident occurs','The flyer must first be approved by the Polemarch only','The design must use Grand Chapter-approved colors and fonts'],
+      1,
+      'Promoting an unregistered event creates a paper trail. If an incident occurs, the chapter bears full liability without the Fraternity\'s insurance coverage.'
+    )
+    +renderQuiz('m3s3b',
+      'A chapter registers an event 10 days before it is scheduled to occur. What is the result?',
+      ['The event is covered since it was registered at all','The event is fully covered as long as no alcohol is served','The Fraternity\'s insurance does not apply &mdash; registration must occur at least 14 days in advance','The chapter receives reduced coverage but is not fully uninsured'],
+      2,
+      'Registration must occur at least 14 days in advance. An event registered only 10 days out does not meet the requirement and forfeits insurance coverage.'
+    )
+    +screenDots(3,3,4)
+    +navButtons(false,false,false);
+}
+
+function m3s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Event Risk Assessment Framework</h3>'
+    +'<p>Before planning any chapter event, the Event Chair or Risk Management Committee should conduct a risk assessment. This is a structured review of potential hazards and mitigation measures.</p>'
+    +'<h4>Risk Assessment Steps</h4>'
+    +'<ol>'
+    +'<li><strong>Identify the event type</strong> &mdash; social, service, fundraiser, youth program, etc. Each carries different risk profiles</li>'
+    +'<li><strong>Identify participants</strong> &mdash; members only, members and guests, minors present? Youth activities require background-checked supervisors</li>'
+    +'<li><strong>Identify the venue</strong> &mdash; privately owned space, rented facility, public park? Who holds the liability?</li>'
+    +'<li><strong>Identify specific hazards</strong> &mdash; alcohol, physical activity, vehicles, large crowds, water</li>'
+    +'<li><strong>Mitigation measures</strong> &mdash; for each hazard, identify specific steps to reduce the risk</li>'
+    +'<li><strong>Emergency plan</strong> &mdash; nearest hospital, designated emergency contact, who calls 911 if needed</li>'
+    +'<li><strong>Register the event</strong> &mdash; complete KappaOrg registration at least 14 days out</li>'
+    +'</ol>'
+    +'<div class="highlight-box"><strong>High-Risk Event Flag:</strong> Events involving vehicles (car shows, drives), water (pool parties, lake outings), or significant physical activity (5K runs, sports competitions) require additional Risk Management Committee review before registration.</div>'
+    +'</div>'
+    +screenDots(3,4,4)
+    +navButtons(false,false,false);
+}
+
+function m3s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Facility Liability &amp; Contract Review</h3>'
+    +'<p>When a chapter rents or uses a third-party facility, a contract is typically involved. No chapter officer should sign a facility contract without review.</p>'
+    +'<h4>Who May Sign Contracts</h4>'
+    +'<ul>'
+    +'<li>Only the <strong>Polemarch</strong> or a specifically authorized officer may sign contracts on behalf of DLA</li>'
+    +'<li>A member signing a contract in their personal name becomes personally liable &mdash; not the chapter</li>'
+    +'<li>Contracts exceeding a threshold set in the DLA Bylaws (typically $500 or more) require full chapter approval before signing</li>'
+    +'</ul>'
+    +'<h4>Contract Review Checklist</h4>'
+    +'<ul>'
+    +'<li>Confirm the venue is properly licensed and permitted for the type of event</li>'
+    +'<li>Check for indemnification clauses &mdash; does the venue require the chapter to indemnify them?</li>'
+    +'<li>Identify cancellation and refund terms before signing</li>'
+    +'<li>Verify whether the venue requires a certificate of insurance from the chapter (request from Grand Chapter via KappaOrg)</li>'
+    +'<li>Note any restrictions on decorations, alcohol, noise, or capacity</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Certificate of Insurance:</strong> Venues frequently require proof of insurance. The Fraternity can issue a certificate of insurance for properly registered events. Never sign a venue contract representing that insurance exists unless the event is already registered.</div>'
+    +'</div>'
+    +screenDots(3,5,4)
+    +navButtons(false,false,false);
+}
+
+function m3s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Alcohol Policy: Full Detail</h3>'
+    +'<p>Alcohol at chapter events is one of the highest-risk areas. The Fraternity\'s alcohol policy is strict, and violations can void insurance coverage for the entire event.</p>'
+    +'<h4>What Is Permitted</h4>'
+    +'<ul>'
+    +'<li>Individuals may purchase and consume their own alcohol at events held in licensed venues</li>'
+    +'<li>Third-party licensed bartenders or caterers may serve alcohol at chapter events</li>'
+    +'<li>BYOB events with proper controls (no minors, no chapter purchase of alcohol) are permitted</li>'
+    +'</ul>'
+    +'<h4>What Is Prohibited</h4>'
+    +'<ul>'
+    +'<li>No chapter funds may be used to purchase alcohol &mdash; ever</li>'
+    +'<li>No member may serve as a bartender at a chapter event</li>'
+    +'<li>No open bars where alcohol is freely available without purchase</li>'
+    +'<li>No alcohol at any event where minors will be present</li>'
+    +'<li>No alcohol at any event in an on-campus facility (including events off-campus associated with a college chapter relationship)</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Hazing &amp; Alcohol:</strong> Forcing or pressuring any member or prospective member to consume alcohol &mdash; even voluntarily &mdash; constitutes hazing. This applies at chapter events AND private gatherings where a chapter event or activity precedes or follows.</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Insurance Requirements Summary</h3>'
+    +'<table>'
+    +'<tr><th>Requirement</th><th>Details</th></tr>'
+    +'<tr><td>Registration deadline</td><td>14 days before the event via KappaOrg</td></tr>'
+    +'<tr><td>Coverage limit</td><td>$1M per occurrence / $3M aggregate</td></tr>'
+    +'<tr><td>Coverage trigger</td><td>Event must comply with all Fraternity risk management standards</td></tr>'
+    +'<tr><td>Certificate of insurance</td><td>Available upon request through KappaOrg after event registration</td></tr>'
+    +'<tr><td>Hazing incidents</td><td>Zero coverage regardless of registration status</td></tr>'
+    +'</table>'
+    +'</div>'
+    +screenDots(3,6,4)
+    +navButtons(false,false,false);
+}
+
+function m3s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Hazing Prevention Protocol</h3>'
+    +'<p>Preventing hazing requires active engagement by every member &mdash; not merely avoiding it yourself. The following practices are part of DLA\'s hazing prevention framework.</p>'
+    +'<h4>Before &amp; During MTA Activities</h4>'
+    +'<ul>'
+    +'<li>MTA activities must follow the Grand Chapter-approved curriculum exclusively; unauthorized additions are hazing</li>'
+    +'<li>All MTA sessions must be supervised by a credentialed Kappa (MTA certified) member</li>'
+    +'<li>A member who witnesses any unauthorized activity during MTA must stop the session and report immediately</li>'
+    +'<li>Prospective members must never be subjected to physical contact, sleep deprivation, dietary restriction, or verbal abuse at any point in the process</li>'
+    +'</ul>'
+    +'<h4>Prevention Culture</h4>'
+    +'<ul>'
+    +'<li>Speak up immediately if you see anything that looks like hazing &mdash; silence is compliance</li>'
+    +'<li>Do not rationalize hazing as "tradition" or "how we do things" &mdash; those arguments have never been a legal or policy defense</li>'
+    +'<li>Create an environment where prospective members feel safe to report concerns without fear</li>'
+    +'<li>Annual hazing prevention training is required for all members who participate in MTA activities</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Legal Exposure:</strong> Texas law (Education Code §37.151 et seq.) makes hazing a criminal offense. In addition to Fraternity discipline, members who engage in hazing face potential criminal prosecution, civil liability, and permanent expulsion. These consequences follow you beyond your Fraternity involvement.</div>'
+    +'</div>'
+    +screenDots(3,7,4)
+    +navButtons(false,false,false);
+}
+
+function m3s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Financial Risk Controls</h3>'
+    +'<p>Financial mismanagement is one of the leading causes of chapter sanctions. Strong financial controls protect the chapter, its officers, and its members.</p>'
+    +'<h4>Core Financial Controls</h4>'
+    +'<ul>'
+    +'<li><strong>Dual signature:</strong> All chapter checks over a threshold (set in bylaws) require two authorized signatures &mdash; typically the Keeper of Records and the Polemarch</li>'
+    +'<li><strong>Budget approval:</strong> The general body must approve the annual budget before the fiscal year begins; unbudgeted expenditures over a threshold require a chapter vote</li>'
+    +'<li><strong>Annual audit:</strong> The Finance Committee conducts an annual audit of chapter accounts; results are reported to the general body and Province</li>'
+    +'<li><strong>Receipts required:</strong> All expenditures must be supported by receipts; cash payments without receipts are prohibited</li>'
+    +'<li><strong>No commingling:</strong> Chapter funds must never be deposited in a personal account or mixed with personal funds under any circumstance</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Officer Liability:</strong> Officers who authorize improper expenditures may be personally liable to the chapter and Fraternity. This includes Polemarchs who approve payments without proper authorization, and Keepers who fail to maintain accurate records.</div>'
+    +'<h4>Emergency Expenditure Protocol</h4>'
+    +'<p>If an urgent expense arises between meetings (e.g., emergency repair to chapter property), the Polemarch may authorize the expenditure up to a set threshold, but must report it to the general body at the next meeting and seek ratification.</p>'
+    +'</div>'
+    +screenDots(3,8,4)
+    +navButtons(false,false,false);
+}
+
+function m3s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 4 &mdash; Conduct &amp; Protocol</div>'
+    +'<div class="module-title">Risk Management</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m3s9a',
+      'A chapter officer signs a facility rental contract in his own name because the Polemarch is out of town. An incident occurs at the event. Who bears personal liability?',
+      ['The chapter as a legal entity, not the individual officer','The officer who signed &mdash; he is personally liable since the contract is in his name','The Grand Chapter, because the event was registered','No one, because fraternity insurance covers all registered events'],
+      1,
+      'A member who signs a contract in their personal name becomes personally liable &mdash; not the chapter. Always wait for authorized signatories or obtain written authorization before signing.'
+    )
+    +renderQuiz('m3s9b',
+      'During an MTA session, a senior Kappa suggests adding an unauthorized activity "for tradition." The correct response is:',
+      ['Allow it if the prospective members do not object','Stop the session immediately and report the suggestion to the Polemarch','Allow it if the Polemarch verbally approves on the spot','Proceed only if the activity does not involve physical contact'],
+      1,
+      'Unauthorized additions to MTA activities constitute hazing regardless of consent or Polemarch approval. The session must stop and the matter reported.'
+    )
+    +screenDots(3,9,4)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 4 — CONDUCTING MEETINGS (3 screens)
+=================================================== */
+function m4s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Meeting Types</h3>'
+    +'<table>'
+    +'<tr><th>Type</th><th>Purpose &amp; Frequency</th></tr>'
+    +'<tr><td><strong>Regular</strong></td><td>Monthly chapter business; standard agenda</td></tr>'
+    +'<tr><td><strong>Special</strong></td><td>Called by Polemarch for urgent matters; limited agenda</td></tr>'
+    +'<tr><td><strong>Province Council</strong></td><td>Annual governing assembly of the Southwestern Province</td></tr>'
+    +'<tr><td><strong>Grand Chapter Meeting</strong></td><td>Biennial national convention; supreme governing body</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box"><strong>Province Council Voting:</strong> Each chapter sends a delegation with <strong>3 votes</strong> &mdash; one for the Polemarch, one for the Keeper of Records, and one for a delegate elected by the chapter body.</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Standard Business Order</h3>'
+    +'<ol>'
+    +'<li>Call to Order</li>'
+    +'<li>Roll Call / Quorum Determination</li>'
+    +'<li>Reading and Approval of Minutes</li>'
+    +'<li>Financial Report</li>'
+    +'<li>Committee Reports</li>'
+    +'<li>Unfinished Business</li>'
+    +'<li>New Business</li>'
+    +'<li>Announcements</li>'
+    +'<li>Good of the Order</li>'
+    +'<li>Adjournment</li>'
+    +'</ol>'
+    +'</div>'
+    +screenDots(4,0,3)
+    +navButtons(false,false,false);
+}
+
+function m4s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Parliamentary Procedure</h3>'
+    +'<p>DLA follows <strong>Robert\'s Rules of Order</strong> as the parliamentary authority. Key principles:</p>'
+    +'<ul>'
+    +'<li><strong>Quorum:</strong> Majority of financial members must be present to conduct business</li>'
+    +'<li><strong>Main Motion:</strong> Brings new business before the body &mdash; requires second, debate, and majority vote</li>'
+    +'<li><strong>Amend:</strong> Modifies a pending motion &mdash; requires second and majority vote</li>'
+    +'<li><strong>Refer:</strong> Sends a matter to committee for study</li>'
+    +'<li><strong>Table:</strong> Postpones consideration of a motion</li>'
+    +'<li><strong>Point of Order:</strong> Member may raise if rules are being violated</li>'
+    +'</ul>'
+    +'<h4>Key Leadership Programs</h4>'
+    +'<ul>'
+    +'<li>Guide Right &mdash; career and professional development</li>'
+    +'<li>Kappa League &mdash; youth mentoring for high school men</li>'
+    +'<li>Community Service initiatives</li>'
+    +'<li>Scholarship and Education programs</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(4,1,3)
+    +navButtons(false,false,false);
+}
+
+function m4s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m4s2',
+      'How many votes does each chapter have at the Southwestern Province Council?',
+      ['One vote &mdash; the chapter votes as a single unit','Two votes &mdash; one each for the Polemarch and Keeper of Records','Three votes &mdash; Polemarch, Keeper of Records, and an elected delegate','Five votes based on the chapter\'s financial membership count'],
+      2,
+      'Each chapter receives 3 votes at Province Council: one each for the Polemarch, Keeper of Records, and a chapter-elected delegate.'
+    )
+    +screenDots(4,2,3)
+    +navButtons(false,false,false);
+}
+
+function m4s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Agenda Construction</h3>'
+    +'<p>A well-constructed agenda is the foundation of an effective meeting. The Polemarch and Keeper of Records collaborate to build the agenda, which should be distributed to members at least 48 hours before the meeting.</p>'
+    +'<h4>Agenda Best Practices</h4>'
+    +'<ul>'
+    +'<li>List every agenda item with the presenting member or committee identified</li>'
+    +'<li>Assign estimated time allotments to major items to keep the meeting on schedule</li>'
+    +'<li>Place time-sensitive items (votes with deadlines, guests who must leave early) earlier in the agenda</li>'
+    +'<li>Flag items requiring a vote vs. items for information only &mdash; this prevents confusion on the floor</li>'
+    +'<li>Include supporting documents as attachments; do not read long reports verbatim from the floor</li>'
+    +'</ul>'
+    +'<h4>Adding Items to the Agenda</h4>'
+    +'<ul>'
+    +'<li>Members who wish to add items to the agenda must submit requests to the Keeper of Records at least 48 hours before the meeting</li>'
+    +'<li>Members may also introduce items from the floor under New Business; however, items requiring a vote should be on the published agenda whenever possible so members can prepare</li>'
+    +'<li>The Polemarch may accept or defer floor items at their discretion; a majority of present members may override a deferral</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Consent Agenda:</strong> Routine, non-controversial items (approval of prior minutes, standard financial report with no issues) may be bundled into a consent agenda and approved in one vote without individual discussion, saving significant meeting time.</div>'
+    +'</div>'
+    +screenDots(4,3,3)
+    +navButtons(false,false,false);
+}
+
+function m4s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Quorum Verification</h3>'
+    +'<p>Quorum is the minimum number of financial members who must be present for the chapter to conduct official business. Conducting a vote without quorum renders that vote invalid.</p>'
+    +'<h4>Establishing Quorum</h4>'
+    +'<ul>'
+    +'<li>DLA\'s quorum is defined in the chapter bylaws &mdash; typically a majority (more than half) of financial members</li>'
+    +'<li>The Keeper of Records maintains the current financial roster and provides the quorum number before each meeting</li>'
+    +'<li>Quorum must be established at the start of the meeting and verified again before any vote if members have left</li>'
+    +'<li>If quorum is not present, the meeting may continue for informational purposes only; no binding votes may be taken</li>'
+    +'</ul>'
+    +'<h4>Losing Quorum During a Meeting</h4>'
+    +'<ul>'
+    +'<li>If members leave and quorum is lost mid-meeting, the Chair must halt business votes</li>'
+    +'<li>Any member may call for a quorum count at any time by raising a "Point of Order"</li>'
+    +'<li>Items pending when quorum is lost are held as Unfinished Business for the next meeting</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Quorum and Financial Status:</strong> Only financial members count toward quorum. The Keeper of Records must be the authority on financial status &mdash; members who believe they are financial but are not on the current roster do not count until their status is confirmed and updated.</div>'
+    +'</div>'
+    +screenDots(4,4,3)
+    +navButtons(false,false,false);
+}
+
+function m4s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Motion Handling at Meetings</h3>'
+    +'<p>Motions are the formal mechanism through which the chapter takes action. Understanding how motions work prevents procedural challenges and ensures decisions are binding.</p>'
+    +'<h4>Life Cycle of a Main Motion</h4>'
+    +'<ol>'
+    +'<li><strong>Recognition:</strong> Member is recognized by the Chair ("Brother Polemarch, I rise to make a motion")</li>'
+    +'<li><strong>Motion stated:</strong> Member states the motion clearly and completely ("I move that the chapter authorize...")</li>'
+    +'<li><strong>Second:</strong> Another member seconds without being recognized ("Second") &mdash; a second shows the motion merits discussion</li>'
+    +'<li><strong>Chair restates:</strong> Chair restates the motion for the record ("It has been moved and seconded that...")</li>'
+    +'<li><strong>Debate:</strong> Members are recognized to speak for or against; each member typically limited to two speeches per motion</li>'
+    +'<li><strong>Vote:</strong> Chair calls the vote (voice vote, show of hands, or ballot); announces result</li>'
+    +'<li><strong>Record:</strong> Keeper of Records records the motion and outcome in the minutes</li>'
+    +'</ol>'
+    +'<h4>Amending a Motion</h4>'
+    +'<p>A pending motion may be amended before the vote. An amendment must be seconded, debated, and voted on before the main motion can be voted on. Only one amendment may be pending at a time.</p>'
+    +'</div>'
+    +screenDots(4,5,3)
+    +navButtons(false,false,false);
+}
+
+function m4s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Tabling &amp; Postponement Procedures</h3>'
+    +'<p>When a chapter is not ready to vote on a motion, two procedural tools are available: tabling and postponing. They are different and should not be confused.</p>'
+    +'<table>'
+    +'<tr><th>Tool</th><th>Purpose</th><th>Effect</th></tr>'
+    +'<tr><td><strong>Lay on the Table</strong></td><td>Set aside a motion temporarily to handle urgent business</td><td>Motion is held; can be taken from the table later in same or next meeting; no specified time</td></tr>'
+    +'<tr><td><strong>Postpone to a Certain Time</strong></td><td>Delay consideration to a specified future time</td><td>Motion is held until the stated time; automatically comes up then without a new motion</td></tr>'
+    +'<tr><td><strong>Refer to Committee</strong></td><td>Send a motion to a committee for study and recommendation</td><td>Committee reports back to the body; the body then votes on the original or amended motion</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box"><strong>Common Misuse:</strong> "Tabling" is frequently used loosely to mean "kill this motion." Under Robert\'s Rules, that is not correct &mdash; to defeat a motion, the body should vote it down, not table it indefinitely. Indefinitely tabled items can be called back up by any member.</div>'
+    +'<h4>Withdrawing a Motion</h4>'
+    +'<p>Before a motion has been stated by the Chair, the mover may withdraw it without a vote. After the Chair has stated the motion, withdrawal requires unanimous consent or a majority vote to permit.</p>'
+    +'</div>'
+    +screenDots(4,6,3)
+    +navButtons(false,false,false);
+}
+
+function m4s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Executive Session Rules</h3>'
+    +'<p>An executive session is a closed meeting &mdash; only members (and invited staff) may be present. It is used for sensitive matters where confidentiality is essential.</p>'
+    +'<h4>When Executive Session Is Appropriate</h4>'
+    +'<ul>'
+    +'<li>Personnel matters &mdash; discussion of officer performance, removal proceedings</li>'
+    +'<li>Ongoing Ethics Committee investigations or disciplinary hearings</li>'
+    +'<li>Legal matters or attorney-client privileged communications</li>'
+    +'<li>Sensitive financial negotiations (vendor contracts, lease terms)</li>'
+    +'</ul>'
+    +'<h4>How to Enter Executive Session</h4>'
+    +'<ol>'
+    +'<li>A member moves to go into executive session, stating the general purpose</li>'
+    +'<li>The motion requires a second and a majority vote</li>'
+    +'<li>All non-members and guests leave the room</li>'
+    +'<li>Business is conducted; decisions may be made but the specific discussion is confidential</li>'
+    +'<li>A motion to rise from executive session returns the meeting to regular session</li>'
+    +'</ol>'
+    +'<div class="warning-box"><strong>Confidentiality in Executive Session:</strong> Members may not disclose what was discussed in executive session. The final action (e.g., "the chapter voted to censure Brother X") may be reported, but the deliberations leading to that action are confidential. Violations are a conduct matter.</div>'
+    +'</div>'
+    +screenDots(4,7,3)
+    +navButtons(false,false,false);
+}
+
+function m4s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Minutes Taking Standards</h3>'
+    +'<p>Minutes are the official legal record of chapter actions. Accurate, complete minutes protect the chapter and its officers from disputes about what was decided.</p>'
+    +'<h4>What Minutes Must Include</h4>'
+    +'<ul>'
+    +'<li>Date, time, location, and presiding officer</li>'
+    +'<li>Members present and absent (including quorum confirmation)</li>'
+    +'<li>Approval status of prior meeting\'s minutes</li>'
+    +'<li>Summary of each report presented (not a verbatim transcript)</li>'
+    +'<li>The exact wording of every motion, who made it, who seconded it, and the vote count</li>'
+    +'<li>Any items tabled, postponed, or referred to committee</li>'
+    +'<li>Time of adjournment</li>'
+    +'</ul>'
+    +'<h4>What Minutes Should NOT Include</h4>'
+    +'<ul>'
+    +'<li>Personal opinions, editorial comments, or summaries of debate (debate is not recorded &mdash; only actions)</li>'
+    +'<li>Contents of executive session deliberations</li>'
+    +'<li>Personal attacks or sensitive personal information</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Minutes vs. Notes:</strong> The Keeper of Records takes official minutes. Other members may take personal notes, but those are not official records. If a member believes minutes are inaccurate, the proper remedy is to move to correct them at the meeting where they are presented for approval &mdash; not to circulate an alternative version.</div>'
+    +'</div>'
+    +screenDots(4,8,3)
+    +navButtons(false,false,false);
+}
+
+function m4s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 5 &mdash; Operations</div>'
+    +'<div class="module-title">Conducting Meetings</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m4s9a',
+      'The chapter loses quorum midway through a vote on a budget amendment. What is the correct procedure?',
+      ['Complete the vote &mdash; the quorum was present when the motion was introduced','Halt the vote immediately; hold the item as Unfinished Business for the next meeting','Allow the Polemarch to cast the deciding vote to compensate for lost quorum','Complete the vote with only the members remaining'],
+      1,
+      'If quorum is lost, all pending votes must halt. The item carries forward as Unfinished Business at the next regular meeting.'
+    )
+    +renderQuiz('m4s9b',
+      'A member disagrees with the minutes distributed before a meeting. The correct action is:',
+      ['Distribute an alternative version of the minutes to all members by email','Raise a motion to correct the minutes when they are presented for approval at the meeting','Refuse to sign the minutes until they are corrected','Contact the Province Polemarch to report inaccurate minutes'],
+      1,
+      'Minutes are corrected through the formal approval process at the meeting where they are presented. Moving a correction at that time is the proper procedure.'
+    )
+    +screenDots(4,9,3)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 5 — COMMITTEE STRUCTURE (3 screens)
+=================================================== */
+function m5s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Types of Committees</h3>'
+    +'<table>'
+    +'<tr><th>Type</th><th>Description</th></tr>'
+    +'<tr><td><strong>Standing</strong></td><td>Permanent; ongoing mission; exists across administrations</td></tr>'
+    +'<tr><td><strong>Ad Hoc</strong></td><td>Temporary; created for a specific task; dissolves upon completion</td></tr>'
+    +'<tr><td><strong>Special</strong></td><td>Appointed for sensitive matters (ethics, elections)</td></tr>'
+    +'</table>'
+    +'<h4>DLA Standing Committees</h4>'
+    +'<ul>'
+    +'<li><span class="badge-pill pill-gold">Finance</span> Budget, dues collection, audit oversight</li>'
+    +'<li><span class="badge-pill pill-gold">Ethics</span> Conduct investigations, member discipline</li>'
+    +'<li><span class="badge-pill pill-gold">Program</span> Events, Guide Right, Kappa League</li>'
+    +'<li><span class="badge-pill pill-gold">Membership</span> Recruitment, retention, records</li>'
+    +'<li><span class="badge-pill pill-gold">Risk Management</span> Insurance, event registration, safety</li>'
+    +'<li><span class="badge-pill pill-gold">Technology &amp; Communications</span> Website, social media, newsletter</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(5,0,3)
+    +navButtons(false,false,false);
+}
+
+function m5s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Committee Chair Responsibilities</h3>'
+    +'<ul>'
+    +'<li>Convene meetings at least monthly (or as needed)</li>'
+    +'<li>Set agendas and distribute meeting notices 48 hours in advance</li>'
+    +'<li>Maintain written minutes of all committee sessions</li>'
+    +'<li>Submit written reports to the Polemarch before each chapter meeting</li>'
+    +'<li>Coordinate with other chairs on cross-cutting matters</li>'
+    +'<li>Manage committee budget line items (if applicable)</li>'
+    +'</ul>'
+    +'<h4>Committee Member Responsibilities</h4>'
+    +'<ul>'
+    +'<li>Attend all scheduled committee meetings</li>'
+    +'<li>Complete assigned tasks on time</li>'
+    +'<li>Communicate absences to the Chair in advance</li>'
+    +'<li>Contribute ideas and take ownership of deliverables</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Continuity Rule:</strong> Standing committees continue across administrations. A new Polemarch does not dissolve and reconstitute standing committees &mdash; they continue with existing members until the Chair is replaced.</div>'
+    +'</div>'
+    +screenDots(5,1,3)
+    +navButtons(false,false,false);
+}
+
+function m5s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m5s2',
+      'When a new Polemarch takes office, what happens to the Risk Management Standing Committee?',
+      ['It is automatically dissolved and must be reformed','It continues with its existing members until the Chair is replaced','It becomes an Ad Hoc committee until formally reinstated','The Province must re-authorize it before it can meet again'],
+      1,
+      'Standing committees are permanent and continue across administrations. This continuity is a defining feature of standing committees.'
+    )
+    +screenDots(5,2,3)
+    +navButtons(false,false,false);
+}
+
+function m5s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Committee Charter Requirements</h3>'
+    +'<p>Every standing committee at DLA operates under a charter &mdash; a written document defining its purpose, authority, membership, and reporting obligations. Charters provide clarity and accountability.</p>'
+    +'<h4>What a Committee Charter Must Include</h4>'
+    +'<ul>'
+    +'<li><strong>Name and purpose:</strong> A clear statement of the committee\'s mission and the specific domain it covers</li>'
+    +'<li><strong>Membership:</strong> Minimum and maximum number of members; how members are assigned; whether the Chair must be a chapter officer</li>'
+    +'<li><strong>Authority:</strong> What decisions the committee may make independently vs. what requires full chapter approval</li>'
+    +'<li><strong>Budget:</strong> Whether the committee has a budget line item and the spending threshold before escalation is required</li>'
+    +'<li><strong>Reporting:</strong> Frequency and format of reports to the Polemarch and general body</li>'
+    +'<li><strong>Meeting requirements:</strong> Minimum meeting frequency (most standing committees meet at least monthly)</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Charter Review:</strong> Committee charters are reviewed and updated annually at the start of each new administration. The incoming Polemarch may propose charter amendments, which are approved by majority vote of the general body.</div>'
+    +'<h4>Ad Hoc Committees</h4>'
+    +'<p>Ad hoc committees do not require a full charter but must have a written scope of work approved by the Polemarch, a clear deliverable or milestone, and a dissolution date or completion trigger. Ad hoc committees automatically dissolve upon delivering their work product.</p>'
+    +'</div>'
+    +screenDots(5,3,3)
+    +navButtons(false,false,false);
+}
+
+function m5s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Reporting Relationships</h3>'
+    +'<p>Clear reporting relationships ensure that committee work is visible to leadership and that the general body receives accurate information about chapter operations.</p>'
+    +'<h4>Committee-to-Officer Reporting</h4>'
+    +'<ul>'
+    +'<li>Each standing committee reports primarily to the <strong>Vice Polemarch</strong>, who oversees committee operations on behalf of the Polemarch</li>'
+    +'<li>The Ethics Committee and Finance Committee report directly to the <strong>Polemarch</strong> given their sensitivity</li>'
+    +'<li>All committee Chairs submit a written report to the Keeper of Records before each regular meeting; these reports are distributed with the meeting agenda</li>'
+    +'</ul>'
+    +'<h4>Committee-to-Body Reporting</h4>'
+    +'<ul>'
+    +'<li>Committee reports are presented at regular chapter meetings during the "Committee Reports" agenda item</li>'
+    +'<li>The Chair (or designated presenter) delivers the report verbally and answers questions from the general body</li>'
+    +'<li>Major recommendations requiring a chapter vote are introduced as motions immediately following the committee report</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Information Asymmetry:</strong> A committee that fails to submit regular reports creates information gaps that erode trust. The Polemarch may remove a Committee Chair who repeatedly fails to report without cause.</div>'
+    +'</div>'
+    +screenDots(5,4,3)
+    +navButtons(false,false,false);
+}
+
+function m5s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Committee Budget Authority</h3>'
+    +'<p>Committees have defined spending authority. Exceeding that authority without approval is a financial control violation.</p>'
+    +'<table>'
+    +'<tr><th>Spending Level</th><th>Authorization Required</th></tr>'
+    +'<tr><td>Within approved budget line item, below threshold</td><td>Committee Chair alone</td></tr>'
+    +'<tr><td>Within approved budget line item, above threshold</td><td>Chair + Keeper of Records (or Polemarch)</td></tr>'
+    +'<tr><td>Exceeds approved budget line item</td><td>General body vote for supplemental appropriation</td></tr>'
+    +'<tr><td>Unbudgeted emergency expenditure</td><td>Polemarch approval; ratified at next meeting</td></tr>'
+    +'</table>'
+    +'<h4>Budget Request Process</h4>'
+    +'<ol>'
+    +'<li>Committees submit budget requests to the Finance Committee during the annual budget planning cycle</li>'
+    +'<li>Finance Committee consolidates all requests into a proposed budget</li>'
+    +'<li>General body reviews and approves the annual budget at the first meeting of the new fiscal year</li>'
+    +'<li>Mid-year supplemental requests require a chapter vote</li>'
+    +'</ol>'
+    +'<div class="highlight-box"><strong>No Revenue Authority:</strong> Committees do not independently raise revenue. All fundraising by committees is done in the chapter\'s name, and all proceeds are deposited into chapter accounts and managed by the Keeper of Records.</div>'
+    +'</div>'
+    +screenDots(5,5,3)
+    +navButtons(false,false,false);
+}
+
+function m5s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Cross-Committee Coordination</h3>'
+    +'<p>Many chapter initiatives span multiple committees. Effective cross-committee coordination prevents duplication, reduces conflict, and improves outcomes for members and the community.</p>'
+    +'<h4>Common Cross-Committee Scenarios</h4>'
+    +'<ul>'
+    +'<li><strong>Program + Risk Management:</strong> Every Program Committee event must be reviewed by Risk Management before KappaOrg registration is submitted</li>'
+    +'<li><strong>Program + Finance:</strong> Event budgets proposed by Program Committee must be approved by Finance before commitments to vendors</li>'
+    +'<li><strong>Technology &amp; Communications + Program:</strong> All event promotion (social media, flyers) must align with the event registration status confirmed by the Program Chair</li>'
+    +'<li><strong>Membership + Finance:</strong> The dues roster maintained by Finance must be shared with Membership for eligibility tracking</li>'
+    +'</ul>'
+    +'<h4>Coordination Mechanism</h4>'
+    +'<ul>'
+    +'<li>The Vice Polemarch chairs a monthly Committee Chairs meeting to surface cross-cutting issues</li>'
+    +'<li>Committee Chairs may also meet bilaterally as needed; all inter-committee agreements should be documented</li>'
+    +'<li>Disputes between committees are elevated to the Vice Polemarch for resolution; if unresolved, to the Polemarch</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(5,6,3)
+    +navButtons(false,false,false);
+}
+
+function m5s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Member Assignment &amp; Removal from Committees</h3>'
+    +'<p>Being assigned to a committee is both a privilege and an obligation. Members are expected to fulfill their committee responsibilities as part of active participation in chapter life.</p>'
+    +'<h4>Assignment Process</h4>'
+    +'<ul>'
+    +'<li>At the start of each administration, the Polemarch solicits committee preferences from financial members</li>'
+    +'<li>Assignments are made by the Polemarch with input from the Vice Polemarch and Committee Chairs</li>'
+    +'<li>All financial members are expected to serve on at least one standing committee</li>'
+    +'<li>Members may request reassignment for legitimate reasons (work schedule conflicts, expertise mismatch); requests are granted at the Polemarch\'s discretion</li>'
+    +'</ul>'
+    +'<h4>Removal from a Committee</h4>'
+    +'<ul>'
+    +'<li>A Committee Chair may recommend removal of a member for non-participation, after documented attempts to engage the member</li>'
+    +'<li>Removal from a committee is a Polemarch decision, not a committee decision</li>'
+    +'<li>Members removed from a committee for cause must be reassigned to another committee or their standing may be reviewed</li>'
+    +'</ul>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Committee Dissolution</h3>'
+    +'<p>Standing committees are dissolved only by an amendment to the chapter bylaws, which requires a two-thirds vote of the general body. Ad hoc and special committees dissolve upon completing their assigned work or upon a majority vote of the general body.</p>'
+    +'<ul>'
+    +'<li>A Polemarch may not unilaterally dissolve a standing committee without a bylaws amendment</li>'
+    +'<li>Members of a dissolved committee are not automatically reassigned; new assignments follow the standard process</li>'
+    +'<li>All records of a dissolved committee must be transferred to the Keeper of Records for the chapter archive</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(5,7,3)
+    +navButtons(false,false,false);
+}
+
+function m5s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Committee Chair Best Practices</h3>'
+    +'<p>Effective committee chairs are the engine of chapter operations. The following practices distinguish high-performing chairs from those who struggle.</p>'
+    +'<h4>Meeting Management</h4>'
+    +'<ul>'
+    +'<li>Start and end meetings on time &mdash; respect members\' schedules</li>'
+    +'<li>Circulate an agenda 48 hours before every committee meeting</li>'
+    +'<li>Assign action items with clear owners and due dates; follow up on them at the next meeting</li>'
+    +'<li>Maintain a committee task tracker (shared document or spreadsheet) visible to all committee members</li>'
+    +'</ul>'
+    +'<h4>Communication</h4>'
+    +'<ul>'
+    +'<li>Acknowledge all committee member communications within 24–48 hours</li>'
+    +'<li>Provide substantive mid-month updates to the Vice Polemarch between regular meetings</li>'
+    +'<li>Flag resource constraints or cross-committee issues as soon as they arise &mdash; not at the last minute</li>'
+    +'</ul>'
+    +'<h4>Succession Planning</h4>'
+    +'<p>Every Committee Chair should develop at least one member who could step in if the Chair is temporarily unavailable. Documenting committee processes ensures continuity when leadership transitions occur.</p>'
+    +'</div>'
+    +screenDots(5,8,3)
+    +navButtons(false,false,false);
+}
+
+function m5s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 6 &mdash; Operations</div>'
+    +'<div class="module-title">Committee Structure</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m5s9a',
+      'A Committee Chair wants to remove a member from his committee for missing three consecutive meetings. Who makes that final decision?',
+      ['The Committee Chair alone, since he leads the committee','The full committee by majority vote','The Polemarch, based on the Chair\'s recommendation','The Vice Polemarch automatically, as committee overseer'],
+      2,
+      'Removal from a committee is a Polemarch decision. The Chair may recommend removal, but cannot make that decision unilaterally.'
+    )
+    +renderQuiz('m5s9b',
+      'The Program Committee wants to dissolve itself to reduce the chapter\'s administrative burden. This would require:',
+      ['A majority vote of the general body','A two-thirds vote to amend the chapter bylaws','Only the Polemarch\'s written authorization','Province Polemarch approval since it changes chapter structure'],
+      1,
+      'Standing committees can only be dissolved through a bylaws amendment, which requires a two-thirds vote of the general body. The Polemarch cannot dissolve a standing committee alone.'
+    )
+    +screenDots(5,9,3)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 6 — ORG CHART (3 screens)
+=================================================== */
+function m6s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Governance Hierarchy</h3>'
+    +'<p>Kappa Alpha Psi operates through a layered governance structure from the national Grand Chapter down to local chapters.</p>'
+    +'<div class="highlight-box" style="margin-bottom:10px">'
+    +'<strong>Grand Chapter</strong> (National)<br>'
+    +'&darr; Grand Polemarch &amp; Grand Board of Directors<br><br>'
+    +'<strong>Southwestern Province</strong><br>'
+    +'&darr; Province Polemarch (appointed by Grand Polemarch)<br><br>'
+    +'<strong>Denton-Lewisville Alumni Chapter</strong><br>'
+    +'&darr; Elected Officers &rarr; Standing Committees &rarr; General Body'
+    +'</div>'
+    +'<h4>Appointment vs. Election</h4>'
+    +'<ul>'
+    +'<li><strong>Province Polemarch</strong> &mdash; appointed by the Grand Polemarch to align provincial priorities with national strategy</li>'
+    +'<li><strong>Local Officers</strong> &mdash; elected by the general body at the annual chapter election</li>'
+    +'<li><strong>Committee Chairs</strong> &mdash; appointed by the Polemarch with chapter confirmation</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(6,0,3)
+    +navButtons(false,false,false);
+}
+
+function m6s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Chapter Officer Duties</h3>'
+    +'<table>'
+    +'<tr><th>Officer</th><th>Key Duties</th></tr>'
+    +'<tr><td>Polemarch</td><td>Preside; executive decisions; represent chapter externally</td></tr>'
+    +'<tr><td>Vice Polemarch</td><td>Presides in Polemarch\'s absence; oversees committees</td></tr>'
+    +'<tr><td>Keeper of Records &amp; Exchequer</td><td>Minutes; correspondence; dues collection; financial reports</td></tr>'
+    +'<tr><td>Strategus</td><td>Sergeant-at-Arms; maintain order; manage chapter property</td></tr>'
+    +'<tr><td>Lieutenant Strategus</td><td>Assist Strategus; maintain inventory; coordinate property transfers</td></tr>'
+    +'</table>'
+    +'<h4>General Body Rights</h4>'
+    +'<ul>'
+    +'<li>Vote on chapter business at regular meetings</li>'
+    +'<li>Nominate and elect officers</li>'
+    +'<li>Introduce motions and resolutions</li>'
+    +'<li>Review and approve the annual budget</li>'
+    +'<li>Request special meetings (requires petition of 25% of financial members)</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(6,1,3)
+    +navButtons(false,false,false);
+}
+
+function m6s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m6s2',
+      'Why is the Province Polemarch appointed rather than elected by chapter delegates?',
+      ['Province Polemarchs have always been elected &mdash; this premise is incorrect','The Grand Polemarch appoints to align provincial leadership with national strategic priorities','Chapter delegates lack constitutional authority to elect Province officers','Province elections occur only at biennial Grand Chapter meetings'],
+      1,
+      'The Grand Polemarch appoints Province Polemarchs to ensure provincial leadership aligns with national strategy and priorities.'
+    )
+    +screenDots(6,2,3)
+    +navButtons(false,false,false);
+}
+
+function m6s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Officer Authority Limits</h3>'
+    +'<p>Officers have specific, defined authority. Understanding what each officer can decide independently vs. what requires chapter approval prevents overreach and protects officers from personal liability.</p>'
+    +'<table>'
+    +'<tr><th>Officer</th><th>May Decide Independently</th><th>Requires Chapter Approval</th></tr>'
+    +'<tr><td><strong>Polemarch</strong></td><td>Agenda items; committee assignments; emergency expenditures up to bylaw threshold; external representations</td><td>Contracts above threshold; budget; policy changes; officer removal</td></tr>'
+    +'<tr><td><strong>Vice Polemarch</strong></td><td>Committee coordination; meeting facilitation in Polemarch\'s absence</td><td>All Polemarch-level decisions unless formally acting as Polemarch</td></tr>'
+    +'<tr><td><strong>Keeper of Records</strong></td><td>Financial record-keeping; minutes; routine correspondence</td><td>Disbursements above signature threshold; budget amendments</td></tr>'
+    +'<tr><td><strong>Strategus</strong></td><td>Order and decorum at meetings; property inventory management</td><td>Discipline beyond a formal warning; property disposal</td></tr>'
+    +'</table>'
+    +'<div class="warning-box"><strong>Ultra Vires Actions:</strong> An action taken by an officer beyond their authority ("ultra vires") is not binding on the chapter. However, the chapter may bear some liability if a third party reasonably relied on the officer\'s apparent authority. Clear communication of officer authority limits is an important risk management practice.</div>'
+    +'</div>'
+    +screenDots(6,3,3)
+    +navButtons(false,false,false);
+}
+
+function m6s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Officer Succession</h3>'
+    +'<p>When a chapter officer is unable to perform their duties, the succession line determines who steps in. Knowing this prevents leadership vacuums.</p>'
+    +'<h4>Succession Order</h4>'
+    +'<ol>'
+    +'<li><strong>Vice Polemarch</strong> succeeds the Polemarch for any absence, temporary or permanent</li>'
+    +'<li>If both Polemarch and Vice Polemarch are unavailable, the most senior officer present presides</li>'
+    +'<li>A vacancy created by resignation or removal triggers a special election for that office at the next regular meeting with proper notice</li>'
+    +'</ol>'
+    +'<h4>Temporary Absence vs. Vacancy</h4>'
+    +'<ul>'
+    +'<li><strong>Temporary absence:</strong> Officer is unavailable for one or a few meetings; succession officer fills in without a formal election</li>'
+    +'<li><strong>Vacancy:</strong> Officer resigns, is removed, or is permanently incapacitated; a new election is required for the remaining term</li>'
+    +'<li>The chapter bylaws specify the notice period required before a special election (typically 7–14 days)</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Transition Obligations:</strong> An outgoing officer must transfer all chapter records, keys, access credentials, and property to their successor within 30 days of the end of their term. Failure to do so is a conduct violation subject to discipline.</div>'
+    +'</div>'
+    +screenDots(6,4,3)
+    +navButtons(false,false,false);
+}
+
+function m6s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Chapter-to-National Communication Channels</h3>'
+    +'<p>Communication between DLA and the Grand Chapter flows through defined channels. Using the wrong channel &mdash; or bypassing the Province &mdash; can cause confusion and damage relationships.</p>'
+    +'<h4>Standard Communication Channels</h4>'
+    +'<table>'
+    +'<tr><th>Purpose</th><th>Correct Channel</th></tr>'
+    +'<tr><td>Event registration</td><td>KappaOrg portal (direct to Grand Chapter)</td></tr>'
+    +'<tr><td>Per-capita dues &amp; financial reporting</td><td>Keeper of Records to Grand Chapter finance office via KappaOrg</td></tr>'
+    +'<tr><td>Conduct complaints against chapter leadership</td><td>Polemarch → Province Polemarch → Grand Polemarch</td></tr>'
+    +'<tr><td>Member suspension or expulsion notification</td><td>Polemarch to Province Polemarch; Province to Grand Chapter</td></tr>'
+    +'<tr><td>General inquiries about policy or programs</td><td>Province Polemarch first; Grand Chapter if Province cannot resolve</td></tr>'
+    +'<tr><td>Website and media approvals</td><td>Directly to Grand Chapter Communications department via KappaOrg</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box"><strong>Province First:</strong> In most matters, the Province Polemarch is the first escalation point above the chapter. Going directly to the Grand Chapter without Province involvement is discouraged except for the specific channels noted above where direct submission is required.</div>'
+    +'</div>'
+    +screenDots(6,5,3)
+    +navButtons(false,false,false);
+}
+
+function m6s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Regional Province Officer Relationships</h3>'
+    +'<p>The Southwestern Province maintains its own officer structure. Understanding who these officers are and their role relative to DLA helps members navigate province-level interactions.</p>'
+    +'<h4>Key Province Officers</h4>'
+    +'<ul>'
+    +'<li><strong>Province Polemarch</strong> &mdash; Appointed by Grand Polemarch; presides at Province Council; first escalation point for chapter disputes</li>'
+    +'<li><strong>Province Keeper of Records</strong> &mdash; Maintains province membership records; coordinates annual chapter reports</li>'
+    +'<li><strong>Province Strategus</strong> &mdash; Province-level sergeant-at-arms; assists with order at Province Council</li>'
+    +'<li><strong>Province Programs Chair</strong> &mdash; Coordinates province-wide Guide Right, Kappa League, and service initiatives</li>'
+    +'</ul>'
+    +'<h4>Chapter Obligations to the Province</h4>'
+    +'<ul>'
+    +'<li>Submit an annual chapter report to the Province Keeper of Records before Province Council</li>'
+    +'<li>Send a fully credentialed delegation to Province Council (Polemarch + Keeper + elected delegate)</li>'
+    +'<li>Pay any Province assessments by the Province-published deadline</li>'
+    +'<li>Cooperate with Province officers conducting audits or investigations at the chapter level</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(6,6,3)
+    +navButtons(false,false,false);
+}
+
+function m6s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Chapter Advisory Board Role</h3>'
+    +'<p>Some alumni chapters maintain an Advisory Board or Advisory Council composed of experienced brothers who provide counsel and institutional knowledge to elected officers. Advisory Boards are not governance bodies &mdash; they advise, they do not decide.</p>'
+    +'<h4>Advisory Board Functions</h4>'
+    +'<ul>'
+    +'<li>Provide historical context and institutional memory to new officers</li>'
+    +'<li>Offer expertise in areas such as law, finance, real estate, and media</li>'
+    +'<li>Serve as a sounding board for major chapter decisions before formal votes</li>'
+    +'<li>Support the Polemarch in navigating complex interpersonal or procedural challenges</li>'
+    +'</ul>'
+    +'<h4>What the Advisory Board Cannot Do</h4>'
+    +'<ul>'
+    +'<li>Override a general body vote</li>'
+    +'<li>Issue directives to officers or committee chairs</li>'
+    +'<li>Make financial commitments on behalf of the chapter</li>'
+    +'<li>Substitute for the Province Polemarch\'s authority in disputes</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Healthy Advisory Relationships:</strong> The most effective advisory boards are engaged but not overreaching. Officers should proactively consult advisors rather than wait for unsolicited input, and advisors should support officers\' authority even when they disagree with a decision.</div>'
+    +'</div>'
+    +screenDots(6,7,3)
+    +navButtons(false,false,false);
+}
+
+function m6s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Officer Removal Procedures</h3>'
+    +'<p>Removing an elected officer is among the most significant actions a chapter can take. The process is formal, deliberate, and designed to protect both the officer and the chapter\'s integrity.</p>'
+    +'<h4>Grounds for Removal</h4>'
+    +'<ul>'
+    +'<li>Sustained conduct violation of Level 2 or higher during term</li>'
+    +'<li>Failure to perform the duties of the office after documented written warnings</li>'
+    +'<li>Loss of financial standing (non-payment of dues)</li>'
+    +'<li>Absence from three or more consecutive regular meetings without excuse during term</li>'
+    +'</ul>'
+    +'<h4>Removal Process</h4>'
+    +'<ol>'
+    +'<li>A written petition signed by at least 25% of financial members is presented to the Keeper of Records</li>'
+    +'<li>The Keeper notifies the subject officer and schedules a special meeting with 14 days\' notice</li>'
+    +'<li>The officer has the right to present a defense at the special meeting</li>'
+    +'<li>A two-thirds vote of financial members present is required for removal</li>'
+    +'<li>The subject officer may not vote on their own removal</li>'
+    +'<li>Removed officer retains the right to appeal to the Province Polemarch within 30 days</li>'
+    +'</ol>'
+    +'<div class="warning-box"><strong>Removal vs. Discipline:</strong> Officer removal removes someone from an office. It is separate from the disciplinary process, though the two may proceed in parallel. Removal from office does not automatically terminate membership.</div>'
+    +'</div>'
+    +screenDots(6,8,3)
+    +navButtons(false,false,false);
+}
+
+function m6s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 7 &mdash; Operations</div>'
+    +'<div class="module-title">Organizational Chart</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m6s9a',
+      'The Polemarch resigns mid-term. Who serves as Polemarch for the remainder of the term?',
+      ['The most senior member of the chapter by initiation date','The Vice Polemarch assumes the Polemarch role; a special election is held to fill the Vice Polemarch vacancy','The Province Polemarch appoints an interim Polemarch','The chapter holds a full election for all offices simultaneously'],
+      1,
+      'The Vice Polemarch succeeds the Polemarch upon resignation or removal. A special election is then held to fill the resulting Vice Polemarch vacancy for the remainder of the term.'
+    )
+    +renderQuiz('m6s9b',
+      'What vote threshold is required to remove an elected chapter officer?',
+      ['Simple majority (more than half) of financial members present','Two-thirds of financial members present','Unanimous vote of the general body','Three-fourths of all financial members, present or not'],
+      1,
+      'Officer removal requires a two-thirds vote of financial members present at a specially called meeting with proper notice.'
+    )
+    +screenDots(6,9,3)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 7 — SOCIAL MEDIA STANDARDS (3 screens)
+=================================================== */
+function m7s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Core Assumption</h3>'
+    +'<p>Everything posted online is <strong>permanent and public</strong> &mdash; even in private groups. Assume any post, photo, or comment will be seen by the Grand Chapter, employers, and the community at large.</p>'
+    +'<h4>Platform Categories</h4>'
+    +'<ul>'
+    +'<li><strong>Official Chapter Accounts</strong> &mdash; Facebook, Instagram, Twitter/X, LinkedIn (must be registered with Grand Chapter)</li>'
+    +'<li><strong>Member Personal Accounts</strong> &mdash; governed by member conduct standards when referencing Kappa Alpha Psi</li>'
+    +'<li><strong>Chapter Website</strong> &mdash; requires Grand Chapter approval before going live</li>'
+    +'</ul>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Mandatory Rules</h3>'
+    +'<ul>'
+    +'<li>Never post content that demeans, sexualizes, or harasses any person</li>'
+    +'<li>Never share internal fraternity documents, rituals, or financial information online</li>'
+    +'<li>Never post photos or videos from MTA activities &mdash; these are confidential</li>'
+    +'<li>Do not post photos of members in compromising situations</li>'
+    +'<li>Do not use fraternity marks in any political endorsement</li>'
+    +'<li>All official chapter accounts must clearly identify the chapter; no anonymous accounts</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(7,0,3)
+    +navButtons(false,false,false);
+}
+
+function m7s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Website Standards</h3>'
+    +'<ul>'
+    +'<li>Chapter website content must be submitted to Grand Chapter for review and approval before going live</li>'
+    +'<li>A signed certification from the Polemarch and Webmaster is required at submission</li>'
+    +'<li>Websites must include the official Fraternity disclaimer language</li>'
+    +'<li>Member personal information must never be published publicly</li>'
+    +'<li>The <strong>Playboy bunny logo</strong> is prohibited from all chapter websites and social media &mdash; it is not a Fraternity-approved symbol</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>MTA Photos:</strong> Photographs taken during MTA activities are strictly confidential. Sharing them in any forum &mdash; including a private Facebook group limited to members &mdash; violates the MTA Policy.</div>'
+    +'<h4>Approved vs. Prohibited Symbols</h4>'
+    +'<ul>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Diamond Kappa, Greek letters KA&Psi;, chapter name and logo</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Playboy bunny, unofficial marks, unauthorized shields</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(7,1,3)
+    +navButtons(false,false,false);
+}
+
+function m7s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m7s2',
+      'A member shares MTA activity photos in a private Facebook group visible only to chapter members. This action is:',
+      ['Acceptable because the group is private and not accessible to the public','A violation of the MTA Policy &mdash; MTA photos are confidential in any forum','Acceptable only if the Polemarch approves the post in advance','Required for chapter transparency and record-keeping purposes'],
+      1,
+      'MTA photos are confidential regardless of the audience. Sharing them in any forum &mdash; even a private members-only group &mdash; violates the MTA Policy.'
+    )
+    +renderQuiz('m7s2b',
+      'Before a chapter website can go live, the chapter must:',
+      ['Inform the Province Polemarch by email and wait 30 days','Notify all financial members at a regular chapter meeting','Submit the site to Grand Chapter with a signed certification from the Polemarch and Webmaster','Register the domain name with the Fraternity\'s national IT department'],
+      2,
+      'Chapter websites require Grand Chapter review and approval before going live, along with a signed certification from the Polemarch and Webmaster.'
+    )
+    +screenDots(7,2,3)
+    +navButtons(false,false,false);
+}
+
+function m7s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Approved Posting Content Types</h3>'
+    +'<p>Knowing what you can and should post is just as important as knowing what to avoid. Strong social media content advances the chapter\'s mission and showcases member Achievement.</p>'
+    +'<h4>Content Categories Appropriate for Chapter Accounts</h4>'
+    +'<ul>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Event announcements for registered chapter events (Guide Right, Kappa League, scholarship, service)</li>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Member achievements, awards, and professional milestones (with member\'s consent)</li>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Community service activity photos with appropriate captions</li>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Educational content aligned with the Fraternity\'s mission (career tips, financial literacy, civic engagement)</li>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Congratulations to brothers for professional accomplishments</li>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Chapter anniversary, history, and milestone content</li>'
+    +'<li><span class="badge-pill pill-gold">Approved</span> Recruitment content inviting eligible men to learn more about the Fraternity (general info only; no ritual references)</li>'
+    +'</ul>'
+    +'<h4>Best Practices for Approved Content</h4>'
+    +'<ul>'
+    +'<li>Tag the Grand Chapter and Southwestern Province accounts when posting content that reflects the larger Fraternity well</li>'
+    +'<li>Use approved Fraternity hashtags consistently: #KappaAlphaPsi #Achievement #GuideRight</li>'
+    +'<li>Ensure all photos are high quality and all text is free of errors before posting</li>'
+    +'<li>Respond to public comments professionally; do not engage trolls or critics aggressively</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(7,3,3)
+    +navButtons(false,false,false);
+}
+
+function m7s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Prohibited Content: Specific Examples</h3>'
+    +'<p>The following content types are prohibited on both official chapter accounts and member personal accounts when the content references Kappa Alpha Psi or involves the member in their capacity as a Kappa.</p>'
+    +'<h4>Prohibited on All Accounts</h4>'
+    +'<ul>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Any content revealing, hinting at, or depicting ritual activities, symbols, or practices exclusive to initiated members</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Photos or video from MTA activities &mdash; including behind-the-scenes, "before" or "after" shots</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Defamatory, harassing, or threatening content directed at any person</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Sexual content of any kind using Fraternity marks or involving members in their capacity as Kappas</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Political endorsements using Fraternity marks, chapter name, or implying Fraternity support</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Promotion of unapproved events (events not registered in KappaOrg)</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Content promoting hazing or depicting actions that constitute hazing, even if presented as "tradition" or humor</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Posting internal chapter financial information, membership rosters, or disciplinary matters</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>The "Private Account" Myth:</strong> Setting your account to private does not protect you from accountability. Screenshots are permanent. Members have faced discipline for content posted in "private" settings that was later shared. Assume everything you post is public.</div>'
+    +'</div>'
+    +screenDots(7,4,3)
+    +navButtons(false,false,false);
+}
+
+function m7s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Kappa Alpha Psi Trademark Usage Online</h3>'
+    +'<p>Kappa Alpha Psi\'s name, Greek letters, Diamond Kappa, and other marks are federally registered trademarks. Online use of these marks is governed by Grand Chapter policy.</p>'
+    +'<h4>Permitted Trademark Use</h4>'
+    +'<ul>'
+    +'<li>Identifying yourself as a member of Kappa Alpha Psi in your personal bio (e.g., "Kappa Alpha Psi, Denton-Lewisville Alumni Chapter")</li>'
+    +'<li>Using official chapter graphics and logos provided by Grand Chapter on chapter accounts</li>'
+    +'<li>Sharing official Grand Chapter content with appropriate credit</li>'
+    +'</ul>'
+    +'<h4>Prohibited Trademark Use Online</h4>'
+    +'<ul>'
+    +'<li>Creating merchandise, digital products, or promotional materials using Fraternity marks without Grand Chapter approval</li>'
+    +'<li>Using Fraternity marks in any commercial context (selling goods or services, affiliate marketing, sponsorship identification)</li>'
+    +'<li>Modifying or altering official Fraternity logos, seals, or symbols for any purpose</li>'
+    +'<li>Using Fraternity marks to endorse political candidates, campaigns, or ballot measures</li>'
+    +'<li>Creating unofficial Kappa Alpha Psi accounts or pages that could be mistaken for official chapter or Grand Chapter accounts</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>Fan Pages:</strong> If you create an unofficial social media page that references Kappa Alpha Psi (e.g., a chapter history fan page), it must clearly state "Unofficial &mdash; not affiliated with or endorsed by Kappa Alpha Psi Fraternity, Inc." Failure to do so constitutes unauthorized trademark use.</div>'
+    +'</div>'
+    +screenDots(7,5,3)
+    +navButtons(false,false,false);
+}
+
+function m7s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Crisis Communication Protocol</h3>'
+    +'<p>A "crisis" in social media terms is any negative event &mdash; a conduct violation, accident, public controversy, or external attack &mdash; that creates reputational risk for the chapter or Fraternity. How you respond in the first 24 hours matters enormously.</p>'
+    +'<h4>First Response Steps</h4>'
+    +'<ol>'
+    +'<li><strong>Do not respond publicly</strong> until the Polemarch and Technology &amp; Communications Chair have consulted</li>'
+    +'<li><strong>Notify the Polemarch immediately</strong> if you see social media content that poses a crisis risk to the chapter</li>'
+    +'<li><strong>Do not delete posts</strong> without authorization &mdash; deletion is often seen as confirmation of wrongdoing and creates a discoverable record gap</li>'
+    +'<li><strong>Do not engage hostile commenters</strong> individually; arguing online rarely ends well for the chapter</li>'
+    +'<li><strong>Notify the Province Polemarch</strong> if the crisis involves potential legal exposure, hazing allegations, or media inquiries</li>'
+    +'</ol>'
+    +'<h4>Statement Protocol</h4>'
+    +'<ul>'
+    +'<li>All official chapter statements in response to a crisis must be approved by the Polemarch before posting</li>'
+    +'<li>Media inquiries (reporters, journalists) must be referred to the Polemarch; no member should speak to media on behalf of the chapter without authorization</li>'
+    +'<li>Statements should acknowledge the concern, state what the chapter is doing, and avoid speculation about facts not yet confirmed</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(7,6,3)
+    +navButtons(false,false,false);
+}
+
+function m7s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Personal vs. Chapter Accounts</h3>'
+    +'<p>The line between personal and chapter accounts is important &mdash; but it is not as absolute as some members assume. Personal accounts that reference the Fraternity are subject to conduct standards.</p>'
+    +'<table>'
+    +'<tr><th>Account Type</th><th>Who Controls It</th><th>Standards That Apply</th></tr>'
+    +'<tr><td><strong>Official Chapter Account</strong></td><td>Technology &amp; Communications Chair; Polemarch oversight</td><td>Full social media policy; must be registered with Grand Chapter; content pre-approved</td></tr>'
+    +'<tr><td><strong>Member Personal Account</strong></td><td>Individual member</td><td>Conduct standards apply when content references KA&Psi; or member\'s Kappa identity; member is personally accountable</td></tr>'
+    +'<tr><td><strong>Unofficial Chapter Fan Page</strong></td><td>Any member; not authorized</td><td>Must disclaim unofficial status; otherwise treated as unauthorized trademark use</td></tr>'
+    +'</table>'
+    +'<h4>Account Handover</h4>'
+    +'<ul>'
+    +'<li>When a social media manager or Technology Chair transitions out, all account credentials (username, password, recovery email) must be transferred to the incoming officer</li>'
+    +'<li>Departing officers may not retain administrative access to chapter accounts after leaving the role</li>'
+    +'<li>Account passwords should be changed at every officer transition</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(7,7,3)
+    +navButtons(false,false,false);
+}
+
+function m7s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Tagging, Mention Rules &amp; Account Takeover</h3>'
+    +'<h4>Tagging Guidelines</h4>'
+    +'<ul>'
+    +'<li>Always obtain consent before tagging a member in a photo, especially in professional contexts</li>'
+    +'<li>Do not tag members in photos that could embarrass them or that they have not approved</li>'
+    +'<li>When tagging the chapter account in personal posts, ensure the content is appropriate; inappropriate personal posts that tag the chapter reflect on the organization</li>'
+    +'<li>Tag the Grand Chapter (@KappaAlphaPsiHQ) and Southwestern Province accounts only on content that reflects the Fraternity positively</li>'
+    +'</ul>'
+    +'<h4>Account Takeover Prevention</h4>'
+    +'<ul>'
+    +'<li>Use strong, unique passwords for all chapter accounts &mdash; minimum 12 characters, not reused from other platforms</li>'
+    +'<li>Enable two-factor authentication on all chapter social accounts</li>'
+    +'<li>Never share chapter account credentials outside the Technology &amp; Communications Committee and the Polemarch</li>'
+    +'<li>Audit active administrators on all chapter accounts quarterly; remove former officers immediately upon transition</li>'
+    +'<li>If a chapter account is hacked or compromised, report immediately to the Polemarch and contact the platform\'s trust &amp; safety team; notify Province Polemarch within 24 hours</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Account Impersonation:</strong> If an unauthorized account using the chapter\'s or Fraternity\'s identity appears, report it to the platform immediately using the impersonation reporting tool. Document with screenshots before reporting. Notify Province Polemarch.</div>'
+    +'</div>'
+    +screenDots(7,8,3)
+    +navButtons(false,false,false);
+}
+
+function m7s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 8 &mdash; Standards</div>'
+    +'<div class="module-title">Social Media Standards</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m7s9a',
+      'A member creates a Facebook page called "Kappa Alpha Psi Denton History" without any disclaimer. This is:',
+      ['Acceptable because it promotes the chapter\'s history','Acceptable because it is a fan page, not an official page','An unauthorized trademark use &mdash; it must clearly state it is unofficial and not endorsed by KA&Psi;','Only a problem if the Grand Chapter notices and files a complaint'],
+      2,
+      'Any unofficial page using Fraternity marks must clearly state it is unofficial and not endorsed by Kappa Alpha Psi. Failure to disclaim is unauthorized trademark use.'
+    )
+    +renderQuiz('m7s9b',
+      'A reporter contacts a chapter member asking for comments about an incident involving the chapter. The member should:',
+      ['Provide a brief factual statement to control the narrative','Refer the reporter to the Polemarch and decline to speak on behalf of the chapter','Ignore the inquiry entirely','Consult with the Technology Chair before speaking'],
+      1,
+      'No member may speak to media on behalf of the chapter without explicit authorization. All media inquiries must be referred to the Polemarch immediately.'
+    )
+    +screenDots(7,9,3)
+    +navButtons(false,true,false);
+}
+
+/* ===================================================
+   MODULE 8 — PARAPHERNALIA & APPAREL (3 screens)
+=================================================== */
+function m8s0(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 1 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Approved Vendors</h3>'
+    +'<p>All Kappa Alpha Psi paraphernalia must be purchased from <strong>Grand Chapter-approved vendors only</strong>. The primary official vendor is <strong>Nupe Mall</strong> (shopnupe.com).</p>'
+    +'<div class="highlight-box">Purchasing paraphernalia from unapproved vendors is a violation of Fraternity policy and may result in discipline. It also funds counterfeit goods that undercut Fraternity revenue.</div>'
+    +'<h4>Official Colors</h4>'
+    +'<table>'
+    +'<tr><th>Color</th><th>Correct Name</th><th>Notes</th></tr>'
+    +'<tr><td style="background:#70110c;color:#fff;text-align:center">&#9632;</td><td><strong>Crimson</strong></td><td>Not "red" in formal contexts</td></tr>'
+    +'<tr><td style="background:#f2ebd7;text-align:center">&#9632;</td><td><strong>Cream</strong></td><td>Not "white" in formal contexts</td></tr>'
+    +'<tr><td style="background:#c9a84c;text-align:center">&#9632;</td><td><strong>Old Gold</strong></td><td>Used for accents and badges</td></tr>'
+    +'</table>'
+    +'</div>'
+    +screenDots(8,0,3)
+    +navButtons(false,false,false);
+}
+
+function m8s1(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 2 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Apparel Rules</h3>'
+    +'<h4>Prohibited Actions</h4>'
+    +'<ul>'
+    +'<li>Selling paraphernalia for personal profit &mdash; all sales must benefit the chapter or approved charities</li>'
+    +'<li>Altering official Fraternity marks or emblems</li>'
+    +'<li>Using Fraternity name or letters on apparel endorsing alcohol, tobacco, or illegal substances</li>'
+    +'<li>Using Fraternity marks in commercial advertising without Grand Chapter approval</li>'
+    +'<li>Giving paraphernalia bearing Fraternity marks to non-members</li>'
+    +'</ul>'
+    +'<h4>Media Use Requirements</h4>'
+    +'<ul>'
+    +'<li>Any media that prominently features Fraternity marks requires Grand Chapter approval before publication</li>'
+    +'<li>Chapter news releases must use Grand Chapter-approved language and logos</li>'
+    +'</ul>'
+    +'<div class="highlight-box"><strong>2025 Update:</strong> Solid black chapter shirts are no longer prohibited apparel. Chapters may use black shirts with approved lettering per current Grand Chapter guidelines.</div>'
+    +'</div>'
+    +screenDots(8,1,3)
+    +navButtons(false,false,false);
+}
+
+function m8s2(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 3 of 10</div>'
+    +'</div>'
+    +renderQuiz('m8s2',
+      'Under the 2025 Grand Chapter guidelines, what is the status of solid black chapter shirts?',
+      ['Still prohibited under all circumstances by the Grand Chapter','No longer prohibited &mdash; chapters may use black shirts with approved lettering','Allowed only at Province-level events, not local chapter events','Allowed only if ordered exclusively through Nupe Mall'],
+      1,
+      'The 2025 Grand Chapter guidelines removed the prohibition on solid black chapter shirts. They may now be used with properly approved lettering.'
+    )
+    +screenDots(8,2,3)
+    +navButtons(false,false,false);
+}
+
+function m8s3(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 4 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Trademarked Symbols &amp; Their Restrictions</h3>'
+    +'<p>Kappa Alpha Psi holds federal trademark registrations on its name, Greek letters, and key symbols. Using these marks improperly &mdash; even inadvertently &mdash; creates legal exposure for the member and the chapter.</p>'
+    +'<h4>Protected Marks</h4>'
+    +'<ul>'
+    +'<li><strong>Kappa Alpha Psi</strong> &mdash; the full name in any rendering or font</li>'
+    +'<li><strong>KA&Psi;</strong> &mdash; the Greek letter combination in any typeface</li>'
+    +'<li><strong>Diamond Kappa</strong> &mdash; the iconic diamond-shaped crest; may not be altered in any way</li>'
+    +'<li><strong>Chapter name and number</strong> &mdash; the DLA name and any assigned chapter number</li>'
+    +'<li><strong>The Fraternity seal</strong> &mdash; the official circular seal; strictly controlled</li>'
+    +'</ul>'
+    +'<h4>Key Restrictions on Trademarked Symbols</h4>'
+    +'<ul>'
+    +'<li>May not be used in connection with alcohol, tobacco, cannabis, or illegal substances in any medium</li>'
+    +'<li>May not be used to endorse commercial businesses, products, or services without Grand Chapter approval</li>'
+    +'<li>May not be altered, distorted, combined with other marks, or modified from official specifications</li>'
+    +'<li>May not be used by non-members under any circumstances &mdash; including spouses, family members, or friends</li>'
+    +'<li>May not appear on paraphernalia purchased from unapproved vendors</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Non-Member Use:</strong> Allowing a non-member to wear or display Fraternity marks is a conduct violation. This includes giving family members shirts, allowing significant others to wear apparel, or selling marked items to non-members.</div>'
+    +'</div>'
+    +screenDots(8,3,3)
+    +navButtons(false,false,false);
+}
+
+function m8s4(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 5 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Approved Vendor List Process</h3>'
+    +'<p>Grand Chapter maintains a list of approved vendors who are licensed to manufacture and sell Kappa Alpha Psi paraphernalia. This list is updated periodically and available on KappaOrg.</p>'
+    +'<h4>Why the Approved Vendor List Exists</h4>'
+    +'<ul>'
+    +'<li>Ensures quality control on items bearing Fraternity marks</li>'
+    +'<li>Ensures vendors meet Grand Chapter\'s trademark licensing requirements</li>'
+    +'<li>Generates royalty revenue for the Fraternity\'s operating funds and scholarship programs</li>'
+    +'<li>Protects members from purchasing inferior or counterfeit items that may violate Fraternity standards</li>'
+    +'</ul>'
+    +'<h4>Primary Approved Vendor: Nupe Mall</h4>'
+    +'<ul>'
+    +'<li><strong>Website:</strong> shopnupe.com &mdash; the official online store for Kappa Alpha Psi merchandise</li>'
+    +'<li>Nupe Mall carries standardized apparel, accessories, and gift items that comply with all Fraternity specifications</li>'
+    +'<li>Custom items (chapter-specific shirts, event shirts) must still go through the approval process even if you are ordering from Nupe Mall or another approved vendor</li>'
+    +'</ul>'
+    +'<h4>Verifying Vendor Approval</h4>'
+    +'<ul>'
+    +'<li>Check the current approved vendor list on KappaOrg before placing any order</li>'
+    +'<li>A vendor not on the approved list may not produce items bearing Fraternity marks, regardless of their reputation or pricing</li>'
+    +'<li>Vendor approval status can change; verify before each new order cycle</li>'
+    +'</ul>'
+    +'</div>'
+    +screenDots(8,4,3)
+    +navButtons(false,false,false);
+}
+
+function m8s5(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 6 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Custom Item Approval Workflow</h3>'
+    +'<p>When a chapter wants to produce custom paraphernalia (event shirts, chapter commemorative items, specialty gifts), a formal approval process applies. Skipping this process is a violation.</p>'
+    +'<h4>Step-by-Step Approval Process</h4>'
+    +'<ol>'
+    +'<li><strong>Design the item</strong> &mdash; work with an approved vendor or a designer to create the item concept</li>'
+    +'<li><strong>Internal chapter review</strong> &mdash; Polemarch and Technology/Communications Chair review for compliance with Fraternity standards before submission</li>'
+    +'<li><strong>Submit to Grand Chapter</strong> &mdash; submit the design via KappaOrg\'s trademark review portal; include intended use, quantities, and vendor information</li>'
+    +'<li><strong>Await approval</strong> &mdash; allow adequate lead time (typically 2–4 weeks); do not place production orders until approval is received in writing</li>'
+    +'<li><strong>Document approval</strong> &mdash; retain the approval correspondence with chapter records; the Keeper of Records maintains a file of all approved designs</li>'
+    +'<li><strong>Place order from approved vendor only</strong> &mdash; even with an approved design, production must be through an approved vendor</li>'
+    +'</ol>'
+    +'<div class="highlight-box"><strong>Retroactive Approval:</strong> There is no retroactive approval. Producing items before approval is received is a violation, even if approval would have been granted. Always get approval first, then produce.</div>'
+    +'</div>'
+    +screenDots(8,5,3)
+    +navButtons(false,false,false);
+}
+
+function m8s6(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 7 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Prohibited Items &amp; Counterfeits</h3>'
+    +'<p>Counterfeit Kappa Alpha Psi merchandise is a serious problem that harms the Fraternity financially and degrades the brand standards members have pledged to uphold.</p>'
+    +'<h4>What Makes an Item Counterfeit or Prohibited</h4>'
+    +'<ul>'
+    +'<li>Produced by a vendor not on the approved vendor list</li>'
+    +'<li>Uses Fraternity marks without Grand Chapter approval or a valid license</li>'
+    +'<li>Alters, combines, or modifies official marks (e.g., adding a "street" design to the Diamond Kappa)</li>'
+    +'<li>Uses unofficial symbols that are associated with the Fraternity but not officially approved (including the Playboy bunny)</li>'
+    +'<li>Bears the chapter name or Fraternity name in connection with alcohol, tobacco, profanity, or sexual content</li>'
+    +'</ul>'
+    +'<h4>Prohibited Items Reference</h4>'
+    +'<ul>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Items with the Playboy bunny alongside KA&Psi; marks</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Modified or "reworked" Diamond Kappa designs not approved by Grand Chapter</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Chapter shirts produced without the custom item approval</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Merchandise sold to non-members bearing Fraternity marks</li>'
+    +'<li><span class="badge-pill pill-red">Prohibited</span> Apparel bearing Fraternity marks promoting a member\'s personal business without Grand Chapter approval</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>If You Own Prohibited Items:</strong> Members who discover they own counterfeit or prohibited items should remove them from use. You are not required to destroy them, but displaying, wearing, or distributing them is a continued violation.</div>'
+    +'</div>'
+    +screenDots(8,6,3)
+    +navButtons(false,false,false);
+}
+
+function m8s7(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 8 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Wearing Protocols by Event Type</h3>'
+    +'<p>The Fraternity has specific expectations for how and when paraphernalia and apparel are worn. Context matters: what is appropriate at a cookout is not appropriate at a scholarship banquet.</p>'
+    +'<table>'
+    +'<tr><th>Event Type</th><th>Appropriate Attire</th><th>Notes</th></tr>'
+    +'<tr><td>Regular Chapter Meeting</td><td>Business casual; Fraternity badge on appropriate garment</td><td>Badge on left lapel above heart; not on t-shirts</td></tr>'
+    +'<tr><td>Formal Banquet</td><td>Business formal; badge worn</td><td>Suit or formal attire required; no chapter casual shirts</td></tr>'
+    +'<tr><td>Guide Right / Youth Programs</td><td>Business casual or chapter polo</td><td>Professional appearance is mandatory &mdash; you are a role model</td></tr>'
+    +'<tr><td>Community Service</td><td>Chapter T-shirt or polo; work-appropriate clothing</td><td>Identify the chapter visually; practical clothing for the activity</td></tr>'
+    +'<tr><td>Social Events (chapter-sponsored)</td><td>Per event flyer; letters permitted if appropriate</td><td>Avoid overly casual or revealing attire when wearing letters</td></tr>'
+    +'<tr><td>Province Council / Conclave</td><td>Per published Province/Grand Chapter dress code</td><td>Typically business formal Day 1; chapter shirt for service day</td></tr>'
+    +'</table>'
+    +'<div class="highlight-box"><strong>Badge Protocol:</strong> The Fraternity badge is the property of the member and is not transferable. It should never be worn on athletic wear, swimwear, or casual T-shirts. Lost or damaged badges must be reported to the Keeper of Records immediately.</div>'
+    +'</div>'
+    +screenDots(8,7,3)
+    +navButtons(false,false,false);
+}
+
+function m8s8(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 9 of 10</div>'
+    +'</div>'
+    +'<div class="content-card">'
+    +'<h3>Sale &amp; Distribution Rules</h3>'
+    +'<p>Members may not sell or distribute Kappa Alpha Psi paraphernalia for personal profit. All sale activity involving Fraternity marks must benefit the chapter or approved charitable causes.</p>'
+    +'<h4>Permitted Sale &amp; Distribution</h4>'
+    +'<ul>'
+    +'<li>Chapter fundraising sales where proceeds go into chapter accounts</li>'
+    +'<li>Distribution of chapter shirts or promotional items at official chapter events to members</li>'
+    +'<li>Sale of Grand Chapter-approved merchandise at cost to members through the chapter</li>'
+    +'</ul>'
+    +'<h4>Prohibited Sale &amp; Distribution</h4>'
+    +'<ul>'
+    +'<li>Selling items bearing Fraternity marks for personal profit &mdash; this is a conduct violation</li>'
+    +'<li>Giving items bearing Fraternity marks to non-members (friends, family, significant others) as gifts</li>'
+    +'<li>Operating an online store selling Fraternity-marked items without Grand Chapter approval and licensing</li>'
+    +'<li>Producing and selling items bearing Fraternity marks in bulk as a side business</li>'
+    +'</ul>'
+    +'<div class="warning-box"><strong>Media &amp; Press:</strong> Any media (print, digital, broadcast) that prominently features Fraternity marks requires Grand Chapter approval before publication. This includes news releases, videos, podcasts, and sponsored content that references the chapter or Fraternity.</div>'
+    +'<h4>Chapter-to-Chapter Transfers</h4>'
+    +'<p>Chapters may transfer approved items to other chapters (e.g., excess stock from a joint event) without additional approval, provided items are already approved and no money changes hands for personal benefit. Document transfers and notify the Keeper of Records.</p>'
+    +'</div>'
+    +screenDots(8,8,3)
+    +navButtons(false,false,false);
+}
+
+function m8s9(){
+  return '<div class="module-header">'
+    +'<div class="module-label">Module 9 &mdash; Standards</div>'
+    +'<div class="module-title">Paraphernalia &amp; Apparel</div>'
+    +'<div class="screen-indicator">Screen 10 of 10</div>'
+    +'</div>'
+    +renderQuiz('m8s9a',
+      'A chapter member designs a T-shirt with the Diamond Kappa and chapter name, then places the order with an approved vendor before Grand Chapter reviews the design. This is:',
+      ['Acceptable because an approved vendor was used','A violation &mdash; Grand Chapter approval of the design must come before production, regardless of vendor','Acceptable if the Polemarch approved the design internally','Acceptable only if fewer than 50 shirts are produced'],
+      1,
+      'Design approval must precede production. Using an approved vendor does not substitute for Grand Chapter design approval. Retroactive approval does not exist.'
+    )
+    +renderQuiz('m8s9b',
+      'A member sells chapter shirts on a personal online store and keeps the proceeds. This is:',
+      ['Acceptable if the shirts were originally purchased from Nupe Mall','Acceptable if the member donates a portion to the chapter','A conduct violation &mdash; members may not sell paraphernalia for personal profit','Acceptable because he owns the shirts outright after purchasing them'],
+      2,
+      'Selling items bearing Fraternity marks for personal profit is a conduct violation regardless of where the items were originally purchased or whether a portion is donated.'
+    )
+    +screenDots(8,9,3)
+    +navButtons(false,true,true);
+}
+
+/* ===================================================
+   SCREEN DISPATCH
+=================================================== */
+const SCREEN_FNS = [
+  [m0s0, m0s1, m0s2, m0s3, m0s4, m0s5, m0s6, m0s7, m0s8, m0s9],
+  [m1s0, m1s1, m1s2, m1s3, m1s4, m1s5, m1s6, m1s7, m1s8, m1s9],
+  [m2s0, m2s1, m2s2, m2s3, m2s4, m2s5, m2s6, m2s7, m2s8, m2s9],
+  [m3s0, m3s1, m3s2, m3s3, m3s4, m3s5, m3s6, m3s7, m3s8, m3s9],
+  [m4s0, m4s1, m4s2, m4s3, m4s4, m4s5, m4s6, m4s7, m4s8, m4s9],
+  [m5s0, m5s1, m5s2, m5s3, m5s4, m5s5, m5s6, m5s7, m5s8, m5s9],
+  [m6s0, m6s1, m6s2, m6s3, m6s4, m6s5, m6s6, m6s7, m6s8, m6s9],
+  [m7s0, m7s1, m7s2, m7s3, m7s4, m7s5, m7s6, m7s7, m7s8, m7s9],
+  [m8s0, m8s1, m8s2, m8s3, m8s4, m8s5, m8s6, m8s7, m8s8, m8s9]
+];
+
+/* ===================================================
+   ASSESSMENT QUESTIONS
+=================================================== */
+const AQ = [
+  {
+    q:'Kappa Alpha Psi was founded on what date and at which institution?',
+    opts:['July 4, 1906, Howard University','January 5, 1911, Indiana University','March 15, 1908, Cornell University','October 1, 1913, Ohio State University'],
+    cor:1
+  },
+  {
+    q:'A member who witnesses hazing but does not report it has committed which type of violation?',
+    opts:['A minor Level 1 infraction with no long-term record','A Code of Silence violation subject to discipline','No violation &mdash; only the hazer is responsible','A civil matter, not a fraternity disciplinary matter'],
+    cor:1
+  },
+  {
+    q:'Which of the following is a Level 3 violation subject to expulsion from the Fraternity?',
+    opts:['Missing three consecutive regular meetings','Hazing a prospective member','Falsification of intake documents','Purchasing paraphernalia from an unapproved vendor'],
+    cor:2
+  },
+  {
+    q:'What is the correct form of address for the Keeper of Records & Exchequer during a chapter meeting?',
+    opts:['"Treasurer [Last Name]"','"Brother Exchequer"','"Brother Keeper"','"Records Officer [Last Name]"'],
+    cor:2
+  },
+  {
+    q:'A chapter promotes a social event on a flyer before registering it with KappaOrg. What is the primary concern?',
+    opts:['No concern &mdash; flyers are not considered official records','The flyer creates evidence of an event, exposing the chapter to significant liability if an incident occurs','The flyer must first be approved by the Polemarch only','The design must use Grand Chapter-approved colors and fonts'],
+    cor:1
+  },
+  {
+    q:'A chapter registers an event only 10 days before it is scheduled to occur. What is the result?',
+    opts:['The event is covered since it was registered at all','The event is fully covered as long as no alcohol is served','The Fraternity\'s insurance does not apply &mdash; registration must occur at least 14 days in advance','The chapter receives reduced coverage but is not fully uninsured'],
+    cor:2
+  },
+  {
+    q:'How many votes does each chapter have at the Southwestern Province Council?',
+    opts:['One vote &mdash; chapters vote as a single unit','Two votes &mdash; one each for the Polemarch and Keeper of Records','Three votes &mdash; Polemarch, Keeper of Records, and an elected delegate','Five votes based on the chapter\'s financial membership count'],
+    cor:2
+  },
+  {
+    q:'When a new Polemarch takes office, what happens to the Risk Management Standing Committee?',
+    opts:['It is automatically dissolved and must be reformed','It continues with its existing members until the Chair is replaced','It becomes an Ad Hoc committee until formally reinstated','The Province must re-authorize it before it can meet again'],
+    cor:1
+  },
+  {
+    q:'Why is the Province Polemarch appointed by the Grand Polemarch rather than elected by chapter delegates?',
+    opts:['Province Polemarchs have always been elected &mdash; this premise is incorrect','The Grand Polemarch appoints to align provincial leadership with national strategic priorities','Chapter delegates lack constitutional authority to elect Province officers','Province elections occur only at biennial Grand Chapter meetings'],
+    cor:1
+  },
+  {
+    q:'A member shares MTA activity photos in a private Facebook group visible only to chapter members. This action is:',
+    opts:['Acceptable because the group is private and not accessible to the public','A violation of the MTA Policy &mdash; MTA photos are confidential in any forum','Acceptable only if the Polemarch approves the post in advance','Required for chapter transparency and record-keeping purposes'],
+    cor:1
+  },
+  {
+    q:'Before a chapter website can go live, the chapter must:',
+    opts:['Inform the Province Polemarch by email and wait 30 days','Notify all financial members at a regular chapter meeting','Submit the site to Grand Chapter with a signed certification from the Polemarch and Webmaster','Register the domain name with the Fraternity\'s national IT department'],
+    cor:2
+  },
+  {
+    q:'Under the 2025 Grand Chapter guidelines, what is the status of solid black chapter shirts?',
+    opts:['Still prohibited under all circumstances by the Grand Chapter','No longer prohibited &mdash; chapters may use black shirts with approved lettering','Allowed only at Province-level events, not chapter events','Allowed only if ordered exclusively through Nupe Mall'],
+    cor:1
+  }
+];
+
+/* ===================================================
+   RENDER ASSESSMENT
+=================================================== */
+function renderAssessment(){
+  let html = '<div id="assess-wrap">'
+    +'<div class="assess-header">'
+    +'<h2>Final Assessment</h2>'
+    +'<p>Answer all 12 questions. A score of 10 or higher (83%) is required to pass and receive your certificate.</p>'
+    +'</div>';
+
+  AQ.forEach(function(aq,qi){
+    const sel = S.aa[qi];
+    let optsHtml='';
+    aq.opts.forEach(function(o,oi){
+      let cls='';
+      if(S.aSubmitted){
+        if(oi===aq.cor) cls='a-correct';
+        else if(oi===sel && sel!==aq.cor) cls='a-wrong';
+        cls+=' locked';
+      } else if(sel===oi){
+        cls='selected';
+      }
+      optsHtml+='<li class="'+cls+'" onclick="selectAnswer('+qi+','+oi+')">'+o+'</li>';
+    });
+
+    html+='<div class="assess-q-block">'
+      +'<div class="assess-q-num">Question '+(qi+1)+' of '+AQ.length+'</div>'
+      +'<div class="assess-q-text">'+aq.q+'</div>'
+      +'<ul class="assess-opts">'+optsHtml+'</ul>'
+      +'</div>';
+  });
+
+  if(!S.aSubmitted){
+    const answered = Object.keys(S.aa).length;
+    html+='<button id="assess-submit" onclick="submitAssess()" '+(answered<AQ.length?'disabled':'')+'>Submit Assessment ('+answered+'/'+AQ.length+' answered)</button>';
+  } else {
+    const score = AQ.filter(function(_,i){ return S.aa[i]===AQ[i].cor; }).length;
+    html+='<div style="text-align:center;padding:20px 0">'
+      +'<p style="font-size:.9rem;color:#666;margin-bottom:12px">You scored <strong>'+score+'/'+AQ.length+'</strong>.</p>'
+      +'<button class="btn-next" onclick="S.page=\'results\';save();render()" style="padding:11px 28px;border:none;border-radius:6px;font-family:Georgia,serif;font-size:.9rem;font-weight:bold;cursor:pointer;background:var(--cr);color:#fff">View Results</button>'
+      +'</div>';
+  }
+
+  html+='</div>';
+  return html;
+}
+
+function selectAnswer(qi,oi){
+  if(S.aSubmitted) return;
+  S.aa[qi]=oi;
+  save();
+  const btn=document.getElementById('assess-submit');
+  if(btn){
+    const answered=Object.keys(S.aa).length;
+    btn.disabled=(answered<AQ.length);
+    btn.textContent='Submit Assessment ('+answered+'/'+AQ.length+' answered)';
+  }
+  const blocks=document.querySelectorAll('.assess-q-block');
+  if(blocks[qi]){
+    blocks[qi].querySelectorAll('li').forEach(function(li,i){
+      li.classList.toggle('selected',i===oi);
+    });
+  }
+}
+
+function submitAssess(){
+  const answered=Object.keys(S.aa).length;
+  if(answered<AQ.length) return;
+  S.aSubmitted=true;
+  S.aScore=AQ.filter(function(_,i){ return S.aa[i]===AQ[i].cor; }).length;
+  save();
+  render();
+}
+
+/* ===================================================
+   RENDER RESULTS
+=================================================== */
+const modQs=[[0],[1,2],[3],[4,5],[6],[7],[8],[9,10],[11]];
+
+function renderResults(){
+  const score=S.aScore!==null?S.aScore:AQ.filter(function(_,i){ return S.aa[i]===AQ[i].cor; }).length;
+  const pass=score>=10;
+  const pct=Math.round(score/AQ.length*100);
+
+  let modCards='';
+  MODS.forEach(function(mod,mi){
+    const qs=modQs[mi];
+    if(!qs||!qs.length){
+      modCards+='<div class="rmod-card"><span class="rmod-icon">&#9711;</span><span class="rmod-name">'+mod.short+'</span><span class="rmod-status rmod-na">N/A</span></div>';
+      return;
+    }
+    const correct=qs.filter(function(qi){ return S.aa[qi]===AQ[qi].cor; }).length;
+    const modPass=correct===qs.length;
+    modCards+='<div class="rmod-card">'
+      +'<span class="rmod-icon">'+(modPass?'&#10003;':'&#10007;')+'</span>'
+      +'<span class="rmod-name">'+mod.short+'</span>'
+      +'<span class="rmod-status '+(modPass?'rmod-pass':'rmod-fail')+'">'+correct+'/'+qs.length+'</span>'
+      +'</div>';
+  });
+
+  let actions='<div class="results-actions">';
+  if(!pass){
+    actions+='<button class="btn-retry" onclick="retryAssess()">Retry Assessment</button>';
+  } else {
+    actions+='<button class="btn-cert" onclick="S.page=\'certificate\';save();render()">View Certificate</button>';
+  }
+  actions+='<button class="btn-prev" onclick="S.page=\'content\';S.mi=0;S.si=0;save();render()">Review Modules</button></div>';
+
+  return '<div id="results-wrap">'
+    +'<div class="results-card '+(pass?'result-pass':'')+'">'
+    +'<div class="big-score">'+score+'<span style="font-size:1.5rem;color:#999">/'+AQ.length+'</span></div>'
+    +'<div class="score-lbl">'+pct+'% &mdash; '+(pass?'PASSED':'DID NOT PASS')+'</div>'
+    +'<h2>'+(pass?'Congratulations, Brother '+S.name+'!':'Keep Studying, Brother '+S.name)+'</h2>'
+    +'<p>'+(pass?'You have successfully completed the Membership Education &amp; Standards Overview. Your certificate is ready.':'A score of 10/12 (83%) is required to pass. Review the modules and try again.')+'</p>'
+    +actions
+    +'</div>'
+    +'<h3 style="font-size:.85rem;color:#666;margin:16px 0 10px;text-transform:uppercase;letter-spacing:1px">Results by Module</h3>'
+    +'<div class="results-mod-grid">'+modCards+'</div>'
+    +'</div>';
+}
+
+function retryAssess(){
+  S.aa={}; S.aScore=null; S.aSubmitted=false;
+  S.page='assessment';
+  save(); render();
+}
+
+/* ===================================================
+   RENDER CERTIFICATE
+=================================================== */
+function renderCertificate(){
+  const today=new Date();
+  const dateStr=today.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  return '<div id="cert-wrap">'
+    +'<div class="cert-outer">'
+    +'<div class="cert-kap">KA&Psi;</div>'
+    +'<div class="cert-org">Kappa Alpha Psi Fraternity, Incorporated</div>'
+    +'<div class="cert-presents">Presents This Certificate of Completion to</div>'
+    +'<div class="cert-name">'+S.name+'</div>'
+    +'<div class="cert-body">'
+    +'for the successful completion of the<br>'
+    +'<span class="cert-course">Membership Education &amp; Standards Overview</span><br>'
+    +'administered by the Denton-Lewisville Alumni Chapter<br>'
+    +'Southwestern Province'
+    +'</div>'
+    +'<div class="cert-seal">KA&Psi;</div>'
+    +'<div class="cert-date">Completed: '+dateStr+'</div>'
+    +'<div class="cert-footer">'
+    +'<div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-lbl">Polemarch, DLA</div></div>'
+    +'<div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-lbl">Vice Polemarch, DLA</div></div>'
+    +'<div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-lbl">Keeper of Records</div></div>'
+    +'</div>'
+    +'</div>'
+    +'<div class="cert-actions">'
+    +'<button class="btn-print" onclick="window.print()">Print Certificate</button>'
+    +'<button class="btn-back-dash" onclick="S.page=\'landing\';save();render()">Return to Home</button>'
+    +'</div>'
+    +'</div>';
+}
+
+/* ===================================================
+   RENDER LANDING
+=================================================== */
+function renderLanding(){
+  const pct=calcProgress();
+  const modsDone=S.done.filter(Boolean).length;
+  return '<div id="landing-page">'
+    +'<div class="landing-hero">'
+    +'<div class="kap-mark">KA&Psi;</div>'
+    +'<h1>Membership Education &amp; Standards Overview</h1>'
+    +'<p>Kappa Alpha Psi Fraternity, Inc. &mdash; Denton-Lewisville Alumni Chapter</p>'
+    +'</div>'
+    +'<div class="landing-body">'
+    +'<h2>Welcome, Brother</h2>'
+    +'<div class="landing-stats">'
+    +'<div class="stat-card"><div class="stat-num">9</div><div class="stat-lbl">Modules</div></div>'
+    +'<div class="stat-card"><div class="stat-num">90</div><div class="stat-lbl">Screens</div></div>'
+    +'<div class="stat-card"><div class="stat-num">~4.5 hrs</div><div class="stat-lbl">Total Est. Time</div></div>'
+    +'</div>'
+    +'<p style="font-size:.82rem;color:#666;margin-bottom:16px">Enter your name to personalize your certificate, then click Begin Course to start.</p>'
+    +'<div class="name-row">'
+    +'<input id="name-input" type="text" placeholder="Your full name" value="'+(S.name||'')+'">'
+    +'<button id="begin-btn" onclick="startCourse()">'+(pct>0?'Continue Course':'Begin Course')+'</button>'
+    +'</div>'
+    +(pct>0?'<div class="highlight-box" style="margin-bottom:16px"><strong>Progress:</strong> '+pct+'% complete &mdash; '+modsDone+'/9 modules finished. '+(allModsDone()?'<a href="#" onclick="goAssess();return false">Take the final assessment</a>':'')+'</div>':'')
+    +'<p class="landing-note">This course covers the core standards, protocols, and policies every DLA member should know. Each module contains 10 screens (~30 min). Complete all 9 modules and pass the final assessment (score 10/12 or higher) to earn your certificate.</p>'
+    +'</div>'
+    +'</div>';
+}
+
+/* ===================================================
+   MAIN RENDER
+=================================================== */
+function render(){
+  const app=document.getElementById('app');
+  renderNav();
+  updateProgress();
+
+  switch(S.page){
+    case 'landing':
+      app.innerHTML=renderLanding();
+      break;
+    case 'content':{
+      const fns=SCREEN_FNS[S.mi];
+      const fn=fns&&fns[S.si];
+      if(!fn){ S.si=0; render(); return; }
+      app.innerHTML='<div id="content-wrap">'+fn()+'</div>';
+      window.scrollTo(0,0);
+      break;
+    }
+    case 'assessment':
+      app.innerHTML=renderAssessment();
+      break;
+    case 'results':
+      app.innerHTML=renderResults();
+      break;
+    case 'certificate':
+      app.innerHTML=renderCertificate();
+      break;
+    default:
+      app.innerHTML=renderLanding();
+  }
+}
+
+/* ===================================================
+   INIT
+=================================================== */
+load();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNCcgZmlsbD0nIzcwMTEwYycvPjx0ZXh0IHg9JzE2JyB5PScyMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0dlb3JnaWEsc2VyaWYnIGZvbnQtc2l6ZT0nMTMnIGZvbnQtd2VpZ2h0PSdib2xkJyBmaWxsPScjYzlhODRjJz5LQVx4Y2VceGE4PC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>501(c)(3) & 501(c)(7) Compliance Training | Denton-Lewisville Alumni Chapter</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cr:#70110c;--cr-d:#4a0b08;--cr-dd:#3a0906;--cr-l:#8c1812;
+  --cm:#f2ebd7;--cm-d:#e5d9bf;--cm-dd:#d4c9a8;
+  --go:#c9a84c;--go-d:#a88838;--go-l:#d4b563;
+  --tx:#1a1a1a;--tx-m:#555;--tx-l:#888;
+  --wh:#fff;--sw:260px;--r:8px;--rl:12px;
+  --sh:0 2px 8px rgba(0,0,0,.12);--sh-l:0 4px 20px rgba(0,0,0,.15);
+  --tr:.2s ease}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--tx);background:#ede9df;min-height:100vh;line-height:1.6}
+.skip-link{position:absolute;top:-40px;left:6px;background:var(--go);color:var(--cr-d);padding:8px 12px;border-radius:var(--r);font-weight:600;z-index:1000;text-decoration:none}
+.skip-link:focus{top:6px}
+#sidebar{width:var(--sw);min-width:var(--sw);background:var(--cr);height:100vh;position:fixed;left:0;top:0;overflow-y:auto;display:flex;flex-direction:column;z-index:100;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px}
+#main{margin-left:var(--sw);min-height:100vh}
+.sb-header{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo-badge{width:42px;height:42px;background:var(--go);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--cr-d);flex-shrink:0;font-family:'Playfair Display',serif}
+.sb-title{font-size:12px;font-weight:700;color:var(--cm);line-height:1.3;letter-spacing:.02em}
+.sb-sub{font-size:10px;color:rgba(242,235,215,.55);margin-top:2px}
+.sb-progress{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(242,235,215,.55);font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
+.prog-track{height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--go);border-radius:3px;transition:width .4s ease}
+.sb-nav{flex:1;padding:8px 0}
+.sec-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,235,215,.38);padding:10px 16px 3px}
+.mod-item{display:flex;align-items:flex-start;gap:9px;padding:9px 14px;cursor:pointer;transition:background var(--tr);border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.mod-item:hover{background:rgba(255,255,255,.07)}
+.mod-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.mod-item.completed .mod-badge{background:var(--go);color:var(--cr-d)}
+.mod-badge{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--cm);flex-shrink:0;margin-top:1px}
+.mod-title{font-size:12px;font-weight:600;color:var(--cm);line-height:1.3}
+.mod-sub{font-size:10px;color:rgba(242,235,215,.48);margin-top:1px}
+.sb-foot{padding:8px 0;border-top:1px solid rgba(255,255,255,.1)}
+.sb-foot-item{display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;transition:background var(--tr);border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.sb-foot-item:hover{background:rgba(255,255,255,.07)}
+.sb-foot-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.sb-foot-icon{width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.sb-foot-label{font-size:12px;font-weight:600;color:var(--cm)}
+.hero{background:linear-gradient(135deg,var(--cr-dd) 0%,var(--cr) 55%,var(--cr-l) 100%);color:var(--wh);padding:52px 56px 48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.22);border:1px solid rgba(201,168,76,.45);color:var(--go);padding:5px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;line-height:1.15;margin-bottom:14px;color:var(--wh);max-width:600px}
+.hero-sub{font-size:15px;line-height:1.7;color:rgba(255,255,255,.72);max-width:540px;margin-bottom:28px}
+.hero-name-row{display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.hero-name-row label{font-size:13px;font-weight:600;color:var(--cm);white-space:nowrap}
+.name-input{padding:10px 15px;border-radius:var(--r);border:2px solid rgba(201,168,76,.45);background:rgba(255,255,255,.1);color:var(--wh);font-size:14px;font-weight:500;width:230px;outline:none;transition:border-color var(--tr);font-family:inherit}
+.name-input::placeholder{color:rgba(255,255,255,.38)}
+.name-input:focus{border-color:var(--go)}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.stat-item{display:flex;align-items:center;gap:7px}
+.stat-label{font-size:13px;font-weight:600;color:var(--cm)}
+.btn-begin{display:inline-flex;align-items:center;gap:8px;background:var(--go);color:var(--cr-d);border:none;padding:13px 26px;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;transition:all var(--tr);font-family:inherit}
+.btn-begin:hover{background:var(--go-l);transform:translateY(-1px)}
+.btn-begin:focus{outline:3px solid var(--wh);outline-offset:2px}
+.land-body{background:var(--wh);padding:48px 56px}
+.sec-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--cr);margin-bottom:6px}
+.sec-intro{font-size:14px;color:var(--tx-m);margin-bottom:22px;max-width:560px;line-height:1.6}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
+.obj-card{display:flex;align-items:flex-start;gap:11px;padding:15px;background:var(--cm);border-radius:var(--r);border-left:4px solid var(--go)}
+.obj-num{width:26px;height:26px;background:var(--cr);color:var(--wh);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.obj-text{font-size:13px;line-height:1.5;color:var(--tx);font-weight:500}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.path-card{border:2px solid var(--cm-d);border-radius:var(--rl);padding:18px;transition:all var(--tr);cursor:pointer}
+.path-card:hover{border-color:var(--cr);box-shadow:var(--sh)}
+.path-num{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-l);font-weight:700;margin-bottom:5px}
+.path-title{font-size:14px;font-weight:700;color:var(--cr);margin-bottom:7px;line-height:1.3}
+.path-desc{font-size:12px;color:var(--tx-m);line-height:1.5}
+.mod-page{min-height:100vh;background:#ede9df}
+.mod-header{background:var(--cr);color:var(--wh);padding:24px 44px;display:flex;align-items:center;gap:18px}
+.mod-num-badge{background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.28);width:50px;height:50px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.mod-num-sm{font-size:8px;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.55);font-weight:600;line-height:1}
+.mod-num-lg{font-size:20px;font-weight:800;color:var(--wh);line-height:1}
+.mod-hdr-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:3px}
+.mod-hdr-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--wh);line-height:1.25}
+.mod-content{padding:36px 44px;max-width:880px}
+.scr-dots{display:flex;align-items:center;gap:7px;margin-bottom:24px}
+.scr-dot{width:8px;height:8px;border-radius:50%;background:var(--cm-dd);transition:all var(--tr)}
+.scr-dot.active{background:var(--cr);width:22px;border-radius:4px}
+.scr-dot.done{background:var(--go)}
+.card{background:var(--wh);border-radius:var(--rl);padding:26px 30px;margin-bottom:18px;box-shadow:var(--sh)}
+.card h3{font-size:17px;font-weight:700;color:var(--cr);margin-bottom:11px}
+.card p{font-size:14px;line-height:1.7;color:var(--tx);margin-bottom:11px}
+.card p:last-child{margin-bottom:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sl{list-style:none;padding:0}
+.sl li{padding:7px 0 7px 22px;position:relative;font-size:14px;line-height:1.5;color:var(--tx);border-bottom:1px solid var(--cm-d)}
+.sl li:last-child{border-bottom:none}
+.sl li::before{content:'→';position:absolute;left:0;color:var(--go-d);font-weight:700}
+.exp-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--wh);border:2px solid var(--cm-d);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all var(--tr)}
+.exp-card:hover{border-color:var(--cr)}
+.exp-card.open{border-color:var(--cr);box-shadow:var(--sh)}
+.exp-hdr{padding:14px 18px;display:flex;align-items:center;gap:11px}
+.exp-num{width:30px;height:30px;border-radius:7px;background:var(--cr);color:var(--wh);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.exp-title{font-size:14px;font-weight:700;color:var(--tx);flex:1}
+.exp-toggle{font-size:18px;color:var(--tx-m);transition:transform var(--tr)}
+.exp-card.open .exp-toggle{transform:rotate(45deg);color:var(--cr)}
+.exp-body{display:none;padding:12px 18px 14px;font-size:13px;line-height:1.6;color:var(--tx-m);border-top:1px solid var(--cm-d)}
+.exp-card.open .exp-body{display:block}
+.mod-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 44px;background:var(--wh);border-top:1px solid var(--cm-d);position:sticky;bottom:0;z-index:10}
+.btn-nav{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--tr);border:2px solid;font-family:inherit}
+.btn-prev{background:var(--wh);color:var(--cr);border-color:var(--cr)}
+.btn-prev:hover{background:var(--cm)}
+.btn-next{background:var(--cr);color:var(--wh);border-color:var(--cr)}
+.btn-next:hover{background:var(--cr-d)}
+.btn-nav:disabled{opacity:.38;cursor:not-allowed}
+.btn-nav:focus{outline:3px solid var(--go);outline-offset:2px}
+.scr-pos{font-size:12px;color:var(--tx-m);font-weight:500}
+.quiz{background:var(--wh);border-radius:var(--rl);padding:26px 30px;margin-bottom:16px;box-shadow:var(--sh)}
+.quiz-q-num{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--tx-l);font-weight:600;margin-bottom:8px}
+.quiz-q{font-size:15px;font-weight:600;color:var(--tx);margin-bottom:18px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.quiz-opt{display:flex;align-items:flex-start;gap:11px;padding:13px 15px;border:2px solid var(--cm-d);border-radius:var(--r);cursor:pointer;transition:all var(--tr);background:var(--wh);font-family:inherit;text-align:left;width:100%}
+.quiz-opt:hover:not(:disabled){border-color:var(--cr);background:var(--cm)}
+.quiz-opt.sel{border-color:var(--cr);background:rgba(112,17,12,.05)}
+.quiz-opt.cor{border-color:#15803d;background:rgba(21,128,61,.08)}
+.quiz-opt.inc{border-color:#b91c1c;background:rgba(185,28,28,.07)}
+.quiz-opt:disabled{cursor:not-allowed}
+.opt-ltr{width:24px;height:24px;border-radius:50%;background:var(--cm-d);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--tx-m);flex-shrink:0}
+.quiz-opt.cor .opt-ltr{background:#15803d;color:#fff}
+.quiz-opt.inc .opt-ltr{background:#b91c1c;color:#fff}
+.opt-text{font-size:13px;line-height:1.5;color:var(--tx)}
+.quiz-fb{margin-top:14px;padding:13px 15px;border-radius:var(--r);font-size:13px;line-height:1.5;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.cor-fb{background:rgba(21,128,61,.1);border:1px solid #15803d;color:#14532d}
+.quiz-fb.inc-fb{background:rgba(185,28,28,.09);border:1px solid #b91c1c;color:#7f1d1d}
+.title-screen{min-height:55vh;display:flex;flex-direction:column;justify-content:center;padding:32px 0}
+.ts-mod-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--tx-l);margin-bottom:11px}
+.ts-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--cr);line-height:1.25;margin-bottom:18px}
+.ts-obj{font-size:15px;color:var(--tx-m);line-height:1.7;max-width:580px;background:var(--cm);padding:18px 22px;border-radius:var(--rl);border-left:4px solid var(--go)}
+.info-box{background:rgba(112,17,12,.06);border:1px solid rgba(112,17,12,.18);border-radius:var(--r);padding:14px 18px;font-size:13px;line-height:1.6;color:var(--tx);margin:14px 0}
+.info-box strong{color:var(--cr)}
+.warn-box{background:rgba(185,28,28,.07);border:1px solid #b91c1c;border-radius:var(--r);padding:14px 18px;font-size:13px;line-height:1.6;color:#7f1d1d;margin:14px 0}
+.warn-box strong{color:#991b1b}
+.compare-tbl{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}
+.compare-tbl th{background:var(--cr);color:#fff;padding:9px 13px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.compare-tbl td{padding:10px 13px;border-bottom:1px solid var(--cm-d);vertical-align:top;line-height:1.5}
+.compare-tbl tr:nth-child(even) td{background:var(--cm)}
+.assess-header{background:var(--cr);color:var(--wh);padding:24px 44px}
+.assess-q-num{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);font-weight:600;margin-bottom:7px}
+.assess-mod-tag{display:inline-block;background:rgba(255,255,255,.15);padding:2px 9px;border-radius:100px;font-size:10px;color:var(--cm);margin-bottom:14px}
+.assess-q{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--wh);line-height:1.35}
+.assess-body{padding:32px 44px;max-width:780px}
+.assess-dots{display:flex;gap:5px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.assess-dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--cm-d);background:var(--wh);font-size:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);color:var(--tx-m)}
+.assess-dot.answered{background:var(--cm);border-color:var(--cr);color:var(--cr)}
+.assess-dot.current{background:var(--cr);border-color:var(--cr);color:#fff}
+.results-pg{padding:40px 44px;max-width:680px}
+.results-circle{width:130px;height:130px;border-radius:50%;border:7px solid var(--go);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 28px}
+.results-score{font-size:36px;font-weight:800;color:var(--cr);line-height:1}
+.results-slbl{font-size:11px;color:var(--tx-m);font-weight:600}
+.results-status{text-align:center;margin-bottom:28px}
+.r-pass{font-size:20px;font-weight:700;color:#166534}
+.r-fail{font-size:20px;font-weight:700;color:#991b1b}
+.breakdown{background:var(--wh);border-radius:var(--rl);padding:22px;box-shadow:var(--sh);margin-bottom:22px}
+.bd-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--cm-d)}
+.bd-row:last-child{border-bottom:none}
+.bd-mod{font-size:13px;font-weight:600;color:var(--tx)}
+.bd-score{font-size:13px;font-weight:700}
+.sg{color:#166534}.sb-c{color:#991b1b}
+.cert-wrapper{padding:36px;background:#ede9df;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cert{width:760px;max-width:100%;background:var(--wh);border:7px solid var(--go);border-radius:var(--rl);padding:44px 52px;text-align:center;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.14)}
+.cert::before{content:'';position:absolute;inset:11px;border:2px solid var(--cm-d);border-radius:var(--r);pointer-events:none}
+.cert-logo{font-size:44px;font-family:'Playfair Display',serif;font-weight:700;color:var(--cr);margin-bottom:7px}
+.cert-org{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--tx-l);font-weight:600;margin-bottom:24px}
+.cert-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cr);margin-bottom:18px;line-height:1.2}
+.cert-certifies{font-size:13px;color:var(--tx-m);margin-bottom:7px;font-style:italic}
+.cert-name{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--go-d);margin-bottom:18px;line-height:1.2}
+.cert-completed{font-size:13px;color:var(--tx-m);margin-bottom:7px}
+.cert-course{font-size:17px;font-weight:700;color:var(--tx);margin-bottom:7px;font-family:'Playfair Display',serif}
+.cert-chapter{font-size:13px;color:var(--tx-m);margin-bottom:22px}
+.cert-date{font-size:13px;color:var(--tx-l);margin-bottom:22px;font-style:italic}
+.cert-div{width:110px;height:3px;background:var(--go);margin:0 auto 22px;border-radius:2px}
+.cert-seal{font-size:36px;margin-bottom:14px}
+.btn-print{display:inline-flex;align-items:center;gap:7px;background:var(--cr);color:var(--wh);border:none;padding:11px 22px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;margin-top:18px;transition:background var(--tr);font-family:inherit}
+.btn-print:hover{background:var(--cr-d)}
+.resources-pg{padding:36px 44px}
+.res-grid{display:flex;flex-direction:column;gap:14px}
+.res-card{background:var(--wh);border-radius:var(--rl);padding:22px;box-shadow:var(--sh);display:flex;align-items:flex-start;gap:14px}
+.res-icon{width:44px;height:44px;background:var(--cm);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.res-title{font-size:15px;font-weight:700;color:var(--cr);margin-bottom:4px}
+.res-desc{font-size:12px;color:var(--tx-m);line-height:1.5}
+.complete-badge{background:var(--go);color:var(--cr-d);text-align:center;padding:10px 18px;font-size:13px;font-weight:700;border-radius:var(--r);margin-bottom:14px}
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%);transition:transform .3s ease}
+  #sidebar.sb-open{transform:translateX(0)}
+  #main{margin-left:0}
+  .hero,.land-body{padding:28px 22px}
+  .obj-grid,.path-grid,.two-col,.exp-cards{grid-template-columns:1fr}
+  .mod-content,.mod-header,.mod-nav,.assess-header,.assess-body{padding-left:22px;padding-right:22px}
+  .hero-title{font-size:28px}
+  .hamburger{display:flex}
+}
+@media(max-width:480px){.hero-stats{flex-direction:column;gap:10px}}
+@media print{
+  #sidebar,.btn-print,.mod-nav,.scr-dots,.hamburger{display:none!important}
+  #main{margin-left:0!important}
+  .cert{box-shadow:none;border:5px solid var(--go);page-break-inside:avoid}
+  body{background:#fff}
+}
+.hamburger{display:none;position:fixed;top:11px;left:11px;z-index:200;background:var(--cr);color:#fff;border:none;width:38px;height:38px;border-radius:var(--r);font-size:20px;cursor:pointer;align-items:center;justify-content:center}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99}
+.sb-overlay.show{display:block}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"></button>
+<div class="sb-overlay" id="sb-overlay"></div>
+<nav id="sidebar" aria-label="Course navigation"></nav>
+<main id="main" role="main">
+  <div id="main-content" tabindex="-1"></div>
+</main>
+<script>
+// ========== STATE ==========
+const NS = 'DLA_COMPLIANCE_2026';
+let S = {
+  page: 'landing',
+  mi: 0,
+  si: 0,
+  name: '',
+  done: [false,false,false,false,false,false,false,false],
+  visited: {},
+  ix: {},
+  aa: {},
+  aScore: null,
+  aSubmitted: false
+};
+
+function save(){try{localStorage.setItem(NS,JSON.stringify(S))}catch(e){}}
+function load(){try{const d=localStorage.getItem(NS);if(d){const p=JSON.parse(d);Object.assign(S,p)}}catch(e){}}
+
+// ========== MODULE META ==========
+const MODS = [
+  {title:'Two Organizations, One Mission',dur:'~30 min',screens:10,section:'FOUNDATIONS'},
+  {title:'Revenue Rules & Funding Sources',dur:'~30 min',screens:10,section:'FOUNDATIONS'},
+  {title:'Keeping Funds Separate',dur:'~30 min',screens:10,section:'COMPLIANCE OPERATIONS'},
+  {title:'Co-Sponsored Events & MOUs',dur:'~30 min',screens:10,section:'COMPLIANCE OPERATIONS'},
+  {title:'Compensation & Worker Classification',dur:'~30 min',screens:10,section:'COMPLIANCE OPERATIONS'},
+  {title:'Facilities: Center & Chapter House',dur:'~30 min',screens:10,section:'COMPLIANCE OPERATIONS'},
+  {title:'Annual Filing & Auto-Revocation',dur:'~30 min',screens:10,section:'ADVANCED TOPICS'},
+  {title:'Governance, UBIT & Advanced Tax Issues',dur:'~30 min',screens:10,section:'ADVANCED TOPICS'}
+];
+
+// ========== PROGRESS ==========
+function calcProgress(){
+  const total = MODS.reduce((a,m)=>a+m.screens,0)+14+2;
+  let done = 0;
+  for(let mi=0;mi<MODS.length;mi++){
+    for(let si=0;si<MODS[mi].screens;si++){
+      if(S.visited[`${mi}-${si}`]) done++;
+    }
+  }
+  if(S.aSubmitted) done+=14;
+  if(S.aScore!==null && S.aScore>=11) done+=2;
+  return Math.round((done/total)*100);
+}
+
+function getIx(){ return S.ix[`${S.mi}-${S.si}`]||{}; }
+function setIx(data){ S.ix[`${S.mi}-${S.si}`]=Object.assign(getIx(),data); save(); }
+
+// ========== SIDEBAR ==========
+function renderSidebar(){
+  const pct = calcProgress();
+  let secShown = {};
+  let items = '';
+  for(let i=0;i<MODS.length;i++){
+    const m=MODS[i];
+    if(!secShown[m.section]){
+      items+=`<div class="sec-label">${m.section}</div>`;
+      secShown[m.section]=true;
+    }
+    const isActive=S.page==='module'&&S.mi===i;
+    const isDone=S.done[i];
+    items+=`<button class="mod-item${isActive?' active':''}${isDone?' completed':''}" onclick="goModule(${i})" aria-current="${isActive?'page':'false'}">
+      <div class="mod-badge">${isDone?'&#10003;':(i+1)}</div>
+      <div>
+        <div class="mod-title">${m.title}</div>
+        <div class="mod-sub">Module ${i+1} &middot; ${m.dur}</div>
+      </div>
+    </button>`;
+  }
+  return `
+  <div class="sb-header">
+    <div class="sb-logo">
+      <div class="logo-badge">K&#913;&#936;</div>
+      <div>
+        <div class="sb-title">501(c)(3) &amp; 501(c)(7) Compliance</div>
+        <div class="sb-sub">Denton-Lewisville Alumni Chapter &middot; 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sb-progress">
+    <div class="prog-label"><span>Course Progress</span><span>${pct}%</span></div>
+    <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
+  </div>
+  <div class="sb-nav">${items}</div>
+  <div class="sb-foot">
+    <button class="sb-foot-item${S.page==='resources'?' active':''}" onclick="goPage('resources')">
+      <div class="sb-foot-icon">&#128196;</div>
+      <div class="sb-foot-label">References &amp; Resources</div>
+    </button>
+    ${S.aScore!==null&&S.aScore>=11?`<button class="sb-foot-item${S.page==='certificate'?' active':''}" onclick="goPage('certificate')">
+      <div class="sb-foot-icon">&#127885;</div>
+      <div class="sb-foot-label">My Certificate</div>
+    </button>`:''}
+    ${S.aSubmitted?`<button class="sb-foot-item${S.page==='results'?' active':''}" onclick="goPage('results')">
+      <div class="sb-foot-icon">&#128202;</div>
+      <div class="sb-foot-label">Assessment Results</div>
+    </button>`:''}
+  </div>`;
+}
+
+// ========== NAVIGATION ==========
+function goPage(p){S.page=p;save();render();}
+function goModule(mi){S.page='module';S.mi=mi;S.si=0;S.visited[`${mi}-0`]=true;save();render();}
+function nextScreen(){
+  if(S.si<MODS[S.mi].screens-1){
+    S.si++;
+    S.visited[`${S.mi}-${S.si}`]=true;
+    save();render();
+    window.scrollTo(0,0);
+  } else {
+    S.done[S.mi]=true;
+    const last=MODS.length-1;
+    if(S.mi<last){
+      const next=S.mi+1;
+      if(window.confirm('Module '+(S.mi+1)+' complete! Start Module '+(next+1)+'?')){
+        S.page='module';S.mi=next;S.si=0;S.visited[`${next}-0`]=true;
+      } else {
+        S.page='landing';
+      }
+    } else {
+      if(window.confirm('All modules complete! Proceed to the Final Assessment?')){
+        S.page='assessment';S.si=0;
+      } else {
+        S.page='landing';
+      }
+    }
+    save();render();
+    window.scrollTo(0,0);
+  }
+}
+function prevScreen(){if(S.si>0){S.si--;save();render();window.scrollTo(0,0);}}
+
+function screenDots(count,current){
+  let d='';
+  for(let i=0;i<count;i++){
+    const isDone=S.visited[`${S.mi}-${i}`]&&i<current;
+    d+=`<div class="scr-dot${i===current?' active':isDone?' done':''}"></div>`;
+  }
+  return `<div class="scr-dots">${d}</div>`;
+}
+
+function modHeader(mi){
+  const m=MODS[mi];
+  return `<div class="mod-header">
+    <div class="mod-num-badge"><div class="mod-num-sm">MOD</div><div class="mod-num-lg">${mi+1}</div></div>
+    <div><div class="mod-hdr-lbl">Module ${mi+1} of ${MODS.length}</div><div class="mod-hdr-title">${m.title}</div></div>
+  </div>`;
+}
+
+function navBar(si,total,nextLabel){
+  nextLabel=nextLabel||'Next &rarr;';
+  return `<div class="mod-nav">
+    <button class="btn-nav btn-prev" onclick="prevScreen()" ${si===0?'disabled':''}>&#8592; Previous</button>
+    <span class="scr-pos">Screen ${si+1} of ${total}</span>
+    <button class="btn-nav btn-next" onclick="nextScreen()">${nextLabel}</button>
+  </div>`;
+}
+
+// ========== QUIZ HELPER ==========
+function renderQuiz(qid, question, opts, correctIdx, feedback){
+  const ix=getIx();
+  const sel=ix[qid];
+  const submitted=sel!==undefined;
+  let optHtml='';
+  opts.forEach(function(o,i){
+    let cls='quiz-opt';
+    if(submitted){
+      if(i===correctIdx) cls+=' cor';
+      else if(i===sel&&i!==correctIdx) cls+=' inc';
+    } else if(i===sel) cls+=' sel';
+    optHtml+=`<button class="${cls}" onclick="answerQuiz('${qid}',${i},${correctIdx})" ${submitted?'disabled':''}>
+      <div class="opt-ltr">${String.fromCharCode(65+i)}</div>
+      <div class="opt-text">${o}</div>
+    </button>`;
+  });
+  const fbShow=submitted?'show':'';
+  const fbCls=submitted&&sel===correctIdx?'cor-fb':'inc-fb';
+  return `<div class="quiz">
+    <div class="quiz-q-num">${qid.replace(/-/g,' ')}</div>
+    <div class="quiz-q">${question}</div>
+    <div class="quiz-opts">${optHtml}</div>
+    <div class="quiz-fb ${fbCls} ${fbShow}">${submitted?feedback:''}</div>
+  </div>`;
+}
+
+function answerQuiz(qid,sel,correct){
+  const ix=getIx();
+  if(ix[qid]!==undefined) return;
+  ix[qid]=sel;
+  setIx(ix);
+  render();
+}
+
+function toggleExp(i){
+  const cards=document.querySelectorAll('.exp-card');
+  if(cards[i]) cards[i].classList.toggle('open');
+}
+
+// ========== ASSESSMENT QUESTIONS ==========
+const AQ = [
+  {mod:'Module 1',q:'Which entity is organized as a 501(c)(3) public charity?',opts:['The Denton-Lewisville Alumni Chapter (KL)','The Kappa Alpha Psi Guide Right Foundation (local)','Both entities share the same tax status','Neither — fraternities cannot obtain 501(c)(3) status'],cor:1,fb:'The Guide Right Foundation is the 501(c)(3) charitable entity. The Alumni Chapter is a 501(c)(7) social club. These are distinct legal organizations with different tax rules.'},
+  {mod:'Module 1',q:'Chapter dues collected from members should be deposited into:',opts:['The Guide Right Foundation account by default','The Alumni Chapter account by default','A shared account used by both entities','Either account — it does not matter'],cor:1,fb:'Chapter dues are the social club\'s revenue and belong in the Alumni Chapter (501c7) account. Depositing them in the Foundation account is a compliance violation.'},
+  {mod:'Module 2',q:'A corporate sponsor contributes $5,000 to the Alumni Chapter annual gala. Under the 65%/35% rule, this sponsorship is:',opts:['Automatically prohibited because it comes from a non-member','Permissible if total non-member income stays within 35% of gross receipts','Automatically tax-exempt under 501(c)(7)','Treated as charitable income requiring a 990-PF filing'],cor:1,fb:'Non-member income like sponsorships is permissible for a 501(c)(7) as long as total non-member income does not exceed 35% of gross receipts.'},
+  {mod:'Module 2',q:'A donor wants to make a tax-deductible contribution to support KAPsi scholarships. Which entity should receive this donation?',opts:['The Alumni Chapter (501c7) — all KAPsi entities accept deductible gifts','The Guide Right Foundation (501c3) — only this entity issues deductible receipts','Either entity, as long as the funds are used for scholarships','Tax deductions are not available for fraternity-related giving'],cor:1,fb:'Only 501(c)(3) organizations can provide tax-deductible receipts. Scholarship donations must go to the Guide Right Foundation.'},
+  {mod:'Module 3',q:'The chapter treasurer informally transfers $2,000 from the Chapter account to the Foundation account to cover a scholarship gap. This is:',opts:['Permissible as an inter-organizational loan','A compliance risk requiring a formal grant agreement between the entities','Acceptable if documented in meeting minutes','Required by IRS rules when funds are insufficient'],cor:1,fb:'Any transfer of funds between the two entities requires a formal grant agreement. Informal transfers are considered commingling and can jeopardize both organizations\' tax-exempt status.'},
+  {mod:'Module 3',q:'Brothers want to support the Guide Right Foundation. The compliant approach is:',opts:['Write a chapter check to the Foundation','Use a shared account and reimburse later','Have individual members donate directly from their personal funds','Pool chapter dues and redirect them to the Foundation'],cor:2,fb:'Individual members may donate personally to the 501(c)(3) Foundation. The chapter cannot redirect member dues without a formal grant process.'},
+  {mod:'Module 4',q:'The chapter and Foundation co-sponsor a scholarship dinner. All ticket revenue is collected into a single shared account with plans to split it later. This arrangement is:',opts:['Acceptable if both treasurers approve','Commingling — a compliance violation','Permitted under the MOU exception','Standard practice for joint events'],cor:1,fb:'Collecting revenue for two separate legal entities into one account is commingling, regardless of plans to split it afterward. Each entity\'s revenue must be collected separately from the start.'},
+  {mod:'Module 4',q:'A written MOU for a co-sponsored event must include:',opts:['Only the event date and venue','Purpose, financial split, roles, separate account designations, liability, and reporting requirements','A signature from the Province Polemarch','IRS Form 8282 filed within 30 days'],cor:1,fb:'A compliant MOU addresses purpose, financial responsibilities, separate account designations, role assignments, liability provisions, and reporting requirements — not just logistics.'},
+  {mod:'Module 5',q:'The chapter pays a coordinator $800/month for 20 hours/week of sustained work over 6 months. This person is most likely:',opts:['An independent contractor — the chapter controls the schedule','An employee — regular hours and sustained engagement indicate employee status','A volunteer — fraternal work is inherently volunteer in nature','An exempt statutory employee'],cor:1,fb:'Regular hours, sustained engagement, and chapter control of the work schedule are hallmarks of an employee relationship requiring payroll tax withholding.'},
+  {mod:'Module 6',q:'A chapter rents its house to a for-profit business for commercial office use. This rental income is subject to:',opts:['No tax — real property rental is always exempt for nonprofits','Unrelated Business Income Tax (UBIT) and requires filing Form 990-T','The 65%/35% membership income test only','State property tax but not federal income tax'],cor:1,fb:'Rental of real property to an unrelated commercial tenant generates Unrelated Business Income. The chapter must file Form 990-T and pay tax on net UBI exceeding $1,000.'},
+  {mod:'Module 7',q:'The Denton-Lewisville Alumni Chapter (December 31 fiscal year end) must file its annual Form 990 by:',opts:['March 15 of the following year','May 15 of the following year','April 15 of the following year','June 30 of the following year'],cor:1,fb:'For organizations with a December 31 fiscal year end, the Form 990 is due by May 15. A 6-month extension to November 15 is available via Form 8868.'},
+  {mod:'Module 7',q:'An organization that fails to file its required annual return for three consecutive years will:',opts:['Receive a warning letter and a 90-day cure period','Have its tax-exempt status automatically revoked with no prior notice','Be downgraded to 501(c)(4) status','Owe back taxes at the corporate rate for those three years only'],cor:1,fb:'The IRS automatically revokes tax-exempt status after three consecutive years of non-filing. There is no warning — the revocation is immediate and retroactive.'},
+  {mod:'Module 8',q:'A board member is negotiating a contract between the chapter and his own catering company. The correct governance response is:',opts:['Proceed — board members bring valuable expertise','Disclose the conflict, recuse from deliberations, and abstain from the vote','Have the Polemarch approve the contract unilaterally','Submit the contract to the Province office for approval'],cor:1,fb:'Conflict of interest policy requires disclosure, recusal from deliberations, and abstention from the vote. The board must document this process in the minutes.'},
+  {mod:'Module 8',q:'An officer receives $15,000 in compensation that the IRS determines exceeds reasonable compensation by $12,000. The excess benefit excise tax owed by the officer is:',opts:['$15,000 — the full compensation amount','$3,000 (25% x $12,000 excess)','$1,200 (10% x $12,000 excess)','No tax — fraternal compensation is always reasonable'],cor:1,fb:'IRC 4958 imposes a 25% excise tax on the excess benefit amount. 25% x $12,000 = $3,000. The officer must also correct the excess by repaying it to the organization.'}
+];
+
+// ========== MODULE 1 ==========
+function m1s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 1 of 8 &middot; Foundations</div>
+    <div class="ts-title">Two Organizations, One Mission</div>
+    <div class="ts-obj">By the end of this module, you will understand the legal distinction between the 501(c)(3) Guide Right Foundation and the 501(c)(7) Alumni Chapter — and why that distinction is the foundation of all compliance.</div>
+  </div>`;}
+
+function m1s1(){
+  return `<div>
+  <div class="card"><h3>The Two Entities</h3>
+  <p>The Denton-Lewisville chapter family operates through two legally distinct organizations. They share a mission but are governed by different tax rules and cannot be treated as one organization.</p></div>
+  <div class="two-col">
+    <div class="card" style="border-top:4px solid var(--go)">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--go-d);margin-bottom:9px">Guide Right Foundation</div>
+      <div style="font-size:22px;font-weight:800;color:var(--cr);font-family:'Playfair Display',serif;margin-bottom:9px">501(c)(3)</div>
+      <ul class="sl">
+        <li>Public charity &mdash; charitable purpose</li>
+        <li>Donations are tax-deductible to donors</li>
+        <li>May receive grants and government funding</li>
+        <li>Funds must serve charitable programs</li>
+        <li>Public support test applies</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--cr)">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--cr);margin-bottom:9px">Alumni Chapter (KL)</div>
+      <div style="font-size:22px;font-weight:800;color:var(--cr);font-family:'Playfair Display',serif;margin-bottom:9px">501(c)(7)</div>
+      <ul class="sl">
+        <li>Social club &mdash; member benefit purpose</li>
+        <li>Donations are NOT tax-deductible</li>
+        <li>Revenue primarily from member dues</li>
+        <li>Non-member income limited to 35%</li>
+        <li>Membership income rules govern</li>
+      </ul>
+    </div>
+  </div></div>`;}
+
+function m1s2(){
+  return `<div>
+  <div class="card"><h3>Why Separation Matters</h3>
+  <p>These are two separate legal entities. Each has its own EIN, its own bank accounts, its own board, and its own tax obligations. Treating them as one &mdash; sharing accounts, moving money informally, or filing jointly &mdash; can result in:</p>
+  <ul class="sl" style="margin-top:11px">
+    <li>Loss of tax-exempt status for one or both entities</li>
+    <li>Personal liability for officers who approved improper transfers</li>
+    <li>IRS audits and penalties on all income for revocation years</li>
+    <li>Loss of eligibility for grants and charitable donations</li>
+  </ul></div>
+  <div class="warn-box"><strong>Common mistake:</strong> Depositing chapter dues into the Foundation account &ldquo;temporarily&rdquo; &mdash; or paying a Foundation expense from the Chapter account and seeking reimbursement later &mdash; are both compliance violations regardless of intent.</div>
+  </div>`;}
+
+function m1s3(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check</h3><p>Answer both questions to complete this module.</p></div>
+  ${renderQuiz('q1','Which entity is organized as a 501(c)(3) public charity?',
+    ['The Denton-Lewisville Alumni Chapter (KL)','The Guide Right Foundation (local)','Both entities share the same tax status','Neither'],1,
+    'Correct. The Guide Right Foundation is the 501(c)(3) charitable entity. The Alumni Chapter is a 501(c)(7) social club.')}
+  ${renderQuiz('q2','Chapter dues collected from members should be deposited into:',
+    ['The Guide Right Foundation account','The Alumni Chapter account','A shared account used by both entities','Either account'],1,
+    'Correct. Chapter dues are 501(c)(7) social club revenue and belong exclusively in the Alumni Chapter account.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 2 ==========
+function m2s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 2 of 8 &middot; Foundations</div>
+    <div class="ts-title">Revenue Rules &amp; Funding Sources</div>
+    <div class="ts-obj">You will understand the 65%/35% membership income rule for 501(c)(7) organizations, the public support test for 501(c)(3) organizations, and how funding sources must be matched to the correct entity.</div>
+  </div>`;}
+
+function m2s1(){
+  return `<div>
+  <div class="card"><h3>The 501(c)(7) Revenue Rule: 65%/35%</h3>
+  <p>To maintain 501(c)(7) status, the Alumni Chapter must derive at least <strong>65% of gross receipts from members</strong> (dues, assessments, chapter fees). Non-member income &mdash; sponsorships, venue rentals, non-member event tickets &mdash; cannot exceed <strong>35% of gross receipts</strong>.</p>
+  <p>Within the 35% ceiling, no more than <strong>15%</strong> may come from public use of the chapter's facilities or services.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Revenue Type</th><th>Classification</th><th>Limit</th></tr></thead>
+    <tbody>
+      <tr><td>Member dues &amp; assessments</td><td>Member income</td><td>Must be &ge;65%</td></tr>
+      <tr><td>Corporate event sponsorships</td><td>Non-member income</td><td>Within 35%</td></tr>
+      <tr><td>Non-member banquet tickets</td><td>Non-member income</td><td>Within 35%</td></tr>
+      <tr><td>Chapter house rental (public)</td><td>Facility/non-member</td><td>Within 15% sub-limit</td></tr>
+      <tr><td>Investment income</td><td>Non-member income</td><td>Within 35%</td></tr>
+    </tbody>
+  </table></div>`;}
+
+function m2s2(){
+  return `<div>
+  <div class="card"><h3>501(c)(3) Funding Rules</h3>
+  <p>The Guide Right Foundation must pass the <strong>public support test</strong> &mdash; at least 33&#8531;% of its total support must come from the general public (many donors), not a single source. This prevents the Foundation from being classified as a private foundation with stricter rules.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Grants from corporations, government, and public charities count as public support</li>
+    <li>Individual donations generally count (subject to limits)</li>
+    <li>Investment income does NOT count as public support</li>
+    <li>Contributions from disqualified persons (board members, substantial contributors) are limited</li>
+  </ul></div>
+  <div class="info-box"><strong>Key rule:</strong> Only the Foundation can issue tax-deductible receipts for charitable donations. If a donor wants a tax deduction for supporting KAPsi programs, the gift must go to the Foundation &mdash; never to the Alumni Chapter.</div>
+  </div>`;}
+
+function m2s3(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check</h3><p>Answer both questions to complete this module.</p></div>
+  ${renderQuiz('q1','A corporate sponsor contributes $5,000 to the Alumni Chapter annual gala. Under the 65%/35% rule, this sponsorship is:',
+    ['Automatically prohibited','Permissible if total non-member income stays within 35% of gross receipts','Automatically tax-exempt','Charitable income requiring a 990-PF filing'],1,
+    'Correct. Non-member income like sponsorships is permissible as long as total non-member income does not exceed 35% of gross receipts.')}
+  ${renderQuiz('q2','A donor wants to make a tax-deductible contribution to support KAPsi scholarships. Which entity should receive this donation?',
+    ['The Alumni Chapter (501c7)','The Guide Right Foundation (501c3)','Either entity','Tax deductions are not available'],1,
+    'Correct. Only 501(c)(3) organizations can provide tax-deductible receipts. Scholarship donations must go to the Guide Right Foundation.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 3 ==========
+function m3s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 3 of 8 &middot; Compliance Operations</div>
+    <div class="ts-title">Keeping Funds Separate</div>
+    <div class="ts-obj">You will understand what commingling is, why it is a serious compliance violation, how to correctly handle transfers between the two entities, and what the three most common myths about fund mixing get wrong.</div>
+  </div>`;}
+
+function m3s1(){
+  return `<div>
+  <div class="card"><h3>What Is Commingling?</h3>
+  <p>Commingling occurs when the funds of two legally distinct organizations are mixed &mdash; whether in a shared bank account, through informal transfers, or through one entity paying expenses on behalf of the other without a formal agreement.</p></div>
+  <div class="card">
+    <h3>The Three Myths</h3>
+    <div class="exp-cards" id="exp-cards">
+      <div class="exp-card" onclick="toggleExp(0)">
+        <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Myth: Separate spreadsheets make it okay</div><div class="exp-toggle">+</div></div>
+        <div class="exp-body">Tracking each organization's share in a spreadsheet does not cure commingling. The IRS looks at actual bank accounts, not accounting records. Separate legal entities require separate bank accounts.</div>
+      </div>
+      <div class="exp-card" onclick="toggleExp(1)">
+        <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Myth: Informal transfers are fine between related orgs</div><div class="exp-toggle">+</div></div>
+        <div class="exp-body">The Foundation and Chapter are separate legal entities. Any transfer of funds requires a formal written grant agreement, board approval on both sides, and documentation of the charitable purpose being served.</div>
+      </div>
+      <div class="exp-card" onclick="toggleExp(2)">
+        <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Myth: Temporary transfers that get paid back are okay</div><div class="exp-toggle">+</div></div>
+        <div class="exp-body">Even short-term &ldquo;loans&rdquo; between the entities are prohibited without a formal agreement. Intent to repay does not cure the compliance violation.</div>
+      </div>
+    </div>
+  </div></div>`;}
+
+function m3s2(){
+  return `<div>
+  <div class="card"><h3>Compliant Ways to Support Each Entity</h3>
+  <p>There is a legal path for the Alumni Chapter to support Foundation programs &mdash; it just requires following the rules.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>Formal grant:</strong> Chapter board approves a grant to the Foundation, documented with a grant agreement specifying purpose, amount, and reporting requirements</li>
+    <li><strong>Individual donations:</strong> Members donate personally from their own funds &mdash; not from chapter funds &mdash; to the Foundation</li>
+    <li><strong>MOU for joint programs:</strong> Both entities enter a Memorandum of Understanding allocating costs before any shared event</li>
+    <li><strong>Separate expense payment:</strong> Each entity pays only its own expenses directly from its own account</li>
+  </ul></div>
+  <div class="info-box"><strong>Budget requests:</strong> When the Foundation needs chapter support for a program, the correct process is a formal grant request to the Chapter &mdash; not for the Chapter to pay expenses and seek reimbursement later.</div>
+  </div>`;}
+
+function m3s3(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check</h3><p>Answer both questions to complete this module.</p></div>
+  ${renderQuiz('q1','The chapter treasurer informally transfers $2,000 from the Chapter account to the Foundation account to cover a scholarship gap. This is:',
+    ['Permissible as an inter-organizational loan','A compliance risk requiring a formal grant agreement','Acceptable if documented in meeting minutes','Required by IRS rules'],1,
+    'Correct. Any transfer of funds between the two entities requires a formal grant agreement. Informal transfers constitute commingling regardless of intent.')}
+  ${renderQuiz('q2','Brothers want to support the Guide Right Foundation. The compliant approach is:',
+    ['Write a chapter check to the Foundation','Use a shared account and reimburse later','Have individual members donate directly from their personal funds','Pool chapter dues and redirect them'],2,
+    'Correct. Individual members may donate personally to the Foundation. The chapter cannot redirect member dues without a formal grant process.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 4 ==========
+function m4s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 4 of 8 &middot; Compliance Operations</div>
+    <div class="ts-title">Co-Sponsored Events &amp; MOUs</div>
+    <div class="ts-obj">You will learn the requirements for a compliant Memorandum of Understanding (MOU) for joint events, and how to avoid commingling in event revenue collection.</div>
+  </div>`;}
+
+function m4s1(){
+  return `<div>
+  <div class="card"><h3>When Both Entities Co-Sponsor an Event</h3>
+  <p>Events that serve both a charitable purpose (Foundation) and a social purpose (Chapter) are common &mdash; a scholarship dinner, a Guide Right mentorship gala. Co-sponsorship requires a written MOU before any event occurs.</p></div>
+  <div class="card">
+    <h3>The 12-Element MOU</h3>
+    <p>Before any co-sponsored event, both entities must execute a written MOU that addresses:</p>
+    <div class="two-col" style="margin-top:11px">
+      <ul class="sl">
+        <li>Event purpose and charitable program link</li>
+        <li>Role of each organization</li>
+        <li>Financial split (who pays what %)</li>
+        <li>Separate account designations</li>
+        <li>Revenue collection procedures</li>
+        <li>Expense payment procedures</li>
+      </ul>
+      <ul class="sl">
+        <li>Ticket pricing and designation</li>
+        <li>Sponsor acknowledgment procedures</li>
+        <li>Post-event financial reporting</li>
+        <li>Liability and insurance allocation</li>
+        <li>Dispute resolution process</li>
+        <li>Authorized officer signatures, both entities</li>
+      </ul>
+    </div>
+  </div></div>`;}
+
+function m4s2(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check</h3><p>Answer both questions to complete this module.</p></div>
+  ${renderQuiz('q1','The chapter and Foundation co-sponsor a scholarship dinner. All ticket revenue is collected into a single shared account with plans to split it later. This arrangement is:',
+    ['Acceptable if both treasurers approve','Commingling &mdash; a compliance violation','Permitted under the MOU exception','Standard practice for joint events'],1,
+    'Correct. Collecting revenue for two separate legal entities into one account is commingling. Each entity\'s revenue must be collected separately from the start.')}
+  ${renderQuiz('q2','A verbal agreement between chapter and Foundation leadership is sufficient to authorize a joint fundraising event.',
+    ['True &mdash; leadership approval is all that is required','False &mdash; a written MOU executed by both boards is required','True &mdash; if documented in both sets of meeting minutes','False &mdash; only if the event budget exceeds $10,000'],1,
+    'Correct. All co-sponsored events require a written MOU signed by authorized officers of both entities. Verbal agreements provide no legal protection.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 5 ==========
+function m5s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 5 of 8 &middot; Compliance Operations</div>
+    <div class="ts-title">Compensation &amp; Worker Classification</div>
+    <div class="ts-obj">You will understand the IRS rules for classifying workers as employees vs. independent contractors, the consequences of misclassification, and the excess benefit transaction rules under IRC 4958.</div>
+  </div>`;}
+
+function m5s1(){
+  return `<div>
+  <div class="card"><h3>Employee vs. Independent Contractor</h3>
+  <p>When the chapter or Foundation pays someone for services, the IRS applies a multi-factor test to determine worker classification. Key factors:</p>
+  <table class="compare-tbl" style="margin-top:14px">
+    <thead><tr><th>Factor</th><th>Points to Employee</th><th>Points to Contractor</th></tr></thead>
+    <tbody>
+      <tr><td>Control over work</td><td>Organization directs how work is done</td><td>Worker controls methods</td></tr>
+      <tr><td>Schedule</td><td>Set hours determined by organization</td><td>Worker sets own schedule</td></tr>
+      <tr><td>Duration</td><td>Ongoing, sustained relationship</td><td>Project-based, limited term</td></tr>
+      <tr><td>Tools &amp; equipment</td><td>Organization provides tools</td><td>Worker provides own tools</td></tr>
+      <tr><td>Other clients</td><td>Works exclusively for organization</td><td>Works for multiple clients</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warn-box"><strong>Misclassification consequence:</strong> If the IRS reclassifies a contractor as an employee, the organization owes back payroll taxes, penalties, and interest &mdash; potentially years of liability.</div>
+  </div>`;}
+
+function m5s2(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  return `<div>
+  <div class="card"><h3>Excess Benefit Transactions (IRC 4958)</h3>
+  <p>Officers, directors, and key employees are &ldquo;disqualified persons.&rdquo; Any compensation that exceeds fair market value is an <strong>excess benefit transaction</strong> &mdash; taxable to the recipient.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Excess benefit = <strong>25% excise tax</strong> on the disqualified person</li>
+    <li>Approving board members = <strong>10% excise tax</strong> (up to $20,000)</li>
+    <li>The excess must be corrected (repaid to the organization)</li>
+    <li>Applies to both 501(c)(3) and 501(c)(7) organizations</li>
+  </ul></div>
+  <div class="card"><h3>Knowledge Check</h3>
+  ${renderQuiz('q1','The chapter pays a coordinator $800/month for 20 hours/week of sustained work over 6 months. This person is most likely:',
+    ['An independent contractor','An employee &mdash; regular hours and sustained engagement indicate employee status','A volunteer','A statutory exempt employee'],1,
+    'Correct. Regular hours, sustained engagement, and chapter control of the work schedule are hallmarks of an employee relationship requiring payroll tax withholding.')}
+  ${q1?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 6 ==========
+function m6s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 6 of 8 &middot; Compliance Operations</div>
+    <div class="ts-title">Facilities: Center &amp; Chapter House</div>
+    <div class="ts-obj">You will understand how the 501(c)(3) Foundation Center and the 501(c)(7) Chapter House are governed, what uses are permitted for each, and how facility rental income triggers UBIT.</div>
+  </div>`;}
+
+function m6s1(){
+  return `<div>
+  <div class="card"><h3>The Foundation Center (501c3 Real Estate)</h3>
+  <p>When the Guide Right Foundation owns real property, its use must serve the Foundation's charitable mission. Permitted uses include:</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Youth mentorship programs and educational activities</li>
+    <li>Community workshops and charitable events</li>
+    <li>Administrative space for Foundation operations</li>
+    <li>Space shared with nonprofits under formal use agreements</li>
+  </ul>
+  <p style="margin-top:14px">Commercial rentals to for-profit businesses generate UBIT. Personal use by board members or officers is an excess benefit. Use by the Alumni Chapter requires a formal facility use agreement.</p></div>
+  <div class="card"><h3>The Chapter House (501c7 Facility)</h3>
+  <p>When the Alumni Chapter owns a house, facility income is subject to the same 65%/35% revenue rule. Rental income from non-members counts against the 35% non-member ceiling. More than 15% from public facility use triggers loss of exemption on that excess.</p>
+  </div></div>`;}
+
+function m6s2(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  return `<div>
+  <div class="card"><h3>Best Practices for Facility Use</h3>
+  <ul class="sl">
+    <li>Track member vs. non-member use hours and revenue separately</li>
+    <li>Charge non-members fair market rental rates to avoid excess benefit issues</li>
+    <li>Execute written rental agreements for all third-party uses</li>
+    <li>Commercial rentals generating UBIT require Form 990-T filing</li>
+    <li>Hybrid events (chapter + non-member): document which portion serves each entity</li>
+  </ul></div>
+  <div class="card"><h3>Knowledge Check</h3>
+  ${renderQuiz('q1','A chapter rents its house to a for-profit business for commercial office use. This rental income is subject to:',
+    ['No tax &mdash; real property rental is always exempt for nonprofits','UBIT and requires filing Form 990-T','The 65%/35% membership income test only','State property tax but not federal income tax'],1,
+    'Correct. Rental of real property to an unrelated commercial tenant generates Unrelated Business Income. The chapter must file Form 990-T and pay tax on net UBI exceeding $1,000.')}
+  ${q1?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 7 ==========
+function m7s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 7 of 8 &middot; Advanced Topics</div>
+    <div class="ts-title">Annual Filing &amp; Auto-Revocation</div>
+    <div class="ts-obj">You will understand the annual filing requirements for both entities, the automatic revocation rule for three years of non-filing, reinstatement procedures, and critical deadlines.</div>
+  </div>`;}
+
+function m7s1(){
+  return `<div>
+  <div class="card"><h3>Which Form 990 Does Each Entity File?</h3>
+  <table class="compare-tbl" style="margin-top:9px">
+    <thead><tr><th>Gross Receipts</th><th>501(c)(3) Foundation</th><th>501(c)(7) Chapter</th></tr></thead>
+    <tbody>
+      <tr><td>&le;$50,000</td><td>Form 990-N (e-Postcard)</td><td>Form 990-N (e-Postcard)</td></tr>
+      <tr><td>$50,001 &ndash; $200,000</td><td>Form 990-EZ or 990</td><td>Form 990-EZ or 990</td></tr>
+      <tr><td>&gt;$200,000</td><td>Full Form 990</td><td>Full Form 990</td></tr>
+      <tr><td>Any amount (UBIT)</td><td>Form 990-T (in addition)</td><td>Form 990-T (in addition)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card"><h3>Filing Deadlines (December 31 Fiscal Year)</h3>
+  <ul class="sl" style="margin-top:9px">
+    <li>Initial due date: <strong>May 15</strong> of the following year</li>
+    <li>Automatic 6-month extension via Form 8868</li>
+    <li>Extended deadline: <strong>November 15</strong></li>
+    <li>Extension is a filing extension only &mdash; no payment is extended</li>
+  </ul>
+  <div class="warn-box" style="margin-top:14px"><strong>The 3-Year Rule:</strong> Fail to file for three consecutive years and the IRS automatically revokes tax-exempt status &mdash; with no warning, no grace period, and no appeal before revocation.</div></div></div>`;}
+
+function m7s2(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>After Revocation: Reinstatement</h3>
+  <p>If exempt status is revoked, the organization must apply for reinstatement using Form 1023 (501c3) or Form 1024 (501c7), pay a reinstatement fee, and request retroactive reinstatement. During the revocation period, the organization may owe income tax on all revenue.</p>
+  <p>Retroactive reinstatement requires demonstrating reasonable cause for non-filing &mdash; a high bar to meet.</p></div>
+  <div class="card"><h3>Knowledge Check</h3>
+  ${renderQuiz('q1','The Denton-Lewisville Alumni Chapter (December 31 fiscal year end) must file its annual Form 990 by:',
+    ['March 15 of the following year','May 15 of the following year','April 15 of the following year','June 30 of the following year'],1,
+    'Correct. For organizations with a December 31 fiscal year end, the Form 990 is due by May 15. A 6-month extension to November 15 is available via Form 8868.')}
+  ${renderQuiz('q2','An organization that fails to file for three consecutive years will:',
+    ['Receive a warning letter and a 90-day cure period','Have its tax-exempt status automatically revoked with no prior notice','Be downgraded to 501(c)(4) status','Owe back taxes at the corporate rate only'],1,
+    'Correct. The IRS automatically revokes tax-exempt status after three consecutive years of non-filing. There is no warning &mdash; the revocation is immediate and retroactive.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 8 ==========
+function m8s0(){
+  return `<div class="title-screen">
+    <div class="ts-mod-lbl">Module 8 of 8 &middot; Advanced Topics</div>
+    <div class="ts-title">Governance, UBIT &amp; Advanced Tax Issues</div>
+    <div class="ts-obj">You will understand the three fiduciary duties of nonprofit board members, conflict of interest requirements, Unrelated Business Income Tax (UBIT), and the political activity prohibition for 501(c)(3) organizations.</div>
+  </div>`;}
+
+function m8s1(){
+  return `<div>
+  <div class="card"><h3>The Three Fiduciary Duties</h3>
+  <div class="exp-cards" id="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Duty of Care</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Board members must act with the care, skill, and diligence that a reasonably prudent person would exercise. This means attending meetings, reviewing financial statements, asking questions, and making informed decisions &mdash; not rubber-stamping leadership proposals.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Duty of Loyalty</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Board members must act in the best interest of the organization &mdash; not their personal interests. This duty requires a conflict of interest policy: disclose conflicts, recuse from related votes, and document the process in the minutes.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Duty of Obedience</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Board members must ensure the organization adheres to its stated mission, governing documents, and applicable law. This includes complying with IRS requirements, state nonprofit law, and the organization's own bylaws.</div>
+    </div>
+  </div></div>`;}
+
+function m8s2(){
+  return `<div>
+  <div class="card"><h3>Unrelated Business Income Tax (UBIT)</h3>
+  <p>Tax-exempt organizations owe federal income tax on <strong>Unrelated Business Income (UBI)</strong> &mdash; income from activities that are (1) a trade or business, (2) regularly carried on, and (3) not substantially related to the organization's exempt purpose.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Commercial facility rental to for-profit businesses: <strong>UBIT applies</strong></li>
+    <li>Advertising income from chapter publications: <strong>UBIT applies</strong></li>
+    <li>Investment income (dividends, interest): <strong>generally exempt from UBIT</strong></li>
+    <li>Passive rental income from real property: <strong>generally exempt</strong> (unless debt-financed)</li>
+  </ul>
+  <p style="margin-top:11px">When net UBI exceeds <strong>$1,000</strong> in a year, the organization must file <strong>Form 990-T</strong> and pay tax at the applicable rate.</p></div>
+  <div class="info-box"><strong>Political activity prohibition (501c3 only):</strong> The Guide Right Foundation is absolutely prohibited from participating in any political campaign &mdash; endorsing candidates, making contributions, or opposing candidates. Violation can result in immediate revocation of 501(c)(3) status.</div>
+  </div>`;}
+
+function m8s3(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check</h3><p>Answer both questions to complete this module.</p></div>
+  ${renderQuiz('q1','A board member is negotiating a contract between the chapter and his own catering company. The correct governance response is:',
+    ['Proceed &mdash; board members bring valuable expertise','Disclose the conflict, recuse from deliberations, and abstain from the vote','Have the Polemarch approve the contract unilaterally','Submit the contract to the Province office'],1,
+    'Correct. Conflict of interest policy requires disclosure, recusal from deliberations, and abstention from the vote. The board must document this process in the minutes.')}
+  ${renderQuiz('q2','An officer receives $15,000 in compensation that the IRS determines exceeds reasonable compensation by $12,000. The excess benefit excise tax owed is:',
+    ['$15,000 &mdash; the full compensation amount','$3,000 (25% x $12,000 excess)','$1,200 (10% x $12,000 excess)','No tax &mdash; fraternal compensation is always reasonable'],1,
+    'Correct. IRC 4958 imposes a 25% excise tax on the excess benefit amount. 25% x $12,000 = $3,000. The officer must also correct the excess by repaying it to the organization.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Knowledge check complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 1 ADDITIONS ==========
+function m1s4(){
+  return `<div>
+  <div class="card"><h3>501(c)(3): Legal Requirements</h3>
+  <p>To qualify and maintain 501(c)(3) status, the Guide Right Foundation must satisfy two IRS tests at all times.</p>
+  <div class="two-col" style="margin-top:14px">
+    <div style="background:var(--cm);border-radius:var(--r);padding:16px;border-left:4px solid var(--go)">
+      <div style="font-size:11px;font-weight:700;color:var(--go-d);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Organizational Test</div>
+      <ul class="sl">
+        <li>Articles of incorporation must limit purposes to charitable activities</li>
+        <li>Must include a dissolution clause directing assets to another 501(c)(3) on dissolution</li>
+        <li>Cannot authorize prohibited activities (political campaigns, substantial lobbying)</li>
+      </ul>
+    </div>
+    <div style="background:var(--cm);border-radius:var(--r);padding:16px;border-left:4px solid var(--cr)">
+      <div style="font-size:11px;font-weight:700;color:var(--cr);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Operational Test</div>
+      <ul class="sl">
+        <li>Must operate primarily for exempt purposes</li>
+        <li>No substantial non-exempt activities</li>
+        <li>No private benefit to insiders beyond reasonable compensation</li>
+        <li>No political campaign activity &mdash; ever</li>
+      </ul>
+    </div>
+  </div></div>
+  <div class="info-box"><strong>Ongoing obligation:</strong> Meeting these tests is not a one-time hurdle. The Foundation must satisfy both tests every year of operation. A single year of non-compliant activity can trigger revocation.</div>
+  </div>`;}
+
+function m1s5(){
+  return `<div>
+  <div class="card"><h3>501(c)(7): Legal Requirements for the Alumni Chapter</h3>
+  <p>The 501(c)(7) exemption requires the Alumni Chapter to meet specific operational standards that differ significantly from charitable organizations.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>Membership organization:</strong> Organized for the pleasure, recreation, and social purposes of its members &mdash; not the general public</li>
+    <li><strong>Non-profit operation:</strong> No portion of net earnings may inure to the benefit of any private shareholder or individual</li>
+    <li><strong>Member income dominance:</strong> At least 65% of gross receipts must come from members (dues, assessments, chapter fees)</li>
+    <li><strong>Facility restriction:</strong> Facilities and services are primarily for member use &mdash; public access must remain below 15% of gross receipts</li>
+    <li><strong>Discrimination prohibition:</strong> Membership selection cannot be based on race in a way that violates public policy</li>
+  </ul></div>
+  <div class="warn-box"><strong>Key distinction:</strong> A 501(c)(7) organization serves its members. When chapter activities shift toward serving the general public &mdash; large open events, public fundraising &mdash; the chapter moves toward jeopardizing its exempt status.</div>
+  </div>`;}
+
+function m1s6(){
+  return `<div>
+  <div class="card"><h3>What Can and Cannot Be Shared Between Entities</h3>
+  <p>Kappa Alpha Psi Fraternity, Inc. (National) holds 501(c)(3) status. The Denton-Lewisville Alumni Chapter operates as a 501(c)(7). Understanding what can flow between these entities &mdash; and what cannot &mdash; prevents the most common compliance violations.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Item</th><th>Can Be Shared?</th><th>Requirements</th></tr></thead>
+    <tbody>
+      <tr><td>Chapter name &amp; brand</td><td>Yes</td><td>Governed by National bylaws and chapter charter</td></tr>
+      <tr><td>Chapter funds to Foundation</td><td>Yes</td><td>Formal grant agreement, board approval, documented purpose</td></tr>
+      <tr><td>Foundation funds to Chapter</td><td>Restricted</td><td>Only if serving charitable purpose; not for social activities</td></tr>
+      <tr><td>Shared bank accounts</td><td>No</td><td>Separate accounts required &mdash; no exceptions</td></tr>
+      <tr><td>Staff or contractors</td><td>Yes</td><td>Costs must be allocated proportionally and documented</td></tr>
+      <tr><td>Office space</td><td>Yes</td><td>Written facility use agreement with fair market rent or cost allocation</td></tr>
+      <tr><td>Tax-deductible receipts</td><td>No</td><td>Only the 501(c)(3) Foundation can issue these</td></tr>
+    </tbody>
+  </table></div>`;}
+
+function m1s7(){
+  return `<div>
+  <div class="card"><h3>Practical Implications of the Dual-Entity Structure</h3>
+  <p>Running two organizations under one fraternal mission creates day-to-day practical challenges. Here is how compliant chapters handle the most common situations.</p></div>
+  <div class="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Annual gala with scholarship component</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Execute an MOU before the event. Designate separate ticket categories &mdash; Chapter Gala tickets collected into the Chapter account; Scholarship donation portion collected into the Foundation account. Never combine them.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Brother wants a tax-deductible gift receipt for supporting mentorship</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Direct the brother to donate personally to the Guide Right Foundation. The chapter cannot accept the gift on the Foundation's behalf, and chapter funds cannot be redirected to create a deduction for a brother.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Foundation runs short on program funds</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">The Foundation board submits a formal grant request to the Chapter board. The Chapter board votes to approve a grant. A written grant agreement is executed. The Chapter writes a check from its account directly to the Foundation account. No informal transfers.</div>
+    </div>
+  </div></div>`;}
+
+function m1s8(){
+  return `<div>
+  <div class="card"><h3>Board &amp; Leadership Overlap Rules</h3>
+  <p>The same individual may serve on both the Alumni Chapter board and the Guide Right Foundation board. However, overlapping leadership creates heightened conflict-of-interest obligations and requires strict adherence to separation protocols.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Individuals who serve both entities must recuse themselves from any vote where they represent both sides of a transaction</li>
+    <li>A person cannot approve a transfer from the Chapter (as Chapter officer) and accept that transfer for the Foundation (as Foundation officer) simultaneously</li>
+    <li>Board minutes for each entity must be maintained separately &mdash; no combined meeting minutes</li>
+    <li>Financial decisions for each entity require separate board meetings or at minimum separate agenda items with separate votes documented</li>
+  </ul></div>
+  <div class="card"><h3>Reporting Obligations of Each Entity</h3>
+  <ul class="sl">
+    <li><strong>Both entities:</strong> Annual IRS Form 990 (990-N, 990-EZ, or full 990) based on gross receipts</li>
+    <li><strong>Foundation (501c3):</strong> Available for public inspection &mdash; anyone can request a copy</li>
+    <li><strong>Chapter (501c7):</strong> Same public disclosure rules apply to 990 returns</li>
+    <li><strong>Texas state requirement:</strong> Annual report to Texas Secretary of State for each registered entity</li>
+    <li><strong>Both entities:</strong> Maintain records sufficient to verify eligibility &mdash; 7-year minimum retention</li>
+  </ul></div>
+  </div>`;}
+
+function m1s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 1 Final Knowledge Check</h3><p>Demonstrate your understanding of the dual-entity structure before proceeding.</p></div>
+  ${renderQuiz('q1','An officer serves on both the Chapter board and the Foundation board. She is asked to vote on a Chapter grant to the Foundation. She should:',
+    ['Vote yes &mdash; board experience on both sides is valuable','Recuse herself from deliberations and abstain from the vote on both boards','Vote only on the Foundation side since she has a conflict on the Chapter side','Proceed normally &mdash; dual service is the reason she was appointed to both boards'],1,
+    'Correct. Dual board service creates a conflict of interest on any inter-entity transaction. She must recuse herself and abstain from the vote on both entities, and this must be documented in both sets of minutes.')}
+  ${renderQuiz('q2','Which activity would jeopardize the Chapter\'s 501(c)(7) status?',
+    ['Charging non-members slightly higher event ticket prices','Holding an open public fundraiser where non-member revenue exceeds 35% of annual gross receipts','Requiring dues from all active members','Holding social events exclusively for members'],1,
+    'Correct. When non-member income exceeds 35% of gross receipts, the Chapter fails the 501(c)(7) revenue test. A large open public fundraiser generating more than 35% of annual revenue from the public puts exempt status at risk.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 1 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 2 ADDITIONS ==========
+function m2s4(){
+  return `<div>
+  <div class="card"><h3>Permitted Revenue Sources for 501(c)(7) in Detail</h3>
+  <p>Not all revenue is equal under 501(c)(7) rules. Understanding which sources are fully permitted &mdash; and which count against the 35% non-member ceiling &mdash; is essential for annual budget planning.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Revenue Source</th><th>Classification</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Annual dues</td><td>Member income</td><td>Core permitted revenue; must be majority of gross receipts</td></tr>
+      <tr><td>Special assessments</td><td>Member income</td><td>One-time or periodic charges to members</td></tr>
+      <tr><td>Member-only event fees</td><td>Member income</td><td>Member-only event tickets and participation fees</td></tr>
+      <tr><td>Corporate sponsorships</td><td>Non-member (35% cap)</td><td>Counts toward non-member ceiling</td></tr>
+      <tr><td>Non-member event tickets</td><td>Non-member (35% cap)</td><td>Track separately from member ticket sales</td></tr>
+      <tr><td>Interest &amp; dividends on investments</td><td>Non-member (35% cap)</td><td>Investment income is non-member income for 501(c)(7)</td></tr>
+      <tr><td>Facility rental to non-members</td><td>Non-member / facility (15% sub-cap)</td><td>Also subject to UBIT if commercial use</td></tr>
+    </tbody>
+  </table></div>`;}
+
+function m2s5(){
+  return `<div>
+  <div class="card"><h3>Prohibited Revenue Activities</h3>
+  <p>Certain revenue activities are outright prohibited for 501(c)(7) organizations or will cause tax consequences. Recognizing these protects both entities.</p></div>
+  <div class="card">
+    <ul class="sl">
+      <li><strong>Accepting donations marketed as tax-deductible:</strong> The Chapter cannot issue tax-deductible receipts. Accepting contributions as if they were charitable donations is a misrepresentation and jeopardizes 501(c)(7) status</li>
+      <li><strong>Revenue primarily serving the general public:</strong> If the Chapter's primary revenue shifts to serving the public rather than members, it no longer qualifies as a social club</li>
+      <li><strong>Excessive non-member income:</strong> When non-member income exceeds 35% of gross receipts, the Chapter owes income tax on the excess non-member income &mdash; and risks revocation on continued violation</li>
+      <li><strong>Unrelated business income without Form 990-T:</strong> Commercial rental and advertising revenue may be taxable as UBIT. Failing to file Form 990-T when UBI exceeds $1,000 creates penalty exposure</li>
+      <li><strong>Political contributions:</strong> Making campaign contributions can trigger excise taxes and jeopardize exempt status</li>
+    </ul>
+  </div></div>`;}
+
+function m2s6(){
+  return `<div>
+  <div class="card"><h3>How to Categorize Revenue Correctly</h3>
+  <p>Every dollar received by the Chapter must be categorized at the time of receipt. Retroactive categorization is a red flag to auditors. Use this decision process for every revenue item.</p></div>
+  <div class="card">
+    <h3>Revenue Categorization Decision Process</h3>
+    <ul class="sl">
+      <li><strong>Step 1 &mdash; Who is paying?</strong> If a current dues-paying member pays, it is member income. If a non-member pays, it is non-member income.</li>
+      <li><strong>Step 2 &mdash; What is the payment for?</strong> Member dues/assessments &rarr; member income column. Event ticket (member) &rarr; member income. Event ticket (non-member) &rarr; non-member income column.</li>
+      <li><strong>Step 3 &mdash; Is it facility use by the public?</strong> If yes, track in the facility/public use sub-column (15% cap applies).</li>
+      <li><strong>Step 4 &mdash; Is it investment income?</strong> Track separately &mdash; counts toward non-member ceiling but may also be UBIT-exempt.</li>
+      <li><strong>Step 5 &mdash; Run the annual test.</strong> Total member income &divide; gross receipts must be &ge;65%. Total non-member income &divide; gross receipts must be &le;35%.</li>
+    </ul>
+  </div>
+  <div class="info-box"><strong>Treasurer action item:</strong> Create a revenue tracking spreadsheet with these four columns before each fiscal year. Update it monthly, not annually.</div>
+  </div>`;}
+
+function m2s7(){
+  return `<div>
+  <div class="card"><h3>Member Dues vs. Public Revenue: The Critical Distinction</h3>
+  <p>The most important revenue distinction for the Chapter is between member income and everything else. Here is how to apply the distinction in practice.</p>
+  <table class="compare-tbl" style="margin-top:11px">
+    <thead><tr><th>Scenario</th><th>Classification</th><th>Reasoning</th></tr></thead>
+    <tbody>
+      <tr><td>Brother pays $300 annual dues</td><td>Member income</td><td>Active member paying required assessment</td></tr>
+      <tr><td>Brother's spouse buys gala ticket</td><td>Non-member income</td><td>Spouse is not a chapter member</td></tr>
+      <tr><td>Brother buys extra gala tickets for guests</td><td>Non-member income (guest tickets)</td><td>Guest tickets are non-member income even when purchased by a member</td></tr>
+      <tr><td>Corporate sponsor pays $2,500</td><td>Non-member income</td><td>Corporation is not a member</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card"><h3>Investment Income Rules</h3>
+  <p>Interest, dividends, and capital gains from the Chapter's investment accounts count as <strong>non-member income</strong> for purposes of the 65%/35% test. In years with large investment returns, the Chapter must ensure member dues are sufficient to keep member income at or above 65% of gross receipts.</p></div>
+  </div>`;}
+
+function m2s8(){
+  return `<div>
+  <div class="card"><h3>Fundraising Event Income &amp; Grant Eligibility</h3>
+  <p>Fundraising events create categorization complexity because revenue often comes from mixed sources. A single event can generate both member and non-member income simultaneously.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Sell tickets in two categories: Member tickets and Guest/public tickets &mdash; track separately from point of sale</li>
+    <li>Sponsorship revenue from businesses: always non-member income</li>
+    <li>Silent auction proceeds: non-member income if bidders are the general public; member income only if restricted to members</li>
+    <li>Raffle proceeds: check Texas charitable raffle regulations &mdash; some raffle formats require a qualifying nonprofit status the Chapter may not hold</li>
+  </ul></div>
+  <div class="card"><h3>Grant Eligibility: 501(c)(3) vs. 501(c)(7)</h3>
+  <p>Most private foundations and government grant programs fund 501(c)(3) charitable organizations only. The Alumni Chapter, as a 501(c)(7), is ineligible for most grants. When seeking grant funding for scholarship or mentorship programs, those applications must go through the Guide Right Foundation. The Chapter cannot receive a grant and pass it to the Foundation.</p>
+  <p style="margin-top:11px"><strong>Revenue documentation requirement:</strong> Every revenue receipt must identify the payer, amount, date, and classification. IRS examiners look for itemized deposit records showing source breakdowns during 990 audits.</p></div>
+  </div>`;}
+
+function m2s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 2 Final Knowledge Check</h3><p>Confirm your understanding of revenue rules before proceeding.</p></div>
+  ${renderQuiz('q1','The Alumni Chapter receives $18,000 in dues and $10,000 in corporate sponsorships ($28,000 gross receipts). Is the Chapter within the 65%/35% rule?',
+    ['Yes &mdash; member income is 64% which is close enough','No &mdash; member income is only 64.3%, just below the 65% threshold','Yes &mdash; sponsorships are always permitted for social clubs','No &mdash; corporate sponsorships are prohibited for 501(c)(7)'],1,
+    'Correct. $18,000 &divide; $28,000 = 64.3% &mdash; just below the 65% member income threshold. The Chapter would need either more member revenue or less sponsorship income to comply. &ldquo;Close enough&rdquo; is not a legal standard.')}
+  ${renderQuiz('q2','A private foundation offers the Alumni Chapter a $5,000 grant to fund a college prep workshop for local youth. The Chapter should:',
+    ['Accept the grant &mdash; community programs benefit the chapter\'s image','Decline or redirect the grant to the Foundation &mdash; the Chapter is ineligible for charitable grants','Accept only if the workshop is restricted to member families','Accept and transfer 50% to the Foundation to share the benefit'],1,
+    'Correct. Grants from private foundations are typically restricted to 501(c)(3) organizations. The Chapter should direct the funder to the Guide Right Foundation, which is the eligible entity for charitable grant funding.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 2 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 3 ADDITIONS ==========
+function m3s4(){
+  return `<div>
+  <div class="card"><h3>Specific Account Structure Requirements</h3>
+  <p>Each entity must have its own accounts &mdash; and those accounts must never be co-signatories where one entity's officer controls the other's account.</p></div>
+  <div class="card">
+    <h3>Recommended Account Structure</h3>
+    <table class="compare-tbl">
+      <thead><tr><th>Account</th><th>Entity</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Operating checking</td><td>Chapter (501c7)</td><td>Day-to-day expenses and dues deposits</td></tr>
+        <tr><td>Event/reserve account</td><td>Chapter (501c7)</td><td>Event revenue and reserve fund &mdash; still a Chapter account</td></tr>
+        <tr><td>Operating checking</td><td>Foundation (501c3)</td><td>Foundation program expenses and donation deposits</td></tr>
+        <tr><td>Scholarship disbursement</td><td>Foundation (501c3)</td><td>Dedicated account for scholarship awards</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn-box"><strong>Red line:</strong> No Chapter officer should be an authorized signatory on a Foundation account, and vice versa, unless that individual is on both boards AND the dual role is disclosed and governed by a conflict of interest policy. Even then, a single person controlling both accounts creates an appearance of commingling.</div>
+  </div>`;}
+
+function m3s5(){
+  return `<div>
+  <div class="card"><h3>Commingling Violations and Consequences</h3>
+  <p>Commingling is not a technicality &mdash; it is a serious legal violation with compounding consequences for both entities and the individuals involved.</p></div>
+  <div class="card">
+    <h3>Consequence Cascade</h3>
+    <ul class="sl">
+      <li><strong>IRS audit trigger:</strong> Discrepancies between 990 filings and bank records are one of the most common IRS examination triggers. Commingled accounts make it impossible to produce clean records.</li>
+      <li><strong>Exempt status risk:</strong> The IRS can revoke 501(c)(3) or 501(c)(7) status if it determines the organization failed to operate for its exempt purpose</li>
+      <li><strong>Tax liability on all revenue:</strong> During a revocation period, the organization owes income tax on all revenue received &mdash; not just the improperly used funds</li>
+      <li><strong>Officer personal liability:</strong> Officers who authorize improper transfers can face personal liability for excise taxes under IRC 4958</li>
+      <li><strong>Grant disqualification:</strong> Foundation grants require certified financial statements. Commingled accounts make those certifications impossible</li>
+    </ul>
+  </div>
+  <div class="info-box"><strong>Real scenario:</strong> If the Chapter deposits a corporate sponsorship check into the Foundation account &ldquo;because the Foundation account was nearby,&rdquo; both entities may be considered to have received funds belonging to the other. A single errant deposit can unravel years of careful compliance.</div>
+  </div>`;}
+
+function m3s6(){
+  return `<div>
+  <div class="card"><h3>Inter-Entity Transfer Rules: When Allowed and How</h3>
+  <p>Funds can move between the Chapter and Foundation &mdash; but only through a strictly compliant process. There is no such thing as an authorized informal transfer.</p></div>
+  <div class="card">
+    <h3>The Four Requirements for a Valid Transfer</h3>
+    <ul class="sl">
+      <li><strong>1. Board approval from the transferring entity:</strong> The Chapter board must vote to approve any grant to the Foundation. This vote must be reflected in official meeting minutes with a quorum present.</li>
+      <li><strong>2. Written grant agreement:</strong> A signed document specifying amount, purpose, reporting requirements, and conditions. This is the legal instrument that makes the transfer a grant rather than commingling.</li>
+      <li><strong>3. Charitable purpose documentation:</strong> The grant agreement must identify the specific charitable program being supported. &ldquo;General support&rdquo; is insufficient.</li>
+      <li><strong>4. Follow-up reporting:</strong> The Foundation must report back to the Chapter on how the grant funds were used. The Chapter's grant records must include this final report.</li>
+    </ul>
+  </div>
+  <div class="warn-box"><strong>Direction restriction:</strong> Funds flowing from Foundation back to Chapter are extremely restricted &mdash; the Foundation must not subsidize the Chapter's social activities, as this constitutes private benefit to the social club members.</div>
+  </div>`;}
+
+function m3s7(){
+  return `<div>
+  <div class="card"><h3>Expense Allocation When Shared Costs Occur</h3>
+  <p>When both entities genuinely share a cost &mdash; a shared office, a shared staff member, or a joint event &mdash; that cost must be allocated using a documented, consistent, and reasonable methodology.</p></div>
+  <div class="card">
+    <h3>Allocation Methodologies</h3>
+    <ul class="sl">
+      <li><strong>Space allocation:</strong> If both entities share an office, allocate rent by square footage used by each entity's activities (e.g., 60% Chapter / 40% Foundation based on dedicated space)</li>
+      <li><strong>Time allocation:</strong> If a staff member works for both, they must maintain time records showing hours spent on each entity's activities. Allocation is based on actual documented time.</li>
+      <li><strong>Event allocation:</strong> Joint events require the pre-event MOU to specify the cost split. After the event, document actual costs against the agreed split and reconcile any variances.</li>
+      <li><strong>Technology allocation:</strong> Shared software subscriptions must be allocated by actual or estimated use. If it's a 50/50 split, document how that was determined.</li>
+    </ul>
+  </div>
+  <div class="info-box"><strong>Documentation rule:</strong> Whatever methodology you choose, document it before the costs are incurred, apply it consistently throughout the year, and retain support records for 7 years. Changing methodology mid-year without documentation is a red flag.</div>
+  </div>`;}
+
+function m3s8(){
+  return `<div>
+  <div class="card"><h3>Receipt, Disbursement &amp; Reconciliation Procedures</h3>
+  <p>Clean financial records are the first line of defense against IRS scrutiny. Both entities must maintain complete, contemporaneous records of every financial transaction.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>Every receipt:</strong> Identify payer, amount, date, account deposited, and category (member/non-member)</li>
+    <li><strong>Every disbursement:</strong> Identify payee, amount, date, purpose, which entity's account it came from, and authorization</li>
+    <li><strong>Monthly bank reconciliation:</strong> Both entities must reconcile bank statements to the books monthly. Unreconciled accounts for more than 60 days are a governance failure</li>
+    <li><strong>Annual independent review:</strong> For larger entities, an independent CPA review provides a layer of oversight that protects officers from liability</li>
+  </ul></div>
+  <div class="card"><h3>What Triggers IRS Scrutiny of Fund Commingling</h3>
+  <ul class="sl">
+    <li>990 filings showing income or expense inconsistencies between years without explanation</li>
+    <li>Bank account activity that doesn't match reported revenue categories</li>
+    <li>Large inter-entity transfers without corresponding grant agreements on record</li>
+    <li>Officer compensation appearing on one entity's 990 but funded by the other's accounts</li>
+    <li>Whistleblower complaints or media coverage identifying financial irregularities</li>
+  </ul></div>
+  </div>`;}
+
+function m3s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 3 Final Knowledge Check</h3><p>Confirm your understanding of fund separation requirements.</p></div>
+  ${renderQuiz('q1','The Chapter and Foundation share an administrative assistant who works 30 hours per week. How should the assistant\'s salary be allocated?',
+    ['Split 50/50 &mdash; it\'s the simplest approach','Based on time records documenting actual hours spent on each entity\'s activities each week','Paid entirely by the Chapter since the Chapter writes the checks','Paid entirely by the Foundation since the assistant supports charitable programs'],1,
+    'Correct. Shared employee costs must be allocated based on documented time records. A blanket 50/50 split without documentation is insufficient. The IRS requires a reasonable, documented, and consistent methodology.')}
+  ${renderQuiz('q2','The Chapter receives a $3,000 invoice for printing used for both a Chapter social event program and Foundation scholarship brochures. The correct action is:',
+    ['Pay the full invoice from whichever account has more money','Allocate the cost based on documented proportion of printing for each entity, with each paying its share from its own account','Have the Foundation pay since printing for scholarships is a charitable expense','Decline to pay until both boards hold a joint meeting'],1,
+    'Correct. Shared costs must be allocated by documented proportion of use. Each entity pays its allocated share from its own account. A combined payment from one account creates a commingling problem.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 3 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 4 ADDITIONS ==========
+function m4s3(){
+  return `<div>
+  <div class="card"><h3>Co-Sponsored vs. Chapter-Only Events</h3>
+  <p>Not every event involving scholarship discussion is a co-sponsored event. Understanding the distinction prevents over-engineering simple chapter activities and under-protecting genuinely joint events.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Feature</th><th>Chapter-Only Event</th><th>Co-Sponsored Event</th></tr></thead>
+    <tbody>
+      <tr><td>Revenue recipient</td><td>Chapter only</td><td>Both entities receive designated revenue</td></tr>
+      <tr><td>Expense payer</td><td>Chapter only</td><td>Both entities pay designated expenses</td></tr>
+      <tr><td>Purpose</td><td>Social/member benefit</td><td>Has a genuine charitable component served by Foundation</td></tr>
+      <tr><td>Tax-deductible donations</td><td>Not available</td><td>Available for Foundation's share only</td></tr>
+      <tr><td>MOU required?</td><td>No</td><td>Yes &mdash; before the event</td></tr>
+      <tr><td>Example</td><td>Chapter annual banquet</td><td>Scholarship gala where Foundation awards scholarships</td></tr>
+    </tbody>
+  </table>
+  <div class="warn-box"><strong>Common mistake:</strong> Labeling a chapter social event as &ldquo;co-sponsored&rdquo; to allow collection of tax-deductible donations. The Foundation's involvement must be genuine and substantive &mdash; not a label applied to access the 501(c)(3) status.</div>
+  </div>`;}
+
+function m4s4(){
+  return `<div>
+  <div class="card"><h3>MOU Required Elements &mdash; Compliance Checklist</h3>
+  <p>Use this checklist when drafting or reviewing any MOU for a co-sponsored event. Every element should be addressed before the event occurs. Never execute an MOU after the event has already happened &mdash; that is not compliance, that is retroactive paperwork.</p></div>
+  <div class="card">
+    <h3>Pre-Event MOU Checklist</h3>
+    <ul class="sl">
+      <li>&#9744; Event name, date, location, and brief description</li>
+      <li>&#9744; Statement of each entity's role and purpose (social vs. charitable)</li>
+      <li>&#9744; Percentage or dollar allocation of projected costs between entities</li>
+      <li>&#9744; Identification of each entity's bank account for revenue deposits and expense payments</li>
+      <li>&#9744; Procedure for collecting revenue separately (two payment methods, or two clearly designated ticket categories)</li>
+      <li>&#9744; Procedure for shared vendor payments (who pays, how reimbursement works)</li>
+      <li>&#9744; Liability allocation clause (which entity bears which liability)</li>
+      <li>&#9744; Insurance requirement (who provides event insurance, naming both entities)</li>
+      <li>&#9744; Intellectual property clause (who owns branding, photography, recordings)</li>
+      <li>&#9744; Post-event financial reporting deadline (typically 30 days after the event)</li>
+      <li>&#9744; Dispute resolution process</li>
+      <li>&#9744; Signature of authorized officer of each entity, with date</li>
+    </ul>
+  </div></div>`;}
+
+function m4s5(){
+  return `<div>
+  <div class="card"><h3>Negotiating Event Cost Splits</h3>
+  <p>The cost split in an MOU should reflect the genuine benefit each entity receives &mdash; not a pre-determined formula applied to every event regardless of actual circumstances.</p></div>
+  <div class="card">
+    <h3>Factors That Drive the Cost Split</h3>
+    <ul class="sl">
+      <li><strong>Audience composition:</strong> If the event is 70% social chapter activity and 30% Foundation scholarship program, a 70/30 split is defensible</li>
+      <li><strong>Program time allocation:</strong> Track how many hours of the event are dedicated to each entity's purpose. A 4-hour event with 3 hours of social programming and 1 hour of scholarship ceremony supports a 75/25 cost split</li>
+      <li><strong>Revenue allocation:</strong> The Foundation's share of costs should roughly correspond to the Foundation's share of revenue and charitable benefit from the event</li>
+      <li><strong>Direct vs. shared costs:</strong> Some costs are exclusively one entity's (scholarship award printing = Foundation; social entertainment = Chapter). Others are shared (venue rental, catering = split)</li>
+    </ul>
+  </div>
+  <div class="info-box"><strong>Document your rationale:</strong> The MOU should include one or two sentences explaining how the cost split was determined. &ldquo;The 65/35 Chapter/Foundation split reflects the event program's time allocation between social activities and scholarship ceremony.&rdquo; This documentation becomes your audit defense.</div>
+  </div>`;}
+
+function m4s6(){
+  return `<div>
+  <div class="card"><h3>Liability Allocation in MOUs</h3>
+  <p>When two organizations share an event, they must agree in advance on how liability is allocated. An MOU that addresses cost splits but ignores liability is incomplete and leaves both entities exposed.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>General liability:</strong> Specify which entity's general liability insurance is primary for the event, or require both to carry coverage naming the other as additional insured</li>
+    <li><strong>Liquor liability:</strong> If the event serves alcohol, specify which entity holds the liquor license and bears liquor liability &mdash; this should be on a separate rider, not assumed by standard policy</li>
+    <li><strong>Vendor liability:</strong> When a vendor causes property damage, which entity's contract with that vendor controls the claim? Specify in the MOU.</li>
+    <li><strong>Participant injury:</strong> Waiver and release language must be reviewed to ensure it covers activities of both entities</li>
+  </ul></div>
+  <div class="card"><h3>Intellectual Property in Co-Sponsored Events</h3>
+  <p>The MOU must specify who owns photographs, event recordings, program materials, and branding assets created for the co-sponsored event. Ownership matters when materials are used in fundraising, grant applications, or press coverage.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Event photography: ownership and usage rights for each entity</li>
+    <li>Event name and logo: who can use it in future promotions</li>
+    <li>Scholarship recipient data: FERPA considerations if minors are involved</li>
+  </ul></div>
+  </div>`;}
+
+function m4s7(){
+  return `<div>
+  <div class="card"><h3>Structuring a Compliant Scholarship Gala</h3>
+  <p>The annual scholarship gala is the most common co-sponsored event in Kappa chapters. Here is a step-by-step structure for doing it right.</p></div>
+  <div class="card">
+    <h3>Scholarship Gala Compliance Blueprint</h3>
+    <ul class="sl">
+      <li><strong>8 weeks out:</strong> Foundation board and Chapter board each vote to co-sponsor the event. Both board approvals are documented in respective minutes.</li>
+      <li><strong>6 weeks out:</strong> MOU is drafted, reviewed, and executed by authorized officers of both entities. Cost split, revenue procedures, and liability terms are all addressed.</li>
+      <li><strong>Ticket sales:</strong> Two ticket types &mdash; Chapter Gala tickets (non-deductible) and Scholarship Sponsorship packages (Foundation, tax-deductible). Each collected into the designated entity's account.</li>
+      <li><strong>Event night:</strong> Scholarship check is written from the Foundation account. Social activities are funded from the Chapter account. Emcee acknowledges both entities separately and accurately.</li>
+      <li><strong>30 days after:</strong> Treasurer of each entity completes a post-event financial report. Actuals compared to MOU estimates. Both boards receive copies.</li>
+    </ul>
+  </div></div>`;}
+
+function m4s8(){
+  return `<div>
+  <div class="card"><h3>Case Studies: MOU Disputes</h3>
+  <p>These three scenarios illustrate how MOU failures create real compliance problems.</p></div>
+  <div class="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Case: Revenue Collected in Wrong Account</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body"><strong>What happened:</strong> All gala ticket sales went into the Chapter account. The Foundation's portion was transferred after the event. <strong>The problem:</strong> This is commingling. The transfer required a grant agreement that didn't exist. <strong>The fix:</strong> Pre-event MOU designating separate payment methods from the point of ticket sale.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Case: Verbal Agreement, No Written MOU</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body"><strong>What happened:</strong> The Polemarch and Foundation president agreed verbally to a 50/50 cost split. After the event, costs were higher than expected and the entities disputed what was agreed. <strong>The problem:</strong> No written MOU = no enforceable agreement. The dispute resulted in the Foundation paying 70% of costs. <strong>The fix:</strong> Written MOU with specific percentages, executed before any costs are incurred.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Case: Co-Sponsorship Label Without Substance</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body"><strong>What happened:</strong> The Chapter labeled its annual banquet a &ldquo;co-sponsored event&rdquo; so that table sponsorships could be marketed as tax-deductible. The Foundation had no actual programmatic role. <strong>The problem:</strong> Deceptive charitable solicitation. The Foundation's name was used to misrepresent tax deductibility. Both entities face IRS scrutiny. <strong>The fix:</strong> Only label an event as co-sponsored when the Foundation has a genuine, substantial, documented charitable role.</div>
+    </div>
+  </div></div>`;}
+
+function m4s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 4 Final Knowledge Check</h3><p>Confirm your MOU and co-sponsorship knowledge.</p></div>
+  ${renderQuiz('q1','The Chapter and Foundation want to co-sponsor a scholarship gala. At what point is the MOU required?',
+    ['After the event, to document what actually occurred','Before ticket sales begin and before any costs are incurred','Before the event but after venue deposits are paid','Only if the event budget exceeds $25,000'],1,
+    'Correct. The MOU must be executed before any event activity begins &mdash; before ticket sales, before vendor contracts, before costs are incurred. A post-event MOU does not make retroactive activity compliant.')}
+  ${renderQuiz('q2','A guest at the co-sponsored gala slips and falls on a wet floor. Which entity is liable?',
+    ['The Foundation, since the event has a charitable purpose','The Chapter, since it is a social event','Whichever entity the MOU designates as bearing general event liability &mdash; which is why the MOU must address this in advance','Neither entity &mdash; the venue bears all liability'],2,
+    'Correct. The MOU must allocate liability between entities before the event. Without this provision, both entities may be exposed, and any settlement may need to come from both accounts &mdash; creating additional commingling complications.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 4 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 5 ADDITIONS ==========
+function m5s3(){
+  return `<div>
+  <div class="card"><h3>The IRS 20-Factor Test Applied to Chapter Scenarios</h3>
+  <p>The IRS uses a multi-factor behavioral control analysis to determine whether a worker is an employee or independent contractor. No single factor is determinative &mdash; the overall relationship matters.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>IRS Factor</th><th>Employee Indicator</th><th>Contractor Indicator</th></tr></thead>
+    <tbody>
+      <tr><td>Instructions</td><td>Chapter directs when, where, and how to work</td><td>Worker determines own approach</td></tr>
+      <tr><td>Training</td><td>Chapter trains on its specific systems and procedures</td><td>Worker uses own established methods</td></tr>
+      <tr><td>Integration</td><td>Worker's services are integral to chapter operations</td><td>Worker provides a discrete, separable service</td></tr>
+      <tr><td>Set hours</td><td>Chapter sets specific working hours</td><td>Worker sets own schedule</td></tr>
+      <tr><td>Full-time work</td><td>Worker devotes substantially full time to chapter</td><td>Worker is free to work for other clients</td></tr>
+      <tr><td>Tools &amp; equipment</td><td>Chapter provides computer, software, office space</td><td>Worker provides own equipment</td></tr>
+      <tr><td>Duration</td><td>Ongoing, sustained relationship</td><td>Project-based, limited term</td></tr>
+    </tbody>
+  </table></div>`;}
+
+function m5s4(){
+  return `<div>
+  <div class="card"><h3>What Chapter Officers Can and Cannot Be Paid For</h3>
+  <p>Fraternal tradition holds that officer service is voluntary. IRS rules permit compensation but impose strict requirements to avoid excess benefit transactions.</p></div>
+  <div class="two-col">
+    <div style="background:rgba(21,128,61,.08);border:1px solid #15803d;border-radius:var(--r);padding:16px">
+      <div style="font-size:11px;font-weight:700;color:#14532d;text-transform:uppercase;margin-bottom:8px">Officers MAY be compensated for:</div>
+      <ul class="sl">
+        <li>Specific professional services rendered (e.g., a CPA officer providing audit services at fair market rate)</li>
+        <li>Documented out-of-pocket expenses (reimbursement at actual cost)</li>
+        <li>Contracted services approved by the full board before work begins</li>
+      </ul>
+    </div>
+    <div style="background:rgba(185,28,28,.07);border:1px solid #b91c1c;border-radius:var(--r);padding:16px">
+      <div style="font-size:11px;font-weight:700;color:#991b1b;text-transform:uppercase;margin-bottom:8px">Officers may NOT receive:</div>
+      <ul class="sl">
+        <li>Compensation for serving in their officer role (attending meetings, voting, fulfilling officer duties)</li>
+        <li>Payment exceeding fair market value for services rendered</li>
+        <li>Undocumented cash payments or gifts without board approval</li>
+        <li>Access to chapter resources for personal benefit</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warn-box" style="margin-top:14px"><strong>Required process:</strong> Any compensation to a disqualified person must be approved in advance by the full board &mdash; with the interested party absent from the vote &mdash; and documented as reasonable for comparable services in the region.</div>
+  </div>`;}
+
+function m5s5(){
+  return `<div>
+  <div class="card"><h3>Honoraria: Rules and Limits</h3>
+  <p>An honorarium is a voluntary payment to a person for services for which no legally enforceable fee is set. Even small honoraria have tax implications.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>An honorarium paid to a non-employee is reportable on Form 1099-NEC if it is $600 or more in a calendar year from that payer</li>
+    <li>Honoraria paid to chapter officers (disqualified persons) are compensation subject to IRC 4958 excess benefit rules &mdash; they must be reasonable and board-approved</li>
+    <li>Even if below $600, honoraria are taxable income to the recipient &mdash; the 1099 threshold is a reporting threshold, not an exemption threshold</li>
+  </ul></div>
+  <div class="card"><h3>Reimbursement vs. Compensation: The Critical Distinction</h3>
+  <p>Reimbursement of documented out-of-pocket expenses is not compensation &mdash; but only if done correctly.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>Accountable plan reimbursement:</strong> Employee submits receipts, employer pays exact documented amount. Not income. Not on W-2.</li>
+    <li><strong>Non-accountable plan or excess reimbursement:</strong> Flat per diems without receipts, reimbursements that exceed actual costs &mdash; these are taxable wages</li>
+    <li><strong>Volunteer mileage:</strong> Reimbursement at or below the IRS standard mileage rate for volunteers (14 cents/mile for charitable service) is not income. Reimbursement above that rate is taxable</li>
+  </ul></div>
+  </div>`;}
+
+function m5s6(){
+  return `<div>
+  <div class="card"><h3>Payroll Tax Obligations</h3>
+  <p>When the chapter or Foundation has employees, it takes on significant federal and state payroll tax obligations. Failure to meet these obligations creates penalties that can exceed the original tax owed.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Tax</th><th>Employer Obligation</th><th>Rate</th></tr></thead>
+    <tbody>
+      <tr><td>Federal income tax withholding</td><td>Withhold from employee wages; deposit per schedule</td><td>Based on W-4</td></tr>
+      <tr><td>Social Security (FICA)</td><td>Withhold 6.2% from employee; pay matching 6.2%</td><td>12.4% total</td></tr>
+      <tr><td>Medicare (FICA)</td><td>Withhold 1.45% from employee; pay matching 1.45%</td><td>2.9% total</td></tr>
+      <tr><td>Federal unemployment (FUTA)</td><td>Employer only &mdash; not withheld from wages</td><td>6% on first $7,000</td></tr>
+      <tr><td>Texas unemployment (SUTA)</td><td>Employer only &mdash; rate varies by experience rating</td><td>Varies</td></tr>
+    </tbody>
+  </table>
+  <div class="warn-box" style="margin-top:14px"><strong>Trust fund penalty:</strong> Officers who are responsible for payroll and willfully fail to deposit withheld payroll taxes can be held personally liable &mdash; even in a nonprofit. This is called the 100% trust fund recovery penalty.</div>
+  </div>`;}
+
+function m5s7(){
+  return `<div>
+  <div class="card"><h3>Form 1099 Requirements</h3>
+  <p>When the chapter or Foundation pays an independent contractor, it may be required to issue a Form 1099-NEC. Failing to file required 1099s creates penalties and audit risk.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>When required:</strong> Paid $600 or more in a calendar year to a single non-employee individual or unincorporated business for services</li>
+    <li><strong>When NOT required:</strong> Payments to corporations (C corps or S corps), payments for products/merchandise, or payments via credit card or third-party payment processors (those processors issue the 1099-K)</li>
+    <li><strong>Deadline:</strong> Recipient and IRS copy both due January 31 (electronic filing)</li>
+    <li><strong>Information needed:</strong> Collect Form W-9 from every contractor before making any payment. You cannot issue a 1099 without the contractor's taxpayer identification number.</li>
+  </ul></div>
+  <div class="card"><h3>Risks of Worker Misclassification</h3>
+  <ul class="sl">
+    <li>IRS reclassification triggers back payroll taxes for all open years (generally 3, up to 6)</li>
+    <li>20% penalty on underwithheld federal income taxes</li>
+    <li>100% of FICA taxes (both employee and employer shares) for the misclassification period</li>
+    <li>State unemployment tax liability and penalties</li>
+    <li>Potential claims for employee benefits by reclassified workers</li>
+  </ul></div>
+  </div>`;}
+
+function m5s8(){
+  return `<div>
+  <div class="card"><h3>Worker Classification Scenarios</h3>
+  <p>Review each scenario and identify the correct classification.</p></div>
+  <div class="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Chapter pays a DJ $400 for a single annual event</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body"><strong>Classification: Independent Contractor.</strong> Single event, no ongoing relationship, DJ controls methods and equipment, free to work for others. No 1099 required (under $600 threshold). Still collect a W-9 in case future payments cross the threshold.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Foundation pays a program manager $1,500/month for 12 months, setting her schedule and directing her daily tasks</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body"><strong>Classification: Employee.</strong> Ongoing sustained relationship, Foundation controls schedule and methods, integrated into operations, full-time commitment. The Foundation must set up payroll, withhold taxes, and issue a W-2. 1099 issuance would be incorrect and expose the Foundation to reclassification penalties.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Chapter pays a CPA $2,000 to prepare the annual Form 990</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body"><strong>Classification: Independent Contractor (likely) &mdash; but no 1099 required if the CPA operates through a corporation.</strong> Verify whether the CPA's firm is incorporated by requesting a W-9. If incorporated, no 1099-NEC. If a sole proprietor, issue Form 1099-NEC for $2,000.</div>
+    </div>
+  </div></div>`;}
+
+function m5s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 5 Final Knowledge Check</h3><p>Confirm your worker classification knowledge.</p></div>
+  ${renderQuiz('q1','The chapter wants to pay its Keeper of Records $200/month for administrative work performed regularly throughout the year. Before making the first payment, the board must:',
+    ['Simply begin payments &mdash; fraternal service compensation is always permissible','Approve the compensation in a board vote (with the Keeper absent), document it as reasonable for comparable services, and ensure proper payroll/tax treatment','Pay through PayPal to avoid 1099 requirements','Get Province Polemarch approval before paying any officer'],1,
+    'Correct. Compensation to a disqualified person (officer) requires advance board approval with the interested party absent, a reasonableness determination, and proper payroll/1099 treatment.')}
+  ${renderQuiz('q2','The chapter hires a graphic designer who has her own studio, sets her own hours, uses her own software, and completes a logo project over three weeks. The chapter pays her $750. The chapter should:',
+    ['Issue a W-2 at year-end since she worked for three weeks','Issue a Form 1099-NEC and collect a W-9 if she is a sole proprietor; no 1099 if her studio is incorporated','Pay cash to avoid paperwork since the project is complete','File Form SS-8 with the IRS before paying'],1,
+    'Correct. This worker is an independent contractor. Collect a W-9 before payment. Issue Form 1099-NEC if she is unincorporated and the total payment is $600 or more.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 5 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 6 ADDITIONS ==========
+function m6s3(){
+  return `<div>
+  <div class="card"><h3>Chapter House Legal Structure Options</h3>
+  <p>The ownership structure of a facility determines the tax treatment of all income and expenses related to that property.</p></div>
+  <div class="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Owned directly by the Alumni Chapter (501c7)</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">The most straightforward structure. The Chapter's 501(c)(7) exemption covers the facility. All rental income from non-members counts toward the 35% non-member income ceiling. Commercial rentals generating UBIT require Form 990-T. Property taxes may be exempt under Texas law if the property is used primarily for the chapter's exempt purpose.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Owned by a separate 501(c)(2) title-holding company</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">A 501(c)(2) organization can hold title to property and pay income to its parent exempt organization. This structure provides liability protection for the parent and may simplify UBIT treatment. It requires a separate IRS application and annual 990 filing for the title-holding company.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Owned by the Foundation (501c3)</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">A Foundation-owned facility may be used for charitable programs without UBIT consequences. The Chapter's social use of Foundation property requires a formal facility use agreement at fair market rent. Subsidized use of Foundation property for Chapter social activities constitutes private benefit &mdash; a serious 501(c)(3) violation.</div>
+    </div>
+  </div></div>`;}
+
+function m6s4(){
+  return `<div>
+  <div class="card"><h3>Facility Use Agreement Requirements</h3>
+  <p>Any time one entity uses a facility owned by the other &mdash; or any time a third party uses either entity's facility &mdash; a written Facility Use Agreement is required. Verbal arrangements are not adequate.</p></div>
+  <div class="card">
+    <h3>Required Elements of a Facility Use Agreement</h3>
+    <ul class="sl">
+      <li><strong>Identification of parties:</strong> Owner entity, user entity or individual</li>
+      <li><strong>Description of the facility:</strong> Specific spaces covered, included equipment, parking</li>
+      <li><strong>Permitted use:</strong> Specific activities authorized &mdash; not open-ended permission</li>
+      <li><strong>Term:</strong> Start date, end date, or recurring schedule with renewal terms</li>
+      <li><strong>Rental rate:</strong> Fair market rent or documented cost allocation for inter-entity use</li>
+      <li><strong>Payment terms:</strong> Due date, method, late payment terms</li>
+      <li><strong>Maintenance responsibilities:</strong> Who handles routine maintenance vs. capital repairs</li>
+      <li><strong>Insurance requirements:</strong> User must carry liability insurance naming owner as additional insured</li>
+      <li><strong>Termination provisions:</strong> Notice period required by either party</li>
+      <li><strong>Authorized officer signatures of both parties</strong></li>
+    </ul>
+  </div></div>`;}
+
+function m6s5(){
+  return `<div>
+  <div class="card"><h3>Rental Income Tax Implications for 501(c)(7)</h3>
+  <p>When the Alumni Chapter rents its facility to non-members, the income has two separate compliance implications: the 65%/35% revenue test and potential UBIT liability.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Rental Scenario</th><th>Revenue Test Impact</th><th>UBIT Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Chapter rents to member for private party</td><td>Member income &mdash; counts toward 65% floor</td><td>No UBIT (member use)</td></tr>
+      <tr><td>Chapter rents to non-member for personal event</td><td>Non-member income &mdash; counts toward 35% cap and 15% facility sub-cap</td><td>Generally no UBIT (passive real property rent)</td></tr>
+      <tr><td>Chapter rents to for-profit business for commercial office use</td><td>Non-member/facility income &mdash; counts toward caps</td><td>UBIT applies &mdash; file Form 990-T if net &gt; $1,000</td></tr>
+      <tr><td>Chapter rents with significant services provided (cleaning, setup, staffing)</td><td>Non-member income</td><td>UBIT likely applies &mdash; &ldquo;services&rdquo; converts passive rent to active business income</td></tr>
+    </tbody>
+  </table>
+  <div class="info-box"><strong>UBIT threshold reminder:</strong> Net unrelated business income exceeding $1,000 in a year requires filing Form 990-T. The tax rate is the corporate rate (21% federal) applied to net UBI after allowable deductions.</div>
+  </div>`;}
+
+function m6s6(){
+  return `<div>
+  <div class="card"><h3>Facilities Shared with the Foundation: Allocation Rules</h3>
+  <p>When both entities use the same physical space, costs and usage must be allocated correctly between them using a documented, consistent, and reasonable methodology.</p></div>
+  <div class="card">
+    <h3>Allocation Rule Framework</h3>
+    <ul class="sl">
+      <li><strong>Square footage method:</strong> If each entity has dedicated space, allocate costs by square footage. A 2,000 sq ft office where 1,200 sq ft is used for Chapter activities and 800 sq ft for Foundation programs yields a 60%/40% split.</li>
+      <li><strong>Time method:</strong> For shared flexible space (conference rooms, event halls), track the hours used by each entity per month. Allocate total room costs by the proportion of time.</li>
+      <li><strong>Documentation frequency:</strong> Update allocation calculations quarterly at minimum. Annual snapshots miss seasonal usage patterns that affect accuracy.</li>
+      <li><strong>Arm's length standard:</strong> If the Foundation uses Chapter-owned space, the rent charged should be at or near fair market rate for comparable space. Charging less creates private benefit; charging more is an excess benefit to the Chapter at the Foundation's expense.</li>
+    </ul>
+  </div>
+  <div class="warn-box"><strong>Foundation using Chapter space for free:</strong> Document a fair market rent arrangement, even if the Chapter then makes a formal grant to the Foundation to offset rent costs. Free use without documentation is a compliance violation.</div>
+  </div>`;}
+
+function m6s7(){
+  return `<div>
+  <div class="card"><h3>Safety Compliance Obligations</h3>
+  <p>Both the Chapter and Foundation, as facility owners or operators, bear safety compliance obligations under federal, state, and local law. These obligations apply regardless of nonprofit status.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>Fire code compliance:</strong> Occupancy limits, exit signage, fire extinguisher inspection, sprinkler systems &mdash; enforced by local fire marshal</li>
+    <li><strong>ADA accessibility:</strong> If the facility is open to the public (including Foundation programs open to the community), ADA accessibility requirements apply</li>
+    <li><strong>Food handling permits:</strong> Events serving food to the public may require a temporary food service permit from the county health department</li>
+    <li><strong>Alcohol permits:</strong> TABC (Texas Alcoholic Beverage Commission) permits are required for events where alcohol is sold or provided to non-members</li>
+    <li><strong>Building permits:</strong> Any renovation or construction requires permits. Unpermitted work can void insurance coverage and create liability.</li>
+  </ul></div>
+  <div class="card"><h3>Insurance Requirements</h3>
+  <ul class="sl">
+    <li><strong>General liability:</strong> $1M per occurrence minimum recommended; $2M aggregate for facility owners</li>
+    <li><strong>Property insurance:</strong> Covers physical damage to the building and contents at replacement cost value</li>
+    <li><strong>Directors and officers (D&amp;O):</strong> Protects board members from personal liability for governance decisions &mdash; essential for both entities</li>
+    <li><strong>Event liability rider:</strong> Required for events with non-members or alcohol</li>
+  </ul></div>
+  </div>`;}
+
+function m6s8(){
+  return `<div>
+  <div class="card"><h3>Member Access vs. Public Access Rules</h3>
+  <p>The 501(c)(7) exemption is premised on the organization serving its members, not the general public. Facility access rules must reflect this reality in practice &mdash; not just in policy documents.</p></div>
+  <div class="card">
+    <h3>Member Access Standards</h3>
+    <ul class="sl">
+      <li>Members have priority access to chapter facilities for activities consistent with the chapter's exempt purposes</li>
+      <li>Member-only events do not generate non-member income &mdash; confirm guest policies are enforced</li>
+      <li>Members using the facility for purely personal (non-chapter) activities must pay fair market rent &mdash; otherwise this is an improper private benefit to the individual member</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Public Access Limits</h3>
+    <ul class="sl">
+      <li>Public facility use (rental to non-members, community events open to the public) must not exceed 15% of gross receipts</li>
+      <li>Track public use income separately from non-member event ticket income &mdash; both count toward the 35% ceiling, but public facility use also has its own 15% sub-ceiling</li>
+      <li>If a community event is conducted jointly with the Foundation, costs and revenues must be allocated between entities per MOU &mdash; the Foundation's portion is not subject to the Chapter's 15% facility cap</li>
+    </ul>
+  </div>
+  <div class="info-box"><strong>Annual compliance check:</strong> At year-end, calculate member income as a percentage of gross receipts. If approaching 35% non-member income, reduce public-facing facility rentals before year-end.</div>
+  </div>`;}
+
+function m6s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 6 Final Knowledge Check</h3><p>Confirm your facilities compliance knowledge.</p></div>
+  ${renderQuiz('q1','The Chapter owns its chapter house. The Guide Right Foundation wants to use the chapter house two evenings per week for its mentorship program at no charge. This arrangement is:',
+    ['Permissible &mdash; both entities serve Kappa Alpha Psi\'s mission','A compliance problem &mdash; free use of Chapter property by the Foundation is private benefit that could jeopardize both entities\' tax status','Permissible only if the Foundation\'s board approves it','Required by fraternal tradition when chapter resources support youth programs'],1,
+    'Correct. Free use of Chapter property by the Foundation constitutes a private benefit and a potential subsidy from the social club to the charitable organization. Charge fair market rent, then separately authorize a grant to the Foundation to offset rent if desired.')}
+  ${renderQuiz('q2','The Chapter rents its facility to a local business for office use at $9,600/year. The Chapter\'s total gross receipts for the year are $22,000. Which compliance obligations apply?',
+    ['None &mdash; rental income from real property is always exempt for nonprofits','Form 990-T for UBIT on commercial rental income; the $9,600 also counts toward the 35% non-member ceiling &mdash; and at 43.6% of receipts, the Chapter has already exceeded that threshold','Only the 35% non-member income test applies &mdash; UBIT does not apply to fraternal organizations','The Chapter must convert to 501(c)(3) status to continue the rental'],1,
+    'Correct. Commercial rental to a for-profit business generates UBIT &mdash; file Form 990-T. The $9,600 is 43.6% of $22,000 gross receipts, which already breaches the 35% non-member ceiling. The Chapter has a serious revenue composition compliance problem this year.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 6 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 7 ADDITIONS ==========
+function m7s3(){
+  return `<div>
+  <div class="card"><h3>Form 990 Selection: Which Version Is Required?</h3>
+  <p>Both entities file in the 990 family, but which form depends on gross receipts and total assets. Filing a 990-N when a 990-EZ or full 990 is required is treated as a failure to file.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Form</th><th>Use When</th><th>Key Contents</th></tr></thead>
+    <tbody>
+      <tr><td><strong>990-N (e-Postcard)</strong></td><td>Gross receipts &le; $50,000</td><td>Basic confirmation of continued exempt status &mdash; no financial detail required</td></tr>
+      <tr><td><strong>990-EZ</strong></td><td>Gross receipts $50,001 &ndash; $199,999 AND total assets &lt; $500,000</td><td>Abbreviated financials, officer list, program descriptions</td></tr>
+      <tr><td><strong>Form 990 (full)</strong></td><td>Gross receipts &ge; $200,000 OR total assets &ge; $500,000</td><td>Complete financial statements, governance policies, officer compensation disclosures</td></tr>
+      <tr><td><strong>Form 990-T</strong></td><td>Gross unrelated business income &ge; $1,000 (filed in addition to 990/EZ/N)</td><td>Unrelated business income calculation, tax owed</td></tr>
+    </tbody>
+  </table>
+  <div class="warn-box"><strong>Threshold monitoring:</strong> If gross receipts are near a threshold &mdash; say $48,000 or $195,000 &mdash; track monthly to anticipate which form applies. Use the correct form for the year in which receipts actually exceeded the threshold.</div>
+  </div>`;}
+
+function m7s4(){
+  return `<div>
+  <div class="card"><h3>Filing Deadlines and the Extension Process</h3>
+  <p>Meeting filing deadlines is a fundamental governance obligation. Late filing triggers automatic penalties, and missing three consecutive years triggers automatic revocation with no warning.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Fiscal Year End</th><th>Initial Due Date</th><th>Extended Due Date</th><th>Extension Form</th></tr></thead>
+    <tbody>
+      <tr><td>December 31</td><td>May 15</td><td>November 15</td><td>Form 8868</td></tr>
+      <tr><td>June 30</td><td>November 15</td><td>May 15 (following year)</td><td>Form 8868</td></tr>
+      <tr><td>September 30</td><td>February 15</td><td>August 15</td><td>Form 8868</td></tr>
+    </tbody>
+  </table>
+  <div class="card" style="margin-top:14px">
+    <h3>Extension Process Step-by-Step</h3>
+    <ul class="sl">
+      <li><strong>Step 1:</strong> File Form 8868 electronically before the initial due date. The extension is automatic &mdash; no IRS approval needed, but it must be filed on time</li>
+      <li><strong>Step 2:</strong> The extension covers filing only &mdash; if the organization owes tax (e.g., UBIT on 990-T), estimated tax is due by the original deadline</li>
+      <li><strong>Step 3:</strong> Compile financial records early. Allow the CPA or preparer at least 60 days before the extended deadline</li>
+      <li><strong>Step 4:</strong> File the completed return electronically by the extended deadline</li>
+    </ul>
+  </div></div>`;}
+
+function m7s5(){
+  return `<div>
+  <div class="card"><h3>What Must Be Reported on Each Form</h3>
+  <p>Understanding the key disclosure areas on the 990 helps officers prepare accurate records throughout the year &mdash; not scramble at tax time.</p></div>
+  <div class="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Revenue and Expense Summary</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">All revenue by category (contributions, dues, program service revenue, investment income, other) and all expenses by natural category (salaries, occupancy, professional fees, other). For full 990 filers, a functional expense allocation showing program, management, and fundraising percentages is required.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Compensation of Officers and Key Employees</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">The full Form 990 requires disclosure of compensation for all current officers, directors, and key employees receiving $100,000 or more in total compensation from the organization and related organizations. This section is publicly disclosed &mdash; it is how the IRS and public evaluate whether compensation is reasonable.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Governance Policy Disclosures</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">The 990 asks yes/no questions about governance policies: Does the organization have a written conflict of interest policy? A whistleblower policy? A document retention policy? Answering &ldquo;No&rdquo; is not a legal violation, but it signals governance gaps that invite IRS scrutiny and donor concern.</div>
+    </div>
+  </div></div>`;}
+
+function m7s6(){
+  return `<div>
+  <div class="card"><h3>Auto-Revocation: Consequences and Reinstatement Process</h3>
+  <p>The automatic revocation penalty for three consecutive years of non-filing is one of the most severe compliance consequences available to the IRS &mdash; and one of the most preventable.</p></div>
+  <div class="card">
+    <h3>Consequences of Auto-Revocation</h3>
+    <ul class="sl">
+      <li>The organization loses its tax-exempt status as of the due date of the third unfiled return</li>
+      <li>All income received after the revocation date is potentially subject to federal income tax</li>
+      <li>The organization's name is published on the IRS public auto-revocation list &mdash; visible to donors, grantors, and the media</li>
+      <li>Donors who gave after the revocation date may lose their charitable deductions (501c3 only)</li>
+      <li>State tax exemptions may also lapse if tied to federal exempt status</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Reinstatement Process</h3>
+    <ul class="sl">
+      <li>File a new exemption application (Form 1023 for 501c3, Form 1024 for 501c7) plus all unfiled returns</li>
+      <li>Pay the applicable user fee ($600 for each application as of 2025)</li>
+      <li>Request retroactive reinstatement &mdash; available only if the organization demonstrates reasonable cause for non-filing</li>
+      <li>&ldquo;Reasonable cause&rdquo; is a high bar: it requires demonstrating that the failure was due to events beyond the organization's control, not simply oversight</li>
+    </ul>
+  </div></div>`;}
+
+function m7s7(){
+  return `<div>
+  <div class="card"><h3>State Filing Requirements in Texas</h3>
+  <p>Federal tax exemption is separate from state requirements. Both entities must maintain compliance with the Texas Secretary of State and the Texas Comptroller of Public Accounts.</p></div>
+  <div class="card">
+    <h3>Texas State Compliance Checklist</h3>
+    <ul class="sl">
+      <li><strong>Annual report to Texas Secretary of State:</strong> Texas nonprofit corporations must file an annual public information report. Due May 15 for entities with a December 31 year-end. Failure to file for 3 years results in forfeiture of the right to conduct business in Texas.</li>
+      <li><strong>Texas franchise tax exemption:</strong> Organizations exempt from federal income tax under IRC 501(c) are generally exempt from Texas franchise tax. However, the exemption must be established with the Texas Comptroller by filing Form AP-204.</li>
+      <li><strong>Texas sales tax exemption:</strong> 501(c)(3) charitable organizations may apply for Texas sales tax exemption on qualifying purchases. 501(c)(7) social clubs generally do NOT qualify for Texas sales tax exemption on purchases.</li>
+      <li><strong>Charitable solicitation registration:</strong> Texas does not currently require separate charitable solicitation registration for 501(c)(3) organizations, but laws can change &mdash; monitor annually.</li>
+    </ul>
+  </div></div>`;}
+
+function m7s8(){
+  return `<div>
+  <div class="card"><h3>Record Retention Requirements</h3>
+  <p>Both entities must retain documents long enough to support any IRS examination, donor inquiry, or legal claim. The IRS generally has 3 years to audit a return, but 6 years if it suspects a substantial understatement of income.</p></div>
+  <table class="compare-tbl">
+    <thead><tr><th>Document Type</th><th>Retention Period</th></tr></thead>
+    <tbody>
+      <tr><td>Annual Form 990 returns</td><td>Permanently (legally required to make available to public)</td></tr>
+      <tr><td>Articles of incorporation, bylaws, charter</td><td>Permanently</td></tr>
+      <tr><td>Board meeting minutes</td><td>Permanently</td></tr>
+      <tr><td>IRS determination letter (exemption)</td><td>Permanently</td></tr>
+      <tr><td>Bank statements and reconciliations</td><td>7 years</td></tr>
+      <tr><td>Payroll records and W-2s/1099s</td><td>7 years</td></tr>
+      <tr><td>Grant agreements (received or made)</td><td>7 years after grant period ends</td></tr>
+      <tr><td>Contracts and leases</td><td>7 years after expiration</td></tr>
+      <tr><td>Receipts for expenses</td><td>7 years</td></tr>
+    </tbody>
+  </table>
+  <div class="info-box"><strong>Who is responsible for filing?</strong> The organization's principal officer (Polemarch for the Chapter; President for the Foundation) is legally responsible for ensuring the annual return is filed and is accurate. This responsibility cannot be fully delegated &mdash; the officer must review and sign the return under penalty of perjury.</div>
+  </div>`;}
+
+function m7s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 7 Final Knowledge Check</h3><p>Confirm your annual filing and record retention knowledge.</p></div>
+  ${renderQuiz('q1','The Chapter\'s gross receipts were $175,000 last year and total assets are $220,000. The Foundation\'s gross receipts were $45,000. Which forms must each entity file?',
+    ['Chapter: 990-N; Foundation: 990-N','Chapter: 990-EZ (or full 990); Foundation: 990-N','Chapter: Full Form 990 only; Foundation: 990-EZ','Chapter: 990-EZ; Foundation: No filing required since under $50,000'],1,
+    'Correct. The Chapter\'s $175,000 gross receipts place it in the 990-EZ/990 range. Since total assets are under $500,000, the 990-EZ is sufficient (full 990 is also permitted). The Foundation\'s $45,000 gross receipts qualify for the 990-N e-Postcard.')}
+  ${renderQuiz('q2','How long must the Chapter retain its bank statements?',
+    ['3 years &mdash; the standard IRS audit limitation period','7 years &mdash; covering the extended period for substantial understatement claims','Permanently &mdash; all financial records must be kept forever','1 year &mdash; electronic records eliminate the need for long retention'],1,
+    'Correct. Bank statements and financial records should be retained for 7 years. While the standard audit period is 3 years, the IRS has 6 years to audit if substantial income understatement is suspected, and the extra year provides additional protection.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; Module 7 complete &mdash; you may continue</div>':''}
+  </div>`;}
+
+// ========== MODULE 8 ADDITIONS ==========
+function m8s4(){
+  return `<div>
+  <div class="card"><h3>Unrelated Business Income Tax: What Triggers It</h3>
+  <p>UBIT applies when a tax-exempt organization engages in a trade or business that meets all three of the following criteria simultaneously. Remove any one criterion and UBIT may not apply.</p></div>
+  <div class="card">
+    <h3>The Three-Part UBIT Test</h3>
+    <ul class="sl">
+      <li><strong>1. Trade or business:</strong> The activity involves the production of income from selling goods or performing services. Passive investment income (dividends, interest, royalties) is generally not a &ldquo;trade or business.&rdquo;</li>
+      <li><strong>2. Regularly carried on:</strong> The activity occurs with a frequency and continuity that a for-profit organization would conduct. A single annual event is generally not &ldquo;regularly carried on.&rdquo; Weekly or monthly commercial activities are.</li>
+      <li><strong>3. Not substantially related to exempt purpose:</strong> The activity does not contribute importantly to accomplishing the organization's charitable or social mission.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>UBIT Calculation Basics</h3>
+    <ul class="sl">
+      <li>Tax base = Gross UBI minus directly connected expenses</li>
+      <li>Net UBI taxed at the corporate rate (21% federal as of 2025)</li>
+      <li>$1,000 specific deduction available before the tax applies</li>
+      <li>Net operating losses from one UBI activity can offset UBI from the same activity in future years (not across separate unrelated activities)</li>
+    </ul>
+  </div></div>`;}
+
+function m8s5(){
+  return `<div>
+  <div class="card"><h3>How to Minimize UBIT Legally</h3>
+  <p>UBIT minimization is legitimate tax planning. The goal is to structure activities so they either do not trigger UBIT or, when they do, to maximize allowable deductions.</p></div>
+  <div class="card">
+    <h3>Legal UBIT Minimization Strategies</h3>
+    <ul class="sl">
+      <li><strong>Convert active to passive:</strong> Net rental income from real property is generally excluded from UBIT. Structuring arrangements as net leases (tenant pays utilities and maintenance) keeps them passive and UBIT-exempt.</li>
+      <li><strong>Relate the activity to mission:</strong> If a revenue-generating activity can be genuinely linked to the organization's exempt purpose, it may not be &ldquo;unrelated.&rdquo; Document the mission connection explicitly.</li>
+      <li><strong>Use volunteers:</strong> Activities conducted substantially by unpaid volunteers are excluded from UBIT. A chapter fundraiser run primarily by member volunteers avoids UBIT even if it generates non-member income.</li>
+      <li><strong>Passive investment:</strong> Dividends, interest, royalties, and annuities are generally excluded from UBIT &mdash; invest in securities rather than operating businesses.</li>
+      <li><strong>Convenience exception:</strong> Businesses that sell articles primarily for the convenience of members are excluded from UBIT.</li>
+    </ul>
+  </div>
+  <div class="info-box"><strong>Document everything:</strong> UBIT positions taken on Form 990-T must be supported by documentation. &ldquo;We believe this activity is related to our mission&rdquo; requires a written explanation of how, not just the assertion.</div>
+  </div>`;}
+
+function m8s6(){
+  return `<div>
+  <div class="card"><h3>Governance Best Practices That Protect Tax Status</h3>
+  <p>Strong governance is the single most effective protection against IRS challenges to tax-exempt status. Organizations with documented governance practices are far less likely to have problems &mdash; and far better positioned to defend themselves if problems arise.</p></div>
+  <div class="card">
+    <h3>Essential Governance Practices</h3>
+    <ul class="sl">
+      <li><strong>Independent board members:</strong> At least a majority of board members should be independent &mdash; no financial relationship with the organization beyond reasonable compensation for board service</li>
+      <li><strong>Annual financial review:</strong> For organizations with receipts over $250,000, an independent CPA review or audit provides external validation of financial records</li>
+      <li><strong>Written policies:</strong> The IRS 990 asks whether the organization has a conflict of interest policy, a whistleblower policy, and a document retention policy. Answering &ldquo;yes&rdquo; requires actually having and following these written policies</li>
+      <li><strong>Regular board meetings with quorum:</strong> Decisions made without a quorum are not valid board actions. Maintain attendance records to document quorum at every meeting</li>
+      <li><strong>Executive session capability:</strong> The board must be able to meet without interested parties present when addressing compensation or conflicts</li>
+    </ul>
+  </div></div>`;}
+
+function m8s7(){
+  return `<div>
+  <div class="card"><h3>Three Policies Every Exempt Organization Must Have</h3></div>
+  <div class="exp-cards">
+    <div class="exp-card" onclick="toggleExp(0)">
+      <div class="exp-hdr"><div class="exp-num">1</div><div class="exp-title">Conflict of Interest Policy</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Requires board members and officers to annually disclose financial interests in entities doing business with the organization. Must include a recusal procedure (interested party leaves the room, does not vote), and a documentation requirement (minutes reflect the conflict, recusal, and outcome). Annual signed disclosure statements from each board member are best practice.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(1)">
+      <div class="exp-hdr"><div class="exp-num">2</div><div class="exp-title">Whistleblower Protection Policy</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Must prohibit retaliation against board members, officers, employees, or volunteers who report suspected illegal activity, financial irregularities, or policy violations in good faith. Must establish a reporting mechanism (often a designated officer or confidential process). Retaliating against a whistleblower in a nonprofit context can expose the organization and its officers to legal liability.</div>
+    </div>
+    <div class="exp-card" onclick="toggleExp(2)">
+      <div class="exp-hdr"><div class="exp-num">3</div><div class="exp-title">Document Retention and Destruction Policy</div><div class="exp-toggle">+</div></div>
+      <div class="exp-body">Establishes retention schedules for each document type and authorizes destruction of documents that have exceeded their retention period. Critical: the policy must prohibit destruction of documents relevant to any pending or anticipated litigation, government investigation, or audit (a &ldquo;litigation hold&rdquo; provision). Destroying documents under a hold is obstruction of justice &mdash; a criminal offense.</div>
+    </div>
+  </div></div>`;}
+
+function m8s8(){
+  return `<div>
+  <div class="card"><h3>Private Benefit Prohibition</h3>
+  <p>The private benefit prohibition applies to 501(c)(3) organizations and prohibits the Foundation from operating for the benefit of private individuals &mdash; insiders or outsiders &mdash; more than incidentally.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li><strong>Inurement (insiders):</strong> Absolutely prohibited &mdash; no net earnings may inure to the benefit of any officer, director, or member. Even one dollar of impermissible inurement can result in revocation.</li>
+    <li><strong>Private benefit (outsiders):</strong> Prohibited if more than incidental. The Foundation must benefit the charitable class broadly &mdash; not a defined group of private individuals. Scholarship programs that benefit a defined class of students are generally permissible if selection criteria are objective and serve charitable purposes.</li>
+    <li><strong>Excess benefit transactions:</strong> Unreasonable compensation or other excessive payments to disqualified persons trigger the 25% excise tax under IRC 4958.</li>
+  </ul></div>
+  <div class="card"><h3>Political Activity Prohibition</h3>
+  <p>The Guide Right Foundation, as a 501(c)(3), is absolutely prohibited from participating or intervening in any political campaign on behalf of or in opposition to any candidate for public office. This prohibition is total.</p>
+  <ul class="sl" style="margin-top:9px">
+    <li>Endorsing or opposing candidates: prohibited</li>
+    <li>Making contributions to campaign committees: prohibited</li>
+    <li>Voter registration drives that favor one party: prohibited</li>
+    <li>Nonpartisan voter education and civic engagement: generally permitted</li>
+    <li>The Alumni Chapter (501c7) has more latitude on political activity but should obtain legal counsel before any involvement</li>
+  </ul></div>
+  </div>`;}
+
+function m8s9(){
+  const ix=getIx();
+  const q1=ix.q1!==undefined;
+  const q2=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Module 8 Final Knowledge Check</h3><p>Complete the final module check before proceeding to the assessment.</p></div>
+  ${renderQuiz('q1','The Guide Right Foundation generates $8,000 in net income from selling advertising in its annual program booklet, an activity it has conducted every year for 5 years. This income is:',
+    ['Exempt from UBIT because it supports a nonprofit publication','Subject to UBIT because it is a trade or business, regularly carried on, and not substantially related to the Foundation\'s charitable mission','Exempt because net income under $10,000 is not subject to UBIT','Subject only to the 35% non-member income test, not UBIT'],1,
+    'Correct. Advertising income from publications meets all three UBIT criteria: it is a trade or business (selling advertising), regularly carried on (annual, 5-year history), and not substantially related to the charitable mission. Form 990-T must be filed since net UBI exceeds $1,000.')}
+  ${renderQuiz('q2','A board member suspects the Chapter Treasurer may be misappropriating funds but is afraid to speak up. Under the Whistleblower Protection Policy, the board member:',
+    ['Should stay silent to avoid disrupting chapter harmony','Is protected from retaliation for reporting the suspected misappropriation through the policy\'s reporting mechanism in good faith','Should only report if he has documentary proof of the theft','Should report directly to the Province Polemarch only &mdash; internal policies do not apply to fraternal governance'],1,
+    'Correct. Whistleblower protection policies exist precisely for this situation. The board member is protected from retaliation for a good-faith report. Failing to report known or suspected fraud can expose the board member to personal liability for breach of fiduciary duty.')}
+  ${q1&&q2?'<div class="complete-badge">&#10003; All modules complete &mdash; proceed to the Final Assessment</div>':''}
+  </div>`;}
+
+// ========== SCREEN FUNCTION TABLE ==========
+const SCREEN_FNS = [
+  [m1s0,m1s1,m1s2,m1s3,m1s4,m1s5,m1s6,m1s7,m1s8,m1s9],
+  [m2s0,m2s1,m2s2,m2s3,m2s4,m2s5,m2s6,m2s7,m2s8,m2s9],
+  [m3s0,m3s1,m3s2,m3s3,m3s4,m3s5,m3s6,m3s7,m3s8,m3s9],
+  [m4s0,m4s1,m4s2,m4s3,m4s4,m4s5,m4s6,m4s7,m4s8,m4s9],
+  [m5s0,m5s1,m5s2,m5s3,m5s4,m5s5,m5s6,m5s7,m5s8,m5s9],
+  [m6s0,m6s1,m6s2,m6s3,m6s4,m6s5,m6s6,m6s7,m6s8,m6s9],
+  [m7s0,m7s1,m7s2,m7s3,m7s4,m7s5,m7s6,m7s7,m7s8,m7s9],
+  [m8s0,m8s1,m8s2,m8s3,m8s4,m8s5,m8s6,m8s7,m8s8,m8s9]
+];
+
+// ========== ASSESSMENT ==========
+function renderAssessment(){
+  if(S.aSubmitted){ goPage('results'); return ''; }
+  const qi=S.si;
+  const q=AQ[qi];
+  const ans=S.aa[qi];
+  const submitted=ans!==undefined;
+  let opts='';
+  q.opts.forEach(function(o,i){
+    let cls='quiz-opt';
+    if(submitted){
+      if(i===q.cor) cls+=' cor';
+      else if(i===ans&&i!==q.cor) cls+=' inc';
+    } else if(i===ans) cls+=' sel';
+    opts+=`<button class="${cls}" onclick="assessAnswer(${i})" ${submitted?'disabled':''}>
+      <div class="opt-ltr">${String.fromCharCode(65+i)}</div>
+      <div class="opt-text">${o}</div>
+    </button>`;
+  });
+  const fbShow=submitted?'show':'';
+  const fbCls=submitted&&ans===q.cor?'cor-fb':'inc-fb';
+  const allAnswered=AQ.every(function(_,i){return S.aa[i]!==undefined;});
+  let dots='';
+  AQ.forEach(function(_,i){
+    dots+=`<div class="assess-dot${i===qi?' current':S.aa[i]!==undefined?' answered':''}" onclick="goAssessQ(${i})">${i+1}</div>`;
+  });
+  return `
+  <div class="assess-header">
+    <div class="assess-q-num">Question ${qi+1} of ${AQ.length}</div>
+    <div class="assess-mod-tag">${q.mod}</div>
+    <div class="assess-q">${q.q}</div>
+  </div>
+  <div class="assess-body">
+    <div class="quiz-opts" style="margin-bottom:14px">${opts}</div>
+    <div class="quiz-fb ${fbCls} ${fbShow}" style="margin-bottom:18px">${submitted?q.fb:''}</div>
+    <div style="display:flex;gap:11px;margin-bottom:22px;flex-wrap:wrap">
+      ${qi>0?`<button class="btn-nav btn-prev" onclick="goAssessQ(${qi-1})">&#8592; Previous</button>`:''}
+      ${qi<AQ.length-1?`<button class="btn-nav btn-next" onclick="goAssessQ(${qi+1})">Next &#8594;</button>`:''}
+      ${allAnswered&&!S.aSubmitted?`<button class="btn-nav btn-next" onclick="submitAssessment()" style="background:var(--go);color:var(--cr-d);border-color:var(--go)">Submit Assessment</button>`:''}
+    </div>
+    <div class="assess-dots">${dots}</div>
+    ${!allAnswered?`<p style="text-align:center;font-size:12px;color:var(--tx-l);margin-top:11px">Answer all ${AQ.length} questions to submit. (${Object.keys(S.aa).length}/${AQ.length} answered)</p>`:''}
+  </div>`;
+}
+
+function assessAnswer(i){
+  if(S.aa[S.si]!==undefined) return;
+  S.aa[S.si]=i;
+  save();render();
+}
+function goAssessQ(i){S.si=i;save();render();}
+function submitAssessment(){
+  var score=0;
+  AQ.forEach(function(q,i){if(S.aa[i]===q.cor) score++;});
+  S.aScore=score;
+  S.aSubmitted=true;
+  save();
+  goPage('results');
+}
+
+// ========== RESULTS ==========
+function renderResults(){
+  const score=S.aScore;
+  const total=AQ.length;
+  const pct=Math.round((score/total)*100);
+  const pass=score>=11;
+  var mods=[...new Set(AQ.map(function(q){return q.mod;}))];
+  var rows='';
+  mods.forEach(function(mod){
+    var qs=AQ.map(function(q,i){return Object.assign({},q,{i:i});}).filter(function(q){return q.mod===mod;});
+    var c=qs.filter(function(q){return S.aa[q.i]===q.cor;}).length;
+    rows+=`<div class="bd-row"><div class="bd-mod">${mod}</div><div class="bd-score ${c===qs.length?'sg':'sb-c'}">${c}/${qs.length}</div></div>`;
+  });
+  return `<div class="results-pg">
+    <div class="results-circle"><div class="results-score">${pct}%</div><div class="results-slbl">${score}/${total}</div></div>
+    <div class="results-status">
+      ${pass?`<div class="r-pass">&#10003; Assessment Passed</div><p style="font-size:14px;color:var(--tx-m);margin-top:7px">You have demonstrated compliance knowledge. Your certificate is ready.</p>`:
+      `<div class="r-fail">Assessment Not Yet Passed</div><p style="font-size:14px;color:var(--tx-m);margin-top:7px">A score of 79% (11/14) is required. Review the modules and retake.</p>`}
+    </div>
+    <div class="breakdown">${rows}</div>
+    ${pass?`<button class="btn-begin" onclick="goPage('certificate')">View My Certificate &#8594;</button>`:''}
+    <button class="btn-nav btn-prev" style="margin-top:11px${pass?';margin-left:11px':''}" onclick="retakeAssessment()">Retake Assessment</button>
+  </div>`;
+}
+
+function retakeAssessment(){
+  S.aa={};S.aScore=null;S.aSubmitted=false;S.si=0;S.page='assessment';
+  save();render();
+}
+
+// ========== CERTIFICATE ==========
+function renderCertificate(){
+  const d=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  return `<div class="cert-wrapper">
+    <div class="cert">
+      <div class="cert-logo">K&#913;&#936;</div>
+      <div class="cert-org">Kappa Alpha Psi Fraternity, Inc. &middot; Denton-Lewisville Alumni Chapter</div>
+      <div class="cert-div"></div>
+      <div class="cert-seal">&#127963;</div>
+      <div style="font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--tx-l);font-weight:700;margin-bottom:14px">Certificate of Completion</div>
+      <div class="cert-title">501(c)(3) &amp; 501(c)(7) Compliance Training</div>
+      <div class="cert-certifies">This certifies that</div>
+      <div class="cert-name">${S.name||'Chapter Member'}</div>
+      <div class="cert-completed">has successfully completed the</div>
+      <div class="cert-course">501(c)(3) &amp; 501(c)(7) Compliance Training</div>
+      <div class="cert-chapter">Denton-Lewisville Alumni Chapter &middot; 2026</div>
+      <div class="cert-div"></div>
+      <div class="cert-date">Completed ${d} &middot; Assessment Score: ${Math.round((S.aScore/AQ.length)*100)}%</div>
+      <button class="btn-print" onclick="window.print()">Print Certificate</button>
+    </div>
+  </div>`;
+}
+
+// ========== RESOURCES ==========
+function renderResources(){
+  return `<div class="resources-pg">
+    <div style="margin-bottom:28px">
+      <div class="sec-title" style="margin-bottom:6px">References &amp; Resources</div>
+      <p style="font-size:14px;color:var(--tx-m)">Key IRS code sections, forms, and publications referenced in this course.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res-card">
+        <div class="res-icon">&#128203;</div>
+        <div>
+          <div class="res-title">IRS Code Sections</div>
+          <div class="res-desc">IRC 501(c)(3) &mdash; Public charities &middot; IRC 501(c)(7) &mdash; Social clubs &middot; IRC 4958 &mdash; Excess benefit transactions &middot; IRC 511&ndash;514 &mdash; UBIT &middot; IRC 6033 &mdash; Annual information return requirements</div>
+        </div>
+      </div>
+      <div class="res-card">
+        <div class="res-icon">&#128196;</div>
+        <div>
+          <div class="res-title">IRS Forms</div>
+          <div class="res-desc">Form 990-N &mdash; e-Postcard (&le;$50K) &middot; Form 990-EZ &mdash; Short form &middot; Form 990 &mdash; Full annual return &middot; Form 990-T &mdash; Unrelated business income &middot; Form 1023 &mdash; 501(c)(3) application &middot; Form 1024 &mdash; Other exemptions &middot; Form 8868 &mdash; Extension request</div>
+        </div>
+      </div>
+      <div class="res-card">
+        <div class="res-icon">&#128218;</div>
+        <div>
+          <div class="res-title">IRS Publications</div>
+          <div class="res-desc">Publication 557 &mdash; Tax-Exempt Status for Your Organization &middot; Publication 598 &mdash; Tax on Unrelated Business Income &middot; IRS Stay Exempt &mdash; Free online training for exempt organizations at stayexempt.irs.gov</div>
+        </div>
+      </div>
+      <div class="res-card">
+        <div class="res-icon">&#9878;</div>
+        <div>
+          <div class="res-title">Key Compliance Rules Summary</div>
+          <div class="res-desc">501(c)(7): &ge;65% member income &middot; &le;35% non-member income &middot; &le;15% public use &middot; Separate accounts required &middot; No tax-deductible donations &middot; Annual 990 filing required. 501(c)(3): Public support test (33&frac13;%) &middot; Tax-deductible gifts &middot; No political activity &middot; Excess benefit rules apply &middot; Annual 990 required &middot; UBIT on unrelated commercial income.</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ========== LANDING ==========
+function renderLanding(){
+  const pct=calcProgress();
+  const allDone=S.done.every(Boolean);
+  return `
+  <div class="hero">
+    <div class="hero-badge">K&#913;&#936; Compliance Training &middot; 2026</div>
+    <div class="hero-title">501(c)(3) &amp; 501(c)(7) Compliance Training</div>
+    <div class="hero-sub">Protect our chapter's tax-exempt status. Master the rules that govern two organizations, one mission.</div>
+    <div class="hero-name-row">
+      <label for="name-input">Your Name:</label>
+      <input class="name-input" id="name-input" type="text" placeholder="Brother Last Name" value="${S.name}" oninput="S.name=this.value;save()">
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span style="font-size:18px">&#128218;</span><span class="stat-label">8 Modules</span></div>
+      <div class="stat-item"><span style="font-size:18px">&#9200;</span><span class="stat-label">~4 Hours</span></div>
+      <div class="stat-item"><span style="font-size:18px">&#128221;</span><span class="stat-label">14-Question Assessment</span></div>
+      <div class="stat-item"><span style="font-size:18px">&#127885;</span><span class="stat-label">Certificate of Completion</span></div>
+    </div>
+    ${pct>0?`<div style="margin-bottom:18px"><div style="font-size:12px;color:var(--cm);margin-bottom:6px">Progress: ${pct}%</div><div style="height:6px;background:rgba(255,255,255,.2);border-radius:3px;width:280px"><div style="height:100%;background:var(--go);border-radius:3px;width:${pct}%"></div></div></div>`:''}
+    <button class="btn-begin" onclick="beginCourse()">${pct>0?'Continue Course &#8594;':'Begin Course &#8594;'}</button>
+  </div>
+  <div class="land-body">
+    <div class="sec-title">Course Objectives</div>
+    <div class="sec-intro">After completing this course, you will be able to protect both entities, stay in compliance, and make confident decisions about money, events, and governance.</div>
+    <div class="obj-grid">
+      <div class="obj-card"><div class="obj-num">1</div><div class="obj-text">Distinguish 501(c)(3) and 501(c)(7) rules and apply the correct standard to each entity</div></div>
+      <div class="obj-card"><div class="obj-num">2</div><div class="obj-text">Prevent fund commingling by maintaining separate accounts and formal transfer agreements</div></div>
+      <div class="obj-card"><div class="obj-num">3</div><div class="obj-text">Execute compliant MOUs for co-sponsored events and joint fundraising activities</div></div>
+      <div class="obj-card"><div class="obj-num">4</div><div class="obj-text">Correctly classify workers, avoid excess benefit transactions, and meet annual filing deadlines</div></div>
+      <div class="obj-card"><div class="obj-num">5</div><div class="obj-text">Apply the three fiduciary duties and conflict of interest requirements to board decisions</div></div>
+      <div class="obj-card"><div class="obj-num">6</div><div class="obj-text">Identify UBIT-generating activities and understand the consequences of auto-revocation</div></div>
+    </div>
+    <div class="sec-title">Course Modules</div>
+    <div class="sec-intro">Eight modules organized across three topic areas.</div>
+    <div class="path-grid">
+      ${MODS.map(function(m,i){return `<div class="path-card" onclick="goModule(${i})">
+        <div class="path-num">Module ${i+1} &middot; ${m.section}</div>
+        <div class="path-title">${m.title}</div>
+        <div class="path-desc">${m.dur} &middot; ${m.screens} screens${S.done[i]?' &middot; &#10003; Complete':''}</div>
+      </div>`;}).join('')}
+    </div>
+    ${allDone?'<div style="margin-top:28px"><button class="btn-begin" onclick="goPage(\'assessment\')">Proceed to Final Assessment &#8594;</button></div>':''}
+  </div>`;
+}
+
+function beginCourse(){
+  var firstIncomplete=S.done.findIndex(function(d){return !d;});
+  if(firstIncomplete>=0) goModule(firstIncomplete);
+  else goPage('assessment');
+}
+
+// ========== MAIN RENDER ==========
+function render(){
+  document.getElementById('sidebar').innerHTML=renderSidebar();
+  const main=document.getElementById('main-content');
+  if(S.page==='landing'){
+    main.innerHTML=renderLanding();
+  } else if(S.page==='module'){
+    const fns=SCREEN_FNS[S.mi];
+    const content=fns[S.si]();
+    const isLast=S.si===MODS[S.mi].screens-1;
+    var nextLabel=isLast?(S.mi<MODS.length-1?'Complete &amp; Start Module '+(S.mi+2)+' &#8594;':'Complete &amp; Go to Assessment &#8594;'):'Next &#8594;';
+    main.innerHTML=`<div class="mod-page">
+      ${modHeader(S.mi)}
+      <div class="mod-content">
+        ${screenDots(MODS[S.mi].screens,S.si)}
+        ${content}
+      </div>
+      ${navBar(S.si,MODS[S.mi].screens,nextLabel)}
+    </div>`;
+  } else if(S.page==='assessment'){
+    main.innerHTML=renderAssessment();
+  } else if(S.page==='results'){
+    main.innerHTML=renderResults();
+  } else if(S.page==='certificate'){
+    main.innerHTML=renderCertificate();
+  } else if(S.page==='resources'){
+    main.innerHTML=renderResources();
+  }
+  // Hamburger
+  const ham=document.getElementById('hamburger');
+  const sb=document.getElementById('sidebar');
+  const overlay=document.getElementById('sb-overlay');
+  ham.onclick=function(){
+    const open=sb.classList.toggle('sb-open');
+    overlay.classList.toggle('show',open);
+    ham.setAttribute('aria-expanded',open);
+  };
+  overlay.onclick=function(){
+    sb.classList.remove('sb-open');
+    overlay.classList.remove('show');
+    ham.setAttribute('aria-expanded','false');
+  };
+}
+
+load();
+render();
+</script>
+</body>
+</html>

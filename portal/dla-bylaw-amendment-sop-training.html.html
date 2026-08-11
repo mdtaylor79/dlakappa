@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNCcgZmlsbD0nIzcwMTEwYycvPjx0ZXh0IHg9JzE2JyB5PScyMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0dlb3JnaWEsc2VyaWYnIGZvbnQtc2l6ZT0nMTMnIGZvbnQtd2VpZ2h0PSdib2xkJyBmaWxsPScjYzlhODRjJz5LQVx4Y2VceGE4PC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bylaw Amendment SOP | Kappa Alpha Psi — Denton-Lewisville</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cr:#70110c;--cr-d:#4a0b08;--cr-dd:#3a0906;--cr-l:#8c1812;
+  --cm:#f2ebd7;--cm-d:#e5d9bf;--cm-dd:#d4c9a8;
+  --go:#c9a84c;--go-d:#a88838;--go-l:#d4b563;
+  --tx:#1a1a1a;--tx-m:#555;--tx-l:#888;
+  --wh:#fff;--sw:260px;--r:8px;--rl:12px;
+  --sh:0 2px 8px rgba(0,0,0,.12);--sh-l:0 4px 20px rgba(0,0,0,.15);
+  --tr:.2s ease}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--tx);background:#ede9df;min-height:100vh;line-height:1.6}
+.skip-link{position:absolute;top:-40px;left:6px;background:var(--go);color:var(--cr-d);padding:8px 12px;border-radius:var(--r);font-weight:600;z-index:1000;text-decoration:none}
+.skip-link:focus{top:6px}
+#sidebar{width:var(--sw);min-width:var(--sw);background:var(--cr);height:100vh;position:fixed;left:0;top:0;overflow-y:auto;display:flex;flex-direction:column;z-index:100;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px}
+#main{margin-left:var(--sw);min-height:100vh}
+.sb-header{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo-badge{width:42px;height:42px;background:var(--go);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--cr-d);flex-shrink:0;font-family:'Playfair Display',serif}
+.sb-title{font-size:12px;font-weight:700;color:var(--cm);line-height:1.3;letter-spacing:.02em}
+.sb-sub{font-size:10px;color:rgba(242,235,215,.55);margin-top:2px}
+.sb-progress{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(242,235,215,.55);font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
+.prog-track{height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--go);border-radius:3px;transition:width .4s ease}
+.sb-nav{flex:1;padding:8px 0}
+.sec-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,235,215,.38);padding:10px 16px 3px}
+.mod-item{display:flex;align-items:flex-start;gap:9px;padding:9px 14px;cursor:pointer;transition:background var(--tr);border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.mod-item:hover{background:rgba(255,255,255,.07)}
+.mod-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.mod-item.completed .mod-badge{background:var(--go);color:var(--cr-d)}
+.mod-badge{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--cm);flex-shrink:0;margin-top:1px}
+.mod-title{font-size:12px;font-weight:600;color:var(--cm);line-height:1.3}
+.mod-sub{font-size:10px;color:rgba(242,235,215,.48);margin-top:1px}
+.sb-foot{padding:8px 0;border-top:1px solid rgba(255,255,255,.1)}
+.sb-foot-item{display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;transition:background var(--tr);border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.sb-foot-item:hover{background:rgba(255,255,255,.07)}
+.sb-foot-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.sb-foot-icon{width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.sb-foot-label{font-size:12px;font-weight:600;color:var(--cm)}
+.hero{background:linear-gradient(135deg,var(--cr-dd) 0%,var(--cr) 55%,var(--cr-l) 100%);color:var(--wh);padding:52px 56px 48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-8%;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.22);border:1px solid rgba(201,168,76,.45);color:var(--go);padding:5px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:20px}
+.draft-hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(184,92,0,.3);border:1px solid rgba(184,92,0,.6);color:#ffd090;padding:4px 12px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-left:8px}
+.hero-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1.15;margin-bottom:14px;color:var(--wh);max-width:600px}
+.hero-sub{font-size:15px;line-height:1.7;color:rgba(255,255,255,.72);max-width:540px;margin-bottom:28px}
+.hero-name-row{display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.hero-name-row label{font-size:13px;font-weight:600;color:var(--cm);white-space:nowrap}
+.name-input{padding:10px 15px;border-radius:var(--r);border:2px solid rgba(201,168,76,.45);background:rgba(255,255,255,.1);color:var(--wh);font-size:14px;font-weight:500;width:230px;outline:none;transition:border-color var(--tr);font-family:inherit}
+.name-input::placeholder{color:rgba(255,255,255,.38)}
+.name-input:focus{border-color:var(--go)}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.stat-item{display:flex;align-items:center;gap:7px}
+.stat-label{font-size:13px;font-weight:600;color:var(--cm)}
+.btn-begin{display:inline-flex;align-items:center;gap:8px;background:var(--go);color:var(--cr-d);border:none;padding:13px 26px;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;transition:all var(--tr);font-family:inherit}
+.btn-begin:hover{background:var(--go-l);transform:translateY(-1px)}
+.btn-begin:focus{outline:3px solid var(--wh);outline-offset:2px}
+.land-body{background:var(--wh);padding:48px 56px}
+.sec-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--cr);margin-bottom:6px}
+.sec-intro{font-size:14px;color:var(--tx-m);margin-bottom:22px;max-width:560px;line-height:1.6}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
+.obj-card{display:flex;align-items:flex-start;gap:11px;padding:15px;background:var(--cm);border-radius:var(--r);border-left:4px solid var(--go)}
+.obj-num{width:26px;height:26px;background:var(--cr);color:var(--wh);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.obj-text{font-size:13px;line-height:1.5;color:var(--tx);font-weight:500}
+.mod-page{min-height:100vh;background:#ede9df}
+.mod-header{background:var(--cr);color:var(--wh);padding:24px 44px;display:flex;align-items:center;gap:18px}
+.mod-num-badge{background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.28);width:50px;height:50px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.mod-num-sm{font-size:8px;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.55);font-weight:600;line-height:1}
+.mod-num-lg{font-size:20px;font-weight:800;color:var(--wh);line-height:1}
+.mod-hdr-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:3px}
+.mod-hdr-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--wh);line-height:1.25}
+.mod-content{padding:36px 44px;max-width:880px}
+.scr-dots{display:flex;align-items:center;gap:7px;margin-bottom:24px}
+.scr-dot{width:8px;height:8px;border-radius:50%;background:var(--cm-dd);transition:all var(--tr)}
+.scr-dot.active{background:var(--cr);width:22px;border-radius:4px}
+.scr-dot.done{background:var(--go)}
+.card{background:var(--wh);border-radius:var(--rl);padding:26px 30px;margin-bottom:18px;box-shadow:var(--sh)}
+.card h3{font-size:17px;font-weight:700;color:var(--cr);margin-bottom:11px}
+.card p{font-size:14px;line-height:1.7;color:var(--tx);margin-bottom:11px}
+.card p:last-child{margin-bottom:0}
+.card ul,.card ol{margin-left:22px;margin-bottom:11px}
+.card li{font-size:14px;line-height:1.6;color:var(--tx);margin-bottom:4px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.callout{background:var(--cm);border-left:5px solid var(--go);padding:16px 20px;border-radius:0 var(--r) var(--r) 0;margin-bottom:16px;font-size:13px;line-height:1.7;color:var(--tx)}
+.callout strong{color:var(--cr)}
+.sl{list-style:none;padding:0}
+.sl li{padding:7px 0 7px 22px;position:relative;font-size:14px;line-height:1.5;color:var(--tx);border-bottom:1px solid var(--cm-d)}
+.sl li:last-child{border-bottom:none}
+.sl li::before{content:'→';position:absolute;left:0;color:var(--go-d);font-weight:700}
+.smart-tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+.smart-tbl th{background:var(--cr);color:#fff;padding:9px 13px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.smart-tbl td{padding:10px 13px;border-bottom:1px solid var(--cm-d);vertical-align:top;line-height:1.5}
+.smart-tbl tr:nth-child(even) td{background:var(--cm)}
+.phase-box{border:1px solid var(--cm-d);border-radius:var(--r);overflow:hidden;margin-bottom:12px;background:var(--wh)}
+.phase-hdr{background:var(--cr);color:var(--wh);padding:10px 16px;display:flex;align-items:center;gap:11px;font-size:13px;font-weight:700}
+.phase-num{width:26px;height:26px;border-radius:50%;background:var(--go);color:var(--cr-d);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.phase-body{padding:14px 16px;font-size:13px;line-height:1.65;color:var(--tx)}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+.path-card{border:2px solid var(--cm-d);border-radius:var(--r);overflow:hidden}
+.path-head{padding:9px 14px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--cr);color:var(--wh)}
+.path-body{padding:14px;background:var(--wh);font-size:13px;line-height:1.6;color:var(--tx)}
+.path-body ul{margin-left:16px;margin-top:5px}
+.path-body li{margin-bottom:4px}
+.quiz{background:var(--wh);border-radius:var(--rl);padding:26px 30px;margin-bottom:16px;box-shadow:var(--sh)}
+.quiz-q-num{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--tx-l);font-weight:600;margin-bottom:8px}
+.quiz-q{font-size:15px;font-weight:600;color:var(--tx);margin-bottom:18px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.quiz-opt{display:flex;align-items:flex-start;gap:11px;padding:13px 15px;border:2px solid var(--cm-d);border-radius:var(--r);cursor:pointer;transition:all var(--tr);background:var(--wh);font-family:inherit;text-align:left;width:100%}
+.quiz-opt:hover:not(:disabled){border-color:var(--cr);background:var(--cm)}
+.quiz-opt.sel{border-color:var(--cr);background:rgba(112,17,12,.05)}
+.quiz-opt.cor{border-color:#15803d;background:rgba(21,128,61,.08)}
+.quiz-opt.inc{border-color:#b91c1c;background:rgba(185,28,28,.07)}
+.quiz-opt:disabled{cursor:not-allowed}
+.opt-ltr{width:24px;height:24px;border-radius:50%;background:var(--cm-d);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--tx-m);flex-shrink:0}
+.quiz-opt.cor .opt-ltr{background:#15803d;color:#fff}
+.quiz-opt.inc .opt-ltr{background:#b91c1c;color:#fff}
+.opt-text{font-size:13px;line-height:1.5;color:var(--tx)}
+.quiz-fb{margin-top:14px;padding:13px 15px;border-radius:var(--r);font-size:13px;line-height:1.5;display:none}
+.quiz-fb.show{display:block}
+.quiz-fb.cor-fb{background:rgba(21,128,61,.1);border:1px solid #15803d;color:#14532d}
+.quiz-fb.inc-fb{background:rgba(185,28,28,.09);border:1px solid #b91c1c;color:#7f1d1d}
+.mod-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 44px;background:var(--wh);border-top:1px solid var(--cm-d);position:sticky;bottom:0;z-index:10}
+.btn-nav{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--tr);border:2px solid;font-family:inherit}
+.btn-prev{background:var(--wh);color:var(--cr);border-color:var(--cr)}
+.btn-prev:hover{background:var(--cm)}
+.btn-next{background:var(--cr);color:var(--wh);border-color:var(--cr)}
+.btn-next:hover{background:var(--cr-d)}
+.btn-nav:disabled{opacity:.38;cursor:not-allowed}
+.btn-nav:focus{outline:3px solid var(--go);outline-offset:2px}
+.scr-pos{font-size:12px;color:var(--tx-m);font-weight:500}
+.assess-header{background:var(--cr);color:var(--wh);padding:24px 44px}
+.assess-q-num{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);font-weight:600;margin-bottom:7px}
+.assess-mod-tag{display:inline-block;background:rgba(255,255,255,.15);padding:2px 9px;border-radius:100px;font-size:10px;color:var(--cm);margin-bottom:14px}
+.assess-q{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--wh);line-height:1.35}
+.assess-body{padding:32px 44px;max-width:780px}
+.assess-dots{display:flex;gap:5px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.assess-dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--cm-d);background:var(--wh);font-size:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);color:var(--tx-m)}
+.assess-dot.answered{background:var(--cm);border-color:var(--cr);color:var(--cr)}
+.assess-dot.current{background:var(--cr);border-color:var(--cr);color:#fff}
+.results-pg{padding:40px 44px;max-width:680px}
+.results-circle{width:130px;height:130px;border-radius:50%;border:7px solid var(--go);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 28px}
+.results-score{font-size:36px;font-weight:800;color:var(--cr);line-height:1}
+.results-slbl{font-size:11px;color:var(--tx-m);font-weight:600}
+.results-status{text-align:center;margin-bottom:28px}
+.r-pass{font-size:20px;font-weight:700;color:#166534}
+.r-fail{font-size:20px;font-weight:700;color:#991b1b}
+.breakdown{background:var(--wh);border-radius:var(--rl);padding:22px;box-shadow:var(--sh);margin-bottom:22px}
+.bd-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--cm-d)}
+.bd-row:last-child{border-bottom:none}
+.bd-mod{font-size:13px;font-weight:600;color:var(--tx)}
+.bd-score{font-size:13px;font-weight:700}
+.sg{color:#166534}.sb-c{color:#991b1b}
+.cert-wrapper{padding:36px;background:#ede9df;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cert{width:760px;max-width:100%;background:var(--wh);border:7px solid var(--go);border-radius:var(--rl);padding:44px 52px;text-align:center;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.14)}
+.cert::before{content:'';position:absolute;inset:11px;border:2px solid var(--cm-d);border-radius:var(--r);pointer-events:none}
+.cert-logo{font-size:44px;font-family:'Playfair Display',serif;font-weight:700;color:var(--cr);margin-bottom:7px}
+.cert-org{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--tx-l);font-weight:600;margin-bottom:24px}
+.cert-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cr);margin-bottom:18px;line-height:1.2}
+.cert-certifies{font-size:13px;color:var(--tx-m);margin-bottom:7px;font-style:italic}
+.cert-name{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--go-d);margin-bottom:18px;line-height:1.2}
+.cert-completed{font-size:13px;color:var(--tx-m);margin-bottom:7px}
+.cert-course{font-size:17px;font-weight:700;color:var(--tx);margin-bottom:7px;font-family:'Playfair Display',serif}
+.cert-chapter{font-size:13px;color:var(--tx-m);margin-bottom:22px}
+.cert-date{font-size:13px;color:var(--tx-l);margin-bottom:22px;font-style:italic}
+.cert-div{width:110px;height:3px;background:var(--go);margin:0 auto 22px;border-radius:2px}
+.cert-seal{font-size:36px;margin-bottom:14px}
+.btn-print{display:inline-flex;align-items:center;gap:7px;background:var(--cr);color:var(--wh);border:none;padding:11px 22px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;margin-top:18px;transition:background var(--tr);font-family:inherit}
+.btn-print:hover{background:var(--cr-d)}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;background:var(--cr);color:var(--wh);border:none;padding:11px 22px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;transition:all var(--tr);font-family:inherit}
+.btn-primary:hover{background:var(--cr-d);transform:translateY(-1px)}
+.btn-primary:focus{outline:3px solid var(--go);outline-offset:2px}
+.btn-gold{background:var(--go);color:var(--cr-d)}
+.btn-gold:hover{background:var(--go-l)!important}
+.complete-badge{background:var(--go);color:var(--cr-d);text-align:center;padding:10px 18px;font-size:13px;font-weight:700;border-radius:var(--r);margin-bottom:14px}
+.title-screen{min-height:55vh;display:flex;flex-direction:column;justify-content:center;padding:32px 0}
+.ts-mod-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--tx-l);margin-bottom:11px}
+.ts-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--cr);line-height:1.25;margin-bottom:18px}
+.ts-obj{font-size:15px;color:var(--tx-m);line-height:1.7;max-width:580px;background:var(--cm);padding:18px 22px;border-radius:var(--rl);border-left:4px solid var(--go)}
+.mod-summary{background:linear-gradient(135deg,var(--cr-dd),var(--cr));color:var(--wh);border-radius:var(--rl);padding:28px 32px;margin-bottom:18px}
+.mod-summary p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.88);margin-bottom:11px}
+.mod-summary p:last-child{margin-bottom:0}
+.info-box{background:rgba(112,17,12,.06);border:1px solid rgba(112,17,12,.18);border-radius:var(--r);padding:14px 18px;font-size:13px;line-height:1.6;color:var(--tx);margin:14px 0}
+.info-box strong{color:var(--cr)}
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%);transition:transform .3s ease}
+  #sidebar.sb-open{transform:translateX(0)}
+  #main{margin-left:0}
+  .hero,.land-body{padding:28px 22px}
+  .obj-grid,.two-col,.path-grid{grid-template-columns:1fr}
+  .mod-content,.mod-header,.mod-nav,.assess-header,.assess-body{padding-left:22px;padding-right:22px}
+  .hero-title{font-size:26px}
+  .hamburger{display:flex}
+}
+@media(max-width:480px){.hero-stats{flex-direction:column;gap:10px}}
+@media print{
+  #sidebar,.btn-print,.mod-nav,.scr-dots,.hamburger{display:none!important}
+  #main{margin-left:0!important}
+  .cert{box-shadow:none;border:5px solid var(--go);page-break-inside:avoid}
+  body{background:#fff}
+}
+.hamburger{display:none;position:fixed;top:11px;left:11px;z-index:200;background:var(--cr);color:#fff;border:none;width:38px;height:38px;border-radius:var(--r);font-size:20px;cursor:pointer;align-items:center;justify-content:center}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99}
+.sb-overlay.show{display:block}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false"></button>
+<div class="sb-overlay" id="sb-overlay"></div>
+<nav id="sidebar" aria-label="Course navigation"></nav>
+<main id="main" role="main">
+  <div id="main-content" tabindex="-1"></div>
+</main>
+<script>
+// ========== STATE ==========
+const NS = 'DLA_BYLAW_2026';
+let S = {
+  page:'landing', mi:0, si:0, name:'',
+  done:[false,false,false,false,false,false,false],
+  visited:{}, ix:{}, aa:{}, aScore:null, aSubmitted:false
+};
+function save(){try{localStorage.setItem(NS,JSON.stringify(S))}catch(e){}}
+function load(){try{const d=localStorage.getItem(NS);if(d){const p=JSON.parse(d);Object.assign(S,p)}}catch(e){}}
+
+// ========== MODULE META ==========
+const MODS=[
+  {title:'Constitutional Authority',dur:'~30 min',screens:10,section:'FOUNDATIONS'},
+  {title:'Member Preparation',dur:'~30 min',screens:10,section:'SUBMISSION'},
+  {title:'Portal Submission',dur:'~30 min',screens:10,section:'SUBMISSION'},
+  {title:'Committee Review',dur:'~30 min',screens:10,section:'REVIEW'},
+  {title:'Accept or Reject',dur:'~30 min',screens:10,section:'REVIEW'},
+  {title:'Voting Process',dur:'~30 min',screens:10,section:'ADOPTION'},
+  {title:'Adoption & Filing',dur:'~30 min',screens:10,section:'ADOPTION'}
+];
+
+function calcProgress(){
+  const total=MODS.reduce((a,m)=>a+m.screens,0)+12;
+  let done=0;
+  for(let mi=0;mi<7;mi++) for(let si=0;si<MODS[mi].screens;si++) if(S.visited[`${mi}-${si}`]) done++;
+  if(S.aSubmitted) done+=10;
+  if(S.aScore!==null&&S.aScore>=8) done+=2;
+  return Math.round((done/total)*100);
+}
+function getIx(){return S.ix[`${S.mi}-${S.si}`]||{};}
+function setIx(data){S.ix[`${S.mi}-${S.si}`]=Object.assign(getIx(),data);save();}
+
+// ========== SIDEBAR ==========
+function renderSidebar(){
+  const pct=calcProgress();
+  let secShown={};
+  let items='';
+  for(let i=0;i<7;i++){
+    const m=MODS[i];
+    if(!secShown[m.section]){items+=`<div class="sec-label">${m.section}</div>`;secShown[m.section]=true;}
+    const isActive=S.page==='module'&&S.mi===i;
+    const isDone=S.done[i];
+    items+=`<button class="mod-item${isActive?' active':''}${isDone?' completed':''}" onclick="goModule(${i})" aria-current="${isActive?'page':'false'}">
+      <div class="mod-badge">${isDone?'':(i+1)}</div>
+      <div><div class="mod-title">${m.title}</div><div class="mod-sub">Module ${i+1} · ${m.dur}</div></div>
+    </button>`;
+  }
+  return `<div class="sb-header">
+    <div class="sb-logo">
+      <div class="logo-badge">KΑΨ</div>
+      <div><div class="sb-title">Bylaw Amendment SOP</div><div class="sb-sub">Denton-Lewisville Alumni Chapter · 2026</div></div>
+    </div>
+  </div>
+  <div class="sb-progress">
+    <div class="prog-label"><span>Course Progress</span><span>${pct}%</span></div>
+    <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
+  </div>
+  <div class="sb-nav">${items}</div>
+  <div class="sb-foot">
+    ${S.aSubmitted?`<button class="sb-foot-item${S.page==='results'?' active':''}" onclick="goPage('results')">
+      <div class="sb-foot-icon"></div><div class="sb-foot-label">Assessment Results</div>
+    </button>`:''}
+    ${S.aScore!==null&&S.aScore>=8?`<button class="sb-foot-item${S.page==='certificate'?' active':''}" onclick="goPage('certificate')">
+      <div class="sb-foot-icon"></div><div class="sb-foot-label">My Certificate</div>
+    </button>`:''}
+  </div>`;
+}
+
+// ========== NAVIGATION ==========
+function goPage(p){S.page=p;save();render();}
+function goModule(mi){S.page='module';S.mi=mi;S.si=0;S.visited[`${mi}-0`]=true;save();render();}
+function nextScreen(){
+  if(S.si<MODS[S.mi].screens-1){
+    S.si++;S.visited[`${S.mi}-${S.si}`]=true;save();render();window.scrollTo(0,0);
+  } else {
+    S.done[S.mi]=true;
+    if(S.mi<6){
+      const next=S.mi+1;
+      if(window.confirm(`Module ${S.mi+1} complete! Start Module ${next+1}?`)){
+        S.page='module';S.mi=next;S.si=0;S.visited[`${next}-0`]=true;
+      } else {S.page='landing';}
+    } else {
+      if(window.confirm('All 7 modules complete! Proceed to the Final Assessment?')){S.page='assessment';S.si=0;}
+      else {S.page='landing';}
+    }
+    save();render();window.scrollTo(0,0);
+  }
+}
+function prevScreen(){if(S.si>0){S.si--;save();render();window.scrollTo(0,0);}}
+
+function screenDots(count,current){
+  let d='';
+  for(let i=0;i<count;i++){
+    const isDone=S.visited[`${S.mi}-${i}`]&&i<current;
+    d+=`<div class="scr-dot${i===current?' active':isDone?' done':''}"></div>`;
+  }
+  return `<div class="scr-dots">${d}</div>`;
+}
+function modHeader(mi){
+  const m=MODS[mi];
+  return `<div class="mod-header">
+    <div class="mod-num-badge"><div class="mod-num-sm">MOD</div><div class="mod-num-lg">${mi+1}</div></div>
+    <div><div class="mod-hdr-lbl">Module ${mi+1} of 7</div><div class="mod-hdr-title">${m.title}</div></div>
+  </div>`;
+}
+function navBar(si,total,nextLabel='Next →'){
+  return `<div class="mod-nav">
+    <button class="btn-nav btn-prev" onclick="prevScreen()" ${si===0?'disabled':''}>← Previous</button>
+    <span class="scr-pos">Screen ${si+1} of ${total}</span>
+    <button class="btn-nav btn-next" onclick="nextScreen()">${nextLabel}</button>
+  </div>`;
+}
+
+// ========== QUIZ HELPER ==========
+function renderQuiz(qid,question,opts,correctIdx,feedback){
+  const ix=getIx();const sel=ix[qid];const submitted=sel!==undefined;
+  let optHtml='';
+  opts.forEach((o,i)=>{
+    let cls='quiz-opt';
+    if(submitted){if(i===correctIdx)cls+=' cor';else if(i===sel&&i!==correctIdx)cls+=' inc';}
+    else if(i===sel)cls+=' sel';
+    optHtml+=`<button class="${cls}" onclick="answerQuiz('${qid}',${i},${correctIdx})" ${submitted?'disabled':''}>
+      <div class="opt-ltr">${String.fromCharCode(65+i)}</div><div class="opt-text">${o}</div>
+    </button>`;
+  });
+  const fbShow=submitted?'show':'';
+  const fbCls=submitted&&sel===correctIdx?'cor-fb':'inc-fb';
+  return `<div class="quiz">
+    <div class="quiz-q-num">Question</div>
+    <div class="quiz-q">${question}</div>
+    <div class="quiz-opts">${optHtml}</div>
+    <div class="quiz-fb ${fbCls} ${fbShow}">${submitted?feedback:''}</div>
+  </div>`;
+}
+function answerQuiz(qid,sel,correct){
+  const ix=getIx();if(ix[qid]!==undefined)return;
+  ix[qid]=sel;setIx(ix);render();
+}
+
+// ========== MODULE SCREENS ==========
+// MODULE 1: Constitutional Authority
+function m1s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 1 of 7 · Foundations</div>
+  <div class="ts-title">Constitutional Authority & the Non-Conflict Standard</div>
+  <div class="ts-obj">Understand the constitutional foundation that authorizes the Denton-Lewisville Chapter to adopt and amend its own bylaws — and the legal constraints that every proposal must satisfy.</div>
+</div>`;}
+
+function m1s1(){return `<div>
+  <div class="card"><h3>What This SOP Governs</h3>
+  <p>This Standard Operating Procedure governs the <strong>complete lifecycle</strong> of a bylaw amendment proposal — from initial research through portal submission, committee review, membership vote, and official adoption. All parties are required to follow this procedure.</p>
+  <p>This SOP derives its authority from the <strong>KAP Constitution and Statutes 2025–27</strong> (87th Grand Chapter edition), prepared by the DLA Bylaws Committee.</p></div>
+  <div class="callout"><strong>KAP Constitution Art. XXX, Sec. 4:</strong> Alumni chapters shall have the power to adopt bylaws for their governance, provided that no such bylaws shall be in conflict with the Constitution, Statutes, Ritual, or other enactment of Kappa Alpha Psi.</div>
+  <div class="card"><h3>What This Provision Does</h3>
+  <ul class="sl">
+    <li><strong>GRANTS</strong> the Denton-Lewisville Chapter the power to adopt and amend its own bylaws without seeking IHQ or Province approval</li>
+    <li><strong>CONSTRAINS</strong> that power — no chapter bylaw may contradict, supersede, or be inconsistent with any national governing document</li>
+    <li><strong>REQUIRES</strong> that every proposed amendment be verified against the Constitution, Statutes, Ritual, and other KAP enactments</li>
+    <li><strong>EXEMPTS</strong> the chapter from any external filing obligation — internal compliance rests with the Bylaws Committee and KOR</li>
+  </ul></div>
+  <div class="card"><h3>Responsible Parties Under This SOP</h3>
+  <table class="smart-tbl">
+    <tr><th>Party</th><th>Primary Responsibility</th></tr>
+    <tr><td><strong>Any Financial Member</strong></td><td>May initiate a proposal; responsible for research and complete submission</td></tr>
+    <tr><td><strong>Keeper of Records (KOR)</strong></td><td>Receipt, logging, date-stamping, recordkeeping, and archiving</td></tr>
+    <tr><td><strong>Bylaws Committee</strong></td><td>Constitutional review, classification, priority, and text update</td></tr>
+    <tr><td><strong>Bylaws Committee Chairman</strong></td><td>Co-signs all adopted amendments; oversees compliance certification</td></tr>
+    <tr><td><strong>Chapter Polemarch</strong></td><td>Co-signs all adopted amendments; confirms adoption authority</td></tr>
+  </table></div>
+</div>`;}
+
+function m1s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Constitutional Authority</h3><p>Answer both questions to reinforce your learning.</p></div>
+  ${renderQuiz('q1','Which constitutional provision gives the Denton-Lewisville Chapter the authority to adopt its own bylaws?',
+    ['KAP Statutes, Chapter 7, Section 2 — Alumni Chapter Operations',
+     'KAP Constitution Art. XXX, Sec. 4 — Alumni chapter bylaw power',
+     'Grand Chapter Resolution 2025-G14 on Chapter Self-Governance',
+     'KAP Province Polemarch Directive on Local Chapter Governance'],1,
+    'Correct — Art. XXX, Sec. 4 is the sole constitutional provision that grants alumni chapters the power to adopt bylaws and constrains that power with the non-conflict standard.')}
+  ${renderQuiz('q2','After a bylaw amendment is adopted by the chapter, the chapter must:',
+    ['File the adopted amendment with IHQ within 30 days for official registration',
+     'Submit a copy to the Province Polemarch for review and endorsement',
+     'Maintain the amendment in its own internal records only — no external filing is required under Art. XXX, Sec. 4',
+     'Post the amendment to the national KAP member portal within 10 business days'],2,
+    'Correct — Art. XXX, Sec. 4 prescribes no filing obligation to IHQ or the Province. The chapter self-governs; the Bylaws Committee and KOR maintain compliance internally.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 1 NEW SCREENS: Constitutional Authority (s3–s9)
+function m1s3(){return `<div>
+  <div class="card"><h3>Article XXX, Section 4 — Full Text Analysis</h3>
+  <p>The full text of Art. XXX, Sec. 4 reads: <em>"Alumni chapters shall have the power to adopt bylaws for their governance, provided that no such bylaws shall be in conflict with the Constitution, Statutes, Ritual, or other enactment of Kappa Alpha Psi."</em></p>
+  <p>Each clause carries specific legal weight that every member proposing an amendment must understand.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Clause</th><th>What It Grants or Constrains</th><th>Practical Meaning</th></tr>
+    <tr><td><strong>"Alumni chapters shall have the power…"</strong></td><td>Affirmative grant of authority</td><td>No outside approval from IHQ or Province is needed to adopt or amend bylaws</td></tr>
+    <tr><td><strong>"…to adopt bylaws for their governance…"</strong></td><td>Scope limited to internal chapter governance</td><td>Chapter bylaws govern operations, procedures, duties — not external fraternity policy</td></tr>
+    <tr><td><strong>"…provided that no such bylaws shall be in conflict…"</strong></td><td>Limiting condition — the non-conflict standard</td><td>This clause subordinates all chapter action to national governing documents</td></tr>
+    <tr><td><strong>"…with the Constitution, Statutes, Ritual, or other enactment of Kappa Alpha Psi."</strong></td><td>Four categories of binding national authority</td><td>All four must be checked — not just the Constitution. "Other enactment" includes Grand Chapter resolutions</td></tr>
+  </table>
+  <div class="callout"><strong>Key Insight:</strong> The word "provided" is a legal condition precedent. The chapter's power to adopt bylaws exists <em>only if</em> the non-conflict standard is satisfied. A conflicting bylaw is not merely voidable — it is unauthorized from the moment of adoption.</div>
+  <div class="card"><h3>The Four Categories of Binding National Authority</h3>
+  <ul class="sl">
+    <li><strong>Constitution:</strong> The foundational document of the fraternity — defines the organization, membership, officers, and fundamental powers</li>
+    <li><strong>Statutes:</strong> Operational rules and procedures adopted by the Grand Chapter — includes chapter reporting, financial obligations, and membership standards</li>
+    <li><strong>Ritual:</strong> The ceremonial and initiatory practices — chapter bylaws may not alter or contradict ritual requirements</li>
+    <li><strong>Other Enactment of KAP:</strong> Grand Chapter resolutions, IHQ directives, and other official actions that carry binding force on all chapters</li>
+  </ul></div>
+</div>`;}
+
+function m1s4(){return `<div>
+  <div class="card"><h3>Constitutional vs. Statutory Authority — The Distinction That Matters</h3>
+  <p>Many members treat the KAP Constitution and Statutes as a single document. They are not. Understanding the difference between constitutional and statutory authority affects how you research your proposal, how you cite alignment, and what level of national action could change the rule you are relying on.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Feature</th><th>KAP Constitution</th><th>KAP Statutes</th></tr>
+    <tr><td><strong>What it is</strong></td><td>Foundational charter of the fraternity — defines the organization itself</td><td>Operational rules governing how the fraternity functions</td></tr>
+    <tr><td><strong>How it is changed</strong></td><td>Requires Grand Chapter action — typically a supermajority</td><td>May be amended by the Grand Chapter or authorized bodies with lower threshold</td></tr>
+    <tr><td><strong>Stability</strong></td><td>Rarely changes — designed to be durable</td><td>More frequently updated — reflects current operational needs</td></tr>
+    <tr><td><strong>Chapter bylaws must…</strong></td><td>Never contradict constitutional provisions — including Art. XXX, Sec. 4 itself</td><td>Never contradict statutory requirements — e.g., dues reporting, membership eligibility</td></tr>
+    <tr><td><strong>Citation example</strong></td><td>"Art. XXX, Sec. 4 — alumni chapter bylaw power"</td><td>"Statute Ch. 7 — alumni chapter dues obligations"</td></tr>
+  </table>
+  <div class="callout"><strong>Why This Matters for Your Proposal:</strong> If your proposed amendment aligns with a statute that is currently in force, know that a future Statute change could create a conflict with your adopted bylaw. Constitutional provisions are more stable reference points for long-term bylaw language.</div>
+  <div class="card"><h3>Ritual as a Binding Authority</h3>
+  <p>The Ritual is often overlooked in bylaw research. However, it is explicitly listed in Art. XXX, Sec. 4 as a binding national authority. Chapter bylaws may not alter membership requirements, ceremonial obligations, or practices established in the Ritual. Any proposal touching on membership, initiation, or ceremonial duties must be cross-checked against Ritual requirements — not just the Constitution and Statutes.</p></div>
+</div>`;}
+
+function m1s5(){return `<div>
+  <div class="card"><h3>How DL Chapter Bylaws Fit in the National Governance Framework</h3>
+  <p>The Denton-Lewisville Alumni Chapter does not operate as an independent organization. It exists within a three-tier governance hierarchy. Understanding where chapter bylaws sit in this hierarchy explains why the non-conflict standard is absolute — not advisory.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>National Level — KAP Constitution, Statutes, Ritual & Enactments</div>
+    <div class="phase-body">Supreme authority. All chapters, all members, all officers are subordinate. No chapter action — including bylaw adoption — may conflict with any national governing document. Changes require Grand Chapter action.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Province Level — Province Bylaws & Directives</div>
+    <div class="phase-body">Province authority applies within the Province structure. Province directives may impose additional obligations on chapters within that Province. However, for purposes of bylaw amendment review, the primary check under Art. XXX, Sec. 4 is against national documents — not Province directives.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">3</div>Chapter Level — DLA Bylaws (this document)</div>
+    <div class="phase-body">The Denton-Lewisville Alumni Chapter bylaws govern internal chapter operations: officer duties, meeting procedures, dues structure, committee authority, and disciplinary procedures. These bylaws must remain subordinate to all national documents at all times.</div></div>
+  <div class="card"><h3>Where Chapter Discretion Lives</h3>
+  <p>The chapter has the broadest discretion in areas where national law is entirely silent. Examples include: the format of chapter meetings, the names and duties of standing committees beyond those required nationally, internal financial controls, and chapter communication procedures. In these areas, Art. XXX, Sec. 4 grants the chapter full authority to legislate as it sees fit — as long as the resulting language does not contradict anything in the national documents.</p></div>
+  <div class="callout"><strong>Practical Rule:</strong> When researching a proposal, always move top-down — national first, then check what the current chapter bylaws say. Never assume chapter silence on a topic means the chapter is free to act. National law may mandate something the chapter has simply not yet codified.</div>
+</div>`;}
+
+function m1s6(){return `<div>
+  <div class="card"><h3>Bylaw Amendment History at the Denton-Lewisville Chapter</h3>
+  <p>Understanding the chapter's amendment history helps members avoid common errors and build on the work of previous Bylaws Committees. This historical context is particularly relevant for proposals that address areas previously amended.</p></div>
+  <div class="card"><h3>Why Amendment History Matters</h3>
+  <ul class="sl">
+    <li><strong>Avoid duplication:</strong> If a topic was amended in 2023, a new proposal on the same topic must engage with the 2023 language — not the pre-2023 version</li>
+    <li><strong>Understand legislative intent:</strong> The Amendment Log records the rationale for previous changes — this context helps evaluate whether a new proposal conflicts with or extends prior chapter policy</li>
+    <li><strong>Track effective dates:</strong> Not all amendments become effective at adoption — some have delayed effective dates. Knowing this prevents confusion about which version of a provision is currently in force</li>
+    <li><strong>Prevent unintentional repeal:</strong> A proposal that replaces an entire article may unknowingly undo previously adopted language within that article</li>
+  </ul></div>
+  <div class="card"><h3>How to Access Amendment History</h3>
+  <table class="smart-tbl">
+    <tr><th>Source</th><th>What You Find There</th></tr>
+    <tr><td><strong>DLA Amendment Log</strong></td><td>Every amendment from DLA-2024-A01 forward: ID, article/section, date adopted, vote tally, effective date</td></tr>
+    <tr><td><strong>KOR Archive</strong></td><td>Signed, stamped copies of all adopted amendments and superseded bylaw versions</td></tr>
+    <tr><td><strong>Member Portal</strong></td><td>Current active bylaws (KOR-certified version only — always the most current)</td></tr>
+    <tr><td><strong>Bylaws Committee</strong></td><td>Background and legislative intent for recent amendments — contact the Chair</td></tr>
+  </table></div>
+  <div class="callout"><strong>Scenario:</strong> A member wants to propose a change to meeting quorum requirements. Before drafting language, he should check the Amendment Log to determine whether quorum was addressed in any prior amendment — and if so, review that amendment's language, rationale, and vote tally. A proposal that re-opens settled language without engaging with that history is likely to face committee scrutiny.</div>
+</div>`;}
+
+function m1s7(){return `<div>
+  <div class="card"><h3>Who Is Bound by the Chapter Bylaws and How</h3>
+  <p>Not every person associated with the chapter is bound equally by its bylaws. Understanding the scope of bylaw authority is essential — both for drafting proposals that are appropriately scoped and for understanding the limits of bylaw enforcement.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Person / Group</th><th>Bound By Bylaws?</th><th>Basis</th></tr>
+    <tr><td><strong>Financial members in good standing</strong></td><td>Yes — fully bound</td><td>Membership in the chapter carries obligations under all governing documents</td></tr>
+    <tr><td><strong>Non-financial (lapsed) members</strong></td><td>Partially — cannot exercise member rights; basic conduct obligations remain</td><td>Membership status affects rights, not fraternal obligations</td></tr>
+    <tr><td><strong>Chapter officers</strong></td><td>Yes — fully bound, plus officer-specific duties</td><td>Election or appointment creates additional obligations beyond general membership</td></tr>
+    <tr><td><strong>Committee chairs and members</strong></td><td>Yes — bound as members; committee-specific rules also apply</td><td>Committee service does not create separate bylaws obligations, but committee procedures may supplement bylaw requirements</td></tr>
+    <tr><td><strong>Guests / non-members</strong></td><td>No — chapter bylaws do not bind non-members</td><td>Bylaws are an internal governance document; they do not create obligations on persons outside the membership</td></tr>
+  </table>
+  <div class="card"><h3>How Binding Authority Works in Practice</h3>
+  <ul class="sl">
+    <li><strong>Automatic obligation:</strong> A member becomes bound by the bylaws upon initiation — no separate agreement is required</li>
+    <li><strong>Bylaws are not a contract:</strong> They are a governance document — they create fraternal obligations, not legally enforceable contracts in the civil law sense</li>
+    <li><strong>Amendments bind immediately:</strong> Once properly adopted and filed, an amendment binds all covered persons — including those who voted against it</li>
+    <li><strong>Officers may be bound by duties others are not:</strong> A bylaw provision establishing the Polemarch's duties binds only the Polemarch — not the general membership</li>
+  </ul></div>
+</div>`;}
+
+function m1s8(){return `<div>
+  <div class="card"><h3>Enforcement of Chapter Bylaws</h3>
+  <p>Bylaws without enforcement mechanisms are aspirational documents. This screen covers how chapter bylaw provisions are enforced, what happens when a member or officer violates a bylaw, and the limits of chapter enforcement authority.</p></div>
+  <div class="card"><h3>Who Enforces the Bylaws</h3>
+  <table class="smart-tbl">
+    <tr><th>Enforcing Body</th><th>What They Enforce</th><th>Mechanism</th></tr>
+    <tr><td><strong>Chapter Polemarch</strong></td><td>Officer compliance, meeting procedures, parliamentary order</td><td>Rulings from the chair; referral to the Board of Directors</td></tr>
+    <tr><td><strong>Board of Directors</strong></td><td>Officer duties, committee obligations, financial compliance</td><td>Board resolutions, censure, removal proceedings</td></tr>
+    <tr><td><strong>Bylaws Committee</strong></td><td>Bylaw interpretation disputes</td><td>Written opinion provided to the Polemarch and KOR; advisory but authoritative</td></tr>
+    <tr><td><strong>General Chapter Membership</strong></td><td>Removal of officers, major bylaw violations by officers</td><td>Membership vote as prescribed in the bylaws</td></tr>
+  </table></div>
+  <div class="card"><h3>What Enforcement Cannot Do</h3>
+  <ul class="sl">
+    <li>Chapter bylaws cannot impose penalties that exceed what the KAP Constitution and Statutes authorize — e.g., a bylaw purporting to expel a member from the fraternity (as opposed to the chapter) exceeds chapter authority</li>
+    <li>Enforcement actions must follow the procedures established in the bylaws themselves — shortcuts that skip required notice or hearing rights create procedural violations</li>
+    <li>The KOR's official records are the controlling version — any enforcement action based on an unofficial bylaw copy may be procedurally defective</li>
+  </ul></div>
+  <div class="callout"><strong>Amendment Drafting Implication:</strong> When proposing a new bylaw provision, consider whether the chapter has a practical mechanism to enforce it. A well-drafted amendment specifies who is responsible for enforcement, what the standard of violation is, and what consequences follow. Unenforced bylaws erode the credibility of the entire governing document.</div>
+</div>`;}
+
+function m1s9(){return `<div>
+  <div class="card"><h3>Conflict Between National and Local Bylaws — Resolution</h3>
+  <p>What happens when a chapter bylaw, once properly adopted, later comes into conflict with a new national governing document? This scenario is more common than members realize — Grand Chapter resolutions and Statute amendments can create post-adoption conflicts without any action by the chapter.</p></div>
+  <div class="card"><h3>Types of Conflict</h3>
+  <table class="smart-tbl">
+    <tr><th>Conflict Type</th><th>Example</th><th>Resolution</th></tr>
+    <tr><td><strong>Direct contradiction</strong></td><td>Chapter bylaw requires 60 days notice for dues; new national statute mandates 30 days maximum</td><td>National provision controls automatically — chapter bylaw is suspended until amended to conform</td></tr>
+    <tr><td><strong>Gap / silence</strong></td><td>National law adopts a new requirement the chapter bylaws do not address</td><td>National requirement applies by operation of law; chapter should amend bylaws to codify the requirement explicitly</td></tr>
+    <tr><td><strong>Ambiguity</strong></td><td>Chapter and national language can be read consistently but require interpretation</td><td>Bylaws Committee issues a written interpretation; the national provision prevails if the two cannot be reconciled</td></tr>
+  </table></div>
+  <div class="card"><h3>The Supremacy Principle</h3>
+  <p>Art. XXX, Sec. 4's non-conflict standard operates as a <strong>supremacy clause</strong>: national law always prevails. When a conflict arises — whether because the chapter adopted conflicting language originally (which should have been caught in committee review) or because national law later changed — the chapter bylaw provision is ineffective to the extent of the conflict. The chapter does not need to vote to "suspend" the conflicting provision; it is automatically subordinate.</p></div>
+  ${renderQuiz('q1','A chapter bylaw provision adopted in 2024 later comes into direct conflict with a new KAP Statute enacted in 2026. Without any chapter action, the operative rule is:',
+    ['The chapter bylaw — because it was adopted first and vested rights have accrued',
+     'The KAP Statute — national law always prevails under the Art. XXX, Sec. 4 supremacy principle',
+     'Whichever provision is more favorable to chapter members',
+     'Neither — the conflict must be resolved by the Province Polemarch before either applies'],1,
+    'Correct — the KAP Statute prevails automatically. The non-conflict standard in Art. XXX, Sec. 4 operates as a supremacy clause. The chapter should then amend its bylaws to conform to the new national requirement.')}
+  ${renderQuiz('q2','Which of the following is NOT one of the four categories of binding national authority listed in Art. XXX, Sec. 4?',
+    ['The KAP Constitution','The KAP Statutes','The KAP Ritual','Province Polemarch Directives'],3,
+    'Correct — Art. XXX, Sec. 4 lists four binding authorities: Constitution, Statutes, Ritual, and "other enactment of Kappa Alpha Psi." Province Polemarch Directives are not enumerated in this provision as a binding category under this standard.')}
+  <div class="complete-badge"> Module 1 deep-content complete — you may continue</div>
+</div>`;}
+
+// MODULE 2: Member Preparation
+function m2s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 2 of 7 · Submission</div>
+  <div class="ts-title">Phase 1 — Member Preparation</div>
+  <div class="ts-obj">Before submitting anything, the proposing member must complete three preparation steps to research current bylaws, check national law, and document constitutional alignment. This phase cannot be skipped.</div>
+</div>`;}
+
+function m2s1(){return `<div>
+  <div class="card"><h3>Why Preparation Matters</h3>
+  <p>The most common reason proposals are rejected is insufficient pre-submission research. A member who submits without reviewing national law often discovers — after committee review — that the proposal conflicts with a constitutional provision or duplicates existing language. Phase 1 prevents these failures before they happen.</p></div>
+  <div class="card"><h3>Step 1: Review the Current DLA Bylaws</h3>
+  <ul class="sl">
+    <li>Locate the current version on the DLA member portal — do not use printed copies or unofficial versions</li>
+    <li>Read the full article and section(s) your proposal will address — do not rely on summaries</li>
+    <li>Identify exactly what the current language says, or document a gap if no language exists for your topic</li>
+  </ul></div>
+  <div class="card"><h3>Step 2: Review the KAP Constitution & Statutes 2025–27</h3>
+  <p>Access the national document from the member portal. Find relevant provisions and determine which relationship applies:</p>
+  <table class="smart-tbl">
+    <tr><th>National Law Position</th><th>What It Means for Your Proposal</th></tr>
+    <tr><td><strong>Directly mandates something</strong></td><td>Your proposed language must align — and may not contradict — the national mandate</td></tr>
+    <tr><td><strong>Expressly prohibits something</strong></td><td>Your proposal cannot include the prohibited element under any circumstance</td></tr>
+    <tr><td><strong>Is silent on the matter</strong></td><td>The chapter has full discretion under Art. XXX, Sec. 4 to adopt whatever language serves the chapter</td></tr>
+  </table></div>
+  <div class="card"><h3>Step 3: Map Alignment Using the Three-Part Framework</h3>
+  <ul class="sl">
+    <li><strong>ALIGNS WITH:</strong> Consistent with or required by the Constitution/Statutes — cite the specific provision</li>
+    <li><strong>CONFLICTS WITH:</strong> Contradicts a national provision — proposal will be rejected unless resolved before submission</li>
+    <li><strong>WITHIN CHAPTER DISCRETION:</strong> National law is silent — cite "Art. XXX, Sec. 4 — chapter discretion"</li>
+  </ul>
+  <div class="info-box" style="margin-top:14px"><strong>Resource:</strong> The <em>Proposed Bylaw Amendments cross-reference document</em> (DLA Bylaws Committee, August 2026) maps every current DLA bylaw section against constitutional and statutory citations. Use it before completing your alignment documentation.</div></div>
+</div>`;}
+
+function m2s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Member Preparation</h3><p>Answer both questions to continue.</p></div>
+  ${renderQuiz('q1','A member wants to propose a bylaw amendment. What is the correct first step?',
+    ['Locate and read the current DLA Bylaws on the member portal to understand the existing language or identify the gap',
+     'Go directly to the portal submission form and complete all 8 fields',
+     'Consult with the Polemarch to determine whether the amendment is a priority',
+     'Review the KAP Constitution first, then check the DLA Bylaws after'],0,
+    'Correct — the first step in Phase 1 is always to locate and read the current DLA Bylaws. Members must understand the current language or identify the gap before doing anything else.')}
+  ${renderQuiz('q2','After reviewing national law, a member finds the KAP Constitution is completely silent on the topic of his proposal. Under the alignment framework, this means:',
+    ['The proposal cannot be submitted because there is no constitutional basis for it',
+     'The chapter has discretion to adopt language on this matter under Art. XXX, Sec. 4; cite "Art. XXX, Sec. 4 — chapter discretion"',
+     'The member must seek a Province-level advisory opinion before submitting',
+     'The proposal is automatically classified as Substantive because national law does not govern it'],1,
+    'Correct — when national law is silent, the chapter has discretion under Art. XXX, Sec. 4 to adopt language. Silence is not a prohibition; it grants chapter authority.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 2 NEW SCREENS: Member Preparation (s3–s9)
+function m2s3(){return `<div>
+  <div class="card"><h3>The Detailed Research Process — What to Check Before Proposing</h3>
+  <p>Phase 1 preparation is more than a quick review. A thorough research process takes time, uses specific resources, and produces a documented trail that supports the submission. Members who skip steps in this process account for the majority of rejected proposals.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>Locate the Current DLA Bylaws (KOR-certified version only)</div>
+    <div class="phase-body">Access the member portal and download the KOR-certified version. Check the document header for the version date and the KOR's file stamp. Do not use a saved or printed copy — it may be outdated. Print or annotate the relevant article and section.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Read the Entire Article — Not Just the Target Section</div>
+    <div class="phase-body">Your proposed change may interact with other sections within the same article. Reading only the target section creates a risk that your proposed language conflicts with an adjacent provision in the same article. Read the full article, then identify the specific section(s) your proposal addresses.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">3</div>Check the KAP Constitution & Statutes 2025–27</div>
+    <div class="phase-body">Search for provisions that: (a) directly address your topic; (b) address adjacent topics that might affect your proposal; (c) define terms your proposal uses. Document each relevant provision with its article and section number.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">4</div>Check the DLA Bylaws Cross-Reference Document</div>
+    <div class="phase-body">The DLA Bylaws Committee maintains a cross-reference document mapping every DLA bylaw section to its constitutional and statutory citations. Reviewing this document before drafting saves time and prevents alignment errors that cause rejection.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">5</div>Review the Amendment Log</div>
+    <div class="phase-body">Check whether your target article or section has been previously amended. If so, review the prior amendment's language, rationale, and vote tally. Your proposal must engage with current — not pre-amendment — language.</div></div>
+</div>`;}
+
+function m2s4(){return `<div>
+  <div class="card"><h3>Community Impact Assessment</h3>
+  <p>A bylaw amendment affects the entire chapter community — not just the specific procedure or requirement it addresses. Before drafting, assess the human impact of your proposed change. Committees weight proposals more favorably when the submitter has considered downstream effects.</p></div>
+  <div class="card"><h3>Questions to Answer Before Drafting</h3>
+  <ul class="sl">
+    <li><strong>Who is directly affected?</strong> Officers? All financial members? Specific committees? New initiates?</li>
+    <li><strong>Who is indirectly affected?</strong> Chapter guests? The chapter's community programs? Vendor or service relationships?</li>
+    <li><strong>Does this proposal reduce or increase administrative burden?</strong> On the KOR? On the Polemarch? On committee chairs?</li>
+    <li><strong>Is there a transition period needed?</strong> Members or officers currently acting under the old provision need notice and time to adapt</li>
+    <li><strong>Does this affect member participation or engagement?</strong> Proposals that raise barriers to participation require stronger justification</li>
+  </ul></div>
+  <div class="card"><h3>How to Document Your Impact Assessment</h3>
+  <p>You do not submit a formal impact document — but Field 8 (Expected Impact) on the portal form is where you summarize your assessment. A well-completed Field 8 answers: <em>Who does this affect, how, and why is the change an improvement?</em></p>
+  <table class="smart-tbl">
+    <tr><th>Weak Field 8 Response</th><th>Strong Field 8 Response</th></tr>
+    <tr><td>"This will improve operations."</td><td>"This removes the 30-day advance notice requirement for special meetings in favor of a 14-day requirement, reducing the calendar burden on the Polemarch and enabling more timely responses to chapter business. All financial members retain full notice rights."</td></tr>
+    <tr><td>"It will make things easier for officers."</td><td>"This assigns KOR responsibility for portal posting within 5 days of adoption, eliminating current ambiguity about who is responsible. The change affects only the KOR's workflow — no member rights are altered."</td></tr>
+  </table></div>
+</div>`;}
+
+function m2s5(){return `<div>
+  <div class="card"><h3>Financial Impact Analysis</h3>
+  <p>Any proposal that directly or indirectly affects the chapter's finances — dues, fees, assessments, budget processes, officer compensation, or financial reporting — requires explicit financial impact analysis before submission. This is not a separate formal document; it is documentation captured in the Rationale (Field 4) and Expected Impact (Field 8) fields.</p></div>
+  <div class="card"><h3>When Financial Analysis Is Required</h3>
+  <ul class="sl">
+    <li>Proposals that change dues amounts, structures, or payment timelines</li>
+    <li>Proposals that create new fees or assessments on members</li>
+    <li>Proposals that change officer compensation or expense reimbursement rules</li>
+    <li>Proposals that alter committee budget authority or spending limits</li>
+    <li>Proposals that change financial reporting or audit requirements</li>
+    <li>Proposals that establish or dissolve chapter funds or accounts</li>
+  </ul></div>
+  <div class="card"><h3>What to Include in the Financial Analysis</h3>
+  <table class="smart-tbl">
+    <tr><th>Analysis Element</th><th>What to Address</th></tr>
+    <tr><td><strong>Direct cost/savings</strong></td><td>How much does the proposed change cost the chapter or individual members, or how much does it save?</td></tr>
+    <tr><td><strong>Who bears the cost</strong></td><td>Is the financial impact on all members equally, or on specific groups (officers, new members, etc.)?</td></tr>
+    <tr><td><strong>Implementation cost</strong></td><td>Does the change require a one-time expense to implement (e.g., new systems, updated forms)?</td></tr>
+    <tr><td><strong>National compliance</strong></td><td>Does the proposed financial structure comply with KAP Statute requirements on chapter finances?</td></tr>
+  </table></div>
+  <div class="callout"><strong>Common Error:</strong> Members proposing dues changes frequently omit the national compliance check. KAP Statutes impose minimum financial obligations on members and chapters. A chapter bylaw that conflicts with these obligations — even if adopted by a 2/3 membership vote — violates the non-conflict standard and will be rejected in committee review.</div>
+</div>`;}
+
+function m2s6(){return `<div>
+  <div class="card"><h3>Legal Review Considerations</h3>
+  <p>Chapter bylaws are not contracts, but they carry governance authority within the chapter. Proposals that touch on member rights, disciplinary procedures, election processes, or financial obligations benefit from a basic legal-framework review before submission. This does not require a licensed attorney — but it does require careful analysis of specific considerations.</p></div>
+  <div class="card"><h3>Areas That Warrant Heightened Legal-Framework Review</h3>
+  <ul class="sl">
+    <li><strong>Disciplinary provisions:</strong> Any proposal creating or modifying suspension, censure, or removal procedures must provide: (1) adequate notice of charges; (2) an opportunity to be heard; (3) a decision made by a body not including the accused; and (4) a defined appeals path</li>
+    <li><strong>Election procedures:</strong> Proposals affecting officer eligibility, nomination, or election processes must not create discriminatory barriers or conflict with KAP's equal-participation commitments</li>
+    <li><strong>Dues and financial obligations:</strong> Proposals creating financial obligations must be prospective — not retroactive — and must provide reasonable notice before the obligation attaches</li>
+    <li><strong>Meeting procedures:</strong> Proposals altering quorum, notice, or voting requirements must comply with Robert's Rules of Order (or the parliamentary authority adopted by the chapter) where the bylaws do not specifically address the point</li>
+  </ul></div>
+  <div class="callout"><strong>When to Seek Help:</strong> If your proposal would modify disciplinary procedures, alter member rights, or create financial obligations, consider consulting with the Bylaws Committee Chair before completing your portal submission. The committee can advise informally on whether the proposal's structure is legally sound — saving you time and a potential rejection.</div>
+  <div class="card"><h3>What "Legal Review" Does NOT Mean</h3>
+  <p>You are not required to retain an attorney before submitting a bylaw amendment. The "legal review consideration" step means applying basic fairness and procedural justice standards to your proposed language. The Bylaws Committee performs the constitutional review — your job is to draft language that is clear, fair, and scoped appropriately.</p></div>
+</div>`;}
+
+function m2s7(){return `<div>
+  <div class="card"><h3>Surveying Member Support Before Submission</h3>
+  <p>Gauging member sentiment before submitting a proposal is not required — but it is strategically wise. Proposals that arrive at a chapter vote with broad pre-existing awareness and support have significantly higher adoption rates than proposals that members encounter for the first time at the First Reading.</p></div>
+  <div class="card"><h3>Why Informal Outreach Matters</h3>
+  <ul class="sl">
+    <li><strong>Identifies opposition early:</strong> Understanding objections before submission lets you refine your proposal to address concerns — or decide whether the proposal is worth pursuing at all</li>
+    <li><strong>Builds informed advocates:</strong> Brothers who understand your proposal's rationale before the First Reading can engage thoughtfully in deliberation rather than reacting without context</li>
+    <li><strong>Surfaces unintended consequences:</strong> Members with specific expertise (financial, legal, operational) may identify problems with your draft that you have not considered</li>
+    <li><strong>Does not bind the chapter:</strong> Informal support conversations have no procedural effect — they do not constitute a vote or a commitment</li>
+  </ul></div>
+  <div class="card"><h3>How to Survey Support Appropriately</h3>
+  <table class="smart-tbl">
+    <tr><th>Approach</th><th>Appropriate Use</th><th>What to Avoid</th></tr>
+    <tr><td><strong>One-on-one conversations</strong></td><td>Best for getting candid feedback from specific brothers with relevant expertise</td><td>Do not represent informal support as a commitment or pre-vote</td></tr>
+    <tr><td><strong>Committee or officer consultation</strong></td><td>If your proposal affects a specific committee or officer role, consult informally with the relevant chair or officer</td><td>Do not pressure officers to endorse a proposal before committee review</td></tr>
+    <tr><td><strong>General chapter discussion</strong></td><td>Appropriate to mention at a meeting that you are researching a topic and invite feedback</td><td>Do not conduct informal votes or "straw polls" — these may confuse members about the actual amendment process</td></tr>
+  </table></div>
+</div>`;}
+
+function m2s8(){return `<div>
+  <div class="card"><h3>Drafting the Amendment Language Precisely</h3>
+  <p>The quality of a proposal's language is the single most controllable factor in its success. The Bylaws Committee reviews the exact text submitted — not the intent behind it. Imprecise language that appears to conflict with existing provisions or national law will be flagged even if the underlying idea is sound.</p></div>
+  <div class="card"><h3>Principles of Precise Drafting</h3>
+  <ul class="sl">
+    <li><strong>Use parallel structure:</strong> If the existing bylaw uses "shall" for obligations, your proposed language should use "shall" — not "will" or "must"</li>
+    <li><strong>Define terms you introduce:</strong> If your proposal introduces a new term (e.g., "financial hardship waiver"), define it in the same provision or cite an existing definition</li>
+    <li><strong>Be specific about who, what, when, and how:</strong> Vague language like "the chapter should periodically review…" creates no enforceable obligation. Specific language like "the Bylaws Committee shall review the bylaws annually, no later than June 30 of each year" is enforceable</li>
+    <li><strong>Cross-reference rather than repeat:</strong> If your proposal relies on a definition or procedure already in the bylaws, cite it by article and section — do not restate it, which creates the risk of inconsistency</li>
+    <li><strong>Specify the effective date:</strong> If your amendment should take effect at a date other than adoption, specify it explicitly</li>
+  </ul></div>
+  <div class="card"><h3>Common Drafting Errors That Lead to Rejection</h3>
+  <table class="smart-tbl">
+    <tr><th>Error</th><th>Why It Causes Rejection</th></tr>
+    <tr><td>Using "may" when you mean "shall"</td><td>Creates optional authority instead of mandatory obligation — the provision will not be enforceable as intended</td></tr>
+    <tr><td>Failing to specify who is responsible</td><td>An obligation with no designated responsible party cannot be enforced</td></tr>
+    <tr><td>Leaving timelines vague</td><td>"Promptly," "soon," and "as needed" have no operational meaning — specify calendar or business days</td></tr>
+    <tr><td>Repeating existing language with slight modifications</td><td>Creates internal contradiction — the committee will flag which version controls</td></tr>
+    <tr><td>Including rationale in the proposed verbiage</td><td>Bylaws state rules, not reasons — put rationale in Field 4, not in the proposed text</td></tr>
+  </table></div>
+</div>`;}
+
+function m2s9(){return `<div>
+  <div class="card"><h3>Well-Drafted vs. Poorly Drafted — Comparison</h3>
+  <p>The difference between a well-drafted and a poorly drafted amendment is often not the underlying idea — it is the precision of the language. Study these examples before finalizing your proposal.</p></div>
+  <div class="path-grid">
+    <div class="path-card"><div class="path-head" style="background:#991b1b">POORLY DRAFTED — Likely Rejected</div>
+    <div class="path-body"><p><em>"The chapter should try to review its bylaws from time to time to make sure they are current and the officers are following them."</em></p>
+    <ul style="margin-left:16px;margin-top:8px;font-size:13px">
+      <li>No responsible party designated</li>
+      <li>"Should try" creates no enforceable obligation</li>
+      <li>"From time to time" is not a timeline</li>
+      <li>"Make sure" has no measurable standard</li>
+      <li>Combines two separate obligations (review and enforcement) in one vague sentence</li>
+    </ul></div></div>
+    <div class="path-card"><div class="path-head" style="background:#166534">WELL DRAFTED — Ready for Submission</div>
+    <div class="path-body"><p><em>"The Bylaws Committee shall conduct a comprehensive review of the Chapter Bylaws annually, no later than June 30 of each fiscal year. The Committee shall submit a written report of findings to the Keeper of Records and the Polemarch within 15 days of completing the review."</em></p>
+    <ul style="margin-left:16px;margin-top:8px;font-size:13px">
+      <li>Responsible party specified (Bylaws Committee)</li>
+      <li>"Shall" creates a mandatory obligation</li>
+      <li>Specific timeline (June 30, annually)</li>
+      <li>Measurable deliverable (written report)</li>
+      <li>Clear recipients of the deliverable</li>
+    </ul></div></div>
+  </div>
+  ${renderQuiz('q1','A member drafts a proposed bylaw that reads: "Officers will generally try to submit required reports promptly." What is the most significant drafting problem?',
+    ['"Will" should be "shall" — but otherwise the provision is acceptable',
+     'The provision is vague on every key element — no specific officer, no timeline, no defined report, no consequence for non-compliance',
+     'The provision duplicates existing language and should be removed',
+     'The provision needs a constitutional citation before it can be submitted'],1,
+    'Correct — the provision fails on every element of precise drafting: no specific responsible party, no mandatory language, no timeline, and no measurable standard. "Promptly" and "generally try" are unenforceable.')}
+  ${renderQuiz('q2','Where in the portal submission form should the rationale for a proposed amendment be placed?',
+    ['In the Proposed Verbiage field — so reviewers understand the intent of the language',
+     'In Field 4 (Rationale for Change) — bylaws state rules, not reasons; rationale belongs in Field 4, not the proposed text',
+     'In Field 8 (Expected Impact) — rationale and impact are the same thing',
+     'Rationale is not required — the proposed language speaks for itself'],1,
+    'Correct — Field 4 (Rationale for Change) is where rationale belongs. Proposed Verbiage (Field 3) should contain only the exact text to be adopted. Mixing rationale into proposed language creates interpretive problems and may cause the committee to flag the language as unclear.')}
+  <div class="complete-badge"> Module 2 deep-content complete — you may continue</div>
+</div>`;}
+
+// MODULE 3: Portal Submission
+function m3s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 3 of 7 · Submission</div>
+  <div class="ts-title">Phase 2 — Portal Submission</div>
+  <div class="ts-obj">After completing Phase 1 research, the member submits the official proposal through the DLA member portal. All 8 required fields must be completed — incomplete submissions are returned without review.</div>
+</div>`;}
+
+function m3s1(){return `<div>
+  <div class="card"><h3>Who May Submit</h3>
+  <p>Only <strong>financial members in good standing</strong> may submit bylaw amendment proposals. Members with administrative holds, unpaid dues, or other standing issues are not eligible until their status is resolved. There is no co-sponsorship mechanism.</p></div>
+  <div class="callout"><strong>Submission URL:</strong> <code>https://dlakappa.org/portal/bylaws-amendment-form.html</code> — Log in with your chapter member credentials before accessing the form.</div>
+  <div class="card"><h3>The 8 Required Fields</h3>
+  <table class="smart-tbl">
+    <tr><th>#</th><th>Field Name</th><th>What to Provide</th></tr>
+    <tr><td>1</td><td><strong>Article / Section</strong></td><td>Which article and section the proposal addresses</td></tr>
+    <tr><td>2</td><td><strong>Current Verbiage</strong></td><td>Exact existing text — or identify the gap if none exists</td></tr>
+    <tr><td>3</td><td><strong>Proposed Verbiage</strong></td><td>Exact replacement or new language being proposed</td></tr>
+    <tr><td>4</td><td><strong>Rationale for Change</strong></td><td>Why the change is needed; cite any constitutional basis</td></tr>
+    <tr><td>5</td><td><strong>Priority</strong></td><td>Suggested urgency: Critical / High / Medium / Low</td></tr>
+    <tr><td>6</td><td><strong>Type of Change</strong></td><td>Addition · Amendment · Deletion · Correction</td></tr>
+    <tr><td>7</td><td><strong>Constitutional / Statutory Alignment</strong></td><td>Cite the KAP provision supporting the proposal. If national law is silent, write "Art. XXX, Sec. 4 — chapter discretion." Never leave blank or write "N/A."</td></tr>
+    <tr><td>8</td><td><strong>Expected Impact</strong></td><td>How chapter operations, governance, or compliance will improve</td></tr>
+  </table></div>
+  <div class="card"><h3>After Submitting</h3>
+  <ul class="sl">
+    <li>You will receive an <strong>automated confirmation email</strong> with a unique tracking number</li>
+    <li><strong>Retain the tracking number</strong> — it is your reference for all future correspondence on this proposal</li>
+    <li>Do not contact the committee to confirm receipt — the tracking number confirms it</li>
+  </ul></div>
+</div>`;}
+
+function m3s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Portal Submission</h3><p>Answer both questions to continue.</p></div>
+  ${renderQuiz('q1','How many fields are required on the portal submission form, and what happens if one is left incomplete?',
+    ['6 required fields; incomplete submissions are flagged but may still advance to committee review',
+     '10 required fields; incomplete submissions are held pending the missing information',
+     '8 required fields; incomplete submissions are returned to the member without committee review',
+     '8 required fields; incomplete submissions are reviewed but the missing field creates a rejection presumption'],2,
+    'Correct — there are exactly 8 required fields. Any incomplete submission is returned to the member without committee review — the incompleteness is itself a rejection condition.')}
+  ${renderQuiz('q2','A member\'s proposal addresses a topic on which the KAP Constitution is completely silent. For Field 7, the member should write:',
+    ['"N/A — no national provision applies to this topic"',
+     '"Art. XXX, Sec. 4 — chapter discretion"',
+     'The field may be left blank when national law does not address the topic',
+     '"No conflict identified" without citing a specific provision'],1,
+    'Correct — Field 7 must always be completed. When national law is silent, the correct citation is "Art. XXX, Sec. 4 — chapter discretion." N/A and blank entries are never acceptable.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 3 NEW SCREENS: Portal Submission (s3–s9)
+function m3s3(){return `<div>
+  <div class="card"><h3>Portal Login and Navigation Walkthrough</h3>
+  <p>The DLA member portal requires authentication before any submission form is accessible. Members who have not logged in recently may need to reset their credentials before the submission deadline. Do not wait until the day of submission to verify access.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>Access the Portal</div>
+    <div class="phase-body">Navigate to <code>https://dlakappa.org/portal</code>. Use your chapter member credentials (email + password). If you have forgotten your password, use the "Forgot Password" link — allow 24 hours for reset emails to arrive, as server processing may be delayed.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Verify Your Financial Status</div>
+    <div class="phase-body">The portal displays your current standing on the dashboard. Confirm you are listed as "Financial Member — Good Standing." If your status shows any other designation, resolve it before attempting to submit. The system will block submissions from non-financial accounts.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">3</div>Locate the Bylaw Amendment Form</div>
+    <div class="phase-body">From the portal dashboard, navigate to: <strong>Governance → Bylaw Amendment Submission</strong>. Direct URL: <code>https://dlakappa.org/portal/bylaws-amendment-form.html</code>. The form loads with all 8 fields visible — do not use browser autofill, which may populate incorrect data from prior sessions.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">4</div>Complete the Form in One Session</div>
+    <div class="phase-body">The portal does not save drafts. Complete all 8 fields before submitting. If you navigate away from the form without submitting, your entries will be lost. Draft your responses in a word processor first, then copy them into the form.</div></div>
+  <div class="callout"><strong>Technical Note:</strong> The portal is optimized for desktop browsers. Mobile submission is possible but not recommended — the form validation behaves inconsistently on some mobile browsers. Use Chrome or Firefox on a desktop or laptop for the most reliable submission experience.</div>
+</div>`;}
+
+function m3s4(){return `<div>
+  <div class="card"><h3>Each Field Explained — Why It Is Required</h3>
+  <p>Every field on the portal form exists for a specific reason. Understanding the purpose of each field helps you complete it correctly and prevents the common error of placing content in the wrong field.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Field</th><th>Purpose</th><th>Common Errors</th></tr>
+    <tr><td><strong>1. Article / Section</strong></td><td>Tells the committee exactly where in the bylaws the proposal applies — and whether the target section exists</td><td>Citing the wrong article; failing to cite a section when one exists; citing a gap as "new" without identifying where it should be inserted</td></tr>
+    <tr><td><strong>2. Current Verbiage</strong></td><td>Establishes the baseline — what exactly is the member proposing to change? Without this, the committee cannot evaluate whether the proposed language is an improvement or a contradiction</td><td>Paraphrasing instead of quoting; using an outdated version of the bylaws; leaving blank when the proposal addresses a gap (should note "No current provision — gap")</td></tr>
+    <tr><td><strong>3. Proposed Verbiage</strong></td><td>The exact text to be adopted — what the bylaw will say if this proposal passes. This is the operative legal text</td><td>Including rationale or intent language in the proposed text; using informal or aspirational language; leaving sections of the proposed language undefined</td></tr>
+    <tr><td><strong>4. Rationale for Change</strong></td><td>Explains why the change is needed — the policy justification. The committee uses this to evaluate whether the proposal serves a genuine chapter need</td><td>Vague explanations like "to improve operations"; failure to cite the constitutional basis where one exists; confusing rationale with impact</td></tr>
+    <tr><td><strong>5. Priority</strong></td><td>The submitter's suggestion of urgency — helps the committee schedule review and vote timing</td><td>Always selecting "Critical" regardless of actual urgency; leaving it as a default without evaluating</td></tr>
+    <tr><td><strong>6. Type of Change</strong></td><td>Addition, Amendment, Deletion, or Correction — affects how the committee classifies the proposal and what the update process looks like</td><td>Selecting "Correction" for a substantive change to game the classification system — the committee will reclassify</td></tr>
+    <tr><td><strong>7. Constitutional / Statutory Alignment</strong></td><td>The specific citation confirming the proposal does not conflict with national law. Never leave blank or write "N/A"</td><td>Writing "N/A"; citing a provision that does not actually support the proposal; using "no conflict" without a positive citation</td></tr>
+    <tr><td><strong>8. Expected Impact</strong></td><td>How chapter operations, governance, or compliance will improve — the practical benefit. This is the "so what" of the proposal</td><td>Restating the rationale instead of describing impact; vague statements like "it will be better"</td></tr>
+  </table>
+</div>`;}
+
+function m3s5(){return `<div>
+  <div class="card"><h3>Supporting Documentation Requirements</h3>
+  <p>The eight required portal fields are mandatory. Supporting documentation is not required for most proposals — but for certain types of proposals, attaching supporting documents significantly strengthens the submission and reduces the likelihood of a rejection based on insufficient justification.</p></div>
+  <div class="card"><h3>When Supporting Documentation Is Strongly Recommended</h3>
+  <ul class="sl">
+    <li><strong>Financial proposals:</strong> Attach a brief financial analysis showing projected cost or savings. Even a one-page summary demonstrates due diligence</li>
+    <li><strong>Proposals responding to a national mandate:</strong> Attach the relevant excerpt from the KAP Constitution, Statutes, or IHQ communication that creates the mandate. This substantiates Field 7 (Constitutional Alignment)</li>
+    <li><strong>Proposals correcting an identified conflict:</strong> Document the specific conflict — the current DLA bylaw language and the national provision it conflicts with — as a supporting attachment</li>
+    <li><strong>Proposals creating new committees or officer roles:</strong> Attach a draft scope of authority or job description. This demonstrates the proposal is thoroughly developed, not aspirational</li>
+  </ul></div>
+  <div class="card"><h3>How to Attach Supporting Documents</h3>
+  <p>The portal form includes an optional file attachment field below Field 8. Acceptable formats: PDF, DOCX, XLSX. Maximum file size: 5MB per attachment. Maximum 3 attachments per submission. Label each attachment clearly — use the naming convention: <em>ProposerLastName_AttachType_Date</em> (e.g., <em>Taylor_FinancialAnalysis_2026-08.pdf</em>).</p></div>
+  <div class="callout"><strong>Not a Substitute:</strong> Supporting documentation cannot substitute for incomplete portal fields. If any of the 8 required fields is blank, the submission will be returned regardless of how thorough the attachments are. Complete all fields first, then attach supporting documents.</div>
+</div>`;}
+
+function m3s6(){return `<div>
+  <div class="card"><h3>What Happens After Submission — Tracking Your Proposal</h3>
+  <p>Once you click "Submit" on the portal form, a defined sequence of events begins. Understanding this sequence helps you know what to expect, when to expect it, and when — and when not — to take action.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">Immediate</div>Automated Confirmation Email</div>
+    <div class="phase-body">You receive an email at your registered portal address containing: (1) a unique tracking number (format: DLA-SUB-YYYY-####); (2) a timestamp of receipt; (3) a summary of your submitted fields for your records. If you do not receive this email within 15 minutes, check your spam folder. If not found, contact the KOR to confirm receipt before resubmitting — duplicate submissions create administrative complications.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">Within 3 Business Days</div>KOR Logging</div>
+    <div class="phase-body">The KOR logs your submission in the Amendment Tracking Register, assigns an internal receipt number, and forwards to the Bylaws Committee. You do not receive a notification at this step — the confirmation email is your acknowledgment of receipt.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">Within 10 Business Days</div>Committee Decision</div>
+    <div class="phase-body">The Bylaws Committee completes the four-point review and the Chair issues a formal acceptance or rejection letter to your registered email. This letter includes the committee's classification (Editorial or Substantive) if accepted, or specific grounds if rejected.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">After Acceptance</div>Vote Scheduling</div>
+    <div class="phase-body">The acceptance letter includes the anticipated vote schedule. For Substantive amendments, the 21-day notice period begins after acceptance — not before. You may be asked to present your proposal at the First Reading; coordinate with the Polemarch if this applies.</div></div>
+</div>`;}
+
+function m3s7(){return `<div>
+  <div class="card"><h3>Common Submission Errors and How to Avoid Them</h3>
+  <p>The portal submission process has a consistent pattern of errors that cause delays, returns, and rejections. Reviewing these errors before submitting is the best insurance against them.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Error</th><th>What Causes It</th><th>How to Avoid It</th></tr>
+    <tr><td><strong>Leaving Field 7 blank or writing "N/A"</strong></td><td>Member does not know the required citation or believes national law is silent and therefore no citation is needed</td><td>If national law is silent: write "Art. XXX, Sec. 4 — chapter discretion." This is always a valid citation for proposals within chapter authority</td></tr>
+    <tr><td><strong>Using paraphrased (not exact) current verbiage in Field 2</strong></td><td>Member relies on memory or an unofficial copy of the bylaws</td><td>Always copy directly from the KOR-certified version on the portal. Use quotation marks to confirm you are quoting verbatim</td></tr>
+    <tr><td><strong>Including rationale in the proposed verbiage</strong></td><td>Member wants reviewers to understand the intent inside the proposed text</td><td>Put rationale in Field 4. Proposed verbiage (Field 3) should read exactly as a bylaw provision would — no "whereas" clauses, no explanatory notes</td></tr>
+    <tr><td><strong>Submitting before financial standing is current</strong></td><td>Member believes their status will be updated before review begins</td><td>Resolve any standing issues before submitting. The portal blocks non-financial accounts; if an issue is resolved after submission begins, the submission may need to be restarted</td></tr>
+    <tr><td><strong>Failing to save a copy before submitting</strong></td><td>Member completes the form directly in the portal without a backup</td><td>Draft all responses in a word processor and save locally before copying into the portal. This also serves as your record of what you submitted</td></tr>
+  </table>
+</div>`;}
+
+function m3s8(){return `<div>
+  <div class="card"><h3>Correcting a Submitted Amendment and the Withdrawal Process</h3>
+  <p>Once submitted, a proposal cannot be edited through the portal. If you discover an error after submission — a typo in the proposed verbiage, a wrong field entry, or a missing constitutional citation — you must use the correction or withdrawal process.</p></div>
+  <div class="card"><h3>Correction Process</h3>
+  <ul class="sl">
+    <li><strong>Step 1:</strong> Contact the KOR by email within 2 business days of submission, citing your tracking number and the specific correction needed</li>
+    <li><strong>Step 2:</strong> The KOR consults with the Bylaws Committee Chair. Minor corrections (typos, formatting) may be applied by the committee administratively without requiring resubmission</li>
+    <li><strong>Step 3:</strong> Substantive corrections (changes to proposed verbiage, constitutional citation, or type of change) require withdrawal and resubmission</li>
+    <li><strong>Step 4:</strong> If resubmission is required, the KOR will confirm withdrawal of the original submission and provide instructions for resubmission. The resubmission receives a new tracking number and a new review clock</li>
+  </ul></div>
+  <div class="card"><h3>Withdrawal Process</h3>
+  <p>A member may withdraw a proposal at any time before the chapter vote. To withdraw:</p>
+  <ul class="sl">
+    <li>Submit a written withdrawal request to the KOR citing your tracking number</li>
+    <li>Withdrawal is effective upon KOR acknowledgment — not upon the member's request alone</li>
+    <li>A withdrawn proposal is closed in the Amendment Tracking Register as "Withdrawn" and may not be reactivated — it must be resubmitted as a new proposal</li>
+    <li>If a proposal has already been calendared for a First Reading or Board vote, the Polemarch must be notified of the withdrawal so the agenda can be updated</li>
+  </ul></div>
+  <div class="callout"><strong>Important:</strong> Withdrawal after the Second Reading begins (substantive path) or after the Board vote is called to order (editorial path) is not procedurally available. Once deliberation has begun, the proposal is before the body and the body decides its fate.</div>
+</div>`;}
+
+function m3s9(){return `<div>
+  <div class="card"><h3>Submission Deadline Implications</h3>
+  <p>The chapter maintains submission windows tied to the chapter's annual calendar. Understanding deadline implications prevents the common scenario of a well-prepared proposal missing a vote cycle because it was submitted outside the window.</p></div>
+  <div class="card"><h3>The Submission Window Cycle</h3>
+  <table class="smart-tbl">
+    <tr><th>Submission Period</th><th>Committee Review Window</th><th>Earliest Possible Vote</th><th>Note</th></tr>
+    <tr><td><strong>January 1 – March 31</strong></td><td>April (10 business days)</td><td>Substantive: June (21-day notice + First Reading + Second Reading) · Editorial: May Board meeting</td><td>Aligned with spring chapter calendar</td></tr>
+    <tr><td><strong>July 1 – September 30</strong></td><td>October (10 business days)</td><td>Substantive: December · Editorial: November Board meeting</td><td>Aligned with fall chapter calendar</td></tr>
+    <tr><td><strong>Outside submission windows</strong></td><td>Committee may defer review to next window</td><td>Delayed accordingly</td><td>Critical Priority proposals may be reviewed on an expedited basis — committee discretion</td></tr>
+  </table></div>
+  <div class="callout"><strong>What "Critical Priority" Means for Deadlines:</strong> A Critical Priority classification does not guarantee expedited review. It signals to the committee that the submitter believes the matter is urgent. The committee may — but is not required to — expedite review outside the standard window. The submitter should explain in Field 4 why urgency is warranted.</div>
+  ${renderQuiz('q1','A member submits a proposal on October 5. Under the submission window cycle, what is the earliest realistic window for a membership vote on a Substantive amendment?',
+    ['October — the committee can review immediately and schedule a First Reading within days',
+     'November — 10-business-day review plus the next regular meeting',
+     'December — 10-business-day review in October, 21-day notice, First Reading in November, Second Reading in December',
+     'January of the following year — the October submission misses the fall window entirely'],2,
+    'Correct — October 5 falls in the fall submission window. The committee reviews within 10 business days (mid-October), the 21-day notice goes out (reaching early November), First Reading is in November, and the earliest Second Reading with a vote is December.')}
+  ${renderQuiz('q2','A member discovers a typo in the proposed verbiage two days after submitting. The correct action is:',
+    ['Resubmit a corrected version through the portal immediately — the system accepts multiple submissions',
+     'Contact the KOR by email with the tracking number and the specific correction — minor corrections may be applied administratively',
+     'Wait to see whether the committee catches the typo and flags it in the rejection letter',
+     'Withdraw the proposal and start the research process over from scratch'],1,
+    'Correct — the first step is always to contact the KOR promptly with the tracking number and the specific correction needed. Minor corrections may be applied administratively without requiring a full resubmission.')}
+  <div class="complete-badge"> Module 3 deep-content complete — you may continue</div>
+</div>`;}
+
+// MODULE 4: Committee Review
+function m4s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 4 of 7 · Review</div>
+  <div class="ts-title">Phase 3 — KOR & Bylaws Committee Review</div>
+  <div class="ts-obj">Once submitted, the proposal enters a structured review process. The KOR logs it, the committee verifies constitutional compliance and confirms priority, then assigns a classification that determines the voting path.</div>
+</div>`;}
+
+function m4s1(){return `<div>
+  <div class="card"><h3>Step 7: KOR Receipt & Logging</h3>
+  <p>The Keeper of Records is the first official recipient of every submission. Within <strong>3 business days</strong> of receipt, the KOR must:</p>
+  <ul class="sl">
+    <li>Log the submission in the official <em>Amendment Tracking Register</em></li>
+    <li>Assign an internal receipt number and record the submission date</li>
+    <li>Forward the proposal to the Bylaws Committee Chair with receipt number and date</li>
+  </ul></div>
+  <div class="card"><h3>Step 8: Four-Point Constitutional Conflict Check</h3>
+  <p>The Bylaws Committee reviews the proposal against the KAP Constitution & Statutes 2025–27 for all four of the following:</p>
+  <ul class="sl">
+    <li>Direct conflict with any constitutional or statutory provision</li>
+    <li>Misalignment with the non-conflict standard (Art. XXX, Sec. 4)</li>
+    <li>Duplication of existing bylaw language that already addresses the issue</li>
+    <li>Internal contradiction with other current DLA bylaw provisions</li>
+  </ul>
+  <p style="margin-top:12px;font-size:13px;color:var(--tx-m)">If any issue is found, the proposal is flagged for rejection. If none are found, it advances to priority verification.</p></div>
+  <div class="card"><h3>Step 9 & 10: Priority & Classification</h3>
+  <p>The committee may <strong>adjust</strong> the submitter's suggested priority; the committee's determination is final. Then the committee assigns a classification that determines the voting path:</p>
+  <div class="path-grid">
+    <div class="path-card"><div class="path-head">EDITORIAL</div><div class="path-body">Spelling, grammar, cross-references, typographical errors — no change to substance, rights, or duties.<br><br><strong>Vote:</strong> Board of Directors only — 2/3 affirmative vote. No membership notice or two-reading process.</div></div>
+    <div class="path-card"><div class="path-head">SUBSTANTIVE</div><div class="path-body">Any change to a right, duty, procedure, qualification, officer structure, or financial obligation.<br><br><strong>Vote:</strong> Full membership — two-reading process, 2/3 affirmative vote. 21-day advance notice required.</div></div>
+  </div></div>
+</div>`;}
+
+function m4s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Committee Review</h3><p>Answer both questions to continue.</p></div>
+  ${renderQuiz('q1','The KOR receives a portal submission on a Monday. By when must it be logged in the Amendment Tracking Register?',
+    ['By end of day the same Monday',
+     'Within 3 business days — by Thursday',
+     'Within 10 business days, the same window as accept/reject correspondence',
+     'Before the next regular chapter meeting, regardless of date'],1,
+    'Correct — the KOR must log the submission within 3 business days of receipt. A Monday submission must be logged by Thursday. The 10-business-day window applies to committee decision correspondence, not KOR logging.')}
+  ${renderQuiz('q2','A proposal changes the officer title "Secretary" to "Keeper of Records" throughout the bylaws to match national fraternity nomenclature. The correct classification is:',
+    ['Substantive — any change to officer structure requires the two-reading membership process',
+     'Editorial — it is a cross-reference/title correction with no change to duties, rights, or substance',
+     'Critical Priority — officer title misalignment with national law requires immediate resolution',
+     'Cannot be classified until the Province Polemarch reviews the proposed title change'],1,
+    'Correct — changing "Secretary" to "Keeper of Records" is a cross-reference correction with no change to duties, rights, or substance. This is the definition of an Editorial amendment — it goes to the Board of Directors only.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 4 NEW SCREENS: Committee Review (s3–s9)
+function m4s3(){return `<div>
+  <div class="card"><h3>The Keeper of Records — Role in the Review Process</h3>
+  <p>The Keeper of Records (KOR) is not merely a filing clerk in the amendment process. The KOR performs a legally significant function: official receipt, date-stamping, and logging that establishes the formal record of submission. The KOR's receipt date is the controlling date for all subsequent timelines — including the 3-day logging window and the 10-business-day committee review window.</p></div>
+  <div class="card"><h3>The KOR's Specific Responsibilities</h3>
+  <ul class="sl">
+    <li><strong>Receipt confirmation:</strong> The portal triggers an automated confirmation upon submission. The KOR also receives a system notification. The KOR must verify the automated confirmation matches the actual submission data within 1 business day</li>
+    <li><strong>Date-stamping:</strong> The KOR records the official receipt date — which is the submission timestamp from the portal, not the date the KOR reviews it. These may differ if a submission arrives after business hours or on a weekend</li>
+    <li><strong>Logging in the Amendment Tracking Register:</strong> A permanent entry is created: submitter name, tracking number, date received, article/section addressed, and priority designation</li>
+    <li><strong>Forwarding to committee:</strong> The KOR transmits the complete submission package to the Bylaws Committee Chair within the 3-business-day window, along with the receipt number and date</li>
+    <li><strong>Maintaining status updates:</strong> Throughout the review process, the KOR updates the Tracking Register with each status change — accepted, rejected, classified, scheduled for vote, adopted, or withdrawn</li>
+  </ul></div>
+  <div class="callout"><strong>Why the KOR's Logging Is Legally Significant:</strong> If a dispute arises about whether a proposal was properly received, timely reviewed, or correctly classified, the Amendment Tracking Register is the controlling record. KOR entries are presumptively correct. A member challenging a timeline outcome must demonstrate the KOR's record is in error — not merely that the member believes the timeline should have run differently.</div>
+</div>`;}
+
+function m4s4(){return `<div>
+  <div class="card"><h3>The 3-Day Logging Window — Explained</h3>
+  <p>The 3-business-day logging requirement is not simply an administrative courtesy — it is a structural protection for submitters. If the KOR fails to log a submission within the required window, the submission is still valid, but the KOR has incurred a procedural obligation that the Bylaws Committee Chair must note in the Tracking Register.</p></div>
+  <div class="card"><h3>How the 3-Day Window Is Calculated</h3>
+  <table class="smart-tbl">
+    <tr><th>Submission Day</th><th>Business Day 1</th><th>Business Day 2</th><th>Business Day 3 (Deadline)</th></tr>
+    <tr><td>Monday</td><td>Tuesday</td><td>Wednesday</td><td>Thursday</td></tr>
+    <tr><td>Friday</td><td>Monday</td><td>Tuesday</td><td>Wednesday</td></tr>
+    <tr><td>Wednesday before Thanksgiving</td><td>Monday (after holiday)</td><td>Tuesday</td><td>Wednesday</td></tr>
+    <tr><td>December 23</td><td>December 26 (if chapter recognizes holiday closures)</td><td>December 27</td><td>December 28</td></tr>
+  </table></div>
+  <div class="card"><h3>What Counts as a "Business Day"</h3>
+  <p>Business days are Monday through Friday, excluding officially recognized chapter holidays. The chapter follows the federal holiday calendar unless the chapter's bylaws specify otherwise. Days when the KOR is on approved leave of absence count as non-business days for the purpose of this calculation — but the KOR must designate an acting KOR during any leave longer than 5 business days to ensure the timeline is maintained.</p></div>
+  <div class="callout"><strong>What Happens if the KOR Misses the 3-Day Window:</strong> The submission remains valid and moves to committee review. The KOR's late logging is noted as a procedural deficiency. Repeated delays may be addressed by the Board of Directors as a performance matter. The submitter's rights and the committee's review clock are not affected by the KOR's delay.</div>
+</div>`;}
+
+function m4s5(){return `<div>
+  <div class="card"><h3>The Four-Point Conflict Check — Each Point in Detail</h3>
+  <p>The committee's four-point check is not a general impression of the proposal — it is a structured, point-by-point review against specific legal standards. Each point must be checked independently; a proposal may pass three points and fail one.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>Direct Conflict with Constitutional or Statutory Provision</div>
+    <div class="phase-body"><p>The committee searches the KAP Constitution, Statutes, Ritual, and any relevant Grand Chapter enactments for provisions that directly address the same subject as the proposal. If the proposed language contradicts — not merely differs from — a national provision, this point fails.</p><p><strong>Example of failure:</strong> A proposal setting dues at $0 for members over age 65 conflicts with a KAP Statute requiring all financial members to pay minimum chapter dues at the rate set by the national body.</p></div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Misalignment with the Non-Conflict Standard (Art. XXX, Sec. 4)</div>
+    <div class="phase-body"><p>Even if no specific national provision is directly contradicted, the proposal's overall effect must be consistent with the Art. XXX, Sec. 4 standard. This point captures proposals that technically avoid direct contradiction but create an outcome inconsistent with the fraternity's national governance framework.</p><p><strong>Example of failure:</strong> A proposal that effectively grants the chapter Polemarch veto authority over national directives would pass point 1 (no specific national provision addresses it) but fail point 2 (the overall effect conflicts with the chapter's subordinate position in the national framework).</p></div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">3</div>Duplication of Existing Bylaw Language</div>
+    <div class="phase-body"><p>The committee checks whether the current DLA Bylaws already contain language that addresses the proposal's subject. Duplication creates two provisions that may be interpreted inconsistently — one of which is the controlling version is unclear.</p><p><strong>Example of failure:</strong> A proposal to add a provision requiring the Polemarch to preside at chapter meetings — when Article III, Section 2 already establishes this duty — is a duplicate.</p></div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">4</div>Internal Contradiction with Other DLA Bylaw Provisions</div>
+    <div class="phase-body"><p>The proposal may not conflict with another currently effective DLA bylaw provision. The committee reviews provisions in adjacent articles and sections that may interact with the proposed language.</p><p><strong>Example of failure:</strong> A proposal establishing a 14-day meeting notice requirement in Article IV conflicts with an existing Article II provision requiring 21-day advance notice for all regular meetings.</p></div></div>
+</div>`;}
+
+function m4s6(){return `<div>
+  <div class="card"><h3>Editorial vs. Substantive — What Each Means in Practice</h3>
+  <p>The Editorial/Substantive classification is one of the most consequential determinations in the process. It determines the voting path, the advance notice requirement, and whether the membership or only the Board of Directors decides the outcome. The difference is not about the size of the change — it is about the nature of the change.</p></div>
+  <div class="path-grid">
+    <div class="path-card"><div class="path-head">EDITORIAL — Definition</div>
+    <div class="path-body"><p>An amendment that corrects or clarifies the text of the bylaws without changing the substance, effect, rights, duties, procedures, or obligations established by the current provision.</p>
+    <p><strong>Test:</strong> After the amendment, does any member have a different right, a different obligation, or face a different procedure? If no — Editorial. If yes — Substantive.</p>
+    <p><strong>Board vote only.</strong> 2/3 affirmative vote. No advance notice or two-reading process.</p></div></div>
+    <div class="path-card"><div class="path-head">SUBSTANTIVE — Definition</div>
+    <div class="path-body"><p>An amendment that changes the substance, effect, rights, duties, procedures, qualifications, officer structure, financial obligations, or governance authority established by the bylaws.</p>
+    <p><strong>Test:</strong> After the amendment, is any member, officer, or process affected differently than before? If yes — Substantive.</p>
+    <p><strong>Full membership vote.</strong> 2/3 affirmative vote. 21-day advance notice. Two-reading process required.</p></div></div>
+  </div>
+  <div class="card"><h3>Why the Committee — Not the Submitter — Controls Classification</h3>
+  <p>The portal form asks submitters to select the "Type of Change" (Field 6: Addition, Amendment, Deletion, Correction). This is informational — it is not the classification for voting purposes. The Bylaws Committee makes the Editorial/Substantive determination independently, and its determination is final. A submitter selecting "Correction" to avoid the two-reading process will find the committee reclassifying the proposal as Substantive if the actual change affects member rights or duties.</p></div>
+</div>`;}
+
+function m4s7(){return `<div>
+  <div class="card"><h3>Examples of Editorial vs. Substantive Classification</h3>
+  <p>The classification boundary is not always obvious. These examples illustrate how the committee applies the test in practice.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Proposed Change</th><th>Classification</th><th>Rationale</th></tr>
+    <tr><td>Updating the chapter address from one PO Box to another throughout the bylaws</td><td><strong>Editorial</strong></td><td>No change to any right, duty, or procedure — purely an administrative update</td></tr>
+    <tr><td>Changing "Secretary" to "Keeper of Records" throughout to match national nomenclature</td><td><strong>Editorial</strong></td><td>Title correction with no change to duties, authority, or obligations</td></tr>
+    <tr><td>Fixing a grammatical error that created ambiguity about which officer is responsible for a specific duty</td><td><strong>Substantive</strong></td><td>The fix changes who is responsible — a substantive change to duties even if the grammatical change appears minor</td></tr>
+    <tr><td>Adding a comma that materially changes the meaning of a quorum calculation</td><td><strong>Substantive</strong></td><td>The change affects meeting procedures and voting validity — substantive regardless of how small the textual edit is</td></tr>
+    <tr><td>Updating a cross-reference from "Section 4" to "Section 5" after a prior renumbering</td><td><strong>Editorial</strong></td><td>The cross-reference correction restores the original intent with no substantive change</td></tr>
+    <tr><td>Changing the dues amount from $150 to $175</td><td><strong>Substantive</strong></td><td>Changes a financial obligation of every financial member — clearly substantive</td></tr>
+    <tr><td>Adding "and its subsidiaries" to a vendor relationship clause</td><td><strong>Substantive</strong></td><td>Expands the scope of a contractual authority — changes the chapter's practical rights and exposure</td></tr>
+  </table>
+  <div class="callout"><strong>When in Doubt:</strong> The committee applies a presumption in favor of Substantive classification when the change's nature is ambiguous. This protects member rights by ensuring the membership has a voice in any change that might affect them. The two-reading process exists precisely for situations where the impact is unclear.</div>
+</div>`;}
+
+function m4s8(){return `<div>
+  <div class="card"><h3>Committee Member Recusal Rules and Timeline Enforcement</h3>
+  <p>The Bylaws Committee's integrity depends on unbiased review. Two structural protections ensure this: recusal rules that remove conflicted committee members from specific reviews, and timeline enforcement mechanisms that prevent delays from compromising the process.</p></div>
+  <div class="card"><h3>Recusal Rules</h3>
+  <ul class="sl">
+    <li><strong>When recusal is required:</strong> A committee member must recuse from reviewing a proposal if he is the submitter, a co-author of the proposal, or has a direct personal financial interest in the outcome</li>
+    <li><strong>Procedure:</strong> The committee member notifies the Chair in writing before review begins. The Chair notes the recusal in the Tracking Register. The recused member does not participate in discussion, deliberation, or the classification determination for that proposal</li>
+    <li><strong>Quorum impact:</strong> Recusal reduces the effective committee size for that proposal. If recusals reduce the committee below a working quorum, the Polemarch appoints a temporary member for that review</li>
+    <li><strong>Self-recusal vs. chair-directed recusal:</strong> A committee member who fails to self-recuse may be directed to recuse by the Chair. The Chair's recusal directive is final for the review in question</li>
+  </ul></div>
+  <div class="card"><h3>Timeline Enforcement</h3>
+  <table class="smart-tbl">
+    <tr><th>Timeline Obligation</th><th>Who Monitors</th><th>Consequence of Failure</th></tr>
+    <tr><td>3-day KOR logging</td><td>Bylaws Committee Chair</td><td>Noted in Tracking Register; Board notification if chronic</td></tr>
+    <tr><td>10-business-day review decision</td><td>KOR (monitors from receipt date)</td><td>KOR notifies Polemarch; Polemarch may direct the committee to expedite</td></tr>
+    <tr><td>21-day advance notice (substantive)</td><td>KOR (calculates from acceptance date)</td><td>Vote cannot proceed until the full notice period has elapsed</td></tr>
+  </table></div>
+</div>`;}
+
+function m4s9(){return `<div>
+  <div class="card"><h3>Escalation When the Committee Deadlocks</h3>
+  <p>The Bylaws Committee is expected to reach a determination by consensus or majority vote. However, procedural deadlocks — where the committee cannot reach agreement on the four-point check or the Editorial/Substantive classification — require a defined escalation path to prevent the amendment process from stalling indefinitely.</p></div>
+  <div class="card"><h3>Deadlock Defined</h3>
+  <p>A deadlock occurs when the committee has met, deliberated, and cannot reach a majority determination on: (a) whether any of the four conflict-check points is met, or (b) the appropriate Editorial/Substantive classification. A tied vote is not automatically a deadlock — the Chair's vote breaks a procedural tie. A deadlock occurs when the Chair's position is itself contested and no majority exists even with the Chair voting.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>Chair Requests Additional Committee Deliberation</div>
+    <div class="phase-body">The Chair schedules a second deliberation session within 3 business days. Additional research may be commissioned — e.g., a written opinion from the Province Bylaws resource if the national law question is genuinely ambiguous.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Escalation to the Polemarch</div>
+    <div class="phase-body">If the second deliberation does not resolve the deadlock, the Chair notifies the Polemarch in writing. The Polemarch may: (a) appoint an ad hoc advisor to break the deadlock; (b) submit the question to the Province Bylaws resource for advisory opinion; or (c) refer the question to the chapter's legal counsel if the issue is a legal interpretation question.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">3</div>Notifying the Submitter</div>
+    <div class="phase-body">The submitter must be notified within the original 10-business-day window that a determination is pending due to a review complexity. The KOR logs the notification. The clock is paused pending the advisory resolution.</div></div>
+  ${renderQuiz('q1','A Bylaws Committee member is the brother who submitted the proposal currently under review. What is the required action?',
+    ['He may participate in deliberation but must abstain from the final classification vote',
+     'He must recuse himself from the entire review — no participation in discussion, deliberation, or classification',
+     'He may present his proposal to the committee but must then leave the room for deliberation',
+     'No action required — committee members review all proposals regardless of authorship'],1,
+    'Correct — a committee member who submitted the proposal under review must recuse from the entire process: no participation in discussion, deliberation, or the classification determination. He notifies the Chair in writing, and the recusal is logged in the Tracking Register.')}
+  ${renderQuiz('q2','The committee cannot agree on whether a proposed change is Editorial or Substantive after initial deliberation. The correct first escalation step is:',
+    ['Automatically classify as Substantive — the presumption favors Substantive when classification is unclear',
+     'The Chair casts the deciding vote as tiebreaker — if still tied, escalate to the Polemarch',
+     'The Chair schedules a second deliberation session within 3 business days; additional research may be commissioned',
+     'The proposal is returned to the submitter for clarification before classification can proceed'],2,
+    'Correct — the first escalation step is a second deliberation session within 3 business days. The Chair may commission additional research, including a provincial advisory opinion on genuinely ambiguous national law questions. The submitter is notified of the delay within the original 10-business-day window.')}
+  <div class="complete-badge"> Module 4 deep-content complete — you may continue</div>
+</div>`;}
+
+// MODULE 5: Accept or Reject
+function m5s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 5 of 7 · Review</div>
+  <div class="ts-title">Phase 4 — Accept or Reject Decision</div>
+  <div class="ts-obj">After the four-point review, the Bylaws Committee Chair makes a formal determination on each submission. This phase has strict timelines and specific requirements for correspondence sent to the submitting member.</div>
+</div>`;}
+
+function m5s1(){return `<div>
+  <div class="card"><h3>Step 11: Decision — Does the Proposal Advance?</h3>
+  <p>The Bylaws Committee Chair makes a formal determination. Both rejection and acceptance require written correspondence to the submitting member within <strong>10 business days</strong>.</p></div>
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid #b91c1c">
+      <h3 style="color:#991b1b">Rejection — Any One Condition</h3>
+      <ul class="sl">
+        <li>Duplicates existing bylaw language already in effect</li>
+        <li>Contradicts or conflicts with another current DLA bylaw provision</li>
+        <li>Directly conflicts with the KAP Constitution or Statutes</li>
+        <li>Submission is incomplete (any of the 8 required fields missing)</li>
+      </ul>
+      <p style="margin-top:12px;font-size:13px;font-weight:600;color:#991b1b">Rejection letter must include: specific reason(s), the provision creating the conflict, and advice on whether revision and resubmission is possible.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #15803d">
+      <h3 style="color:#166534">Acceptance — All Four Conditions</h3>
+      <ul class="sl">
+        <li>No constitutional or statutory conflict identified</li>
+        <li>No internal contradiction with existing DLA bylaws</li>
+        <li>Proposal addresses a genuine gap, correction, or improvement</li>
+        <li>All 8 required fields are properly completed</li>
+      </ul>
+      <p style="margin-top:12px;font-size:13px;font-weight:600;color:#166634">Acceptance letter must include: confirmation and tracking number, committee's priority determination, classification (Editorial or Substantive), and anticipated vote schedule.</p>
+    </div>
+  </div>
+</div>`;}
+
+function m5s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Accept or Reject</h3><p>Answer both questions to continue.</p></div>
+  ${renderQuiz('q1','A proposal is constitutionally sound and well-written, but the member left Field 8 (Expected Impact) blank. The committee should:',
+    ['Accept it since 7 of 8 fields are complete and the constitutional work is solid',
+     'Reject it — an incomplete submission (any missing required field) is a condition for rejection regardless of other merit',
+     'Accept it conditionally and ask the member to supply the missing field within 5 business days',
+     'Complete Field 8 on the member\'s behalf based on the committee\'s own analysis'],1,
+    'Correct — all 8 fields are required without exception. There are no conditional acceptances or partial completions. An incomplete submission is returned to the member regardless of the quality of the other fields.')}
+  ${renderQuiz('q2','A rejection letter must include which of the following?',
+    ['A general statement that the proposal did not meet the committee\'s standards',
+     'The specific rejection reason(s), the constitutional or bylaw provision creating the conflict, and advice on whether the proposal may be revised and resubmitted',
+     'The committee\'s vote tally and the names of committee members who voted against the proposal',
+     'The rejection reason only — further details are provided only if the member requests them'],1,
+    'Correct — rejection correspondence must include all three elements: specific reasons, the provision creating the conflict, and advice on revision/resubmission. A general statement alone does not meet the SOP requirements.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 5 NEW SCREENS: Accept or Reject (s3–s9)
+function m5s3(){return `<div>
+  <div class="card"><h3>The 10-Business-Day Timeline — Hour by Hour</h3>
+  <p>The 10-business-day decision window is one of the most precisely defined timelines in the SOP. Understanding how it is calculated — and what happens at its boundary — is essential for both committee members and submitters.</p></div>
+  <div class="card"><h3>When the Clock Starts</h3>
+  <p>The 10-business-day window begins on the day the KOR forwards the submission package to the Bylaws Committee Chair — not on the day of submission and not on the day the committee first meets to review it. The forwarding date is logged in the Amendment Tracking Register and is the controlling start date.</p></div>
+  <div class="card"><h3>What Must Happen Within 10 Business Days</h3>
+  <ul class="sl">
+    <li>The committee must complete the four-point conflict check</li>
+    <li>The committee must determine the Editorial/Substantive classification (if accepting)</li>
+    <li>The Bylaws Committee Chair must issue a formal written decision letter to the submitter</li>
+    <li>The KOR must receive a copy of the decision letter to update the Tracking Register</li>
+  </ul></div>
+  <table class="smart-tbl">
+    <tr><th>Day</th><th>Activity</th></tr>
+    <tr><td>Day 1–2</td><td>Initial review: each committee member independently reviews the submission against the four-point check</td></tr>
+    <tr><td>Day 3–5</td><td>Committee deliberation meeting: resolve points, determine classification, draft decision</td></tr>
+    <tr><td>Day 6–8</td><td>Chair finalizes decision letter, coordinates with KOR for tracking update</td></tr>
+    <tr><td>Day 9</td><td>Decision letter issued to submitter and KOR</td></tr>
+    <tr><td>Day 10</td><td>Deadline — decision must be issued no later than end of business</td></tr>
+  </table>
+  <div class="callout"><strong>No Extensions:</strong> The 10-business-day window does not have a standard extension mechanism. If the committee requires more time due to a genuine complexity, the submitter must be notified within the window — not after it expires. The only permitted tolling of the clock is the escalation procedure triggered by a committee deadlock.</div>
+</div>`;}
+
+function m5s4(){return `<div>
+  <div class="card"><h3>Conditions for Acceptance — The Complete Checklist</h3>
+  <p>A proposal must satisfy all four acceptance conditions. The committee does not accept proposals that partially meet the standard. The presence of any rejection condition automatically results in rejection even if all other conditions are met.</p></div>
+  <div class="card"><h3>The Four Acceptance Conditions</h3>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">✓</div>Condition 1: No Constitutional or Statutory Conflict</div>
+    <div class="phase-body">The proposal must clear all four points of the conflict check. Zero conflicts identified — not "minimal conflicts" or "minor discrepancies." The standard is a complete absence of identified conflicts with any binding national document.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">✓</div>Condition 2: No Internal Contradiction with Existing DLA Bylaws</div>
+    <div class="phase-body">The proposed language must be fully consistent with every currently effective DLA bylaw provision. If the proposal creates an inconsistency with another provision, the submitter must either resolve it in the submitted language (by amending both provisions together) or withdraw and resubmit a revised proposal.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">✓</div>Condition 3: Proposal Addresses a Genuine Gap, Correction, or Improvement</div>
+    <div class="phase-body">The proposal must serve a discernible chapter governance purpose. A proposal with no apparent rationale — or one that restates existing language without meaningful change — does not satisfy this condition. The committee evaluates Field 4 (Rationale) to make this determination.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">✓</div>Condition 4: All 8 Required Fields Properly Completed</div>
+    <div class="phase-body">Every field must be completed, must contain content appropriate to the field (not a placeholder), and Field 7 must contain a valid constitutional or statutory citation — not "N/A" or blank. "Properly completed" means substantively responsive — a single word in a field that requires substantive analysis does not satisfy this condition.</div></div>
+  </div>
+</div>`;}
+
+function m5s5(){return `<div>
+  <div class="card"><h3>Grounds for Rejection — With Examples</h3>
+  <p>Any single rejection ground is sufficient to reject a proposal. The committee identifies all applicable grounds in the rejection letter — not just the first one found. This prevents a submitter from correcting one issue and resubmitting without addressing others.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Rejection Ground</th><th>Concrete Example</th><th>Can It Be Cured?</th></tr>
+    <tr><td><strong>Direct conflict with KAP Constitution or Statutes</strong></td><td>Proposal sets member dues below the minimum required by KAP Statute Chapter 5</td><td>Yes — revise language to comply with the national minimum and resubmit</td></tr>
+    <tr><td><strong>Internal contradiction with existing DLA bylaw</strong></td><td>Proposal establishes a 14-day meeting notice in Article IV, contradicting the 21-day requirement already in Article II</td><td>Yes — submit an amendment to both articles simultaneously and resubmit</td></tr>
+    <tr><td><strong>Duplication of existing bylaw language</strong></td><td>Proposal establishes Polemarch as presiding officer — already covered by Article III, Sec. 2</td><td>Yes — withdraw the duplicative portion; if an improvement to the existing provision is intended, propose that instead</td></tr>
+    <tr><td><strong>Incomplete submission</strong></td><td>Field 8 (Expected Impact) is blank; Field 7 says "N/A"</td><td>Yes — complete all fields and resubmit with a new tracking number</td></tr>
+    <tr><td><strong>No discernible governance purpose</strong></td><td>Proposal restates an existing provision word-for-word with no change and no rationale for reaffirmation</td><td>Possibly — if there is a genuine purpose, the submitter should clarify it in a revised Field 4 and resubmit</td></tr>
+  </table>
+  <div class="callout"><strong>Curative Resubmission:</strong> Most rejection grounds are curable. The rejection letter must advise whether revision and resubmission is possible. If the ground is a direct constitutional conflict that cannot be resolved within the chapter's authority, the letter should say so — resubmission would not be appropriate in that case.</div>
+</div>`;}
+
+function m5s6(){return `<div>
+  <div class="card"><h3>Correspondence Requirements — What Must Be in Every Notice</h3>
+  <p>Both rejection and acceptance notices are formal fraternal correspondence. The SOP specifies minimum required content for each. A notice that omits required elements does not satisfy the SOP — and may give the submitter grounds to challenge the procedural validity of the decision.</p></div>
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid #b91c1c">
+      <h3 style="color:#991b1b">Rejection Letter — Required Elements</h3>
+      <ul class="sl">
+        <li>Submitter's name and tracking number</li>
+        <li>Date of rejection decision</li>
+        <li>All specific rejection grounds identified (not just the first one)</li>
+        <li>The specific provision(s) creating the conflict (article and section)</li>
+        <li>Advice on whether revision and resubmission is possible</li>
+        <li>If resubmission is possible: any guidance the committee can offer on how to cure the identified deficiencies</li>
+        <li>Signature of the Bylaws Committee Chair</li>
+        <li>Copy to the KOR for Tracking Register update</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid #15803d">
+      <h3 style="color:#166534">Acceptance Letter — Required Elements</h3>
+      <ul class="sl">
+        <li>Submitter's name and tracking number</li>
+        <li>Date of acceptance decision</li>
+        <li>Confirmation that the four-point check was completed with no findings</li>
+        <li>Committee's priority determination (may differ from submitter's suggestion)</li>
+        <li>Classification: Editorial or Substantive</li>
+        <li>Anticipated vote schedule (Board meeting date or First Reading date)</li>
+        <li>For Substantive: the 21-day advance notice date</li>
+        <li>Signature of the Bylaws Committee Chair</li>
+        <li>Copy to the KOR and the Polemarch</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>Delivery:</strong> Both acceptance and rejection letters must be delivered to the submitter's registered portal email address. Physical mail is not required. The letter is considered "issued" on the date it is sent — the KOR logs this date, not the date the submitter opens it.</div>
+</div>`;}
+
+function m5s7(){return `<div>
+  <div class="card"><h3>Member Right to Respond to Rejection</h3>
+  <p>A rejected proposal does not automatically end the member's ability to pursue the underlying amendment. The SOP establishes specific rights that protect submitters from arbitrary or procedurally defective rejections.</p></div>
+  <div class="card"><h3>What the Member May Do After Rejection</h3>
+  <ul class="sl">
+    <li><strong>Request clarification:</strong> The member may request in writing that the committee clarify any aspect of the rejection letter within 5 business days of receiving it. The committee must respond within 5 business days of receiving the request. Clarification requests do not restart the review clock</li>
+    <li><strong>Revise and resubmit:</strong> If the rejection letter indicates resubmission is possible, the member may revise the proposal to cure the identified deficiencies and submit it as a new proposal with a new tracking number. There is no limit on the number of times a revised proposal may be resubmitted</li>
+    <li><strong>Challenge procedural deficiency:</strong> If the rejection letter does not contain all required elements, the member may notify the KOR and the Polemarch in writing within 5 business days that the notice is procedurally deficient. The committee must then issue a corrected letter within 5 business days</li>
+    <li><strong>Appeal on constitutional grounds:</strong> See the next screen for the full appeals process</li>
+  </ul></div>
+  <div class="callout"><strong>What the Member May NOT Do:</strong> A member may not circumvent the SOP by bringing an un-reviewed proposal directly to the chapter floor for a vote, by pressuring individual committee members to change their determination, or by submitting an identical proposal in the same review cycle without changes. Any such action is a procedural violation that the Polemarch must address.</div>
+</div>`;}
+
+function m5s8(){return `<div>
+  <div class="card"><h3>Re-Submission Rules After Rejection</h3>
+  <p>Resubmission after rejection is a fresh start — not a continuation of the original proposal. The resubmitted proposal receives a new tracking number, goes through the full review process from the beginning, and is evaluated on its own merits without prejudice from the prior rejection.</p></div>
+  <div class="card"><h3>Requirements for Resubmission</h3>
+  <ul class="sl">
+    <li><strong>The resubmission must substantively address the rejection grounds:</strong> The committee will compare the resubmission to the prior rejection to confirm that identified deficiencies have been cured. A resubmission that does not address the stated grounds will be rejected on the same grounds without extended deliberation</li>
+    <li><strong>All 8 fields must be completed again:</strong> The portal does not carry over fields from a prior submission. The member must complete a fresh portal form in its entirety</li>
+    <li><strong>No waiting period is required:</strong> There is no mandatory waiting period between a rejection and a resubmission. The member may resubmit immediately after curing the deficiencies — subject to the submission window calendar</li>
+    <li><strong>Prior rejection does not affect the committee's review standard:</strong> The committee applies the same four-point check with the same standard as it applied to the original submission</li>
+    <li><strong>Prior rejection information may support the rationale:</strong> In Field 4, the member may note that this is a resubmission addressing a prior rejection and briefly describe what was changed</li>
+  </ul></div>
+  <div class="callout"><strong>Practical Tip:</strong> Before resubmitting, contact the Bylaws Committee Chair informally to confirm your understanding of the required changes. An informal pre-submission consultation is not required and does not bind the committee — but it can prevent a second rejection on the same grounds by ensuring you and the committee agree on what "cured" looks like for your specific proposal.</div>
+</div>`;}
+
+function m5s9(){return `<div>
+  <div class="card"><h3>The Appeals Process</h3>
+  <p>A member who believes a rejection was procedurally defective or constitutionally incorrect may invoke the appeals process. The appeals process is a formal check on the Bylaws Committee — it is not a mechanism for members who simply disagree with the committee's substantive judgment.</p></div>
+  <div class="card"><h3>Grounds for Appeal — Narrow and Specific</h3>
+  <ul class="sl">
+    <li><strong>Procedural defect:</strong> The committee failed to follow the SOP (e.g., missed the 10-business-day window without notification, failed to include required elements in the rejection letter)</li>
+    <li><strong>Constitutional error:</strong> The rejection cites a constitutional or statutory provision that, on its face, does not conflict with the proposed language</li>
+    <li><strong>Committee bias or recusal failure:</strong> A committee member who was required to recuse participated in the review that produced the rejection</li>
+  </ul></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>File Appeal with the Polemarch</div>
+    <div class="phase-body">Submit a written appeal to the Polemarch within 10 business days of the rejection letter. The appeal must: (a) identify the specific rejection ground being appealed; (b) identify the specific procedural defect or constitutional error; and (c) request a specific remedy (e.g., directed resubmission to committee, directed acceptance).</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Polemarch Review</div>
+    <div class="phase-body">The Polemarch reviews the appeal and the committee's record within 10 business days. The Polemarch may: (a) sustain the rejection — appeal denied; (b) remand to the committee with specific directions; or (c) refer to the Province Bylaws resource for advisory opinion. The Polemarch may not substitute his own classification for the committee's.</div></div>
+  ${renderQuiz('q1','A rejection letter identifies only one rejection ground but the committee actually found two. The submitter receives the letter and notices it omits the second ground. The correct action is:',
+    ['Resubmit immediately — the omitted ground will be caught in the next review',
+     'Notify the KOR and Polemarch within 5 business days that the notice is procedurally deficient; the committee must issue a corrected letter within 5 business days',
+     'File an appeal with the Polemarch based on the procedural defect',
+     'Contact the committee chair informally to request the missing information'],1,
+    'Correct — a rejection letter that does not contain all required elements is procedurally deficient. The member notifies the KOR and Polemarch in writing within 5 business days, and the committee must issue a corrected letter within 5 business days. This is distinct from an appeal — it is a correction request, not a challenge to the rejection grounds.')}
+  ${renderQuiz('q2','Which of the following is a valid ground for appeal of a rejection?',
+    ['The member believes the committee made the wrong call on whether the proposal serves a genuine governance purpose',
+     'The member disagrees with the committee\'s Editorial vs. Substantive classification',
+     'A committee member who was the member\'s fraternal antagonist voted on the review without recusing — demonstrating bias',
+     'The rejection was issued on Day 9 instead of earlier in the review window'],2,
+    'Correct — actual bias or a failure to recuse when required is a valid procedural ground for appeal. Disagreement with the committee\'s substantive judgment (options A and B) is not a valid appeal ground. Receiving the letter on Day 9 (within the 10-day window) is not a procedural defect.')}
+  <div class="complete-badge"> Module 5 deep-content complete — you may continue</div>
+</div>`;}
+
+// MODULE 6: Voting Process
+function m6s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 6 of 7 · Adoption</div>
+  <div class="ts-title">Phase 5 — Voting Process</div>
+  <div class="ts-obj">Accepted proposals follow one of two voting paths based on their classification. Editorial amendments go to the Board of Directors only. Substantive amendments require a full two-reading membership process with 21-day advance notice.</div>
+</div>`;}
+
+function m6s1(){return `<div>
+  <div class="card"><h3>Editorial Path: Board of Directors Vote</h3></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">A1</div>Place on Board Agenda</div>
+    <div class="phase-body">The Bylaws Committee Chair notifies the Chapter Polemarch. The proposal is added to the Board of Directors agenda. No advance notice period or reading requirements apply.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">A2</div>Board Vote</div>
+    <div class="phase-body">Adoption requires a <strong>2/3 affirmative vote</strong> of Board members present and voting. If passed → proceed to Phase 6. If failed → proposal is closed; member may revise and resubmit.</div></div>
+  <div class="card"><h3>Substantive Path: Two-Reading Membership Process</h3></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">B1</div>21-Day Advance Notice</div>
+    <div class="phase-body">Written notice to the <strong>full chapter membership</strong> at least 21 days before the First Reading, including the full proposed text and constitutional citation.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">B2</div>First Reading</div>
+    <div class="phase-body">The amendment is formally introduced and read aloud at a regular chapter meeting. Discussion may occur, but <strong>no vote is taken</strong> at this meeting. The proposal is tabled to the next meeting.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">B3</div>Second Reading & Vote</div>
+    <div class="phase-body">At the following regular meeting, the amendment is read a second time. Adoption requires a <strong>2/3 affirmative vote of financial members present and voting</strong>. A <strong>secret ballot is required if any member requests it</strong> — one request is sufficient.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">B4</div>Compliance Certification</div>
+    <div class="phase-body">The Bylaws Committee Chair certifies in writing that the adopted language is compliant with Art. XXX, Sec. 4. This certification must occur <strong>prior to the final vote being certified</strong>.</div></div>
+</div>`;}
+
+function m6s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Voting Process</h3><p>Answer both questions to continue.</p></div>
+  ${renderQuiz('q1','During deliberation on a substantive amendment at the Second Reading, a brother requests a secret ballot. The chapter must:',
+    ['Take a procedural vote on whether to honor the request before proceeding',
+     'Defer the vote to the next meeting to allow time to prepare ballots',
+     'Conduct the vote by secret ballot — the request of any single member triggers the requirement',
+     'Honor the request only if it is seconded by at least two other members'],2,
+    'Correct — a secret ballot is required if any single member requests it. There is no threshold of support, no seconding requirement, and no deferral needed. One request mandates a secret ballot immediately.')}
+  ${renderQuiz('q2','For a substantive amendment, the First Reading is held on November 5. The 21-day advance notice must have been issued no later than:',
+    ['October 29 (7 days before the First Reading)',
+     'October 15 (21 days before the First Reading)',
+     'October 5 (31 days before, to allow for mailing time)',
+     'November 1 (the same week as the First Reading is sufficient)'],1,
+    'Correct — the 21-day advance notice must be issued at least 21 days before the First Reading. November 5 minus 21 days = October 15. Anything later than October 15 fails the SOP requirement.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 6 NEW SCREENS: Voting Process (s3–s9)
+function m6s3(){return `<div>
+  <div class="card"><h3>The Editorial Board Path — In Detail</h3>
+  <p>The Editorial voting path is designed for amendments that correct text without changing substance. Because no member rights or duties are affected, the full membership vote process is not required. However, the Board of Directors vote is a formal proceeding with specific requirements — not an informal approval.</p></div>
+  <div class="card"><h3>Who Votes on the Editorial Path</h3>
+  <p>The Board of Directors is the chapter's governing body between membership meetings. Membership on the Board is defined in the chapter bylaws — typically the elected chapter officers and committee chairs as specified. The exact composition of the Board for amendment voting purposes is governed by the current bylaws. Only Board members in good standing at the time of the vote may participate.</p></div>
+  <div class="card"><h3>What Margin Is Needed</h3>
+  <p>Adoption on the Editorial path requires a <strong>2/3 affirmative vote of Board members present and voting</strong>. This means:</p>
+  <ul class="sl">
+    <li>Abstentions are counted as present but not voting — they do not count as affirmative or negative votes, but they do count for the "present" total</li>
+    <li>The 2/3 calculation is based on those actually voting (affirmative + negative), not the total present</li>
+    <li>Example: 9 Board members present, 1 abstains — 8 are "voting." 2/3 of 8 = 5.33, rounded up to 6. At least 6 affirmative votes are required for adoption</li>
+  </ul></div>
+  <div class="card"><h3>When the Editorial Path Applies</h3>
+  <table class="smart-tbl">
+    <tr><th>Scenario</th><th>Editorial Path Applies?</th></tr>
+    <tr><td>Changing "Secretary" to "Keeper of Records" throughout the bylaws</td><td>Yes — title correction with no change to duties</td></tr>
+    <tr><td>Correcting a cross-reference that was renumbered in a prior amendment</td><td>Yes — administrative correction only</td></tr>
+    <tr><td>Fixing a grammatical error that does not affect meaning or interpretation</td><td>Yes — purely textual correction</td></tr>
+    <tr><td>Fixing a grammatical error that changes which officer has a duty</td><td>No — substantive effect requires membership vote</td></tr>
+  </table></div>
+</div>`;}
+
+function m6s4(){return `<div>
+  <div class="card"><h3>The Substantive Two-Reading Path — What Is "First Reading"?</h3>
+  <p>The two-reading process is a structural protection that ensures members have adequate time to review, discuss, and deliberate before a consequential vote. The First Reading is not a vote — it is a formal introduction designed to put the proposal before the membership body in its official form.</p></div>
+  <div class="card"><h3>What Happens at the First Reading</h3>
+  <ul class="sl">
+    <li><strong>The amendment is formally introduced:</strong> The Bylaws Committee Chair (or a designated presenter) reads the full proposed text — or a summary for lengthy amendments, with the full text available for member review</li>
+    <li><strong>The constitutional citation is presented:</strong> Field 7 of the submission — the constitutional or statutory alignment — is stated as part of the introduction</li>
+    <li><strong>Discussion may occur:</strong> Members may speak to the proposal at the First Reading. The Polemarch manages floor discussion under the chapter's parliamentary authority</li>
+    <li><strong>No vote is taken:</strong> The First Reading does not include a vote on adoption. No motion to call the question, no show of hands, no informal poll. Any such action is out of order</li>
+    <li><strong>The proposal is tabled to the next meeting:</strong> At the close of discussion, the Polemarch formally notes the proposal is tabled to the Second Reading at the next regular chapter meeting</li>
+  </ul></div>
+  <div class="callout"><strong>Common Misunderstanding:</strong> Some members believe that strong opposition at the First Reading means the proposal "fails" at that point. This is incorrect. No vote occurs at the First Reading. Opposition expressed at the First Reading is informational — it signals the submitter and advocates that there is work to do before the Second Reading, but it has no procedural effect on the proposal's status.</div>
+  <div class="card"><h3>Who Presents at the First Reading</h3>
+  <p>The submitting member may present the proposal, the Bylaws Committee Chair may present, or a designated presenter may be appointed. Coordinate with the Polemarch before the meeting to ensure adequate agenda time is allocated.</p></div>
+</div>`;}
+
+function m6s5(){return `<div>
+  <div class="card"><h3>Between the Readings — What Happens in the Interim</h3>
+  <p>The period between the First and Second Readings is not a waiting period — it is an active phase in the amendment process. Members, the Bylaws Committee, and the submitter each have defined activities in this period that affect the quality and success of the Second Reading vote.</p></div>
+  <div class="card"><h3>Activities Between Readings</h3>
+  <table class="smart-tbl">
+    <tr><th>Party</th><th>Appropriate Activity</th><th>Inappropriate Activity</th></tr>
+    <tr><td><strong>Submitting Member</strong></td><td>Speaking with members informally to address concerns; providing written summaries of the proposal; responding to questions about rationale and impact</td><td>Conducting informal votes; pressuring members; misrepresenting the proposal's effect or the committee's findings</td></tr>
+    <tr><td><strong>Bylaws Committee</strong></td><td>Responding to member questions about classification; providing clarifying information about constitutional alignment; issuing a written opinion if the membership has requested formal clarification</td><td>Advocating for or against adoption; lobbying Board members; recharacterizing the proposal beyond the formal classification</td></tr>
+    <tr><td><strong>Opposing Members</strong></td><td>Expressing opposition, building consensus against adoption, drafting counter-proposals for future consideration</td><td>Attempting procedural maneuvers to prevent the Second Reading from occurring; misrepresenting the proposal</td></tr>
+    <tr><td><strong>Polemarch</strong></td><td>Ensuring all members received the 21-day notice and have access to the proposal text; scheduling the Second Reading</td><td>Taking a public position on adoption before the Second Reading vote</td></tr>
+  </table></div>
+  <div class="callout"><strong>Can the Proposal Be Modified Between Readings?</strong> Technically, the submitter may withdraw the proposal and resubmit a modified version — starting the entire process over. Amendments to the proposal on the floor at the Second Reading are governed by the chapter's parliamentary authority. In most cases, material amendments to a bylaw amendment on the floor require the same notice as the original — preventing surprise changes at the Second Reading vote.</div>
+</div>`;}
+
+function m6s6(){return `<div>
+  <div class="card"><h3>The Second Reading — Full Procedural Guide</h3>
+  <p>The Second Reading is the formal adoption vote. This is the consequential proceeding — and it must be conducted precisely according to the SOP and the chapter's parliamentary authority to produce a valid result.</p></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">1</div>Call the Proposal to the Floor</div>
+    <div class="phase-body">The Polemarch formally calls the proposed amendment before the body. The proposal is identified by its tracking number and the article/section it addresses. The Bylaws Committee Chair confirms the proposal is properly before the body (that the First Reading occurred at the prior meeting and the 21-day notice was properly issued).</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">2</div>Second Reading of the Text</div>
+    <div class="phase-body">The full proposed text is read aloud a second time — or summarized for lengthy amendments with the full text available. Members who were not present at the First Reading are entitled to hear the full text at the Second Reading.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">3</div>Compliance Certification</div>
+    <div class="phase-body">Before the vote is called, the Bylaws Committee Chair must certify in writing and on the record that the proposed language is compliant with Art. XXX, Sec. 4. This certification must occur <em>prior to the final vote being certified</em> — it is a condition precedent to a valid vote.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">4</div>Floor Deliberation</div>
+    <div class="phase-body">Members speak for or against adoption under the chapter's parliamentary rules. The Polemarch manages the floor. Any member may move to call the question to end deliberation — requires a 2/3 vote to succeed.</div></div>
+  <div class="phase-box"><div class="phase-hdr"><div class="phase-num">5</div>Secret Ballot (if requested) or Voice/Standing Vote</div>
+    <div class="phase-body">If any member requests a secret ballot, it must be used. If no request is made, the Polemarch may call the vote by voice or standing vote. Secret ballot requires the appointment of tellers to count and verify ballots.</div></div>
+</div>`;}
+
+function m6s7(){return `<div>
+  <div class="card"><h3>The Secret Ballot Requirement — Rationale and Process</h3>
+  <p>The secret ballot requirement in bylaw amendment votes is not a procedural formality — it reflects a fundamental principle about member autonomy in fraternal governance. Understanding the rationale helps members enforce the requirement correctly and resist any pressure to waive it.</p></div>
+  <div class="card"><h3>Why Secret Ballot Exists in This Context</h3>
+  <ul class="sl">
+    <li><strong>Protecting dissent:</strong> Members who wish to vote against a proposal supported by chapter leadership may be reluctant to do so in a visible vote. Secret ballot removes this chilling effect on dissent</li>
+    <li><strong>Protecting the integrity of the vote:</strong> Bylaw amendments bind all members — including those who voted against. A member who was pressured into voting in favor of a provision that later harms him has no recourse if he publicly voted "yes"</li>
+    <li><strong>Ensuring genuine deliberation:</strong> When members know the vote is secret, public deliberation is more honest — members speak to the merits rather than to the room's apparent sentiment</li>
+  </ul></div>
+  <div class="card"><h3>Conducting the Secret Ballot</h3>
+  <ul class="sl">
+    <li>The Polemarch appoints tellers — at least two, who are not the submitter, not a committee member, and not a current officer with a declared position on the amendment</li>
+    <li>Ballots are distributed to every financial member present and verified as a qualified voter</li>
+    <li>Tellers collect, count, and verify ballots — they report the count to the Polemarch (not the individual ballot results)</li>
+    <li>The Polemarch announces the result: total votes cast, affirmative, negative, and outcome (adopted/failed)</li>
+    <li>The KOR records the total vote count and outcome in the minutes — individual ballot choices are never recorded</li>
+  </ul></div>
+  <div class="callout"><strong>One Request Is Sufficient:</strong> Any single financial member present may request a secret ballot at any time before the vote begins. No seconding, no motion, no vote on whether to use a secret ballot. One request — full stop — mandates the secret ballot process.</div>
+</div>`;}
+
+function m6s8(){return `<div>
+  <div class="card"><h3>Quorum for Amendment Votes</h3>
+  <p>A valid vote on a bylaw amendment requires that the quorum established in the chapter bylaws be met at the time the vote is called. A vote conducted without quorum is null and void — and a null vote cannot be ratified; the process must begin again at the next meeting at which quorum is established.</p></div>
+  <div class="card"><h3>Quorum Rules for Amendment Votes</h3>
+  <ul class="sl">
+    <li><strong>Same quorum as other chapter business:</strong> The chapter bylaws specify the quorum for regular business. Amendment votes use the same quorum unless the bylaws expressly specify a higher quorum for bylaw amendments</li>
+    <li><strong>Quorum must be established at the start of the meeting:</strong> The KOR records the members present at call to order. If quorum is lost before the amendment vote is reached (members leave), the Polemarch must establish quorum before proceeding</li>
+    <li><strong>Quorum for Board votes (Editorial path):</strong> Board quorum, as defined in the chapter bylaws, applies to Editorial amendment votes</li>
+  </ul></div>
+  <div class="card"><h3>Recording the Vote</h3>
+  <p>The KOR records in the minutes:</p>
+  <ul class="sl">
+    <li>The amendment tracking number and the article/section addressed</li>
+    <li>That the compliance certification was issued by the Bylaws Committee Chair before the vote</li>
+    <li>The vote method (voice, standing, secret ballot)</li>
+    <li>If secret ballot: total ballots cast, affirmative count, negative count</li>
+    <li>If voice or standing: the Polemarch's declaration of the result (the exact count is not required for non-secret votes, but should be recorded if the count was taken)</li>
+    <li>The outcome: Adopted or Failed</li>
+    <li>If adopted: the effective date (immediately upon adoption unless otherwise specified)</li>
+  </ul></div>
+</div>`;}
+
+function m6s9(){return `<div>
+  <div class="card"><h3>What Constitutes Passage vs. Failure — and Tie Votes</h3>
+  <p>The passage threshold for bylaw amendments is one of the more frequently misunderstood procedural points. A 2/3 affirmative vote is required — but "2/3 of what" is the question that produces confusion.</p></div>
+  <div class="card"><h3>The Correct Calculation</h3>
+  <p><strong>2/3 of financial members present and voting.</strong> This means:</p>
+  <table class="smart-tbl">
+    <tr><th>Scenario</th><th>Present</th><th>Voting (Aff+Neg)</th><th>Abstain</th><th>Required for Passage</th><th>Outcome if 14 Aff</th></tr>
+    <tr><td>Example A</td><td>25</td><td>22</td><td>3</td><td>⌈22 × 2/3⌉ = 15</td><td>14 Aff — FAILED</td></tr>
+    <tr><td>Example B</td><td>25</td><td>21</td><td>4</td><td>⌈21 × 2/3⌉ = 14</td><td>14 Aff — PASSED</td></tr>
+    <tr><td>Example C</td><td>18</td><td>18</td><td>0</td><td>⌈18 × 2/3⌉ = 12</td><td>14 Aff — PASSED</td></tr>
+  </table></div>
+  <div class="card"><h3>Tie Votes</h3>
+  <p>A tie vote (equal affirmative and negative votes) is mathematically impossible to achieve the 2/3 threshold — a tie is a failure. The Polemarch does not cast a vote on bylaw amendments (even to break a tie) unless the bylaws expressly grant the Polemarch a vote in this circumstance. The Polemarch's role during the vote is to preside — not to vote, except as the bylaws specifically permit.</p></div>
+  ${renderQuiz('q1','20 financial members are present. 3 abstain. The vote is 11 affirmative, 6 negative. What is the outcome?',
+    ['Passed — 11 affirmative exceeds a simple majority of those present',
+     'Passed — 2/3 of 20 present = 13.3, rounded to 13; 11 affirmative is more than half',
+     'Failed — 2/3 of 17 voting = 11.33, rounded up to 12; 11 affirmative does not meet the 12-vote threshold',
+     'Failed — 2/3 of 20 present = 13.3, rounded to 14; 11 affirmative does not meet the threshold'],2,
+    'Correct — the denominator is 17 (those actually voting: 11 + 6). 2/3 of 17 = 11.33, which rounds up to 12. Only 11 affirmative votes were cast — the proposal fails. Abstentions are excluded from the voting count.')}
+  ${renderQuiz('q2','At the Second Reading, two members request a secret ballot and the Polemarch says the body should vote on whether to use a secret ballot. Is this correct?',
+    ['Yes — the secret ballot procedure requires a procedural motion and a majority vote to trigger it',
+     'No — one member\'s request is sufficient; the Polemarch\'s call for a procedural vote on whether to use a secret ballot is itself a procedural violation',
+     'Yes — two members requesting a secret ballot means the Polemarch may choose to call a vote on the method',
+     'No — but only because two members requested it; one request alone would require a procedural vote'],1,
+    'Correct — one member\'s request mandates a secret ballot. No motion, no seconding, no procedural vote on the method. The Polemarch\'s attempt to put the secret ballot method to a vote is itself a procedural error that should be corrected immediately by the Bylaws Committee Chair or any member raising a point of order.')}
+  <div class="complete-badge"> Module 6 deep-content complete — you may continue</div>
+</div>`;}
+
+// MODULE 7: Adoption & Filing
+function m7s0(){return `<div class="title-screen">
+  <div class="ts-mod-lbl">Module 7 of 7 · Adoption</div>
+  <div class="ts-title">Phase 6 — Adoption, Filing & Archiving</div>
+  <div class="ts-obj">A passed amendment is not complete until it is officially named, integrated into the master bylaws, dual-signed, stamped by the KOR, communicated to the chapter, and properly archived. All six steps are required.</div>
+</div>`;}
+
+function m7s1(){return `<div>
+  <div class="card"><h3>The Six Post-Passage Steps</h3>
+  <table class="smart-tbl">
+    <tr><th>Step</th><th>Action</th><th>Responsible Party</th></tr>
+    <tr><td><strong>A</strong></td><td><strong>Amendment Naming:</strong> Assign reference ID (format: DLA-[YEAR]-A[##], e.g., DLA-2026-A01). Log the ID, article/section, date adopted, and vote tally in the Amendment Log.</td><td>Bylaws Committee</td></tr>
+    <tr><td><strong>B</strong></td><td><strong>Update Bylaws Document:</strong> Incorporate adopted language into the master bylaws. Accept all tracked changes; reconcile formatting with existing document style.</td><td>Bylaws Committee</td></tr>
+    <tr><td><strong>C</strong></td><td><strong>Dual Signature Authentication:</strong> Two signatures required on the updated pages: (1) Bylaws Committee Chairman, (2) Chapter Polemarch. No other signatures are required or substitutable.</td><td>Chairman & Polemarch</td></tr>
+    <tr><td><strong>D</strong></td><td><strong>KOR File & Stamp:</strong> Apply a file date stamp to signed pages. Record the amendment in the official registry. The KOR is the <strong>sole authority</strong> for the official bylaws version.</td><td>Keeper of Records</td></tr>
+    <tr><td><strong>E</strong></td><td><strong>Chapter Notification:</strong> At the next regular meeting, formally inform the chapter body. Post the updated document to the member portal within <strong>5 business days</strong> of the KOR file stamp.</td><td>Keeper of Records</td></tr>
+    <tr><td><strong>F</strong></td><td><strong>Archive Prior Version:</strong> Rename the superseded version per convention (e.g., DLA_Bylaws_v2025-09_SUPERSEDED.pdf). Store in official records archive. The current version is the only active governing document.</td><td>Bylaws Committee / KOR</td></tr>
+  </table></div>
+  <div class="callout"><strong>KOR as Sole Authority:</strong> After the file stamp is applied, no other person or body may maintain or distribute a version that supersedes the KOR's official record. Members needing current bylaws should always access the version posted by the KOR.</div>
+</div>`;}
+
+function m7s2(){
+  const ix=getIx();const q1Done=ix.q1!==undefined;const q2Done=ix.q2!==undefined;
+  return `<div>
+  <div class="card"><h3>Knowledge Check — Adoption & Filing</h3><p>Answer both questions to continue.</p></div>
+  ${renderQuiz('q1','The chapter adopts its third bylaw amendment in 2026. Using the naming convention, what reference ID should be assigned?',
+    ['KAP-DLA-2026-003','DLA-2026-A03','Amendment-2026-C','DLA-A03-2026'],1,
+    'Correct — the naming convention is DLA-[YEAR]-A[##]. The third amendment in 2026 is DLA-2026-A03. All other formats deviate from the established convention.')}
+  ${renderQuiz('q2','After the KOR applies the file date stamp, when must the updated bylaws document be posted to the member portal?',
+    ['At the next regularly scheduled chapter meeting',
+     'Within 10 business days, the same window as accept/reject correspondence',
+     'Within 5 business days of the KOR\'s file stamp',
+     'Within 21 days — the same notice window used for substantive amendments'],2,
+    'Correct — the updated bylaws document must be posted to the member portal within 5 business days of the KOR\'s file stamp. Chapter notification at the next meeting must also cite the amendment ID and effective date.')}
+  ${q1Done&&q2Done?`<div class="complete-badge"> Knowledge check complete — you may continue</div>`:''}
+</div>`;}
+
+// MODULE 7 NEW SCREENS: Adoption & Filing (s3–s9)
+function m7s3(){return `<div>
+  <div class="card"><h3>The Six Post-Passage Steps — Who Does Each and By When</h3>
+  <p>Adoption of a bylaw amendment at the chapter vote is not the end of the process. Six required post-passage steps must be completed — in order — before the amendment is officially in force and the chapter's governing document is updated. None of these steps can be skipped or reordered.</p></div>
+  <table class="smart-tbl">
+    <tr><th>Step</th><th>Responsible Party</th><th>Timeline</th><th>What Failure Looks Like</th></tr>
+    <tr><td><strong>A: Amendment Naming</strong></td><td>Bylaws Committee</td><td>Within 2 business days of adoption vote</td><td>Amendment is referred to by tracking number only — no permanent ID assigned; creates confusion in amendment log</td></tr>
+    <tr><td><strong>B: Update Bylaws Document</strong></td><td>Bylaws Committee</td><td>Within 5 business days of adoption vote</td><td>The master bylaws document does not reflect the adopted language — the KOR cannot certify an updated version</td></tr>
+    <tr><td><strong>C: Dual Signature Authentication</strong></td><td>Bylaws Committee Chairman + Chapter Polemarch</td><td>Within 5 business days of update</td><td>Updated pages without dual signatures are not legally authenticated — the KOR cannot file them</td></tr>
+    <tr><td><strong>D: KOR File and Stamp</strong></td><td>Keeper of Records</td><td>Within 2 business days of receiving authenticated pages</td><td>No official controlling version exists — the amendment is adopted but not officially filed</td></tr>
+    <tr><td><strong>E: Chapter Notification</strong></td><td>Keeper of Records</td><td>Portal posting within 5 business days of KOR stamp; meeting notice at next regular meeting</td><td>Members operating under the old version — risk of non-compliance with the new provision</td></tr>
+    <tr><td><strong>F: Archive Prior Version</strong></td><td>Bylaws Committee / KOR</td><td>Within 5 business days of KOR stamp</td><td>Two active versions potentially circulating — creates governing document confusion</td></tr>
+  </table>
+</div>`;}
+
+function m7s4(){return `<div>
+  <div class="card"><h3>The DLA-YEAR-A## Naming Convention — Explained with Examples</h3>
+  <p>The amendment naming convention is a permanent identifier system. Once assigned, an amendment's reference ID does not change — even if later amendments address the same article or section. The ID is the amendment's permanent record in the Amendment Log and all chapter archives.</p></div>
+  <div class="card"><h3>How the Convention Works</h3>
+  <table class="smart-tbl">
+    <tr><th>Component</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td><strong>DLA</strong></td><td>Denton-Lewisville Alumni chapter identifier</td><td>Always "DLA" — no variation</td></tr>
+    <tr><td><strong>YEAR</strong></td><td>Four-digit calendar year of adoption</td><td>2026 (not the year of submission)</td></tr>
+    <tr><td><strong>A</strong></td><td>Amendment designator — distinguishes from other chapter records</td><td>Always "A" — no variation</td></tr>
+    <tr><td><strong>##</strong></td><td>Two-digit sequential number — resets to 01 each calendar year</td><td>01, 02, 03 … 10, 11 … 99</td></tr>
+  </table></div>
+  <div class="card"><h3>Examples in Practice</h3>
+  <ul class="sl">
+    <li><strong>DLA-2026-A01:</strong> The first bylaw amendment adopted in calendar year 2026</li>
+    <li><strong>DLA-2026-A07:</strong> The seventh amendment adopted in 2026</li>
+    <li><strong>DLA-2027-A01:</strong> The first amendment adopted in 2027 — the sequence resets even if 2026 ended on A07</li>
+    <li><strong>DLA-2026-A03 and DLA-2027-A02:</strong> Two separate amendments — the 2027 one cannot supersede the 2026 one without an explicit provision to that effect; both remain in the Amendment Log</li>
+  </ul></div>
+  <div class="callout"><strong>The Amendment Log Entry:</strong> Each adopted amendment's Amendment Log entry must include: Reference ID, article/section amended, date of adoption vote, vote tally (affirmative/negative), effective date, and the names of the Bylaws Committee Chair and Polemarch who co-signed. This entry is permanent — it is not removed if a later amendment supersedes the provision.</div>
+</div>`;}
+
+function m7s5(){return `<div>
+  <div class="card"><h3>Official Filing with the KOR — What Documents, How Submitted</h3>
+  <p>The KOR's filing of an adopted amendment is the official act that makes the amendment part of the chapter's governing document. Without this step, the amendment is adopted but not filed — a state that creates legal uncertainty about which version of the bylaws controls chapter operations.</p></div>
+  <div class="card"><h3>The Document Package Filed with the KOR</h3>
+  <ul class="sl">
+    <li><strong>Updated master bylaws pages:</strong> The specific pages incorporating the adopted language — with tracked changes accepted and formatting reconciled. The full document if it is a short bylaws set; the affected pages only if the document is large</li>
+    <li><strong>Dual-signed authentication page:</strong> A document certifying that the Bylaws Committee Chair and Chapter Polemarch have reviewed the updated pages and confirm they reflect the adopted amendment accurately. Both signatures must be original (wet signatures) or electronic via an approved signature platform</li>
+    <li><strong>Amendment Log update:</strong> A copy of the Amendment Log entry for the new amendment, signed by the Bylaws Committee Chair</li>
+    <li><strong>A copy of the adoption minutes excerpt:</strong> The relevant portion of the chapter meeting minutes recording the vote outcome — provided by the KOR from the meeting minutes</li>
+  </ul></div>
+  <div class="card"><h3>How Submission to the KOR Works</h3>
+  <p>The Bylaws Committee Chair delivers the document package to the KOR via the official channel specified in the chapter's bylaws — typically email to the KOR's official chapter email address, or in person for physical originals. The KOR acknowledges receipt in writing and applies the file date stamp. The stamp date is the official effective date of the amendment unless the adopted amendment specifies a later effective date.</p></div>
+</div>`;}
+
+function m7s6(){return `<div>
+  <div class="card"><h3>Chapter Record Update Requirements</h3>
+  <p>Filing with the KOR triggers a cascade of required record updates. The KOR is responsible for ensuring the chapter's governing document infrastructure reflects the newly adopted amendment. These updates are not optional — they are part of the KOR's core administrative obligations.</p></div>
+  <div class="card"><h3>Required Record Updates</h3>
+  <table class="smart-tbl">
+    <tr><th>Record</th><th>Update Required</th><th>Timeline</th></tr>
+    <tr><td><strong>Amendment Tracking Register</strong></td><td>Status updated from "Adopted (Vote)" to "Filed — [Reference ID]" with the KOR stamp date</td><td>Same day as stamp application</td></tr>
+    <tr><td><strong>Amendment Log</strong></td><td>Full entry completed: Reference ID, article/section, adoption date, vote tally, effective date, co-signers</td><td>Within 1 business day of stamp</td></tr>
+    <tr><td><strong>Member Portal (bylaws document)</strong></td><td>KOR-certified version replaced with the updated document incorporating the new amendment</td><td>Within 5 business days of stamp</td></tr>
+    <tr><td><strong>Chapter archive</strong></td><td>Prior bylaws version renamed to SUPERSEDED convention and moved to archive folder</td><td>Within 5 business days of stamp</td></tr>
+    <tr><td><strong>Physical records</strong></td><td>Signed original document package stored in the KOR's official records storage</td><td>Within 5 business days of stamp</td></tr>
+  </table></div>
+  <div class="callout"><strong>The KOR as Sole Authority:</strong> After filing, the KOR's version is the only operative version. The Bylaws Committee's working copy, the submitter's copy, and any other version that predates the KOR stamp are superseded. If any party distributes a version of the bylaws that does not reflect the KOR's filed version, the KOR must issue a correction notice to the chapter within 2 business days of discovering the discrepancy.</div>
+</div>`;}
+
+function m7s7(){return `<div>
+  <div class="card"><h3>Member Notification Requirements</h3>
+  <p>Members must be informed of adopted amendments. Notification is not a courtesy — it is a procedural requirement. Members who take action in reliance on the old version of a provision, without having been notified of the amendment, have a procedural basis to challenge the application of the new provision to their actions.</p></div>
+  <div class="card"><h3>Required Notification Components</h3>
+  <ul class="sl">
+    <li><strong>Formal chapter meeting announcement:</strong> At the next regular chapter meeting following the KOR file stamp, the Polemarch (or the KOR) must formally announce that the amendment has been adopted and filed. The announcement must include: the Reference ID, the article/section amended, the effective date, and how to access the updated bylaws</li>
+    <li><strong>Portal posting:</strong> The KOR posts the updated bylaws to the member portal within 5 business days of the stamp. The portal posting must replace — not supplement — the prior version. Members accessing the portal should never encounter two simultaneous versions</li>
+    <li><strong>Email notification (recommended):</strong> A brief chapter-wide email noting the amendment's Reference ID, effective date, and the article/section affected. This email is not required by the SOP but is strongly recommended to ensure all members who did not attend the meeting are informed promptly</li>
+  </ul></div>
+  <div class="card"><h3>Who Is Responsible for Notification</h3>
+  <table class="smart-tbl">
+    <tr><th>Notification Method</th><th>Responsible Party</th></tr>
+    <tr><td>Chapter meeting announcement</td><td>Polemarch (with KOR providing the amendment details)</td></tr>
+    <tr><td>Member portal update</td><td>Keeper of Records</td></tr>
+    <tr><td>Email notification</td><td>Keeper of Records (in coordination with the Polemarch)</td></tr>
+  </table></div>
+</div>`;}
+
+function m7s8(){return `<div>
+  <div class="card"><h3>Effective Date Determination</h3>
+  <p>When does an adopted bylaw amendment actually take effect? The answer depends on whether the amendment specifies a delayed effective date — and on the relationship between the adoption vote date and the KOR filing date.</p></div>
+  <div class="card"><h3>The Default Rule: Adoption Upon Filing</h3>
+  <p>Unless the adopted amendment expressly specifies a different effective date, the amendment takes effect upon the KOR's application of the file date stamp. This means:</p>
+  <ul class="sl">
+    <li>The vote adopts the amendment — but it is not yet officially in force</li>
+    <li>The KOR's file stamp is the operative moment of legal effectiveness</li>
+    <li>Actions taken between the vote and the KOR stamp are governed by the <em>old</em> version of the provision</li>
+    <li>Actions taken on or after the KOR stamp date are governed by the <em>new</em> version</li>
+  </ul></div>
+  <div class="card"><h3>Delayed Effective Dates</h3>
+  <p>A well-drafted amendment that changes a procedure, obligation, or timeline may specify a delayed effective date to allow members and officers time to adapt. Common examples:</p>
+  <table class="smart-tbl">
+    <tr><th>Amendment Type</th><th>Recommended Delayed Effective Date</th><th>Rationale</th></tr>
+    <tr><td>Dues change</td><td>First day of next fiscal year</td><td>Gives members notice before the obligation attaches</td></tr>
+    <tr><td>Election procedure change</td><td>Effective for elections occurring 60+ days after filing</td><td>Prevents retroactive application to an ongoing election cycle</td></tr>
+    <tr><td>Quorum change</td><td>Effective at the next regular meeting</td><td>Gives the Polemarch time to notify members of the new quorum requirement before attendance decisions are made</td></tr>
+    <tr><td>Officer duty change</td><td>Effective at the start of the next officer term</td><td>Does not change mid-term expectations for a sitting officer</td></tr>
+  </table></div>
+</div>`;}
+
+function m7s9(){return `<div>
+  <div class="card"><h3>Archive Requirements — Preserving the Complete Legislative History</h3>
+  <p>Every superseded version of the chapter bylaws must be archived — not deleted. The archive preserves the chapter's complete legislative history, which serves as evidence in any dispute about when a provision took effect, what the prior rule was, and whether a current provision supersedes or supplements prior language.</p></div>
+  <div class="card"><h3>Archiving Superseded Versions</h3>
+  <ul class="sl">
+    <li><strong>Rename the superseded document:</strong> Apply the convention: <em>DLA_Bylaws_v[YYYY-MM]_SUPERSEDED.pdf</em> — e.g., <em>DLA_Bylaws_v2025-09_SUPERSEDED.pdf</em>. The date in the filename is the date of the version being superseded (typically the prior KOR stamp date)</li>
+    <li><strong>Move to the archive folder:</strong> The KOR maintains an archive folder separate from the active bylaws location. Do not overwrite or delete — rename and move</li>
+    <li><strong>Retain indefinitely:</strong> Superseded versions are retained permanently. There is no purge schedule for prior bylaw versions</li>
+    <li><strong>Access control:</strong> The archive is accessible to the KOR, the Bylaws Committee Chair, and the Polemarch. Other members may request access through the KOR</li>
+  </ul></div>
+  ${renderQuiz('q1','An amendment was adopted at the chapter meeting on March 10. The dual-signed document package arrived at the KOR on March 15. The KOR applied the file stamp on March 17. When did the amendment take effect (assuming no delayed effective date was specified)?',
+    ['March 10 — the adoption vote at the chapter meeting',
+     'March 15 — when the document package arrived at the KOR',
+     'March 17 — the KOR\'s file stamp date is the operative effective date',
+     'March 21 — 5 business days after the KOR stamp, when the portal must be updated'],2,
+    'Correct — the default rule is that the amendment takes effect upon the KOR\'s application of the file stamp. The adoption vote (March 10) and the document\'s arrival at the KOR (March 15) are prerequisite steps, but the legal effectiveness date is the stamp date: March 17.')}
+  ${renderQuiz('q2','The chapter adopts its second bylaw amendment of 2026, then supersedes it with a third amendment later in the year. What happens to the second amendment\'s file?',
+    ['It is deleted — only the current controlling version should exist',
+     'It is renamed to the SUPERSEDED convention and moved to the archive; it is retained permanently',
+     'It is archived for 3 years then deleted per the chapter records retention schedule',
+     'It remains in the active folder alongside the third amendment to show the amendment history'],1,
+    'Correct — superseded versions are renamed (DLA_Bylaws_v[date]_SUPERSEDED.pdf) and moved to the archive folder. They are retained permanently — there is no purge schedule for prior bylaw versions. The archive preserves the complete legislative history of the chapter bylaws.')}
+  <div class="complete-badge"> Module 7 complete — all 7 modules finished! Proceed to the Final Assessment.</div>
+</div>`;}
+
+// ========== ASSESSMENT QUESTIONS ==========
+const AQ=[
+  {mod:'Module 1',q:'Which constitutional provision gives the Denton-Lewisville Chapter the authority to adopt its own bylaws?',
+   opts:['KAP Statutes, Chapter 7, Section 2 — Alumni Chapter Operations','KAP Constitution Art. XXX, Sec. 4 — Alumni chapter bylaw power','Grand Chapter Resolution 2025-G14 on Chapter Self-Governance','KAP Province Polemarch Directive on Local Chapter Governance'],
+   cor:1,fb:'Art. XXX, Sec. 4 is the sole constitutional provision that grants alumni chapters the power to adopt bylaws, subject to the non-conflict standard.'},
+  {mod:'Module 1',q:'The non-conflict standard in Art. XXX, Sec. 4 means that a chapter bylaw amendment:',
+   opts:['Must be approved by the Province Polemarch before taking effect','May not conflict with the KAP Constitution, Statutes, Ritual, or other enactment of Kappa Alpha Psi','Must mirror the language used in the national bylaws wherever applicable','Requires a 3/4 supermajority vote to override any national provision'],
+   cor:1,fb:'The non-conflict standard requires that no chapter bylaw conflict with the KAP Constitution, Statutes, Ritual, or other enactment of KAP. Province approval is not part of this standard.'},
+  {mod:'Module 2',q:'A member wants to propose a bylaw amendment. What is the correct first step?',
+   opts:['Locate and read the current DLA Bylaws on the member portal','Go directly to the portal submission form and complete all 8 fields','Consult with the Polemarch to determine priority','Review the KAP Constitution first, then check the DLA Bylaws after'],
+   cor:0,fb:'The first step in Phase 1 is always to locate and read the current DLA Bylaws. Members must understand the current language or identify the gap before doing anything else.'},
+  {mod:'Module 2',q:'When national law is completely silent on the topic of a proposed amendment, the alignment framework determination is:',
+   opts:['Conflicts With — because there is no constitutional basis','Aligns With — because national law does not prohibit it','Within Chapter Discretion — cite "Art. XXX, Sec. 4 — chapter discretion"','The proposal cannot advance without Province advisory review'],
+   cor:2,fb:'When national law is silent, the chapter has discretion under Art. XXX, Sec. 4 to adopt language. The correct citation is "Art. XXX, Sec. 4 — chapter discretion." Silence grants chapter authority.'},
+  {mod:'Module 3',q:'How many fields are required on the portal submission form, and what happens if one is left incomplete?',
+   opts:['6 required fields; incomplete submissions advance with a flag','10 required fields; submissions are held pending missing information','8 required fields; incomplete submissions are returned without committee review','8 required fields; incompleteness creates a rejection presumption but review continues'],
+   cor:2,fb:'There are exactly 8 required fields. Any incomplete submission is returned to the member without committee review — incompleteness is itself a rejection condition.'},
+  {mod:'Module 4',q:'The KOR receives a portal submission on a Monday. By when must it be logged in the Amendment Tracking Register?',
+   opts:['By end of day Monday','Within 3 business days — by Thursday','Within 10 business days','Before the next regular chapter meeting'],
+   cor:1,fb:'The KOR must log the submission within 3 business days of receipt. A Monday submission must be logged by Thursday.'},
+  {mod:'Module 4',q:'A proposal changes the officer title "Secretary" to "Keeper of Records" throughout the bylaws. The correct classification is:',
+   opts:['Substantive — officer structure changes require the two-reading process','Editorial — a cross-reference correction with no change to duties, rights, or substance','Critical Priority — officer title misalignment requires immediate resolution','Cannot be classified without Province review'],
+   cor:1,fb:'Changing "Secretary" to "Keeper of Records" is a cross-reference correction with no change to duties, rights, or substance. This is Editorial — it goes to the Board of Directors only.'},
+  {mod:'Module 5',q:'A proposal is constitutionally sound, but the member left Field 8 (Expected Impact) blank. The committee should:',
+   opts:['Accept it — 7 of 8 fields are complete and the constitutional work is solid','Reject it — any missing required field is a rejection condition regardless of other merit','Accept it conditionally pending the missing field within 5 business days','Complete Field 8 on the member\'s behalf based on the committee\'s analysis'],
+   cor:1,fb:'All 8 fields are required without exception. There are no conditional acceptances. An incomplete submission is returned to the member regardless of the quality of other fields.'},
+  {mod:'Module 6',q:'During deliberation on a substantive amendment, a brother requests a secret ballot. The chapter must:',
+   opts:['Take a procedural vote on whether to honor the request','Defer the vote to the next meeting to prepare ballots','Conduct the vote by secret ballot — one member\'s request triggers the requirement','Honor the request only if seconded by at least two other members'],
+   cor:2,fb:'A secret ballot is required if any single member requests it. There is no threshold, no seconding requirement, and no deferral. One request mandates a secret ballot.'},
+  {mod:'Module 7',q:'The chapter adopts its third bylaw amendment in 2026. Using the naming convention, what reference ID should be assigned?',
+   opts:['KAP-DLA-2026-003','DLA-2026-A03','Amendment-2026-C','DLA-A03-2026'],
+   cor:1,fb:'The naming convention is DLA-[YEAR]-A[##]. The third amendment in 2026 is DLA-2026-A03.'}
+];
+
+// ========== RENDER ==========
+function render(){
+  document.getElementById('sidebar').innerHTML=renderSidebar();
+  const mc=document.getElementById('main-content');
+
+  if(S.page==='landing'){
+    const allDone=S.done.every(Boolean);
+    mc.innerHTML=`
+    <div class="hero">
+      <div><span class="hero-badge">Chapter Training</span><span class="draft-hero-badge"> DRAFT</span></div>
+      <div class="hero-title">Bylaw Amendment Standard Operating Procedure</div>
+      <div class="hero-sub">Kappa Alpha Psi — Denton-Lewisville (TX) Alumni Chapter · 2026 Edition · Prepared by the DLA Bylaws Committee</div>
+      <div class="hero-name-row">
+        <label for="name-input">Your Name:</label>
+        <input class="name-input" id="name-input" type="text" placeholder="Enter your full name" value="${S.name}" oninput="S.name=this.value;save()">
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-label"> ~3.5 Hours</span></div>
+        <div class="stat-item"><span class="stat-label"> 7 Modules · 70 Screens</span></div>
+        <div class="stat-item"><span class="stat-label"> 10 Quiz Questions</span></div>
+        <div class="stat-item"><span class="stat-label"> 80% to Pass</span></div>
+      </div>
+      <button class="btn-begin" onclick="if(!S.name.trim()){alert('Please enter your name to begin.');return;}goModule(0)">
+        ${allDone?'Review Course':'Begin Course'} →
+      </button>
+    </div>
+    <div class="land-body">
+      <div class="sec-title">What You Will Learn</div>
+      <div class="sec-intro">This course covers the complete lifecycle of a bylaw amendment proposal — from constitutional authority through portal submission, committee review, voting, and official adoption.</div>
+      <div class="obj-grid">
+        <div class="obj-card"><div class="obj-num">1</div><div class="obj-text">Cite the constitutional provision governing alumni chapter bylaws and explain the non-conflict standard</div></div>
+        <div class="obj-card"><div class="obj-num">2</div><div class="obj-text">Complete the three-step pre-submission research process and apply the alignment framework</div></div>
+        <div class="obj-card"><div class="obj-num">3</div><div class="obj-text">Identify all 8 required portal submission fields and complete a compliant proposal</div></div>
+        <div class="obj-card"><div class="obj-num">4</div><div class="obj-text">Describe the KOR receipt and logging process, and distinguish Editorial from Substantive classifications</div></div>
+        <div class="obj-card"><div class="obj-num">5</div><div class="obj-text">Identify rejection and acceptance conditions and required correspondence contents</div></div>
+        <div class="obj-card"><div class="obj-num">6</div><div class="obj-text">Apply the correct voting path for each classification and explain the two-reading process</div></div>
+        <div class="obj-card"><div class="obj-num">7</div><div class="obj-text">Describe all six post-passage recordkeeping steps and each role's archiving responsibility</div></div>
+      </div>
+      ${S.aSubmitted?`<button class="btn-primary" style="margin-right:11px" onclick="goPage('results')">View Assessment Results</button>`:''}
+      ${S.aScore!==null&&S.aScore>=8?`<button class="btn-primary btn-gold" onclick="goPage('certificate')">View My Certificate</button>`:''}
+    </div>`;
+    return;
+  }
+
+  if(S.page==='module'){
+    const screens=[
+      [m1s0,m1s1,m1s2,m1s3,m1s4,m1s5,m1s6,m1s7,m1s8,m1s9],
+      [m2s0,m2s1,m2s2,m2s3,m2s4,m2s5,m2s6,m2s7,m2s8,m2s9],
+      [m3s0,m3s1,m3s2,m3s3,m3s4,m3s5,m3s6,m3s7,m3s8,m3s9],
+      [m4s0,m4s1,m4s2,m4s3,m4s4,m4s5,m4s6,m4s7,m4s8,m4s9],
+      [m5s0,m5s1,m5s2,m5s3,m5s4,m5s5,m5s6,m5s7,m5s8,m5s9],
+      [m6s0,m6s1,m6s2,m6s3,m6s4,m6s5,m6s6,m6s7,m6s8,m6s9],
+      [m7s0,m7s1,m7s2,m7s3,m7s4,m7s5,m7s6,m7s7,m7s8,m7s9]
+    ];
+    const fn=screens[S.mi][S.si];
+    const total=MODS[S.mi].screens;
+    const isLast=S.si===total-1;
+    mc.innerHTML=modHeader(S.mi)+`<div class="mod-content">${screenDots(total,S.si)}${fn()}</div>`+navBar(S.si,total,isLast?'Complete Module →':'Next →');
+    return;
+  }
+
+  if(S.page==='assessment'){
+    const qi=S.si;
+    if(qi>=AQ.length){
+      // grade
+      let score=0;
+      AQ.forEach((_,i)=>{if(S.aa[i]===AQ[i].cor)score++;});
+      S.aScore=score;S.aSubmitted=true;save();
+      goPage('results');return;
+    }
+    const q=AQ[qi];
+    let opts='';
+    q.opts.forEach((o,i)=>{
+      const sel=S.aa[qi]===i;
+      opts+=`<button class="quiz-opt${sel?' sel':''}" onclick="selectAssess(${i})" ${S.aa[qi]!==undefined?'disabled':''}>
+        <div class="opt-ltr">${String.fromCharCode(65+i)}</div><div class="opt-text">${o}</div>
+      </button>`;
+    });
+    let dots='';
+    AQ.forEach((_,i)=>dots+=`<div class="assess-dot${i===qi?' current':S.aa[i]!==undefined?' answered':''}" onclick="if(${i}<${qi}||S.aa[${i}]!==undefined){S.si=${i};save();render();}">${i+1}</div>`);
+    mc.innerHTML=`<div class="assess-header">
+      <div class="assess-q-num">Question ${qi+1} of ${AQ.length}</div>
+      <div class="assess-mod-tag">${q.mod}</div>
+      <div class="assess-q">${q.q}</div>
+    </div>
+    <div class="assess-body">
+      <div class="quiz-opts">${opts}</div>
+      <div class="assess-dots">${dots}</div>
+      ${S.aa[qi]!==undefined?`<div style="margin-top:18px"><button class="btn-nav btn-next" onclick="S.si=${qi+1};save();render()">${qi+1<AQ.length?'Next Question →':'Submit Assessment →'}</button></div>`:''}
+    </div>`;
+    return;
+  }
+
+  if(S.page==='results'){
+    let score=S.aScore??0;
+    const pct=Math.round((score/AQ.length)*100);
+    const pass=pct>=80;
+    mc.innerHTML=`<div class="results-pg">
+      <div class="results-circle"><div class="results-score">${pct}%</div><div class="results-slbl">${score}/${AQ.length} correct</div></div>
+      <div class="results-status">
+        <div class="${pass?'r-pass':'r-fail'}">${pass?' PASSED — 80% Threshold Met':' Did Not Pass — Retake Required'}</div>
+        <p style="margin-top:11px;font-size:13px;color:var(--tx-m)">${pass?'You have demonstrated mastery of the DLA Bylaw Amendment SOP.':'Review the relevant modules, then retake the assessment to achieve 80% or higher.'}</p>
+      </div>
+      <div class="breakdown">
+        ${AQ.map((q,i)=>{
+          const correct=S.aa[i]===q.cor;
+          return `<div class="bd-row">
+            <div class="bd-mod">${q.mod} — Q${i+1}</div>
+            <div class="bd-score ${correct?'sg':'sb-c'}">${correct?' Correct':' Incorrect'}</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="display:flex;gap:11px;flex-wrap:wrap">
+        ${pass?`<button class="btn-primary btn-gold" onclick="goPage('certificate')">View My Certificate →</button>`:''}
+        <button class="btn-primary" onclick="S.aa={};S.aScore=null;S.aSubmitted=false;S.si=0;save();goPage('assessment')">Retake Assessment</button>
+        <button class="btn-primary" style="background:var(--cm-d);color:var(--tx)" onclick="goPage('landing')">← Course Home</button>
+      </div>
+    </div>`;
+    return;
+  }
+
+  if(S.page==='certificate'){
+    const name=S.name||'Chapter Member';
+    const today=new Date();
+    const dateStr=today.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    mc.innerHTML=`<div class="cert-wrapper">
+      <div class="cert">
+        <div class="cert-logo">KΑΨ</div>
+        <div class="cert-org">Kappa Alpha Psi Fraternity, Inc. — Denton-Lewisville (TX) Alumni Chapter</div>
+        <div class="cert-div"></div>
+        <div class="cert-certifies">This certifies that</div>
+        <div class="cert-name">${name}</div>
+        <div class="cert-completed">has successfully completed</div>
+        <div class="cert-course">Bylaw Amendment Standard Operating Procedure</div>
+        <div class="cert-chapter">DLA Bylaws Committee Training · 2026 Edition</div>
+        <div class="cert-div"></div>
+        <div class="cert-seal"></div>
+        <div class="cert-date">Completed: ${dateStr} · Score: ${Math.round((S.aScore/AQ.length)*100)}%</div>
+        <button class="btn-print" onclick="window.print()"> Print Certificate</button>
+      </div>
+    </div>`;
+    return;
+  }
+}
+
+function selectAssess(i){
+  if(S.aa[S.si]!==undefined)return;
+  S.aa[S.si]=i;save();render();
+}
+
+// ========== HAMBURGER ==========
+document.addEventListener('DOMContentLoaded',()=>{
+  const ham=document.getElementById('hamburger');
+  const ov=document.getElementById('sb-overlay');
+  const sb=document.getElementById('sidebar');
+  ham.addEventListener('click',()=>{
+    const open=sb.classList.toggle('sb-open');
+    ov.classList.toggle('show',open);
+    ham.setAttribute('aria-expanded',open);
+  });
+  ov.addEventListener('click',()=>{
+    sb.classList.remove('sb-open');
+    ov.classList.remove('show');
+    ham.setAttribute('aria-expanded',false);
+  });
+  load();render();
+});
+</script>
+</body>
+</html>

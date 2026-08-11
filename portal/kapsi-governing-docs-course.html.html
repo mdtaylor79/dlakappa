@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Constitution &amp; Statutes — Member Governance Training | KAΨ</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNCcgZmlsbD0nIzcwMTEwYycvPjx0ZXh0IHg9JzE2JyB5PScyMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0dlb3JnaWEsc2VyaWYnIGZvbnQtc2l6ZT0nMTMnIGZvbnQtd2VpZ2h0PSdib2xkJyBmaWxsPScjYzlhODRjJz5LQVx4Y2VceGE4PC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cr:#70110c;--cr-d:#4a0b08;--cm:#f2ebd7;--go:#c9a84c;--sw:260px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f5f5f0;color:#1a1a1a;min-height:100vh;}
+/* SIDEBAR */
+#sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--cr);color:#fff;display:flex;flex-direction:column;overflow-y:auto;z-index:100;transition:transform .3s;}
+.sb-header{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo-badge{width:42px;height:42px;background:var(--go);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--cr-d);flex-shrink:0;font-family:'Playfair Display',serif}
+.sb-title{font-size:12px;font-weight:700;color:var(--cm);line-height:1.3;letter-spacing:.02em}
+.sb-sub{font-size:10px;color:rgba(242,235,215,.55);margin-top:2px}
+.sb-progress{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(242,235,215,.55);font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
+.prog-track{height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--go);border-radius:3px;transition:width .4s ease}
+.sb-nav{flex:1;padding:8px 0}
+.sec-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,235,215,.38);padding:10px 16px 3px}
+.mod-item{display:flex;align-items:flex-start;gap:9px;padding:9px 14px;cursor:pointer;transition:background .2s;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.mod-item:hover{background:rgba(255,255,255,.07)}
+.mod-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.mod-item.completed .mod-badge{background:var(--go);color:var(--cr-d)}
+.mod-badge{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--cm);flex-shrink:0;margin-top:1px}
+.mod-title{font-size:12px;font-weight:600;color:var(--cm);line-height:1.3}
+.mod-sub{font-size:10px;color:rgba(242,235,215,.48);margin-top:1px}
+/* MAIN */
+#main{margin-left:var(--sw);min-height:100vh;transition:margin-left .3s;}
+/* HAMBURGER */
+#hamburger{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--cr);color:#fff;border:none;border-radius:6px;width:40px;height:40px;font-size:1.2rem;cursor:pointer;align-items:center;justify-content:center;}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;}
+/* LANDING */
+.land-hero{background:var(--cr);color:#fff;padding:60px 40px 48px;text-align:center;}
+.land-kap{font-size:1rem;font-weight:600;letter-spacing:3px;color:var(--go);text-transform:uppercase;margin-bottom:12px;}
+.land-hero h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.3;margin-bottom:16px;}
+.land-hero p{font-size:1rem;opacity:.85;max-width:560px;margin:0 auto;}
+.land-body{padding:40px;max-width:720px;margin:0 auto;}
+.land-name-box{background:#fff;border-radius:10px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:28px;}
+.land-name-box label{display:block;font-weight:600;margin-bottom:8px;color:var(--cr);}
+.land-name-box input{width:100%;padding:10px 14px;border:2px solid #ddd;border-radius:6px;font-size:1rem;font-family:'Inter',sans-serif;}
+.land-name-box input:focus{outline:none;border-color:var(--cr);}
+.land-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+.stat-card{background:#fff;border-radius:8px;padding:18px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.stat-n{font-size:1.8rem;font-weight:700;color:var(--cr);font-family:'Playfair Display',serif;}
+.stat-l{font-size:.75rem;color:#666;margin-top:2px;}
+.land-obj{background:#fff;border-radius:10px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:28px;}
+.land-obj h3{font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cr);margin-bottom:12px;}
+.land-obj ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.land-obj li{font-size:.85rem;padding-left:16px;position:relative;color:#444;line-height:1.4;}
+.land-obj li::before{content:'›';position:absolute;left:0;color:var(--go);font-weight:700;}
+.btn-begin{display:block;width:100%;padding:16px;background:var(--cr);color:#fff;border:none;border-radius:8px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:opacity .2s;}
+.btn-begin:hover{opacity:.88;}
+/* MODULE SCREEN */
+.mod-header{background:var(--cr);color:#fff;padding:28px 36px 22px;}
+.mod-label{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--go);margin-bottom:6px;}
+.mod-header h2{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.3;}
+.screen-dots{display:flex;gap:8px;padding:14px 36px;background:#fff;border-bottom:1px solid #eee;}
+.dot{width:10px;height:10px;border-radius:50%;background:#ddd;cursor:pointer;transition:background .2s;}
+.dot.active{background:var(--cr);}
+.dot.done{background:var(--go);}
+.screen-body{padding:28px 36px;max-width:780px;}
+.screen-body h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cr);margin-bottom:14px;}
+.screen-body p{font-size:.9rem;line-height:1.6;color:#333;margin-bottom:12px;}
+.screen-body ul{list-style:none;margin-bottom:14px;}
+.screen-body ul li{font-size:.9rem;line-height:1.5;color:#333;padding-left:20px;position:relative;margin-bottom:6px;}
+.screen-body ul li::before{content:'';position:absolute;left:0;color:var(--go);}
+.info-box{background:var(--cm);border-left:4px solid var(--go);border-radius:0 6px 6px 0;padding:14px 16px;margin-bottom:14px;font-size:.88rem;line-height:1.6;}
+.exp-card{border:1px solid #e0ddd6;border-radius:8px;overflow:hidden;margin-bottom:10px;}
+.exp-card-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;cursor:pointer;background:#fff;font-weight:600;font-size:.88rem;}
+.exp-card-head:hover{background:#faf9f5;}
+.exp-card-body{display:none;padding:12px 16px;background:#fafaf8;font-size:.85rem;line-height:1.6;color:#444;}
+.exp-card.open .exp-card-body{display:block;}
+.exp-card-head .arr{transition:transform .2s;}
+.exp-card.open .arr{transform:rotate(180deg);}
+/* INLINE QUIZ */
+.quiz-wrap{background:#fff;border:2px solid #e8e4dc;border-radius:10px;padding:20px;margin:16px 0;}
+.quiz-q{font-weight:600;font-size:.9rem;margin-bottom:12px;color:#1a1a1a;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{padding:10px 14px;border:2px solid #ddd;border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;background:#fff;transition:border-color .2s;}
+.quiz-opt:hover:not(:disabled){border-color:var(--cr);}
+.quiz-opt.correct{border-color:#2e7d32;background:#e8f5e9;color:#1b5e20;}
+.quiz-opt.wrong{border-color:#c62828;background:#ffebee;color:#b71c1c;}
+.quiz-feedback{margin-top:10px;font-size:.82rem;padding:8px 12px;border-radius:6px;display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.ok{background:#e8f5e9;color:#2e7d32;}
+.quiz-feedback.bad{background:#ffebee;color:#c62828;}
+/* NAV BAR */
+.nav-bar{position:sticky;bottom:0;background:#fff;border-top:1px solid #e0ddd6;padding:14px 36px;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.nav-btn{padding:10px 22px;border-radius:6px;border:none;font-size:.88rem;font-weight:600;cursor:pointer;transition:opacity .2s;}
+.nav-btn.prev{background:#f0ede7;color:#555;}
+.nav-btn.next{background:var(--cr);color:#fff;}
+.nav-btn:hover{opacity:.85;}
+.nav-btn:disabled{opacity:.35;cursor:not-allowed;}
+.nav-pos{font-size:.8rem;color:#888;}
+/* ASSESSMENT */
+.assess-wrap{padding:36px;max-width:760px;}
+.assess-wrap h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cr);margin-bottom:8px;}
+.assess-wrap .sub{color:#666;font-size:.9rem;margin-bottom:24px;}
+.assess-q{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.06);}
+.assess-q-num{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--go);margin-bottom:6px;}
+.assess-q-txt{font-weight:600;font-size:.9rem;margin-bottom:12px;}
+.assess-opt{display:block;padding:9px 14px;border:2px solid #ddd;border-radius:6px;cursor:pointer;font-size:.85rem;text-align:left;background:#fff;margin-bottom:6px;width:100%;transition:border-color .2s;}
+.assess-opt:hover{border-color:var(--cr);}
+.assess-opt.selected{border-color:var(--cr);background:#fdf5f5;}
+.assess-opt.correct{border-color:#2e7d32;background:#e8f5e9;color:#1b5e20;}
+.assess-opt.wrong{border-color:#c62828;background:#ffebee;color:#c62828;}
+.assess-submit{width:100%;padding:14px;background:var(--cr);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:12px;}
+.assess-submit:disabled{opacity:.4;cursor:not-allowed;}
+/* RESULTS */
+.result-card{background:#fff;border-radius:12px;padding:36px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.08);margin-bottom:24px;}
+.result-score{font-size:3rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--cr);}
+.result-label{font-size:1rem;color:#666;margin:4px 0 16px;}
+.result-badge{display:inline-block;padding:6px 18px;border-radius:20px;font-size:.85rem;font-weight:700;margin-bottom:16px;}
+.pass-badge{background:#e8f5e9;color:#2e7d32;}
+.fail-badge{background:#ffebee;color:#c62828;}
+.result-msg{font-size:.9rem;color:#555;max-width:420px;margin:0 auto;}
+.retry-btn{padding:12px 28px;background:#f0ede7;color:#333;border:none;border-radius:6px;font-size:.9rem;font-weight:600;cursor:pointer;margin-right:12px;}
+.cert-btn{padding:12px 28px;background:var(--cr);color:#fff;border:none;border-radius:6px;font-size:.9rem;font-weight:600;cursor:pointer;}
+/* CERTIFICATE */
+.cert-wrap{padding:36px;max-width:720px;}
+.cert-card{background:#fff;border:3px solid var(--go);border-radius:12px;padding:48px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.1);}
+.cert-kap{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cr);letter-spacing:3px;margin-bottom:4px;}
+.cert-sub{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:24px;}
+.cert-card h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:#333;margin-bottom:8px;}
+.cert-name{font-family:'Playfair Display',serif;font-size:2rem;color:var(--cr);margin:12px 0;border-bottom:2px solid var(--go);padding-bottom:12px;}
+.cert-course{font-size:.9rem;color:#555;max-width:480px;margin:0 auto 20px;}
+.cert-date{font-size:.8rem;color:#888;margin-bottom:28px;}
+.cert-seal{display:inline-block;width:60px;height:60px;border-radius:50%;background:var(--cr);color:var(--go);font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;line-height:60px;margin-bottom:16px;}
+.print-btn{padding:12px 28px;background:var(--cr);color:#fff;border:none;border-radius:6px;font-size:.9rem;font-weight:600;cursor:pointer;}
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #main{margin-left:0;}
+  #hamburger{display:flex;}
+  #overlay.show{display:block;}
+  .land-hero{padding:60px 20px 36px;}
+  .land-hero h1{font-size:1.5rem;}
+  .land-body{padding:20px;}
+  .land-stats{grid-template-columns:1fr 1fr;}
+  .land-obj ul{grid-template-columns:1fr;}
+  .screen-body,.nav-bar{padding-left:20px;padding-right:20px;}
+  .mod-header{padding:24px 20px 18px;}
+  .screen-dots{padding:12px 20px;}
+  .assess-wrap,.cert-wrap{padding:20px;}
+}
+@media print{
+  #sidebar,#hamburger,#overlay,.print-btn{display:none!important;}
+  #main{margin-left:0!important;}
+  .cert-card{box-shadow:none;border:2px solid var(--go);}
+}
+</style>
+</head>
+<body>
+<button id="hamburger" aria-label="Menu">&#9776;</button>
+<div id="overlay"></div>
+<nav id="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo">
+      <div class="logo-badge">K&#913;&#936;</div>
+      <div>
+        <div class="sb-title">Constitution &amp; Statutes</div>
+        <div class="sb-sub">Denton-Lewisville Alumni Chapter · 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sb-progress">
+    <div class="prog-label"><span>COURSE PROGRESS</span><span id="pct">0%</span></div>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+  <div class="sb-nav" id="sbNav"></div>
+</nav>
+<main id="main"></main>
+<script>
+const NS='DLA_CONS_STAT_2026';
+let S={page:'landing',mi:0,si:0,name:'',done:[false,false,false,false,false,false,false,false,false],visited:{},ix:{},aa:{},aScore:null,aSubmitted:false};
+function save(){try{localStorage.setItem(NS,JSON.stringify(S));}catch(e){}}
+function load(){try{const d=localStorage.getItem(NS);if(d){const p=JSON.parse(d);if(p&&p.name!==undefined)Object.assign(S,p);}}catch(e){}}
+
+const MODS=[
+  {title:'Constitution, Statutes &amp; Bylaws — The Whole System',dur:'~30 min',screens:10,section:'FOUNDATIONS'},
+  {title:'The Governance Hierarchy — Bylaws, Policies, Guides &amp; SOPs',dur:'~30 min',screens:10,section:'FOUNDATIONS'},
+  {title:'Navigating the Governing Documents',dur:'~30 min',screens:10,section:'FOUNDATIONS'},
+  {title:'Constitution I — Identity, Objectives &amp; Government',dur:'~30 min',screens:10,section:'THE CONSTITUTION'},
+  {title:'Constitution II — The National Governing Bodies',dur:'~30 min',screens:10,section:'THE CONSTITUTION'},
+  {title:'Constitution III — Provinces, Chapters, Membership &amp; Change',dur:'~30 min',screens:10,section:'THE CONSTITUTION'},
+  {title:'Statutes I — Money, Funds &amp; Operations',dur:'~30 min',screens:10,section:'THE STATUTES'},
+  {title:'Statutes II — Elections, Chapters &amp; Membership',dur:'~30 min',screens:10,section:'THE STATUTES'},
+  {title:'Statutes III — Programs, Awards, Ritual &amp; Discipline',dur:'~30 min',screens:10,section:'THE STATUTES'}
+];
+
+function calcProgress(){
+  let total=0,done=0;
+  MODS.forEach((m,i)=>{total+=m.screens;for(let s=0;s<m.screens;s++){if(S.visited[i+','+s])done++;}});
+  total+=2;
+  if(S.aScore!==null)done++;
+  if(S.done.every(d=>d)&&S.aScore>=0.8)done++;
+  return Math.round((done/total)*100);
+}
+
+function renderNav(){
+  let html='', lastSec='';
+  MODS.forEach((m,i)=>{
+    if(m.section !== lastSec){
+      html += `<div class="sec-label">${m.section}</div>`;
+      lastSec = m.section;
+    }
+    const active = S.mi===i && S.page==='module';
+    const done = S.done[i];
+    html += `<button class="mod-item${active?' active':''}${done?' completed':''}" onclick="goModule(${i})">
+      <div class="mod-badge">${i+1}</div>
+      <div>
+        <div class="mod-title">${m.title}</div>
+        <div class="mod-sub">Module ${i+1} · ${m.dur}</div>
+      </div>
+    </button>`;
+  });
+  document.getElementById('sbNav').innerHTML = html;
+}
+
+function updateProgress(){
+  const pct = calcProgress();
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('pct').textContent = pct+'%';
+}
+
+function goModule(mi){
+  S.page='module';S.mi=mi;S.si=0;save();render();
+  if(window.innerWidth<=768)document.getElementById('sidebar').classList.remove('open');
+}
+function goToScreen(si){S.si=si;save();render();}
+function prevScreen(){if(S.si>0){S.si--;save();render();}}
+function nextScreen(){
+  const m=MODS[S.mi];
+  S.visited[S.mi+','+S.si]=true;
+  if(S.si<m.screens-1){S.si++;save();render();}
+  else{
+    S.done[S.mi]=true;save();
+    if(S.mi<MODS.length-1){
+      const next=S.mi+1;
+      const existing=document.getElementById('mod-complete-bar');
+      if(!existing){
+        const bar=document.createElement('div');
+        bar.id='mod-complete-bar';
+        bar.style.cssText='padding:16px 36px;background:#fff;border-top:1px solid #eee;display:flex;gap:12px;align-items:center;';
+        bar.innerHTML=`<span style="font-size:.9rem;color:#555;flex:1">Module ${S.mi+1} complete!</span>
+          <button class="nav-btn prev" onclick="goPage('landing')">Course Home</button>
+          <button class="nav-btn next" onclick="goModule(${next})">Next Module →</button>`;
+        document.getElementById('main').appendChild(bar);
+      }
+    } else {
+      const existing=document.getElementById('mod-complete-bar');
+      if(!existing){
+        const bar=document.createElement('div');
+        bar.id='mod-complete-bar';
+        bar.style.cssText='padding:16px 36px;background:#fff;border-top:1px solid #eee;display:flex;gap:12px;align-items:center;';
+        bar.innerHTML=`<span style="font-size:.9rem;color:#555;flex:1">All modules complete! Ready for the final assessment.</span>
+          <button class="nav-btn next" onclick="goPage('assess')">Take Assessment →</button>`;
+        document.getElementById('main').appendChild(bar);
+      }
+    }
+    renderNav(); updateProgress();
+  }
+}
+
+function screenDots(count,cur){
+  return '<div class="screen-dots">'+
+    Array.from({length:count},(_,i)=>`<div class="dot${i===cur?' active':i<cur?' done':''}" onclick="goToScreen(${i})"></div>`).join('')+
+    '</div>';
+}
+function modHeader(mi){
+  const m=MODS[mi];
+  return `<div class="mod-header"><div class="mod-label">Module ${mi+1} · ${m.section}</div><h2>${m.title}</h2></div>`;
+}
+function navBar(si,total){
+  const isLast=si===total-1;
+  const nextLabel=isLast?'Complete Module ':'Next →';
+  return `<div class="nav-bar">
+    <button class="nav-btn prev" onclick="prevScreen()" ${si===0?'disabled':''}← Back</button>
+    <span class="nav-pos">Screen ${si+1} of ${total}</span>
+    <button class="nav-btn next" onclick="nextScreen()">${nextLabel}</button>
+  </div>`;
+}
+function renderQuiz(qid,question,opts,correctIdx,feedback){
+  const ans=S.ix[qid];
+  const done=ans!==undefined;
+  let optsHtml=opts.map((o,i)=>{
+    let cls='';
+    if(done){cls=i===correctIdx?'correct':(i===ans?'wrong':'');}
+    return `<button class="quiz-opt ${cls}" onclick="answerQuiz('${qid}',${i},${i===correctIdx})" ${done?'disabled':''}>${o}</button>`;
+  }).join('');
+  const fbCls=done?(ans===correctIdx?'ok':'bad'):'';
+  const fbShow=done?'show':'';
+  return `<div class="quiz-wrap"><div class="quiz-q">${question}</div><div class="quiz-opts">${optsHtml}</div>
+    <div class="quiz-feedback ${fbCls} ${fbShow}">${feedback}</div></div>`;
+}
+function answerQuiz(qid,sel,correct){
+  if(S.ix[qid]!==undefined)return;
+  S.ix[qid]=sel;save();render();
+}
+
+// MODULE SCREEN CONTENT
+function m0s0(){return `<div class="screen-body">
+  <h3>Three Documents, One Framework</h3>
+  <p>Kappa Alpha Psi is governed by three primary documents that form a unified legal framework:</p>
+  <ul>
+    <li><strong>The Constitution</strong> — The supreme governing document; cannot be overridden</li>
+    <li><strong>The Statutes</strong> — Operational rules enacted under the Constitution</li>
+    <li><strong>The Ritual</strong> — Esoteric, ceremonial law; third in precedence</li>
+  </ul>
+  <div class="info-box"><strong>Order of Precedence (Art. III §5):</strong> Constitution → Statutes → Ritual → Fraternity Regulations → Province Council Rules → Chapter Bylaws</div>
+  <p>Every rule at every level must align with the document above it. Nothing in the Statutes may contradict the Constitution.</p>
+</div>`;}
+function m0s1(){return `<div class="screen-body">
+  <h3>Where Chapter Bylaws Fit</h3>
+  <p>Chapter Bylaws are local rules — but they sit at the <em>bottom</em> of the hierarchy. They may add local structure but cannot contradict anything above them.</p>
+  <ul>
+    <li>Chapter Bylaws must be approved by IHQ before taking effect</li>
+    <li>A chapter cannot grant itself authority the Constitution reserves to Grand Chapter</li>
+    <li>If a bylaw conflicts with the Constitution, the Constitution wins automatically</li>
+  </ul>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Common Myths About Bylaws <span class="arr"></span></div>
+    <div class="exp-card-body">
+      <strong>Myth:</strong> "Our bylaws say we can do X, so we can."<br><strong>Truth:</strong> Only if nothing above your bylaws forbids it.<br><br>
+      <strong>Myth:</strong> "We’ve always done it this way."<br><strong>Truth:</strong> Custom does not override law.
+    </div>
+  </div>
+</div>`;}
+function m0s2(){return `<div class="screen-body">
+  <h3>IHQ → Province → Chapter Alignment</h3>
+  <p>Authority flows downward and never upward. Each level operates within bounds set by the level above:</p>
+  <ul>
+    <li><strong>IHQ / Grand Chapter:</strong> Supreme authority — sets Constitution and Statutes</li>
+    <li><strong>Grand Board:</strong> Executes policy, manages between Grand Chapters</li>
+    <li><strong>Province Council:</strong> Coordinates chapters — does NOT legislate</li>
+    <li><strong>Chapter:</strong> Implements within its approved bylaws</li>
+  </ul>
+  <div class="info-box">Province Councils cannot pass rules that bind chapters beyond what the Constitution and Statutes allow. Their role is coordination, not legislation.</div>
+</div>`;}
+function m0s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q0a','What document sits at the TOP of Kappa Alpha Psi’s order of precedence?',['The Statutes','The Constitution','Province Council Rules','Chapter Bylaws'],1,'Correct! The Constitution is supreme — it cannot be overridden by any other document (Art. III §5).')}
+  ${renderQuiz('q0b','A chapter bylaw contradicts the Constitution. Which document controls?',['The chapter bylaw — local rules take precedence','The Constitution — it always supersedes lower documents','Whichever was adopted most recently','The Province Council decides'],1,'The Constitution always wins. Lower-level documents are automatically invalid to the extent they conflict.')}
+</div>`;}
+
+function m1s0(){return `<div class="screen-body">
+  <h3>The Full Governance Stack</h3>
+  <p>Beyond the three primary documents, several additional instruments govern Fraternity operations:</p>
+  <ul>
+    <li><strong>Fraternity Regulations</strong> — Adopted by Grand Board; operational policy below Statutes</li>
+    <li><strong>Policies</strong> — Standing rules on specific topics; binding on all members</li>
+    <li><strong>Guides / Manuals</strong> — Explain how to comply; not law but authoritative interpretation</li>
+    <li><strong>SOPs</strong> — Step-by-step procedures; cannot eliminate steps required by higher documents</li>
+    <li><strong>Chapter Bylaws</strong> — Local rules; bottom of the stack</li>
+  </ul>
+</div>`;}
+function m1s1(){return `<div class="screen-body">
+  <h3>Policy vs. Guide vs. SOP</h3>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Policy <span class="arr"></span></div>
+    <div class="exp-card-body">A standing rule adopted by an authority body. Binding on those subject to it. Example: IHQ’s Financial Management Policy — all chapters must follow it.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Guide / Manual <span class="arr"></span></div>
+    <div class="exp-card-body">Explains how to comply with the law; provides recommended procedures. A Guide cannot grant rights or waive requirements — it interprets, it doesn’t legislate.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">SOP (Standard Operating Procedure) <span class="arr"></span></div>
+    <div class="exp-card-body">Step-by-step instructions for a specific task. An SOP can describe steps, but cannot remove a step that the Statutes or Regulations require.</div>
+  </div>
+</div>`;}
+function m1s2(){return `<div class="screen-body">
+  <h3>The Alignment Rule</h3>
+  <div class="info-box"><strong>Core Principle:</strong> Authority aligns downward. No instrument may grant itself powers that the instrument above it does not permit.</div>
+  <p><strong>Intake Example:</strong></p>
+  <ul>
+    <li>The Statutes (Statute 21) authorize the intake framework</li>
+    <li>Fraternity Regulations provide detailed procedures</li>
+    <li>Guides and SOPs explain how to execute those procedures</li>
+    <li>A chapter cannot deviate from the Regulations, even if their bylaws say otherwise</li>
+    <li>An SOP cannot eliminate a step the Regulations require</li>
+  </ul>
+</div>`;}
+function m1s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q1a','A chapter SOP omits a step that Statute 21 requires during intake. The SOP is:',['Valid — SOPs can simplify procedures','Invalid — SOPs cannot eliminate steps required by the Statutes','Valid if the chapter Polemarch approves it','Valid if the Province Vice Polemarch approves it'],1,'Correct. SOPs operate below the Statutes and cannot remove steps the Statutes require.')}
+  ${renderQuiz('q1b','How does authority flow in the governance hierarchy?',['Upward — chapters can grant authority to IHQ','Downward — each level operates within limits set by the level above','Sideways — Province Councils and chapters have equal authority','There is no hierarchy; all documents are equal'],1,'Authority flows downward only. Each instrument must stay within the bounds set by documents above it.')}
+</div>`;}
+
+function m2s0(){return `<div class="screen-body">
+  <h3>How the Documents Are Organized</h3>
+  <p>Knowing where to look saves time and ensures accuracy:</p>
+  <ul>
+    <li><strong>Glossary</strong> — Legally binding definitions; check here first</li>
+    <li><strong>Constitution</strong> — Articles I through XXXIX (Roman numerals)</li>
+    <li><strong>Statutes</strong> — Statutes 1 through 40 (Arabic numbers)</li>
+  </ul>
+  <div class="info-box"><strong>Two Numbering Systems:</strong> Constitution uses Roman numerals (Art. I, Art. XXXIX). Statutes use Arabic numbers (Statute 1, Statute 40). If you see "Art. 5" you are likely citing incorrectly.</div>
+</div>`;}
+function m2s1(){return `<div class="screen-body">
+  <h3>Which Document to Consult</h3>
+  <ul>
+    <li><strong>Identity, objectives, structure</strong> → Constitution, Articles I–V</li>
+    <li><strong>Grand Chapter powers, quorum</strong> → Constitution, Articles VI–X</li>
+    <li><strong>Province and chapter rules</strong> → Constitution, Articles XI–XX</li>
+    <li><strong>Membership requirements</strong> → Constitution + Statutes 21–25</li>
+    <li><strong>Finances and funds</strong> → Statutes 1–14</li>
+    <li><strong>Elections</strong> → Statutes 15 &amp; 20</li>
+    <li><strong>Discipline</strong> → Statute 39</li>
+    <li><strong>Amendment process</strong> → Art. XXXIX (Constitution) &amp; Statute 40 (Statutes)</li>
+  </ul>
+</div>`;}
+function m2s2(){return `<div class="screen-body">
+  <h3>The Glossary Is Law</h3>
+  <div class="info-box">The Glossary does not just define words — it provides legally binding definitions. If a term is defined in the Glossary, that definition controls everywhere in the governing documents.</div>
+  <p>Common mistake: Using the everyday meaning of a word when the Glossary has a specific definition. Always check the Glossary first.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Practical Research Method <span class="arr"></span></div>
+    <div class="exp-card-body">
+      1. Identify the key terms in your question.<br>
+      2. Look each term up in the Glossary.<br>
+      3. Search the relevant document using correct article/statute numbers.<br>
+      4. Check if Fraternity Regulations address the same topic.
+    </div>
+  </div>
+</div>`;}
+function m2s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q2a','The Constitution uses which numbering system for its Articles?',['Arabic numbers (1, 2, 3…)','Roman numerals (I, II, III…)','Letters (A, B, C…)','Decimal numbers (1.1, 1.2…)'],1,'Correct! Constitution Articles use Roman numerals (Art. I through Art. XXXIX). Statutes use Arabic numbers.')}
+  ${renderQuiz('q2b','A term appears in the Glossary of the governing documents. The Glossary definition is:',['Optional — members can use the common meaning','Legally binding — it controls everywhere in the governing documents','Advisory only — a starting point for interpretation','Limited to the section where the term first appears'],1,'The Glossary is law. Its definitions are binding, not optional or advisory.')}
+</div>`;}
+
+function m3s0(){return `<div class="screen-body">
+  <h3>Article I: Name &amp; Article II: Objectives</h3>
+  <p>Article I establishes the full legal name: <strong>Kappa Alpha Psi Fraternity, Inc.</strong> — incorporated in Indiana.</p>
+  <p><strong>Article II — The Five Objectives:</strong></p>
+  <ul>
+    <li>Unite college men of culture and achievement in bonds of fraternity</li>
+    <li>Encourage virtuous living</li>
+    <li>Train for leadership and service</li>
+    <li>Promote spiritual, social, intellectual, and moral welfare</li>
+    <li>Assist financially deserving members in completing college education</li>
+  </ul>
+  <div class="info-box">Achievement in every field of human endeavor — the core ethos underlying all five objectives.</div>
+</div>`;}
+function m3s1(){return `<div class="screen-body">
+  <h3>Structure of National Government</h3>
+  <p>The Constitution establishes two distinct governing layers at the national level:</p>
+  <ul>
+    <li><strong>National Officers</strong> — Elected positions (Polemarch, Vice Polemarch, Keeper of Records, etc.)</li>
+    <li><strong>Grand Board of Directors</strong> — 11 members; the corporate board of the Fraternity</li>
+  </ul>
+  <div class="info-box"><strong>Key Distinction:</strong> The Grand Board (11 members) and National Officers are separate entities. Understanding this distinction matters for governance questions about who has authority to act.</div>
+</div>`;}
+function m3s2(){return `<div class="screen-body">
+  <h3>The Ritual &amp; Its Place</h3>
+  <p>The Ritual is third in the order of precedence — after the Constitution and Statutes. It is <strong>esoteric</strong>: its contents are confidential to initiated members.</p>
+  <ul>
+    <li>The Ritual governs ceremonial proceedings and initiations</li>
+    <li>Disclosing Ritual content to non-members is a disciplinary matter (Statute 39)</li>
+    <li>The Ritual cannot override the Constitution or Statutes</li>
+    <li>References to the Ritual in non-esoteric documents are limited by necessity</li>
+  </ul>
+</div>`;}
+function m3s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q3a','How many objectives does Article II of the Constitution list?',['Three','Four','Five','Six'],2,'There are five objectives in Article II — uniting men, virtuous living, leadership training, member welfare, and financial assistance.')}
+  ${renderQuiz('q3b','The Ritual ranks _____ in the Fraternity’s order of precedence.',['First — above the Constitution','Second — below the Constitution but above Statutes','Third — below both Constitution and Statutes','Fourth — below Fraternity Regulations'],2,'The Ritual is third: Constitution → Statutes → Ritual → Fraternity Regulations.')}
+</div>`;}
+
+function m4s0(){return `<div class="screen-body">
+  <h3>Grand Chapter: The Supreme Body</h3>
+  <p>The Grand Chapter is the supreme governing authority of Kappa Alpha Psi. It meets biennially (every two years).</p>
+  <ul>
+    <li><strong>Representation:</strong> Each chapter sends 3 delegates</li>
+    <li><strong>Quorum:</strong> 75 members present and voting</li>
+    <li><strong>Authority:</strong> Amends the Constitution, elects national officers, sets major policy</li>
+    <li><strong>Procedure:</strong> Robert’s Rules of Order govern deliberations</li>
+  </ul>
+  <div class="info-box">The Grand Chapter — not the Grand Board — is the supreme power. The Grand Board exercises authority between Grand Chapter sessions, but within limits Grand Chapter sets.</div>
+</div>`;}
+function m4s1(){return `<div class="screen-body">
+  <h3>Grand Board of Directors</h3>
+  <p>The Grand Board governs the Fraternity as a corporate entity between Grand Chapter sessions.</p>
+  <ul>
+    <li><strong>Composition:</strong> 11 members</li>
+    <li><strong>Voting for grave acts:</strong> 9 of 11 votes required</li>
+    <li><strong>Initiation fees:</strong> Set by Grand Board majority vote; requires ⅔ Grand Chapter approval to take effect</li>
+    <li><strong>Limitation:</strong> Cannot contradict the Constitution or exceed authority granted by Grand Chapter</li>
+  </ul>
+</div>`;}
+function m4s2(){return `<div class="screen-body">
+  <h3>Executive Committee &amp; National Officers</h3>
+  <p>The <strong>Executive Committee</strong> handles day-to-day operations between Grand Board meetings:</p>
+  <ul>
+    <li>Manages the operating budget</li>
+    <li>Handles routine administrative matters</li>
+    <li>Reports to the Grand Board</li>
+  </ul>
+  <p><strong>National Officers</strong> include the Grand Polemarch, Grand Vice Polemarch, Grand Keeper of Records and Exchequer, and others established in the Constitution. Each has defined constitutional duties.</p>
+</div>`;}
+function m4s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q4a','What is the supreme governing power of Kappa Alpha Psi?',['The Grand Board of Directors','The Executive Committee','The Grand Chapter','The Grand Polemarch'],2,'The Grand Chapter is the supreme governing body. The Grand Board exercises authority between sessions but cannot exceed limits set by Grand Chapter.')}
+  ${renderQuiz('q4b','What quorum is required for Grand Chapter to conduct business?',['A simple majority of registered delegates','50 members','75 members','All 3 delegates from every chapter'],2,'The Constitution sets quorum at 75 members — a fixed number, not a percentage.')}
+</div>`;}
+
+function m5s0(){return `<div class="screen-body">
+  <h3>Provinces &amp; Province Councils</h3>
+  <p>The Fraternity is organized into geographic Provinces. Province Councils coordinate chapters within each Province.</p>
+  <ul>
+    <li>Province Councils <strong>coordinate</strong> — they do not legislate</li>
+    <li>A Province Council cannot pass rules that bind chapters beyond what the Constitution and Statutes allow</li>
+    <li>Province Vice Polemarchs are elected and serve in an administrative capacity</li>
+    <li>Chapters within a Province report to IHQ directly; the Province facilitates communication</li>
+  </ul>
+</div>`;}
+function m5s1(){return `<div class="screen-body">
+  <h3>Chapter Types &amp; Requirements</h3>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Undergraduate Chapter <span class="arr"></span></div>
+    <div class="exp-card-body">Requires a minimum of 7 initiated members in good standing to maintain a charter. Named after the college or university at which it is chartered.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Alumni Chapter <span class="arr"></span></div>
+    <div class="exp-card-body">Requires a minimum of 10 sustaining members in good standing. The standard alumni chapter structure for brothers who have graduated.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Alumni Association <span class="arr"></span></div>
+    <div class="exp-card-body">Requires 5–9 sustaining members. A smaller entity for areas that cannot support a full alumni chapter. Limited authority compared to full chapters.</div>
+  </div>
+</div>`;}
+function m5s2(){return `<div class="screen-body">
+  <h3>Amending the Constitution (Art. XXXIX)</h3>
+  <p>The Constitution’s amendment process is deliberately rigorous:</p>
+  <ul>
+    <li><strong>Notice:</strong> Proposed amendments must be submitted 90 days before Grand Chapter</li>
+    <li><strong>Vote required:</strong> ¾ (three-fourths) of Grand Chapter delegates present and voting</li>
+    <li><strong>Ratification:</strong> Grand Chapter vote is final — no separate ratification step</li>
+  </ul>
+  <div class="info-box">Compare: The Statutes require only ⅔ vote to amend (Statute 40). The Constitution’s ¾ threshold reflects its supreme status — harder to change than the Statutes.</div>
+</div>`;}
+function m5s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q5a','An Alumni Association may be formed with how many sustaining members?',['At least 10','5 to 9','At least 7','At least 15'],1,'An Alumni Association requires 5–9 sustaining members. A full Alumni Chapter requires at least 10.')}
+  ${renderQuiz('q5b','To amend the Constitution, what vote is required at Grand Chapter?',['Simple majority (50%+1)','Two-thirds (⅔)','Three-fourths (¾)','Unanimous consent'],2,'Article XXXIX requires a ¾ vote — a higher threshold than the ⅔ required to amend the Statutes.')}
+</div>`;}
+
+function m6s0(){return `<div class="screen-body">
+  <h3>Grand Chapter Operations &amp; Financial Controls</h3>
+  <p>The Statutes govern operational matters that are too detailed for the Constitution but still binding on all members.</p>
+  <ul>
+    <li>Grand Chapter meets biennially and follows Robert’s Rules of Order</li>
+    <li><strong>Initiation fees:</strong> Set by Grand Board majority vote, then requires ⅔ Grand Chapter approval</li>
+    <li><strong>Before any payment:</strong> An approved warrant is required — the Keeper of Records signs, the Keeper of Exchequer pays</li>
+    <li>No funds may be disbursed without proper authorization through the warrant process</li>
+  </ul>
+</div>`;}
+function m6s1(){return `<div class="screen-body">
+  <h3>Designated Funds (Statutes 8–13)</h3>
+  <p>The Statutes establish specific funds for designated purposes. Funds may not be used for unintended purposes:</p>
+  <ul>
+    <li><strong>General Fund</strong> — Day-to-day operations</li>
+    <li><strong>Educational Fund</strong> — Member assistance and scholarships</li>
+    <li><strong>Building Fund</strong> — Property and facilities</li>
+    <li><strong>Foundation Fund</strong> — Long-term charitable purposes</li>
+    <li><strong>Emergency Fund</strong> — Unforeseen critical needs (restricted use)</li>
+  </ul>
+  <div class="info-box">Each designated fund has rules about what it can be used for. Misapplying restricted fund money is a Statute violation.</div>
+</div>`;}
+function m6s2(){return `<div class="screen-body">
+  <h3>Revenue Sources</h3>
+  <p>Fraternity revenue comes from several sources governed by the Statutes:</p>
+  <ul>
+    <li>Initiation fees (set by Grand Board, approved by Grand Chapter)</li>
+    <li>Annual membership dues</li>
+    <li>Grand Chapter registration fees</li>
+    <li>Proceeds from Fraternity publications and programs</li>
+    <li>Donations, grants, and investment income</li>
+  </ul>
+  <p>Chapters remit portions of locally collected fees to IHQ per the schedule in the Fraternity Regulations. Failure to remit is a chapter compliance issue.</p>
+</div>`;}
+function m6s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q6a','Before the Treasurer pays a Fraternity bill, what must happen first?',['The Polemarch must verbally approve it','An approved warrant — Keeper of Records signs, Keeper of Exchequer pays','Three members of the Executive Committee must vote to approve','The expense must be in the annual budget'],1,'Correct. The warrant process — KR signs, KE pays — must be followed before any disbursement.')}
+  ${renderQuiz('q6b','Who has authority to set the initiation fee?',['Grand Chapter alone, by majority vote','Grand Board by majority vote, then approved by ⅔ of Grand Chapter','The Grand Polemarch by executive order','Province Councils for chapters in their Province'],1,'Grand Board sets the fee (majority vote), but ⅔ Grand Chapter approval is required for it to take effect.')}
+</div>`;}
+
+function m7s0(){return `<div class="screen-body">
+  <h3>Elections (Statutes 15 &amp; 20)</h3>
+  <p>National officer elections occur at Grand Chapter. Chapter officer elections are governed by Statute 20 and chapter bylaws.</p>
+  <ul>
+    <li>Candidates for national office must meet eligibility requirements set in the Statutes</li>
+    <li>Elections use the procedures specified in Statute 15</li>
+    <li>Chapter elections must comply with Statute 20 — local bylaws cannot override the required process</li>
+    <li>Results of chapter elections must be reported to IHQ</li>
+  </ul>
+</div>`;}
+function m7s1(){return `<div class="screen-body">
+  <h3>Chapter Archives (Statute 19)</h3>
+  <p>Every chapter must maintain secure archives under lock and key. Required documents:</p>
+  <ul>
+    <li>The Chapter Charter</li>
+    <li>The Constitution &amp; Statutes</li>
+    <li>At least 5 copies of the Ritual</li>
+    <li>The Songbook</li>
+    <li>The History of Kappa Alpha Psi (The Story)</li>
+    <li>Current Chapter Bylaws</li>
+    <li>Ritual property (paraphernalia)</li>
+    <li>Alumni advisor contact information</li>
+  </ul>
+  <div class="info-box">Failure to maintain these archives — or allowing unauthorized access — is a Statute 19 violation subject to discipline.</div>
+</div>`;}
+function m7s2(){return `<div class="screen-body">
+  <h3>Intake Framework (Statute 21)</h3>
+  <p>Membership intake is one of the most regulated areas of Fraternity life:</p>
+  <ul>
+    <li>Statute 21 authorizes the intake framework and sets core requirements</li>
+    <li>Detailed procedures are in the Fraternity Regulations — binding on all chapters</li>
+    <li>Guides and SOPs explain how to execute; they cannot waive regulatory requirements</li>
+    <li>No chapter, officer, or member may conduct intake outside the authorized process</li>
+    <li>Violations subject to serious discipline including suspension of chapter charter</li>
+  </ul>
+</div>`;}
+function m7s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q7a','Detailed intake procedures for chapters are found primarily in:',['The Constitution, Article XXI','The Fraternity Regulations and authorized guides/SOPs','Chapter Bylaws, approved by IHQ','Province Council Rules'],1,'Statute 21 creates the framework; Fraternity Regulations (and authorized guides) contain the detailed procedures.')}
+  ${renderQuiz('q7b','Under Statute 19, chapter archives must be kept:',['In the Province Council office','Under lock and key at the chapter','In digital format on IHQ servers','With the Alumni Advisor'],1,'Statute 19 requires archives to be maintained under lock and key at the chapter level.')}
+</div>`;}
+
+function m8s0(){return `<div class="screen-body">
+  <h3>Official Fraternity Publications</h3>
+  <p>The Statutes recognize four official Fraternity publications:</p>
+  <ul>
+    <li><strong>The Kappa Alpha Psi Journal</strong> — The official magazine; distributed to members</li>
+    <li><strong>The Confidential Bulletin</strong> — Internal communications to chapter officers; not for public distribution</li>
+    <li><strong>The Songbook</strong> — Official songs; required in chapter archives</li>
+    <li><strong>The Achievement Series / Story</strong> — History of Kappa Alpha Psi; required in chapter archives</li>
+  </ul>
+</div>`;}
+function m8s1(){return `<div class="screen-body">
+  <h3>Awards &amp; Discipline (Statute 39)</h3>
+  <p><strong>Six Major Fraternity Awards</strong> recognize excellence in achievement, chapter performance, and individual service. Awards are presented at Grand Chapter.</p>
+  <div class="info-box"><strong>Discipline (Statute 39):</strong> Establishes the framework for disciplinary proceedings against members and chapters. Grounds include hazing, ritual disclosure, financial misconduct, and conduct unbecoming a member.</div>
+  <ul>
+    <li>Disciplinary matters follow a defined process with rights for the accused</li>
+    <li>Ritual disclosure to non-members is a specifically listed disciplinary ground</li>
+    <li>Penalties range from censure to expulsion to charter suspension</li>
+  </ul>
+</div>`;}
+function m8s2(){return `<div class="screen-body">
+  <h3>Amending the Statutes (Statute 40)</h3>
+  <p>The Statutes are somewhat easier to amend than the Constitution:</p>
+  <ul>
+    <li><strong>Vote required:</strong> ⅔ (two-thirds) of Grand Chapter delegates present and voting</li>
+    <li><strong>Notice:</strong> Proposed amendments submitted in advance per Grand Chapter rules</li>
+    <li><strong>Compared to Constitution:</strong> The Constitution requires ¾ — the higher threshold reflects its supreme status</li>
+  </ul>
+  <div class="info-box">This course covers the 2025–2027 Constitution &amp; Statutes. Amendments adopted at future Grand Chapter sessions supersede this material. Always verify you are using the current edition.</div>
+</div>`;}
+function m8s3(){return `<div class="screen-body">
+  <h3>Knowledge Check</h3>
+  ${renderQuiz('q8a','A member discloses Ritual content to a non-member. This is:',['Acceptable if the non-member is a potential candidate','A matter for the chapter to handle informally','A disciplinary matter under Statute 39','Permitted if the Province Vice Polemarch approves'],2,'Ritual disclosure is explicitly listed in Statute 39 as a disciplinary matter — not acceptable under any circumstances.')}
+  ${renderQuiz('q8b','To amend the Statutes, Grand Chapter must vote by:',['Simple majority','Two-thirds (⅔)','Three-fourths (¾)','Unanimous consent'],1,'Statute 40 requires a ⅔ vote. Compare this to the Constitution’s ¾ requirement (Art. XXXIX).')}
+</div>`;}
+
+// MODULE 0 ADDITIONAL SCREENS
+function m0s4(){return `<div class="screen-body">
+  <h3>History of KAΨ Governance</h3>
+  <p>Kappa Alpha Psi was founded January 5, 1911 at Indiana University. The founders immediately understood that a durable national fraternity required formal governing documents — not just shared ideals.</p>
+  <p>The original Constitution was adopted at founding. Over more than a century of biennial Grand Chapter sessions it has been refined to address the evolving needs of a fraternity with hundreds of chapters across the United States and internationally.</p>
+  <ul>
+    <li>Early governance relied heavily on the Constitution alone; the Statutes grew to handle operational complexity as the Fraternity expanded</li>
+    <li>The biennial Grand Chapter has remained the supreme legislative forum since the founding year</li>
+    <li>The 2025–2027 edition reflects all amendments adopted at the most recent Grand Chapter session</li>
+    <li>Denton-Lewisville Alumni Chapter is bound by these documents until the next Grand Chapter amends them</li>
+  </ul>
+  <div class="info-box"><strong>Key Principle:</strong> The governing documents are living instruments — they evolve through Grand Chapter's democratic process. Understanding their history helps members appreciate why specific rules exist and how to seek change through proper channels.</div>
+</div>`;}
+function m0s5(){return `<div class="screen-body">
+  <h3>How the Documents Interrelate</h3>
+  <p>The Constitution, Statutes, Ritual, and lower instruments form an integrated legal system. Each document has a distinct role and must stay within the boundaries set by the document above it.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Constitution Sets Outer Boundaries <span class="arr"></span></div>
+    <div class="exp-card-body">Every other document must fit within constitutional limits. The Constitution defines who the Fraternity is, what it exists for, and how supreme power is exercised. Nothing in the Statutes may expand beyond what the Constitution authorizes.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Statutes Fill in Operational Detail <span class="arr"></span></div>
+    <div class="exp-card-body">Where the Constitution says the Grand Board manages the Fraternity between sessions, the Statutes explain exactly how — how finances are managed, how elections work, what designated funds exist, and how discipline is conducted. Statutes translate constitutional authority into working rules.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Lower Instruments Execute Policy <span class="arr"></span></div>
+    <div class="exp-card-body">Fraternity Regulations, guides, SOPs, and chapter bylaws execute the policy established above them. They may specify processes in fine detail but may never expand authority beyond what the Constitution and Statutes grant. When reading any lower instrument, ask: what higher document authorizes this provision?</div>
+  </div>
+</div>`;}
+function m0s6(){return `<div class="screen-body">
+  <h3>Amendment Process Overview</h3>
+  <p>Both primary documents can be changed — but the processes differ to reflect their different status in the hierarchy.</p>
+  <ul>
+    <li><strong>Constitution (Art. XXXIX):</strong> Requires ¾ vote at Grand Chapter; proposed amendments submitted 90 days in advance</li>
+    <li><strong>Statutes (Statute 40):</strong> Requires ⅔ vote at Grand Chapter — lower threshold, allowing operational rules to adapt more readily</li>
+    <li><strong>Fraternity Regulations:</strong> Amended by Grand Board action alone — no Grand Chapter vote required</li>
+    <li><strong>Chapter Bylaws:</strong> Amended locally but IHQ approval is required before the amendment takes effect</li>
+  </ul>
+  <div class="info-box"><strong>Why different thresholds?</strong> The Constitution is supreme — it should require broad consensus before fundamental rules change. The ¾ threshold ensures no faction can easily rewrite the Fraternity's foundational document. The Statutes' ⅔ threshold allows the Fraternity to adapt operations while still requiring supermajority agreement.</div>
+  <p>No amendment — at any level — may contradict a higher document. A Statute amendment that contradicts the Constitution is void from the moment of adoption.</p>
+</div>`;}
+function m0s7(){return `<div class="screen-body">
+  <h3>Enforcement Mechanisms</h3>
+  <p>Governing documents have force only when enforced consistently. The Fraternity uses a layered enforcement system with defined roles at each level.</p>
+  <ul>
+    <li><strong>IHQ Oversight:</strong> IHQ monitors chapter compliance through annual reports, financial submissions, and inspections. Chapters that fail compliance reviews may face corrective action plans, charter suspension, or charter revocation.</li>
+    <li><strong>Province Coordination:</strong> Province Vice Polemarchs facilitate compliance and channel concerns to IHQ. They do not have independent enforcement authority over chapters or members — they coordinate, not adjudicate.</li>
+    <li><strong>Statute 39 Discipline:</strong> Individual members who violate governing documents are subject to proceedings ranging from censure to expulsion, with full procedural protections.</li>
+    <li><strong>Financial Accountability:</strong> Chapters that fail to remit required fees or misuse designated funds face administrative action and potential charter suspension independent of member discipline.</li>
+  </ul>
+  <div class="info-box"><strong>DL Alumni Chapter:</strong> Our chapter is directly accountable to IHQ for compliance with all governing documents. Ignorance of the rules is not a defense — which is exactly why this training exists.</div>
+</div>`;}
+function m0s8(){return `<div class="screen-body">
+  <h3>Every Member's Obligations</h3>
+  <p>Membership in Kappa Alpha Psi creates legal and fraternal obligations defined in the governing documents. These are not suggestions — they are binding commitments accepted at initiation.</p>
+  <ul>
+    <li><strong>Know the Law:</strong> Every member is presumed to know the Constitution and Statutes. "I didn't know" is not a defense to a discipline charge.</li>
+    <li><strong>Maintain Good Standing:</strong> Members must pay dues on time, avoid conduct violations, and meet obligations in the Statutes. Good standing is the gateway to voting, office-holding, and program participation.</li>
+    <li><strong>Protect Ritual Confidentiality:</strong> Ritual content is strictly esoteric. Disclosure to any non-initiated person is a Statute 39 violation regardless of intent or relationship.</li>
+    <li><strong>Comply with Lawful Directives:</strong> Chapter directives issued in accordance with governing documents are binding — but directives that contradict higher documents are void and need not be followed.</li>
+    <li><strong>Report Violations:</strong> Members have a fraternal duty to bring known governing document violations to appropriate attention rather than participate in concealment.</li>
+  </ul>
+</div>`;}
+function m0s9(){return `<div class="screen-body">
+  <h3>Module 1 — Knowledge Check</h3>
+  ${renderQuiz('q0c','Kappa Alpha Psi was founded at which institution on January 5, 1911?',['Howard University','Lincoln University','Indiana University','Morgan State University'],2,'Kappa Alpha Psi was founded at Indiana University in Bloomington, Indiana on January 5, 1911.')}
+  ${renderQuiz('q0d','A member violates the Statutes and claims he was unaware of the rule. His defense is:',['Valid — members cannot be held to rules they were never taught','Valid if he joined before the current edition was published','Invalid — every member is presumed to know the governing documents','Valid if the chapter failed to provide a copy of the Statutes'],2,'Every member is presumed to know the governing documents. Ignorance is not a valid defense in disciplinary proceedings under Statute 39.')}
+</div>`;}
+
+// MODULE 1 ADDITIONAL SCREENS
+function m1s4(){return `<div class="screen-body">
+  <h3>Statute vs. Constitution — Key Distinctions</h3>
+  <p>Members often use "Constitution" and "Statutes" interchangeably. They are distinct documents with different functions, different amendment thresholds, and different scopes of authority.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">What the Constitution Governs <span class="arr"></span></div>
+    <div class="exp-card-body">Identity, purpose, organizational structure, supreme governing bodies, and the outer limits of Fraternity authority. The Constitution answers: who are we, why do we exist, and who has ultimate power? Requires ¾ Grand Chapter vote to amend.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">What the Statutes Govern <span class="arr"></span></div>
+    <div class="exp-card-body">Operational rules within the constitutional framework: finances, designated funds, elections, intake, chapter archives, awards, discipline, and amendment of the Statutes themselves. Requires ⅔ Grand Chapter vote to amend — easier to update than the Constitution.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Practical Test: Which Applies? <span class="arr"></span></div>
+    <div class="exp-card-body">If the question involves identity, structure, or supreme authority → Constitution. If it involves operations, finances, membership procedures, or discipline details → Statutes. Many topics appear in both — always check both documents before concluding.</div>
+  </div>
+</div>`;}
+function m1s5(){return `<div class="screen-body">
+  <h3>Enforcement of the Governance Hierarchy</h3>
+  <p>The hierarchy means nothing if unenforced. Understanding enforcement at each level tells members where to raise concerns when something goes wrong.</p>
+  <ul>
+    <li><strong>National Level (IHQ):</strong> Authority to audit chapters, require compliance reports, impose corrective action plans, suspend chapter operations, and revoke charters for sustained non-compliance. The most powerful enforcement lever in the system.</li>
+    <li><strong>Province Level:</strong> Province Vice Polemarchs flag compliance concerns and facilitate corrective action between chapters and IHQ. They do not independently discipline chapters or members — they escalate to IHQ.</li>
+    <li><strong>Chapter Level:</strong> Officers administer governing documents locally. The Polemarch presides, the KR keeps records, and the Polemarchia enforces order at meetings. Chapter discipline proceedings under Statute 39 are conducted at this level for sanctions short of expulsion.</li>
+  </ul>
+  <div class="info-box"><strong>Member Right:</strong> A member who believes a chapter action violates a governing document may appeal above the chapter level — ultimately to IHQ. The governing documents, not local custom or majority sentiment, determine the outcome.</div>
+</div>`;}
+function m1s6(){return `<div class="screen-body">
+  <h3>Interpreting the Governing Documents</h3>
+  <p>When a provision is ambiguous, specific rules of interpretation apply. Using the right method produces the correct legal result.</p>
+  <ul>
+    <li><strong>Glossary First:</strong> If the term appears in the Glossary, that definition controls everywhere in the governing documents — the common English meaning does not apply.</li>
+    <li><strong>Plain Meaning:</strong> If the term is not in the Glossary, apply its ordinary meaning in context. Do not invent meanings that serve a desired outcome.</li>
+    <li><strong>Higher Document Controls:</strong> When two provisions appear to conflict, the higher document in the hierarchy governs.</li>
+    <li><strong>Specific Controls General:</strong> A specific provision on a topic overrides a general provision on the same topic within the same document.</li>
+    <li><strong>Authoritative Guidance:</strong> IHQ interpretive guidance, Fraternity Regulations, and authorized guides reflect official interpretations — they are persuasive even where not strictly binding as law.</li>
+  </ul>
+  <div class="info-box">When uncertain about a provision's meaning, submit an inquiry to IHQ through the Province Vice Polemarch. Do not act on an uncertain interpretation without guidance — incorrect action based on a flawed interpretation is still a violation.</div>
+</div>`;}
+function m1s7(){return `<div class="screen-body">
+  <h3>Resolving Conflicts Between Documents</h3>
+  <p>When two provisions seem to require different actions, the resolution method is systematic — not a matter of preference or which document the chapter finds more convenient.</p>
+  <ul>
+    <li><strong>Step 1:</strong> Identify exactly which instruments are in conflict and quote the specific provisions.</li>
+    <li><strong>Step 2:</strong> Apply the hierarchy — Constitution beats Statutes; Statutes beat Regulations; Regulations beat chapter bylaws. The higher document controls without exception.</li>
+    <li><strong>Step 3:</strong> Check whether one provision is more specific than the other. A specific provision overrides a general one on the same topic within the same document.</li>
+    <li><strong>Step 4:</strong> Ask whether there is a real conflict. Many apparent conflicts dissolve when both provisions are read in full context — they may apply in different situations.</li>
+    <li><strong>Step 5:</strong> If genuinely unresolved, escalate to Province leadership or IHQ before acting.</li>
+  </ul>
+  <div class="info-box">Never assume a lower document prevails because it is more recent. Recency does not override the hierarchy. A chapter bylaw adopted last month cannot override a Statute enacted a decade ago.</div>
+</div>`;}
+function m1s8(){return `<div class="screen-body">
+  <h3>Precedence Rules in Practice — DL Alumni Chapter Scenarios</h3>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Scenario A: Chapter Bylaw vs. Statute <span class="arr"></span></div>
+    <div class="exp-card-body">Our bylaws require a simple majority to approve expenditures over $500. A Statute requires a ⅔ vote for expenditures above a certain threshold. <strong>Result:</strong> The Statute controls. The bylaw is invalid to the extent it conflicts with the Statute — the chapter must follow the ⅔ requirement.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Scenario B: Province SOP vs. Fraternity Regulation <span class="arr"></span></div>
+    <div class="exp-card-body">A Province-issued SOP skips a step that Fraternity Regulations require during intake. <strong>Result:</strong> The Regulation controls. An SOP cannot eliminate a required step regardless of who issued the SOP or how convenient it would be.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Scenario C: IHQ Guide vs. Statute <span class="arr"></span></div>
+    <div class="exp-card-body">An IHQ guide recommends a 60-day notice period for a member action, but the applicable Statute specifies 30 days. <strong>Result:</strong> The Statute (30 days) is the legal requirement. The guide's recommendation does not override the Statute — guides interpret, they do not legislate.</div>
+  </div>
+</div>`;}
+function m1s9(){return `<div class="screen-body">
+  <h3>Module 2 — Knowledge Check</h3>
+  ${renderQuiz('q1c','A chapter bylaw purports to waive an intake step required by Fraternity Regulations. The waiver is:',['Valid if approved by a two-thirds chapter vote','Valid if the Province Vice Polemarch endorses it','Invalid — bylaws cannot waive requirements set in the Statutes or Regulations','Valid for alumni chapters, which have more local autonomy than undergraduate chapters'],2,'Chapter bylaws sit below Statutes and Regulations in the hierarchy. No local vote — regardless of margin — can waive a statutory or regulatory requirement.')}
+  ${renderQuiz('q1d','When two governing instruments conflict, what is the first question to ask?',['Which document is more recent?','Which document is higher in the order of precedence?','Which document is longer and more detailed?','What has the chapter\'s practice been historically?'],1,'Always apply the hierarchy first. Recency, detail, and chapter custom are irrelevant when the order of precedence is clear.')}
+</div>`;}
+
+// MODULE 2 ADDITIONAL SCREENS
+function m2s4(){return `<div class="screen-body">
+  <h3>Eligibility Requirements for Membership</h3>
+  <p>Not every man who wishes to join Kappa Alpha Psi is eligible. The Constitution and Statutes set minimum eligibility criteria that no chapter or Province may waive.</p>
+  <ul>
+    <li><strong>Academic Standing:</strong> Candidates for undergraduate membership must be enrolled and in good academic standing as defined in current Fraternity Regulations.</li>
+    <li><strong>Character and Achievement:</strong> The Fraternity seeks men of achievement, virtue, and leadership potential. Character assessment is conducted through the authorized intake process — not informally.</li>
+    <li><strong>Institution Recognition:</strong> The candidate's institution must be recognized by IHQ as eligible for fraternity activity. Initiating a candidate from an unrecognized institution is a compliance violation.</li>
+    <li><strong>No Concurrent Organization Membership:</strong> Men who are members of other predominantly Black Greek-letter organizations are ineligible for Kappa Alpha Psi membership. This is a national eligibility rule, not a local preference.</li>
+    <li><strong>IHQ Clearance:</strong> The intake process includes background verification steps administered through IHQ. No initiation may proceed without completing IHQ-required clearance steps.</li>
+  </ul>
+  <div class="info-box">Chapters have no authority to waive eligibility criteria. A man admitted outside the criteria was not validly initiated — and the chapter faces serious disciplinary exposure including potential charter action.</div>
+</div>`;}
+function m2s5(){return `<div class="screen-body">
+  <h3>Good Standing — What It Means and Why It Matters</h3>
+  <p>Good standing must be actively maintained. It is not a permanent status earned at initiation — it can be lost and must be preserved through ongoing compliance.</p>
+  <ul>
+    <li><strong>Dues Current:</strong> All financial obligations to IHQ and the chapter must be paid. A member with lapsed dues is not in good standing regardless of years of service or local reputation.</li>
+    <li><strong>No Active Suspension:</strong> A member under disciplinary suspension is not in good standing for the suspension's duration.</li>
+    <li><strong>Chapter Obligations:</strong> Chapter bylaws may establish attendance and participation minimums that affect local good standing status.</li>
+  </ul>
+  <p><strong>What Good Standing Loss Means:</strong></p>
+  <ul>
+    <li>Cannot vote in chapter or Grand Chapter elections</li>
+    <li>Cannot hold chapter or national office</li>
+    <li>Cannot participate in intake activities in any capacity</li>
+    <li>Cannot represent the chapter in any official capacity</li>
+    <li>May not wear Fraternity insignia depending on the suspension type</li>
+  </ul>
+</div>`;}
+function m2s6(){return `<div class="screen-body">
+  <h3>Suspension and Expulsion Procedures</h3>
+  <p>Statute 39 establishes the discipline framework. The most serious sanctions follow a defined process that protects both the Fraternity and the accused member's rights.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grounds for Discipline <span class="arr"></span></div>
+    <div class="exp-card-body">Hazing (in any form), Ritual disclosure to non-initiated persons, financial misconduct or misappropriation, conduct unbecoming a member of Kappa Alpha Psi, violation of the Constitution or Statutes, and other grounds specified in Statute 39 and Fraternity Regulations.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Procedural Rights of the Accused <span class="arr"></span></div>
+    <div class="exp-card-body">The accused must receive written notice of the specific charges with enough detail to permit a defense. The member has a right to appear and respond before any final disciplinary action is taken. Proceedings conducted with bias, pre-judgment, or inadequate notice can be voided on appeal.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Available Sanctions <span class="arr"></span></div>
+    <div class="exp-card-body">In escalating severity: reprimand/censure, probation, suspension (defined duration), and expulsion from the Fraternity. Charter suspension is a separate sanction applicable to the chapter entity, distinct from discipline of individual members.</div>
+  </div>
+</div>`;}
+function m2s7(){return `<div class="screen-body">
+  <h3>Reinstatement After Suspension</h3>
+  <p>Reinstatement depends on the type and source of the suspension. Not all paths back to good standing are the same.</p>
+  <ul>
+    <li><strong>Financial Suspension:</strong> Requires payment of all delinquent obligations plus applicable reinstatement fees. Paying only the delinquent amount may not be sufficient — any dues that accrued during the suspension period may also be owed.</li>
+    <li><strong>Disciplinary Suspension:</strong> The suspension must serve its full term. At the term's end, reinstatement is not automatic — the member must apply and demonstrate the underlying conduct issue has been addressed satisfactorily.</li>
+    <li><strong>Expulsion:</strong> Permanent removal from the Fraternity. No automatic reinstatement right exists. Any post-expulsion reinstatement requires extraordinary national-level action and is not guaranteed.</li>
+    <li><strong>Local Chapter Standing:</strong> Chapter bylaws may impose additional local reinstatement requirements — but these cannot override or shorten the national Statute 39 process. Both must be satisfied.</li>
+  </ul>
+  <div class="info-box">Reinstatement applications should be submitted through the Province Vice Polemarch to IHQ. Do not assume reinstatement has occurred until it is confirmed in writing by IHQ.</div>
+</div>`;}
+function m2s8(){return `<div class="screen-body">
+  <h3>Alumni vs. Undergraduate Members — Key Distinctions</h3>
+  <p>The governing documents treat alumni and undergraduate members differently in several important ways. As an alumni chapter, DL brothers should understand where the distinctions lie.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Financial Obligations <span class="arr"></span></div>
+    <div class="exp-card-body">Alumni chapter members pay sustaining membership dues to IHQ — the rate set by Grand Board and approved by Grand Chapter. Undergraduate members pay initiation fees and undergraduate dues at rates established in the Statutes. The rates and due dates differ between categories.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Chapter Minimum Membership <span class="arr"></span></div>
+    <div class="exp-card-body">Undergraduate chapters require 7 initiated members in good standing to maintain a charter. Alumni chapters require 10 sustaining members in good standing. DL Alumni Chapter must maintain at least 10 members in good standing — falling below this threshold puts our charter at risk.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grand Chapter Participation <span class="arr"></span></div>
+    <div class="exp-card-body">Both undergraduate and alumni chapters send 3 delegates to Grand Chapter. Delegates from both chapter types must meet the same good standing requirements. Alumni chapter delegates carry the same legislative weight as undergraduate chapter delegates.</div>
+  </div>
+</div>`;}
+function m2s9(){return `<div class="screen-body">
+  <h3>Module 3 — Knowledge Check</h3>
+  ${renderQuiz('q2c','A member is two years behind on national sustaining dues. Which statement is accurate?',['He remains in good standing until formally notified by the chapter','He is not in good standing and has lost voting and office-holding rights','He retains all rights but cannot participate in intake','Dues delinquency is a chapter-only matter with no national governance implications'],1,'Dues delinquency results in loss of good standing automatically — it strips the member of voting rights, office-holding rights, and other privileges regardless of whether the chapter formally notifies him.')}
+  ${renderQuiz('q2d','DL Alumni Chapter must maintain how many sustaining members in good standing to preserve its charter?',['5','7','10','15'],2,'Alumni chapters require a minimum of 10 sustaining members in good standing. Falling below this threshold risks charter suspension by the Grand Board.')}
+</div>`;}
+
+// MODULE 3 ADDITIONAL SCREENS
+function m3s4(){return `<div class="screen-body">
+  <h3>Chapter Officer Roles and Authority Limits</h3>
+  <p>Chapter officers derive authority from the Constitution, Statutes, and chapter bylaws — not from personal status, seniority, or the strength of their personality. Authority is positional, not personal.</p>
+  <ul>
+    <li><strong>Polemarch:</strong> Presides over all chapter meetings; official representative to IHQ and the public. Does NOT have unilateral authority to bind the chapter financially or make major decisions outside the established process.</li>
+    <li><strong>Vice Polemarch:</strong> Presides in the Polemarch's absence; takes on assigned duties. Authority is strictly limited to the scope of the role definition.</li>
+    <li><strong>Keeper of Records (KR):</strong> Maintains all chapter records and correspondence; signs warrants for disbursement. Cannot authorize payment alone — dual authorization with the KE is required.</li>
+    <li><strong>Keeper of Exchequer (KE):</strong> Controls the chapter treasury; pays approved warrants only. Cannot disburse funds without a warrant signed by the KR — no exceptions.</li>
+    <li><strong>Strategus:</strong> Responsible for chapter programs and activities. Has no financial disbursement authority.</li>
+  </ul>
+  <div class="info-box">The dual-key financial control (KR signs, KE pays) exists precisely because no single officer should have unchecked access to chapter funds. This protects the chapter and the officers themselves.</div>
+</div>`;}
+function m3s5(){return `<div class="screen-body">
+  <h3>Quorum Requirements</h3>
+  <p>A quorum is the minimum number of members who must be present for the chapter to conduct business. Actions taken without quorum are void — not merely voidable, but void from inception.</p>
+  <ul>
+    <li><strong>Grand Chapter Quorum:</strong> 75 members present and voting. This is a fixed constitutional number — not a percentage of registered delegates. Grand Chapter cannot transact legislative business if fewer than 75 members are present.</li>
+    <li><strong>Chapter Quorum:</strong> Set in chapter bylaws, consistent with the Statutes. Check DL Alumni Chapter bylaws for the specific number or percentage required.</li>
+    <li><strong>Quorum Lost Mid-Meeting:</strong> If quorum is lost after a meeting begins, the chapter must stop transacting business. Members may move to recess or adjourn but may not vote on substantive matters.</li>
+    <li><strong>Proxy Voting:</strong> Fraternity governing documents do not authorize proxy voting for legislative decisions. Members must be physically (or electronically if bylaws permit) present to count toward quorum.</li>
+  </ul>
+  <div class="info-box">A motion passed without quorum can be challenged, voided, and may expose the presiding officer to discipline. Verify quorum before calling a vote — every time.</div>
+</div>`;}
+function m3s6(){return `<div class="screen-body">
+  <h3>Meeting Frequency Obligations</h3>
+  <p>The governing documents establish minimum meeting requirements. These are floors — chapters may and often should meet more frequently.</p>
+  <ul>
+    <li><strong>Grand Chapter:</strong> Meets biennially (every two years). The Constitution fixes this schedule. Emergency sessions may be called under extraordinary circumstances per constitutional provisions.</li>
+    <li><strong>Grand Board:</strong> Meets as needed to conduct business between Grand Chapter sessions. Frequency is determined by the Board itself within constitutional limits.</li>
+    <li><strong>Alumni Chapters:</strong> Meeting frequency is set in chapter bylaws. Most alumni chapters hold monthly regular meetings at minimum; active chapters often meet more frequently during programming peaks.</li>
+    <li><strong>Special Meetings:</strong> The Polemarch (or a threshold number of members specified in bylaws) may call special meetings for specific purposes. Notice requirements in the bylaws must be followed — special meeting business is limited to the stated purpose.</li>
+  </ul>
+  <p>Consistent attendance is also a member obligation. Review DL Alumni Chapter bylaws for specific attendance expectations and the consequences of non-compliance.</p>
+</div>`;}
+function m3s7(){return `<div class="screen-body">
+  <h3>Committee Authority and Limitations</h3>
+  <p>Committees carry out specific functions on behalf of the chapter. Their authority is delegated — they can only act within the scope the chapter assigns. They cannot exceed that scope without further chapter authorization.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Standing Committees <span class="arr"></span></div>
+    <div class="exp-card-body">Permanent committees established in chapter bylaws — Finance, Programs, Membership, Guide Right, etc. They have ongoing defined duties. A standing committee acts only within its defined scope; it cannot assume authority over areas assigned to other officers or committees.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Ad Hoc Committees <span class="arr"></span></div>
+    <div class="exp-card-body">Formed for a specific, temporary purpose — investigating a matter, planning a single event, or drafting proposed bylaw language. They dissolve when their task is complete. Their authority is strictly limited to the assigned task.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">What Committees Cannot Do <span class="arr"></span></div>
+    <div class="exp-card-body">A committee cannot make final decisions the full chapter is required to make. It cannot spend money without proper financial authorization through the warrant process. It cannot bind the chapter to external obligations. Committees recommend; the chapter body decides — unless the chapter has explicitly delegated final decision authority to the committee in writing.</div>
+  </div>
+</div>`;}
+function m3s8(){return `<div class="screen-body">
+  <h3>Chapter Authority vs. National Authority</h3>
+  <p>The Constitution draws a clear line between what chapters may decide locally and what is reserved to the national body. Crossing that line creates governance violations.</p>
+  <ul>
+    <li><strong>Reserved to Grand Chapter / Grand Board:</strong> Amending the Constitution or Statutes; setting initiation fees; determining membership eligibility criteria; imposing expulsion; granting, suspending, or revoking chapter charters; approving chapter bylaws.</li>
+    <li><strong>Chapter Decides Locally:</strong> Programs and events within constitutional limits; chapter dues amounts (subject to bylaws requirements); meeting schedules and locations; committee composition; local recognition and chapter awards.</li>
+    <li><strong>Shared Authority:</strong> Discipline short of expulsion; financial management within the Statute framework; election of local officers; adoption of bylaw amendments (subject to IHQ approval).</li>
+  </ul>
+  <div class="info-box"><strong>Critical Rule:</strong> A chapter cannot vote itself authority that the Constitution reserves to Grand Chapter. No local vote — however large the majority — expands chapter authority beyond constitutional limits. The vote is simply void.</div>
+</div>`;}
+function m3s9(){return `<div class="screen-body">
+  <h3>Module 4 — Knowledge Check</h3>
+  ${renderQuiz('q3c','A chapter votes on an important motion with only 8 members present — below the quorum in its bylaws. The vote is:',['Valid if it was unanimous','Valid if a two-thirds majority of those present approved','Invalid — actions taken without quorum are void','Valid if the Polemarch certifies the result in the minutes'],2,'Quorum is a prerequisite for valid chapter action. A vote taken without quorum is void regardless of unanimity, margins, or officer certification.')}
+  ${renderQuiz('q3d','Which of the following decisions is reserved exclusively to the national level?',['Scheduling a community service event','Setting local chapter dues','Amending the Constitution','Choosing a meeting venue'],2,'Amending the Constitution requires a ¾ vote at Grand Chapter. No chapter or Province body has any authority over constitutional amendments — it is entirely a Grand Chapter power.')}
+</div>`;}
+
+// MODULE 4 ADDITIONAL SCREENS
+function m4s4(){return `<div class="screen-body">
+  <h3>Grand Chapter's Legislative Authority</h3>
+  <p>Grand Chapter is the Fraternity's supreme legislature. It convenes biennially and wields authority no other body possesses.</p>
+  <ul>
+    <li><strong>Sole Power to Amend:</strong> Only Grand Chapter can amend the Constitution (¾ vote) or Statutes (⅔ vote). The Grand Board can propose amendments but cannot enact them.</li>
+    <li><strong>National Officer Elections:</strong> National officers are elected at Grand Chapter — not by the Grand Board. The distinction matters for understanding where electoral accountability lies.</li>
+    <li><strong>Fee Change Ratification:</strong> Initiation fee changes proposed by the Grand Board require ⅔ Grand Chapter approval to take effect. The Board proposes; Grand Chapter ratifies.</li>
+    <li><strong>Policy Direction:</strong> Grand Chapter can pass resolutions directing the Grand Board, establishing Fraternity-wide positions, and setting major initiatives that the Board must then execute.</li>
+    <li><strong>Equal Chapter Voice:</strong> Each chapter in good standing sends 3 delegates with 3 votes. Chapter size does not affect voting weight — a small chapter and a large chapter have equal representation.</li>
+  </ul>
+  <div class="info-box">No body can override Grand Chapter's legislative decisions within the Constitution's framework. Even the Grand Board must execute Grand Chapter's will — it cannot reverse or ignore Grand Chapter resolutions.</div>
+</div>`;}
+function m4s5(){return `<div class="screen-body">
+  <h3>National Officer Duties in Detail</h3>
+  <p>Each national officer has constitutionally defined duties. Understanding them helps chapters know who to contact and what each office can and cannot do.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grand Polemarch <span class="arr"></span></div>
+    <div class="exp-card-body">Chief executive of the Fraternity. Presides over Grand Chapter and Grand Board sessions. Primary external representative. Sets the agenda within constitutional limits. Does NOT have unilateral authority to amend governing documents, suspend chapters, or set policy independently of Grand Board or Grand Chapter.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grand Keeper of Records (GKR) <span class="arr"></span></div>
+    <div class="exp-card-body">Official record-keeper of the Fraternity. Maintains minutes, chapter records, charter documents, and official correspondence. Signs warrants at the national level. Primary contact for chapter charter inquiries, official membership verification, and national record corrections.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grand Keeper of Exchequer (GKE) <span class="arr"></span></div>
+    <div class="exp-card-body">Controls the national treasury. Pays approved warrants only — cannot disburse without GKR signature on the warrant. Prepares financial reports for Grand Board and Grand Chapter. Chapter dues and fees paid to IHQ flow through this office.</div>
+  </div>
+</div>`;}
+function m4s6(){return `<div class="screen-body">
+  <h3>Grand Board Limitations</h3>
+  <p>The Grand Board is powerful, but it operates within firm boundaries set by Grand Chapter. Understanding those boundaries prevents confusion about what the Board can and cannot do on its own.</p>
+  <ul>
+    <li><strong>Cannot Amend Constitution or Statutes:</strong> These require Grand Chapter votes. The Board may propose amendments for Grand Chapter consideration, but enactment requires the full legislative body.</li>
+    <li><strong>Can Amend Fraternity Regulations:</strong> The Board has authority to update operational Regulations without a Grand Chapter vote — but Regulations must always stay within the Statute framework. Regulations that contradict the Statutes are void.</li>
+    <li><strong>Supermajority for Grave Acts:</strong> Certain serious actions — including charter suspension — require 9 of 11 Grand Board votes. A simple majority is insufficient for grave acts, regardless of urgency.</li>
+    <li><strong>Financial Controls Apply:</strong> Grand Board expenditures require the warrant process (GKR signs, GKE pays). No Board member or officer has open spending authority outside this process.</li>
+  </ul>
+  <div class="info-box">When you hear about a Fraternity policy change, confirm its source: a Constitution or Statute amendment came from Grand Chapter; a Regulation change came from Grand Board. The source determines how hard it is to reverse.</div>
+</div>`;}
+function m4s7(){return `<div class="screen-body">
+  <h3>Executive Committee Functions</h3>
+  <p>The Executive Committee handles the Fraternity's day-to-day operations between Grand Board meetings. It reports to the Grand Board and may only act within the authority Grand Board delegates to it.</p>
+  <ul>
+    <li>Manages the operating budget within Grand Board-approved parameters — cannot exceed the budget without Grand Board authorization</li>
+    <li>Handles routine administrative matters: correspondence, member inquiries, chapter compliance follow-ups, and publication of official communications</li>
+    <li>Executes decisions made by Grand Board — it implements, not legislates</li>
+    <li>Does NOT have authority to make major policy decisions, suspend chapters, or interpret the governing documents in binding ways — those functions belong to Grand Board or Grand Chapter</li>
+    <li>Coordinates with Province Vice Polemarchs on chapter concerns, routing significant matters to Grand Board</li>
+  </ul>
+  <p>For DL Alumni Chapter, the Executive Committee is the most likely day-to-day contact point for administrative matters — dues inquiries, member record corrections, charter questions. Channel communications through the Province Vice Polemarch for proper routing.</p>
+</div>`;}
+function m4s8(){return `<div class="screen-body">
+  <h3>How the National Bodies Relate</h3>
+  <p>Grand Chapter, Grand Board, Executive Committee, and National Officers form an integrated system. Each has defined authority; none can exceed it regardless of the urgency or consensus at that level.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grand Chapter → Grand Board <span class="arr"></span></div>
+    <div class="exp-card-body">Grand Chapter is supreme. The Grand Board executes Grand Chapter's mandates between sessions. When Grand Chapter has spoken, the Grand Board must follow. The Board cannot reverse or ignore Grand Chapter resolutions, even if unanimous among Board members.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Grand Board → Executive Committee <span class="arr"></span></div>
+    <div class="exp-card-body">The Executive Committee operates under Grand Board authority and within the Grand Board-approved budget. It cannot exceed the scope Grand Board defines for it, even for seemingly beneficial purposes. Exceeding delegated authority requires going back to Grand Board for authorization.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">National Officers and the Board <span class="arr"></span></div>
+    <div class="exp-card-body">National officers are elected by Grand Chapter and have constitutionally defined duties. The Grand Board does not have general authority to remove national officers unilaterally — the removal process is itself governed by the Constitution and Statutes.</div>
+  </div>
+</div>`;}
+function m4s9(){return `<div class="screen-body">
+  <h3>Module 5 — Knowledge Check</h3>
+  ${renderQuiz('q4c','The Grand Board wants to raise the initiation fee. What additional step is required before the new fee takes effect?',['None — the Grand Board may set fees by majority vote alone','Grand Chapter must approve by ⅔ vote','The Grand Polemarch must issue an executive order','Each Province Council must ratify the change in its territory'],1,'Grand Board sets the initiation fee by majority vote, but ⅔ Grand Chapter approval is required before the new fee actually takes effect. Both steps are required.')}
+  ${renderQuiz('q4d','How many Grand Board votes are required for a grave act such as chapter charter suspension?',['Six of eleven (simple majority)','Seven of eleven','Eight of eleven','Nine of eleven'],3,'The Constitution requires 9 of 11 Grand Board members to vote in favor for grave acts. This supermajority requirement protects chapters from hasty action and ensures broad Board consensus before serious sanctions.')}
+</div>`;}
+
+// MODULE 5 ADDITIONAL SCREENS
+function m5s4(){return `<div class="screen-body">
+  <h3>Province Structure in Depth</h3>
+  <p>The Fraternity's Province system divides the country and international territories into geographic regions for coordination. Understanding Province structure helps chapters navigate their relationship with the broader organization.</p>
+  <ul>
+    <li><strong>Province Vice Polemarch (PVP):</strong> Elected by chapters within the Province; coordinates chapter activity, facilitates compliance, and channels communications to IHQ. The PVP is an administrator and coordinator — not a legislator or independent enforcement authority.</li>
+    <li><strong>Province Council:</strong> The collective body of chapter representatives within a Province. Meets periodically to coordinate programs and address regional concerns. Cannot pass binding rules that exceed the Constitution and Statutes.</li>
+    <li><strong>Province Rules:</strong> Province Councils may adopt coordination rules, but a Province rule that contradicts the Constitution, Statutes, or Fraternity Regulations is void — regardless of how many chapters voted for it.</li>
+    <li><strong>Chapter Independence:</strong> Each chapter reports to IHQ directly. The Province facilitates communication; it does not govern chapter operations or filter chapter-to-IHQ communications.</li>
+  </ul>
+  <div class="info-box">Knowing your Province Vice Polemarch and how to reach them is basic chapter governance practice. The PVP is the primary bridge between DL Alumni Chapter and IHQ for routine matters.</div>
+</div>`;}
+function m5s5(){return `<div class="screen-body">
+  <h3>Chapter Chartering Requirements</h3>
+  <p>A chapter charter is the Fraternity's formal grant of authority to operate locally. It is not permanent — it must be earned initially and actively maintained.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Obtaining a Charter <span class="arr"></span></div>
+    <div class="exp-card-body">Petitioners must meet minimum membership requirements, submit a written petition to IHQ, demonstrate that the proposed territory does not conflict with an existing chapter, and receive Grand Board approval. Chapter bylaws must be approved by IHQ before the chapter may operate under them.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Maintaining a Charter <span class="arr"></span></div>
+    <div class="exp-card-body">Chapters must maintain minimum membership (10 sustaining members in good standing for alumni chapters), remain current on all financial obligations to IHQ, comply with reporting requirements, and avoid sustained Statute violations. Failure on any of these grounds can trigger charter suspension review by the Grand Board.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Charter Suspension vs. Revocation <span class="arr"></span></div>
+    <div class="exp-card-body">Suspension is temporary — the chapter is on notice and must correct identified deficiencies within a defined period. Revocation is permanent removal of the charter. Revocation requires a 9 of 11 Grand Board vote and is reserved for the most serious, unresponsive situations.</div>
+  </div>
+</div>`;}
+function m5s6(){return `<div class="screen-body">
+  <h3>Membership Provisions in the Constitution</h3>
+  <p>The Constitution establishes the broad membership framework; the Statutes provide operational detail. Both must be consulted on membership questions — neither document alone is complete.</p>
+  <ul>
+    <li><strong>Types of Membership:</strong> The Constitution recognizes active (undergraduate), alumni, and honorary membership. Each type has distinct rights, obligations, and dues structures.</li>
+    <li><strong>Honorary Membership:</strong> Reserved for distinguished non-Greeks who have made significant contributions consistent with Fraternity values. Honorary members do not participate in intake and have a distinct status under the governing documents.</li>
+    <li><strong>Good Standing Portability:</strong> A member in good standing at one chapter who relocates retains good standing status. A chapter in the new city cannot independently strip a member of nationally-determined good standing.</li>
+    <li><strong>National Membership Roll:</strong> IHQ maintains the official roll of all members. Chapter records must align with the national roll. Discrepancies should be reported to IHQ through the Province Vice Polemarch.</li>
+  </ul>
+</div>`;}
+function m5s7(){return `<div class="screen-body">
+  <h3>Amendment Proposals — Requirements and Process</h3>
+  <p>Understanding how to properly propose amendments ensures that changes to governing documents reach Grand Chapter through the right channel, with adequate notice, and in a form that can be voted on.</p>
+  <ul>
+    <li><strong>Who May Propose:</strong> Any chapter in good standing, or the Grand Board, may submit proposed amendments to the Constitution or Statutes for Grand Chapter consideration.</li>
+    <li><strong>Notice Requirement:</strong> Constitutional amendment proposals must reach IHQ at least 90 days before Grand Chapter convenes. This ensures all delegates can review proposals before arriving — surprise floor amendments to the Constitution are not permitted.</li>
+    <li><strong>Required Form:</strong> Proposals must be in writing with the specific text of the proposed addition, deletion, or substitution clearly identified and marked. Vague proposals stating only a general objective are not in proper form and may be ruled out of order.</li>
+    <li><strong>Committee Process:</strong> Grand Chapter typically refers proposed amendments to a committee for review and recommendation. Committee recommendations are advisory — Grand Chapter is not bound to follow them and votes independently.</li>
+  </ul>
+  <div class="info-box">DL Alumni Chapter can make its voice heard at the national level through the formal amendment proposal process. This is the legitimate constitutional mechanism for grassroots governance reform.</div>
+</div>`;}
+function m5s8(){return `<div class="screen-body">
+  <h3>Effective Dates and Documentation Requirements</h3>
+  <p>Passage at Grand Chapter is necessary but not always sufficient. Timing and documentation requirements determine when and how an amendment becomes effective law.</p>
+  <ul>
+    <li><strong>Constitutional Amendments:</strong> Take effect as specified in the amendment text itself. If no effective date is stated, the amendment takes effect immediately upon adoption at Grand Chapter.</li>
+    <li><strong>Statute Amendments:</strong> Same rule — effective as stated, or immediately if no date is specified. Read the adopted text carefully before acting on any new Statute provision.</li>
+    <li><strong>Chapter Bylaw Amendments:</strong> Take effect only upon receipt of IHQ approval — not upon the chapter vote. Operating under a locally adopted but IHQ-unapproved amendment is a compliance exposure.</li>
+    <li><strong>Documentation:</strong> All amendments must be recorded in official minutes and incorporated into the governing document text. The GKR maintains the official Constitution and Statutes text at the national level.</li>
+  </ul>
+  <div class="info-box">After each Grand Chapter, IHQ publishes an updated edition of the Constitution and Statutes. Always verify you are working from the current 2025–2027 edition. Prior editions may still circulate — always use the latest.</div>
+</div>`;}
+function m5s9(){return `<div class="screen-body">
+  <h3>Module 6 — Knowledge Check</h3>
+  ${renderQuiz('q5c','DL Alumni Chapter adopts a bylaw amendment by chapter vote. When does it take effect?',['Immediately upon the chapter vote','After the Polemarch signs and dates the amendment','After IHQ approval is received','At the start of the next chapter fiscal year'],2,'Chapter bylaw amendments do not take effect until IHQ approves them. Operating under a locally adopted but IHQ-unapproved amendment exposes the chapter to compliance findings.')}
+  ${renderQuiz('q5d','A Province Council passes a rule requiring monthly chapter meetings. This rule is:',['Binding on all chapters in the Province','Valid if ratified by each chapter in the Province individually','Void if monthly meetings are not required by the Constitution or Statutes','Automatically valid because Province Councils have legislative authority over chapters'],2,'Province Councils cannot legislate beyond what the Constitution and Statutes permit. A Province rule imposing requirements not found in the governing documents is void, regardless of how many chapters or the Province Council itself voted for it.')}
+</div>`;}
+
+// MODULE 6 ADDITIONAL SCREENS
+function m6s4(){return `<div class="screen-body">
+  <h3>Dues Structure and Assessment Authority</h3>
+  <p>The Fraternity's financial system is built on dues — annual financial obligations that keep the organization funded at every level. Every DL Alumni Chapter member has a dual dues obligation.</p>
+  <ul>
+    <li><strong>National Sustaining Dues:</strong> Set by Grand Board with Grand Chapter approval. Paid annually directly to IHQ. Failure to pay results in loss of good standing with immediate effect on member rights.</li>
+    <li><strong>Chapter Dues:</strong> Set in chapter bylaws within limits the Statutes establish. Chapter dues fund local operations, programs, and community service activities.</li>
+    <li><strong>Special Assessments:</strong> Chapters may levy special assessments for specific purposes if their bylaws authorize it. Special assessments cannot substitute for national dues — both obligations are independent.</li>
+    <li><strong>Remittance Schedule:</strong> Chapters must remit portions of locally collected fees to IHQ on the schedule set in Fraternity Regulations. Late remittance is a compliance issue independent of whether members paid on time locally.</li>
+  </ul>
+  <div class="info-box"><strong>DL Alumni Chapter Members:</strong> You have two distinct financial obligations — national sustaining dues to IHQ and chapter dues to DL Alumni Chapter. Both must be current to maintain good standing in all respects.</div>
+</div>`;}
+function m6s5(){return `<div class="screen-body">
+  <h3>Fiscal Year and Budget Process</h3>
+  <p>Sound financial governance requires a defined fiscal year and a budget adopted before expenditures are made. The governing documents establish the framework; chapter bylaws implement it locally.</p>
+  <ul>
+    <li><strong>Fraternity Fiscal Year:</strong> July 1 through June 30. Chapter financial reporting to IHQ aligns with this cycle; local chapter bylaws may specify a different local fiscal year if adopted and IHQ-approved.</li>
+    <li><strong>Annual Budget Adoption:</strong> Chapters should adopt an annual budget before the fiscal year begins. The budget authorizes categories of expenditure — it does not by itself authorize specific transactions. Individual expenditures still require the warrant process.</li>
+    <li><strong>Mid-Year Amendments:</strong> If actual needs exceed budgeted amounts, the chapter should formally amend the budget by vote before authorizing the excess expenditure. Acting outside the budget without amendment is a financial control violation.</li>
+    <li><strong>Financial Reporting to IHQ:</strong> Chapters submit financial reports on the schedule in Fraternity Regulations. These reports verify that chapter funds are managed in compliance with the Statutes and Regulations.</li>
+  </ul>
+</div>`;}
+function m6s6(){return `<div class="screen-body">
+  <h3>Audit Requirements</h3>
+  <p>Regular financial audits are a governing document requirement — not an optional best practice. They protect chapter assets, member dues, and the officers who handle money.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Who Audits the Chapter <span class="arr"></span></div>
+    <div class="exp-card-body">Chapters must have financial records reviewed annually by an audit committee comprised of members who are not the KR or KE, or by a qualified independent reviewer. Larger chapters with significant assets may require a professional CPA audit. IHQ may also conduct or commission audits at any time.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Scope of the Audit <span class="arr"></span></div>
+    <div class="exp-card-body">All chapter accounts — operating funds, any designated funds held locally, dues collected but not yet remitted to IHQ, and an inventory of chapter physical assets. The audit verifies that all expenditures were properly authorized through the warrant process and that no funds were disbursed outside proper channels.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Audit Findings and Disclosure <span class="arr"></span></div>
+    <div class="exp-card-body">Material findings must be reported to the full chapter membership and corrective action taken. Serious findings — misappropriation, unauthorized expenditures, missing funds — must be reported to the Province Vice Polemarch and potentially to IHQ. Concealing audit findings is itself a Statute violation compounding the underlying issue.</div>
+  </div>
+</div>`;}
+function m6s7(){return `<div class="screen-body">
+  <h3>Bonding Requirements</h3>
+  <p>Bonding (fidelity bonds or equivalent financial protection instruments) protects the chapter from losses caused by dishonest acts of officers who handle money. The governing documents require bonding because trust alone is not a substitute for financial controls.</p>
+  <ul>
+    <li><strong>Who Must Be Bonded:</strong> The Keeper of Exchequer and any other officer or committee member with access to chapter funds must be covered by a fidelity bond or equivalent surety instrument.</li>
+    <li><strong>Why It Matters:</strong> If a bonded officer misappropriates funds, the chapter can recover the loss from the bonding company rather than absorbing it directly or pursuing personal litigation against the officer.</li>
+    <li><strong>Bond Amount:</strong> Must be sufficient to cover the maximum amount of funds the bonded individual could access at any time. As chapter financial activity grows, bond coverage should be reviewed and increased accordingly.</li>
+    <li><strong>Checking Current Requirements:</strong> Consult current Fraternity Regulations for the specific bonding amounts and instrument types required. Requirements may have been updated since prior editions of the governing documents.</li>
+  </ul>
+  <div class="info-box">Operating without required bonding coverage is a compliance gap that must be corrected immediately. If DL Alumni Chapter does not have current fidelity bond coverage on the KE, this should be addressed at the next chapter meeting.</div>
+</div>`;}
+function m6s8(){return `<div class="screen-body">
+  <h3>Exchequer Duties and Financial Controls</h3>
+  <p>The Keeper of Exchequer (KE) is the chapter's chief financial officer. The role carries significant responsibilities and accountability — and significant personal exposure if those responsibilities are not properly discharged.</p>
+  <ul>
+    <li><strong>Receipt and Custody:</strong> The KE receives all chapter funds and deposits them promptly to designated chapter accounts. Funds may never be kept in personal accounts — this is both a Statute violation and a misappropriation risk.</li>
+    <li><strong>Disbursement Protocol:</strong> The KE pays only on warrants approved and signed by the Keeper of Records. Paying without a warrant — or pre-signing blank warrants — violates the Statutes regardless of the legitimacy of the underlying expense.</li>
+    <li><strong>Record-Keeping:</strong> The KE maintains a complete ledger of all receipts and disbursements. Records must be available for audit at any time and must be formally transferred to the successor KE at the end of term.</li>
+    <li><strong>Reporting:</strong> The KE prepares financial reports for chapter meetings and the annual report to IHQ. These reports are certified — accuracy is a legal and fraternal obligation.</li>
+    <li><strong>Bond Requirement:</strong> The KE must be bonded per Fraternity Regulations. The chapter bears responsibility for maintaining this coverage, not the KE individually.</li>
+  </ul>
+</div>`;}
+function m6s9(){return `<div class="screen-body">
+  <h3>Module 7 — Knowledge Check</h3>
+  ${renderQuiz('q6c','DL Alumni Chapter members have which set of financial obligations?',['National sustaining dues to IHQ only','Chapter dues to DL Alumni Chapter only','Both national sustaining dues to IHQ and chapter dues set by our bylaws','Financial obligations are voluntary for members in good standing for over 10 years'],2,'Members have two independent financial obligations: national sustaining dues paid to IHQ, and chapter dues set by DL Alumni Chapter bylaws. Both must be current for full good standing.')}
+  ${renderQuiz('q6d','The Keeper of Exchequer may disburse chapter funds when:',['The Polemarch gives verbal approval for the expense','An approved warrant signed by the Keeper of Records is presented to the KE','The Finance Committee votes to authorize the specific expense','The expenditure falls within a line item in the approved annual budget'],1,'The warrant process is mandatory — KR signs, KE pays. Budget approval and committee authorization alone are not sufficient. Each individual disbursement requires a properly executed warrant.')}
+</div>`;}
+
+// MODULE 7 ADDITIONAL SCREENS
+function m7s4(){return `<div class="screen-body">
+  <h3>Meeting Conduct Rules</h3>
+  <p>Chapter meetings are governed by Robert's Rules of Order as supplemented by the chapter's bylaws. Consistent adherence protects the chapter from having its decisions challenged and voided.</p>
+  <ul>
+    <li><strong>Call to Order and Quorum:</strong> The Polemarch calls the meeting to order. Business may not begin until quorum is confirmed and recorded in the minutes.</li>
+    <li><strong>Agenda:</strong> A written agenda distributed in advance is best practice and may be required by chapter bylaws. Matters not on the agenda should not be voted on without the body's consent to add them — and significant unannounced matters may require notice to be taken up at the next meeting.</li>
+    <li><strong>Debate:</strong> Each member has a right to be recognized and speak in debate before a vote. The presiding officer controls recognition but may not cut off debate improperly. Moving the previous question requires a second and a ⅔ vote.</li>
+    <li><strong>Voting:</strong> Voice vote is standard for routine matters. Any member may call for a division (count). Secret ballot is appropriate for elections and may be required by bylaws or motion.</li>
+    <li><strong>Executive Session:</strong> Sensitive matters may be handled in executive session, excluding non-members. Minutes are kept separately with restricted access.</li>
+  </ul>
+</div>`;}
+function m7s5(){return `<div class="screen-body">
+  <h3>Record-Keeping Requirements</h3>
+  <p>Accurate records are the chapter's institutional memory. Statute 19 and Fraternity Regulations establish specific obligations — record-keeping is not discretionary.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Required Documents Under Statute 19 <span class="arr"></span></div>
+    <div class="exp-card-body">The Chapter Charter, Constitution &amp; Statutes, at least 5 copies of the Ritual, the Songbook, The History of Kappa Alpha Psi (The Story), current Chapter Bylaws, ritual property (paraphernalia), and current alumni advisor contact information. All must be maintained under lock and key at the chapter level.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Meeting and Financial Records <span class="arr"></span></div>
+    <div class="exp-card-body">Chapter meeting minutes for every meeting, financial ledgers, bank statements, approved warrants, and membership rolls must be maintained. Financial records should be retained for at least 7 years to support tax compliance and any future audit. Minutes are the official record of chapter action — they must be accurate and complete.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Officer Transition of Records <span class="arr"></span></div>
+    <div class="exp-card-body">When officers change, all chapter records must be formally transferred to the successor. A documented, witnessed handoff between outgoing and incoming KR and KE is best practice. Retaining chapter records after leaving office — or failing to transfer them — is a Statute violation.</div>
+  </div>
+</div>`;}
+function m7s6(){return `<div class="screen-body">
+  <h3>Reporting to National</h3>
+  <p>Chapters have affirmative, ongoing reporting obligations to IHQ. Failure to report is a compliance violation in itself — separate from whatever underlying matter the report would have addressed.</p>
+  <ul>
+    <li><strong>Financial Reports:</strong> Submitted on the schedule set in Fraternity Regulations — typically annually. Must accurately reflect all chapter income, expenditures, and fund balances. Certified by the Polemarch and KR.</li>
+    <li><strong>Membership Reports:</strong> Changes in membership must be reported — new initiates, deaths, transfers, suspensions, reinstatements. IHQ maintains the official national roll; it cannot be accurate without timely chapter reporting.</li>
+    <li><strong>Election Results:</strong> Officer election results must be reported to IHQ promptly after each election cycle so national records reflect current leadership.</li>
+    <li><strong>Incident Reports:</strong> Any incident involving hazing allegations, serious member misconduct, or significant events must be reported to IHQ per Fraternity Regulations — not handled privately at the chapter level. Chapter-level informal handling of a reportable incident creates compounding violations.</li>
+  </ul>
+  <div class="info-box">The KR is primarily responsible for ensuring all required reports are submitted on time. Late or missing reports create compliance gaps that can affect chapter status and award eligibility.</div>
+</div>`;}
+function m7s7(){return `<div class="screen-body">
+  <h3>Chapter Annual Report</h3>
+  <p>The annual report is a comprehensive accountability document submitted to IHQ. It is the chapter's primary formal statement of compliance and activity for the year.</p>
+  <ul>
+    <li><strong>Contents Required:</strong> Membership roll with good standing status of each member; financial summary (income, expenditures, fund balances); program and community service activities; officer roster and contact information; certification of governing document compliance.</li>
+    <li><strong>Certification:</strong> The Polemarch and KR certify the report's accuracy. Certifying false or inaccurate information is a serious Statute violation — do not certify what you cannot verify from actual records.</li>
+    <li><strong>Submission Deadline:</strong> Must be submitted by the deadline in Fraternity Regulations. Late submissions may result in compliance status changes and loss of access to certain IHQ services and programs.</li>
+    <li><strong>How IHQ Uses It:</strong> IHQ uses annual reports to assess chapter health, identify compliance issues, determine eligibility for awards, and decide which chapters need additional support or scrutiny. A complete, accurate report serves the chapter's own interest.</li>
+  </ul>
+</div>`;}
+function m7s8(){return `<div class="screen-body">
+  <h3>Chapter Inspection</h3>
+  <p>IHQ reserves authority to inspect chapters and verify compliance with the Constitution, Statutes, and Fraternity Regulations. An inspection is a governance tool — not a punitive action in itself.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">What Inspectors Review <span class="arr"></span></div>
+    <div class="exp-card-body">Archive compliance per Statute 19 (all required documents present and secured); financial records and warrant process integrity; membership roll accuracy versus IHQ records; evidence of required reporting submissions; adherence to intake framework requirements; and meeting minutes for evidence of proper quorum and process.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Chapter Obligations During Inspection <span class="arr"></span></div>
+    <div class="exp-card-body">The chapter must cooperate fully with an authorized IHQ inspection. Refusal to cooperate is itself a Statute violation that escalates the matter. All requested records must be produced. Chapter officers should be available and responsive — non-responsiveness is noted as a finding.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Post-Inspection Process <span class="arr"></span></div>
+    <div class="exp-card-body">The inspector issues a written report identifying deficiencies with required corrective actions and deadlines. The chapter must address all findings by the stated deadline. Failure to correct findings escalates the matter toward charter action. Chapters that proactively address findings demonstrate good governance.</div>
+  </div>
+</div>`;}
+function m7s9(){return `<div class="screen-body">
+  <h3>Module 8 — Knowledge Check</h3>
+  ${renderQuiz('q7c','The outgoing Keeper of Records leaves office without transferring chapter minutes to the successor. This is:',['Acceptable if the departing KR was not formally asked to transfer records','A Statute violation — all chapter records must be formally transferred to the successor','Only a problem if IHQ specifically requests those records','An internal matter with no governing document implications'],1,'All chapter records must be formally transferred when officers change. Retaining chapter records after leaving office — or failing to transfer them — is a Statute violation that the incoming officer should report up the chain.')}
+  ${renderQuiz('q7d','A hazing allegation is made involving a chapter member. The chapter Polemarch\'s proper first step is:',['Handle it informally within the chapter to protect the member and chapter reputation','Report it to IHQ per Fraternity Regulations immediately','Refer it to the Province Vice Polemarch only and await further instruction','Take no action until a formal written complaint is received'],1,'Hazing allegations must be reported to IHQ per Fraternity Regulations. Informal chapter-level handling is not appropriate, creates additional liability, and is itself a compliance violation.')}
+</div>`;}
+
+// MODULE 8 ADDITIONAL SCREENS
+function m8s4(){return `<div class="screen-body">
+  <h3>Guide Right — The Signature Achievement Program</h3>
+  <p>Guide Right has been Kappa Alpha Psi's signature community service and leadership development program since 1922. It is not an optional activity — it is central to the Fraternity's constitutional objectives under Article II.</p>
+  <ul>
+    <li><strong>Mission:</strong> Community service focused on youth development, leadership training, and career guidance for young men in the communities our chapters serve.</li>
+    <li><strong>Kappa League:</strong> The youth auxiliary of Guide Right, serving young men in high school. Chapters that sponsor Kappa League must ensure operation within IHQ-approved guidelines. Kappa League is a chartered entity with its own obligations.</li>
+    <li><strong>Professional Mentorship:</strong> Alumni chapters are uniquely positioned to provide career and professional development mentorship to younger members and community youth — fulfilling the "achievement in every field" principle that founded the Fraternity.</li>
+    <li><strong>Service Hour Tracking:</strong> IHQ tracks chapter community service contributions. Hours are reported in the annual report and factor into chapter award eligibility. Incomplete tracking hurts the chapter's competitive standing for awards.</li>
+  </ul>
+  <div class="info-box">Achievement in every field of human endeavor is not merely a motto — it is a governing principle embedded in Article II of the Constitution. DL Alumni Chapter's programs are the living expression of this obligation.</div>
+</div>`;}
+function m8s5(){return `<div class="screen-body">
+  <h3>Awards Programs in Detail</h3>
+  <p>The Fraternity recognizes excellence through major awards presented at Grand Chapter. Understanding award criteria helps chapters structure programs to be competitive.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Chapter Excellence Awards <span class="arr"></span></div>
+    <div class="exp-card-body">Recognize chapters excelling in Guide Right programming, financial compliance, membership growth, and overall governance. Award criteria are published by IHQ annually. Chapters must self-nominate and submit documentation with evidence supporting each criterion. Unsupported nominations are typically unsuccessful.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Individual Achievement Awards <span class="arr"></span></div>
+    <div class="exp-card-body">Recognize brothers who have distinguished themselves in professional fields or community service consistent with the Fraternity's mission. Nominations may come from chapters, Province Councils, or individual members through the designated submission process and deadline.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Eligibility Prerequisites <span class="arr"></span></div>
+    <div class="exp-card-body">Chapters with unresolved compliance issues — dues delinquency, outstanding Statute violations, pending disciplinary matters, or incomplete annual report submissions — are typically ineligible for chapter excellence awards. Good standing at every level, for the chapter and its members, is a prerequisite for competitive award consideration.</div>
+  </div>
+</div>`;}
+function m8s6(){return `<div class="screen-body">
+  <h3>Ritual Obligations</h3>
+  <p>The Ritual is third in the order of precedence. Member obligations regarding the Ritual go well beyond attending initiations — active Ritual stewardship is a continuous obligation.</p>
+  <ul>
+    <li><strong>Absolute Confidentiality:</strong> Ritual content is esoteric — strictly confidential to initiated members. No Ritual information may be shared with any non-initiated person under any circumstances. This includes curious family members, candidates before their initiation, and well-intentioned strangers. There are no exceptions.</li>
+    <li><strong>Physical Security:</strong> Statute 19 requires chapters to maintain at least 5 copies of the Ritual under lock and key. Access should be limited to initiated members in good standing with a legitimate, current need.</li>
+    <li><strong>Proper Execution:</strong> Initiations and all Ritual proceedings must be conducted in strict accordance with the Ritual itself. Any deviation — particularly any involving intimidation, physical contact, or humiliation — constitutes hazing and a Statute 39 violation.</li>
+    <li><strong>Digital Security:</strong> No Ritual material may be stored in unencrypted digital formats, transmitted via text or email, photographed, or recorded. Digital exposure of Ritual content is treated as disclosure to non-members.</li>
+  </ul>
+  <div class="info-box">Carelessness with the Ritual — even without malicious intent — can result in serious Statute 39 disciplinary action. Treat all Ritual materials with the same care you would apply to your most sensitive personal documents.</div>
+</div>`;}
+function m8s7(){return `<div class="screen-body">
+  <h3>Discipline Process in Detail</h3>
+  <p>When a member is alleged to have violated the governing documents, Statute 39 establishes a process that balances firm accountability with procedural fairness for the accused.</p>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Initiation of Proceedings <span class="arr"></span></div>
+    <div class="exp-card-body">A written complaint is filed stating the specific charges and supporting facts. The complaint must be specific enough for the accused to understand what is alleged and prepare a meaningful defense. Vague charges — "conduct unbecoming" without specifics — are procedurally defective and may be dismissed on that basis.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Notice and Opportunity to Respond <span class="arr"></span></div>
+    <div class="exp-card-body">The accused must receive written notice of the charges and a reasonable opportunity to appear, submit a written response, and be heard before any final disciplinary action is taken. Proceeding to a sanction without adequate notice violates the member's rights and renders the proceeding voidable on appeal.</div>
+  </div>
+  <div class="exp-card" onclick="this.classList.toggle('open')">
+    <div class="exp-card-head">Decision, Sanctions, and Appeal <span class="arr"></span></div>
+    <div class="exp-card-body">The deciding body issues a written determination with the specific sanction imposed. The member may appeal adverse decisions to the next higher authority. Expulsion — the highest sanction — must ultimately be confirmed through IHQ, not imposed by the chapter alone. The chapter has authority over lesser sanctions within the Statute 39 framework.</div>
+  </div>
+</div>`;}
+function m8s8(){return `<div class="screen-body">
+  <h3>Member Responsibilities Under the Statutes</h3>
+  <p>Beyond finances and confidentiality, the Statutes define what active membership in Kappa Alpha Psi requires. Passive membership — dues paid but no contribution — falls short of the governing document's vision.</p>
+  <ul>
+    <li><strong>Dues Payment Timeline:</strong> National sustaining dues are due annually on the date set in Fraternity Regulations. Late payment — even if eventual — may create a period of non-good standing. Do not assume grace periods exist unless Regulations specifically provide for them.</li>
+    <li><strong>Meeting Attendance:</strong> Chapter bylaws establish attendance expectations. Chronic non-attendance may affect local good standing and can eventually affect national good standing determinations if the chapter's bylaws so provide.</li>
+    <li><strong>Program Participation:</strong> Active participation in Guide Right and other chapter programs is expected of members in good standing. Attendance at a meeting is not a substitute for program contribution.</li>
+    <li><strong>Mentorship Obligation:</strong> As an alumni chapter, DL brothers are positioned to provide professional mentorship to younger members and community youth. This is not merely aspirational — it flows directly from Article II's fifth objective.</li>
+    <li><strong>Professional Development:</strong> Supporting the professional growth of brothers and community youth reflects the "achievement in every field" founding principle. Chapters should actively create these opportunities.</li>
+  </ul>
+</div>`;}
+function m8s9(){return `<div class="screen-body">
+  <h3>Final Module — Knowledge Check</h3>
+  ${renderQuiz('q8c','Which statement about Guide Right is accurate?',['It is optional — chapters choose whether to run it','Every chapter is expected to maintain an active Guide Right program','Guide Right is only required of undergraduate chapters','Guide Right activity does not factor into chapter award eligibility'],1,'Guide Right is Kappa Alpha Psi\'s signature program, flowing from the Article II objectives. All chapters are expected to maintain an active program, and program quality directly factors into chapter excellence award eligibility.')}
+  ${renderQuiz('q8d','A brother shares Ritual content with his adult son, who is strongly considering joining. This is:',['Acceptable — immediate family are a reasonable exception','Acceptable if the son is a registered candidate for membership','A Statute 39 violation regardless of the relationship or the brother\'s intent','Acceptable with Province Vice Polemarch approval'],2,'Ritual disclosure to any non-initiated person is a Statute 39 violation. The governing documents create no exception for family members, candidates, or Province-authorized disclosures.')}
+</div>`;}
+
+const SCREEN_FNS=[
+  [m0s0,m0s1,m0s2,m0s3,m0s4,m0s5,m0s6,m0s7,m0s8,m0s9],
+  [m1s0,m1s1,m1s2,m1s3,m1s4,m1s5,m1s6,m1s7,m1s8,m1s9],
+  [m2s0,m2s1,m2s2,m2s3,m2s4,m2s5,m2s6,m2s7,m2s8,m2s9],
+  [m3s0,m3s1,m3s2,m3s3,m3s4,m3s5,m3s6,m3s7,m3s8,m3s9],
+  [m4s0,m4s1,m4s2,m4s3,m4s4,m4s5,m4s6,m4s7,m4s8,m4s9],
+  [m5s0,m5s1,m5s2,m5s3,m5s4,m5s5,m5s6,m5s7,m5s8,m5s9],
+  [m6s0,m6s1,m6s2,m6s3,m6s4,m6s5,m6s6,m6s7,m6s8,m6s9],
+  [m7s0,m7s1,m7s2,m7s3,m7s4,m7s5,m7s6,m7s7,m7s8,m7s9],
+  [m8s0,m8s1,m8s2,m8s3,m8s4,m8s5,m8s6,m8s7,m8s8,m8s9]
+];
+
+function renderModule(){
+  const m=MODS[S.mi],si=S.si,total=m.screens;
+  S.visited[S.mi+','+si]=true;save();
+  const isLast=si===total-1;
+  document.getElementById('main').innerHTML=
+    modHeader(S.mi)+screenDots(total,si)+
+    SCREEN_FNS[S.mi][si]()+
+    navBar(si,total);
+}
+
+// ASSESSMENT
+const AQ=[
+  {q:'Which document sits at the TOP of Kappa Alpha Psi’s order of precedence?',opts:['The Statutes','The Constitution','The Ritual','Chapter Bylaws'],a:1},
+  {q:'To amend the Constitution requires _____ at Grand Chapter; to amend the Statutes requires _____.',opts:['Simple majority; two-thirds','Three-fourths; two-thirds','Two-thirds; three-fourths','Unanimous; three-fourths'],a:1},
+  {q:'A chapter SOP eliminates a step required by Statute 21. The SOP is:',opts:['Valid — SOPs can streamline procedures','Invalid — SOPs cannot remove steps required by the Statutes','Valid if approved by the chapter Polemarch','Valid if the Province Vice Polemarch signs off'],a:1},
+  {q:'Fraternity Regulations are changed by:',opts:['Grand Chapter vote required','Grand Board, with no Grand Chapter vote required','The Grand Polemarch by executive order','Province Councils for their region'],a:1},
+  {q:'Which best describes the difference between a Guide and a Policy?',opts:['A Guide is binding; a Policy is advisory','A Guide explains how to comply; a Policy is a standing rule that is binding','They are interchangeable terms','A Policy is adopted by chapters; a Guide is adopted by IHQ'],a:1},
+  {q:'Authority in the governance hierarchy aligns:',opts:['Upward — chapters can expand their authority','Downward — each level operates within bounds set by the level above','Sideways — province and chapter authority is equal','There is no hierarchy; documents are co-equal'],a:1},
+  {q:'The supreme governing power of Kappa Alpha Psi is:',opts:['The Grand Board of Directors','The Executive Committee','The Grand Chapter','The Grand Polemarch'],a:2},
+  {q:'What quorum is required for Grand Chapter to transact business?',opts:['A simple majority of registered delegates','50 members present','75 members present','All chapter delegates must be seated'],a:2},
+  {q:'An Alumni Association may be formed with:',opts:['At least 10 sustaining members','5 to 9 sustaining members','At least 7 initiated members','At least 15 members'],a:1},
+  {q:'Before any Fraternity bill is paid, what must occur?',opts:['The chapter Polemarch verbally approves it','An approved warrant — the Keeper of Records signs, the Keeper of Exchequer pays','Three Executive Committee members vote to approve','It must appear in the annual budget document'],a:1},
+  {q:'Detailed intake procedures for chapters are found primarily in:',opts:['The Constitution, Article XXI','The Fraternity Regulations and authorized guides/SOPs','Chapter Bylaws approved by IHQ','Province Council Rules'],a:1},
+  {q:'A member discloses Ritual content to a non-member. This constitutes:',opts:['Acceptable conduct if the person is a candidate','An informal matter for chapter leadership','A disciplinary matter under Statute 39','Permitted with Province Vice Polemarch approval'],a:2},
+  {q:'Which item is NOT in the national order of precedence (Constitution → Statutes → Ritual → Regulations)?',opts:['The Constitution','The Statutes','Chapter Bylaws','The Ritual'],a:2},
+  {q:'The Edward Giles Irvin Award recognizes excellence among:',opts:['Alumni chapters','Undergraduate chapters','Province Councils','Individual members'],a:1},
+  {q:'When a conflict arises between two governing documents, the resolution method is:',opts:['The more recent document controls','Apply the order of precedence — the higher document controls','Consult the Province Vice Polemarch','The Grand Polemarch decides by executive order'],a:1}
+];
+const FINAL_PASS=0.8;
+
+function renderAssessment(){
+  if(S.aSubmitted){renderResults();return;}
+  let html=`<div class="assess-wrap"><h2>Final Assessment</h2><div class="sub">Answer all 15 questions. You need 12 correct (80%) to pass.</div>`;
+  AQ.forEach((q,i)=>{
+    const sel=S.aa[i];
+    html+=`<div class="assess-q"><div class="assess-q-num">Question ${i+1} of ${AQ.length}</div><div class="assess-q-txt">${q.q}</div>`;
+    q.opts.forEach((o,j)=>{
+      const cls=sel===j?'selected':'';
+      html+=`<button class="assess-opt ${cls}" onclick="selectAssess(${i},${j})">${o}</button>`;
+    });
+    html+='</div>';
+  });
+  const allAnswered=AQ.every((_,i)=>S.aa[i]!==undefined);
+  html+=`<button class="assess-submit" onclick="submitAssess()" ${allAnswered?'':'disabled'}>Submit Assessment</button></div>`;
+  document.getElementById('main').innerHTML=html;
+}
+
+function selectAssess(qi,opt){
+  if(S.aSubmitted)return;
+  S.aa[qi]=opt;save();
+  const cards=document.querySelectorAll('.assess-q');
+  if(cards[qi]){
+    cards[qi].querySelectorAll('.assess-opt').forEach((b,j)=>{
+      b.classList.toggle('selected',j===opt);
+    });
+  }
+  const allAnswered=AQ.every((_,i)=>S.aa[i]!==undefined);
+  const btn=document.querySelector('.assess-submit');
+  if(btn)btn.disabled=!allAnswered;
+}
+
+function submitAssess(){
+  let correct=0;
+  AQ.forEach((q,i)=>{if(S.aa[i]===q.a)correct++;});
+  S.aScore=correct/AQ.length;
+  S.aSubmitted=true;save();
+  renderResults();
+}
+
+function renderResults(){
+  const pct=Math.round(S.aScore*100);
+  const passed=S.aScore>=FINAL_PASS;
+  const correct=Math.round(S.aScore*AQ.length);
+  document.getElementById('main').innerHTML=`<div class="assess-wrap">
+    <div class="result-card">
+      <div class="cert-seal">KAΨ</div>
+      <div class="result-score">${pct}%</div>
+      <div class="result-label">${correct} of ${AQ.length} correct</div>
+      <div class="result-badge ${passed?'pass-badge':'fail-badge'}">${passed?'PASSED':'NOT PASSED'}</div>
+      <div class="result-msg">${passed?'Congratulations, Brother '+S.name+'! You have demonstrated mastery of the Constitution &amp; Statutes. Proceed to receive your certificate.':'You need 80% (12/15) to pass. Review the modules and try again.'}</div>
+    </div>
+    <div style="text-align:center;margin-top:8px;">
+      ${!passed?`<button class="retry-btn" onclick="retryAssess()">Retry Assessment</button>`:''}
+      ${passed?`<button class="cert-btn" onclick="goPage('cert')">View Certificate →</button>`:''}
+    </div>
+  </div>`;
+  renderNav(); updateProgress();
+}
+
+function retryAssess(){
+  S.aa={};S.aScore=null;S.aSubmitted=false;save();renderAssessment();
+}
+
+function renderCert(){
+  const d=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('main').innerHTML=`<div class="cert-wrap">
+    <div class="cert-card">
+      <div class="cert-kap">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="cert-sub">Certificate of Completion</div>
+      <div class="cert-seal">KAΨ</div>
+      <h2>This certifies that</h2>
+      <div class="cert-name">${S.name}</div>
+      <div class="cert-course">has successfully completed<br><strong>Constitution &amp; Statutes of Kappa Alpha Psi® — Member Governance Training</strong></div>
+      <div class="cert-date">Completed: ${d}</div>
+      <button class="print-btn" onclick="window.print()">Print Certificate</button>
+    </div>
+  </div>`;
+}
+
+function renderLanding(){
+  document.getElementById('main').innerHTML=`
+    <div class="land-hero">
+      <div class="land-kap">Kappa Alpha Psi Fraternity, Inc.</div>
+      <h1>Constitution &amp; Statutes of Kappa Alpha Psi®<br>Member Governance Training</h1>
+      <p>Master the governing documents that define our Fraternity’s authority, structure, and obligations.</p>
+    </div>
+    <div class="land-body">
+      <div class="land-name-box">
+        <label for="nameIn">Your Full Name</label>
+        <input id="nameIn" type="text" placeholder="Enter your name for the certificate" value="${S.name||''}">
+      </div>
+      <div class="land-stats">
+        <div class="stat-card"><div class="stat-n">9</div><div class="stat-l">Modules</div></div>
+        <div class="stat-card"><div class="stat-n">90</div><div class="stat-l">Screens</div></div>
+        <div class="stat-card"><div class="stat-n">~4.5 hr</div><div class="stat-l">Est. Time</div></div>
+      </div>
+      <div class="land-obj">
+        <h3>You Will Learn To</h3>
+        <ul>
+          <li>Explain the order of precedence</li>
+          <li>Distinguish Constitution from Statutes</li>
+          <li>Navigate the governance hierarchy</li>
+          <li>Identify Grand Chapter powers</li>
+          <li>Understand chapter types &amp; requirements</li>
+          <li>Apply financial controls and fund rules</li>
+          <li>Recognize intake &amp; archive obligations</li>
+          <li>Locate amendment procedures</li>
+        </ul>
+      </div>
+      <button class="btn-begin" onclick="beginCourse()">Begin Course →</button>
+    </div>`;
+}
+
+function beginCourse(){
+  const n=document.getElementById('nameIn');
+  if(n)S.name=n.value.trim()||'Member';
+  S.page='module';S.mi=0;S.si=0;save();render();
+}
+
+function goPage(p){S.page=p;save();render();}
+
+function render(){
+  renderNav(); updateProgress();
+  if(S.page==='landing'){renderLanding();}
+  else if(S.page==='module'){renderModule();}
+  else if(S.page==='assess'){renderAssessment();}
+  else if(S.page==='cert'){renderCert();}
+}
+
+document.getElementById('hamburger').onclick=function(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+};
+document.getElementById('overlay').onclick=function(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+};
+
+load();render();
+</script>
+</body>
+</html>
