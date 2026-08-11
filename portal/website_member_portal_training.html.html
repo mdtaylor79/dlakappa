@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Member Portal Training — DL Alumni Chapter</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiM3MDExMGMiLz48dGV4dCB4PSI1MCUiIHk9IjU0JSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2MyOWEzYyI+S8OBzqk8L3RleHQ+PC9zdmc+">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cr:#70110c;--cr-d:#3a0807;--cm:#f2ebd7;--go:#c9a84c;--sw:260px;--rad:10px;--sh:0 2px 12px rgba(0,0,0,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f5f3ee;color:#1a1a1a;display:flex;min-height:100vh;overflow-x:hidden}
+
+/* SIDEBAR */
+#sidebar{width:var(--sw);background:var(--cr);color:var(--cm);position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto;z-index:100;transition:transform .3s}
+.sb-header{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo-badge{width:42px;height:42px;background:var(--go);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--cr-d);flex-shrink:0;font-family:'Playfair Display',serif}
+.sb-title{font-size:12px;font-weight:700;color:var(--cm);line-height:1.3;letter-spacing:.02em}
+.sb-sub{font-size:10px;color:rgba(242,235,215,.55);margin-top:2px}
+.sb-progress{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(242,235,215,.55);font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
+.prog-track{height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--go);border-radius:3px;transition:width .4s ease}
+.sb-nav{flex:1;padding:8px 0;overflow-y:auto}
+.sec-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,235,215,.38);padding:10px 16px 3px}
+.mod-item{display:flex;align-items:flex-start;gap:9px;padding:9px 14px;cursor:pointer;transition:background .2s;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+.mod-item:hover{background:rgba(255,255,255,.07)}
+.mod-item.active{background:rgba(255,255,255,.11);border-left-color:var(--go)}
+.mod-item.completed .mod-badge{background:var(--go);color:var(--cr-d)}
+.mod-badge{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--cm);flex-shrink:0;margin-top:1px}
+.mod-title{font-size:12px;font-weight:600;color:var(--cm);line-height:1.3}
+.mod-sub{font-size:10px;color:rgba(242,235,215,.48);margin-top:1px}
+.sb-footer{padding:14px 18px;border-top:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.sb-footer-item{display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:.78rem;color:rgba(242,235,215,.7);transition:color .2s}
+.sb-footer-item:hover{color:#fff}
+.sb-footer-item.active{color:var(--go);font-weight:600}
+.sb-icon{font-size:.9rem;width:20px;text-align:center}
+
+/* MAIN */
+#main{margin-left:var(--sw);flex:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* HAMBURGER */
+#hamburger{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--cr);border:none;border-radius:8px;width:40px;height:40px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:8px}
+#hamburger span{display:block;width:22px;height:2px;background:var(--cm);border-radius:2px;transition:.3s}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99}
+
+/* LANDING */
+.hero{background:var(--cr);color:var(--cm);padding:60px 48px;position:relative;overflow:hidden}
+.hero::before{content:'KΑΨ';position:absolute;right:-20px;top:-20px;font-family:'Playfair Display',serif;font-size:180px;color:rgba(255,255,255,.04);font-weight:700;pointer-events:none;line-height:1}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--go);margin-bottom:12px;font-weight:600}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;line-height:1.15;color:#fff;margin-bottom:14px}
+.hero-sub{font-size:.95rem;color:rgba(242,235,215,.8);max-width:560px;line-height:1.6}
+.stats-row{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap}
+.stat-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--rad);padding:16px 22px;min-width:110px;text-align:center}
+.stat-box strong{display:block;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--go)}
+.stat-box span{font-size:.7rem;color:rgba(242,235,215,.7);text-transform:uppercase;letter-spacing:.05em}
+.landing-body{padding:40px 48px;max-width:680px}
+.landing-body h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:16px;color:var(--cr)}
+.landing-body p{color:#444;line-height:1.7;margin-bottom:16px;font-size:.92rem}
+.name-field{margin:28px 0}
+.name-field label{display:block;font-size:.78rem;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.name-field input{width:100%;max-width:380px;padding:12px 16px;border:2px solid #ddd;border-radius:8px;font-family:'Inter',sans-serif;font-size:.95rem;outline:none;transition:border .2s}
+.name-field input:focus{border-color:var(--cr)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:.2s;text-decoration:none}
+.btn-primary{background:var(--cr);color:#fff}
+.btn-primary:hover{background:#5a0d09}
+.btn-gold{background:var(--go);color:#1a1a1a}
+.btn-gold:hover{background:#b8922e}
+.btn-outline{background:transparent;color:var(--cr);border:2px solid var(--cr)}
+.btn-outline:hover{background:var(--cr);color:#fff}
+.btn-sm{padding:8px 18px;font-size:.8rem}
+
+/* MODULE PAGE */
+.mod-page{padding:0;display:flex;flex-direction:column;min-height:100vh}
+.mod-header{background:var(--cr);color:var(--cm);padding:28px 40px}
+.mod-header .mh-eyebrow{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--go);margin-bottom:6px;font-weight:600}
+.mod-header h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;font-weight:700}
+.mod-header .mh-sub{font-size:.82rem;color:rgba(242,235,215,.7);margin-top:6px}
+.scr-dots{display:flex;gap:8px;padding:16px 40px;background:#fff;border-bottom:1px solid #eee;align-items:center}
+.scr-dot{width:10px;height:10px;border-radius:50%;background:#ddd;cursor:pointer;transition:.2s}
+.scr-dot.visited{background:rgba(112,17,12,.3)}
+.scr-dot.active{background:var(--cr);transform:scale(1.3)}
+.scr-dot.done{background:var(--go)}
+.scr-content{flex:1;padding:36px 40px;max-width:760px}
+.mod-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-top:1px solid #eee;margin-top:auto}
+.btn-nav{background:none;border:2px solid var(--cr);color:var(--cr);border-radius:8px;padding:10px 22px;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s}
+.btn-nav:hover{background:var(--cr);color:#fff}
+.btn-nav:disabled{opacity:.35;cursor:default;pointer-events:none}
+.btn-nav.btn-next{background:var(--cr);color:#fff}
+.btn-nav.btn-next:hover{background:#5a0d09}
+.nav-progress{font-size:.78rem;color:#888;font-weight:500}
+
+/* CONTENT COMPONENTS */
+.card{background:#fff;border-radius:var(--rad);padding:24px 28px;box-shadow:var(--sh);margin-bottom:20px}
+.card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cr);margin-bottom:12px}
+.card p{font-size:.88rem;color:#444;line-height:1.7}
+.quote-block{border-left:4px solid var(--go);background:rgba(201,168,76,.08);padding:16px 20px;border-radius:0 8px 8px 0;margin:20px 0;font-style:italic;color:#555;font-size:.9rem;line-height:1.7}
+.info-box{background:rgba(112,17,12,.06);border:1px solid rgba(112,17,12,.15);border-radius:8px;padding:16px 20px;margin:16px 0;font-size:.87rem;color:#333;line-height:1.65}
+.info-box strong{color:var(--cr)}
+.tip-box{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:.84rem;color:#5a4a10;line-height:1.6}
+.tip-box::before{content:' ';font-style:normal}
+.sl{list-style:none;padding:0;margin:14px 0}
+.sl li{padding:8px 0 8px 26px;position:relative;font-size:.88rem;color:#444;border-bottom:1px solid #f0f0f0;line-height:1.6}
+.sl li:last-child{border-bottom:none}
+.sl li::before{content:'';position:absolute;left:6px;color:var(--go);font-weight:700}
+.exp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0}
+.exp-card{background:#fff;border-radius:var(--rad);padding:20px;box-shadow:var(--sh);border-top:4px solid var(--cr)}
+.exp-card h4{font-size:.85rem;font-weight:700;color:var(--cr);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.exp-card p{font-size:.8rem;color:#555;line-height:1.55}
+.table-wrap{overflow-x:auto;margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:var(--cr);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.04em}
+td{padding:9px 14px;border-bottom:1px solid #eee;color:#444;line-height:1.5}
+tr:nth-child(even) td{background:#fafafa}
+tr:hover td{background:#f5f3ee}
+.scenario-block{background:#fff;border-radius:var(--rad);padding:20px 24px;box-shadow:var(--sh);margin-bottom:16px;border-left:4px solid var(--cr)}
+.scenario-block .sc-num{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--go);font-weight:700;margin-bottom:6px}
+.scenario-block .sc-q{font-size:.88rem;color:#333;font-weight:600;line-height:1.5;margin-bottom:10px}
+.scenario-block .sc-a{font-size:.82rem;color:#555;background:#f5f3ee;padding:10px 14px;border-radius:6px;line-height:1.55}
+.scenario-block .sc-a strong{color:var(--cr)}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.badge-req{background:rgba(112,17,12,.12);color:var(--cr)}
+.badge-found{background:rgba(201,168,76,.2);color:#7a5a10}
+.badge-new{background:rgba(25,130,80,.12);color:#155a35}
+.badge-soon{background:#eee;color:#888}
+.badge-draft{background:rgba(100,100,100,.1);color:#666}
+.course-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:20px 0}
+.course-card{background:#fff;border-radius:var(--rad);padding:18px;box-shadow:var(--sh);border-top:3px solid var(--go)}
+.course-card h4{font-size:.88rem;font-weight:700;color:#222;margin:8px 0 6px;line-height:1.3}
+.course-card .cc-meta{font-size:.74rem;color:#888;display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.section-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--cr);margin:24px 0 12px;font-weight:700}
+.intro-text{font-size:.92rem;color:#444;line-height:1.7;margin-bottom:20px}
+
+/* ASSESSMENT */
+.assess-page{padding:40px}
+.assess-page h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cr);margin-bottom:8px}
+.assess-page .sub{font-size:.88rem;color:#666;margin-bottom:32px}
+.quiz{background:#fff;border-radius:var(--rad);box-shadow:var(--sh);padding:28px;margin-bottom:20px}
+.quiz .q-num{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--go);font-weight:700;margin-bottom:8px}
+.quiz .q-text{font-size:.95rem;font-weight:600;color:#222;line-height:1.5;margin-bottom:18px}
+.quiz .opts{display:flex;flex-direction:column;gap:10px}
+.quiz .opt{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border:2px solid #eee;border-radius:8px;cursor:pointer;transition:.2s;font-size:.87rem;color:#444;line-height:1.45}
+.quiz .opt:hover{border-color:var(--cr);background:rgba(112,17,12,.04)}
+.quiz .opt.selected{border-color:var(--cr);background:rgba(112,17,12,.06)}
+.quiz .opt.correct{border-color:#1a7a40;background:rgba(26,122,64,.08);color:#1a7a40}
+.quiz .opt.wrong{border-color:#c0392b;background:rgba(192,57,43,.06);color:#c0392b}
+.quiz .opt input{accent-color:var(--cr);margin-top:2px;flex-shrink:0}
+.quiz .fb{margin-top:14px;padding:12px 16px;background:#f5f3ee;border-radius:8px;font-size:.83rem;color:#555;line-height:1.6;border-left:3px solid var(--go)}
+.assess-controls{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+
+/* RESULTS */
+.results-page{padding:40px;max-width:720px}
+.score-circle{width:140px;height:140px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 28px;border:6px solid}
+.score-circle.pass{border-color:#1a7a40;background:rgba(26,122,64,.08)}
+.score-circle.fail{border-color:var(--cr);background:rgba(112,17,12,.08)}
+.score-circle .sc-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700}
+.score-circle.pass .sc-num{color:#1a7a40}
+.score-circle.fail .sc-num{color:var(--cr)}
+.score-circle .sc-label{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.06em}
+.results-msg{text-align:center;margin-bottom:32px}
+.results-msg h2{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:8px}
+.breakdown{background:#fff;border-radius:var(--rad);box-shadow:var(--sh);overflow:hidden;margin-bottom:24px}
+.breakdown table{width:100%}
+
+/* CERTIFICATE */
+.cert-page{padding:40px;display:flex;flex-direction:column;align-items:center}
+.cert-name-field{margin-bottom:28px;width:100%;max-width:480px}
+@media print{
+  #sidebar,#hamburger,#overlay,.cert-controls{display:none!important}
+  #main{margin-left:0}
+  .cert-wrap{box-shadow:none!important;page-break-inside:avoid}
+}
+.cert-wrap{background:#fff;border:3px solid var(--go);border-radius:16px;padding:48px 52px;max-width:680px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.15);position:relative;overflow:hidden}
+.cert-wrap::before{content:'KΑΨ';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:220px;color:rgba(112,17,12,.03);font-weight:700;pointer-events:none;line-height:1}
+.cert-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cr);font-weight:700;margin-bottom:6px}
+.cert-org{font-size:.75rem;color:#888;text-transform:uppercase;letter-spacing:.1em;margin-bottom:28px}
+.cert-header{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#999;margin-bottom:10px}
+.cert-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cr);font-weight:700;line-height:1.2;margin-bottom:6px}
+.cert-course{font-size:1rem;color:#555;margin-bottom:28px}
+.cert-name{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cr);border-bottom:2px solid var(--go);display:inline-block;padding-bottom:4px;min-width:240px;margin-bottom:6px}
+.cert-name-label{font-size:.72rem;color:#999;text-transform:uppercase;letter-spacing:.08em;margin-bottom:28px}
+.cert-score{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:12px 20px;display:inline-block;font-size:.82rem;color:#7a5a10;margin-bottom:28px}
+.cert-date{font-size:.82rem;color:#888;margin-bottom:12px}
+.cert-seal{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:24px;padding-top:20px;border-top:1px solid #eee}
+.cert-seal-item{text-align:center;font-size:.68rem;color:#999;text-transform:uppercase;letter-spacing:.08em}
+.cert-seal-item .seal-line{width:80px;height:1px;background:#ccc;margin:8px auto 4px}
+.cert-controls{display:flex;gap:14px;margin-top:24px;justify-content:center;flex-wrap:wrap}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  #hamburger{display:flex}
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #overlay.open{display:block}
+  #main{margin-left:0}
+  .hero{padding:40px 20px}
+  .hero h1{font-size:1.6rem}
+  .landing-body{padding:28px 20px}
+  .mod-header{padding:20px 20px}
+  .scr-dots{padding:12px 20px}
+  .scr-content{padding:24px 20px}
+  .mod-nav{padding:16px 20px}
+  .assess-page,.results-page,.cert-page{padding:24px 20px}
+  .stats-row{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<button id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+<nav id="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo">
+      <div class="logo-badge">K&#913;&#936;</div>
+      <div>
+        <div class="sb-title">Member Portal</div>
+        <div class="sb-sub">Denton-Lewisville Alumni Chapter · 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sb-progress">
+    <div class="prog-label"><span>COURSE PROGRESS</span><span id="pct">0%</span></div>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+  <div class="sb-nav" id="sbNav"></div>
+  <div class="sb-footer" id="sb-footer"></div>
+</nav>
+
+<main id="main"></main>
+
+<script>
+const NS = 'DLA_PORTAL_2026';
+let S = { page:'landing', mi:0, si:0, name:'', done:[false,false,false,false,false], visited:{}, ix:{}, aa:{}, aScore:null, aSubmitted:false };
+
+const MODS = [
+  {title:'The DLA Digital Environment',      dur:'~30 min', screens:10, section:'FOUNDATIONS'},
+  {title:'Navigating the Main DLA Website',  dur:'~30 min', screens:10, section:'ENVIRONMENTS'},
+  {title:'Navigating the Member Portal',     dur:'~30 min', screens:10, section:'MEMBER RESOURCES'},
+  {title:'Using the DLA Training System',    dur:'~30 min', screens:10, section:'TRAINING SYSTEM'},
+  {title:'Digital Resource Challenge',       dur:'~30 min', screens:10, section:'ASSESSMENT PREP'}
+];
+
+const AQ = [
+  {mod:'Module 2', q:'A prospective member wants information about joining the chapter. Where should they be directed?', opts:['A. Member Portal → My Account','B. Main DLA Website → Membership page','C. Member Portal → Pay Dues','D. Curriculead training system'], cor:1, fb:'The main DLA website\'s Membership page (dlakappas.com/membership.html) is for prospective members. The portal is for existing members only.'},
+  {mod:'Module 2', q:'A community partner asks where to find information about chapter programs. Where do you send them?', opts:['A. Public Website → Programs section','B. Member Portal → Documents','C. Curriculead training system','D. Member Portal → Training hub'], cor:0, fb:'Community partners should be directed to the public website (dlakappas.com) — specifically the Programs section.'},
+  {mod:'Module 3', q:'A brother needs to download the chapter bylaws. Where does he find them?', opts:['A. Public Website → About','B. Member Portal → Forms & Assessments','C. Member Portal → Documents → Chapter By Laws','D. Curriculead training system'], cor:2, fb:'Chapter Bylaws are stored in the Member Portal under Documents → Chapter By Laws folder.'},
+  {mod:'Module 3', q:'A brother is planning a chapter event. What form must he submit BEFORE the event?', opts:['A. Post Event Summary','B. Event Information Form','C. Member Reimbursement','D. Committee Budget Request'], cor:1, fb:'The Event Information Form must be submitted before any chapter event for approval and planning.'},
+  {mod:'Module 3', q:'Within how many hours after an event must the Post Event Summary be submitted?', opts:['A. 48 hours','B. 24 hours','C. 72 hours','D. One week'], cor:1, fb:'The Post Event Summary must be submitted within 24 hours after the event concludes.'},
+  {mod:'Module 3', q:'A committee needs to request funds for an upcoming activity. Which form should they use?', opts:['A. Committee Budget Request','B. Payment Request','C. Member Reimbursement','D. Event Information Form'], cor:0, fb:'The Committee Budget Request form is used when a committee needs to plan and request funds for activities.'},
+  {mod:'Module 3', q:'The chapter needs to pay an outside vendor for services. Which form is required?', opts:['A. Member Reimbursement','B. Payment Request','C. Committee Budget Request','D. Post Event Summary'], cor:1, fb:'The Payment Request form is used to pay vendors or third parties directly for goods/services provided to the chapter.'},
+  {mod:'Module 3', q:'A brother paid out-of-pocket for chapter supplies. How does he get reimbursed?', opts:['A. Payment Request','B. Committee Budget Request','C. Member Reimbursement','D. Post Event Summary'], cor:2, fb:'The Member Reimbursement form is specifically for brothers who paid personal funds for chapter expenses and need to be paid back.'},
+  {mod:'Module 3', q:'True or False: The official DLA chapter logo files are stored in the Member Portal under Documents → Chapter Branding.', opts:['A. True','B. False','C. They are on the public website','D. They are only in Curriculead'], cor:0, fb:'True — Official DLA branding assets including logo files are stored in Documents → Chapter Branding in the Member Portal.'},
+  {mod:'Module 4', q:'What does a "Required" badge on a training course indicate?', opts:['A. The course is not yet available','B. The course is a chapter-designated priority that all members should complete','C. The course requires an instructor','D. The course is only for chapter leadership'], cor:1, fb:'A Required badge means the chapter has designated this course as a priority — all members are expected to complete it.'},
+  {mod:'Module 4', q:'What does a "Coming Soon" badge mean for a training course?', opts:['A. The course is available to preview','B. The course is not yet available to launch','C. The course is in draft review','D. The course requires special access'], cor:1, fb:'Coming Soon means the course is planned but not yet ready — members cannot start or access it yet.'},
+  {mod:'Module 4', q:'A course shows a "Draft/Pending Approval" badge. What does this mean?', opts:['A. The course is fully available','B. Members cannot see the course at all','C. Content exists but is not yet finalized — preview only, not for credit','D. The course is archived'], cor:2, fb:'Draft/Pending Approval means content exists but has not completed final review — members may preview but cannot earn credit.'},
+  {mod:'Module 5', q:'A brother wants to formally propose a change to the chapter bylaws. Which form does he use?', opts:['A. Committee Budget Request','B. Event Information Form','C. Bylaws Amendment Proposal','D. Member Reimbursement'], cor:2, fb:'The Bylaws Amendment Proposal form in Member Portal → Forms & Assessments is the proper channel for proposing changes to the chapter bylaws.'},
+  {mod:'Module 5', q:'A brother clicks "Continue" on a training course he started previously. What does this indicate about his progress?', opts:['A. He completed the course fully','B. The system has partial localStorage progress recorded for this device','C. His progress is synced across all devices','D. He has not started the course'], cor:1, fb:'"Continue" appears when localStorage has recorded partial progress on that specific device — progress is device-local, not synced across devices.'},
+  {mod:'Module 5', q:'A brother wants to see all chapter training resources in one place. Where should he go?', opts:['A. Public Website → Programs','B. Curriculead directly without logging in','C. Member Portal → Training → My DLA Training','D. Documents → Chapter Training only'], cor:2, fb:'Member Portal → Training → My DLA Training (/portal/training-hub.html) is the hub for all chapter training resources in one organized location.'}
+];
+
+function save(){try{localStorage.setItem(NS,JSON.stringify(S));}catch(e){}}
+function load(){try{const d=localStorage.getItem(NS);if(d)S=JSON.parse(d);}catch(e){}}
+
+function calcProgress(){
+  let total=0,done=0;
+  // 5 modules (each counts as 1 when done array true)
+  total+=5; done+=S.done.filter(Boolean).length;
+  // assessment submitted
+  total+=1; if(S.aSubmitted)done+=1;
+  // cert page visited
+  total+=1; if(S.ix['cert'])done+=1;
+  return Math.round((done/total)*100);
+}
+
+function getIx(key){return S.ix[key]||0;}
+function setIx(key,v){S.ix[key]=v;save();}
+
+function renderNav(){
+  let html='', lastSec='';
+  MODS.forEach((m,i)=>{
+    if(m.section !== lastSec){
+      html += `<div class="sec-label">${m.section}</div>`;
+      lastSec = m.section;
+    }
+    const active = S.mi===i && S.page==='module';
+    const done = S.done[i];
+    html += `<button class="mod-item${active?' active':''}${done?' completed':''}" onclick="goModule(${i})">
+      <div class="mod-badge">${i+1}</div>
+      <div>
+        <div class="mod-title">${m.title}</div>
+        <div class="mod-sub">Module ${i+1} · ${m.dur}</div>
+      </div>
+    </button>`;
+  });
+  document.getElementById('sbNav').innerHTML = html;
+  const ap=(S.page==='assess')?'active':'';
+  const cp=(S.page==='cert')?'active':'';
+  document.getElementById('sb-footer').innerHTML=`
+    <div class="sb-footer-item ${ap}" onclick="goPage('assess')"><span class="sb-icon"></span> Final Assessment</div>
+    <div class="sb-footer-item ${cp}" onclick="goPage('cert')"><span class="sb-icon"></span> Certificate</div>
+  `;
+}
+function updateProgress(){
+  const pct = Math.round(S.done.filter(Boolean).length / MODS.length * 100);
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('pct').textContent = pct+'%';
+}
+function renderSidebar(){
+  renderNav();
+  updateProgress();
+}
+
+function goPage(p){S.page=p;save();render();}
+function goModule(i){S.page='module';S.mi=i;S.si=getIx('m'+i)||0;save();render();}
+
+function nextScreen(){
+  const m=MODS[S.mi];
+  S.visited['m'+S.mi+'s'+S.si]=true;
+  if(S.si<m.screens-1){
+    S.si++;
+    setIx('m'+S.mi,S.si);
+    save();render();
+  } else {
+    S.done[S.mi]=true;
+    save();
+    if(S.mi<MODS.length-1){goModule(S.mi+1);}
+    else{goPage('assess');}
+  }
+}
+function prevScreen(){
+  if(S.si>0){S.si--;setIx('m'+S.mi,S.si);save();render();}
+}
+
+function screenDots(mi,si,total){
+  return MODS[mi].screens>1?Array.from({length:total},(_,i)=>{
+    let cls='scr-dot';
+    if(i===si)cls+=' active';
+    else if(S.done[mi])cls+=' done';
+    else if(S.visited['m'+mi+'s'+i])cls+=' visited';
+    return `<div class="${cls}" onclick="jumpScreen(${i})"></div>`;
+  }).join(''):'';
+}
+function jumpScreen(i){S.si=i;setIx('m'+S.mi,i);save();render();}
+
+function modHeader(mi,si){
+  const m=MODS[mi];
+  return `<div class="mod-header">
+    <div class="mh-eyebrow">Module ${mi+1} of ${MODS.length}</div>
+    <h2>${m.title}</h2>
+    <div class="mh-sub">${m.dur} &nbsp;·&nbsp; Screen ${si+1} of ${m.screens}</div>
+  </div>
+  <div class="scr-dots">${screenDots(mi,si,m.screens)}</div>`;
+}
+
+function navBar(mi,si){
+  const m=MODS[mi];
+  const isLast=(si===m.screens-1);
+  const nextLabel=isLast?(mi<MODS.length-1?`Start Module ${mi+2} →`:'Go to Assessment →'):'Next →';
+  return `<div class="mod-nav">
+    <button class="btn-nav" onclick="prevScreen()" ${si===0?'disabled':''}>← Previous</button>
+    <span class="nav-progress">${si+1} / ${m.screens}</span>
+    <button class="btn-nav btn-next" onclick="nextScreen()">${nextLabel}</button>
+  </div>`;
+}
+
+/* ============================================================
+   MODULE SCREEN FUNCTIONS
+   ============================================================ */
+
+// MODULE 1: The DLA Digital Environment
+function m0s0(){
+  return `<div class="scr-content">
+    <p class="intro-text">As a member of the Denton-Lewisville Alumni Chapter of Kappa Alpha Psi, you interact with three distinct digital environments. Understanding which one to use — and when — is essential to chapter participation.</p>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4> Public Website</h4>
+        <p><strong>dlakappas.com</strong><br>For the public, prospective members, and community partners. No login required.</p>
+      </div>
+      <div class="exp-card">
+        <h4> Member Portal</h4>
+        <p><strong>dlakappas.com/portal</strong><br>For active DLA members only. Requires invitation and login. Access to resources, forms, and dues.</p>
+      </div>
+      <div class="exp-card">
+        <h4> Training System</h4>
+        <p><strong>curriculead.com</strong><br>For online chapter training courses. Accessed through the Member Portal training hub.</p>
+      </div>
+    </div>
+    <div class="quote-block">"The right tool for the right purpose — knowing which environment to use saves time and ensures chapter information stays appropriately secured."</div>
+  </div>`;
+}
+function m0s1(){
+  return `<div class="scr-content">
+    <div class="section-title">Quick Reference: Which Environment?</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Situation</th><th>Environment</th><th>Location</th></tr>
+        <tr><td>Community partner wants chapter info</td><td>Public Website</td><td>dlakappas.com → About</td></tr>
+        <tr><td>Parent interested in Kappa League</td><td>Public Website</td><td>dlakappas.com → Guide Right</td></tr>
+        <tr><td>Prospective member inquiring about joining</td><td>Public Website</td><td>dlakappas.com → Membership</td></tr>
+        <tr><td>Active member paying dues</td><td>Member Portal</td><td>/portal → Pay Dues</td></tr>
+        <tr><td>Downloading chapter bylaws</td><td>Member Portal</td><td>/portal → Documents</td></tr>
+        <tr><td>Completing a chapter training course</td><td>Training System</td><td>curriculead.com (via Portal)</td></tr>
+        <tr><td>Submitting a post-event report</td><td>Member Portal</td><td>/portal → Forms & Assessments</td></tr>
+        <tr><td>Viewing chapter news/announcements</td><td>Member Portal</td><td>/portal → Chapter News</td></tr>
+      </table>
+    </div>
+  </div>`;
+}
+function m0s2(){
+  return `<div class="scr-content">
+    <div class="section-title">Environment Scenarios — Which Do You Use?</div>
+    <p class="intro-text">Test your understanding. Read each scenario and identify the correct digital environment.</p>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 1</div>
+      <div class="sc-q">A high school student's parent wants to learn about the Guide Right mentorship program. Where do you send them?</div>
+      <div class="sc-a"><strong>Public Website</strong> — dlakappas.com → Guide Right. This is public-facing information and does not require a login.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 2</div>
+      <div class="sc-q">Brother Smith needs to download the official DLA chapter logo for an event flyer. Where does he find it?</div>
+      <div class="sc-a"><strong>Member Portal</strong> → Documents → Chapter Branding. Brand assets are member-only resources stored securely in the portal.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 3</div>
+      <div class="sc-q">A brother wants to complete his Parliamentary Procedure certification. Where does he go?</div>
+      <div class="sc-a"><strong>Training System</strong> — Accessed through Member Portal → Training → Curriculead Portal. Courses are hosted on curriculead.com.</div>
+    </div>
+  </div>`;
+}
+function m0s3(){
+  return `<div class="scr-content">
+    <div class="section-title">More Scenarios & Key Takeaways</div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 4</div>
+      <div class="sc-q">A local business owner wants to become a chapter vendor. Where should you direct him?</div>
+      <div class="sc-a"><strong>Public Website</strong> — dlakappas.com, then the chapter can follow up. Vendor listings are managed internally via the Member Portal.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 5</div>
+      <div class="sc-q">Brother Jones needs to submit a reimbursement for $45 he spent on chapter supplies. Where does he go?</div>
+      <div class="sc-a"><strong>Member Portal</strong> → Forms & Assessments → Member Reimbursement form.</div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <h3>Key Takeaways</h3>
+      <ul class="sl">
+        <li>Public Website = public-facing, no login, outreach &amp; information</li>
+        <li>Member Portal = members only, secure, operations &amp; resources</li>
+        <li>Training System = accessed through portal, completion tracked per-device</li>
+        <li>When in doubt: if it's sensitive chapter business → Member Portal</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+// MODULE 0 — additional screens
+function m0s4(){
+  return `<div class="scr-content">
+    <div class="section-title">History of DLA's Digital Transformation</div>
+    <p class="intro-text">The Denton-Lewisville Alumni Chapter did not always operate digitally. Understanding this history helps every member appreciate why digital participation is now an expectation — not an option.</p>
+    <div class="card">
+      <h3>From Paper to Portal</h3>
+      <p>For most of the chapter's early history, information was shared through printed newsletters, phone trees, and physical meeting packets. Dues were collected by check or cash at meetings. Documents were filed in binders. This approach worked when membership was smaller and meeting attendance was high — but it created gaps: brothers who missed meetings missed critical information.</p>
+    </div>
+    <div class="card">
+      <h3>The Shift to Digital</h3>
+      <p>As alumni chapters grew and brothers spread across larger geographic areas, digital tools became essential for maintaining engagement. Email lists gave way to centralized portals. The DLA chapter adopted its current digital infrastructure to ensure that every active member — regardless of work schedule or location — has equal access to chapter resources, forms, announcements, and training.</p>
+    </div>
+    <div class="tip-box">Digital systems do not replace brotherhood — they extend the chapter's reach so more brothers can stay connected and contribute meaningfully.</div>
+  </div>`;
+}
+function m0s5(){
+  return `<div class="scr-content">
+    <div class="section-title">Why the Chapter Moved to Digital Management</div>
+    <p class="intro-text">The decision to centralize chapter operations digitally was driven by four key needs:</p>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>Accountability</h4>
+        <p>Digital forms, dues records, and training logs create an auditable trail. Every form submission is timestamped. Every training completion is recorded.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Accessibility</h4>
+        <p>Brothers can access resources from anywhere — home, office, or traveling — without waiting for the next meeting.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Consistency</h4>
+        <p>All members receive the same information simultaneously. No more "I didn't hear about that" — announcements are posted for everyone.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Efficiency</h4>
+        <p>Form submissions, dues payments, and document access happen in minutes rather than days. Chapter officers spend less time on administration and more time on programs.</p>
+      </div>
+    </div>
+    <div class="info-box"><strong>Your Responsibility:</strong> Because the chapter relies on digital systems, each member is responsible for maintaining an active portal account, completing required training on time, and checking chapter communications regularly.</div>
+  </div>`;
+}
+function m0s6(){
+  return `<div class="scr-content">
+    <div class="section-title">All DLA Digital Touchpoints at a Glance</div>
+    <p class="intro-text">The DLA digital ecosystem has seven distinct touchpoints. Each serves a specific audience and purpose:</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Touchpoint</th><th>URL / Platform</th><th>Audience</th><th>Primary Purpose</th></tr>
+        <tr><td>Public Website</td><td>dlakappas.com</td><td>General public</td><td>Outreach, information, prospective members</td></tr>
+        <tr><td>Member Portal</td><td>dlakappas.com/portal</td><td>Active members</td><td>Operations, resources, dues, forms</td></tr>
+        <tr><td>Training System</td><td>curriculead.com</td><td>Active members</td><td>Chapter development courses</td></tr>
+        <tr><td>Guide Right Site</td><td>dlaguideright.org</td><td>Parents, youth, public</td><td>Kappa League program information</td></tr>
+        <tr><td>DLA Store</td><td>Via Member Portal</td><td>Members &amp; supporters</td><td>Chapter merchandise</td></tr>
+        <tr><td>KappaLoop</td><td>Via Member Portal → Apps</td><td>Active members</td><td>National Kappa member network</td></tr>
+        <tr><td>DLA Kappa Member App</td><td>Via Member Portal → Apps</td><td>Active members</td><td>Mobile member engagement</td></tr>
+      </table>
+    </div>
+    <div class="tip-box">When someone asks "where is that online?" — the answer depends entirely on whether they are a member or the public, and what they need. This table is your quick-reference guide.</div>
+  </div>`;
+}
+function m0s7(){
+  return `<div class="scr-content">
+    <div class="section-title">Data Security Responsibilities of Each Member</div>
+    <p class="intro-text">Access to the DLA Member Portal is a privilege extended to active members. With that access comes specific security responsibilities.</p>
+    <div class="card">
+      <h3>Your Security Checklist</h3>
+      <ul class="sl">
+        <li>Use a strong, unique password for your portal account — do not reuse passwords from other sites</li>
+        <li>Never share your portal login credentials with anyone — not even chapter officers</li>
+        <li>Log out of the portal when using a shared or public computer</li>
+        <li>Do not forward or share portal documents to non-members without chapter leadership approval</li>
+        <li>Report any suspected unauthorized access to a chapter officer immediately</li>
+        <li>Keep your contact information current in your profile so communications reach you</li>
+        <li>Do not save screenshots of member-only content and post publicly on social media</li>
+      </ul>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Security Scenario</div>
+      <div class="sc-q">A brother asks you to log into the portal for him because he forgot his password. What do you do?</div>
+      <div class="sc-a"><strong>Do not share your login.</strong> Direct him to the login page and the "Forgot Password" reset option, or advise him to contact the chapter admin to reset his access. Sharing credentials violates the chapter's acceptable use policy.</div>
+    </div>
+  </div>`;
+}
+function m0s8(){
+  return `<div class="scr-content">
+    <div class="section-title">Acceptable Use Policy &amp; Account Security Requirements</div>
+    <p class="intro-text">The DLA Member Portal operates under an acceptable use policy that all members agree to when they activate their accounts. The key provisions are:</p>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>Authorized Use Only</h4>
+        <p>The portal is for chapter business only. Use of portal access for personal commercial activity or non-chapter purposes is prohibited.</p>
+      </div>
+      <div class="exp-card">
+        <h4>No Credential Sharing</h4>
+        <p>Each member has individual credentials. Account sharing is not permitted under any circumstances.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Content Restrictions</h4>
+        <p>Member-only content (documents, minutes, bylaws) must not be shared with non-members or posted publicly without authorization.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Incident Reporting</h4>
+        <p>Any suspected security incident — wrong data in your record, unfamiliar activity, access errors — must be reported to chapter admin promptly.</p>
+      </div>
+    </div>
+    <div class="info-box"><strong>Account Security Requirement:</strong> Portal passwords must be changed from the initial invitation password when you first log in. Choose a password that is at least 8 characters and includes letters, numbers, and a special character. Enable any available two-factor authentication options.</div>
+  </div>`;
+}
+function m0s9(){
+  return `<div class="scr-content">
+    <div class="section-title">What Data Is Stored &amp; Your Digital Identity</div>
+    <p class="intro-text">The Member Portal stores information about you as a chapter member. Understanding what data is held — and what it represents — helps you maintain an accurate and professional digital identity within the chapter.</p>
+    <div class="card">
+      <h3>Data Stored in the Member Portal</h3>
+      <ul class="sl">
+        <li><strong>Profile data</strong> — Name, contact information, chapter role, member status</li>
+        <li><strong>Financial records</strong> — Dues payment history and standing</li>
+        <li><strong>Form submissions</strong> — History of forms you have submitted (events, budget requests, reimbursements)</li>
+        <li><strong>Training records</strong> — Courses completed, certificates earned, completion dates</li>
+        <li><strong>Communications</strong> — Chapter news and announcements you have access to</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Your Digital Identity in the Chapter</h3>
+      <p>Your portal profile is your official chapter record. It is how chapter leadership identifies your standing, eligibility for roles, and compliance with requirements. An incomplete or outdated profile can affect your standing and access to chapter activities. Keep your profile current — it is the digital equivalent of your membership card.</p>
+    </div>
+    <div class="tip-box">Review your portal profile at the start of each fraternal year to confirm your contact information, emergency contact, and member status are accurate.</div>
+  </div>`;
+}
+
+// MODULE 2: Navigating the Main DLA Website
+function m1s0(){
+  return `<div class="scr-content">
+    <p class="intro-text">The main DLA website at <strong>dlakappas.com</strong> is the chapter's public face. It serves community partners, prospective members, parents, and the general public. Understanding its navigation helps you direct people to the right place quickly.</p>
+    <div class="section-title">Main Navigation Sections</div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>About</h4>
+        <p>Chapter history, mission, leadership, and contact information.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Membership</h4>
+        <p>Information for PROSPECTIVE members — interest, eligibility, process. (Not for current members logging in.)</p>
+      </div>
+      <div class="exp-card">
+        <h4>Programs</h4>
+        <p>Chapter community programs and initiatives — what DLA does in the community.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Guide Right</h4>
+        <p>Links to <strong>dlaguideright.org</strong> — external site for Kappa League youth development.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Events</h4>
+        <p>Upcoming and past public chapter events and activities.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Volunteering</h4>
+        <p>Community volunteer opportunities and sign-up information.</p>
+      </div>
+    </div>
+  </div>`;
+}
+function m1s1(){
+  return `<div class="scr-content">
+    <div class="section-title">Critical Distinction: Membership vs. Portal Login</div>
+    <div class="info-box">
+      <strong> Common Confusion Point</strong><br>
+      The website has TWO different member-related pages with very different purposes:
+    </div>
+    <div class="card">
+      <h3>/membership.html — For PROSPECTIVE Members</h3>
+      <p>This page explains how someone who is NOT yet a member can learn about joining Kappa Alpha Psi and the DL Alumni Chapter. It is public-facing and requires no login.</p>
+      <ul class="sl">
+        <li>Interest information and eligibility requirements</li>
+        <li>Process overview for new members</li>
+        <li>Contact information for inquiries</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>/portal/login.html — For EXISTING Members</h3>
+      <p>This is the login page for active chapter members to access the Member Portal. It is NOT an information page — it is a secure login gateway.</p>
+      <ul class="sl">
+        <li>Requires invitation to have been sent by chapter admin</li>
+        <li>Requires account setup (create password from invitation email)</li>
+        <li>Leads to the full member portal dashboard</li>
+      </ul>
+    </div>
+  </div>`;
+}
+function m1s2(){
+  return `<div class="scr-content">
+    <div class="section-title">Website Navigation Scenarios</div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 1</div>
+      <div class="sc-q">A college-educated Black man in the community is interested in joining Kappa Alpha Psi. Where do you send him on the website?</div>
+      <div class="sc-a"><strong>dlakappas.com → Membership</strong> — This page provides prospective member information. Do NOT send him to the portal login — he doesn't have an account yet.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 2</div>
+      <div class="sc-q">A parent wants to enroll their son in the Kappa League mentorship program. Where do you direct them?</div>
+      <div class="sc-a"><strong>dlakappas.com → Guide Right</strong> — This navigates to dlaguideright.org, the dedicated Kappa League and Guide Right resource site.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 3</div>
+      <div class="sc-q">A local nonprofit wants to partner with DLA on a community initiative. Where do they find chapter information?</div>
+      <div class="sc-a"><strong>dlakappas.com → About and Programs</strong> — These sections provide chapter mission, activities, and contact information for potential partners.</div>
+    </div>
+  </div>`;
+}
+function m1s3(){
+  return `<div class="scr-content">
+    <div class="section-title">Contact &amp; Module Summary</div>
+    <div class="card">
+      <h3>Contact Section</h3>
+      <p>The Contact section of the public website provides general chapter contact information for public inquiries. For member-specific matters, members should always use the Member Portal or reach out through internal chapter channels.</p>
+    </div>
+    <div class="card">
+      <h3>Module 2 Summary</h3>
+      <ul class="sl">
+        <li><strong>About</strong> — History, mission, leadership, contact</li>
+        <li><strong>Membership</strong> — Prospective member information ONLY</li>
+        <li><strong>Programs</strong> — Chapter community programs</li>
+        <li><strong>Guide Right</strong> — External site (dlaguideright.org) for Kappa League</li>
+        <li><strong>Events</strong> — Public event calendar</li>
+        <li><strong>Volunteering</strong> — Community volunteer opportunities</li>
+        <li><strong>/portal/login.html</strong> — Existing member login (not linked from main nav)</li>
+      </ul>
+    </div>
+    <div class="tip-box">When directing someone to the website, always ask: "Are they a current member or the general public?" That single question determines whether they need the public site or the member portal.</div>
+  </div>`;
+}
+
+// MODULE 1 — additional screens
+function m1s4(){
+  return `<div class="scr-content">
+    <div class="section-title">The About Section — What's There &amp; What to Look For</div>
+    <p class="intro-text">The About section is the chapter's institutional identity page. It is the first place a community partner, journalist, or civic leader will visit to understand who DLA is.</p>
+    <div class="card">
+      <h3>What You Will Find in About</h3>
+      <ul class="sl">
+        <li><strong>Chapter History</strong> — How the Denton-Lewisville Alumni Chapter was founded and its legacy in the community</li>
+        <li><strong>Mission &amp; Vision</strong> — The chapter's stated purpose and strategic direction</li>
+        <li><strong>Leadership Directory</strong> — Current chapter officers and their roles (Polemarch, Vice Polemarch, Keeper of Records, etc.)</li>
+        <li><strong>Contact Information</strong> — General chapter email, mailing address, and social media links</li>
+        <li><strong>National Affiliation</strong> — Context for Kappa Alpha Psi Fraternity, Inc. and the South Central Province</li>
+      </ul>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Real-World Use</div>
+      <div class="sc-q">A city council staffer calls asking for the chapter's mission statement and a leadership contact for a community initiative partnership. Where do you direct them?</div>
+      <div class="sc-a"><strong>dlakappas.com → About</strong> — The mission, leadership directory, and contact information are all in the About section. This is the correct starting point for any formal outreach or partnership inquiry.</div>
+    </div>
+  </div>`;
+}
+function m1s5(){
+  return `<div class="scr-content">
+    <div class="section-title">Programs &amp; Volunteering — Community Engagement Pages</div>
+    <p class="intro-text">The Programs and Volunteering sections showcase the chapter's community impact. These pages are important for public credibility and community partnership development.</p>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>Programs Section</h4>
+        <p>Lists active chapter community programs and initiatives. Each program entry typically includes a description, target audience, and how to get involved or partner with the chapter.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Volunteering Section</h4>
+        <p>Lists upcoming volunteer opportunities open to chapter members and sometimes the broader community. Includes event dates, locations, and sign-up information.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Who Uses These Pages</h3>
+      <ul class="sl">
+        <li>Nonprofit organizations seeking chapter partnership for community programs</li>
+        <li>Schools and community centers exploring collaboration opportunities</li>
+        <li>Media contacts covering chapter community work</li>
+        <li>Prospective members researching what DLA does before committing to the process</li>
+        <li>Current members who want to share DLA's community profile with their networks</li>
+      </ul>
+    </div>
+    <div class="tip-box">Members should be familiar with what's listed on these pages — you are the chapter's ambassadors, and community members will ask you about programs at events and in casual conversation.</div>
+  </div>`;
+}
+function m1s6(){
+  return `<div class="scr-content">
+    <div class="section-title">Events Calendar Navigation</div>
+    <p class="intro-text">The Events section of the public website lists chapter events that are open to or relevant to the public. It is distinct from internal chapter meeting schedules, which are managed inside the Member Portal.</p>
+    <div class="card">
+      <h3>How to Navigate the Events Section</h3>
+      <ul class="sl">
+        <li>Events are listed in chronological order — most upcoming events appear first</li>
+        <li>Each event entry includes the event name, date, time, location, and a brief description</li>
+        <li>Some events include a registration or RSVP link for external attendees</li>
+        <li>Past events may be archived and visible for reference — look for a "Past Events" tab or filter if available</li>
+        <li>Check this page before sharing event information publicly to ensure accuracy</li>
+      </ul>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Events Navigation Scenario</div>
+      <div class="sc-q">A community supporter wants to attend the chapter's next public fundraising gala. Where do you send them to find event details and register?</div>
+      <div class="sc-a"><strong>dlakappas.com → Events</strong> — Public-facing event details and any registration links are posted in the Events section. Direct them there rather than giving informal verbal information that may be outdated.</div>
+    </div>
+    <div class="info-box"><strong>Members Note:</strong> Internal chapter meetings, committee calls, and closed events are managed in the Member Portal under Conference Calls — not on the public website.</div>
+  </div>`;
+}
+function m1s7(){
+  return `<div class="scr-content">
+    <div class="section-title">Finding Chapter Announcements &amp; Accessing Public Documents</div>
+    <p class="intro-text">The public website contains some publicly shareable chapter information. However, most chapter documents and internal announcements are housed in the Member Portal — not on the public site. Here is how to tell the difference.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Content Type</th><th>Public Website</th><th>Member Portal</th></tr>
+        <tr><td>Press releases / Public news</td><td>Yes — About or Programs</td><td>Not primary location</td></tr>
+        <tr><td>Chapter announcements (internal)</td><td>No</td><td>Yes — Chapter News</td></tr>
+        <tr><td>Chapter bylaws</td><td>No</td><td>Yes — Documents → Chapter By Laws</td></tr>
+        <tr><td>Meeting minutes</td><td>No</td><td>Yes — Documents → Chapter Minutes</td></tr>
+        <tr><td>Event flyers (public events)</td><td>Sometimes — Events page</td><td>Yes — Documents → Chapter Images</td></tr>
+        <tr><td>Branding/logo files</td><td>No</td><td>Yes — Documents → Chapter Branding</td></tr>
+      </table>
+    </div>
+    <div class="tip-box">The public website is the chapter's front door. The Member Portal is the interior — where actual operations happen. When in doubt about where something lives: if it is for members, it's in the portal.</div>
+  </div>`;
+}
+function m1s8(){
+  return `<div class="scr-content">
+    <div class="section-title">Using the Contact / Inquiry Form</div>
+    <p class="intro-text">The Contact section of dlakappas.com provides a way for the public to reach the chapter. As a member, you should know how this works so you can direct inquiries appropriately and manage public expectations.</p>
+    <div class="card">
+      <h3>How the Contact Form Works</h3>
+      <ul class="sl">
+        <li>Visitors fill out the general contact form with their name, email, and message</li>
+        <li>Submissions are routed to a designated chapter email address monitored by chapter officers</li>
+        <li>Response times may vary — inquiries are typically addressed within 3–5 business days</li>
+        <li>General inquiries go to general leadership; specific inquiries (Guide Right, volunteering) may be forwarded to the relevant committee</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Who Should Use the Contact Form</h3>
+      <ul class="sl">
+        <li>Community organizations interested in partnering with DLA</li>
+        <li>Media requests for chapter comment or interviews</li>
+        <li>Individuals seeking general information not found on the website</li>
+        <li>Prospective members who want to express interest in joining</li>
+      </ul>
+    </div>
+    <div class="info-box"><strong>Member Note:</strong> Active members should use Member Portal internal channels for chapter business — not the public contact form. The contact form is for external parties reaching out to the chapter.</div>
+  </div>`;
+}
+function m1s9(){
+  return `<div class="scr-content">
+    <div class="section-title">New Member Resources, Alumni Spotlight &amp; Website Feedback</div>
+    <p class="intro-text">The public website serves several secondary purposes that members should be aware of — welcoming new members, celebrating alumni achievement, and improving the site over time.</p>
+    <div class="card">
+      <h3>New Member Welcome Resources</h3>
+      <p>The public website may include a welcome section for newly initiated or newly affiliated members that introduces the DLA chapter before they receive portal access. This may include chapter leadership contacts, an orientation overview, and instructions for next steps to get portal access. New members often visit the public site first — ensure they are directed to complete their portal invitation promptly.</p>
+    </div>
+    <div class="card">
+      <h3>Alumni Spotlight &amp; Recognition</h3>
+      <p>The website may feature alumni spotlights that celebrate member achievements and community contributions. These features reinforce the chapter's public profile and serve as recruitment tools by showing the caliber of men in DLA. If you know a brother whose achievements should be featured, notify chapter communications leadership.</p>
+    </div>
+    <div class="card">
+      <h3>Website Feedback Process</h3>
+      <p>If you notice an error, outdated information, or a broken link on the public website, report it to chapter leadership or the communications committee via the Member Portal. Do not attempt to share corrections through the public contact form — use internal channels so the right team member can address it promptly.</p>
+    </div>
+  </div>`;
+}
+
+// MODULE 3: Navigating the Member Portal
+function m2s0(){
+  return `<div class="scr-content">
+    <p class="intro-text">The Member Portal at <strong>dlakappas.com/portal</strong> is the operational hub for DLA members. It provides secure access to chapter resources, financial tools, forms, training, and communications.</p>
+    <div class="section-title">Getting Access: The Authentication Flow</div>
+    <div class="exp-cards">
+      <div class="exp-card" style="border-top-color:var(--go)">
+        <h4>Step 1: Invitation</h4>
+        <p>Chapter admin sends an invitation email to your chapter email address. Check your inbox (and spam folder).</p>
+      </div>
+      <div class="exp-card" style="border-top-color:var(--go)">
+        <h4>Step 2: Create Password</h4>
+        <p>Click the link in the invitation email to create your secure portal password. Link expires — use it promptly.</p>
+      </div>
+      <div class="exp-card" style="border-top-color:var(--go)">
+        <h4>Step 3: Sign In</h4>
+        <p>Go to dlakappas.com/portal/login.html and enter your credentials to access the portal.</p>
+      </div>
+      <div class="exp-card" style="border-top-color:var(--go)">
+        <h4>Step 4: Dashboard</h4>
+        <p>Your portal dashboard gives access to all member resources through the left sidebar navigation.</p>
+      </div>
+    </div>
+  </div>`;
+}
+function m2s1(){
+  return `<div class="scr-content">
+    <div class="section-title">Portal Dashboard — Sidebar Navigation</div>
+    <p class="intro-text">Once logged in, the dashboard sidebar provides access to all member resources:</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Sidebar Item</th><th>Purpose</th></tr>
+        <tr><td>Welcome</td><td>Dashboard home and announcements</td></tr>
+        <tr><td>Pay Dues</td><td>Multiple payment options for chapter dues</td></tr>
+        <tr><td>Polemarch Address</td><td>Messages and video from chapter Polemarch</td></tr>
+        <tr><td>Apps</td><td>Links to DLA Kappa Member App and KappaLoop</td></tr>
+        <tr><td>Training</td><td>Access to Curriculead, My DLA Training, My Training Records</td></tr>
+        <tr><td>Guidelines &amp; Manuals</td><td>Chapter operational guidelines and reference materials</td></tr>
+        <tr><td>Chapter News</td><td>Internal chapter announcements and updates</td></tr>
+        <tr><td>Documents</td><td>12 organized document folders (branding, bylaws, minutes, etc.)</td></tr>
+        <tr><td>Forms &amp; Assessments</td><td>10 chapter forms for various operational needs</td></tr>
+        <tr><td>Conference Calls</td><td>Meeting links and call-in information</td></tr>
+        <tr><td>DLA Store</td><td>Chapter merchandise and branded items</td></tr>
+        <tr><td>Vendors</td><td>Chapter-approved vendor directory</td></tr>
+        <tr><td>My Account</td><td>Personal profile and account settings</td></tr>
+      </table>
+    </div>
+  </div>`;
+}
+function m2s2(){
+  return `<div class="scr-content">
+    <div class="section-title">Pay Dues — Payment Options</div>
+    <p class="intro-text">The portal offers six ways to pay chapter dues:</p>
+    <div class="exp-cards">
+      <div class="exp-card"><h4>Cash App</h4><p>$DLAKappas</p></div>
+      <div class="exp-card"><h4>Venmo</h4><p>@DLAKappas</p></div>
+      <div class="exp-card"><h4>PayPal</h4><p>Via PayPal.me link in portal</p></div>
+      <div class="exp-card"><h4>Stripe</h4><p>Credit/debit card via portal</p></div>
+      <div class="exp-card"><h4>Zelle</h4><p>dlakappa1911@gmail.com</p></div>
+      <div class="exp-card"><h4>Check</h4><p>Payable to: Denton-Lewisville (TX) Alumni Chapter<br>1501 S. Loop 288, Suite 104, PMB 190, Denton, TX 76205</p></div>
+    </div>
+    <div class="section-title">Documents — 12 Folders</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th colspan="2">Chapter Document Folders</th></tr>
+        <tr><td>Chapter Branding</td><td>Chapter By Laws</td></tr>
+        <tr><td>Chapter Committees</td><td>Chapter Documents</td></tr>
+        <tr><td>Chapter Forms</td><td>Chapter Images</td></tr>
+        <tr><td>Chapter Meetings</td><td>Chapter Minutes</td></tr>
+        <tr><td>Chapter Presentations</td><td>Chapter Training</td></tr>
+        <tr><td>Chapter Vendor Listing</td><td>Chapter Videos</td></tr>
+      </table>
+    </div>
+  </div>`;
+}
+function m2s3(){
+  return `<div class="scr-content">
+    <div class="section-title">Forms &amp; Assessments — 10 Chapter Forms</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>#</th><th>Form Name</th><th>When to Use</th></tr>
+        <tr><td>1</td><td>Committee Sign-Up</td><td>Join a chapter committee</td></tr>
+        <tr><td>2</td><td>Post Event Summary</td><td>Within 24 hours AFTER an event</td></tr>
+        <tr><td>3</td><td>Event Information Form</td><td>BEFORE any chapter event (required for approval)</td></tr>
+        <tr><td>4</td><td>Reclamation Form</td><td>For brothers returning to active status</td></tr>
+        <tr><td>5</td><td>New Candidate Form</td><td>For new candidate processing</td></tr>
+        <tr><td>6</td><td>Committee Budget Request</td><td>Committee requests funds for activities</td></tr>
+        <tr><td>7</td><td>Payment Request</td><td>Pay a vendor/third party for chapter</td></tr>
+        <tr><td>8</td><td>Member Reimbursement</td><td>Reimburse member for out-of-pocket expenses</td></tr>
+        <tr><td>9</td><td>Bylaws Amendment Proposal</td><td>Formally propose a change to chapter bylaws</td></tr>
+        <tr><td>10</td><td>DLGRF Volunteer Registration</td><td>Register as a DLA Guide Right Foundation volunteer</td></tr>
+      </table>
+    </div>
+    <div class="tip-box">Event Workflow: Submit Event Information Form BEFORE the event → Submit Post Event Summary WITHIN 24 HOURS after the event.</div>
+  </div>`;
+}
+function m2s4(){
+  return `<div class="scr-content">
+    <div class="section-title">Financial Forms: Which One to Use?</div>
+    <div class="scenario-block">
+      <div class="sc-num">Committee Needs Funds</div>
+      <div class="sc-q">A committee is planning an activity and needs chapter funding approved in advance.</div>
+      <div class="sc-a"><strong>Committee Budget Request</strong> — Use when planning ahead and requesting funds before spending.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Paying a Vendor</div>
+      <div class="sc-q">The chapter needs to pay a DJ $300 for a chapter event. The payment goes directly to the vendor.</div>
+      <div class="sc-a"><strong>Payment Request</strong> — Use when the chapter is paying an external party directly for services/goods.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Member Out-of-Pocket</div>
+      <div class="sc-q">Brother Davis spent $85 of his own money on supplies for a chapter event and needs to be paid back.</div>
+      <div class="sc-a"><strong>Member Reimbursement</strong> — Use when a member paid personally and needs to be reimbursed by the chapter.</div>
+    </div>
+    <div class="card">
+      <h3>Portal Access Roles</h3>
+      <p>Special role-based access areas in the portal:</p>
+      <ul class="sl">
+        <li><strong>Admin</strong> — Full portal administration access</li>
+        <li><strong>Blog Admin</strong> — Can post and manage Chapter News</li>
+        <li><strong>Training Report</strong> — Access to member training completion data</li>
+        <li><strong>Volunteer Admin Dashboard</strong> — Manage volunteer registrations</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+// MODULE 2 — additional screens
+function m2s5(){
+  return `<div class="scr-content">
+    <div class="section-title">First Login Setup — Step-by-Step</div>
+    <p class="intro-text">Your first login to the Member Portal requires completing a setup sequence. Follow these steps exactly to avoid access problems.</p>
+    <div class="card">
+      <h3>First Login Walkthrough</h3>
+      <ul class="sl">
+        <li><strong>Step 1 — Check your email.</strong> Look for an invitation email from the chapter admin. Check your spam/junk folder if you don't see it in your inbox within 24 hours of joining.</li>
+        <li><strong>Step 2 — Click the invitation link.</strong> The link in the email is time-sensitive — it expires after a set period. Click it as soon as possible after receiving it.</li>
+        <li><strong>Step 3 — Create your password.</strong> You will be prompted to set a new password. Choose something strong (8+ characters, mixed case, number, symbol). Do not use your fraternity membership number or birth year as your password.</li>
+        <li><strong>Step 4 — Complete your profile.</strong> After creating your password, you will be taken to complete your member profile before accessing the full portal.</li>
+        <li><strong>Step 5 — Bookmark the login page.</strong> Save dlakappas.com/portal/login.html in your browser for easy future access.</li>
+      </ul>
+    </div>
+    <div class="info-box"><strong>Invitation Link Expired?</strong> Contact the chapter admin (not through the contact form — through a direct chapter channel) and request a new invitation. Do not create a new account — only one account per member is permitted.</div>
+  </div>`;
+}
+function m2s6(){
+  return `<div class="scr-content">
+    <div class="section-title">Profile Completeness Requirements</div>
+    <p class="intro-text">Your member profile in the portal is your official chapter record. Chapter leadership uses profile data for communications, event planning, dues tracking, and compliance reporting. An incomplete profile creates gaps in chapter records.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Profile Field</th><th>Why It Matters</th></tr>
+        <tr><td>Full Legal Name</td><td>Used on certificates and official chapter records</td></tr>
+        <tr><td>Chapter Email Address</td><td>Primary communication channel — must be current</td></tr>
+        <tr><td>Personal Email Address</td><td>Backup contact if chapter email fails</td></tr>
+        <tr><td>Phone Number</td><td>Used for urgent communications and two-factor authentication</td></tr>
+        <tr><td>Home City / State</td><td>Helps chapter plan geographic outreach and events</td></tr>
+        <tr><td>Employer / Profession</td><td>Supports chapter directory and networking initiatives</td></tr>
+        <tr><td>Graduation Year / Chapter of Initiation</td><td>Required for official membership records</td></tr>
+        <tr><td>Committee Memberships</td><td>Ensures you receive committee-specific communications</td></tr>
+      </table>
+    </div>
+    <div class="tip-box">Review your profile at least once per fraternal year — at the fall meeting season kickoff — to ensure all contact information is current. Outdated information means you may miss critical chapter communications.</div>
+  </div>`;
+}
+function m2s7(){
+  return `<div class="scr-content">
+    <div class="section-title">Dashboard Widgets &amp; Financial Account Summary</div>
+    <p class="intro-text">Your portal dashboard displays widgets that summarize your chapter status at a glance. Understanding what each indicator means helps you manage your chapter standing proactively.</p>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>Dues Status</h4>
+        <p>Shows whether your current-year dues are paid, partially paid, or outstanding. A red or warning indicator means action is required before the deadline.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Training Completion</h4>
+        <p>Shows how many required training courses you have completed vs. the total required. Aim for 100% on Required-badged courses.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Forms Submitted</h4>
+        <p>A counter showing recent form activity — helps you confirm that submissions went through successfully.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Announcements</h4>
+        <p>Unread chapter news and announcements. Clear these regularly so you do not miss time-sensitive chapter information.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Reading Your Financial Account Summary</h3>
+      <p>The financial summary shows your dues history by year. A green checkmark or "Paid" status indicates you are current. An outstanding balance will show the amount owed and the payment deadline. If you believe there is an error in your financial record, contact the chapter Keeper of Exchequer — do not assume it will self-correct.</p>
+    </div>
+  </div>`;
+}
+function m2s8(){
+  return `<div class="scr-content">
+    <div class="section-title">Event Registration &amp; Dues Payment Walkthrough</div>
+    <p class="intro-text">Two of the most common portal actions are registering for chapter events and paying dues. Here is a step-by-step guide for each.</p>
+    <div class="card">
+      <h3>Event Registration — Step by Step</h3>
+      <ul class="sl">
+        <li><strong>1.</strong> Log in to the portal at dlakappas.com/portal/login.html</li>
+        <li><strong>2.</strong> Navigate to the event listing (via Chapter News or an announcement link)</li>
+        <li><strong>3.</strong> Click the event registration button or link</li>
+        <li><strong>4.</strong> Complete the registration form — confirm your name, contact, and any event-specific fields (meal preference, carpool, etc.)</li>
+        <li><strong>5.</strong> Submit the form — you will see a confirmation message on screen</li>
+        <li><strong>6.</strong> Check your email for a confirmation receipt — save it</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Paying Dues — Step by Step</h3>
+      <ul class="sl">
+        <li><strong>1.</strong> Navigate to Member Portal → Pay Dues</li>
+        <li><strong>2.</strong> Review your current balance and the dues deadline</li>
+        <li><strong>3.</strong> Select your preferred payment method: Cash App ($DLAKappas), Venmo (@DLAKappas), PayPal, Stripe (card), Zelle (dlakappa1911@gmail.com), or Check</li>
+        <li><strong>4.</strong> Complete the payment using your chosen method</li>
+        <li><strong>5.</strong> If paying by digital app: include your full name and "Dues [Year]" in the memo field</li>
+        <li><strong>6.</strong> Screenshot or save your payment confirmation for your records</li>
+        <li><strong>7.</strong> Confirm your dues status updates in the portal within 2–3 business days</li>
+      </ul>
+    </div>
+  </div>`;
+}
+function m2s9(){
+  return `<div class="scr-content">
+    <div class="section-title">Document Library, Form Confirmation &amp; Notification Preferences</div>
+    <p class="intro-text">Three final portal features every member must understand: searching the document library effectively, confirming form submissions, and managing notification preferences.</p>
+    <div class="card">
+      <h3>Document Library — Search &amp; Organization</h3>
+      <p>The Documents section contains 12 organized folders. To find a document quickly:</p>
+      <ul class="sl">
+        <li>Browse by folder — each folder name tells you the category (Branding, By Laws, Minutes, etc.)</li>
+        <li>If a document is not where you expect it, check the "Chapter Documents" folder — it serves as a general catch-all</li>
+        <li>Documents are typically named descriptively — look for the year in the file name for dated documents like minutes and budgets</li>
+        <li>If a document you need is missing, report it to the chapter admin — do not assume it does not exist</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Form Submission Confirmation</h3>
+      <p>After submitting any form in the Member Portal, you should see a confirmation message on screen. Additionally, check your email for a confirmation receipt. If you do not receive confirmation within 24 hours, resubmit the form or contact the relevant chapter officer directly. Do not submit duplicate forms without checking first.</p>
+    </div>
+    <div class="card">
+      <h3>Notification Preferences Setup</h3>
+      <p>In My Account → Settings, you can configure how the portal notifies you: email notifications for new announcements, form submission confirmations, dues reminders, and training deadlines. Ensure email notifications are enabled so you do not miss time-sensitive chapter communications.</p>
+    </div>
+  </div>`;
+}
+
+// MODULE 4: Using the DLA Training System
+function m3s0(){
+  return `<div class="scr-content">
+    <p class="intro-text">The DLA Training System uses <strong>Curriculead</strong> as its learning platform. It is accessed through the Member Portal's training hub and provides structured courses for chapter development.</p>
+    <div class="section-title">Accessing Training — Three Pathways</div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>Curriculead Portal</h4>
+        <p>Direct link to curriculead.com — the learning management platform where courses are hosted and completed.</p>
+      </div>
+      <div class="exp-card">
+        <h4>My DLA Training</h4>
+        <p>/portal/training-hub.html — The DLA training hub with all available chapter courses, filters, and progress overview.</p>
+      </div>
+      <div class="exp-card">
+        <h4>My Training Records</h4>
+        <p>/portal/my-training.html — Your personal training history, completions, and certificates.</p>
+      </div>
+    </div>
+    <div class="section-title">Training Hub Sections</div>
+    <ul class="sl">
+      <li><strong>My Training</strong> — Your personal course progress and history</li>
+      <li><strong>Chapter Training</strong> — All available chapter courses</li>
+      <li><strong>Continuous Fraternal Learning</strong> — Ongoing development courses</li>
+      <li><strong>Kappa League Development</strong> — Youth program training resources</li>
+    </ul>
+  </div>`;
+}
+function m3s1(){
+  return `<div class="scr-content">
+    <div class="section-title">Course Dashboard Stats &amp; Filters</div>
+    <div class="exp-cards">
+      <div class="exp-card" style="border-top-color:var(--cr)">
+        <h4>Available</h4>
+        <p>Courses you have not started yet — ready to begin.</p>
+      </div>
+      <div class="exp-card" style="border-top-color:var(--go)">
+        <h4>In Progress</h4>
+        <p>Courses you have started but not completed. Shows "Continue" button.</p>
+      </div>
+      <div class="exp-card" style="border-top-color:#1a7a40">
+        <h4>Completed</h4>
+        <p>Courses you have finished. Certificate available if course includes one.</p>
+      </div>
+    </div>
+    <div class="section-title">Course Filter Options</div>
+    <ul class="sl">
+      <li><strong>All Courses</strong> — View complete course catalog</li>
+      <li><strong>In Progress</strong> — Show only courses you've started</li>
+      <li><strong>Completed</strong> — Show only finished courses</li>
+      <li><strong>Required</strong> — Show only chapter-priority required courses</li>
+    </ul>
+    <div class="section-title">Course Card Anatomy</div>
+    <div class="info-box">
+      Each course card shows: <strong>Badge</strong> (Required/Foundation/New/Coming Soon/Draft) · <strong>Category</strong> · <strong>Title</strong> · <strong>Module count</strong> · <strong>Duration</strong> · <strong>Certificate indicator</strong> · <strong>Action button</strong> (Start / Continue / Review)
+    </div>
+  </div>`;
+}
+function m3s2(){
+  return `<div class="scr-content">
+    <div class="section-title">Course Badge Types</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Badge</th><th>Meaning</th><th>Action Available?</th></tr>
+        <tr><td><span class="badge badge-req">Required</span></td><td>Chapter-designated priority — all members should complete</td><td>Yes — Start/Continue</td></tr>
+        <tr><td><span class="badge badge-found">Foundation</span></td><td>Core chapter knowledge course</td><td>Yes — Start/Continue</td></tr>
+        <tr><td><span class="badge badge-new">New</span></td><td>Recently added to the catalog</td><td>Yes — Start/Continue</td></tr>
+        <tr><td><span class="badge badge-soon">Coming Soon</span></td><td>Planned course, not yet available</td><td>No — cannot launch</td></tr>
+        <tr><td><span class="badge badge-draft">Draft/Pending</span></td><td>Content exists, not finalized — preview only, no credit</td><td>Preview only</td></tr>
+      </table>
+    </div>
+    <div class="section-title">Available Course Catalog</div>
+    <div class="course-cards">
+      <div class="course-card"><span class="badge badge-req">Required</span><h4>Parliamentary Procedure</h4><div class="cc-meta"><span>6 modules</span><span>~45 min</span><span> Cert</span></div></div>
+      <div class="course-card"><span class="badge badge-found">Foundation</span><h4>501(c)(3)/(c)(7) Compliance</h4><div class="cc-meta"><span>12 modules</span><span>~60 min</span></div></div>
+      <div class="course-card"><span class="badge badge-req">Required</span><h4>Membership Education &amp; Standards</h4><div class="cc-meta"><span>8 modules</span><span>~50 min</span></div></div>
+      <div class="course-card"><span class="badge badge-new">New</span><h4>Guide Right &amp; KL Mentor Training</h4><div class="cc-meta"><span>5 modules</span><span>~40 min</span></div></div>
+      <div class="course-card"><span class="badge badge-found">Foundation</span><h4>Understanding Constitutions &amp; Statutes</h4><div class="cc-meta"><span>9 modules</span><span>~148 min</span></div></div>
+      <div class="course-card"><span class="badge badge-new">New</span><h4>Chapter Property Accountability</h4><div class="cc-meta"><span>4 modules</span><span>~30 min</span><span> Cert</span></div></div>
+    </div>
+  </div>`;
+}
+function m3s3(){
+  return `<div class="scr-content">
+    <div class="section-title">Coming Soon &amp; Draft Courses</div>
+    <div class="card">
+      <h3>Coming Soon</h3>
+      <ul class="sl">
+        <li><span class="badge badge-soon">Coming Soon</span> <strong>Chapter Financial Literacy</strong> — Planned course on chapter financial management</li>
+        <li><span class="badge badge-soon">Coming Soon</span> <strong>Understanding Committees</strong> — Overview of chapter committee structure and function</li>
+      </ul>
+      <p style="margin-top:12px;font-size:.85rem;color:#666;">These courses cannot be started — they are not yet available. Watch for announcements when they launch.</p>
+    </div>
+    <div class="card">
+      <h3>Draft / Pending Approval</h3>
+      <ul class="sl">
+        <li><span class="badge badge-draft">Draft</span> <strong>Bylaw Amendment SOP</strong> — 7 modules, ~20 min — content exists but not finalized</li>
+      </ul>
+      <p style="margin-top:12px;font-size:.85rem;color:#666;">Draft courses may be visible for preview but cannot be completed for credit until they are approved and published.</p>
+    </div>
+    <div class="section-title">Important: Progress Is Device-Local</div>
+    <div class="info-box">
+      <strong> localStorage Tracking</strong><br>
+      Training progress is stored in your browser's localStorage — it is specific to the device and browser you are using. If you switch devices or browsers, your progress will not carry over. Always use the same device to continue a course.
+    </div>
+  </div>`;
+}
+
+// MODULE 3 — additional screens
+function m3s4(){
+  return `<div class="scr-content">
+    <div class="section-title">Why Training Completion Is Mandatory</div>
+    <p class="intro-text">Some brothers view chapter training as optional enrichment. It is not. Here is why training completion is a chapter requirement — not a suggestion.</p>
+    <div class="card">
+      <h3>Three Reasons Training Is Required</h3>
+      <ul class="sl">
+        <li><strong>Fraternal Standards Compliance.</strong> Kappa Alpha Psi Fraternity, Inc. expects chapters to ensure members are educated on fraternal policies, parliamentary procedure, and membership standards. Training is how DLA fulfills this expectation.</li>
+        <li><strong>Chapter Standing.</strong> Required training completion is tied to your active member standing. Members who are non-compliant with required training may be flagged in chapter records and may lose eligibility for leadership roles or chapter voting privileges.</li>
+        <li><strong>Risk Management.</strong> Trained members make better decisions — in events, in finances, in representing the chapter publicly. Training directly reduces the chapter's exposure to reputational and legal risk.</li>
+      </ul>
+    </div>
+    <div class="quote-block">"We train because we are serious about the quality of our brotherhood and the chapter we represent. A brother who refuses training is a brother who is not serious about standards." — Chapter Training Administrator</div>
+    <div class="info-box"><strong>Bottom Line:</strong> If a course carries the <span class="badge badge-req">Required</span> badge, it must be completed. No exceptions, no extensions without prior approval from chapter leadership.</div>
+  </div>`;
+}
+function m3s5(){
+  return `<div class="scr-content">
+    <div class="section-title">How Training Connects to Chapter Standing</div>
+    <p class="intro-text">Your training record is part of your overall chapter compliance profile. Chapter leadership reviews training completion when evaluating member standing at the start of each fraternal year and during officer elections.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Training Status</th><th>Impact on Chapter Standing</th></tr>
+        <tr><td>All Required courses complete</td><td>Full standing — eligible for all chapter activities and leadership roles</td></tr>
+        <tr><td>Required courses in progress</td><td>Standing under review — complete by deadline to maintain full standing</td></tr>
+        <tr><td>Required courses overdue (no extension)</td><td>Flagged status — may lose voting privileges or leadership eligibility</td></tr>
+        <tr><td>No training started</td><td>Non-compliant status — chapter leadership intervention required</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Leadership Eligibility</h3>
+      <p>Brothers seeking to serve as chapter officers or committee chairs must demonstrate a complete training record. If you are planning to pursue a leadership role at the next election, verify your training status well in advance — a missing required course can disqualify an otherwise qualified candidate.</p>
+    </div>
+    <div class="tip-box">Complete required training early in the fraternal year. Do not wait for a deadline reminder — by then, slots may be limited and technical issues have less time to be resolved.</div>
+  </div>`;
+}
+function m3s6(){
+  return `<div class="scr-content">
+    <div class="section-title">Training Record Accuracy — Checking Yours &amp; Requesting Corrections</div>
+    <p class="intro-text">Your official training record lives in the Member Portal under Training → My Training Records. This record is what chapter leadership sees when reviewing compliance — it must be accurate.</p>
+    <div class="card">
+      <h3>How to Check Your Training Record</h3>
+      <ul class="sl">
+        <li>Log in to Member Portal → Training → My Training Records (/portal/my-training.html)</li>
+        <li>Review the list of completed courses — confirm each has a completion date and certificate if applicable</li>
+        <li>Compare completed courses against the current Required course list from My DLA Training</li>
+        <li>Note any discrepancies — courses you completed that do not appear, or incorrect completion dates</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>How to Request a Correction</h3>
+      <ul class="sl">
+        <li><strong>Step 1:</strong> Gather your proof of completion — screenshot of the completion screen, certificate PDF, or confirmation email from Curriculead</li>
+        <li><strong>Step 2:</strong> Contact the chapter Training Administrator or chapter admin directly (not through the public contact form)</li>
+        <li><strong>Step 3:</strong> Provide your name, the course name, the completion date, and your proof of completion</li>
+        <li><strong>Step 4:</strong> Allow 5–7 business days for the record to be updated</li>
+        <li><strong>Step 5:</strong> Confirm the correction appears in your record after the update window</li>
+      </ul>
+    </div>
+  </div>`;
+}
+function m3s7(){
+  return `<div class="scr-content">
+    <div class="section-title">How Certificates Are Used</div>
+    <p class="intro-text">Some DLA training courses issue a completion certificate. These certificates have specific purposes within the chapter and — in some cases — within the broader fraternal organization.</p>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <h4>Proof of Completion</h4>
+        <p>Certificates are your primary documentation that you finished a course. If your training record ever needs to be verified manually, a certificate is the most reliable evidence.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Leadership Eligibility</h4>
+        <p>Certain leadership roles (officer positions, committee chairs, Kappa League mentor) may require specific certificates as a prerequisite. Check the role's requirements before election season.</p>
+      </div>
+      <div class="exp-card">
+        <h4>National/Provincial Reporting</h4>
+        <p>The chapter may be required to report training completion to the South Central Province or national headquarters. Certificates support accurate reporting.</p>
+      </div>
+      <div class="exp-card">
+        <h4>Personal Record</h4>
+        <p>Save your certificates in a personal folder. Chapter records can be audited — having your own copy protects you if there is ever a discrepancy.</p>
+      </div>
+    </div>
+    <div class="info-box"><strong>Courses with Certificates:</strong> Parliamentary Procedure and Chapter Property Accountability are currently confirmed to include completion certificates. Check each course card for the certificate indicator before starting.</div>
+  </div>`;
+}
+function m3s8(){
+  return `<div class="scr-content">
+    <div class="section-title">Training Deadlines &amp; Grace Periods</div>
+    <p class="intro-text">Chapter training is not open-ended. Required courses have deadlines tied to the fraternal year calendar. Understanding how deadlines and grace periods work prevents last-minute scrambling.</p>
+    <div class="card">
+      <h3>How Deadlines Are Set</h3>
+      <ul class="sl">
+        <li>Required training deadlines are announced at the start of each fraternal year by the Training Administrator</li>
+        <li>Deadlines are typically aligned with chapter compliance review dates — often before fall chapter elections or annual reports</li>
+        <li>Deadlines are posted in Chapter News (Member Portal) and communicated via chapter email</li>
+        <li>New required courses added mid-year will have their own stated deadline — watch Chapter News for announcements</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Grace Periods — What to Know</h3>
+      <ul class="sl">
+        <li>Some training deadlines include a grace period — a short extension window after the official deadline</li>
+        <li>Grace periods are not guaranteed — they are granted at chapter leadership's discretion</li>
+        <li>To request a grace period extension, contact the Training Administrator before the deadline — not after</li>
+        <li>Valid reasons for extension include documented illness, significant family emergency, or international travel without internet access</li>
+        <li>Work schedule conflicts alone are generally not sufficient grounds for an extension — plan ahead</li>
+      </ul>
+    </div>
+  </div>`;
+}
+function m3s9(){
+  return `<div class="scr-content">
+    <div class="section-title">Overdue Training, Mobile Access &amp; Technical Issues</div>
+    <p class="intro-text">What happens when training is overdue? And how do you access training on mobile or resolve technical problems? This screen covers the practical answers.</p>
+    <div class="card">
+      <h3>What Happens If Training Is Overdue</h3>
+      <ul class="sl">
+        <li>Your training record is flagged in chapter records as non-compliant</li>
+        <li>You may receive a direct outreach from the Training Administrator</li>
+        <li>Depending on chapter policy, voting privileges or leadership eligibility may be suspended until compliance is restored</li>
+        <li>The course remains available — complete it as soon as possible and notify the Training Administrator when done</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Accessing Training on Mobile</h3>
+      <ul class="sl">
+        <li>Curriculead is accessible from mobile browsers — go to curriculead.com and log in</li>
+        <li>For best experience, use Chrome (Android) or Safari (iOS) on mobile</li>
+        <li>Some courses with interactive elements perform better on a desktop or laptop browser</li>
+        <li>If a course freezes on mobile, switch to desktop and resume — progress may be saved</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Browser Compatibility &amp; Clearing Cache</h3>
+      <ul class="sl">
+        <li>Recommended browsers: Google Chrome (latest), Mozilla Firefox (latest), Microsoft Edge (latest)</li>
+        <li>If a course will not load or freezes, clear your browser cache: Chrome → Settings → Privacy → Clear browsing data → Cached images and files → Clear data</li>
+        <li>Disable browser extensions (ad blockers, VPNs) if the training system does not respond</li>
+        <li>If issues persist after cache clearing, report to the Training Administrator with your browser version and the specific error message</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+// MODULE 5: Digital Resource Challenge
+function m4s0(){
+  return `<div class="scr-content">
+    <p class="intro-text">You have covered all five DLA digital environments and their features. Now it is time to put your knowledge to work. Review these 15 scenarios — each tests your ability to identify the correct resource, location, or action.</p>
+    <div class="section-title">Scenarios 1–5</div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 1</div>
+      <div class="sc-q">A community partner calls asking about the chapter's community programs. Where do you direct them?</div>
+      <div class="sc-a"><strong>Public Website → About / Programs</strong> — Community partners should use the public website for chapter information.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 2</div>
+      <div class="sc-q">A parent wants to enroll their son in Kappa League. Where do you send them?</div>
+      <div class="sc-a"><strong>Public Website → Guide Right</strong> — Navigates to dlaguideright.org, the dedicated Kappa League resource site.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 3</div>
+      <div class="sc-q">A brother needs to review the chapter bylaws before the next meeting. Where does he find them?</div>
+      <div class="sc-a"><strong>Member Portal → Documents → Chapter By Laws</strong></div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 4</div>
+      <div class="sc-q">The marketing committee needs the official DLA logo for an event flyer. Where do they find it?</div>
+      <div class="sc-a"><strong>Member Portal → Documents → Chapter Branding</strong></div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 5</div>
+      <div class="sc-q">A committee is planning a scholarship dinner and needs to request chapter funds. What form do they use?</div>
+      <div class="sc-a"><strong>Committee Budget Request</strong> — Member Portal → Forms & Assessments</div>
+    </div>
+  </div>`;
+}
+function m4s1(){
+  return `<div class="scr-content">
+    <div class="section-title">Scenarios 6–10</div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 6</div>
+      <div class="sc-q">The chapter needs to pay a caterer $500 directly for an upcoming event. What form is required?</div>
+      <div class="sc-a"><strong>Payment Request</strong> — Used to pay vendors/third parties directly on behalf of the chapter.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 7</div>
+      <div class="sc-q">Brother Williams paid $60 out-of-pocket for printing costs for a chapter meeting. How does he get reimbursed?</div>
+      <div class="sc-a"><strong>Member Reimbursement form</strong> — Member Portal → Forms & Assessments</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 8</div>
+      <div class="sc-q">The chapter wants to hold a networking event next month. What must be submitted first?</div>
+      <div class="sc-a"><strong>Event Information Form</strong> — Must be submitted BEFORE any chapter event for approval.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 9</div>
+      <div class="sc-q">The chapter just completed a community service day. What must be submitted within 24 hours?</div>
+      <div class="sc-a"><strong>Post Event Summary</strong> — Required within 24 hours of event completion.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 10</div>
+      <div class="sc-q">A brother wants to formally propose a change to the chapter's bylaws. What process does he follow?</div>
+      <div class="sc-a"><strong>Bylaws Amendment Proposal form</strong> — Member Portal → Forms & Assessments</div>
+    </div>
+  </div>`;
+}
+function m4s2(){
+  return `<div class="scr-content">
+    <div class="section-title">Scenarios 11–15</div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 11</div>
+      <div class="sc-q">A brother wants to improve his knowledge of parliamentary procedure for chapter meetings. What training course should he take?</div>
+      <div class="sc-a"><strong>Parliamentary Procedure course</strong> — Available in Training → My DLA Training. Required badge, 6 modules, ~45 min, includes certificate.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 12</div>
+      <div class="sc-q">A brother wants to become a Kappa League mentor. What training prepares him for that role?</div>
+      <div class="sc-a"><strong>Guide Right &amp; KL Mentor Training</strong> — Training hub, New badge, 5 modules, ~40 min.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 13</div>
+      <div class="sc-q">A brother sees the "Draft/Pending Approval" badge on a course. What should he understand about that course?</div>
+      <div class="sc-a">Content exists but is NOT finalized — <strong>preview only, no credit awarded</strong>. The course has not completed final review.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 14</div>
+      <div class="sc-q">A brother wants to focus on only the courses the chapter has designated as priorities. What filter does he use?</div>
+      <div class="sc-a"><strong>Required filter</strong> — In My DLA Training, select the "Required" filter to see only chapter-designated priority courses.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario 15</div>
+      <div class="sc-q">A brother sees a "Continue" button on a training course. What does this indicate?</div>
+      <div class="sc-a">The system has <strong>partial localStorage progress recorded on this device</strong> — he started the course on this device/browser previously. Progress is device-local and will not appear on other devices.</div>
+    </div>
+  </div>`;
+}
+
+// MODULE 4 — additional screens
+function m4s3(){
+  return `<div class="scr-content">
+    <div class="section-title">Advanced Scenarios — Portal Access Troubleshooting</div>
+    <p class="intro-text">Real-world portal access issues require systematic troubleshooting. Here are the most common problems and how to resolve them.</p>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario A — Page Not Loading</div>
+      <div class="sc-q">You open the portal login page and it shows a blank screen or an error. What are your steps?</div>
+      <div class="sc-a"><strong>Step 1:</strong> Hard-refresh the page (Ctrl+Shift+R on Windows, Cmd+Shift+R on Mac). <strong>Step 2:</strong> Clear browser cache (Settings → Clear cached data). <strong>Step 3:</strong> Try a different browser. <strong>Step 4:</strong> Check if dlakappas.com itself loads — if the main site is down, report to chapter admin. <strong>Step 5:</strong> Try again in 30 minutes — brief outages do occur.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario B — Wrong Password</div>
+      <div class="sc-q">You enter your password and receive a "credentials incorrect" message. What do you do?</div>
+      <div class="sc-a">First, verify you are on the correct login page (dlakappas.com/portal/login.html — not a different site). Check that Caps Lock is off. Try typing the password in a text field first to verify it, then copy-paste. If still failing after two attempts, use the "Forgot Password" link rather than continuing to guess — multiple failed attempts may lock the account.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Scenario C — Correct Password, No Access</div>
+      <div class="sc-q">Your credentials are accepted but you cannot access specific portal sections. What does this mean?</div>
+      <div class="sc-a">This is typically a permissions issue — your account may not have access to that section, or your member status may need to be updated. Contact the chapter admin with the specific section you are trying to access and the error message you see.</div>
+    </div>
+  </div>`;
+}
+function m4s4(){
+  return `<div class="scr-content">
+    <div class="section-title">What to Do If Your Account Is Locked — Escalation Path</div>
+    <p class="intro-text">Account lockouts occur after multiple failed login attempts. This is a security feature — but it requires a specific resolution process. Here is the correct path.</p>
+    <div class="card">
+      <h3>Account Lockout Resolution Steps</h3>
+      <ul class="sl">
+        <li><strong>Step 1 — Do not panic.</strong> Lockouts are common and fully reversible. Do not create a new account.</li>
+        <li><strong>Step 2 — Wait 15–30 minutes.</strong> Some lockouts are timed and will release automatically. Try logging in again after waiting.</li>
+        <li><strong>Step 3 — Use the password reset option.</strong> On the login page, click "Forgot Password" to receive a reset link at your chapter email address.</li>
+        <li><strong>Step 4 — Check your email (including spam).</strong> The reset email may arrive in your junk folder. Use the link to set a new password.</li>
+        <li><strong>Step 5 — Contact chapter admin if reset email does not arrive.</strong> Provide your full name and the email address associated with your account. The admin can manually reset access.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Escalation Path for Unresolved Portal Issues</h3>
+      <ul class="sl">
+        <li><strong>Level 1:</strong> Self-service — password reset, cache clear, browser change</li>
+        <li><strong>Level 2:</strong> Chapter Admin — account reset, permission corrections, data errors</li>
+        <li><strong>Level 3:</strong> Polemarch or VP — if admin cannot resolve or issue affects multiple members</li>
+      </ul>
+    </div>
+    <div class="info-box"><strong>Never:</strong> Contact the portal developer directly or attempt to bypass the login with browser developer tools. All access issues go through chapter admin first.</div>
+  </div>`;
+}
+function m4s5(){
+  return `<div class="scr-content">
+    <div class="section-title">Reporting Incorrect Data in Your Record</div>
+    <p class="intro-text">Data integrity matters. If information in your portal record is wrong — your name is misspelled, your dues show unpaid when you paid, or a training completion is missing — you have a responsibility to report it promptly.</p>
+    <div class="card">
+      <h3>Types of Data Errors to Report</h3>
+      <ul class="sl">
+        <li>Name spelled incorrectly (affects certificates and official records)</li>
+        <li>Dues status shows outstanding when payment was made</li>
+        <li>Training course missing from completion record after finishing it</li>
+        <li>Incorrect member status (active vs. inactive)</li>
+        <li>Wrong committee assignments listed</li>
+        <li>Wrong contact information that you did not enter</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>How to Report a Data Error</h3>
+      <ul class="sl">
+        <li><strong>Step 1:</strong> Document the error — take a screenshot of what the portal shows</li>
+        <li><strong>Step 2:</strong> Gather supporting evidence — payment receipt, completion screenshot, etc.</li>
+        <li><strong>Step 3:</strong> Contact chapter admin via a chapter internal channel (not public contact form)</li>
+        <li><strong>Step 4:</strong> Clearly describe the error, what the correct information should be, and attach your evidence</li>
+        <li><strong>Step 5:</strong> Follow up if not resolved within 7 business days</li>
+      </ul>
+    </div>
+    <div class="tip-box">Regularly review your portal record — do not wait for an issue to surface. Catching errors early prevents them from affecting your standing at compliance review time.</div>
+  </div>`;
+}
+function m4s6(){
+  return `<div class="scr-content">
+    <div class="section-title">Privacy Concerns — What to Do If You See Others' Data</div>
+    <p class="intro-text">The Member Portal is designed so that individual members can only see their own personal data. However, in the event of a technical error, you may encounter another member's information. Knowing how to respond appropriately is essential.</p>
+    <div class="scenario-block">
+      <div class="sc-num">Privacy Scenario A</div>
+      <div class="sc-q">After logging into the portal, your dashboard shows another brother's name, dues status, and training record — not yours. What do you do?</div>
+      <div class="sc-a"><strong>Log out immediately.</strong> Do not continue browsing or download any information. Take a screenshot of the error (not of the brother's data), then contact the chapter admin immediately with a description of what occurred. This is a portal configuration issue that must be escalated promptly.</div>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Privacy Scenario B</div>
+      <div class="sc-q">While browsing a shared Documents folder, you notice a file that appears to contain another member's personal financial information that should not be there. What is the correct action?</div>
+      <div class="sc-a">Do not open the file further or share it. Note the file name and location, then report to the chapter admin immediately. The file should be reviewed and either secured, relocated, or removed. Protecting member data confidentiality is a shared responsibility.</div>
+    </div>
+    <div class="info-box"><strong>Privacy Principle:</strong> Just because data is technically accessible does not mean it is yours to view, download, or share. If something feels wrong about what you are seeing — stop, log out, and report it.</div>
+  </div>`;
+}
+function m4s7(){
+  return `<div class="scr-content">
+    <div class="section-title">Accessing the Portal When Traveling Internationally</div>
+    <p class="intro-text">Brothers who travel internationally for work or personal reasons should plan ahead for portal access. Some situations require special preparation.</p>
+    <div class="card">
+      <h3>Before You Travel</h3>
+      <ul class="sl">
+        <li>Complete any pending required training before departure if your travel overlaps with a training deadline</li>
+        <li>Download important documents (bylaws, forms) from the portal for offline access if needed</li>
+        <li>Notify chapter admin if you will be unreachable during a compliance window — request accommodation in advance</li>
+        <li>Save offline copies of your certificates and any documents you may need to reference</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>While Traveling</h3>
+      <ul class="sl">
+        <li>The portal is accessible from any internet connection worldwide — no geographic restrictions</li>
+        <li>If your organization's VPN blocks the portal, temporarily disconnect from VPN to access it</li>
+        <li>International data roaming may be slow — use Wi-Fi when possible for training courses</li>
+        <li>If two-factor authentication sends a code to your phone, ensure international SMS is enabled on your plan before departing</li>
+        <li>Hotel and conference center Wi-Fi may restrict some site access — use a mobile hotspot as backup</li>
+      </ul>
+    </div>
+    <div class="tip-box">The portal does not have an "away" exception for deadlines unless pre-approved. Plan ahead — international travel is foreseeable and sufficient time to request accommodation exists before you depart.</div>
+  </div>`;
+}
+function m4s8(){
+  return `<div class="scr-content">
+    <div class="section-title">Supporting Fellow Members with Technology</div>
+    <p class="intro-text">Not every brother has the same level of comfort with technology. As a member who has completed this training, you are now a resource for others. Digital equity — ensuring every member can participate fully — is a chapter responsibility.</p>
+    <div class="card">
+      <h3>How to Support a Brother Who Struggles with Portal Access</h3>
+      <ul class="sl">
+        <li>Offer to walk them through the login process in person or via a video call — do not log in for them or share your credentials</li>
+        <li>Point them to specific portal sections step by step: "Click the sidebar link that says Training, then click My DLA Training"</li>
+        <li>Help them identify a device and browser that works — many technical issues are device or browser-specific</li>
+        <li>Encourage them to contact chapter admin for account issues rather than giving up</li>
+        <li>Offer to sit with them during a training course if they are unfamiliar with the Curriculead interface</li>
+      </ul>
+    </div>
+    <div class="scenario-block">
+      <div class="sc-num">Support Scenario</div>
+      <div class="sc-q">An older brother tells you he has never been able to get the portal to work on his computer and has just given up trying to pay dues or complete training online. What do you do?</div>
+      <div class="sc-a">Do not dismiss the concern. Offer a specific time to help him troubleshoot — even 20 minutes. Start with the basics: what browser is he using, has he cleared the cache, has he tried a different device? If the issue is beyond your technical ability, connect him directly with the chapter admin. His chapter standing depends on digital access — helping him is helping the chapter.</div>
+    </div>
+  </div>`;
+}
+function m4s9(){
+  return `<div class="scr-content">
+    <div class="section-title">Digital Equity Responsibilities &amp; Module Summary</div>
+    <p class="intro-text">Digital equity is the idea that all members — regardless of age, technical background, or device access — should be able to fully participate in chapter digital life. As chapter leaders and active members, we share responsibility for making this possible.</p>
+    <div class="card">
+      <h3>Your Digital Equity Responsibilities</h3>
+      <ul class="sl">
+        <li>Never assume a brother is uninterested in chapter activities because he is not active digitally — investigate and offer support first</li>
+        <li>When chapter communications are purely digital, advocate for redundant channels (meeting announcements, deadline reminders) for brothers with limited connectivity</li>
+        <li>If you are in a leadership role, ensure that digital barriers do not prevent qualified brothers from participating in chapter governance</li>
+        <li>Report systemic access issues to chapter leadership so they can be addressed at the infrastructure level — not just case by case</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Module 5 — Final Key Takeaways</h3>
+      <ul class="sl">
+        <li>Portal troubleshooting follows a clear path: self-service first, then chapter admin, then leadership</li>
+        <li>Account lockouts are resolved through password reset or admin contact — never create a new account</li>
+        <li>Data errors must be reported promptly with documentation — do not assume they will self-correct</li>
+        <li>Privacy concerns require immediate logging out and reporting — not curiosity</li>
+        <li>International access requires advance planning — no deadline exceptions without prior approval</li>
+        <li>Supporting brothers with technology is part of chapter brotherhood — not a burden</li>
+      </ul>
+    </div>
+    <div class="quote-block">"A chain is only as strong as its weakest link. A chapter is only as digitally capable as its least-connected member. Invest in each other."</div>
+  </div>`;
+}
+
+/* ============================================================
+   ASSESSMENT RENDERING
+   ============================================================ */
+function renderQuiz(){
+  let html=`<div class="assess-page">
+    <h2>Final Assessment</h2>
+    <p class="sub">Answer all 15 questions. You need 12 correct (80%) to pass. You may select answers before submitting.</p>`;
+  AQ.forEach((q,i)=>{
+    const ua=S.aa[i];
+    const sub=S.aSubmitted;
+    html+=`<div class="quiz">
+      <div class="q-num">Question ${i+1} of ${AQ.length} — ${q.mod}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="opts">`;
+    q.opts.forEach((o,j)=>{
+      let cls='opt';
+      if(sub){
+        if(j===q.cor)cls+=' correct';
+        else if(ua===j&&j!==q.cor)cls+=' wrong';
+      } else if(ua===j)cls+=' selected';
+      html+=`<label class="${cls}"><input type="radio" name="q${i}" value="${j}" ${ua===j?'checked':''} ${sub?'disabled':''} onchange="answerQuiz(${i},${j})"> ${o}</label>`;
+    });
+    html+='</div>';
+    if(sub&&q.fb){html+=`<div class="fb">${q.fb}</div>`;}
+    html+='</div>';
+  });
+  if(!S.aSubmitted){
+    const answered=Object.keys(S.aa).length;
+    html+=`<div class="assess-controls">
+      <button class="btn btn-primary" onclick="submitQuiz()" ${answered<AQ.length?'disabled':''}>Submit Assessment (${answered}/${AQ.length} answered)</button>
+    </div>`;
+  } else {
+    const pass=S.aScore>=12;
+    html+=`<div class="assess-controls">
+      ${pass?`<button class="btn btn-gold" onclick="goPage('cert')">View Certificate →</button>`:`<button class="btn btn-outline" onclick="retryQuiz()">Retry Assessment</button>`}
+      <button class="btn btn-outline" onclick="goPage('landing')">← Back to Dashboard</button>
+    </div>`;
+  }
+  html+='</div>';
+  return html;
+}
+
+function answerQuiz(qi,oi){
+  if(S.aSubmitted)return;
+  S.aa[qi]=oi;
+  save();
+  // Update UI without full re-render
+  document.querySelectorAll(`[name="q${qi}"]`).forEach(el=>{
+    el.closest('.opt').classList.toggle('selected',parseInt(el.value)===oi);
+  });
+  const btn=document.querySelector('.assess-controls button');
+  if(btn){
+    const answered=Object.keys(S.aa).length;
+    btn.textContent=`Submit Assessment (${answered}/${AQ.length} answered)`;
+    btn.disabled=answered<AQ.length;
+  }
+}
+
+function submitQuiz(){
+  let score=0;
+  AQ.forEach((q,i)=>{if(S.aa[i]===q.cor)score++;});
+  S.aScore=score;
+  S.aSubmitted=true;
+  save();
+  render();
+}
+
+function retryQuiz(){
+  S.aa={};S.aScore=null;S.aSubmitted=false;save();render();
+}
+
+/* ============================================================
+   RESULTS PAGE
+   ============================================================ */
+function renderResults(){
+  const pass=S.aScore>=12;
+  const pct=Math.round((S.aScore/15)*100);
+  let html=`<div class="results-page">
+    <div class="score-circle ${pass?'pass':'fail'}">
+      <div class="sc-num">${S.aScore}/15</div>
+      <div class="sc-label">${pct}%</div>
+    </div>
+    <div class="results-msg">
+      <h2>${pass?'Congratulations! You Passed.':'Not Quite — Let\'s Try Again.'}</h2>
+      <p style="color:#666;font-size:.9rem">${pass?'You have demonstrated knowledge of the DLA digital environments and member resources.':'You scored '+S.aScore+' out of 15. You need at least 12 correct (80%) to pass. Review the modules and try again.'}</p>
+    </div>`;
+  // Breakdown
+  html+=`<div class="breakdown"><table>
+    <tr><th>#</th><th>Question</th><th>Result</th></tr>`;
+  AQ.forEach((q,i)=>{
+    const correct=S.aa[i]===q.cor;
+    html+=`<tr><td>${i+1}</td><td style="font-size:.8rem">${q.q.substring(0,70)}${q.q.length>70?'...':''}</td><td style="color:${correct?'#1a7a40':'#c0392b'};font-weight:600">${correct?' Correct':' Wrong'}</td></tr>`;
+  });
+  html+='</table></div>';
+  if(pass){
+    html+=`<div style="display:flex;gap:14px;flex-wrap:wrap">
+      <button class="btn btn-gold" onclick="goPage('cert')">Get Certificate →</button>
+      <button class="btn btn-outline" onclick="goPage('assess')">Review Answers</button>
+    </div>`;
+  } else {
+    html+=`<div style="display:flex;gap:14px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="retryQuiz()">Retry Assessment</button>
+      <button class="btn btn-outline" onclick="goPage('landing')">Back to Dashboard</button>
+    </div>`;
+  }
+  html+='</div>';
+  return html;
+}
+
+/* ============================================================
+   CERTIFICATE
+   ============================================================ */
+function renderCertificate(){
+  S.ix['cert']=1;save();
+  const pass=S.aScore>=12;
+  const pct=S.aScore?Math.round((S.aScore/15)*100):0;
+  const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const certName=S.name||'Chapter Member';
+  if(!pass){
+    return `<div class="cert-page">
+      <div class="card" style="max-width:480px;text-align:center;padding:36px">
+        <h3>Assessment Required</h3>
+        <p style="color:#666;margin:12px 0 20px">You must pass the Final Assessment (12/15 correct) to earn your certificate.</p>
+        <button class="btn btn-primary" onclick="goPage('assess')">Go to Assessment</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="cert-page">
+    <div class="cert-name-field">
+      <label class="name-field" style="margin:0"><label style="display:block;font-size:.78rem;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Your Full Name (for certificate)</label>
+      <input type="text" id="cert-name-input" value="${certName}" placeholder="Enter your full name" style="width:100%;padding:12px 16px;border:2px solid #ddd;border-radius:8px;font-family:Inter,sans-serif;font-size:.95rem;outline:none" oninput="updateCertName(this.value)"></label>
+    </div>
+    <div class="cert-wrap">
+      <div class="cert-logo">Kappa Alpha Psi Fraternity, Inc.®</div>
+      <div class="cert-org">Denton-Lewisville Alumni Chapter</div>
+      <div class="cert-header">Certificate of Completion</div>
+      <div class="cert-title">Website, Member Portal &amp;<br>Training System Orientation</div>
+      <div class="cert-course">Digital Literacy for Chapter Members</div>
+      <div style="margin:8px 0 4px">Awarded to</div>
+      <div class="cert-name" id="cert-name-display">${certName}</div>
+      <div class="cert-name-label">Chapter Member</div>
+      <div class="cert-score">Assessment Score: ${S.aScore}/15 (${pct}%)</div>
+      <div class="cert-date">Date Completed: ${today}</div>
+      <div class="cert-seal">
+        <div class="cert-seal-item"><div class="seal-line"></div>Chapter Polemarch</div>
+        <div class="cert-seal-item" style="font-size:1.4rem;color:var(--go)">KΑΨ</div>
+        <div class="cert-seal-item"><div class="seal-line"></div>Training Administrator</div>
+      </div>
+    </div>
+    <div class="cert-controls">
+      <button class="btn btn-primary" onclick="window.print()"> Print Certificate</button>
+      <button class="btn btn-outline" onclick="goPage('landing')">← Back to Dashboard</button>
+    </div>
+  </div>`;
+}
+
+function updateCertName(v){
+  S.name=v;save();
+  const el=document.getElementById('cert-name-display');
+  if(el)el.textContent=v||'Chapter Member';
+}
+
+/* ============================================================
+   LANDING PAGE
+   ============================================================ */
+function renderLanding(){
+  const pct=calcProgress();
+  const allDone=S.done.every(Boolean);
+  const nextMod=S.done.findIndex(d=>!d);
+  return `<div class="hero">
+    <div class="hero-eyebrow">Denton-Lewisville Alumni Chapter · KAΨ</div>
+    <h1>Website, Member Portal &amp;<br>Training System Orientation</h1>
+    <p class="hero-sub">Master the DLA digital ecosystem — from the public website to the secure member portal to the chapter training system.</p>
+    <div class="stats-row">
+      <div class="stat-box"><strong>5</strong><span>Modules</span></div>
+      <div class="stat-box"><strong>~2.5 hrs</strong><span>Total Time</span></div>
+      <div class="stat-box"><strong>15</strong><span>Questions</span></div>
+      <div class="stat-box"><strong>80%</strong><span>To Pass</span></div>
+    </div>
+  </div>
+  <div class="landing-body">
+    <h2>Welcome to Your Digital Orientation</h2>
+    <p>This course prepares you to navigate the three digital environments of the Denton-Lewisville Alumni Chapter: the public website, the secure member portal, and the Curriculead training system. You will learn where to find resources, which forms to use, and how to direct community members and prospective members to the right place.</p>
+    <p>Progress is saved automatically in your browser. You can return to any module at any time.</p>
+    <div class="name-field">
+      <label>Your Name</label>
+      <input type="text" id="name-input" value="${S.name}" placeholder="Enter your full name" oninput="S.name=this.value;save()">
+    </div>
+    ${pct>0?`<div class="info-box" style="margin-bottom:20px"><strong>Progress: ${pct}%</strong> — ${allDone?'All modules complete! Ready for the assessment.':nextMod>=0?`Continue with Module ${nextMod+1}: ${MODS[nextMod].title}`:'Keep going!'}</div>`:''}
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      ${pct===0?`<button class="btn btn-primary" onclick="startCourse()">Begin Course →</button>`
+      :`<button class="btn btn-primary" onclick="${allDone?'goPage(\'assess\')':'goModule('+nextMod+')'}">${allDone?'Go to Assessment →':'Continue Course →'}</button>
+       <button class="btn btn-outline" onclick="goModule(0)">Restart from Module 1</button>`}
+    </div>
+    <div style="margin-top:40px;padding-top:24px;border-top:1px solid #e0ddd7">
+      <h2 style="font-size:1rem;margin-bottom:14px;color:#888;font-family:Inter,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em">All Modules</h2>
+      ${MODS.map((m,i)=>`<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #eee;cursor:pointer" onclick="goModule(${i})">
+        <div style="width:28px;height:28px;border-radius:50%;background:${S.done[i]?'var(--go)':'var(--cr)'};color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">${S.done[i]?'':i+1}</div>
+        <div style="flex:1"><div style="font-size:.88rem;font-weight:600;color:#222">${m.title}</div><div style="font-size:.74rem;color:#888">${m.dur} · ${m.screens} screens</div></div>
+        <div style="font-size:.75rem;color:${S.done[i]?'#1a7a40':'#aaa'}">${S.done[i]?' Complete':'→'}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function startCourse(){
+  if(!S.name){
+    const inp=document.getElementById('name-input');
+    if(inp&&inp.value)S.name=inp.value;
+  }
+  save();
+  goModule(0);
+}
+
+/* ============================================================
+   MAIN RENDER
+   ============================================================ */
+function getScreenFn(mi,si){
+  const fns=[
+    [m0s0,m0s1,m0s2,m0s3,m0s4,m0s5,m0s6,m0s7,m0s8,m0s9],
+    [m1s0,m1s1,m1s2,m1s3,m1s4,m1s5,m1s6,m1s7,m1s8,m1s9],
+    [m2s0,m2s1,m2s2,m2s3,m2s4,m2s5,m2s6,m2s7,m2s8,m2s9],
+    [m3s0,m3s1,m3s2,m3s3,m3s4,m3s5,m3s6,m3s7,m3s8,m3s9],
+    [m4s0,m4s1,m4s2,m4s3,m4s4,m4s5,m4s6,m4s7,m4s8,m4s9]
+  ];
+  return fns[mi]&&fns[mi][si]?fns[mi][si]:()=>'<div class="scr-content"><p>Screen content loading...</p></div>';
+}
+
+function render(){
+  renderSidebar();
+  const main=document.getElementById('main');
+  if(S.page==='landing'){
+    main.innerHTML=renderLanding();
+  } else if(S.page==='module'){
+    const mi=S.mi,si=S.si;
+    const fn=getScreenFn(mi,si);
+    main.innerHTML=`<div class="mod-page">${modHeader(mi,si)}${fn()}${navBar(mi,si)}</div>`;
+  } else if(S.page==='assess'){
+    if(S.aSubmitted){
+      main.innerHTML=renderResults();
+    } else {
+      main.innerHTML=renderQuiz();
+    }
+  } else if(S.page==='cert'){
+    main.innerHTML=renderCertificate();
+  }
+  window.scrollTo(0,0);
+}
+
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+// Init
+load();
+render();
+</script>
+</body>
+</html>
