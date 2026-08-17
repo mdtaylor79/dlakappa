@@ -31,15 +31,6 @@
     .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
     .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
 
-    /* ── Emergency notice ── */
-    .emergency-notice {
-      background: #fdf5f5; border: 1px solid #e8c9c7; border-radius: 6px;
-      padding: .75rem 1rem; margin-bottom: 1.25rem; font-size: .78rem;
-      color: #6a5a50; line-height: 1.6;
-    }
-    .emergency-notice a { color: #70110c; font-weight: 700; text-decoration: none; }
-    .emergency-notice a:hover { text-decoration: underline; }
-
     /* ── Form section card ── */
     .form-section {
       background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
@@ -58,7 +49,6 @@
       background: rgba(198,154,63,.2); color: #c69a3f;
       font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
       letter-spacing: .1em; padding: .2rem .55rem; border-radius: 3px;
-      white-space: nowrap;
     }
     .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
 
@@ -72,7 +62,7 @@
     .field-error { font-size: .72rem; color: #991b1b; display: none; }
     .field-error.show { display: block; }
 
-    input[type="text"], input[type="date"], input[type="email"], input[type="tel"], select, textarea {
+    input[type="text"], input[type="date"], select, textarea {
       width: 100%; padding: .6rem .8rem; border: 1px solid #d8cfc5;
       border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .88rem;
       color: #1a1a1a; background: #faf8f5;
@@ -82,9 +72,6 @@
       outline: none; border-color: #70110c; box-shadow: 0 0 0 3px rgba(112,17,12,.08);
     }
     input.invalid, select.invalid, textarea.invalid { border-color: #dc2626; }
-    input[readonly] {
-      background: #f0e8e0; color: #6a5a50; cursor: not-allowed;
-    }
     textarea { resize: vertical; min-height: 130px; }
     select {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
@@ -117,6 +104,7 @@
     .success-icon { width: 80px; height: 80px; background: linear-gradient(135deg,#70110c,#2a0604); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .success-screen h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #70110c; }
     .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 460px; line-height: 1.7; }
+    .success-ref { font-family: 'Cinzel', serif; font-size: .8rem; color: #c69a3f; background: #f5f0eb; padding: .5rem 1.25rem; border-radius: 4px; border: 1px solid #e0d4c8; }
 
     @media (max-width: 540px) {
       .field-row { grid-template-columns: 1fr; }
@@ -150,49 +138,12 @@
 <main>
 <div class="form-shell">
 
-  <div class="emergency-notice">
-    Portal unavailable? Use the <a href="/portal/incident-report-emergency-form.pdf" target="_blank" rel="noopener">emergency / backup paper form (PDF)</a> instead and email it to the addresses listed on that form.
-  </div>
-
   <form id="incidentForm" novalidate>
-
-    <!-- SECTION 1: Reporter Information -->
-    <div class="form-section">
-      <div class="section-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <h2>Reporter Information</h2>
-        <span class="section-num">Section 1 of 3</span>
-      </div>
-      <div class="section-body">
-        <div class="field-row">
-          <div class="field">
-            <label>Full Name</label>
-            <input type="text" id="reporterName" readonly>
-          </div>
-          <div class="field">
-            <label>Email Address</label>
-            <input type="email" id="reporterEmail" readonly>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Phone Number</label>
-            <input type="tel" id="reporterPhone" placeholder="Optional">
-          </div>
-          <div class="field">
-            <label>Date of This Report</label>
-            <input type="date" id="reportDate" readonly>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 2: Incident Details -->
     <div class="form-section">
       <div class="section-head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         <h2>Incident Details</h2>
-        <span class="section-num">Section 2 of 3</span>
+        <span class="section-num">Required Information</span>
       </div>
       <div class="section-body">
         <div class="field-row full">
@@ -242,36 +193,15 @@
         <div class="field-row full">
           <div class="field">
             <label>Description of Incident <span class="req">*</span></label>
-            <textarea id="description" placeholder="Describe what happened, who was present, when, and any other relevant details."></textarea>
+            <textarea id="description" placeholder="Describe what happened, when, and any relevant details."></textarea>
             <div class="field-error" id="err-description">A description is required.</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 3: Certification -->
-    <div class="form-section">
-      <div class="section-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <h2>Certification</h2>
-        <span class="section-num">Section 3 of 3</span>
-      </div>
-      <div class="section-body">
-        <div class="cert-statement">
-          &ldquo;I certify that the information provided in this report is accurate to the best of my knowledge. I understand this report will be delivered directly to the Polemarch, Vice Polemarch, and Keeper of Records for review.&rdquo;
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Signature (type full name) <span class="req">*</span></label>
-            <input type="text" id="signature" placeholder="Type your full name">
-            <div class="field-error" id="err-signature">Please type your full name to certify this report.</div>
-          </div>
-          <div class="field">
-            <label>Date Signed</label>
-            <input type="date" id="signedDate" readonly>
-          </div>
-        </div>
-      </div>
+    <div class="cert-statement">
+      &ldquo;I certify that the information provided in this report is accurate to the best of my knowledge. This report will be sent directly to the Polemarch, Vice Polemarch, and Keeper of Records.&rdquo;
     </div>
 
     <div class="status-msg" id="statusMsg"></div>
