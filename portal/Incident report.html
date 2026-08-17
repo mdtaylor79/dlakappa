@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incident Report | DLA Kappas Member Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: #1a0302;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
+    .form-shell { max-width: 680px; margin: 0 auto; }
+
+    /* ── Banner ── */
+    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
+    .org-text { flex: 1; }
+    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
+    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
+    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
+    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
+    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
+    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ── Form section card ── */
+    .form-section {
+      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
+      margin-bottom: 1.5rem; overflow: hidden;
+    }
+    .section-head {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      padding: .75rem 1.25rem; display: flex; align-items: center; gap: .65rem;
+    }
+    .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .section-head h2 {
+      font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; flex: 1;
+    }
+    .section-num {
+      background: rgba(198,154,63,.2); color: #c69a3f;
+      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .1em; padding: .2rem .55rem; border-radius: 3px;
+    }
+    .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* ── Fields ── */
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field-row.full { grid-template-columns: 1fr; }
+    .field { display: flex; flex-direction: column; gap: .3rem; }
+    label { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #6a5a50; }
+    label .req { color: #70110c; margin-left: 2px; }
+    .field-hint { font-size: .72rem; color: #9a8878; font-style: italic; line-height: 1.45; }
+    .field-error { font-size: .72rem; color: #991b1b; display: none; }
+    .field-error.show { display: block; }
+
+    input[type="text"], input[type="date"], select, textarea {
+      width: 100%; padding: .6rem .8rem; border: 1px solid #d8cfc5;
+      border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .88rem;
+      color: #1a1a1a; background: #faf8f5;
+      transition: border-color .2s, box-shadow .2s; appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: #70110c; box-shadow: 0 0 0 3px rgba(112,17,12,.08);
+    }
+    input.invalid, select.invalid, textarea.invalid { border-color: #dc2626; }
+    textarea { resize: vertical; min-height: 130px; }
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem;
+    }
+
+    /* ── Certification / submit ── */
+    .cert-statement {
+      background: #f5f0eb; border: 1px solid #e4dbd0; border-radius: 6px;
+      padding: 1rem 1.25rem; font-size: .84rem; color: #3a2c25; line-height: 1.7;
+      font-style: italic;
+    }
+    .step-nav { display: flex; justify-content: flex-end; align-items: center; margin-top: 1.5rem; gap: 1rem; }
+    .btn-submit {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      color: #f2ebd7; font-family: 'Cinzel', serif; font-size: .78rem;
+      font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .85rem 2.5rem; border: none; border-radius: 4px; cursor: pointer;
+      transition: filter .2s, transform .15s;
+    }
+    .btn-submit:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .status-msg { padding: .75rem 1rem; border-radius: 4px; font-size: .85rem; margin-top: .5rem; display: none; }
+    .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+    .status-msg.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; display: block; }
+
+    /* ── Success screen ── */
+    .success-screen { display: none; flex-direction: column; align-items: center; text-align: center; padding: 4rem 2rem; gap: 1rem; }
+    .success-screen.show { display: flex; }
+    .success-icon { width: 80px; height: 80px; background: linear-gradient(135deg,#70110c,#2a0604); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .success-screen h2 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #70110c; }
+    .success-screen p { font-size: .9rem; color: #6a5a50; max-width: 460px; line-height: 1.7; }
+    .success-ref { font-family: 'Cinzel', serif; font-size: .8rem; color: #c69a3f; background: #f5f0eb; padding: .5rem 1.25rem; border-radius: 4px; border: 1px solid #e0d4c8; }
+
+    @media (max-width: 540px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="banner">
+  <div class="banner-inner">
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
+  </div>
+</header>
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Incident Report
+</nav>
+<div class="page-label">
+  <h1>Incident Report</h1>
+  <span class="fy-tag">Confidential</span>
+</div>
+
+<main>
+<div class="form-shell">
+
+  <form id="incidentForm" novalidate>
+    <div class="form-section">
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <h2>Incident Details</h2>
+        <span class="section-num">Required Information</span>
+      </div>
+      <div class="section-body">
+        <div class="field-row full">
+          <div class="field">
+            <label>Incident Category <span class="req">*</span></label>
+            <select id="category" required>
+              <option value="">Select a category&hellip;</option>
+              <option value="Code of Conduct Violation">Code of Conduct Violation</option>
+              <option value="Violent / Physical Harm">Violent / Physical Harm</option>
+              <option value="Hazing">Hazing</option>
+              <option value="Financial Misconduct">Financial Misconduct</option>
+              <option value="Fraud / Misrepresentation">Fraud / Misrepresentation</option>
+              <option value="Abuse (Minor)">Abuse (Minor)</option>
+              <option value="Abuse / Harassment (Sexual Manner)">Abuse / Harassment (Sexual Manner)</option>
+              <option value="Theft">Theft</option>
+              <option value="Property Damage">Property Damage</option>
+              <option value="Accident / Injury">Accident / Injury</option>
+              <option value="Law Enforcement Interaction">Law Enforcement Interaction</option>
+              <option value="Cybersecurity Event">Cybersecurity Event</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="field-error" id="err-category">Please select an incident category.</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Date of Incident <span class="req">*</span></label>
+            <input type="date" id="incidentDate" required>
+            <div class="field-error" id="err-incidentDate">Incident date is required.</div>
+          </div>
+          <div class="field">
+            <label>Location <span class="req">*</span></label>
+            <input type="text" id="location" placeholder="e.g. Chapter meeting, event venue">
+            <div class="field-error" id="err-location">Location is required.</div>
+          </div>
+        </div>
+
+        <div class="field-row full">
+          <div class="field">
+            <label>Members / Individuals Involved</label>
+            <input type="text" id="involvedMembers" placeholder="Optional">
+            <div class="field-hint">List anyone directly involved or witnessing the incident, if known.</div>
+          </div>
+        </div>
+
+        <div class="field-row full">
+          <div class="field">
+            <label>Description of Incident <span class="req">*</span></label>
+            <textarea id="description" placeholder="Describe what happened, when, and any relevant details."></textarea>
+            <div class="field-error" id="err-description">A description is required.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-statement">
+      &ldquo;I certify that the information provided in this report is accurate to the best of my knowledge. This report will be sent directly to the Polemarch, Vice Polemarch, and Keeper of Records.&rdquo;
+    </div>
+
+    <div class="status-msg" id="statusMsg"></div>
+    <div class="step-nav">
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Report &rarr;</button>
+    </div>
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Report Submitted</h2>
+    <p>Your incident report has been submitted and sent directly to the Polemarch, Vice Polemarch, and Keeper of Records. It will be handled with discretion.</p>
+  </div>
+
+</div>
+</main>
+
+<!-- Script load order must match the rest of the portal -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/incident-report.js"></script>
+</body>
+</html>
