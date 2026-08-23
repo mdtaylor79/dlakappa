@@ -11,8 +11,6 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min-height: 100vh; }
-
-/* ── TOP NAV ── */
 .portal-nav {
   background: #fff;
   border-bottom: 1px solid #e0d8cc;
@@ -57,8 +55,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   font-weight: 500;
 }
 .portal-nav .nav-links .signout:hover { color: #70110c; opacity: 1; }
-
-/* ── HERO BANNER ── */
 .member-hero {
   background: #70110c;
   padding: 2.5rem 2.5rem;
@@ -189,8 +185,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   font-weight: 700;
   color: #f2ebd7;
 }
-
-/* ── MAIN LAYOUT ── */
 .dash-layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -204,8 +198,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   .dash-layout { grid-template-columns: 1fr; }
   .dash-sidebar { display: none; }
 }
-
-/* ── MOBILE NAV HAMBURGER ── */
 .nav-hamburger {
   display: none;
   background: none;
@@ -225,12 +217,8 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   border-radius: 2px;
   transition: transform .2s, opacity .2s;
 }
-
-/* ── MOBILE SECTION SCROLL NAV ── */
 .mobile-section-nav { display: none; }
-
 @media(max-width: 700px) {
-  /* Collapse portal nav */
   .portal-nav {
     height: auto;
     min-height: 56px;
@@ -244,8 +232,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   .portal-nav .brand-text .frat-name { display: none; }
   .portal-nav .brand-text .chapter-name { font-size: .82rem; }
   .nav-hamburger { display: flex; }
-
-  /* Nav links slide down */
   .portal-nav .nav-links {
     display: none;
     width: 100%;
@@ -264,16 +250,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     border-bottom: 1px solid #f5f0ea;
   }
   .portal-nav .nav-links a:last-child { border-bottom: none; }
-
-  /* Hero */
   .member-hero { padding: 1.5rem 1.25rem; }
   .member-hero .inner { flex-wrap: wrap; gap: .85rem; }
   .member-hero .hero-stats { display: none; }
   .member-hero .avatar { width: 72px; height: 72px; }
   .member-hero .member-name { font-size: clamp(1.1rem, 5vw, 1.6rem); }
   .member-hero .member-email-gold { font-size: .78rem; }
-
-  /* Mobile horizontal section nav */
   .mobile-section-nav {
     display: flex;
     overflow-x: auto;
@@ -304,12 +286,8 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   }
   .msn-btn.active { color: #70110c; border-bottom-color: #c69a3f; }
   .msn-btn:hover { color: #70110c; }
-
-  /* Layout padding */
   .dash-layout { padding: 1.25rem 1rem 4rem; }
 }
-
-/* ── SIDEBAR ── */
 .dash-sidebar {
   position: sticky;
   top: 82px;
@@ -359,11 +337,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   border-top: 2px solid #f0ece6;
   margin: 0;
 }
-
-/* ── MAIN CONTENT ── */
 .dash-main { min-width: 0; }
-
-/* ── QUICK ACTIONS ── */
 .quick-actions-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -418,8 +392,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   color: #70110c;
   margin-top: .25rem;
 }
-
-/* ── SECTION BLOCKS ── */
 .section-block {
   background: #fff;
   border: 1px solid #e8e0d5;
@@ -455,8 +427,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 }
 .section-block-body { padding: 1.5rem; }
 .section-block-body.compact { padding: 1.25rem 1.5rem; }
-
-/* ── BUSINESS DIRECTORY ── */
 .biz-dir-toolbar { display:flex; align-items:center; gap:.75rem; margin-bottom:1.25rem; flex-wrap:wrap; }
 .biz-dir-search { flex:1; min-width:180px; padding:.55rem .85rem; border:1px solid #e0d8cc; border-radius:6px; font-family:'Archivo',sans-serif; font-size:.84rem; background:#fff; }
 .biz-dir-search:focus { outline:none; border-color:#70110c; box-shadow:0 0 0 3px rgba(112,17,12,.07); }
@@ -487,8 +457,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .biz-social-btn:hover { opacity:.8; }
 .biz-empty { text-align:center; padding:3rem 1rem; color:#aaa; font-size:.88rem; }
 .biz-loading { text-align:center; padding:2.5rem; color:#aaa; font-size:.84rem; }
-
-/* Edit button on own card */
 .biz-edit-btn {
   margin-left:auto;
   background: none;
@@ -505,8 +473,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   flex-shrink: 0;
 }
 .biz-edit-btn:hover { background: #c69a3f; color: #fff; }
-
-/* Edit modal */
 .biz-modal-overlay {
   display: none;
   position: fixed;
@@ -629,8 +595,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .biz-modal-msg { font-size: .8rem; padding: .5rem .75rem; border-radius: 4px; display: none; }
 .biz-modal-msg.success { background: #eaf7ee; color: #2d8f4e; display: block; }
 .biz-modal-msg.error   { background: #fdecea; color: #c0392b; display: block; }
-
-/* ── CHAPTER STORE ── */
 .cs-wrap { border:1px solid #e8e0d5; border-radius:8px; overflow:hidden; margin-bottom:2rem; }
 .cs-header { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.25rem .6rem; border-bottom:1px solid #e8e0d5; }
 .cs-title-row { display:flex; align-items:center; gap:.65rem; }
@@ -662,7 +626,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .cs-trust-item svg { color:#70110c; flex-shrink:0; }
 .cs-trust-item strong { font-size:.78rem; color:#1a1a1a; display:block; }
 .cs-trust-item span { font-size:.72rem; color:#888; }
-/* Cart modal */
 .cs-cart-modal { display:none; position:fixed; inset:0; z-index:9999; }
 .cs-cart-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.4); }
 .cs-cart-panel { position:absolute; right:0; top:0; bottom:0; width:360px; max-width:95vw; background:#fff; display:flex; flex-direction:column; box-shadow:-4px 0 24px rgba(0,0,0,.15); }
@@ -683,8 +646,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .cs-cart-checkout { width:100%; background:#70110c; color:#f2ebd7; border:none; border-radius:5px; padding:.75rem; font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
 .cs-cart-checkout:hover { background:#5a0e09; }
 @media(max-width:640px) { .cs-products { grid-template-columns:1fr 1fr; } .cs-trust { flex-direction:column; gap:.75rem; } }
-
-/* ── SHOP ── */
 .vendor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -745,8 +706,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   margin-top: auto;
 }
 .vendor-card:hover .vendor-btn { color: #c69a3f; }
-
-/* ── DUES ── */
 .dues-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -807,8 +766,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .btn-pay:hover { opacity: .85; }
 .btn-pay-red { background: #70110c; color: #f2ebd7; }
 .btn-pay-gold { background: #c69a3f; color: #fff; }
-
-/* ── DOC / ITEM CARDS ── */
 .items-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -854,8 +811,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   color: #777;
   line-height: 1.4;
 }
-
-/* ── FORMS CARDS ── */
 .forms-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -907,8 +862,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   font-size: 1rem;
   font-weight: 700;
 }
-
-/* ── NEWS CARDS ── */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -965,16 +918,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   text-decoration: none;
 }
 .news-view-all:hover { text-decoration: underline; }
-
-/* ── CALLS GRID ── */
 .calls-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 @media(max-width:500px) { .calls-grid { grid-template-columns: 1fr; } }
-
-/* ── TRAINING SINGLE ITEMS ── */
 .training-list {
   display: flex;
   flex-direction: column;
@@ -1009,15 +958,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .training-item .t-text h4 { font-size: .86rem; font-weight: 700; color: #1a1a1a; }
 .training-item .t-text p { font-size: .74rem; color: #777; margin-top: .15rem; line-height: 1.4; }
 .training-item .t-arrow { margin-left: auto; color: #c69a3f; font-weight: 700; flex: none; }
-
-/* ── APP GRID ── */
 .app-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
 }
 @media(max-width:640px) { .app-grid { grid-template-columns: 1fr; } }
-
 .app-panel {
   border: 1px solid #e8e0d5;
   border-radius: 8px;
@@ -1039,8 +985,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 .app-panel > .app-card {
   padding: 1.25rem 1rem;
 }
-
-/* ── APP CARD ── */
 .app-card {
   display: flex;
   align-items: center;
@@ -1073,8 +1017,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   transition: background .2s;
 }
 .btn-launch:hover { background: #5a0d09; }
-
-/* ── ASSESSMENT ── */
 .assessment-card {
   border: 1px solid #e8e0d5;
   border-radius: 7px;
@@ -1120,7 +1062,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 </head>
 <body>
 
-<!-- ── PORTAL NAV ── -->
 <nav class="portal-nav">
   <div class="brand">
 <div class="brand-text">
@@ -1136,6 +1077,7 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     </a>
     <a href="/portal/news.html">News</a>
     <a href="/portal/training-hub.html">Training</a>
+    <a href="/portal/community-service.html">Community Service</a>
     <a href="/portal/admin.html" id="nav-admin" style="display:none;">Admin</a>
     <a href="/portal/blog-admin.html" id="nav-blog-admin" style="display:none;">Blog Admin</a>
     <a href="/portal/training-report.html" id="nav-training-report" style="display:none;">Training Report</a>
@@ -1143,12 +1085,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   </div>
 </nav>
 
-<!-- ── MOBILE SECTION NAV ── -->
 <nav class="mobile-section-nav" id="mobileSectionNav">
   <button class="msn-btn" onclick="showSection('dues',null);mobNavActivate(this)">Dues</button>
   <button class="msn-btn" onclick="showSection('polemarch-address',null);mobNavActivate(this)">Polemarch</button>
   <button class="msn-btn" onclick="showSection('app',null);mobNavActivate(this)">Apps</button>
   <button class="msn-btn" onclick="showSection('training',null);mobNavActivate(this)">Training</button>
+  <button class="msn-btn" onclick="window.location.href='/portal/community-service.html'">Service</button>
   <button class="msn-btn" onclick="showSection('guidelines',null);mobNavActivate(this)">Guidelines</button>
   <button class="msn-btn" onclick="showSection('news',null);mobNavActivate(this)">News</button>
   <button class="msn-btn" onclick="showSection('documents',null);mobNavActivate(this)">Docs</button>
@@ -1160,7 +1102,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   <button class="msn-btn" onclick="showSection('account',null);mobNavActivate(this)">Account</button>
 </nav>
 
-<!-- ── HERO BANNER ── -->
 <div class="member-hero">
   <div class="inner">
     <div class="avatar-wrap" id="avatarWrap" title="Click to upload photo">
@@ -1205,10 +1146,8 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   </div>
 </div>
 
-<!-- ── MAIN LAYOUT ── -->
 <div class="dash-layout">
 
-  <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-inner">
       <div class="sidebar-header">Navigation</div>
@@ -1237,6 +1176,10 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         <a href="#" onclick="showSection('training',this);return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
           Training
+        </a>
+        <a href="/portal/community-service.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Community Service
         </a>
         <a href="#" onclick="showSection('guidelines',this);return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
@@ -1283,10 +1226,8 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <main class="dash-main">
 
-    <!-- ── QUICK ACTIONS ── -->
     <div id="welcome" style="background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);border-radius:10px;padding:2rem 2.25rem;color:#f2ebd7;position:relative;overflow:hidden;margin-bottom:1.5rem;">
       <div style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:7rem;font-weight:700;color:rgba(198,154,63,.12);line-height:1;pointer-events:none;user-select:none;">&#922;</div>
       <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Denton-Lewisville Alumni Chapter</div>
@@ -1294,7 +1235,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       <p style="font-family:'Archivo',sans-serif;font-size:.92rem;line-height:1.65;color:#e8dcc8;margin:0;max-width:560px;">This is your chapter member portal — your single destination for chapter news, resources, training, and business. Use the navigation menu on the left to access each section.</p>
     </div>
 
-    <!-- ── PAY CHAPTER DUES ── -->
     <div id="dues" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1304,7 +1244,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
       <div class="section-block-body">
         <div class="dues-grid">
-          <!-- Cash App -->
           <div class="dues-card">
             <div class="pay-logo" style="background:#00d632;">
               <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#00d632"/><text x="24" y="34" text-anchor="middle" font-size="26" font-family="Arial" font-weight="bold" fill="#fff">$</text></svg>
@@ -1313,7 +1252,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             <div class="pay-handle">$DLAKappas</div>
             <a class="btn-pay btn-pay-red" href="https://cash.app/$DLAKappas" target="_blank" rel="noopener">Pay Now</a>
           </div>
-          <!-- Venmo -->
           <div class="dues-card">
             <div class="pay-logo" style="background:#008cff;">
               <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#008cff"/><text x="24" y="34" text-anchor="middle" font-size="20" font-family="Arial" font-weight="bold" fill="#fff">V</text></svg>
@@ -1322,7 +1260,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             <div class="pay-handle">@DLAKappas</div>
             <a class="btn-pay btn-pay-red" href="https://venmo.com/DLAKappas" target="_blank" rel="noopener">Pay Now</a>
           </div>
-          <!-- PayPal -->
           <div class="dues-card">
             <div class="pay-logo" style="background:#003087;">
               <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#003087"/><text x="24" y="34" text-anchor="middle" font-size="20" font-family="Arial" font-weight="bold" fill="#fff">P</text></svg>
@@ -1331,7 +1268,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             <div class="pay-desc">Pay securely online with PayPal.</div>
             <a class="btn-pay btn-pay-gold" href="https://www.paypal.com/paypalme/DLAKappas" target="_blank" rel="noopener">Pay Now</a>
           </div>
-          <!-- Stripe -->
           <div class="dues-card">
             <div class="pay-logo" style="background:#635bff;">
               <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#635bff"/><text x="24" y="34" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#fff">S</text></svg>
@@ -1340,7 +1276,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             <div class="pay-desc">Pay by card — Visa, Mastercard, Amex.</div>
             <a class="btn-pay btn-pay-red" href="https://buy.stripe.com/DLAKappas" target="_blank" rel="noopener">Pay Now</a>
           </div>
-          <!-- Zelle -->
           <div class="dues-card">
             <div class="pay-logo" style="background:#6d1ed4;">
               <svg viewBox="0 0 48 48" width="30" height="30"><rect width="48" height="48" rx="10" fill="#6d1ed4"/><text x="24" y="34" text-anchor="middle" font-size="22" font-family="Arial" font-weight="bold" fill="#fff">Z</text></svg>
@@ -1350,7 +1285,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             <div class="pay-desc" style="font-size:.72rem;color:#666;">Send directly via your bank app</div>
             <button class="btn-pay btn-pay-red" id="zelleCopyBtn" onclick="(function(){var e=document.getElementById('zelleEmail').textContent;navigator.clipboard.writeText(e).then(function(){var b=document.getElementById('zelleCopyBtn');b.textContent='Copied!';b.style.background='#2d8f4e';setTimeout(function(){b.textContent='Copy Email';b.style.background='';},2000);});})();" style="border:none;cursor:pointer;">Copy Email</button>
           </div>
-          <!-- Check -->
           <div class="dues-card">
             <div class="pay-logo" style="background:#70110c;">
               <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -1362,7 +1296,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── POLEMARCH ADDRESS ── -->
     <div id="polemarch-address" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1385,7 +1318,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── CHAPTER APP ── -->
     <div id="app" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1395,7 +1327,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
       <div class="section-block-body compact">
         <div class="app-grid">
-          <!-- DLA App -->
           <div class="app-panel">
             <div class="app-panel-header">
               <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
@@ -1410,7 +1341,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
               </div>
             </div>
           </div>
-          <!-- IHQ App -->
           <div class="app-panel">
             <div class="app-panel-header">
               <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
@@ -1429,7 +1359,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── TRAINING ── -->
     <div id="training" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1491,7 +1420,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── GUIDELINES & MANUALS ── -->
     <div id="guidelines" class="section-block" style="scroll-margin-top:90px;display:none;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1521,7 +1449,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── CHAPTER NEWS ── -->
     <div id="news" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1537,7 +1464,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── DOCUMENTS ── -->
     <div id="documents" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1606,7 +1532,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── FORMS & ASSESSMENTS ── -->
     <div id="assessments" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1616,7 +1541,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
       <div class="section-block-body compact">
 
-        <!-- Assessments sub-group -->
         <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.75rem;">Assessments</div>
         <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.75rem;">
           <a class="assessment-card" href="https://form.jotform.com/261490578388068" target="_blank" rel="noopener">
@@ -1641,7 +1565,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           </a>
         </div>
 
-        <!-- Forms sub-group -->
         <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.75rem;">Chapter Forms</div>
         <div class="forms-grid">
           <a class="form-card" href="/portal/committee-signup.html">
@@ -1769,7 +1692,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── CONFERENCE CALLS ── -->
     <div id="calls" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1803,7 +1725,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── DLA STORE ── -->
     <div id="store" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1850,7 +1771,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             </div>
           </div>
         </div>
-        <!-- CART MODAL -->
         <div class="cs-cart-modal" id="csCartModal">
           <div class="cs-cart-backdrop" onclick="csCloseCart()"></div>
           <div class="cs-cart-panel">
@@ -1870,7 +1790,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── SHOP ── -->
     <div id="shop" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1880,7 +1799,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
       <div class="section-block-body">
 
-        <!-- VENDOR PARTNERS -->
         <p style="font-size:.85rem;color:#666;margin-bottom:.75rem;">Support Kappa Alpha Psi vendors. Browse fraternity apparel, accessories, and gear from trusted community vendors.</p>
         <div class="vendor-grid">
 
@@ -1961,7 +1879,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── VIDEO LIBRARY ── -->
     <div id="video-library" class="section-block" style="scroll-margin-top:90px;display:none;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1981,7 +1898,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
     </div>
 
-    <!-- ── BUSINESS DIRECTORY ── -->
     <div id="business-directory" class="section-block" style="scroll-margin-top:90px;display:none;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -1990,7 +1906,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         <div class="section-block-title">Member Business Directory</div>
       </div>
       <div class="section-block-body">
-        <!-- Toolbar -->
         <div class="biz-dir-toolbar">
           <input class="biz-dir-search" type="text" id="bizSearch" placeholder="Search businesses, owners, industry…" oninput="filterBizCards()">
           <select class="biz-dir-filter" id="bizFilterType" onchange="filterBizCards()">
@@ -2003,14 +1918,12 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
             Register Your Business
           </a>
         </div>
-        <!-- Cards -->
         <div class="biz-cards-grid" id="bizCardsGrid">
           <div class="biz-loading">Loading directory…</div>
         </div>
       </div>
     </div>
 
-    <!-- ── MY ACCOUNT ── -->
     <div id="account" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
         <div class="section-block-icon">
@@ -2020,7 +1933,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
       </div>
       <div class="section-block-body" style="display:flex;flex-direction:column;gap:2rem;">
 
-        <!-- Profile Info -->
         <div>
           <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem;">Profile Information</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
@@ -2051,7 +1963,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           <span id="accSaveMsg" style="display:none;margin-left:.75rem;font-size:.78rem;color:#4a7c4e;font-weight:600;"></span>
         </div>
 
-        <!-- Change Password -->
         <div>
           <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem;">Security</div>
           <button onclick="dlaSupabase.auth.resetPasswordForEmail(document.getElementById('accEmail').value).then(()=>alert('Password reset email sent.'))"
@@ -2061,7 +1972,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
           </button>
         </div>
 
-        <!-- Sign Out -->
         <div style="padding-top:.5rem;border-top:1px solid #f0ece6;">
           <button onclick="dlaSupabase.auth.signOut().then(()=>{window.location.href='login.html';})"
             style="background:none;border:none;font-size:.82rem;font-weight:600;color:#888;cursor:pointer;padding:0;letter-spacing:.02em;transition:color .15s;"
@@ -2071,33 +1981,27 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
         </div>
 
       </div>
-    </div><!-- /account section-block -->
+    </div>
 
-  </main><!-- /dash-main -->
-</div><!-- /dash-layout -->
+  </main>
+</div>
 
-<!-- ── SCRIPTS ── -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/supabase-client.js"></script>
 
 <script>
-// ── SECTION SWITCHER ────────────────────────────────────────────────────────
 const DASH_SECTIONS = ['dues','polemarch-address','app','training','guidelines','news','documents','assessments','calls','store','shop','video-library','business-directory','account'];
 
 function showSection(id, clickedLink) {
-  // Hide welcome banner
   var wb = document.getElementById('welcome');
   if (wb) wb.style.display = 'none';
-  // Hide all sections
   DASH_SECTIONS.forEach(function(s) {
     var el = document.getElementById(s);
     if (el) el.style.display = 'none';
   });
-  // Show target
   var target = document.getElementById(id);
   if (target) target.style.display = 'block';
-  // Update sidebar active state
   document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
     a.style.borderLeftColor = 'transparent';
     a.style.color = '';
@@ -2115,14 +2019,12 @@ function mobNavActivate(btn) {
   btn.classList.add('active');
 }
 
-// ── BUSINESS DIRECTORY ───────────────────────────────────────────────────────
 var bizData = [];
 var bizLoaded = false;
 var bizCurrentUserEmail = '';
 var bizEditId = null;
 
 function loadBusinessDirectory() {
-  // Always re-render so the Edit button appears once the user's email is known
   if (bizLoaded) { renderBizCards(bizData); return; }
   var grid = document.getElementById('bizCardsGrid');
   if (!grid) return;
@@ -2238,13 +2140,11 @@ function socialBtnIg(url) {
     + '</a>';
 }
 
-// ── BUSINESS DIRECTORY EDIT ───────────────────────────────────────────────────
 function openBizEdit(id) {
   var b = bizData.find(function(x){ return x.id === id; });
   if (!b) return;
   bizEditId = id;
 
-  // Populate fields
   document.getElementById('em_business_name').value = b.business_name || '';
   document.getElementById('em_industry').value       = b.industry     || '';
   document.getElementById('em_years_open').value     = b.years_open != null ? b.years_open : '';
@@ -2259,12 +2159,10 @@ function openBizEdit(id) {
   document.getElementById('em_sm_linkedin').value    = b.sm_linkedin  || '';
   document.getElementById('em_sm_tiktok').value      = b.sm_tiktok    || '';
 
-  // Business type radio
   document.querySelectorAll('input[name="em_biz_type"]').forEach(function(r) {
     r.checked = (r.value === b.business_type);
   });
 
-  // Clear message
   var msg = document.getElementById('bizModalMsg');
   msg.className = 'biz-modal-msg';
   msg.textContent = '';
@@ -2332,7 +2230,6 @@ async function saveBizEdit() {
     return;
   }
 
-  // Update local cache so cards re-render without a reload
   var idx = bizData.findIndex(function(x){ return x.id === bizEditId; });
   if (idx !== -1) {
     bizData[idx] = Object.assign({}, bizData[idx], payload);
@@ -2347,7 +2244,6 @@ async function saveBizEdit() {
   setTimeout(function() { closeBizEdit(); }, 1200);
 }
 
-// ── POLEMARCH VIDEO ──────────────────────────────────────────────────────────
 function loadPolemarchVideo() {
   var facade = document.getElementById('yt-facade');
   if (!facade) return;
@@ -2361,7 +2257,6 @@ function loadPolemarchVideo() {
   facade.appendChild(iframe);
 }
 
-// ── AVATAR UPLOAD ────────────────────────────────────────────────────────────
 (function() {
   var wrap = document.querySelector('.avatar-wrap');
   var input = document.getElementById('avatarInput');
@@ -2402,7 +2297,6 @@ function loadPolemarchVideo() {
   }
 })();
 
-// ── NEWS LOADER ──────────────────────────────────────────────────────────────
 async function loadNews() {
   var grid = document.getElementById('dashNewsGrid');
   if (!grid) return;
@@ -2423,7 +2317,6 @@ async function loadNews() {
   }).join('');
 }
 
-// ── ACCOUNT SAVE ─────────────────────────────────────────────────────────────
 async function saveAccount() {
   var btn = document.getElementById('accSaveBtn');
   var msg = document.getElementById('accSaveMsg');
@@ -2438,9 +2331,7 @@ async function saveAccount() {
   if (msg) { msg.textContent = 'Saved!'; msg.style.display = 'inline'; setTimeout(function(){ msg.style.display='none'; }, 3000); }
 }
 
-// ── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async function() {
-  // Hide all sections, show only welcome banner
   DASH_SECTIONS.forEach(function(s) {
     var el = document.getElementById(s);
     if (el) el.style.display = 'none';
@@ -2448,16 +2339,13 @@ document.addEventListener('DOMContentLoaded', async function() {
   var wb = document.getElementById('welcome');
   if (wb) wb.style.display = 'block';
 
-  // Auth check
   var { data: { session } } = await dlaSupabase.auth.getSession();
   if (!session) { window.location.href = 'login.html'; return; }
 
-  // Track logged-in email for business directory edit ownership
   if (session.user && session.user.email) {
     bizCurrentUserEmail = session.user.email;
   }
 
-  // Load member data
   var { data: member } = await dlaSupabase
     .from('members')
     .select('*')
@@ -2475,7 +2363,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (emailGold) emailGold.textContent = member.email;
     if (welcomeEl) welcomeEl.textContent = 'Welcome, Brother ' + (member.first_name || 'Brother') + '.';
 
-    // Prefill account form
     var fn = document.getElementById('accFirstName');
     var ln = document.getElementById('accLastName');
     var em = document.getElementById('accEmail');
@@ -2483,7 +2370,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (ln) ln.value = member.last_name || '';
     if (em) em.value = member.email || '';
 
-    // Avatar
     if (member.avatar_url) {
       var img = document.getElementById('avatarImg');
       var icon = document.getElementById('avatarDefaultIcon');
@@ -2491,7 +2377,6 @@ document.addEventListener('DOMContentLoaded', async function() {
       if (icon) icon.style.display = 'none';
     }
 
-    // Admin nav links
     if (member.is_admin) {
       var adminLink = document.getElementById('nav-admin');
       if (adminLink) adminLink.style.display = '';
@@ -2502,12 +2387,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
   }
 
-  // Load news
   loadNews();
 });
 </script>
 
-<!-- ── BUSINESS DIRECTORY EDIT MODAL ── -->
 <div id="bizEditModal" class="biz-modal-overlay" onclick="if(event.target===this)closeBizEdit()">
   <div class="biz-modal">
     <div class="biz-modal-header">
