@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Training Report | DLA Kappas Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #7D110C;
+    --cream: #F2EBD7;
+    --text: #2A2A2A;
+    --pending: #C9971C;
+    --complete: #1E7145;
+    --expired: #A31F1F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+  }
+  header {
+    background: var(--crimson);
+    color: #fff;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  header h1 { margin: 0; font-size: 1.4rem; font-weight: 700; }
+  header a { color: #fff; text-decoration: none; font-size: 0.85rem; opacity: 0.85; }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .card h2 { margin-top: 0; font-size: 1.05rem; color: var(--crimson); }
+
+  /* Summary stat cards */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 700px) { .stat-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 420px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 1.8rem; font-weight: 700; color: var(--crimson); }
+  .stat-card .label { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: .04em; margin-top: 4px; }
+
+  /* By-training breakdown */
+  .training-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+  }
+  .training-row:last-child { border-bottom: none; }
+  .training-row .name { font-weight: 600; font-size: 0.92rem; flex: 1; min-width: 160px; }
+  .bar-wrap { flex: 2; min-width: 140px; background: #eee; border-radius: 999px; height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--complete); }
+  .training-row .pct { font-size: 0.82rem; color: #555; width: 110px; text-align: right; flex-shrink: 0; }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .filters input, .filters select {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.85rem;
+  }
+  .filters input { flex: 1; min-width: 160px; }
+
+  button {
+    background: var(--crimson);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  button.secondary { background: #eee; color: var(--text); }
+
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; }
+  th, td { text-align: left; padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid #eee; }
+  th { background: var(--crimson); color: #fff; font-weight: 600; position: sticky; top: 0; }
+  .badge {
+    display: inline-block; padding: 3px 9px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700; color: #fff;
+  }
+  .badge.Complete { background: var(--complete); }
+  .badge.Pending { background: var(--pending); }
+  .badge.Expired { background: var(--expired); }
+
+  .loading, .empty { text-align: center; padding: 24px; color: #666; }
+  #gate { padding: 40px; text-align: center; }
+  .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+  .count-note { font-size: 0.8rem; color: #777; }
+</style>
+</head>
+<body>
+
+<div id="gate" class="loading">Checking access&hellip;</div>
+
+<div id="app" style="display:none;">
+  <header>
+    <h1>Training Report</h1>
+    <a href="admin.html">&larr; Back to Admin Panel</a>
+  </header>
+
+  <main>
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-card"><div class="num" id="statTotalMembers">—</div><div class="label">Members</div></div>
+      <div class="stat-card"><div class="num" id="statTotalRecords">—</div><div class="label">Training Records</div></div>
+      <div class="stat-card"><div class="num" id="statComplete">—</div><div class="label">Complete</div></div>
+      <div class="stat-card"><div class="num" id="statOutstanding">—</div><div class="label">Pending / Expired</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Completion by Training</h2>
+      <div id="byTrainingWrap" class="loading">Loading&hellip;</div>
+    </div>
+
+    <div class="card">
+      <h2>All Records</h2>
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Search member name&hellip;">
+        <select id="trainingFilter"><option value="">All trainings</option></select>
+        <select id="statusFilter">
+          <option value="">All statuses</option>
+          <option value="Complete">Complete</option>
+          <option value="Pending">Pending</option>
+          <option value="Expired">Expired</option>
+        </select>
+      </div>
+      <div class="toolbar">
+        <span class="count-note" id="resultCount"></span>
+        <button type="button" id="exportBtn" class="secondary">Export CSV</button>
+      </div>
+      <div class="table-scroll">
+        <div id="tableWrap" class="loading">Loading&hellip;</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/training-report.js"></script>
+</body>
+</html>
