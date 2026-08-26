@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Flyer Request Form — Denton-Lewisville Alumni Chapter</title>
+  <link rel="icon" href="/img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: #1a0302;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* ── Banner ── */
+    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
+    .org-text { flex: 1; }
+    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
+    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
+    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
+    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
+    .nav-strip a { color: #c69a3f; text-decoration: none; }
+    .nav-strip a:hover { text-decoration: underline; }
+    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
+    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
+    main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
+    .form-shell { max-width: 860px; margin: 0 auto; }
+
+    .form-section {
+      background: #fff;
+      border: 1px solid #e4dbd0;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .section-head {
+      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+      color: #f2ebd7;
+      padding: .75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .section-head h2 {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #c69a3f;
+    }
+    .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field-row.full { grid-template-columns: 1fr; }
+    .field-row.thirds { grid-template-columns: 1fr 1fr 1fr; }
+
+    .field { display: flex; flex-direction: column; gap: .35rem; }
+    label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #6a5a50;
+    }
+    label .req { color: #70110c; margin-left: 2px; }
+    label .hint { display: block; font-size: .68rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: #a89b8f; margin-top: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      padding: .6rem .8rem;
+      border: 1px solid #d8cfc5;
+      border-radius: 4px;
+      font-family: 'Archivo', sans-serif;
+      font-size: .88rem;
+      color: #1a1a1a;
+      background: #faf8f5;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #70110c;
+      box-shadow: 0 0 0 3px rgba(112,17,12,.08);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a5a50' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem; }
+
+    /* Checkbox chip groups */
+    .chip-group { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .chip-opt { display: none; }
+    .chip-opt + label {
+      display: inline-flex;
+      align-items: center;
+      padding: .42rem 1rem;
+      border: 1px solid #d8cfc5;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #6a5a50;
+      transition: all .2s;
+      text-transform: none;
+      letter-spacing: 0;
+      background: #faf8f5;
+    }
+    .chip-opt:checked + label { border-color: #70110c; background: #70110c; color: #f2ebd7; }
+
+    /* Single checkbox */
+    .check-row { display: flex; align-items: flex-start; gap: .6rem; cursor: pointer; }
+    .check-row input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: #70110c; flex-shrink: 0; }
+    .check-row span { font-size: .82rem; color: #4a3c35; line-height: 1.5; }
+
+    .submit-row { display: flex; justify-content: flex-end; gap: 1rem; align-items: center; }
+    .btn-submit {
+      background: linear-gradient(135deg, #70110c, #2a0604);
+      color: #f2ebd7;
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .85rem 2.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn-submit:hover { opacity: .88; }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+    .status-msg {
+      display: none;
+      padding: .75rem 1rem;
+      border-radius: 4px;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+    .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+    .status-msg.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; display: block; }
+
+    .success-screen {
+      display: none;
+      background: #fff;
+      border: 1px solid #e4dbd0;
+      border-radius: 8px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .success-screen.show { display: block; }
+    .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .success-screen h2 {
+      font-family: 'Cinzel', serif;
+      color: #2a0604;
+      font-size: 1.3rem;
+      margin-bottom: .75rem;
+    }
+    .success-screen p { color: #6a5a50; margin-bottom: .5rem; font-size: .92rem; }
+    .success-ref {
+      display: inline-block;
+      background: #f8f4f0;
+      border: 1px solid #e4dbd0;
+      border-radius: 4px;
+      padding: .5rem 1.25rem;
+      font-family: 'Cinzel', serif;
+      font-size: .85rem;
+      color: #70110c;
+      font-weight: 700;
+      letter-spacing: .05em;
+      margin: .75rem 0 1.5rem;
+    }
+    .btn-new {
+      background: #f8f4f0;
+      border: 1px solid #d8cfc5;
+      color: #2a0604;
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .7rem 2rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #2a0604;
+      color: rgba(242,235,215,.45);
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .06em;
+      padding: 1.25rem;
+    }
+    footer span { color: #c69a3f; }
+
+    @media (max-width: 600px) {
+      .field-row, .field-row.thirds { grid-template-columns: 1fr; }
+      .page-label { flex-direction: column; align-items: flex-start; gap: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="banner">
+  <div class="banner-inner">
+    <div class="org-text">
+      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
+      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0;">
+      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+    </div>
+  </div>
+</header>
+<nav class="nav-strip">
+  <a href="/portal/dashboard.html">Home</a> &rsaquo;
+  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+  Flyer Request
+</nav>
+<div class="page-label">
+  <h1>Flyer Request Form</h1>
+  <span class="fy-tag">FY 2026–2027</span>
+</div>
+
+<main>
+
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">✅</div>
+  <h2>Flyer Request Submitted</h2>
+  <p>Your request has been sent to the Communications team and will be reviewed based on your deadline.</p>
+  <div class="success-ref" id="successRef"></div>
+  <br>
+  <button class="btn-new" onclick="resetForm()">Submit Another Request</button>
+</div>
+
+<form class="form-shell" id="flyerForm">
+
+  <!-- Event Details -->
+  <div class="form-section">
+    <div class="section-head">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1"/><path d="M5 1v4M11 1v4M2 7h12"/></svg>
+      <h2>Event Details</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field">
+          <label for="eventName">Event Name <span class="req">*</span></label>
+          <input type="text" id="eventName" required>
+        </div>
+        <div class="field">
+          <label for="committee">Requesting Committee <span class="req">*</span></label>
+          <select id="committee" required>
+            <option value="">— Select —</option>
+            <option>Budget &amp; Finance Committee</option>
+            <option>Civic Action Committee</option>
+            <option>By-Laws Committee</option>
+            <option>Guide Right Committee</option>
+            <option>Long Range Planning Committee</option>
+            <option>Membership Training Academy Committee</option>
+            <option>Nomination/Elections Committee</option>
+            <option>Programs/Fundraising Committee</option>
+            <option>Reclamation Committee</option>
+            <option>Communications Committee</option>
+            <option>Member Engagement/Social Committee</option>
+            <option>Community Service Committee</option>
+            <option>Military Veteran Affairs Commission</option>
+            <option>Planning &amp; Events Committee</option>
+            <option>Chapter Leadership</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="eventDate">Event Date <span class="req">*</span></label>
+          <input type="date" id="eventDate" required>
+        </div>
+        <div class="field">
+          <label for="eventTime">Event Time</label>
+          <input type="time" id="eventTime">
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label for="eventLocation">Event Location</label>
+          <input type="text" id="eventLocation" placeholder="Venue name and address">
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label for="detailsToInclude">Details to Include on Flyer <span class="req">*</span>
+            <span class="hint">Date, time, location, cost, RSVP/registration link, dress code — anything that must appear on the flyer</span>
+          </label>
+          <textarea id="detailsToInclude" rows="4" required placeholder="Everything the flyer needs to say…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flyer Specifications -->
+  <div class="form-section">
+    <div class="section-head">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><circle cx="5.5" cy="5.5" r="1.2"/><path d="M14 10l-3.5-3.5a1 1 0 0 0-1.4 0L4 11.5"/></svg>
+      <h2>Flyer Specifications</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field">
+          <label for="flyerPurpose">Flyer Purpose <span class="req">*</span></label>
+          <select id="flyerPurpose" required>
+            <option value="">— Select —</option>
+            <option>Save the Date</option>
+            <option>Event Announcement</option>
+            <option>Event Reminder</option>
+            <option>Recruitment / Rush</option>
+            <option>Community Service</option>
+            <option>Fundraiser</option>
+            <option>General Chapter Update</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="deadlineDate">Needed By <span class="req">*</span></label>
+          <input type="date" id="deadlineDate" required>
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label>Formats Needed</label>
+          <div class="chip-group" id="formatsGroup">
+            <input class="chip-opt" type="checkbox" id="fmt1" value="Instagram Post (Square)"><label for="fmt1">Instagram Post</label>
+            <input class="chip-opt" type="checkbox" id="fmt2" value="Instagram Story"><label for="fmt2">Instagram Story</label>
+            <input class="chip-opt" type="checkbox" id="fmt3" value="Facebook Post"><label for="fmt3">Facebook Post</label>
+            <input class="chip-opt" type="checkbox" id="fmt4" value="Print Flyer (8.5x11)"><label for="fmt4">Print Flyer</label>
+            <input class="chip-opt" type="checkbox" id="fmt5" value="Email Banner"><label for="fmt5">Email Banner</label>
+            <input class="chip-opt" type="checkbox" id="fmt6" value="Other"><label for="fmt6">Other</label>
+          </div>
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label>Distribution Channels</label>
+          <div class="chip-group" id="channelsGroup">
+            <input class="chip-opt" type="checkbox" id="ch1" value="Instagram"><label for="ch1">Instagram</label>
+            <input class="chip-opt" type="checkbox" id="ch2" value="Facebook"><label for="ch2">Facebook</label>
+            <input class="chip-opt" type="checkbox" id="ch3" value="Chapter Website"><label for="ch3">Chapter Website</label>
+            <input class="chip-opt" type="checkbox" id="ch4" value="Email Blast"><label for="ch4">Email Blast</label>
+            <input class="chip-opt" type="checkbox" id="ch5" value="Group Text"><label for="ch5">Group Text</label>
+            <input class="chip-opt" type="checkbox" id="ch6" value="Printed / Physical"><label for="ch6">Printed / Physical</label>
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="themeColors">Theme / Colors</label>
+          <input type="text" id="themeColors" placeholder="e.g. Crimson &amp; gold, black tie, all-white">
+        </div>
+        <div class="field">
+          <label>Logo / Photos Needed?</label>
+          <label class="check-row" style="padding-top:.5rem;">
+            <input type="checkbox" id="logoNeeded">
+            <span>I need the chapter logo and/or specific photos added to this flyer</span>
+          </label>
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label for="designPreferences">Design Preferences / Style Notes</label>
+          <textarea id="designPreferences" rows="3" placeholder="Any style direction — bold and modern, elegant, playful, etc."></textarea>
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label for="referenceLinks">Reference / Inspiration Links</label>
+          <input type="url" id="referenceLinks" placeholder="Link to a past flyer or inspiration (Google Drive, Pinterest, etc.)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Information -->
+  <div class="form-section">
+    <div class="section-head">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      <h2>Contact Information</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field">
+          <label for="fullName">Your Name <span class="req">*</span></label>
+          <input type="text" id="fullName" required>
+        </div>
+        <div class="field">
+          <label for="email">Your Email <span class="req">*</span></label>
+          <input type="email" id="email" required>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="(000) 000-0000">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Notes -->
+  <div class="form-section">
+    <div class="section-head">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v5M8 5h.01"/></svg>
+      <h2>Additional Notes</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row full">
+        <div class="field">
+          <label for="additionalNotes">Anything else the design team should know?</label>
+          <textarea id="additionalNotes" rows="3" placeholder="Any other information you'd like to share…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="form-section">
+    <div class="section-body">
+      <div id="statusMsg" class="status-msg"></div>
+      <div class="submit-row">
+        <button type="submit" class="btn-submit" id="submitBtn">Submit Request →</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+</main>
+
+<footer>
+  &copy; 2026–2027 <span>Denton-Lewisville (TX) Alumni Chapter &mdash; Kappa Alpha Psi Fraternity, Inc.</span> &mdash; All Rights Reserved
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/supabase-client.js"></script>
+<script>
+(async () => {
+  const { data: { session } } = await dlaSupabase.auth.getSession();
+  if (!session) { window.location.href = '/portal/login.html'; return; }
+
+  // Pre-fill name/email from member profile
+  const { data: member } = await dlaSupabase.from('members').select('first_name,last_name,email').eq('id', session.user.id).single();
+  if (member) {
+    document.getElementById('fullName').value = [member.first_name, member.last_name].filter(Boolean).join(' ');
+    document.getElementById('email').value = member.email || session.user.email || '';
+  }
+})();
+
+document.getElementById('flyerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('statusMsg');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  msg.className = 'status-msg';
+  msg.style.display = 'none';
+
+  const formatsNeeded = Array.from(document.querySelectorAll('#formatsGroup input:checked')).map(i => i.value);
+  const distributionChannels = Array.from(document.querySelectorAll('#channelsGroup input:checked')).map(i => i.value);
+
+  const payload = {
+    full_name:              document.getElementById('fullName').value.trim(),
+    email:                  document.getElementById('email').value.trim(),
+    phone:                  document.getElementById('phone').value.trim() || null,
+    committee:              document.getElementById('committee').value,
+    request_date:           new Date().toISOString().split('T')[0],
+    event_name:             document.getElementById('eventName').value.trim(),
+    event_date:             document.getElementById('eventDate').value || null,
+    event_time:             document.getElementById('eventTime').value || null,
+    event_location:         document.getElementById('eventLocation').value.trim() || null,
+    deadline_date:          document.getElementById('deadlineDate').value || null,
+    flyer_purpose:          document.getElementById('flyerPurpose').value,
+    formats_needed:         formatsNeeded,
+    distribution_channels:  distributionChannels,
+    theme_colors:           document.getElementById('themeColors').value.trim() || null,
+    design_preferences:     document.getElementById('designPreferences').value.trim() || null,
+    details_to_include:     document.getElementById('detailsToInclude').value.trim(),
+    reference_links:        document.getElementById('referenceLinks').value.trim() || null,
+    logo_needed:            document.getElementById('logoNeeded').checked,
+    additional_notes:       document.getElementById('additionalNotes').value.trim() || null,
+    status:                 'Pending',
+    fiscal_year:             '2026-2027'
+  };
+
+  const { data, error } = await dlaSupabase.from('flyer_requests').insert([payload]).select().single();
+
+  if (error) {
+    msg.textContent = 'Submission failed: ' + (error.message || 'Please try again.');
+    msg.className = 'status-msg error';
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Submit Request →';
+    return;
+  }
+
+  document.getElementById('flyerForm').style.display = 'none';
+  const ref = data?.id ? String(data.id).padStart(6, '0') : '------';
+  document.getElementById('successRef').textContent = 'Reference #: DLA-FR-' + ref;
+  document.getElementById('successScreen').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+function resetForm() {
+  document.getElementById('flyerForm').reset();
+  document.getElementById('flyerForm').style.display = '';
+  document.getElementById('successScreen').classList.remove('show');
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Submit Request →';
+}
+</script>
+</body>
+</html>
