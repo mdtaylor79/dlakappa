@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVAC Operations Guide | DLA Kappa Alpha Psi</title>
+<link rel="icon" type="image/png" href="assets/dla-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* ── Tokens ───────────────────────────────────────────────── */
+:root{
+  --crimson:#70110C;--crimson-dark:#560D09;--crimson-mid:#8B1A14;
+  --cream:#F2EBD7;--cream-dark:#E4D9C2;--cream-mid:#D5C9AF;
+  --gold:#C69A3F;--gold-dark:#A8832D;
+  --white:#FFFFFF;--offwhite:#FDFAF6;--bg:#F4F2EF;
+  --gray-light:#E0D8CC;--gray-mid:#888;--gray-dark:#444;
+  --ink:#1A0E0D;
+  --font-display:'Cinzel',serif;--font-body:'Source Sans 3',sans-serif;
+  --sidebar-w:264px;--topbar-h:56px;
+  --radius:6px;--radius-lg:10px;
+  --shadow:0 1px 4px rgba(0,0,0,.08);--shadow-lg:0 4px 20px rgba(0,0,0,.12);
+  --transition:.18s ease;
+}
+/* ── Base ─────────────────────────────────────────────────── */
+html,body{height:100%;font-family:var(--font-body);font-size:15px;color:var(--ink);background:var(--bg);}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.25;}
+h2{font-size:1.15rem;color:var(--crimson);margin:2rem 0 .75rem;border-bottom:1px solid var(--gray-light);padding-bottom:.5rem;}
+h3{font-size:.95rem;color:var(--crimson-mid);margin:1.5rem 0 .5rem;}
+h4{font-size:.85rem;color:var(--gray-dark);margin:1.25rem 0 .4rem;}
+p{line-height:1.7;margin-bottom:.9rem;font-size:.92rem;color:#333;}
+ul,ol{padding-left:1.4rem;margin-bottom:.9rem;}
+li{line-height:1.65;font-size:.9rem;margin-bottom:.25rem;color:#333;}
+strong{font-weight:700;}
+a{color:var(--crimson);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* ── Mobile topbar (hidden on desktop) ───────────────────── */
+#mob-topbar{display:none;position:fixed;top:0;left:0;right:0;height:52px;background:var(--crimson-dark);z-index:300;align-items:center;gap:.75rem;padding:0 1rem;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+#mob-menu-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:8px 6px;border-radius:4px;min-width:36px;min-height:36px;transition:background .15s;}
+#mob-menu-btn:hover,#mob-menu-btn:focus-visible{background:rgba(242,235,215,.12);outline:none;}
+#mob-menu-btn span{display:block;width:20px;height:2px;background:var(--cream);border-radius:2px;transform-origin:center;transition:transform .25s ease,opacity .2s ease;}
+#mob-menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+#mob-menu-btn.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+#mob-menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-title{font-family:var(--font-display);font-size:.75rem;font-weight:600;color:var(--cream);letter-spacing:.1em;flex:1;}
+/* Backdrop — opacity-animated so it fades instead of popping */
+#mob-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:199;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+#mob-backdrop.active{opacity:1;pointer-events:auto;}
+/* Mobile sidebar close row */
+.sidebar-mob-close{display:none;justify-content:flex-end;padding:.55rem .7rem .15rem;flex-shrink:0;}
+.sidebar-mob-close button{background:none;border:none;color:rgba(242,235,215,.55);font-size:1.1rem;cursor:pointer;line-height:1;padding:.25rem .5rem;border-radius:4px;transition:background .15s,color .15s;}
+.sidebar-mob-close button:hover{background:rgba(242,235,215,.1);color:var(--cream);}
+@media(max-width:768px){.sidebar-mob-close{display:flex;}}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+#sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:var(--crimson-dark);display:flex;flex-direction:column;z-index:200;transition:transform var(--transition);}
+#sidebar.collapsed{transform:translateX(calc(-1 * var(--sidebar-w)));}
+.sidebar-brand{padding:1.1rem 1rem .9rem;border-bottom:1px solid rgba(198,154,63,.25);display:flex;align-items:center;gap:.75rem;flex-shrink:0;}
+.sidebar-brand img{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3));}
+.logo-placeholder{width:40px;height:40px;background:rgba(198,154,63,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.9rem;color:var(--gold);}
+.brand-text .brand-title{font-family:var(--font-display);font-size:.65rem;font-weight:700;color:var(--cream);line-height:1.3;letter-spacing:.03em;}
+.brand-text .brand-sub{font-size:.58rem;color:rgba(242,235,215,.5);margin-top:2px;letter-spacing:.04em;}
+.sidebar-search{padding:.65rem .85rem;border-bottom:1px solid rgba(198,154,63,.15);flex-shrink:0;}
+.sidebar-search input{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(198,154,63,.2);border-radius:4px;padding:.4rem .65rem;font-size:.75rem;color:var(--cream);outline:none;font-family:var(--font-body);}
+.sidebar-search input::placeholder{color:rgba(242,235,215,.4);}
+.sidebar-search input:focus{border-color:rgba(198,154,63,.5);}
+#sidebar-nav{flex:1;overflow-y:auto;padding:.6rem 0 1rem;}
+#sidebar-nav::-webkit-scrollbar{width:3px;}
+#sidebar-nav::-webkit-scrollbar-thumb{background:rgba(198,154,63,.3);border-radius:2px;}
+.nav-section-label{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,154,63,.65);padding:.85rem .9rem .35rem;margin-top:.25rem;}
+.nav-item{display:flex;align-items:center;gap:.55rem;padding:.45rem .9rem;font-size:.77rem;color:rgba(242,235,215,.75);cursor:pointer;border-left:2px solid transparent;transition:all var(--transition);text-decoration:none;line-height:1.35;}
+.nav-item:hover{background:rgba(242,235,215,.07);color:var(--cream);text-decoration:none;}
+.nav-item.active{background:rgba(242,235,215,.12);color:var(--cream);border-left-color:var(--gold);font-weight:600;}
+.nav-icon{font-size:.9rem;flex-shrink:0;}
+.nav-label{flex:1;}
+
+/* ── Sidebar toggle button ────────────────────────────────── */
+#sidebar-toggle{position:fixed;top:50%;left:var(--sidebar-w);transform:translateY(-50%);width:22px;height:52px;background:var(--crimson-dark);border:none;border-radius:0 6px 6px 0;cursor:pointer;color:rgba(242,235,215,.8);display:flex;align-items:center;justify-content:center;z-index:201;transition:left var(--transition),background var(--transition),box-shadow var(--transition);box-shadow:2px 0 8px rgba(0,0,0,.2);}
+#sidebar-toggle:hover{background:var(--crimson-mid);color:var(--cream);box-shadow:2px 0 12px rgba(0,0,0,.3);}
+#sidebar-toggle.collapsed{left:0;}
+
+/* ── Main ─────────────────────────────────────────────────── */
+#main{margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:column;transition:margin-left var(--transition);}
+#main.expanded{margin-left:0;}
+#topbar{position:sticky;top:0;z-index:100;height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--gray-light);display:flex;align-items:center;padding:0 1.75rem;gap:1rem;box-shadow:var(--shadow);}
+#breadcrumb{font-size:.78rem;color:var(--gray-mid);flex:1;}
+#breadcrumb strong{color:var(--crimson);}
+.topbar-actions{display:flex;gap:.6rem;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .9rem;border-radius:4px;font-size:.73rem;font-weight:600;cursor:pointer;transition:all var(--transition);letter-spacing:.03em;text-decoration:none;border:none;}
+.btn-outline{background:transparent;border:1px solid var(--gray-light);color:var(--gray-mid);}
+.btn-outline:hover{border-color:var(--crimson);color:var(--crimson);text-decoration:none;}
+.btn-primary{background:var(--crimson);color:var(--cream);}
+.btn-primary:hover{background:var(--crimson-mid);color:var(--cream);text-decoration:none;}
+
+/* ── Content & Pages ──────────────────────────────────────── */
+#content{flex:1;overflow-y:auto;padding:2.25rem 2.5rem;}
+.page{display:none;max-width:820px;margin:0 auto;animation:fadeIn .2s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── Home page hero ───────────────────────────────────────── */
+.home-hero{background:linear-gradient(150deg,var(--crimson-dark) 0%,var(--crimson) 60%,#9b1c16 100%);color:var(--cream);padding:64px 40px 56px;margin:-40px -40px 40px;text-align:center;position:relative;overflow:hidden;border-radius:0 0 var(--radius-lg) var(--radius-lg);}
+.home-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F2EBD7' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.home-logo{width:120px;height:120px;object-fit:contain;margin:0 auto 20px;display:block;filter:drop-shadow(0 8px 24px rgba(0,0,0,.35));position:relative;}
+.home-logo-placeholder{width:120px;height:120px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:3rem;color:var(--gold);position:relative;opacity:.8;}
+.home-chapter{font-family:var(--font-display);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,235,215,.65);margin-bottom:10px;position:relative;}
+.home-title{font-family:var(--font-display);font-size:2.2rem;font-weight:400;letter-spacing:.04em;margin-bottom:8px;position:relative;line-height:1.2;}
+.home-subtitle{font-size:.95rem;color:rgba(242,235,215,.75);margin-bottom:28px;position:relative;}
+.home-meta{display:inline-flex;gap:20px;background:rgba(0,0,0,.2);padding:9px 22px;border-radius:40px;font-size:.75rem;color:rgba(242,235,215,.7);position:relative;}
+.home-meta span::before{content:'•';margin-right:8px;opacity:.5;}
+.home-meta span:first-child::before{display:none;}
+
+/* ── Stat row ─────────────────────────────────────────────── */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin:0 0 2rem;}
+.stat-box{background:var(--white);border:1px solid var(--gray-light);border-radius:var(--radius);padding:1rem;text-align:center;border-top:3px solid var(--crimson);}
+.stat-num{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--crimson);line-height:1;}
+.stat-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-mid);margin-top:.35rem;}
+
+/* ── Chapter grid ─────────────────────────────────────────── */
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:20px 0;}
+.chapter-card{background:var(--white);border:1px solid var(--gray-light);border-left:4px solid var(--crimson);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:all var(--transition);text-decoration:none;color:inherit;display:flex;align-items:flex-start;gap:12px;}
+.chapter-card:hover{border-color:var(--crimson);box-shadow:var(--shadow-lg);transform:translateY(-2px);background:#fdfaf6;text-decoration:none;}
+.chapter-card-num{font-family:var(--font-display);font-size:1.3rem;color:var(--crimson);opacity:.3;line-height:1;flex-shrink:0;min-width:30px;}
+.chapter-card-icon{font-size:1.3rem;flex-shrink:0;}
+.chapter-card-body{flex:1;}
+.chapter-card-title{font-family:var(--font-display);font-size:.78rem;color:var(--crimson);margin-bottom:4px;letter-spacing:.02em;}
+.chapter-card-desc{font-size:.73rem;color:var(--gray-mid);line-height:1.45;}
+
+/* ── Quick-ref card grid ──────────────────────────────────── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin:20px 0;}
+.card{background:var(--white);border:1px solid var(--gray-light);border-radius:var(--radius);padding:1.1rem;cursor:pointer;transition:all var(--transition);}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+.card-icon{font-size:1.6rem;margin-bottom:.5rem;}
+.card-title{font-family:var(--font-display);font-size:.78rem;color:var(--crimson);margin-bottom:.3rem;}
+.card-desc{font-size:.72rem;color:var(--gray-mid);line-height:1.4;}
+
+/* ── Page hero ────────────────────────────────────────────── */
+.page-hero{background:linear-gradient(135deg,var(--crimson-dark),var(--crimson));color:var(--cream);border-radius:var(--radius-lg);padding:2rem 2.25rem;margin-bottom:2rem;position:relative;overflow:hidden;}
+.page-hero::after{content:'★';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:6rem;opacity:.06;line-height:1;pointer-events:none;}
+.hero-chapter-num{font-family:var(--font-display);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(198,154,63,.85);margin-bottom:.5rem;}
+.hero-title{font-family:var(--font-display);font-size:1.55rem;font-weight:400;color:var(--cream);margin-bottom:.5rem;letter-spacing:.03em;}
+.hero-desc{font-size:.85rem;color:rgba(242,235,215,.75);line-height:1.6;margin:0;}
+
+/* ── Callout boxes ────────────────────────────────────────── */
+.callout{background:#fdfaf6;border-left:4px solid var(--crimson);border-radius:0 var(--radius) var(--radius) 0;padding:.9rem 1.1rem;margin:1.25rem 0;}
+.callout.policy{border-left-color:var(--crimson-dark);background:#fdf6f6;}
+.callout.tip{border-left-color:var(--gold);background:#fdfaf2;}
+.callout.gold{border-left-color:var(--gold);background:linear-gradient(135deg,rgba(198,154,63,.08),rgba(198,154,63,.03));}
+.callout-label{font-family:var(--font-display);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:.45rem;}
+.callout.tip .callout-label{color:var(--gold-dark);}
+.callout.gold .callout-label{color:var(--gold-dark);}
+.callout p{margin:0;font-size:.87rem;}
+
+/* ── Accordion ────────────────────────────────────────────── */
+.accordion{border:1px solid var(--gray-light);border-radius:var(--radius);overflow:hidden;margin:.6rem 0;}
+.accordion-header{background:var(--white);padding:.8rem 1.1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:.85rem;font-weight:600;color:var(--ink);transition:background var(--transition);}
+.accordion-header:hover{background:var(--offwhite);}
+.accordion-header.open{background:var(--crimson-dark);color:var(--cream);}
+.accordion-icon{font-size:.75rem;transition:transform var(--transition);}
+.accordion-header.open .accordion-icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:.9rem 1.1rem;background:var(--offwhite);border-top:1px solid var(--gray-light);}
+.accordion-body.open{display:block;}
+.accordion-body ul{margin:0;padding-left:1.2rem;}
+.accordion-body li{font-size:.85rem;}
+
+/* ── Timeline ─────────────────────────────────────────────── */
+.timeline{margin:1rem 0;display:flex;flex-direction:column;gap:0;}
+.timeline-item{display:flex;gap:1rem;padding-bottom:1.25rem;position:relative;}
+.timeline-item::before{content:'';position:absolute;left:42px;top:28px;bottom:0;width:1px;background:var(--gray-light);}
+.timeline-item:last-child::before{display:none;}
+.timeline-date{flex-shrink:0;width:70px;font-family:var(--font-display);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--white);background:var(--crimson);border-radius:20px;padding:.35rem .6rem;text-align:center;height:fit-content;margin-top:.15rem;}
+.timeline-title{font-weight:700;font-size:.88rem;color:var(--crimson);margin-bottom:.25rem;font-family:var(--font-display);}
+.timeline-body{font-size:.83rem;color:#555;line-height:1.55;}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;margin:1rem 0;border-radius:var(--radius);box-shadow:var(--shadow);}
+table{width:100%;border-collapse:collapse;font-size:.83rem;background:var(--white);}
+thead{background:var(--crimson);}
+th{padding:.65rem 1rem;text-align:left;font-family:var(--font-display);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);}
+td{padding:.6rem 1rem;border-bottom:1px solid var(--gray-light);color:#333;vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:#faf9f7;}
+
+/* ── Program area blocks ──────────────────────────────────── */
+.area-block{background:var(--white);border:1px solid var(--gray-light);border-radius:var(--radius-lg);overflow:hidden;margin:1rem 0;}
+.area-header{background:var(--crimson);color:var(--cream);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.75rem;}
+.area-roman{font-family:var(--font-display);font-size:.68rem;font-weight:700;letter-spacing:.15em;color:rgba(198,154,63,.85);text-transform:uppercase;}
+.area-title{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--cream);}
+.area-body{padding:1.1rem 1.25rem;}
+
+/* ── Color swatches ───────────────────────────────────────── */
+.color-grid{display:flex;flex-wrap:wrap;gap:14px;margin:1rem 0;}
+.swatch{display:flex;gap:10px;align-items:center;}
+.swatch-color{width:60px;height:60px;border-radius:var(--radius);flex-shrink:0;}
+.swatch-name{font-family:var(--font-display);font-size:.75rem;font-weight:700;color:var(--ink);}
+.swatch-hex{font-size:.72rem;color:var(--gray-mid);font-family:monospace;}
+
+/* ── Metric tiles ─────────────────────────────────────────── */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:1rem 0;}
+.metric-tile{background:var(--white);border:1px solid var(--gray-light);border-radius:var(--radius);padding:1.1rem;text-align:center;border-top:3px solid var(--gold);}
+.metric-num{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--crimson);}
+.metric-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-mid);margin-top:.3rem;}
+
+/* ── Cycle badges ─────────────────────────────────────────── */
+.cycle-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:1rem 0;}
+.cycle-badge{background:var(--crimson);color:var(--cream);border-radius:20px;padding:.32rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.06em;font-family:var(--font-display);}
+.cycle-badge.gold{background:var(--gold);color:var(--white);}
+.cycle-arrow{color:var(--gold);font-weight:700;font-size:.8rem;}
+
+/* ── Phase timeline vertical ──────────────────────────────── */
+.phase-list{margin:1rem 0;display:flex;flex-direction:column;gap:.75rem;}
+.phase-item{display:flex;gap:1rem;align-items:flex-start;}
+.phase-dot{width:32px;height:32px;border-radius:50%;background:var(--crimson);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.68rem;font-weight:700;flex-shrink:0;margin-top:.1rem;}
+.phase-content h4{margin:0 0 .25rem;font-size:.85rem;color:var(--crimson);}
+.phase-content p{margin:0;font-size:.82rem;color:#555;}
+
+/* ── Founder cards ────────────────────────────────────────── */
+.founder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:1rem 0;}
+.founder-card{background:var(--white);border:1px solid var(--gray-light);border-radius:var(--radius);padding:1rem;}
+.founder-card.highlight{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);}
+.founder-name{font-family:var(--font-display);font-size:.8rem;font-weight:700;color:var(--crimson);margin-bottom:.2rem;}
+.founder-branch{font-size:.72rem;font-weight:600;color:var(--gray-mid);letter-spacing:.04em;text-transform:uppercase;}
+.founder-detail{font-size:.73rem;color:#555;line-height:1.45;margin-top:.4rem;}
+
+/* ── Print ────────────────────────────────────────────────── */
+@media print{#sidebar,#sidebar-toggle,#mob-topbar,#topbar,.topbar-actions{display:none!important;}#main{margin-left:0!important;}#content{padding:1rem!important;}.page{display:block!important;page-break-inside:avoid;}}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media(max-width:768px){
+  #mob-topbar{display:flex;}
+  /* Sidebar slides in from left, full height, over the content */
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));top:0;bottom:0;transition:transform .28s cubic-bezier(.4,0,.2,1);box-shadow:none;}
+  #sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.35);}
+  #sidebar-toggle{display:none;}
+  #main{margin-left:0!important;padding-top:52px;}
+  #content{padding:1.25rem 1rem;}
+  .home-hero{padding:40px 20px 36px;margin:-20px -20px 24px;}
+  .home-title{font-size:1.5rem;}
+  .chapter-grid{grid-template-columns:1fr;}
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+  /* Prevent background scroll while sidebar is open */
+  body.sidebar-open{overflow:hidden;}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE TOP BAR -->
+<div id="mob-topbar">
+  <button id="mob-menu-btn" onclick="mobToggle()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="mob-title">MVAC Guide</span>
+  <a href="/portal/dashboard.html" onclick="if(document.referrer)return true;event.preventDefault();history.back();" style="color:rgba(242,235,215,.8);font-size:.72rem;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:.3rem;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="15 18 9 12 15 6"/></svg>
+    Dashboard
+  </a>
+</div>
+<div id="mob-backdrop" onclick="mobClose()" aria-hidden="true"></div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar" role="navigation" aria-label="Guide navigation">
+  <div class="sidebar-brand">
+    <img src="assets/dla-logo.png" alt="DLA Kappa Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="logo-placeholder" style="display:none">KAΨ</div>
+    <div class="brand-text">
+      <div class="brand-title">Denton-Lewisville<br>Alumni Chapter</div>
+      <div class="brand-sub">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+
+  <!-- Close button — visible on mobile only -->
+  <div class="sidebar-mob-close">
+    <button onclick="mobClose()" aria-label="Close navigation menu">✕</button>
+  </div>
+
+  <div class="sidebar-search">
+    <input type="text" id="search-input" placeholder="Search the guide…" autocomplete="off">
+  </div>
+
+  <div id="sidebar-nav">
+    <a href="/portal/dashboard.html" onclick="if(document.referrer)return true;event.preventDefault();history.back();" style="display:flex;align-items:center;gap:.5rem;padding:.55rem .75rem;margin-bottom:.75rem;background:rgba(242,235,215,.08);border:1px solid rgba(242,235,215,.15);border-radius:5px;color:rgba(242,235,215,.8);text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.06em;transition:background .2s;" onmouseover="this.style.background='rgba(242,235,215,.15)'" onmouseout="this.style.background='rgba(242,235,215,.08)'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+      ← Dashboard
+    </a>
+
+    <div class="nav-section-label">Getting Started</div>
+    <a class="nav-item active" onclick="showPage('home')" href="#home"><span class="nav-label">Overview</span></a>
+    <a class="nav-item" onclick="showPage('intro')" href="#intro"><span class="nav-label">Introduction &amp; Background</span></a>
+    <a class="nav-item" onclick="showPage('ch1')" href="#ch1"><span class="nav-label">1. Legacy &amp; Founders</span></a>
+
+    <div class="nav-section-label">Mission &amp; Purpose</div>
+    <a class="nav-item" onclick="showPage('ch2')" href="#ch2"><span class="nav-label">2. Mission Statement</span></a>
+    <a class="nav-item" onclick="showPage('ch3')" href="#ch3"><span class="nav-label">3. Who We Serve</span></a>
+
+    <div class="nav-section-label">Five Program Areas</div>
+    <a class="nav-item" onclick="showPage('ch4')" href="#ch4"><span class="nav-label">4. Program Areas Overview</span></a>
+    <a class="nav-item" onclick="showPage('ch5')" href="#ch5"><span class="nav-label">5. Area I — Brother Engagement</span></a>
+    <a class="nav-item" onclick="showPage('ch6')" href="#ch6"><span class="nav-label">6. Area II — Community Service</span></a>
+    <a class="nav-item" onclick="showPage('ch7')" href="#ch7"><span class="nav-label">7. Area III — Military Mentorship</span></a>
+    <a class="nav-item" onclick="showPage('ch8')" href="#ch8"><span class="nav-label">8. Area IV — Guide Right &amp; Youth</span></a>
+    <a class="nav-item" onclick="showPage('ch9')" href="#ch9"><span class="nav-label">9. Area V — Strategic Partnerships</span></a>
+
+    <div class="nav-section-label">Programs &amp; Initiatives</div>
+    <a class="nav-item" onclick="showPage('ch10')" href="#ch10"><span class="nav-label">10. Signature Programs</span></a>
+    <a class="nav-item" onclick="showPage('ch11')" href="#ch11"><span class="nav-label">11. Corporate Engagement</span></a>
+    <a class="nav-item" onclick="showPage('ch12')" href="#ch12"><span class="nav-label">12. JROTC Partnerships</span></a>
+    <a class="nav-item" onclick="showPage('ch13')" href="#ch13"><span class="nav-label">13. Recognition &amp; Awards</span></a>
+    <a class="nav-item" onclick="showPage('ch14')" href="#ch14"><span class="nav-label">14. Mortally Wounded Project</span></a>
+
+    <div class="nav-section-label">Operations</div>
+    <a class="nav-item" onclick="showPage('ch15')" href="#ch15"><span class="nav-label">15. Service Standard</span></a>
+    <a class="nav-item" onclick="showPage('ch16')" href="#ch16"><span class="nav-label">16. Communications Protocol</span></a>
+    <a class="nav-item" onclick="showPage('ch17')" href="#ch17"><span class="nav-label">17. Commission Structure</span></a>
+
+    <div class="nav-section-label">Planning &amp; Impact</div>
+    <a class="nav-item" onclick="showPage('ch18')" href="#ch18"><span class="nav-label">18. Annual Calendar</span></a>
+    <a class="nav-item" onclick="showPage('ch19')" href="#ch19"><span class="nav-label">19. Metrics &amp; Dashboard</span></a>
+    <a class="nav-item" onclick="showPage('ch20')" href="#ch20"><span class="nav-label">20. Implementation Phases</span></a>
+    <a class="nav-item" onclick="showPage('ch21')" href="#ch21"><span class="nav-label">21. Vision</span></a>
+  </div>
+</nav>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar" aria-label="Toggle sidebar">
+  <svg id="toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="topbar">
+    <div id="breadcrumb">MVAC Operations Guide &nbsp;›&nbsp; <span id="breadcrumb-current">Overview</span></div>
+    <div class="topbar-actions">
+      <button class="btn btn-outline" onclick="window.print()">Print</button>
+      <a class="btn btn-primary" href="/portal/dashboard.html" onclick="if(document.referrer)return true;event.preventDefault();history.back();" style="display:inline-flex;align-items:center;gap:.4rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polyline points="15 18 9 12 15 6"/></svg>
+        Dashboard
+      </a>
+    </div>
+  </div>
+
+  <div id="content">
+
+<!-- HOME PAGE ═══════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="home-hero">
+    <img src="assets/dla-logo.png" alt="DLA Kappa Alpha Psi Logo" class="home-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="home-logo-placeholder" style="display:none">★</div>
+    <div class="home-chapter">Denton-Lewisville (TX) Alumni Chapter &nbsp;·&nbsp; Kappa Alpha Psi Fraternity, Inc.</div>
+    <h1 class="home-title">Military &amp; Veterans Affairs Commission</h1>
+    <p class="home-subtitle">Operations Guide — Honoring Service, Empowering Brothers</p>
+    <div class="home-meta">
+      <span>21 Chapters</span>
+      <span>5 Program Areas</span>
+      <span>Year-Round Programming</span>
+      <span>Est. 2025</span>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">5</div><div class="stat-label">Program Areas</div></div>
+    <div class="stat-box"><div class="stat-num">21</div><div class="stat-label">Guide Chapters</div></div>
+    <div class="stat-box"><div class="stat-num">12</div><div class="stat-label">Annual Events</div></div>
+    <div class="stat-box"><div class="stat-num">7</div><div class="stat-label">Military Founders</div></div>
+  </div>
+
+  <h2>About This Guide</h2>
+  <p>This operations guide is the authoritative reference for the Denton-Lewisville (TX) Alumni Chapter Military &amp; Veterans Affairs Commission (MVAC). It establishes the mission, programs, standards, and procedures that govern how the Commission honors, connects, and empowers military brothers — past and present — within the chapter and the broader North Texas community.</p>
+
+  <div class="callout policy">
+    <div class="callout-label">Commission Commitment</div>
+    <p><strong>"Honor the Uniform. Serve the Brotherhood."</strong> — Every program we execute reflects our obligation to the men who served this nation and to the fraternal values of Kappa Alpha Psi Fraternity, Inc.</p>
+  </div>
+
+  <h2>All Sections</h2>
+  <div class="chapter-grid">
+    <a class="chapter-card" onclick="showPage('intro')" href="#intro"><span class="chapter-card-num">00</span><div class="chapter-card-body"><div class="chapter-card-title">Introduction &amp; Background</div><div class="chapter-card-desc">Purpose, history, and context for the MVAC within Kappa Alpha Psi.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch1')" href="#ch1"><span class="chapter-card-num">01</span><div class="chapter-card-body"><div class="chapter-card-title">Legacy &amp; Founders</div><div class="chapter-card-desc">The seven military founders of Kappa Alpha Psi and the fraternity's military heritage.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch2')" href="#ch2"><span class="chapter-card-num">02</span><div class="chapter-card-body"><div class="chapter-card-title">Mission Statement</div><div class="chapter-card-desc">Commission mission, purpose, objectives, and guiding principles.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch3')" href="#ch3"><span class="chapter-card-num">03</span><div class="chapter-card-body"><div class="chapter-card-title">Who We Serve</div><div class="chapter-card-desc">Veteran brothers, active-duty members, military families, and youth in the pipeline.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch4')" href="#ch4"><span class="chapter-card-num">04</span><div class="chapter-card-body"><div class="chapter-card-title">Five Program Areas</div><div class="chapter-card-desc">Overview of all five MVAC program areas and the engagement cycle.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch5')" href="#ch5"><span class="chapter-card-num">05</span><div class="chapter-card-body"><div class="chapter-card-title">Area I — Brother Engagement</div><div class="chapter-card-desc">Military census, outreach, recognition, and chapter integration strategies.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch6')" href="#ch6"><span class="chapter-card-num">06</span><div class="chapter-card-body"><div class="chapter-card-title">Area II — Community Service</div><div class="chapter-card-desc">Veterans Day programs, Stand Down events, military spouse appreciation, and community recognition.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch7')" href="#ch7"><span class="chapter-card-num">07</span><div class="chapter-card-body"><div class="chapter-card-title">Area III — Military Mentorship</div><div class="chapter-card-desc">Transition assistance, peer mentoring, and veteran-to-veteran support networks.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch8')" href="#ch8"><span class="chapter-card-num">08</span><div class="chapter-card-body"><div class="chapter-card-title">Area IV — Guide Right &amp; Youth</div><div class="chapter-card-desc">Military STEM academies, JROTC partnerships, and youth leadership initiatives.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch9')" href="#ch9"><span class="chapter-card-num">09</span><div class="chapter-card-body"><div class="chapter-card-title">Area V — Strategic Partnerships</div><div class="chapter-card-desc">Corporate, government, and nonprofit alliances amplifying veteran impact.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch10')" href="#ch10"><span class="chapter-card-num">10</span><div class="chapter-card-body"><div class="chapter-card-title">Signature Programs</div><div class="chapter-card-desc">The Commission's flagship annual programs and flagship initiatives.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch11')" href="#ch11"><span class="chapter-card-num">11</span><div class="chapter-card-body"><div class="chapter-card-title">Corporate Engagement</div><div class="chapter-card-desc">Employer partnerships, hiring initiatives, and veteran scholarship programs.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch12')" href="#ch12"><span class="chapter-card-num">12</span><div class="chapter-card-body"><div class="chapter-card-title">JROTC Partnerships</div><div class="chapter-card-desc">School-based JROTC mentorship, awards, and pipeline development.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch13')" href="#ch13"><span class="chapter-card-num">13</span><div class="chapter-card-body"><div class="chapter-card-title">Recognition &amp; Awards</div><div class="chapter-card-desc">Chapter and national award programs honoring military service.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch14')" href="#ch14"><span class="chapter-card-num">14</span><div class="chapter-card-body"><div class="chapter-card-title">Mortally Wounded Project</div><div class="chapter-card-desc">Preserving the memory of brothers who made the ultimate sacrifice.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch15')" href="#ch15"><span class="chapter-card-num">15</span><div class="chapter-card-body"><div class="chapter-card-title">Service Standard</div><div class="chapter-card-desc">The Commission's standard of excellence for every event and interaction.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch16')" href="#ch16"><span class="chapter-card-num">16</span><div class="chapter-card-body"><div class="chapter-card-title">Communications Protocol</div><div class="chapter-card-desc">Internal and external communications standards for the Commission.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch17')" href="#ch17"><span class="chapter-card-num">17</span><div class="chapter-card-body"><div class="chapter-card-title">Commission Structure</div><div class="chapter-card-desc">Leadership roles, committee organization, and governance framework.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch18')" href="#ch18"><span class="chapter-card-num">18</span><div class="chapter-card-body"><div class="chapter-card-title">Annual Calendar</div><div class="chapter-card-desc">Month-by-month programming schedule and key observance dates.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch19')" href="#ch19"><span class="chapter-card-num">19</span><div class="chapter-card-body"><div class="chapter-card-title">Metrics &amp; Dashboard</div><div class="chapter-card-desc">Key performance indicators and impact measurement framework.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch20')" href="#ch20"><span class="chapter-card-num">20</span><div class="chapter-card-body"><div class="chapter-card-title">Implementation Phases</div><div class="chapter-card-desc">Year-one through year-three rollout plan and milestones.</div></div></a>
+    <a class="chapter-card" onclick="showPage('ch21')" href="#ch21"><span class="chapter-card-num">21</span><div class="chapter-card-body"><div class="chapter-card-title">Vision</div><div class="chapter-card-desc">The Commission's long-term vision for military brotherhood and community impact.</div></div></a>
+  </div>
+
+  <h2>Quick Reference</h2>
+  <div class="card-grid">
+    <div class="card" onclick="showPage('ch5')"><div class="card-icon">🪖</div><div class="card-title">Military Census</div><div class="card-desc">Register military brothers and build the outreach pipeline.</div></div>
+    <div class="card" onclick="showPage('ch18')"><div class="card-icon">📅</div><div class="card-title">Annual Calendar</div><div class="card-desc">Month-by-month programming and observance schedule.</div></div>
+    <div class="card" onclick="showPage('ch14')"><div class="card-icon">🎖️</div><div class="card-title">Mortally Wounded</div><div class="card-desc">Honor roll of brothers who gave the ultimate sacrifice.</div></div>
+    <div class="card" onclick="showPage('ch4')"><div class="card-icon">⭐</div><div class="card-title">Engagement Cycle</div><div class="card-desc">IDENTIFY → CONNECT → SERVE → MENTOR → DEVELOP → RECOGNIZE → REMEMBER</div></div>
+  </div>
+</div><!-- /home -->
+
+<!-- INTRODUCTION ════════════════════════════════════════════ -->
+<div id="page-intro" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Introduction</div>
+    <h1 class="hero-title">Introduction &amp; Background</h1>
+    <p class="hero-desc">Purpose of the Commission, its place within the chapter, and the military heritage of Kappa Alpha Psi.</p>
+  </div>
+
+  <h2>Purpose of This Guide</h2>
+  <p>The MVAC Operations Guide is the authoritative reference for all matters related to the Military &amp; Veterans Affairs Commission of the Denton-Lewisville (TX) Alumni Chapter of Kappa Alpha Psi Fraternity, Inc. It establishes the policies, procedures, programs, and standards that govern how the Commission honors, connects, and empowers military brothers across all five program areas.</p>
+  <p>This guide is not simply a program outline. It is an operational framework ensuring that every Commission member, chapter officer, program volunteer, and community partner engages with military brothers with precision, intentionality, and excellence — every time.</p>
+
+  <h2>Commission Background</h2>
+  <p>The Military &amp; Veterans Affairs Commission was established to address a recognized gap in fraternal programming: while Kappa Alpha Psi has always counted military men among its brotherhood, structured programming to identify, engage, and serve those brothers had not been formalized at the chapter level. The DLA MVAC closes that gap.</p>
+  <p>The Commission draws its mandate from Kappa Alpha Psi's long military legacy — seven of the Fraternity's founders served in the United States military — and from the chapter's commitment to "Achievement in Every Field of Human Endeavor," including the field of military service.</p>
+
+  <h2>Who Should Read This Guide</h2>
+  <ul>
+    <li>MVAC Chair and Commission leadership</li>
+    <li>Chapter officers and board members</li>
+    <li>Program volunteers and event coordinators</li>
+    <li>Community partners and corporate sponsors</li>
+    <li>Incoming officers and future commission leadership</li>
+  </ul>
+
+  <div class="callout tip">
+    <div class="callout-label">Guiding Principle</div>
+    <p>Every veteran brother who walks through the chapter's door should leave feeling seen, valued, and connected. The MVAC exists to make that standard a reality — not an aspiration.</p>
+  </div>
+</div><!-- /intro -->
+
+<!-- CHAPTER 1: LEGACY & FOUNDERS ════════════════════════════ -->
+<div id="page-ch1" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 1</div>
+    <h1 class="hero-title">Legacy &amp; Founders</h1>
+    <p class="hero-desc">The military heritage of Kappa Alpha Psi and the seven founders who served in uniform.</p>
+  </div>
+
+  <h2>1.1 Fraternity Military Heritage</h2>
+  <p>Kappa Alpha Psi Fraternity, Inc., was founded on <strong>January 5, 1911</strong>, at Indiana University in Bloomington, Indiana — a time when African American men faced profound barriers to education, service, and recognition. Despite those barriers, the founders of Kappa Alpha Psi chose to serve: their nation, their communities, and each other.</p>
+  <p>Of the Fraternity's ten founders, seven served in the United States military. Their service during World War I and beyond established a legacy of patriotism, sacrifice, and Brotherhood that continues to define the Fraternity's relationship with military service to this day.</p>
+
+  <h2>1.2 The Seven Military Founders</h2>
+  <div class="founder-grid">
+    <div class="founder-card highlight">
+      <div class="founder-name">John Milton Lee</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">Polemarch of Alpha Chapter (1911–1912). Among the first founders to enter military service. His leadership shaped the Fraternity's early identity and its commitment to honorable achievement.</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-name">Elder Watson Diggs</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">Principal founder and first Grand Polemarch. Visionary architect of the Fraternity who served his country while building an institution meant to endure.</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-name">Byron Kenneth Armstrong</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">Scholar and founder who exemplified the Fraternity's commitment to academic achievement alongside military duty.</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-name">Ezra Dee Alexander</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">One of the charter members who helped establish the Brotherhood's foundational values of service and scholarship.</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-name">Henry Tourner Asher</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">Founder who embodied the intersection of intellectual achievement and national service that defines Kappa Alpha Psi.</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-name">Marcus Peter Blakemore</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">Founder and early chapter leader whose military service reinforced the Fraternity's ethos of giving back to the nation.</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-name">Paul Waymond Caine</div>
+      <div class="founder-branch">U.S. Army — WWI</div>
+      <div class="founder-detail">Founder whose service set the template for military brothers who would follow in the decades to come.</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-label">Commission Commitment</div>
+    <p>The MVAC honors the legacy of these seven men by ensuring that every military brother in the Denton-Lewisville chapter is identified, engaged, and celebrated. Their sacrifice obligates us to serve.</p>
+  </div>
+
+  <h2>1.3 DLA Chapter Military Heritage</h2>
+  <p>The Denton-Lewisville (TX) Alumni Chapter, chartered in 1997, serves a region with a significant military population — including veterans, active-duty personnel, and military families connected to the Dallas-Fort Worth metroplex military installations and the broader veteran community of Denton and Tarrant counties.</p>
+  <p>The chapter has consistently counted military brothers among its leadership and membership. The establishment of the MVAC formalizes what has always been true: military service is a cornerstone of this Brotherhood.</p>
+</div><!-- /ch1 -->
+
+<!-- CHAPTER 2: MISSION ═══════════════════════════════════════ -->
+<div id="page-ch2" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 2</div>
+    <h1 class="hero-title">Mission Statement</h1>
+    <p class="hero-desc">The Commission's mission, purpose, objectives, and guiding principles.</p>
+  </div>
+
+  <h2>2.1 Mission</h2>
+  <div class="callout policy">
+    <div class="callout-label">MVAC Mission</div>
+    <p>To honor the service and sacrifice of our military brothers — past and present — while fostering a community of support, mentorship, and recognition within the Denton-Lewisville Alumni Chapter of Kappa Alpha Psi Fraternity, Inc.</p>
+  </div>
+
+  <h2>2.2 Purpose</h2>
+  <p>The Military &amp; Veterans Affairs Commission exists to bridge the gap between fraternal life and military experience — ensuring that brothers who have worn the uniform are never invisible within the Brotherhood, and that their unique knowledge, discipline, and sacrifice are recognized, celebrated, and leveraged in service to the chapter and the community.</p>
+
+  <h2>2.3 Commission Objectives</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-date">01</div><div><div class="timeline-title">Identify &amp; Connect</div><div class="timeline-body">Build and maintain a comprehensive census of military brothers and connect them to chapter programs, networks, and resources.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">02</div><div><div class="timeline-title">Serve &amp; Support</div><div class="timeline-body">Deliver meaningful programs that address the real needs of veteran brothers, active-duty members, and military families.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">03</div><div><div class="timeline-title">Mentor &amp; Develop</div><div class="timeline-body">Create mentorship pipelines connecting military brothers with each other and with youth in the community.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">04</div><div><div class="timeline-title">Recognize &amp; Honor</div><div class="timeline-body">Publicly recognize the service of military brothers at chapter events and through formal award programs.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">05</div><div><div class="timeline-title">Remember</div><div class="timeline-body">Preserve the memory of brothers who made the ultimate sacrifice through the Mortally Wounded Project.</div></div></div>
+  </div>
+
+  <h2>2.4 Guiding Principles</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Principle</th><th>Application</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Honor</strong></td><td>Every program, event, and interaction must dignify the military service of our brothers.</td></tr>
+        <tr><td><strong>Intentionality</strong></td><td>We pursue military brothers proactively — we do not wait for them to find us.</td></tr>
+        <tr><td><strong>Excellence</strong></td><td>Every Commission program reflects the highest standard of fraternal and professional quality.</td></tr>
+        <tr><td><strong>Inclusion</strong></td><td>All branches, all eras, all theaters of service are equally valued and represented.</td></tr>
+        <tr><td><strong>Community</strong></td><td>Our programs extend beyond the fraternity to serve the broader veteran community of North Texas.</td></tr>
+        <tr><td><strong>Legacy</strong></td><td>We act in a manner worthy of the seven military founders who built this Brotherhood.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div><!-- /ch2 -->
+
+<!-- CHAPTER 3: WHO WE SERVE ═════════════════════════════════ -->
+<div id="page-ch3" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 3</div>
+    <h1 class="hero-title">Who We Serve</h1>
+    <p class="hero-desc">The populations the MVAC is designed to identify, engage, and support.</p>
+  </div>
+
+  <h2>3.1 Primary Populations</h2>
+
+  <div class="area-block">
+    <div class="area-header"><div><div class="area-roman">Primary</div><div class="area-title">Veteran Brothers of DLA</div></div></div>
+    <div class="area-body">
+      <p>Brothers of the Denton-Lewisville Alumni Chapter who have served or are currently serving in any branch of the United States Armed Forces — Army, Navy, Air Force, Marine Corps, Coast Guard, Space Force, or National Guard/Reserve components.</p>
+      <ul><li>All eras of service are equally honored</li><li>All branches and specialties are represented</li><li>Retired, separated, and active-duty brothers are all within scope</li></ul>
+    </div>
+  </div>
+
+  <div class="area-block">
+    <div class="area-header"><div><div class="area-roman">Secondary</div><div class="area-title">Military Families</div></div></div>
+    <div class="area-body">
+      <p>Spouses, children, and immediate family members of military brothers who may benefit from chapter support, recognition, and community connection — particularly military spouses who carry significant burdens during deployment and transition.</p>
+    </div>
+  </div>
+
+  <div class="area-block">
+    <div class="area-header"><div><div class="area-roman">Community</div><div class="area-title">North Texas Veteran Community</div></div></div>
+    <div class="area-body">
+      <p>Veterans and military families in the broader Denton and Lewisville communities who may not be chapter members but who can benefit from the Commission's public-facing programs, Stand Down events, and partnership initiatives.</p>
+    </div>
+  </div>
+
+  <div class="area-block">
+    <div class="area-header"><div><div class="area-roman">Pipeline</div><div class="area-title">Military-Connected Youth</div></div></div>
+    <div class="area-body">
+      <p>Young people participating in JROTC programs, Military STEM academies, and Guide Right initiatives — the next generation of military leaders and potential brothers who benefit from mentorship and exposure to fraternal values.</p>
+    </div>
+  </div>
+
+  <h2>3.2 The Serves Grid</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Population</th><th>Primary Need</th><th>MVAC Response</th></tr></thead>
+      <tbody>
+        <tr><td>Veteran Brothers</td><td>Recognition, connection, re-integration</td><td>Census, events, mentorship, awards</td></tr>
+        <tr><td>Active-Duty Brothers</td><td>Awareness, flexible engagement</td><td>Virtual participation, deployment support</td></tr>
+        <tr><td>Military Spouses</td><td>Appreciation, community</td><td>Military Spouse Appreciation Month programs</td></tr>
+        <tr><td>Transitioning Veterans</td><td>Employment, benefits navigation</td><td>Mentorship pipeline, corporate partnerships</td></tr>
+        <tr><td>JROTC Cadets</td><td>Mentorship, role models</td><td>JROTC partnership programs, awards</td></tr>
+        <tr><td>Gold Star Families</td><td>Honor, remembrance</td><td>Mortally Wounded Project, Memorial Day events</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div><!-- /ch3 -->
+
+<!-- CHAPTER 4: PROGRAM AREAS OVERVIEW ══════════════════════ -->
+<div id="page-ch4" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 4</div>
+    <h1 class="hero-title">Five Program Areas Overview</h1>
+    <p class="hero-desc">The MVAC's five core program areas and the veteran engagement cycle that connects them.</p>
+  </div>
+
+  <h2>4.1 The Five Program Areas</h2>
+  <div class="area-block"><div class="area-header"><div class="area-roman">Area I</div><div class="area-title" style="margin-left:.5rem;">Brother Engagement</div></div><div class="area-body"><p>Identifying, connecting, and fully integrating military brothers into chapter life through outreach, census, recognition, and systematic engagement — ensuring no veteran brother is invisible within the Brotherhood.</p></div></div>
+  <div class="area-block"><div class="area-header"><div class="area-roman">Area II</div><div class="area-title" style="margin-left:.5rem;">Community Service</div></div><div class="area-body"><p>Public-facing programs that serve the broader North Texas veteran community: Veterans Day ceremonies, Stand Down events, military spouse appreciation, and community recognition initiatives that extend the chapter's impact beyond its own membership.</p></div></div>
+  <div class="area-block"><div class="area-header"><div class="area-roman">Area III</div><div class="area-title" style="margin-left:.5rem;">Military Mentorship</div></div><div class="area-body"><p>Structured mentorship programs connecting veteran brothers with transitioning service members, peer-to-peer support networks, and transition assistance resources that leverage the collective military experience within the Brotherhood.</p></div></div>
+  <div class="area-block"><div class="area-header"><div class="area-roman">Area IV</div><div class="area-title" style="margin-left:.5rem;">Guide Right &amp; Youth</div></div><div class="area-body"><p>Military STEM academies, JROTC partnerships, and youth leadership programs that channel military values into Guide Right programming — building the next generation of disciplined, service-oriented leaders.</p></div></div>
+  <div class="area-block"><div class="area-header"><div class="area-roman">Area V</div><div class="area-title" style="margin-left:.5rem;">Strategic Partnerships</div></div><div class="area-body"><p>Corporate, government agency, and nonprofit alliances that amplify the Commission's reach — veteran employment initiatives, scholarship programs, and community resource networks that no single organization could build alone.</p></div></div>
+
+  <h2>4.2 The Veteran Engagement Cycle</h2>
+  <p>All five program areas operate within a unified engagement cycle that moves every military brother through a progressive relationship with the chapter:</p>
+  <div class="cycle-row">
+    <span class="cycle-badge">IDENTIFY</span><span class="cycle-arrow">→</span>
+    <span class="cycle-badge">CONNECT</span><span class="cycle-arrow">→</span>
+    <span class="cycle-badge">SERVE</span><span class="cycle-arrow">→</span>
+    <span class="cycle-badge">MENTOR</span><span class="cycle-arrow">→</span>
+    <span class="cycle-badge">DEVELOP</span><span class="cycle-arrow">→</span>
+    <span class="cycle-badge">RECOGNIZE</span><span class="cycle-arrow">→</span>
+    <span class="cycle-badge gold">REMEMBER</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Stage</th><th>Action</th><th>Program Area</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Identify</strong></td><td>Locate military brothers through census, roster review, and outreach</td><td>Area I</td></tr>
+        <tr><td><strong>Connect</strong></td><td>Personally reach out and invite brothers into MVAC programming</td><td>Area I</td></tr>
+        <tr><td><strong>Serve</strong></td><td>Provide meaningful programs, events, and community support</td><td>Area II</td></tr>
+        <tr><td><strong>Mentor</strong></td><td>Connect brothers with peer mentors and transition resources</td><td>Area III</td></tr>
+        <tr><td><strong>Develop</strong></td><td>Engage brothers as leaders in youth and community programs</td><td>Areas IV &amp; V</td></tr>
+        <tr><td><strong>Recognize</strong></td><td>Publicly honor service through awards and chapter ceremonies</td><td>All Areas</td></tr>
+        <tr><td><strong>Remember</strong></td><td>Honor the memory of brothers who gave all</td><td>Mortally Wounded Project</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div><!-- /ch4 -->
+
+<!-- CHAPTER 5: AREA I — BROTHER ENGAGEMENT ═════════════════ -->
+<div id="page-ch5" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 5 — Area I</div>
+    <h1 class="hero-title">Brother Engagement</h1>
+    <p class="hero-desc">Identifying, connecting, and integrating military brothers into active chapter life.</p>
+  </div>
+  <h2>5.1 Military Brother Census</h2>
+  <p>The foundation of all MVAC programming is an accurate, current census of military brothers in the chapter. Without knowing who our veteran and active-duty brothers are, we cannot serve them. The census is not a one-time effort — it is an ongoing responsibility.</p>
+  <div class="callout policy"><div class="callout-label">Policy</div><p>All chapter members who have served or are serving in the military are strongly encouraged to complete the MVAC Military Census Registration. The MVAC Chair maintains the census database and updates it at each chapter meeting.</p></div>
+  <h3>Census Data Collected</h3>
+  <ul><li>Branch of service (Army, Navy, Air Force, Marine Corps, Coast Guard, Space Force, Guard/Reserve)</li><li>Era of service (Vietnam, Gulf War, OIF/OEF, post-9/11, etc.)</li><li>MOS/Rate/Specialty (optional)</li><li>Rank at separation or current rank</li><li>Combat deployment history (optional)</li><li>Transition assistance needs</li><li>Interest in MVAC leadership or volunteer roles</li></ul>
+  <h2>5.2 Outreach Strategy</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-date">Step 1</div><div><div class="timeline-title">Roster Review</div><div class="timeline-body">MVAC Chair reviews chapter roster annually to identify brothers with known military backgrounds.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">Step 2</div><div><div class="timeline-title">Personal Contact</div><div class="timeline-body">Each identified brother receives a personal call or visit from the MVAC Chair — not a mass email.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">Step 3</div><div><div class="timeline-title">Census Completion</div><div class="timeline-body">Brothers are invited to complete the census form and asked about specific interests and needs.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">Step 4</div><div><div class="timeline-title">Program Matching</div><div class="timeline-body">Based on census data, brothers are matched with relevant programs, mentors, and recognition opportunities.</div></div></div>
+    <div class="timeline-item"><div class="timeline-date">Step 5</div><div><div class="timeline-title">Annual Re-engagement</div><div class="timeline-body">Census is refreshed annually; previously inactive brothers are re-contacted with updated program opportunities.</div></div></div>
+  </div>
+  <h2>5.3 Recognition Within the Chapter</h2>
+  <ul><li>Military brothers are recognized at the annual Veterans Day chapter meeting</li><li>Service branch affiliations are noted in chapter communications with permission</li><li>Military milestones (promotions, retirements, deployments, returns) are announced at chapter meetings</li><li>Military brothers are given ceremonial recognition during chapter programs when appropriate</li></ul>
+</div><!-- /ch5 -->
+
+<!-- CHAPTER 6: AREA II — COMMUNITY SERVICE ═════════════════ -->
+<div id="page-ch6" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 6 — Area II</div>
+    <h1 class="hero-title">Community Service</h1>
+    <p class="hero-desc">Public-facing programs serving the broader North Texas veteran community.</p>
+  </div>
+  <h2>6.1 Veterans Day Program</h2>
+  <p>The chapter's annual Veterans Day program is the MVAC's signature public event. It is held in November and serves as the primary public expression of the chapter's commitment to honoring military service.</p>
+  <div class="callout"><div class="callout-label">Program Standard</div><p>The Veterans Day program must include: (1) formal recognition of all military brothers present by branch, (2) a keynote or featured veteran speaker, (3) recognition of Gold Star families if present, and (4) public acknowledgment of the Mortally Wounded Project honorees.</p></div>
+  <h2>6.2 Stand Down Event</h2>
+  <p>The annual Stand Down event — held in October — provides direct services to at-risk and homeless veterans in the North Texas community. Services may include benefits assistance, hygiene kits, clothing distribution, employment resources, and mental health referrals.</p>
+  <h2>6.3 Military Spouse Appreciation</h2>
+  <p>Each April, the MVAC coordinates recognition of military spouses — acknowledging the sacrifice, resilience, and service of the families behind the uniform. This may include a chapter social event, public recognition, or partnership with military family service organizations.</p>
+  <h2>6.4 Memorial Day Commemoration</h2>
+  <p>The MVAC coordinates chapter participation in local Memorial Day observances, cemetery visits, or wreath-laying ceremonies to honor the fallen — with particular emphasis on recognizing brothers memorialized in the Mortally Wounded Project.</p>
+  <h2>6.5 Patriot Day Recognition</h2>
+  <p>On September 11, the Commission coordinates a moment of chapter acknowledgment honoring the lives lost and the service members who answered the call in the years that followed.</p>
+</div><!-- /ch6 -->
+
+<!-- CHAPTER 7: AREA III — MILITARY MENTORSHIP ══════════════ -->
+<div id="page-ch7" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 7 — Area III</div>
+    <h1 class="hero-title">Military Mentorship</h1>
+    <p class="hero-desc">Transition assistance, peer mentoring, and veteran-to-veteran support networks.</p>
+  </div>
+  <h2>7.1 Military-to-Civilian Transition Support</h2>
+  <p>The transition from military service to civilian life is one of the most challenging periods a veteran faces. The MVAC maintains a network of brothers who have successfully navigated this transition and are available to mentor those who are navigating it now.</p>
+  <h3>Transition Support Areas</h3>
+  <ul><li>Career translation and resume development</li><li>VA benefits navigation (healthcare, education, housing)</li><li>Entrepreneurship and small business development</li><li>Graduate education and certification pathways</li><li>Mental health resources and peer support connections</li><li>Networking and professional development</li></ul>
+  <h2>7.2 Peer Mentorship Program</h2>
+  <p>The MVAC pairs newly identified veteran brothers with an established chapter member who shares a similar branch of service or civilian career field. These peer mentorship relationships are structured but informal — grounded in Brotherhood rather than bureaucracy.</p>
+  <div class="callout tip"><div class="callout-label">Mentorship Principle</div><p>A veteran brother who is struggling — financially, professionally, or emotionally — should never have to struggle alone while he has brothers in his chapter. The mentorship program exists to close that gap before it becomes a crisis.</p></div>
+  <h2>7.3 Resource Network</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Resource Type</th><th>Organization / Contact</th></tr></thead>
+      <tbody>
+        <tr><td>VA Benefits Assistance</td><td>Dallas VA Medical Center — (214) 742-8387</td></tr>
+        <tr><td>Employment Services</td><td>Texas Veterans Commission — texasveterans.com</td></tr>
+        <tr><td>Mental Health</td><td>Veterans Crisis Line — 988, Press 1</td></tr>
+        <tr><td>Education Benefits</td><td>VA GI Bill — benefits.va.gov</td></tr>
+        <tr><td>Housing Assistance</td><td>HUD-VASH — contact local VA Social Work</td></tr>
+        <tr><td>Legal Services</td><td>Texas Legal Services Center — tlsc.org</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div><!-- /ch7 -->
+
+<!-- CHAPTER 8: AREA IV — GUIDE RIGHT & YOUTH ═══════════════ -->
+<div id="page-ch8" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 8 — Area IV</div>
+    <h1 class="hero-title">Guide Right &amp; Youth</h1>
+    <p class="hero-desc">Military STEM academies, JROTC partnerships, and youth leadership programs.</p>
+  </div>
+  <h2>8.1 Military STEM Academy</h2>
+  <p>The MVAC partners with Guide Right to deliver Military STEM programming to youth in the Denton-Lewisville area. These programs use military-inspired project-based learning to teach STEM concepts while building the discipline, teamwork, and leadership skills that define military culture.</p>
+  <h3>Program Elements</h3>
+  <ul><li>Engineering and robotics challenges modeled on military problem-solving frameworks</li><li>Cybersecurity and technology workshops aligned with military occupational specialties</li><li>Leadership development seminars delivered by veteran brothers</li><li>College and career pathway counseling with emphasis on military education benefits</li></ul>
+  <h2>8.2 JROTC Partnership</h2>
+  <p>The Commission maintains active partnerships with JROTC programs at Denton-area high schools. See Chapter 12 for full JROTC Partnership details.</p>
+  <h2>8.3 Youth Leadership Pipeline</h2>
+  <p>Military-connected youth who complete MVAC programming are considered priority candidates for Guide Right mentorship, Kappa League participation, and — as they reach adulthood — fraternity membership. The Commission maintains relationships with these young men across their developmental years.</p>
+  <div class="callout gold"><div class="callout-label">Pipeline Standard</div><p>Every young man who participates in an MVAC youth program should leave with: (1) a clear picture of what military service offers, (2) at least one veteran brother as a personal contact, and (3) knowledge of the chapter's Guide Right programs.</p></div>
+</div><!-- /ch8 -->
+
+<!-- CHAPTER 9: AREA V — STRATEGIC PARTNERSHIPS ═════════════ -->
+<div id="page-ch9" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 9 — Area V</div>
+    <h1 class="hero-title">Strategic Partnerships</h1>
+    <p class="hero-desc">Corporate, government, and nonprofit alliances amplifying veteran impact.</p>
+  </div>
+  <h2>9.1 Partnership Philosophy</h2>
+  <p>The MVAC cannot accomplish its mission alone. Strategic partnerships multiply the Commission's reach, resources, and credibility — connecting our military brothers to opportunities and organizations that a single chapter could not access independently.</p>
+  <h2>9.2 Corporate Partnerships</h2>
+  <p>The Commission seeks relationships with employers who are committed to veteran hiring and advancement. Corporate partners may support the Commission through:</p>
+  <ul><li>Employment and internship opportunities for transitioning veterans</li><li>Financial sponsorship of MVAC events</li><li>In-kind donations of goods and services for Stand Down and community events</li><li>Professional development workshops and hiring fairs</li></ul>
+  <h2>9.3 Government Agency Partners</h2>
+  <ul><li>Texas Veterans Commission</li><li>Dallas VA Medical Center and Community-Based Outpatient Clinics</li><li>U.S. Department of Labor Veterans' Employment and Training Service (VETS)</li><li>Local Veterans Service Organizations (VSOs)</li><li>Denton County Veterans Services Office</li></ul>
+  <h2>9.4 Nonprofit Partners</h2>
+  <ul><li>Disabled American Veterans (DAV)</li><li>Veterans of Foreign Wars (VFW) — local posts</li><li>American Legion — local posts</li><li>Warrior-Gateway and other veteran navigation nonprofits</li><li>Military family support organizations</li></ul>
+  <h2>9.5 Scholarship Initiatives</h2>
+  <p>The Commission works with chapter leadership and corporate partners to identify and promote scholarship opportunities specifically available to veteran brothers and military-connected youth — including GI Bill supplements, employer education benefits, and veteran-specific scholarship programs.</p>
+</div><!-- /ch9 -->
+
+<!-- CHAPTER 10: SIGNATURE PROGRAMS ═════════════════════════ -->
+<div id="page-ch10" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 10</div>
+    <h1 class="hero-title">Signature Programs</h1>
+    <p class="hero-desc">The Commission's flagship annual programs and key initiatives.</p>
+  </div>
+  <h2>10.1 Signature Program Standards</h2>
+  <p>A Signature Program is a recurring, annually scheduled program that represents the Commission's highest level of investment and visibility. Each Signature Program has a designated MVAC lead, an established event format, and measurable outcomes tracked year over year.</p>
+  <div class="area-block">
+    <div class="area-header"><div class="area-roman">Program 1</div><div class="area-title" style="margin-left:.5rem;">Veterans Day Recognition Gala</div></div>
+    <div class="area-body"><p>Annual November event recognizing all military brothers by name, branch, and era of service. Includes keynote address, awards presentation, and public recognition ceremony. The chapter's premier military affairs event of the year.</p></div>
+  </div>
+  <div class="area-block">
+    <div class="area-header"><div class="area-roman">Program 2</div><div class="area-title" style="margin-left:.5rem;">Veterans Stand Down</div></div>
+    <div class="area-body"><p>Annual October event providing direct services to at-risk and homeless veterans in North Texas. Coordinated with VA, VSOs, and community nonprofits. Targets brothers in need and extends service to the broader veteran community.</p></div>
+  </div>
+  <div class="area-block">
+    <div class="area-header"><div class="area-roman">Program 3</div><div class="area-title" style="margin-left:.5rem;">Military STEM Academy</div></div>
+    <div class="area-body"><p>Summer youth program combining STEM education with military values and mentorship. Open to youth ages 12–18 in the Denton-Lewisville area. Delivered in partnership with Guide Right and veteran brothers.</p></div>
+  </div>
+  <div class="area-block">
+    <div class="area-header"><div class="area-roman">Program 4</div><div class="area-title" style="margin-left:.5rem;">Military Spouse Appreciation Day</div></div>
+    <div class="area-body"><p>Annual April event honoring the families behind the uniform. Recognition, fellowship, and resource-sharing for military spouses of chapter brothers and the broader community.</p></div>
+  </div>
+  <div class="area-block">
+    <div class="area-header"><div class="area-roman">Program 5</div><div class="area-title" style="margin-left:.5rem;">MLK Service Day — Veteran Volunteerism</div></div>
+    <div class="area-body"><p>Annual January community service event aligned with Martin Luther King Jr. Day, with a specific focus on veteran volunteerism and community impact in North Texas.</p></div>
+  </div>
+</div><!-- /ch10 -->
+
+<!-- CHAPTER 11: CORPORATE ENGAGEMENT ═══════════════════════ -->
+<div id="page-ch11" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 11</div>
+    <h1 class="hero-title">Corporate Engagement</h1>
+    <p class="hero-desc">Employer partnerships, hiring initiatives, and veteran scholarship programs.</p>
+  </div>
+  <h2>11.1 Veteran Employer Initiative</h2>
+  <p>The Commission maintains a curated list of veteran-friendly employers in the North Texas region — organizations that have committed to meaningful veteran hiring, not just symbolic support. These employers are vetted by MVAC leadership and connected directly to transitioning veteran brothers in the chapter.</p>
+  <h2>11.2 Corporate Partner Benefits</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Partnership Level</th><th>Commitment</th><th>Benefits</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Founding Partner</strong></td><td>Annual sponsorship + hiring commitment</td><td>Event naming rights, chapter recognition, direct talent pipeline access</td></tr>
+        <tr><td><strong>Supporting Partner</strong></td><td>Event sponsorship or in-kind support</td><td>Event recognition, chapter newsletter feature, network access</td></tr>
+        <tr><td><strong>Community Partner</strong></td><td>Resource sharing, no financial commitment</td><td>Community directory listing, program collaboration opportunities</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>11.3 Veteran Hiring Fairs</h2>
+  <p>The MVAC coordinates at least one annual career fair specifically designed to connect veteran brothers and community veterans with employer partners. The event is open to the public and held in partnership with the Texas Veterans Commission when possible.</p>
+  <h2>11.4 Scholarship Coordination</h2>
+  <p>The Commission identifies and promotes veteran-specific scholarship opportunities through chapter communications channels, including: employer education benefits, GI Bill supplements, veteran service organization scholarships, and fraternity scholarship funds with veteran preference.</p>
+</div><!-- /ch11 -->
+
+<!-- CHAPTER 12: JROTC PARTNERSHIPS ════════════════════════ -->
+<div id="page-ch12" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 12</div>
+    <h1 class="hero-title">JROTC Partnerships</h1>
+    <p class="hero-desc">School-based JROTC mentorship, awards, and pipeline development.</p>
+  </div>
+  <h2>12.1 Partnership Philosophy</h2>
+  <p>JROTC programs develop the same virtues Kappa Alpha Psi was built on: discipline, leadership, service, and achievement. The Commission's JROTC partnerships are a natural extension of Guide Right — using military structure as a vehicle for youth development.</p>
+  <h2>12.2 JROTC Partnership Activities</h2>
+  <ul>
+    <li>Annual JROTC awards presented by the MVAC Chair at unit awards ceremonies</li>
+    <li>Cadet mentorship visits by veteran brothers to partner schools</li>
+    <li>Drill and ceremony demonstrations and coaching by veteran brothers</li>
+    <li>Leadership seminars and career pathway workshops for senior cadets</li>
+    <li>College and military academy application support</li>
+    <li>Invitation to chapter Guide Right and youth events</li>
+  </ul>
+  <h2>12.3 MVAC JROTC Award</h2>
+  <p>Each partner school is eligible to have one cadet recognized annually with the MVAC Award for Excellence in Leadership and Service — presented at the school's awards ceremony by an MVAC representative and documented in chapter records.</p>
+  <div class="callout gold"><div class="callout-label">Award Criteria</div><p>The MVAC JROTC Award is given to the cadet who best exemplifies leadership, service, academic achievement, and personal character — the same virtues embodied by the founders of Kappa Alpha Psi.</p></div>
+  <h2>12.4 Target Partner Schools</h2>
+  <p>The Commission prioritizes partnerships with JROTC programs at schools within the Denton and Lewisville Independent School Districts, with preference for programs that serve historically underrepresented students.</p>
+</div><!-- /ch12 -->
+
+<!-- CHAPTER 13: RECOGNITION & AWARDS ══════════════════════ -->
+<div id="page-ch13" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 13</div>
+    <h1 class="hero-title">Recognition &amp; Awards</h1>
+    <p class="hero-desc">Chapter and national award programs honoring military service within the Brotherhood.</p>
+  </div>
+  <h2>13.1 Chapter Military Recognition</h2>
+  <p>The chapter formally recognizes military service at multiple points throughout the year. Recognition is not merely ceremonial — it is a deliberate act of honoring brothers whose sacrifice often goes unacknowledged in civilian life.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Recognition</th><th>Timing</th><th>Format</th></tr></thead>
+      <tbody>
+        <tr><td>Veterans Day Recognition</td><td>November chapter meeting</td><td>Roll call by branch and era, individual acknowledgment</td></tr>
+        <tr><td>Military Milestone Announcements</td><td>As they occur</td><td>Chapter meeting announcement (promotion, retirement, return)</td></tr>
+        <tr><td>Brother of the Year — Military Service</td><td>Annual awards program</td><td>Chapter vote; presented at year-end celebration</td></tr>
+        <tr><td>Memorial Roll Call</td><td>November Veterans Day program</td><td>Reading of Mortally Wounded Project honorees</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>13.2 National Award Eligibility</h2>
+  <p>Kappa Alpha Psi Fraternity, Inc. maintains national award programs recognizing military service and veteran affairs programming. The MVAC Chair is responsible for identifying eligible brothers and programs for national award nomination each year.</p>
+  <h2>13.3 Community Recognition Partners</h2>
+  <p>The Commission coordinates with local government, school districts, and community organizations to nominate military brothers for recognition through community channels — city proclamations, school district honors, and nonprofit recognition programs.</p>
+</div><!-- /ch13 -->
+
+<!-- CHAPTER 14: MORTALLY WOUNDED PROJECT ══════════════════ -->
+<div id="page-ch14" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 14</div>
+    <h1 class="hero-title">Mortally Wounded Project</h1>
+    <p class="hero-desc">Preserving the eternal memory of brothers of Kappa Alpha Psi who gave the ultimate sacrifice in service to our nation.</p>
+  </div>
+  <div class="callout policy">
+    <div class="callout-label">Sacred Obligation</div>
+    <p><em>"A man is not truly gone as long as his name is spoken."</em> — The Mortally Wounded Project ensures that brothers who died in service to this nation are never forgotten within the Brotherhood they gave everything to build.</p>
+  </div>
+  <h2>14.1 Project Purpose</h2>
+  <p>The Mortally Wounded Project is a permanent, living record of all known brothers of Kappa Alpha Psi Fraternity, Inc. — of any chapter — who died while serving in the United States Armed Forces. The DLA chapter maintains and expands its local list and contributes information to the national fraternity record.</p>
+  <h2>14.2 Honor Roll Criteria</h2>
+  <ul>
+    <li>Brother must have been an initiated member of Kappa Alpha Psi Fraternity, Inc.</li>
+    <li>Brother must have died while on active duty or as a direct result of service-connected causes</li>
+    <li>Death must be verifiable through military records, news accounts, or family attestation</li>
+    <li>All branches of service and all eras of conflict are included</li>
+  </ul>
+  <h2>14.3 Annual Observance</h2>
+  <p>The names of all Mortally Wounded Project honorees are read aloud at the chapter's annual Veterans Day program. This Memorial Roll Call is a solemn, central element of the program — not an afterthought.</p>
+  <h2>14.4 How to Submit a Name</h2>
+  <p>Brothers with knowledge of a member of Kappa Alpha Psi who died in military service should contact the MVAC Chair with the brother's name, chapter affiliation, branch of service, and any verifiable details. The MVAC Chair will research, document, and formally add the name to the honor roll.</p>
+  <div class="callout gold">
+    <div class="callout-label">Contact</div>
+    <p>Submit information to the MVAC Chair at the chapter meeting or via email. No submission is too old, too small, or too uncertain to pursue. If a brother served and died, he belongs on the roll.</p>
+  </div>
+</div><!-- /ch14 -->
+
+<!-- CHAPTER 15: SERVICE STANDARD ══════════════════════════ -->
+<div id="page-ch15" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 15</div>
+    <h1 class="hero-title">Service Standard</h1>
+    <p class="hero-desc">The Commission's standard of excellence for every program, event, and interaction.</p>
+  </div>
+  <h2>15.1 The MVAC Service Standard</h2>
+  <p>Every veteran brother who engages with the MVAC — at an event, through a mentorship connection, or simply at a chapter meeting — should feel the following:</p>
+  <div class="callout policy">
+    <div class="callout-label">Five Commitments</div>
+    <p><strong>1. Seen:</strong> We know who you are and that you served.<br>
+    <strong>2. Honored:</strong> We acknowledge the weight of your service without diminishing it.<br>
+    <strong>3. Connected:</strong> We have linked you with brothers who share your experience.<br>
+    <strong>4. Supported:</strong> We have resources and relationships available to you.<br>
+    <strong>5. Remembered:</strong> Your name and service will outlast your years in this chapter.</p>
+  </div>
+  <h2>15.2 Event Standards</h2>
+  <ul>
+    <li>All MVAC events begin and end on time</li>
+    <li>Military courtesies are observed appropriately (flag ceremony, national anthem, moment of silence)</li>
+    <li>Veterans are greeted by name whenever possible</li>
+    <li>Every event concludes with a clear call to action for continued engagement</li>
+    <li>Feedback is solicited from participants after every major event</li>
+  </ul>
+  <h2>15.3 Interaction Standards</h2>
+  <ul>
+    <li>Never ask a veteran "did you kill anyone?" or similar inappropriate questions</li>
+    <li>Never assume the nature or difficulty of a brother's service</li>
+    <li>Always thank a brother for their service — but then go deeper: ask what they did, what they're proud of, what they need</li>
+    <li>Respect that some service-connected experiences are private and should not be pressed</li>
+    <li>When in doubt, lead with Brotherhood — not with military rank or status</li>
+  </ul>
+</div><!-- /ch15 -->
+
+<!-- CHAPTER 16: COMMUNICATIONS ════════════════════════════ -->
+<div id="page-ch16" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 16</div>
+    <h1 class="hero-title">Communications Protocol</h1>
+    <p class="hero-desc">Internal and external communications standards for the Commission.</p>
+  </div>
+  <h2>16.1 Internal Communications</h2>
+  <p>The MVAC Chair reports to the chapter Polemarch and provides a written Commission report at each chapter meeting. The report includes: census updates, upcoming events, partnership developments, and any recognition nominations.</p>
+  <h2>16.2 External Communications</h2>
+  <p>All external MVAC communications — press releases, social media posts, partner correspondence — must be coordinated with the chapter's Marketing &amp; Communications Director (MAC) per the DLA Media Guide. The MVAC does not issue communications independently without MAC coordination.</p>
+  <div class="callout policy"><div class="callout-label">Policy</div><p>The MVAC Chair is the Commission's sole authorized spokesperson. Commission members do not speak to media or external organizations on behalf of the Commission without the Chair's authorization.</p></div>
+  <h2>16.3 Social Media Standards</h2>
+  <ul>
+    <li>Military brother recognition posts require the written consent of the brother being featured</li>
+    <li>Event photos require standard chapter photo release procedures</li>
+    <li>All MVAC social media content uses approved chapter hashtags: <strong>#DLAKappa #DLANupes #MVACserves</strong></li>
+    <li>Do not post graphic content related to combat or injury</li>
+    <li>Mortally Wounded Project honorees may be featured in memorial posts on Veterans Day and Memorial Day</li>
+  </ul>
+  <h2>16.4 Veteran-Sensitive Communication</h2>
+  <p>MVAC communications about brothers in distress — financial need, mental health, housing — are handled with strict confidentiality. The MVAC Chair connects struggling brothers with resources directly; their situations are never discussed publicly or in general chapter communications without explicit permission.</p>
+</div><!-- /ch16 -->
+
+<!-- CHAPTER 17: COMMISSION STRUCTURE ══════════════════════ -->
+<div id="page-ch17" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 17</div>
+    <h1 class="hero-title">Commission Structure</h1>
+    <p class="hero-desc">Leadership roles, committee organization, and governance framework.</p>
+  </div>
+  <h2>17.1 Leadership Roles</h2>
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">MVAC Chair <span class="accordion-icon">▾</span></div>
+    <div class="accordion-body"><ul><li>Oversees all Commission programs and activities</li><li>Maintains the military brother census database</li><li>Serves as liaison between the Commission, chapter officers, and external partners</li><li>Provides written report at each chapter meeting</li><li>Submits national award nominations annually</li></ul></div>
+  </div>
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">Programs Coordinator <span class="accordion-icon">▾</span></div>
+    <div class="accordion-body"><ul><li>Coordinates logistics for all MVAC events and programs</li><li>Manages event timelines, vendor relationships, and volunteer assignments</li><li>Maintains the annual program calendar and tracks milestone deadlines</li></ul></div>
+  </div>
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">Outreach &amp; Mentorship Lead <span class="accordion-icon">▾</span></div>
+    <div class="accordion-body"><ul><li>Manages the military brother census outreach campaign</li><li>Coordinates peer mentorship pairings</li><li>Serves as primary point of contact for transitioning veteran brothers</li></ul></div>
+  </div>
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">Youth &amp; JROTC Liaison <span class="accordion-icon">▾</span></div>
+    <div class="accordion-body"><ul><li>Manages relationships with JROTC partner schools</li><li>Coordinates Military STEM Academy programming with Guide Right</li><li>Administers the annual MVAC JROTC Award</li></ul></div>
+  </div>
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">Partnerships Coordinator <span class="accordion-icon">▾</span></div>
+    <div class="accordion-body"><ul><li>Identifies and cultivates corporate, government, and nonprofit partnerships</li><li>Manages partner communications and stewardship</li><li>Coordinates Stand Down and career fair logistics</li></ul></div>
+  </div>
+  <h2>17.2 Governance</h2>
+  <p>The MVAC operates under the authority of the chapter Polemarch and Board of Directors. The Chair is appointed by the Polemarch for a one-year term, renewable by mutual agreement. Commission members are volunteers from the chapter membership; military service is preferred but not required for all roles.</p>
+</div><!-- /ch17 -->
+
+<!-- CHAPTER 18: ANNUAL CALENDAR ═══════════════════════════ -->
+<div id="page-ch18" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 18</div>
+    <h1 class="hero-title">Annual Program Calendar</h1>
+    <p class="hero-desc">Month-by-month programming schedule and key military observance dates.</p>
+  </div>
+  <h2>18.1 Monthly Calendar</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Month</th><th>Program / Initiative</th><th>Area</th><th>Lead</th></tr></thead>
+      <tbody>
+        <tr><td><strong>January</strong></td><td>MLK Service Day — Veteran Volunteerism</td><td>Area II</td><td>Programs Coordinator</td></tr>
+        <tr><td><strong>February</strong></td><td>Black History Month — Military Legacy Spotlight</td><td>Area I</td><td>MVAC Chair</td></tr>
+        <tr><td><strong>March</strong></td><td>JROTC Partnership Launch; Spring Census Refresh</td><td>Areas I &amp; IV</td><td>JROTC Liaison</td></tr>
+        <tr><td><strong>April</strong></td><td>Military Spouse Appreciation Month</td><td>Area II</td><td>Programs Coordinator</td></tr>
+        <tr><td><strong>May</strong></td><td>Memorial Day Commemoration</td><td>All</td><td>MVAC Chair</td></tr>
+        <tr><td><strong>June</strong></td><td>Military STEM Academy Kick-Off</td><td>Area IV</td><td>JROTC Liaison</td></tr>
+        <tr><td><strong>July</strong></td><td>Corporate Partner Outreach; STEM Academy (active)</td><td>Areas IV &amp; V</td><td>Partnerships Coordinator</td></tr>
+        <tr><td><strong>August</strong></td><td>STEM Academy Closing Ceremony; Fall Census Refresh</td><td>Areas I &amp; IV</td><td>Programs Coordinator</td></tr>
+        <tr><td><strong>September</strong></td><td>Patriot Day Recognition (Sept. 11)</td><td>Area II</td><td>MVAC Chair</td></tr>
+        <tr><td><strong>October</strong></td><td>Veterans Stand Down Event; JROTC Awards Nominations</td><td>Areas II &amp; IV</td><td>Partnerships Coordinator</td></tr>
+        <tr><td><strong>November</strong></td><td>Veterans Day Recognition Gala; Memorial Roll Call</td><td>All</td><td>MVAC Chair</td></tr>
+        <tr><td><strong>December</strong></td><td>Holiday Support for Military Families; Annual Review</td><td>Area II</td><td>Programs Coordinator</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>18.2 Key Military Observances</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Date</th><th>Observance</th><th>MVAC Action</th></tr></thead>
+      <tbody>
+        <tr><td>January (3rd Mon.)</td><td>Martin Luther King Jr. Day</td><td>Veteran volunteerism program</td></tr>
+        <tr><td>April (Month)</td><td>Month of the Military Child</td><td>Youth program recognition</td></tr>
+        <tr><td>May (Month)</td><td>Military Appreciation Month</td><td>Chapter-wide recognition, social media campaign</td></tr>
+        <tr><td>May (Last Mon.)</td><td>Memorial Day</td><td>Commemoration ceremony or participation</td></tr>
+        <tr><td>June 14</td><td>U.S. Army Birthday</td><td>Recognition post for Army brothers</td></tr>
+        <tr><td>September 11</td><td>Patriot Day</td><td>Moment of silence, chapter acknowledgment</td></tr>
+        <tr><td>November 10</td><td>U.S. Marine Corps Birthday</td><td>Recognition for Marine brothers</td></tr>
+        <tr><td>November 11</td><td>Veterans Day</td><td>Annual Recognition Gala — flagship event</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div><!-- /ch18 -->
+
+<!-- CHAPTER 19: METRICS & DASHBOARD ═══════════════════════ -->
+<div id="page-ch19" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 19</div>
+    <h1 class="hero-title">Metrics &amp; Impact Dashboard</h1>
+    <p class="hero-desc">Key performance indicators and the Commission's impact measurement framework.</p>
+  </div>
+  <h2>19.1 Commission KPIs</h2>
+  <div class="metrics-grid">
+    <div class="metric-tile"><div class="metric-num" id="m-census">—</div><div class="metric-label">Brothers in Census</div></div>
+    <div class="metric-tile"><div class="metric-num">12+</div><div class="metric-label">Annual Programs</div></div>
+    <div class="metric-tile"><div class="metric-num">5</div><div class="metric-label">Program Areas Active</div></div>
+    <div class="metric-tile"><div class="metric-num">—</div><div class="metric-label">Mentorship Pairs</div></div>
+    <div class="metric-tile"><div class="metric-num">—</div><div class="metric-label">Community Veterans Served</div></div>
+    <div class="metric-tile"><div class="metric-num">—</div><div class="metric-label">Corporate Partners</div></div>
+    <div class="metric-tile"><div class="metric-num">—</div><div class="metric-label">JROTC Schools</div></div>
+    <div class="metric-tile"><div class="metric-num">—</div><div class="metric-label">Mortally Wounded Honorees</div></div>
+  </div>
+  <p style="font-size:.78rem;color:var(--gray-mid);margin-top:.5rem;">Metrics marked "—" are tracked annually and reported at the November chapter meeting.</p>
+
+  <h2>19.2 Measurement Framework</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Metric Category</th><th>Indicator</th><th>Frequency</th></tr></thead>
+      <tbody>
+        <tr><td>Engagement</td><td>Military brothers in active census; attendance at MVAC events</td><td>Quarterly</td></tr>
+        <tr><td>Programs</td><td>Number of programs executed vs. planned; participant counts</td><td>Per event</td></tr>
+        <tr><td>Mentorship</td><td>Active mentorship pairs; transition success stories</td><td>Semi-annually</td></tr>
+        <tr><td>Youth Pipeline</td><td>JROTC partnerships; STEM academy participants; award recipients</td><td>Annually</td></tr>
+        <tr><td>Partnerships</td><td>Active corporate and nonprofit partners; resources connected</td><td>Annually</td></tr>
+        <tr><td>Recognition</td><td>Brothers recognized; award nominations submitted</td><td>Annually</td></tr>
+        <tr><td>Memory</td><td>Mortally Wounded honorees documented; Roll Call participants</td><td>Annually</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>19.3 Annual Impact Report</h2>
+  <p>The MVAC Chair prepares a written Annual Impact Report each November, submitted to the Polemarch and Board of Directors. The report covers all seven metric categories, highlights signature program outcomes, and includes recommendations for the following year.</p>
+</div><!-- /ch19 -->
+
+<!-- CHAPTER 20: IMPLEMENTATION PHASES ═════════════════════ -->
+<div id="page-ch20" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 20</div>
+    <h1 class="hero-title">Implementation Phases</h1>
+    <p class="hero-desc">Year-one through year-three rollout plan and milestones for Commission development.</p>
+  </div>
+  <h2>20.1 Phased Implementation</h2>
+  <p>Building the MVAC from a concept to a fully operational Commission requires a deliberate, phased approach. Each phase has clear deliverables and sets the foundation for the next.</p>
+
+  <h3>Phase One — Foundation (Year 1)</h3>
+  <div class="phase-list">
+    <div class="phase-item"><div class="phase-dot">1</div><div class="phase-content"><h4>Commission Formation</h4><p>Appoint MVAC Chair; recruit initial commission members; establish governance framework.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">2</div><div class="phase-content"><h4>Military Census Launch</h4><p>Conduct chapter-wide census; build initial database of military brothers.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">3</div><div class="phase-content"><h4>First Signature Events</h4><p>Execute Veterans Day Recognition program and Memorial Roll Call.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">4</div><div class="phase-content"><h4>Mortally Wounded Project Launch</h4><p>Research and document initial honor roll; establish annual Roll Call tradition.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">5</div><div class="phase-content"><h4>First JROTC Partnership</h4><p>Establish relationship with at least one JROTC program; present first MVAC Award.</p></div></div>
+  </div>
+
+  <h3>Phase Two — Growth (Year 2)</h3>
+  <div class="phase-list">
+    <div class="phase-item"><div class="phase-dot">1</div><div class="phase-content"><h4>All Five Program Areas Active</h4><p>Launch programming in all five areas; assign area leads.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">2</div><div class="phase-content"><h4>Military STEM Academy Launch</h4><p>First summer Military STEM Academy in partnership with Guide Right.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">3</div><div class="phase-content"><h4>First Stand Down Event</h4><p>Execute first Veterans Stand Down in partnership with VA and community nonprofits.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">4</div><div class="phase-content"><h4>Corporate Partnership Program</h4><p>Formalize first corporate partnership; launch veteran hiring initiative.</p></div></div>
+  </div>
+
+  <h3>Phase Three — Maturity (Year 3)</h3>
+  <div class="phase-list">
+    <div class="phase-item"><div class="phase-dot">1</div><div class="phase-content"><h4>Full Calendar Execution</h4><p>All 12 monthly programs and observances executed on schedule.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">2</div><div class="phase-content"><h4>National Recognition</h4><p>Submit at least one program for national fraternity recognition.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">3</div><div class="phase-content"><h4>Model Chapter Status</h4><p>Share best practices and serve as a resource for other chapters developing MVAC programs.</p></div></div>
+    <div class="phase-item"><div class="phase-dot">4</div><div class="phase-content"><h4>Succession Planning</h4><p>Identify and develop next generation of MVAC leadership from within the military brother community.</p></div></div>
+  </div>
+</div><!-- /ch20 -->
+
+<!-- CHAPTER 21: VISION ════════════════════════════════════ -->
+<div id="page-ch21" class="page">
+  <div class="page-hero">
+    <div class="hero-chapter-num">Chapter 21</div>
+    <h1 class="hero-title">Vision</h1>
+    <p class="hero-desc">The Commission's long-term vision for military brotherhood and community impact in North Texas.</p>
+  </div>
+  <h2>21.1 The Commission's Vision</h2>
+  <div class="callout policy">
+    <div class="callout-label">Vision Statement</div>
+    <p>To be recognized as the premier fraternal military affairs program in North Texas — a model of excellence that every Kappa Alpha Psi chapter and every veteran-serving organization in the region points to as the standard for honoring those who served.</p>
+  </div>
+
+  <h2>21.2 Five-Year Goals</h2>
+  <ul>
+    <li>Every military brother in the chapter identified, engaged, and connected to at least one MVAC program</li>
+    <li>A fully documented Mortally Wounded Project honor roll with annual ceremony</li>
+    <li>Military STEM Academy serving 50+ youth annually</li>
+    <li>JROTC partnerships at three or more schools</li>
+    <li>An endowed scholarship for veteran brothers and military-connected youth</li>
+    <li>National fraternity recognition for at least one MVAC program</li>
+    <li>The Commission serving as a mentoring resource for MVAC programs at other chapters</li>
+  </ul>
+
+  <h2>21.3 The North Star</h2>
+  <div class="callout gold">
+    <div class="callout-label">What We're Building Toward</div>
+    <p>A Denton-Lewisville where no veteran brother feels invisible — where no military family struggles alone — where every JROTC cadet in our community knows that fraternal men of distinction are invested in their future. That is what the MVAC is building. Not programs. <em>Community.</em></p>
+  </div>
+
+  <h2>21.4 The Five Commitments — Renewed</h2>
+  <div class="cycle-row" style="flex-direction:column;align-items:flex-start;gap:.75rem;">
+    <div><span class="cycle-badge">We will HONOR</span> <span style="font-size:.85rem;color:#333;margin-left:.5rem;">the uniform, the sacrifice, and the humanity of every brother who served.</span></div>
+    <div><span class="cycle-badge">We will SERVE</span> <span style="font-size:.85rem;color:#333;margin-left:.5rem;">veteran brothers with the same discipline and commitment they brought to their service.</span></div>
+    <div><span class="cycle-badge">We will CONNECT</span> <span style="font-size:.85rem;color:#333;margin-left:.5rem;">military brothers to each other and to the community that needs their leadership.</span></div>
+    <div><span class="cycle-badge">We will DEVELOP</span> <span style="font-size:.85rem;color:#333;margin-left:.5rem;">the next generation of military-minded leaders through Guide Right and our JROTC partnerships.</span></div>
+    <div><span class="cycle-badge gold">We will REMEMBER</span> <span style="font-size:.85rem;color:#333;margin-left:.5rem;">those who gave all — carrying their names forward as long as this chapter stands.</span></div>
+  </div>
+</div><!-- /ch21 -->
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const pageMap = {
+  home:'Overview', intro:'Introduction & Background',
+  ch1:'Legacy & Founders', ch2:'Mission Statement', ch3:'Who We Serve',
+  ch4:'Five Program Areas', ch5:'Area I — Brother Engagement',
+  ch6:'Area II — Community Service', ch7:'Area III — Military Mentorship',
+  ch8:'Area IV — Guide Right & Youth', ch9:'Area V — Strategic Partnerships',
+  ch10:'Signature Programs', ch11:'Corporate Engagement',
+  ch12:'JROTC Partnerships', ch13:'Recognition & Awards',
+  ch14:'Mortally Wounded Project', ch15:'Service Standard',
+  ch16:'Communications Protocol', ch17:'Commission Structure',
+  ch18:'Annual Calendar', ch19:'Metrics & Dashboard',
+  ch20:'Implementation Phases', ch21:'Vision'
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  const navItem = document.querySelector(`.nav-item[onclick="showPage('${id}')"]`);
+  if (navItem) navItem.classList.add('active');
+  document.getElementById('breadcrumb-current').textContent = pageMap[id] || id;
+  window.scrollTo(0, 0);
+  const content = document.getElementById('content');
+  if (content) content.scrollTop = 0;
+  history.replaceState(null, '', '#' + id);
+  return false;
+}
+
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('page-' + hash)) showPage(hash);
+});
+
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const main = document.getElementById('main');
+  const btn = document.getElementById('sidebar-toggle');
+  const icon = document.getElementById('toggle-chevron');
+  sb.classList.toggle('collapsed');
+  main.classList.toggle('expanded');
+  btn.classList.toggle('collapsed');
+  // Flip chevron: collapsed = point right (re-open), expanded = point left (collapse)
+  if (sb.classList.contains('collapsed')) {
+    icon.innerHTML = '<polyline points="9 18 15 12 9 6"/>';
+  } else {
+    icon.innerHTML = '<polyline points="15 18 9 12 15 6"/>';
+  }
+}
+
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = header.classList.contains('open');
+  document.querySelectorAll('.accordion-header').forEach(h => {
+    h.classList.remove('open');
+    if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { header.classList.add('open'); body.classList.add('open'); }
+}
+
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  if (!q) {
+    document.querySelectorAll('.nav-item').forEach(i => i.style.display = '');
+    document.querySelectorAll('.nav-section-label').forEach(l => l.style.display = '');
+    return;
+  }
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const label = item.querySelector('.nav-label');
+    if (label) item.style.display = label.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+  document.querySelectorAll('.nav-section-label').forEach(l => l.style.display = 'none');
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== searchInput) {
+    e.preventDefault(); searchInput.focus();
+  }
+});
+
+function mobToggle() {
+  const sb = document.getElementById('sidebar');
+  const bd = document.getElementById('mob-backdrop');
+  const btn = document.getElementById('mob-menu-btn');
+  if (sb.classList.contains('mobile-open')) {
+    mobClose();
+  } else {
+    sb.classList.add('mobile-open');
+    bd.classList.add('active');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close navigation menu');
+    document.body.classList.add('sidebar-open');
+    // Move focus to first focusable item in sidebar
+    const firstFocusable = sb.querySelector('a, button');
+    if (firstFocusable) setTimeout(() => firstFocusable.focus(), 50);
+  }
+}
+function mobClose() {
+  const sb = document.getElementById('sidebar');
+  const bd = document.getElementById('mob-backdrop');
+  const btn = document.getElementById('mob-menu-btn');
+  sb.classList.remove('mobile-open');
+  bd.classList.remove('active');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-label', 'Open navigation menu');
+  document.body.classList.remove('sidebar-open');
+  btn.focus(); // Return focus to hamburger button
+}
+// Close on nav item click (mobile) and ESC key
+document.querySelectorAll('.nav-item').forEach(el => {
+  el.addEventListener('click', () => { if (window.innerWidth <= 768) mobClose(); });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('sidebar').classList.contains('mobile-open')) {
+    mobClose();
+  }
+});
+</script>
+</body>
+</html>
