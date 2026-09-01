@@ -893,7 +893,7 @@ document.getElementById('volForm').addEventListener('submit', async (e) => {
     season:                season.startYear + '-' + season.endYear
   };
 
-  const { data, error } = await sb.from('volunteers').insert([payload]).select().single();
+  const { error } = await sb.from('volunteers').insert([payload]);
 
   if (error) {
     msg.textContent = 'Submission failed: ' + (error.message || 'Please try again.');
@@ -906,7 +906,8 @@ document.getElementById('volForm').addEventListener('submit', async (e) => {
 
   document.getElementById('volForm').style.display = 'none';
   document.querySelector('.progress-wrap').style.display = 'none';
-  const ref = data?.id ? String(data.id).padStart(6,'0') : '------';
+  // Generate a reference number from timestamp (avoids needing SELECT permission)
+  const ref = String(Date.now()).slice(-6);
   document.getElementById('successRef').textContent = 'Registration #: DLGRF-VOL-' + ref;
   document.getElementById('successScreen').classList.add('show');
   window.scrollTo({ top: 0, behavior: 'smooth' });
