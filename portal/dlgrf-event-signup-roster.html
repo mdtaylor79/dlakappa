@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLGRF Event Sign Up Roster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #70110c;
+      --crimson-dark: #2a0604;
+      --cream: #f2ebd7;
+      --gold: #c69a3f;
+      --bg: #ffffff;
+      --surface: #faf8f5;
+      --surface2: #f2ebd7;
+      --border: #e4dbd0;
+      --text: #1a1a1a;
+      --text-muted: #7a6a60;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── Header ── */
+    .banner {
+      background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+      color: #fff; padding: 1.25rem 2rem;
+      box-shadow: 0 3px 16px rgba(0,0,0,.4);
+    }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .banner-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .08em; color: var(--cream); line-height: 1; }
+    .banner-left p { font-size: .75rem; color: rgba(242,235,215,.65); margin-top: .2rem; letter-spacing: .04em; }
+    .banner-badge { background: var(--gold); color: var(--crimson-dark); font-family: 'Bebas Neue', sans-serif; font-size: .85rem; letter-spacing: .1em; padding: .35rem 1rem; border-radius: 20px; }
+
+    /* ── Top bar ── */
+    .topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .topbar-left { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .topbar-right { display: flex; gap: .6rem; }
+
+    .btn { font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 600; padding: .55rem 1.1rem; border-radius: 6px; border: none; cursor: pointer; transition: filter .2s, opacity .2s; display: inline-flex; align-items: center; gap: .35rem; }
+    .btn:hover { filter: brightness(.92); }
+    .btn-primary { background: var(--crimson); color: var(--cream); }
+    .btn-outline { background: #fff; color: var(--crimson); border: 1px solid var(--crimson); }
+    .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); font-size: .75rem; padding: .4rem .8rem; }
+    .btn-icon { padding: .35rem .6rem; font-size: .75rem; border-radius: 4px; }
+    .btn-edit { background: #eef4ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .btn-delete { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .btn-add-row { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; font-size: .75rem; padding: .35rem .8rem; }
+
+    /* ── Search ── */
+    .search-wrap { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .search-wrap input { font-family: 'DM Sans', sans-serif; font-size: .82rem; padding: .5rem .9rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; min-width: 220px; }
+    .search-wrap input:focus { outline: none; border-color: var(--crimson); }
+    .search-wrap select { font-family: 'DM Sans', sans-serif; font-size: .82rem; padding: .5rem .9rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem; }
+    .search-wrap select:focus { outline: none; border-color: var(--crimson); }
+
+    /* ── Summary chips ── */
+    .summary { max-width: 1100px; margin: 1.5rem auto 0; padding: 0 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+    .chip { background: var(--surface2); border: 1px solid #d8cfc5; border-radius: 6px; padding: .5rem 1rem; display: flex; flex-direction: column; gap: .2rem; min-width: 140px; }
+    .chip-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+    .chip-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--crimson); letter-spacing: .06em; }
+
+    /* ── Main ── */
+    .main { max-width: 1100px; margin: 1.5rem auto 4rem; padding: 0 1.5rem; }
+
+    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
+    .empty-state p { font-size: 1.1rem; margin-bottom: .5rem; }
+    .empty-state small { font-size: .82rem; opacity: .7; }
+
+    /* ── Event card ── */
+    .event-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 2rem; overflow: hidden; box-shadow: 0 2px 8px rgba(112,17,12,.05); }
+
+    .event-header { background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%); color: var(--cream); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .event-header-left { display: flex; align-items: center; gap: 1rem; }
+    .event-date-box { background: rgba(242,235,215,.15); border: 1px solid rgba(242,235,215,.25); border-radius: 8px; padding: .5rem .9rem; text-align: center; min-width: 64px; }
+    .event-date-box .date-month { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+    .event-date-box .date-day { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; color: var(--cream); }
+    .event-date-box .date-year { font-size: .6rem; color: rgba(242,235,215,.6); }
+    .event-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: .07em; color: var(--cream); line-height: 1.1; }
+    .event-info .event-sub { font-size: .72rem; color: rgba(242,235,215,.65); margin-top: .2rem; }
+    .event-header-right { display: flex; align-items: center; gap: .75rem; }
+    .badge-count { background: var(--gold); color: var(--crimson-dark); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .06em; padding: .25rem .9rem; border-radius: 20px; }
+    .btn-add-vol { background: rgba(242,235,215,.18); color: var(--cream); border: 1px solid rgba(242,235,215,.35); font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 600; padding: .45rem .9rem; border-radius: 6px; cursor: pointer; transition: background .2s; }
+    .btn-add-vol:hover { background: rgba(242,235,215,.3); }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); padding: .7rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid #f0ece6; transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface); }
+    tbody td { font-size: .83rem; padding: .7rem 1rem; vertical-align: middle; }
+    td.name-cell { font-weight: 600; }
+    td.email-cell { color: var(--text-muted); font-size: .78rem; }
+    td.phone-cell { font-size: .78rem; white-space: nowrap; }
+
+    .tabc-badge { display: inline-block; font-size: .62rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 12px; }
+    .tabc-yes { background: #dcfce7; color: #15803d; }
+    .tabc-no { background: #f3f4f6; color: #9ca3af; }
+
+    .assign-badge { display: inline-block; font-size: .68rem; padding: .2rem .6rem; border-radius: 4px; background: var(--surface2); color: var(--crimson); font-weight: 500; }
+
+    .action-cell { display: flex; gap: .35rem; align-items: center; }
+
+    .no-vols { text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: .85rem; font-style: italic; }
+
+    /* ── Modal ── */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .overlay.active { display: flex; }
+    .modal { background: #fff; border-radius: 12px; width: 100%; max-width: 680px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .modal-head { background: linear-gradient(135deg, var(--crimson), var(--crimson-dark)); color: var(--cream); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .modal-head h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .07em; }
+    .modal-close { background: none; border: none; color: var(--cream); font-size: 1.4rem; cursor: pointer; opacity: .75; line-height: 1; }
+    .modal-close:hover { opacity: 1; }
+    .modal-body { overflow-y: auto; padding: 1.5rem; }
+    .modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: .6rem; flex-shrink: 0; background: var(--surface); }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: .35rem; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
+    .form-field input, .form-field select, .form-field textarea {
+      font-family: 'DM Sans', sans-serif; font-size: .875rem;
+      padding: .6rem .85rem; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--surface); color: var(--text);
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--crimson); }
+    .form-field textarea { resize: vertical; min-height: 70px; }
+    .form-field select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem; }
+
+    .section-divider { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); padding: .75rem 0 .4rem; border-top: 1px solid var(--border); margin-top: .75rem; grid-column: 1 / -1; }
+
+    .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; grid-column: 1 / -1; }
+    .date-check { display: flex; align-items: center; gap: .5rem; font-size: .82rem; cursor: pointer; padding: .35rem .5rem; border-radius: 4px; transition: background .15s; }
+    .date-check:hover { background: var(--surface2); }
+    .date-check input[type="checkbox"] { accent-color: var(--crimson); width: 15px; height: 15px; cursor: pointer; }
+
+    /* ── Confirm delete overlay ── */
+    .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .confirm-overlay.active { display: flex; }
+    .confirm-box { background: #fff; border-radius: 10px; padding: 2rem; max-width: 400px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .confirm-box h4 { font-size: 1.05rem; font-weight: 700; color: #dc2626; margin-bottom: .6rem; }
+    .confirm-box p { font-size: .88rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; }
+    .confirm-actions { display: flex; justify-content: flex-end; gap: .6rem; }
+    .btn-danger { background: #dc2626; color: #fff; }
+
+    /* ── Toast ── */
+    .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #1a1a1a; color: #fff; font-size: .85rem; padding: .75rem 1.25rem; border-radius: 8px; z-index: 2000; transform: translateY(120%); opacity: 0; transition: transform .3s, opacity .3s; max-width: 360px; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-left: 4px solid #22c55e; }
+    .toast.error { border-left: 4px solid #dc2626; }
+
+    /* ── Footer ── */
+    .page-footer { text-align: center; padding: 1.5rem; font-size: .72rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 2rem; }
+
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .dates-grid { grid-template-columns: 1fr; }
+      .form-field.full { grid-column: 1; }
+      .section-divider { grid-column: 1; }
+      .banner-left h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Banner ── -->
+<header class="banner">
+  <div class="banner-inner">
+    <div class="banner-left">
+      <h1>DLGRF Event Sign Up Roster</h1>
+      <p>Denton-Lewisville Alumni Chapter · Kappa Alpha Psi Fraternity, Inc. · Guide Right Program</p>
+    </div>
+    <div class="banner-badge">2026–27 Season</div>
+  </div>
+</header>
+
+<!-- ── Top Action Bar ── -->
+<div class="topbar">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search volunteers…" oninput="applyFilters()">
+    <select id="filterAssign" onchange="applyFilters()">
+      <option value="">All Roles</option>
+      <option>Concessions</option>
+      <option>Parking</option>
+      <option>Gate / Entry</option>
+      <option>Field Support</option>
+      <option>General</option>
+    </select>
+    <select id="filterTabc" onchange="applyFilters()">
+      <option value="">TABC: All</option>
+      <option value="yes">TABC Certified</option>
+      <option value="no">Not Certified</option>
+    </select>
+  </div>
+  <div class="topbar-right">
+    <button class="btn btn-outline" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-primary" onclick="openAddModal(null)">+ Add Volunteer</button>
+  </div>
+</div>
+
+<!-- ── Summary chips ── -->
+<div class="summary" id="summaryRow">
+  <div class="chip"><span class="chip-label">Total Volunteers</span><span class="chip-value" id="chipTotal">—</span></div>
+  <div class="chip"><span class="chip-label">Total Sign-Ups</span><span class="chip-value" id="chipSignups">—</span></div>
+  <div class="chip"><span class="chip-label">TABC Certified</span><span class="chip-value" id="chipTabc">—</span></div>
+  <div class="chip"><span class="chip-label">Events Covered</span><span class="chip-value" id="chipEvents">—</span></div>
+</div>
+
+<!-- ── Main content ── -->
+<main class="main" id="mainContent">
+  <div class="empty-state"><p>Loading roster…</p><small>Connecting to Supabase</small></div>
+</main>
+
+<footer class="page-footer">
+  DLGRF Volunteer Roster · Denton-Lewisville Alumni Chapter · Kappa Alpha Psi Fraternity, Inc.
+</footer>
+
+<!-- ── Add / Edit Modal ── -->
+<div class="overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Add Volunteer</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form class="form-grid" id="volForm" onsubmit="return false">
+        <div class="form-field">
+          <label>Full Name *</label>
+          <input type="text" id="f_name" required placeholder="First Last">
+        </div>
+        <div class="form-field">
+          <label>Email *</label>
+          <input type="email" id="f_email" required placeholder="email@example.com">
+        </div>
+        <div class="form-field">
+          <label>Mobile Phone</label>
+          <input type="tel" id="f_phone" placeholder="(214) 555-0000">
+        </div>
+        <div class="form-field">
+          <label>Preferred Assignment</label>
+          <select id="f_assign">
+            <option value="">— Select —</option>
+            <option>Concessions</option>
+            <option>Parking</option>
+            <option>Gate / Entry</option>
+            <option>Field Support</option>
+            <option>General</option>
+          </select>
+        </div>
+
+        <div class="section-divider">Emergency Contact</div>
+        <div class="form-field">
+          <label>EC Name</label>
+          <input type="text" id="f_ec_name" placeholder="Contact name">
+        </div>
+        <div class="form-field">
+          <label>EC Phone</label>
+          <input type="tel" id="f_ec_phone" placeholder="(214) 555-0000">
+        </div>
+
+        <div class="section-divider">TABC Certification</div>
+        <div class="form-field">
+          <label>TABC Certified?</label>
+          <select id="f_tabc">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>TABC Expiry</label>
+          <input type="date" id="f_tabc_expiry">
+        </div>
+        <div class="form-field full">
+          <label>TABC Certificate URL</label>
+          <input type="url" id="f_tabc_url" placeholder="https://…">
+        </div>
+
+        <div class="section-divider">Experience &amp; Notes</div>
+        <div class="form-field">
+          <label>Previous Events</label>
+          <input type="number" id="f_prev" min="0" placeholder="0">
+        </div>
+        <div class="form-field">
+          <label>Status</label>
+          <select id="f_status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="waitlisted">Waitlisted</option>
+            <option value="declined">Declined</option>
+          </select>
+        </div>
+        <div class="form-field full">
+          <label>Additional Comments</label>
+          <textarea id="f_comments" placeholder="Any notes…"></textarea>
+        </div>
+
+        <div class="section-divider">Event Dates (select all that apply)</div>
+        <div class="dates-grid" id="datesGrid"></div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveVolunteer()">Save Volunteer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Confirm Delete Modal ── -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h4>Delete Volunteer?</h4>
+    <p id="confirmMsg">This will permanently remove this volunteer from all events. This cannot be undone.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancel</button>
+      <button class="btn btn-danger" onclick="doDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Supabase Config ──
+  const SB_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+  const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+
+  const EVENT_DATES = [
+    { label: 'Sept 4, 2026',  date: '2026-09-04', opp: 'vs Cleveland Browns' },
+    { label: 'Sept 20, 2026', date: '2026-09-20', opp: 'vs New York Giants' },
+    { label: 'Oct 2, 2026',   date: '2026-10-02', opp: 'vs Carolina Panthers' },
+    { label: 'Oct 18, 2026',  date: '2026-10-18', opp: 'vs Los Angeles Rams' },
+    { label: 'Nov 1, 2026',   date: '2026-11-01', opp: 'vs Philadelphia Eagles' },
+    { label: 'Nov 29, 2026',  date: '2026-11-29', opp: 'vs Kansas City Chiefs (Thanksgiving)' },
+    { label: 'Jan 3, 2027',   date: '2027-01-03', opp: 'vs Washington Commanders' },
+  ];
+
+  // ── State ──
+  let allVolunteers = [];
+  let filteredVolunteers = [];
+  let editId = null;
+  let pendingDeleteId = null;
+  let modalTargetDate = null; // pre-select a date when adding from a card
+
+  // ── Supabase helpers ──
+  async function sbFetch(path, opts = {}) {
+    const url = `${SB_URL}/rest/v1/${path}`;
+    const headers = {
+      'apikey': SB_ANON,
+      'Authorization': `Bearer ${SB_ANON}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
+      ...opts.headers
+    };
+    const res = await fetch(url, { ...opts, headers });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`${res.status}: ${err}`);
+    }
+    const text = await res.text();
+    return text ? JSON.parse(text) : [];
+  }
+
+  // ── Load volunteers ──
+  async function loadVolunteers() {
+    try {
+      allVolunteers = await sbFetch('volunteers?select=*&order=created_at.desc');
+      filteredVolunteers = [...allVolunteers];
+      renderSummary();
+      renderRoster();
+    } catch (e) {
+      document.getElementById('mainContent').innerHTML = `
+        <div class="empty-state">
+          <p>⚠️ Could not load volunteers</p>
+          <small>${e.message}</small>
+        </div>`;
+    }
+  }
+
+  // ── Summary chips ──
+  function renderSummary() {
+    const unique = allVolunteers.length;
+    let signups = 0;
+    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) signups += v.volunteer_dates.length; });
+    const tabc = allVolunteers.filter(v => v.tabc_certified).length;
+    const covered = new Set();
+    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) v.volunteer_dates.forEach(d => covered.add(d)); });
+    document.getElementById('chipTotal').textContent = unique;
+    document.getElementById('chipSignups').textContent = signups;
+    document.getElementById('chipTabc').textContent = tabc;
+    document.getElementById('chipEvents').textContent = covered.size;
+  }
+
+  // ── Filters ──
+  function applyFilters() {
+    const q    = document.getElementById('searchInput').value.toLowerCase();
+    const role = document.getElementById('filterAssign').value;
+    const tabc = document.getElementById('filterTabc').value;
+    filteredVolunteers = allVolunteers.filter(v => {
+      const name   = (v.full_name || '').toLowerCase();
+      const email  = (v.email || '').toLowerCase();
+      const matchQ = !q || name.includes(q) || email.includes(q);
+      const matchR = !role || v.preferred_assignment === role;
+      const matchT = !tabc || (tabc === 'yes' ? v.tabc_certified : !v.tabc_certified);
+      return matchQ && matchR && matchT;
+    });
+    renderRoster();
+  }
+
+  // ── Render roster ──
+  function renderRoster() {
+    const main = document.getElementById('mainContent');
+
+    // Build date → volunteers map
+    const dateMap = {};
+    EVENT_DATES.forEach(ed => { dateMap[ed.date] = []; });
+
+    filteredVolunteers.forEach(vol => {
+      if (!Array.isArray(vol.volunteer_dates)) return;
+      vol.volunteer_dates.forEach(d => {
+        if (dateMap[d] !== undefined) dateMap[d].push(vol);
+      });
+    });
+
+    let html = '';
+    EVENT_DATES.forEach(ed => {
+      const volunteers = dateMap[ed.date] || [];
+      const [year, month, day] = ed.date.split('-');
+      const dtObj = new Date(Number(year), Number(month) - 1, Number(day));
+      const monthStr = dtObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+      const dayNum   = dtObj.getDate();
+      const yearNum  = dtObj.getFullYear();
+      const today    = new Date(); today.setHours(0,0,0,0);
+      const isPast   = dtObj < today;
+
+      html += `
+      <div class="event-card" id="card-${ed.date}" ${isPast ? 'style="opacity:.72"' : ''}>
+        <div class="event-header">
+          <div class="event-header-left">
+            <div class="event-date-box">
+              <div class="date-month">${monthStr}</div>
+              <div class="date-day">${dayNum}</div>
+              <div class="date-year">${yearNum}</div>
+            </div>
+            <div class="event-info">
+              <h2>${ed.label}${isPast ? ' ✓' : ''}</h2>
+              <div class="event-sub">${ed.opp}</div>
+            </div>
+          </div>
+          <div class="event-header-right">
+            <div class="badge-count">${volunteers.length} Vol${volunteers.length !== 1 ? 's' : ''}</div>
+            <button class="btn-add-vol" onclick="openAddModal('${ed.date}')">+ Add</button>
+          </div>
+        </div>
+        <div class="table-wrap">`;
+
+      if (volunteers.length === 0) {
+        html += `<div class="no-vols">No volunteers signed up for this event yet.</div>`;
+      } else {
+        html += `
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>TABC</th>
+                <th>Prior Events</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>`;
+        volunteers.forEach((v, i) => {
+          const tabc = v.tabc_certified
+            ? `<span class="tabc-badge tabc-yes">✓ Certified</span>`
+            : `<span class="tabc-badge tabc-no">No</span>`;
+          const assign = v.preferred_assignment
+            ? `<span class="assign-badge">${esc(v.preferred_assignment)}</span>` : '—';
+          const statusStyle = v.status === 'confirmed' ? 'color:#15803d;font-weight:600'
+            : v.status === 'declined' ? 'color:#dc2626' : '';
+          html += `
+              <tr>
+                <td style="color:var(--text-muted);font-size:.78rem">${i+1}</td>
+                <td class="name-cell">${esc(v.full_name || '—')}</td>
+                <td class="email-cell">${esc(v.email || '—')}</td>
+                <td class="phone-cell">${esc(v.mobile_phone || '—')}</td>
+                <td>${assign}</td>
+                <td>${tabc}</td>
+                <td style="text-align:center">${v.previous_events ?? '—'}</td>
+                <td><span style="${statusStyle}">${capitalize(v.status || 'pending')}</span></td>
+                <td>
+                  <div class="action-cell">
+                    <button class="btn btn-icon btn-edit" title="Edit" onclick="openEditModal('${v.id}')">✏️</button>
+                    <button class="btn btn-icon btn-delete" title="Delete" onclick="confirmDelete('${v.id}','${esc(v.full_name || '')}')">🗑</button>
+                  </div>
+                </td>
+              </tr>`;
+        });
+        html += `</tbody></table>`;
+      }
+      html += `</div></div>`;
+    });
+
+    main.innerHTML = html || `<div class="empty-state"><p>No volunteers match your search.</p></div>`;
+  }
+
+  // ── Build date checkboxes ──
+  function buildDateCheckboxes(selectedDates = []) {
+    const grid = document.getElementById('datesGrid');
+    grid.innerHTML = EVENT_DATES.map(ed => {
+      const checked = selectedDates.includes(ed.date) ? 'checked' : '';
+      return `<label class="date-check">
+        <input type="checkbox" value="${ed.date}" ${checked} data-date-cb>
+        ${ed.label} <span style="font-size:.7rem;color:var(--text-muted)">${ed.opp}</span>
+      </label>`;
+    }).join('');
+  }
+
+  // ── Open add modal ──
+  function openAddModal(preDate) {
+    editId = null;
+    modalTargetDate = preDate;
+    document.getElementById('modalTitle').textContent = 'Add Volunteer';
+    document.getElementById('volForm').reset();
+    buildDateCheckboxes(preDate ? [preDate] : []);
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  // ── Open edit modal ──
+  function openEditModal(id) {
+    const vol = allVolunteers.find(v => String(v.id) === String(id));
+    if (!vol) return showToast('Volunteer not found.', 'error');
+    editId = id;
+    document.getElementById('modalTitle').textContent = 'Edit Volunteer';
+    document.getElementById('f_name').value    = vol.full_name || '';
+    document.getElementById('f_email').value   = vol.email || '';
+    document.getElementById('f_phone').value   = vol.mobile_phone || '';
+    document.getElementById('f_assign').value  = vol.preferred_assignment || '';
+    document.getElementById('f_ec_name').value = vol.ec_name || '';
+    document.getElementById('f_ec_phone').value = vol.ec_phone || '';
+    document.getElementById('f_tabc').value    = vol.tabc_certified ? 'true' : 'false';
+    document.getElementById('f_tabc_expiry').value = vol.tabc_expiry || '';
+    document.getElementById('f_tabc_url').value = vol.tabc_cert_url || '';
+    document.getElementById('f_prev').value    = vol.previous_events ?? '';
+    document.getElementById('f_status').value  = vol.status || 'pending';
+    document.getElementById('f_comments').value = vol.additional_comments || '';
+    buildDateCheckboxes(Array.isArray(vol.volunteer_dates) ? vol.volunteer_dates : []);
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+  function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+
+  // ── Save (insert or update) ──
+  async function saveVolunteer() {
+    const name  = document.getElementById('f_name').value.trim();
+    const email = document.getElementById('f_email').value.trim();
+    if (!name || !email) { showToast('Name and email are required.', 'error'); return; }
+
+    const selectedDates = [...document.querySelectorAll('[data-date-cb]:checked')].map(cb => cb.value);
+
+    const payload = {
+      full_name:             name,
+      email:                 email,
+      mobile_phone:          document.getElementById('f_phone').value.trim() || null,
+      preferred_assignment:  document.getElementById('f_assign').value || null,
+      ec_name:               document.getElementById('f_ec_name').value.trim() || null,
+      ec_phone:              document.getElementById('f_ec_phone').value.trim() || null,
+      tabc_certified:        document.getElementById('f_tabc').value === 'true',
+      tabc_expiry:           document.getElementById('f_tabc_expiry').value || null,
+      tabc_cert_url:         document.getElementById('f_tabc_url').value.trim() || null,
+      previous_events:       parseInt(document.getElementById('f_prev').value) || 0,
+      status:                document.getElementById('f_status').value || 'pending',
+      additional_comments:   document.getElementById('f_comments').value.trim() || null,
+      volunteer_dates:       selectedDates,
+      season:                '2026-2027',
+    };
+
+    try {
+      if (editId) {
+        await sbFetch(`volunteers?id=eq.${editId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(payload)
+        });
+        showToast('Volunteer updated!', 'success');
+      } else {
+        await sbFetch('volunteers', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        showToast('Volunteer added!', 'success');
+      }
+      closeModal();
+      await loadVolunteers();
+    } catch (e) {
+      showToast('Save failed: ' + e.message, 'error');
+    }
+  }
+
+  // ── Delete ──
+  function confirmDelete(id, name) {
+    pendingDeleteId = id;
+    document.getElementById('confirmMsg').textContent =
+      `This will permanently remove "${name}" from all events. This cannot be undone.`;
+    document.getElementById('confirmOverlay').classList.add('active');
+  }
+  function closeConfirm() {
+    document.getElementById('confirmOverlay').classList.remove('active');
+    pendingDeleteId = null;
+  }
+  async function doDelete() {
+    if (!pendingDeleteId) return;
+    try {
+      await sbFetch(`volunteers?id=eq.${pendingDeleteId}`, { method: 'DELETE', headers: { Prefer: '' } });
+      closeConfirm();
+      showToast('Volunteer deleted.', 'success');
+      await loadVolunteers();
+    } catch (e) {
+      closeConfirm();
+      showToast('Delete failed: ' + e.message, 'error');
+    }
+  }
+
+  // ── CSV Export ──
+  function exportCSV() {
+    const headers = ['Name','Email','Phone','Assignment','TABC','Prior Events','Status','Event Dates','Comments'];
+    const rows = filteredVolunteers.map(v => [
+      v.full_name || '',
+      v.email || '',
+      v.mobile_phone || '',
+      v.preferred_assignment || '',
+      v.tabc_certified ? 'Yes' : 'No',
+      v.previous_events ?? 0,
+      v.status || '',
+      Array.isArray(v.volunteer_dates) ? v.volunteer_dates.join('; ') : '',
+      v.additional_comments || ''
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `dlgrf-event-roster-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+
+  // ── Utils ──
+  function esc(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+  let toastTimer;
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.className = 'toast'; }, 3500);
+  }
+
+  // ── Init ──
+  loadVolunteers();
+</script>
+</body>
+</html>
