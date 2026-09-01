@@ -1079,8 +1079,6 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
     <a href="/portal/training-hub.html">Training</a>
     <a href="/portal/community-service.html">Community Service</a>
     <a href="/portal/admin.html" id="nav-admin" style="display:none;">Admin</a>
-    <a href="/portal/blog-admin.html" id="nav-blog-admin" style="display:none;">Blog Admin</a>
-    <a href="/portal/training-report.html" id="nav-training-report" style="display:none;">Training Report</a>
     <a href="/portal/login.html" id="signOutBtn" class="signout">Sign Out</a>
   </div>
 </nav>
@@ -2424,10 +2422,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (member.is_admin) {
       var adminLink = document.getElementById('nav-admin');
       if (adminLink) adminLink.style.display = '';
-      var blogAdminLink = document.getElementById('nav-blog-admin');
-      if (blogAdminLink) blogAdminLink.style.display = '';
-      var trainingReportLink = document.getElementById('nav-training-report');
-      if (trainingReportLink) trainingReportLink.style.display = '';
     }
   }
 
