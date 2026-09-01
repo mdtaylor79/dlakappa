@@ -9,7 +9,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Archivo', sans-serif; background: #1a0302; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* ── Banner ── */
     .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
     .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
     .org-text { flex: 1; }
@@ -23,120 +22,104 @@
     .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
     .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
 
-    .main { flex: 1; background: #f5f0eb; max-width: 100%; }
+    .main { flex: 1; background: #f5f0eb; }
     .main-inner { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-    /* ── Page heading ── */
     .page-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
     .page-head h1 { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; color: #70110c; letter-spacing: .05em; }
-    .page-head .season-tag {
-      background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif;
-      font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      padding: .3rem .9rem; border-radius: 20px;
-    }
+    .page-head .season-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; }
 
-    /* ── Stat cards ── */
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-    .stat-card {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .4rem;
-    }
+    .stat-card { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .4rem; }
     .stat-card.alert { border-left: 4px solid #dc2626; }
-    .stat-card .stat-label {
-      font-size: .68rem; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: #9a8878;
-    }
-    .stat-card .stat-value {
-      font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: #70110c; line-height: 1;
-    }
+    .stat-card .stat-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #9a8878; }
+    .stat-card .stat-value { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: #70110c; line-height: 1; }
     .stat-card.alert .stat-value { color: #dc2626; }
     .stat-card .stat-sub { font-size: .75rem; color: #9a8878; }
 
-    /* ── Filters ── */
-    .filters-bar {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      padding: 1rem 1.25rem; margin-bottom: 1.5rem;
-      display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end;
-    }
+    .filters-bar { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; }
     .filter-field { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 150px; }
     .filter-field label { font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
-    .filter-field input, .filter-field select {
-      padding: .5rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px;
-      font-family: 'Archivo', sans-serif; font-size: .84rem; background: #faf8f5;
-      appearance: none;
-    }
-    .filter-field select {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
-      background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem;
-    }
+    .filter-field input, .filter-field select { padding: .5rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .84rem; background: #faf8f5; appearance: none; }
+    .filter-field select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem; }
     .filter-field input:focus, .filter-field select:focus { outline: none; border-color: #70110c; }
 
-    /* ── Action buttons ── */
     .action-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
-    .btn-action {
-      font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; padding: .55rem 1.1rem;
-      border-radius: 4px; cursor: pointer; border: none; transition: filter .2s;
-    }
+    .btn-action { font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .55rem 1.1rem; border-radius: 4px; cursor: pointer; border: none; transition: filter .2s; }
     .btn-primary { background: linear-gradient(135deg,#70110c,#2a0604); color: #f2ebd7; }
     .btn-secondary { background: #f0e8e0; color: #70110c; border: 1px solid #e0d4c8; }
+    .btn-danger { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
     .btn-action:hover { filter: brightness(1.1); }
 
-    /* ── TABC expiry section ── */
-    .expiry-section {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      margin-bottom: 1.5rem; overflow: hidden;
-    }
-    .expiry-head {
-      background: linear-gradient(135deg,#70110c,#2a0604); padding: .7rem 1.25rem;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .expiry-head h3 { font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
-
-    /* ── Data table ── */
-    .table-wrap {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      overflow: hidden;
-    }
-    .table-header {
-      background: linear-gradient(135deg,#70110c,#2a0604); padding: .75rem 1.25rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    }
+    .table-wrap { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; overflow: hidden; }
+    .table-header { background: linear-gradient(135deg,#70110c,#2a0604); padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .table-header h3 { font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
     .table-count { font-size:.72rem; color:rgba(242,235,215,.6); }
 
     .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
-    .data-table th {
-      background: #f0e8e0; padding: .55rem .75rem; text-align: left;
-      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; color: #70110c;
-      border-bottom: 2px solid #e0d4c8; white-space: nowrap; cursor: pointer;
-    }
+    .data-table th { background: #f0e8e0; padding: .55rem .75rem; text-align: left; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #70110c; border-bottom: 2px solid #e0d4c8; white-space: nowrap; cursor: pointer; }
     .data-table th:hover { background: #e8ddd0; }
-    .data-table td { padding: .55rem .75rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
+    .data-table td { padding: .55rem .75rem; border-bottom: 1px solid #f0e8e0; vertical-align: middle; }
     .data-table tr:last-child td { border-bottom: none; }
     .data-table tr:hover td { background: #faf8f5; }
-    .badge {
-      display: inline-block; padding: .15rem .55rem; border-radius: 10px;
-      font-size: .68rem; font-weight: 600; letter-spacing: .04em;
-    }
+
+    .badge { display: inline-block; padding: .15rem .55rem; border-radius: 10px; font-size: .68rem; font-weight: 600; letter-spacing: .04em; }
     .badge-yes { background: #dcfce7; color: #166534; }
     .badge-no  { background: #fee2e2; color: #991b1b; }
     .badge-expiring { background: #fef9c3; color: #854d0e; }
 
+    /* Row action buttons */
+    .row-actions { display: flex; gap: .35rem; }
+    .btn-row { font-size: .65rem; font-weight: 700; font-family: 'Cinzel', serif; letter-spacing: .04em; padding: .3rem .65rem; border-radius: 3px; cursor: pointer; border: none; transition: filter .15s; white-space: nowrap; }
+    .btn-row:hover { filter: brightness(1.15); }
+    .btn-edit { background: #e8f0fe; color: #1a4a9a; border: 1px solid #b0c4f0; }
+    .btn-delete { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
     .loading { text-align: center; padding: 3rem; color: #9a8878; font-size: .9rem; }
     .empty { text-align: center; padding: 3rem; color: #9a8878; font-size: .88rem; }
 
+    /* ── MODAL ── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(20,5,5,.7); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+    .modal-overlay.hidden { display: none; }
+    .modal { background: #fff; border-radius: 10px; width: 100%; max-width: 680px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .modal-head { background: linear-gradient(135deg,#70110c,#2a0604); padding: 1.1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-radius: 10px 10px 0 0; }
+    .modal-head h2 { font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #c69a3f; }
+    .modal-close { background: none; border: none; color: rgba(242,235,215,.7); font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 0 .25rem; }
+    .modal-close:hover { color: #f2ebd7; }
+    .modal-body { padding: 1.5rem; }
+    .modal-footer { padding: 1rem 1.5rem; border-top: 1px solid #f0e8e0; display: flex; gap: .75rem; justify-content: flex-end; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .35rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6a5a50; }
+    .form-group input, .form-group select, .form-group textarea {
+      padding: .55rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px;
+      font-family: 'Archivo', sans-serif; font-size: .88rem; background: #faf8f5;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #70110c; }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .dates-check-group { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin-top: .25rem; }
+    .date-check { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: #3a2a20; }
+    .date-check input[type=checkbox] { accent-color: #70110c; width: 14px; height: 14px; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 24px; right: 24px; background: #166534; color: #fff; padding: .75rem 1.25rem; border-radius: 6px; font-size: .85rem; font-weight: 600; z-index: 2000; box-shadow: 0 4px 12px rgba(0,0,0,.3); opacity: 0; transform: translateY(10px); transition: all .25s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.error { background: #991b1b; }
+
+    /* Confirm modal */
+    .confirm-modal { background: #fff; border-radius: 10px; max-width: 420px; width: 100%; padding: 2rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .confirm-modal h3 { font-family: 'Cinzel', serif; font-size: .95rem; color: #70110c; margin-bottom: .75rem; letter-spacing: .05em; }
+    .confirm-modal p { font-size: .88rem; color: #5a4a40; margin-bottom: 1.5rem; line-height: 1.5; }
+    .confirm-btns { display: flex; gap: .75rem; justify-content: center; }
+
     @media(max-width: 768px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
-      .banner { flex-direction: column; gap: .75rem; }
+      .form-grid { grid-template-columns: 1fr; }
     }
-    @media(max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
-    }
-    @print {
-      .filters-bar, .action-row, .btn-action { display: none; }
-    }
+    @media(max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+    @media print { .filters-bar, .action-row, .btn-action, .row-actions { display: none; } }
   </style>
 </head>
 <body>
@@ -168,9 +151,9 @@
 
   <div class="page-head">
     <span class="season-tag" id="seasonTag"></span>
+    <button class="btn-action btn-primary" onclick="openAddModal()">+ Add Volunteer</button>
   </div>
 
-  <!-- Stats -->
   <div class="stats-grid" id="statsGrid">
     <div class="stat-card"><div class="stat-label">Total Registered</div><div class="stat-value" id="statTotal">—</div><div class="stat-sub">Volunteers this season</div></div>
     <div class="stat-card"><div class="stat-label">TABC Certified</div><div class="stat-value" id="statTabc">—</div><div class="stat-sub">Current certifications</div></div>
@@ -180,7 +163,6 @@
     <div class="stat-card"><div class="stat-label">Upcoming Dates</div><div class="stat-value" id="statUpcoming">—</div><div class="stat-sub">Volunteer dates selected</div></div>
   </div>
 
-  <!-- Filters -->
   <div class="filters-bar">
     <div class="filter-field" style="flex:2;min-width:200px;">
       <label>Search by Name or Email</label>
@@ -199,9 +181,10 @@
       <label>Assignment</label>
       <select id="filterAssignment" onchange="applyFilters()">
         <option value="">All</option>
-        <option>Cashier</option>
         <option>Concessions</option>
-        <option>Stand Lead</option>
+        <option>Guest Services</option>
+        <option>Parking/Traffic</option>
+        <option>Security Support</option>
         <option>Anywhere Needed</option>
       </select>
     </div>
@@ -216,7 +199,6 @@
     </div>
   </div>
 
-  <!-- Data table -->
   <div class="table-wrap">
     <div class="table-header">
       <h3>Volunteer Registry</h3>
@@ -229,24 +211,126 @@
             <th onclick="sortTable('full_name')">Name &#8597;</th>
             <th onclick="sortTable('email')">Email &#8597;</th>
             <th>Phone</th>
-            <th onclick="sortTable('volunteer_dates')">Dates Selected &#8597;</th>
-            <th onclick="sortTable('previous_events')">Prev Events &#8597;</th>
+            <th onclick="sortTable('volunteer_dates')">Dates &#8597;</th>
+            <th onclick="sortTable('previous_events')">Prev Ev. &#8597;</th>
             <th onclick="sortTable('total_hours')">Hours &#8597;</th>
             <th>Assignment</th>
             <th onclick="sortTable('tabc_certified')">TABC &#8597;</th>
-            <th onclick="sortTable('tabc_expiry')">TABC Expiry &#8597;</th>
+            <th onclick="sortTable('tabc_expiry')">Expiry &#8597;</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="tableBody">
-          <tr><td colspan="10" class="loading">Loading volunteer data&hellip;</td></tr>
+          <tr><td colspan="11" class="loading">Loading volunteer data&hellip;</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-</div><!-- /.main-inner -->
-</div><!-- /.main -->
+</div>
+</div>
+
+<!-- ADD / EDIT MODAL -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Add Volunteer</h2>
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Full Name *</label>
+          <input type="text" id="fName" placeholder="First Last">
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="fEmail">
+        </div>
+        <div class="form-group">
+          <label>Mobile Phone</label>
+          <input type="tel" id="fPhone" placeholder="(000) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Emergency Contact Name</label>
+          <input type="text" id="fEcName">
+        </div>
+        <div class="form-group">
+          <label>Emergency Contact Phone</label>
+          <input type="tel" id="fEcPhone">
+        </div>
+        <div class="form-group">
+          <label>Preferred Assignment</label>
+          <select id="fAssignment">
+            <option value="">Select…</option>
+            <option>Concessions</option>
+            <option>Guest Services</option>
+            <option>Parking/Traffic</option>
+            <option>Security Support</option>
+            <option>Anywhere Needed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="fStatus">
+            <option>Registered</option>
+            <option>Confirmed</option>
+            <option>Waitlisted</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Previous Events</label>
+          <input type="number" id="fPrevEvents" min="0" value="0">
+        </div>
+        <div class="form-group">
+          <label>Total Hours</label>
+          <input type="number" id="fTotalHours" min="0" step="0.5" value="0">
+        </div>
+        <div class="form-group">
+          <label>TABC Certified</label>
+          <select id="fTabc" onchange="toggleExpiry()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="form-group" id="expiryGroup" style="display:none;">
+          <label>TABC Expiry Date</label>
+          <input type="date" id="fTabcExpiry">
+        </div>
+        <div class="form-group full">
+          <label>Game Dates Signed Up For</label>
+          <div class="dates-check-group" id="datesCheckGroup"></div>
+        </div>
+        <div class="form-group full">
+          <label>Additional Comments</label>
+          <textarea id="fComments"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-action btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn-action btn-primary" id="saveBtn" onclick="saveVolunteer()">Save Volunteer</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE MODAL -->
+<div class="modal-overlay hidden" id="confirmOverlay">
+  <div class="confirm-modal">
+    <h3>Delete Volunteer?</h3>
+    <p id="confirmMsg">This will permanently remove this volunteer record. This action cannot be undone.</p>
+    <div class="confirm-btns">
+      <button class="btn-action btn-secondary" onclick="closeConfirm()">Cancel</button>
+      <button class="btn-action btn-danger" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -254,76 +338,57 @@ const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
+const GAME_DATES = [
+  { value: '2026-09-20', label: 'Sep 20 — vs. Browns' },
+  { value: '2026-10-08', label: 'Oct 8 — vs. Eagles (TNF)' },
+  { value: '2026-11-01', label: 'Nov 1 — vs. Commanders' },
+  { value: '2026-11-15', label: 'Nov 15 — vs. Giants (SNF)' },
+  { value: '2026-11-26', label: 'Nov 26 — vs. Falcons (Thanksgiving)' },
+  { value: '2026-12-13', label: 'Dec 13 — vs. Bears' },
+  { value: '2027-01-03', label: 'Jan 3 — vs. Eagles (Finale)' },
+];
+
 let allVolunteers = [];
 let filtered = [];
 let sortKey = 'full_name';
 let sortAsc = true;
 
-function getVolunteerSeason() {
-  const today = new Date();
-  const yr = today.getFullYear();
-  const mo = today.getMonth();
-  const startYear = mo >= 7 ? yr : yr - 1;
-  return { startYear, endYear: startYear + 1, label: startYear + '–' + (startYear+1) };
-}
+// Build date checkboxes in modal
+const dcg = document.getElementById('datesCheckGroup');
+GAME_DATES.forEach(g => {
+  const label = document.createElement('label');
+  label.className = 'date-check';
+  label.innerHTML = `<input type="checkbox" value="${g.value}" class="date-cb"> ${g.label}`;
+  dcg.appendChild(label);
+});
 
-const season = getVolunteerSeason();
+const season = (() => {
+  const today = new Date(); const yr = today.getFullYear(); const mo = today.getMonth();
+  const startYear = mo >= 7 ? yr : yr - 1;
+  return { label: startYear + '–' + (startYear+1) };
+})();
 document.getElementById('seasonTag').textContent = 'Season ' + season.label;
 
-function isExpiringSoon(dateStr) {
-  if (!dateStr) return false;
-  const exp = new Date(dateStr);
-  const today = new Date();
-  const diff = (exp - today) / (1000 * 60 * 60 * 24);
-  return diff >= 0 && diff <= 30;
-}
-
-function isExpired(dateStr) {
-  if (!dateStr) return false;
-  return new Date(dateStr) < new Date();
-}
-
-function formatDate(str) {
-  if (!str) return '—';
-  const [y,m,d] = str.split('-');
-  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return mo[parseInt(m)-1] + ' ' + parseInt(d) + ', ' + y;
-}
+function isExpiringSoon(d) { if (!d) return false; const diff = (new Date(d)-new Date())/(86400000); return diff>=0&&diff<=30; }
+function isExpired(d) { if (!d) return false; return new Date(d)<new Date(); }
+function fmt(str) { if(!str) return '—'; const[y,m,d]=str.split('-'); const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return mo[+m-1]+' '+parseInt(d)+', '+y; }
 
 async function loadData() {
-  const { data, error } = await sb
-    .from('volunteers')
-    .select('*')
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    document.getElementById('tableBody').innerHTML =
-      '<tr><td colspan="10" class="empty">Error loading data: ' + error.message + '</td></tr>';
-    return;
-  }
-
+  const { data, error } = await sb.from('volunteers').select('*').order('created_at', { ascending: false });
+  if (error) { document.getElementById('tableBody').innerHTML = `<tr><td colspan="11" class="empty">Error: ${error.message}</td></tr>`; return; }
   allVolunteers = data || [];
-  computeStats();
-  applyFilters();
+  computeStats(); applyFilters();
 }
 
 function computeStats() {
-  const today = new Date();
-  let totalHours = 0, tabcCount = 0, expiringCount = 0, upcomingDates = new Set();
-
+  const today = new Date(); let totalHours=0, tabcCount=0, expiringCount=0; const upcomingDates = new Set();
   allVolunteers.forEach(v => {
-    totalHours += parseFloat(v.total_hours) || 0;
+    totalHours += parseFloat(v.total_hours)||0;
     if (v.tabc_certified) tabcCount++;
     if (v.tabc_certified && isExpiringSoon(v.tabc_expiry)) expiringCount++;
-    (v.volunteer_dates || []).forEach(d => {
-      if (new Date(d) >= today) upcomingDates.add(d);
-    });
+    (v.volunteer_dates||[]).forEach(d => { if (new Date(d)>=today) upcomingDates.add(d); });
   });
-
-  const avgEvents = allVolunteers.length
-    ? (allVolunteers.reduce((s,v) => s + (v.previous_events||0), 0) / allVolunteers.length).toFixed(1)
-    : 0;
-
+  const avgEvents = allVolunteers.length ? (allVolunteers.reduce((s,v)=>s+(v.previous_events||0),0)/allVolunteers.length).toFixed(1) : 0;
   document.getElementById('statTotal').textContent    = allVolunteers.length;
   document.getElementById('statTabc').textContent     = tabcCount;
   document.getElementById('statExpiring').textContent = expiringCount;
@@ -333,114 +398,206 @@ function computeStats() {
 }
 
 function applyFilters() {
-  const name  = document.getElementById('filterName').value.toLowerCase();
-  const tabc  = document.getElementById('filterTabc').value;
-  const assn  = document.getElementById('filterAssignment').value;
-  const date  = document.getElementById('filterDate').value;
-
+  const name = document.getElementById('filterName').value.toLowerCase();
+  const tabc = document.getElementById('filterTabc').value;
+  const assn = document.getElementById('filterAssignment').value;
+  const date = document.getElementById('filterDate').value;
   filtered = allVolunteers.filter(v => {
-    if (name && !((v.full_name||'').toLowerCase().includes(name) || (v.email||'').toLowerCase().includes(name))) return false;
-    if (tabc === 'yes' && !v.tabc_certified) return false;
-    if (tabc === 'no'  &&  v.tabc_certified) return false;
-    if (tabc === 'expiring' && !isExpiringSoon(v.tabc_expiry)) return false;
-    if (assn && v.preferred_assignment !== assn) return false;
-    if (date && !(v.volunteer_dates || []).includes(date)) return false;
+    if (name && !((v.full_name||'').toLowerCase().includes(name)||(v.email||'').toLowerCase().includes(name))) return false;
+    if (tabc==='yes' && !v.tabc_certified) return false;
+    if (tabc==='no'  &&  v.tabc_certified) return false;
+    if (tabc==='expiring' && !isExpiringSoon(v.tabc_expiry)) return false;
+    if (assn && v.preferred_assignment!==assn) return false;
+    if (date && !(v.volunteer_dates||[]).includes(date)) return false;
     return true;
   });
-
-  sortData();
-  renderTable();
+  sortData(); renderTable();
 }
 
-function sortTable(key) {
-  if (sortKey === key) sortAsc = !sortAsc;
-  else { sortKey = key; sortAsc = true; }
-  sortData();
-  renderTable();
-}
-
+function sortTable(key) { if(sortKey===key) sortAsc=!sortAsc; else{sortKey=key;sortAsc=true;} sortData(); renderTable(); }
 function sortData() {
-  filtered.sort((a, b) => {
-    let va = a[sortKey], vb = b[sortKey];
-    if (Array.isArray(va)) va = (va[0] || '');
-    if (Array.isArray(vb)) vb = (vb[0] || '');
-    if (va == null) va = '';
-    if (vb == null) vb = '';
-    if (typeof va === 'boolean') return sortAsc ? (va===vb?0:va?-1:1) : (va===vb?0:va?1:-1);
-    return sortAsc ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+  filtered.sort((a,b)=>{
+    let va=a[sortKey],vb=b[sortKey];
+    if(Array.isArray(va))va=(va[0]||''); if(Array.isArray(vb))vb=(vb[0]||'');
+    if(va==null)va=''; if(vb==null)vb='';
+    if(typeof va==='boolean') return sortAsc?(va===vb?0:va?-1:1):(va===vb?0:va?1:-1);
+    return sortAsc?String(va).localeCompare(String(vb)):String(vb).localeCompare(String(va));
   });
 }
 
 function renderTable() {
   const tbody = document.getElementById('tableBody');
-  document.getElementById('tableCount').textContent = filtered.length + ' volunteer' + (filtered.length !== 1 ? 's' : '');
-
-  if (!filtered.length) {
-    tbody.innerHTML = '<tr><td colspan="10" class="empty">No volunteers match the current filters.</td></tr>';
-    return;
-  }
-
+  document.getElementById('tableCount').textContent = filtered.length + ' volunteer' + (filtered.length!==1?'s':'');
+  if (!filtered.length) { tbody.innerHTML='<tr><td colspan="11" class="empty">No volunteers match the current filters.</td></tr>'; return; }
   tbody.innerHTML = filtered.map(v => {
     const certified = v.tabc_certified;
     const expiring  = certified && isExpiringSoon(v.tabc_expiry);
     const expired   = certified && isExpired(v.tabc_expiry);
-    const tabcBadge = !certified
-      ? '<span class="badge badge-no">No</span>'
-      : expiring
-        ? '<span class="badge badge-expiring">Expiring</span>'
-        : expired
-          ? '<span class="badge badge-no">Expired</span>'
-          : '<span class="badge badge-yes">Yes</span>';
-
-    const dates = (v.volunteer_dates || []).map(formatDate).join('<br>') || '—';
-
+    const tabcBadge = !certified ? '<span class="badge badge-no">No</span>'
+      : expiring ? '<span class="badge badge-expiring">Expiring</span>'
+      : expired  ? '<span class="badge badge-no">Expired</span>'
+      : '<span class="badge badge-yes">Yes</span>';
+    const dates = (v.volunteer_dates||[]).map(fmt).join('<br>')||'—';
     return `<tr>
-      <td><strong>${v.full_name || '—'}</strong></td>
-      <td>${v.email || '—'}</td>
-      <td>${v.mobile_phone || '—'}</td>
-      <td style="font-size:.78rem;">${dates}</td>
-      <td style="text-align:center;">${v.previous_events ?? 0}</td>
-      <td style="text-align:center;">${v.total_hours ?? 0}</td>
-      <td>${v.preferred_assignment || '—'}</td>
+      <td><strong>${esc(v.full_name||'—')}</strong></td>
+      <td style="font-size:.78rem;">${esc(v.email||'—')}</td>
+      <td style="font-size:.78rem;">${esc(v.mobile_phone||'—')}</td>
+      <td style="font-size:.76rem;">${dates}</td>
+      <td style="text-align:center;">${v.previous_events??0}</td>
+      <td style="text-align:center;">${v.total_hours??0}</td>
+      <td style="font-size:.78rem;">${esc(v.preferred_assignment||'—')}</td>
       <td>${tabcBadge}</td>
-      <td style="font-size:.78rem;${expiring ? 'color:#854d0e;font-weight:600;' : ''}">${formatDate(v.tabc_expiry)}</td>
-      <td><span class="badge badge-yes">${v.status || 'Registered'}</span></td>
+      <td style="font-size:.76rem;${expiring?'color:#854d0e;font-weight:600;':''}">${fmt(v.tabc_expiry)}</td>
+      <td><span class="badge badge-yes">${esc(v.status||'Registered')}</span></td>
+      <td>
+        <div class="row-actions">
+          <button class="btn-row btn-edit" onclick="openEditModal(${v.id})">Edit</button>
+          <button class="btn-row btn-delete" onclick="confirmDelete(${v.id}, '${esc(v.full_name||'')}')">Delete</button>
+        </div>
+      </td>
     </tr>`;
   }).join('');
 }
 
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
 function clearFilters() {
-  document.getElementById('filterName').value = '';
-  document.getElementById('filterTabc').value = '';
-  document.getElementById('filterAssignment').value = '';
-  document.getElementById('filterDate').value = '';
+  ['filterName','filterTabc','filterAssignment','filterDate'].forEach(id=>{ const el=document.getElementById(id); if(el.tagName==='INPUT')el.value=''; else el.value=''; });
   applyFilters();
 }
 
-function exportCSV() {
-  const headers = ['Name','Email','Phone','Volunteer Dates','Previous Events','Total Hours','Assignment','TABC Certified','TABC Expiry','Status'];
-  const rows = filtered.map(v => [
-    v.full_name, v.email, v.mobile_phone,
-    (v.volunteer_dates||[]).join('; '),
-    v.previous_events, v.total_hours,
-    v.preferred_assignment||'',
-    v.tabc_certified ? 'Yes' : 'No',
-    v.tabc_expiry||'',
-    v.status||'Registered'
-  ].map(c => '"' + String(c||'').replace(/"/g,'""') + '"'));
+// ── MODAL ──
+function openAddModal() {
+  document.getElementById('modalTitle').textContent = 'Add Volunteer';
+  document.getElementById('editId').value = '';
+  resetForm();
+  document.getElementById('modalOverlay').classList.remove('hidden');
+}
 
-  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
-  const blob = new Blob([csv], { type: 'text/csv' });
+function openEditModal(id) {
+  const v = allVolunteers.find(x => x.id === id);
+  if (!v) return;
+  document.getElementById('modalTitle').textContent = 'Edit Volunteer';
+  document.getElementById('editId').value = id;
+  document.getElementById('fName').value        = v.full_name || '';
+  document.getElementById('fEmail').value       = v.email || '';
+  document.getElementById('fPhone').value       = v.mobile_phone || '';
+  document.getElementById('fEcName').value      = v.ec_name || '';
+  document.getElementById('fEcPhone').value     = v.ec_phone || '';
+  document.getElementById('fAssignment').value  = v.preferred_assignment || '';
+  document.getElementById('fStatus').value      = v.status || 'Registered';
+  document.getElementById('fPrevEvents').value  = v.previous_events ?? 0;
+  document.getElementById('fTotalHours').value  = v.total_hours ?? 0;
+  document.getElementById('fTabc').value        = v.tabc_certified ? 'true' : 'false';
+  document.getElementById('fTabcExpiry').value  = v.tabc_expiry || '';
+  document.getElementById('fComments').value    = v.additional_comments || '';
+  toggleExpiry();
+  const selectedDates = v.volunteer_dates || [];
+  document.querySelectorAll('.date-cb').forEach(cb => { cb.checked = selectedDates.includes(cb.value); });
+  document.getElementById('modalOverlay').classList.remove('hidden');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.add('hidden'); }
+
+function resetForm() {
+  ['fName','fEmail','fPhone','fEcName','fEcPhone','fComments','fTabcExpiry'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fAssignment').value = '';
+  document.getElementById('fStatus').value = 'Registered';
+  document.getElementById('fPrevEvents').value = '0';
+  document.getElementById('fTotalHours').value = '0';
+  document.getElementById('fTabc').value = 'false';
+  document.querySelectorAll('.date-cb').forEach(cb => cb.checked = false);
+  toggleExpiry();
+}
+
+function toggleExpiry() {
+  const certified = document.getElementById('fTabc').value === 'true';
+  document.getElementById('expiryGroup').style.display = certified ? 'flex' : 'none';
+}
+
+async function saveVolunteer() {
+  const id = document.getElementById('editId').value;
+  const name = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  if (!name || !email) { showToast('Name and Email are required.', true); return; }
+
+  const selectedDates = Array.from(document.querySelectorAll('.date-cb:checked')).map(cb => cb.value);
+  const payload = {
+    full_name: name,
+    email: email,
+    mobile_phone: document.getElementById('fPhone').value.trim() || null,
+    ec_name: document.getElementById('fEcName').value.trim() || null,
+    ec_phone: document.getElementById('fEcPhone').value.trim() || null,
+    preferred_assignment: document.getElementById('fAssignment').value || null,
+    status: document.getElementById('fStatus').value,
+    previous_events: parseInt(document.getElementById('fPrevEvents').value) || 0,
+    total_hours: parseFloat(document.getElementById('fTotalHours').value) || 0,
+    tabc_certified: document.getElementById('fTabc').value === 'true',
+    tabc_expiry: document.getElementById('fTabcExpiry').value || null,
+    additional_comments: document.getElementById('fComments').value.trim() || null,
+    volunteer_dates: selectedDates,
+    season: '2026-2027',
+  };
+
+  const btn = document.getElementById('saveBtn');
+  btn.textContent = 'Saving…'; btn.disabled = true;
+
+  let error;
+  if (id) {
+    ({ error } = await sb.from('volunteers').update(payload).eq('id', id));
+  } else {
+    ({ error } = await sb.from('volunteers').insert([payload]));
+  }
+
+  btn.textContent = 'Save Volunteer'; btn.disabled = false;
+
+  if (error) { showToast('Error: ' + error.message, true); return; }
+  closeModal();
+  showToast(id ? 'Volunteer updated.' : 'Volunteer added.');
+  await loadData();
+}
+
+// ── DELETE ──
+let pendingDeleteId = null;
+function confirmDelete(id, name) {
+  pendingDeleteId = id;
+  document.getElementById('confirmMsg').textContent = `This will permanently remove "${name}" from the registry. This action cannot be undone.`;
+  document.getElementById('confirmOverlay').classList.remove('hidden');
+  document.getElementById('confirmDeleteBtn').onclick = doDelete;
+}
+function closeConfirm() { document.getElementById('confirmOverlay').classList.add('hidden'); pendingDeleteId = null; }
+async function doDelete() {
+  if (!pendingDeleteId) return;
+  const { error } = await sb.from('volunteers').delete().eq('id', pendingDeleteId);
+  closeConfirm();
+  if (error) { showToast('Error: ' + error.message, true); return; }
+  showToast('Volunteer deleted.');
+  await loadData();
+}
+
+// ── CSV ──
+function exportCSV() {
+  const headers = ['Name','Email','Phone','Volunteer Dates','Prev Events','Total Hours','Assignment','TABC Certified','TABC Expiry','Status'];
+  const rows = filtered.map(v => [v.full_name,v.email,v.mobile_phone,(v.volunteer_dates||[]).join('; '),v.previous_events,v.total_hours,v.preferred_assignment||'',v.tabc_certified?'Yes':'No',v.tabc_expiry||'',v.status||'Registered'].map(c=>`"${String(c||'').replace(/"/g,'""')}"`));
+  const csv = [headers.join(','), ...rows.map(r=>r.join(','))].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'dlgrf-volunteers-' + new Date().toISOString().split('T')[0] + '.csv';
-  a.click();
-  URL.revokeObjectURL(url);
+  const a = document.createElement('a'); a.href=url; a.download='dlgrf-volunteers-'+new Date().toISOString().split('T')[0]+'.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+// ── TOAST ──
+let toastTimer;
+function showToast(msg, isError=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError?' error':'') + ' show';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
 
 loadData();
-setInterval(loadData, 120000); // refresh every 2 min
+setInterval(loadData, 120000);
 </script>
 </body>
 </html>
