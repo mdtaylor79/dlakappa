@@ -1058,6 +1058,35 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
   text-transform: uppercase;
   white-space: nowrap;
 }
+/* ── Rich Home Section ── */
+.home-quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; margin: 1.25rem 0; }
+@media(max-width:640px) { .home-quick-grid { grid-template-columns: 1fr 1fr; } }
+.home-qa-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: .6rem; padding: 1.1rem .75rem; background: #fff; border: 1px solid #e8e0d5; border-radius: 8px; cursor: pointer; text-decoration: none; color: inherit; transition: box-shadow .18s, border-color .18s, transform .12s; }
+.home-qa-card:hover { border-color: #c69a3f; box-shadow: 0 4px 16px rgba(112,17,12,.1); transform: translateY(-2px); }
+.home-qa-icon { width: 42px; height: 42px; border-radius: 10px; background: #70110c; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.home-qa-label { font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; color: #1a1a1a; letter-spacing: .03em; }
+.home-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media(max-width:700px) { .home-two-col { grid-template-columns: 1fr; } }
+.home-col-card { background: #fff; border: 1px solid #e8e0d5; border-radius: 8px; overflow: hidden; }
+.home-col-head { display: flex; align-items: center; gap: .5rem; background: #70110c; color: #f2ebd7; padding: .65rem 1rem; }
+.home-col-head svg { opacity: .75; flex-shrink: 0; }
+.home-col-head span { font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.home-col-body { padding: 1rem; }
+.home-news-link { text-decoration: none; display: block; padding: .6rem 0; border-bottom: 1px solid #f0ebe3; }
+.home-news-link:last-of-type { border-bottom: none; }
+.home-news-cat { font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; margin-bottom: .2rem; }
+.home-news-title { font-size: .82rem; font-weight: 700; color: #70110c; line-height: 1.35; margin-bottom: .12rem; }
+.home-news-title:hover { text-decoration: underline; }
+.home-news-date { font-size: .66rem; color: #bbb; }
+.home-stat-row { display: flex; justify-content: space-between; align-items: center; padding: .6rem 0; border-bottom: 1px solid #f0ebe3; }
+.home-stat-row:last-child { border-bottom: none; }
+.home-stat-label { font-size: .8rem; color: #777; }
+.home-stat-val { font-weight: 700; font-size: .82rem; color: #1a1a1a; }
+.home-badge-paid { background: #dcfce7; color: #166534; font-size: .68rem; font-weight: 700; padding: .15rem .52rem; border-radius: 99px; }
+.home-badge-unpaid { background: #fee2e2; color: #991b1b; font-size: .68rem; font-weight: 700; padding: .15rem .52rem; border-radius: 99px; }
+.home-view-all { display: inline-block; margin-top: .85rem; font-family: 'Cinzel', serif; font-size: .63rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #70110c; text-decoration: none; }
+.home-view-all:hover { text-decoration: underline; }
+.home-empty { font-size: .83rem; color: #aaa; padding: .5rem 0; }
 </style>
 </head>
 <body>
@@ -1226,12 +1255,72 @@ body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min
 
   <main class="dash-main">
 
-    <div id="welcome" style="background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);border-radius:10px;padding:2rem 2.25rem;color:#f2ebd7;position:relative;overflow:hidden;margin-bottom:1.5rem;">
-      <div style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:7rem;font-weight:700;color:rgba(198,154,63,.12);line-height:1;pointer-events:none;user-select:none;">&#922;</div>
-      <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Denton-Lewisville Alumni Chapter</div>
-      <h2 id="welcomeName" style="font-family:'Cinzel',serif;font-size:1.45rem;font-weight:700;margin:0 0 .55rem;color:#f2ebd7;">Welcome, Brother.</h2>
-      <p style="font-family:'Archivo',sans-serif;font-size:.92rem;line-height:1.65;color:#e8dcc8;margin:0;max-width:560px;">This is your chapter member portal — your single destination for chapter news, resources, training, and business. Use the navigation menu on the left to access each section.</p>
+    <!-- ── RICH HOME SECTION ── -->
+    <div id="welcome" style="margin-bottom:1.5rem;">
+
+      <!-- Hero card -->
+      <div style="background:linear-gradient(135deg,#70110c 0%,#2a0604 100%);border-radius:10px;padding:2rem 2.25rem;color:#f2ebd7;position:relative;overflow:hidden;margin-bottom:1.25rem;">
+        <div style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:7rem;font-weight:700;color:rgba(198,154,63,.12);line-height:1;pointer-events:none;user-select:none;">&#922;</div>
+        <div style="font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c69a3f;margin-bottom:.6rem;">Denton-Lewisville Alumni Chapter</div>
+        <h2 id="welcomeName" style="font-family:'Cinzel',serif;font-size:1.45rem;font-weight:700;margin:0 0 .55rem;color:#f2ebd7;">Welcome, Brother.</h2>
+        <p style="font-family:'Archivo',sans-serif;font-size:.92rem;line-height:1.65;color:#e8dcc8;margin:0;max-width:560px;">Your member portal — chapter news, resources, training, and brotherhood at your fingertips.</p>
+      </div>
+
+      <!-- Quick-access grid -->
+      <div class="home-quick-grid">
+        <a class="home-qa-card" href="#" onclick="showSection('dues',null);return false;">
+          <div class="home-qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+          <span class="home-qa-label">Pay Dues</span>
+        </a>
+        <a class="home-qa-card" href="#" onclick="showSection('news',null);return false;">
+          <div class="home-qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></svg></div>
+          <span class="home-qa-label">Chapter News</span>
+        </a>
+        <a class="home-qa-card" href="#" onclick="showSection('training',null);return false;">
+          <div class="home-qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg></div>
+          <span class="home-qa-label">Training</span>
+        </a>
+        <a class="home-qa-card" href="/portal/community-service.html">
+          <div class="home-qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <span class="home-qa-label">Community Service</span>
+        </a>
+        <a class="home-qa-card" href="#" onclick="showSection('documents',null);return false;">
+          <div class="home-qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+          <span class="home-qa-label">Documents</span>
+        </a>
+        <a class="home-qa-card" href="#" onclick="showSection('assessments',null);return false;">
+          <div class="home-qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <span class="home-qa-label">Forms &amp; Assessments</span>
+        </a>
+      </div>
+
+      <!-- Latest News + Member Status two-column -->
+      <div class="home-two-col">
+        <!-- Latest Chapter News -->
+        <div class="home-col-card">
+          <div class="home-col-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
+            <span>Latest Chapter News</span>
+          </div>
+          <div class="home-col-body">
+            <div id="homeNewsGrid"><p class="home-empty">Loading…</p></div>
+            <a class="home-view-all" href="#" onclick="showSection('news',null);return false;">View All News →</a>
+          </div>
+        </div>
+        <!-- Member Status -->
+        <div class="home-col-card">
+          <div class="home-col-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Your Member Status</span>
+          </div>
+          <div class="home-col-body" id="homeStatusBody">
+            <p class="home-empty">Loading…</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+    <!-- ── END RICH HOME SECTION ── -->
 
     <div id="dues" class="section-block" style="scroll-margin-top:90px;">
       <div class="section-block-header">
@@ -2341,7 +2430,7 @@ function loadPolemarchVideo() {
 
 async function loadNews() {
   var grid = document.getElementById('dashNewsGrid');
-  if (!grid) return;
+  var homeGrid = document.getElementById('homeNewsGrid');
   var { data: posts, error } = await dlaSupabase
     .from('posts')
     .select('id, title, slug, excerpt, category, published_at, created_at')
@@ -2349,14 +2438,24 @@ async function loadNews() {
     .order('published_at', { ascending: false })
     .limit(3);
   if (error || !posts || !posts.length) {
-    grid.innerHTML = '<p style="font-size:.84rem;color:#aaa;grid-column:1/-1;">No news yet.</p>';
+    if (grid) grid.innerHTML = '<p style="font-size:.84rem;color:#aaa;grid-column:1/-1;">No news yet.</p>';
+    if (homeGrid) homeGrid.innerHTML = '<p class="home-empty">No news yet.</p>';
     return;
   }
-  grid.innerHTML = posts.map(function(p) {
+  var newsHtml = posts.map(function(p) {
     var d = new Date(p.published_at || p.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
     var href = p.slug ? '/blog/post.html?slug=' + p.slug : '/portal/news.html';
     return '<a class="news-card" href="' + href + '"><div class="news-body"><div class="news-cat">' + (p.category||'News') + '</div><h4>' + p.title + '</h4><p>' + (p.excerpt||'Read more →') + '</p><div class="news-date">' + d + '</div></div></a>';
   }).join('');
+  if (grid) grid.innerHTML = newsHtml;
+  // Compact home news list
+  if (homeGrid) {
+    homeGrid.innerHTML = posts.map(function(p) {
+      var d = new Date(p.published_at || p.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      var href = p.slug ? '/blog/post.html?slug=' + p.slug : '/portal/news.html';
+      return '<a class="home-news-link" href="' + href + '"><div class="home-news-cat">' + (p.category||'News') + '</div><div class="home-news-title">' + p.title + '</div><div class="home-news-date">' + d + '</div></a>';
+    }).join('');
+  }
 }
 
 async function saveAccount() {
@@ -2422,6 +2521,27 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (member.is_admin) {
       var adminLink = document.getElementById('nav-admin');
       if (adminLink) adminLink.style.display = '';
+    }
+
+    // Populate home member status widget
+    var statusBody = document.getElementById('homeStatusBody');
+    if (statusBody && member) {
+      var joinedDate = member.created_at
+        ? new Date(member.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
+        : '—';
+      var duesPaid = member.dues_paid;
+      var duesBadge = duesPaid
+        ? '<span class="home-badge-paid">✓ Paid</span>'
+        : '<span class="home-badge-unpaid">✗ Unpaid</span>';
+      statusBody.innerHTML =
+        '<div class="home-stat-row"><span class="home-stat-label">Name</span><span class="home-stat-val">' + fullName + '</span></div>' +
+        '<div class="home-stat-row"><span class="home-stat-label">Tier</span><span class="home-stat-val">' + (member.tier || 'Member') + '</span></div>' +
+        '<div class="home-stat-row"><span class="home-stat-label">Chapter</span><span class="home-stat-val">DLA — SW Province</span></div>' +
+        '<div class="home-stat-row"><span class="home-stat-label">Dues Status</span><span class="home-stat-val">' + duesBadge + '</span></div>' +
+        '<div class="home-stat-row"><span class="home-stat-label">Member Since</span><span class="home-stat-val">' + joinedDate + '</span></div>';
+      if (!duesPaid) {
+        statusBody.innerHTML += '<div style="margin-top:.85rem;"><a href="#" onclick="showSection(\'dues\',null);return false;" style="display:inline-block;background:#70110c;color:#f2ebd7;font-family:\'Cinzel\',serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;border-radius:4px;text-decoration:none;">Pay Dues Now →</a></div>';
+      }
     }
   }
 
