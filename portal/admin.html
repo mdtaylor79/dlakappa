@@ -1286,148 +1286,74 @@
       <!-- ============ VOLUNTEER (DLGRF) PANEL ============ -->
       <div class="admin-panel" id="panel-volunteer">
         <style>
-#panel-volunteer *, #panel-volunteer *::before, #panel-volunteer *::after { box-sizing: border-box; margin: 0; padding: 0; }
-#panel-volunteer  { font-family: 'Archivo', sans-serif; background: #1a0302; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; }
-#panel-volunteer /* ── Banner ── */
-    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
-#panel-volunteer .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
-#panel-volunteer .org-text { flex: 1; }
-#panel-volunteer .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
-#panel-volunteer .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
-#panel-volunteer .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
-#panel-volunteer .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
-#panel-volunteer .nav-strip a { color: #c69a3f; text-decoration: none; }
-#panel-volunteer .nav-strip a:hover { text-decoration: underline; }
-#panel-volunteer .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-#panel-volunteer .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
-#panel-volunteer .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
-#panel-volunteer .main { flex: 1; background: #f5f0eb; max-width: 100%; }
-#panel-volunteer .main-inner { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-#panel-volunteer /* ── Page heading ── */
-    .page-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
-#panel-volunteer .page-head h1 { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; color: #70110c; letter-spacing: .05em; }
-#panel-volunteer .page-head .season-tag {
-      background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif;
-      font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      padding: .3rem .9rem; border-radius: 20px;
-    }
-#panel-volunteer /* ── Stat cards ── */
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-#panel-volunteer .stat-card {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .4rem;
-    }
-#panel-volunteer .stat-card.alert { border-left: 4px solid #dc2626; }
-#panel-volunteer .stat-card .stat-label {
-      font-size: .68rem; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: #9a8878;
-    }
-#panel-volunteer .stat-card .stat-value {
-      font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: #70110c; line-height: 1;
-    }
-#panel-volunteer .stat-card.alert .stat-value { color: #dc2626; }
-#panel-volunteer .stat-card .stat-sub { font-size: .75rem; color: #9a8878; }
-#panel-volunteer /* ── Filters ── */
-    .filters-bar {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      padding: 1rem 1.25rem; margin-bottom: 1.5rem;
-      display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end;
-    }
-#panel-volunteer .filter-field { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 150px; }
-#panel-volunteer .filter-field label { font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
-#panel-volunteer .filter-field input, #panel-volunteer .filter-field select {
-      padding: .5rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px;
-      font-family: 'Archivo', sans-serif; font-size: .84rem; background: #faf8f5;
-      appearance: none;
-    }
-#panel-volunteer .filter-field select {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
-      background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem;
-    }
-#panel-volunteer .filter-field input:focus, #panel-volunteer .filter-field select:focus { outline: none; border-color: #70110c; }
-#panel-volunteer /* ── Action buttons ── */
-    .action-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
-#panel-volunteer .btn-action {
-      font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; padding: .55rem 1.1rem;
-      border-radius: 4px; cursor: pointer; border: none; transition: filter .2s;
-    }
-#panel-volunteer .btn-primary { background: linear-gradient(135deg,#70110c,#2a0604); color: #f2ebd7; }
-#panel-volunteer .btn-secondary { background: #f0e8e0; color: #70110c; border: 1px solid #e0d4c8; }
-#panel-volunteer .btn-action:hover { filter: brightness(1.1); }
-#panel-volunteer /* ── TABC expiry section ── */
-    .expiry-section {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      margin-bottom: 1.5rem; overflow: hidden;
-    }
-#panel-volunteer .expiry-head {
-      background: linear-gradient(135deg,#70110c,#2a0604); padding: .7rem 1.25rem;
-      display: flex; align-items: center; gap: .6rem;
-    }
-#panel-volunteer .expiry-head h3 { font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
-#panel-volunteer /* ── Data table ── */
-    .table-wrap {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      overflow: hidden;
-    }
-#panel-volunteer .table-header {
-      background: linear-gradient(135deg,#70110c,#2a0604); padding: .75rem 1.25rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    }
-#panel-volunteer .table-header h3 { font-family:'Cinzel',serif; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
-#panel-volunteer .table-count { font-size:.72rem; color:rgba(242,235,215,.6); }
-#panel-volunteer .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
-#panel-volunteer .data-table th {
-      background: #f0e8e0; padding: .55rem .75rem; text-align: left;
-      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; color: #70110c;
-      border-bottom: 2px solid #e0d4c8; white-space: nowrap; cursor: pointer;
-    }
-#panel-volunteer .data-table th:hover { background: #e8ddd0; }
-#panel-volunteer .data-table td { padding: .55rem .75rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
-#panel-volunteer .data-table tr:last-child td { border-bottom: none; }
-#panel-volunteer .data-table tr:hover td { background: #faf8f5; }
-#panel-volunteer .badge {
-      display: inline-block; padding: .15rem .55rem; border-radius: 10px;
-      font-size: .68rem; font-weight: 600; letter-spacing: .04em;
-    }
-#panel-volunteer .badge-yes { background: #dcfce7; color: #166534; }
-#panel-volunteer .badge-no { background: #fee2e2; color: #991b1b; }
-#panel-volunteer .badge-expiring { background: #fef9c3; color: #854d0e; }
-#panel-volunteer .loading { text-align: center; padding: 3rem; color: #9a8878; font-size: .9rem; }
-#panel-volunteer .empty { text-align: center; padding: 3rem; color: #9a8878; font-size: .88rem; }
-@media(max-width: 768px) {
-#panel-volunteer .stats-grid { grid-template-columns: 1fr 1fr; }
-#panel-volunteer .banner { flex-direction: column; gap: .75rem; }
-
-}
-@media(max-width: 480px) {
-#panel-volunteer .stats-grid { grid-template-columns: 1fr; }
-
-}
-
+/* ── Volunteer panel: scoped, no full-page overrides ── */
+#panel-volunteer { font-family: 'Archivo', sans-serif; color: #1a1a1a; background: #f5f0eb; padding: 1.5rem 0 2rem; }
+#panel-volunteer .vol-panel-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.25rem; padding: 0 .25rem; }
+#panel-volunteer .vol-panel-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #70110c; letter-spacing: .05em; }
+#panel-volunteer .vol-season-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; }
+#panel-volunteer .vol-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+#panel-volunteer .vol-stat-card { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: .35rem; }
+#panel-volunteer .vol-stat-card.alert { border-left: 4px solid #dc2626; }
+#panel-volunteer .vol-stat-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #9a8878; }
+#panel-volunteer .vol-stat-value { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #70110c; line-height: 1; }
+#panel-volunteer .vol-stat-card.alert .vol-stat-value { color: #dc2626; }
+#panel-volunteer .vol-stat-sub { font-size: .72rem; color: #9a8878; }
+#panel-volunteer .vol-filters { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; }
+#panel-volunteer .vol-filter-field { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 150px; }
+#panel-volunteer .vol-filter-field label { font-size: .65rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
+#panel-volunteer .vol-filter-field input,
+#panel-volunteer .vol-filter-field select { padding: .5rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .84rem; background: #faf8f5; appearance: none; }
+#panel-volunteer .vol-filter-field select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem; }
+#panel-volunteer .vol-filter-field input:focus,
+#panel-volunteer .vol-filter-field select:focus { outline: none; border-color: #70110c; }
+#panel-volunteer .vol-action-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+#panel-volunteer .vol-btn { font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .5rem 1rem; border-radius: 4px; cursor: pointer; border: none; transition: filter .2s; }
+#panel-volunteer .vol-btn-primary { background: linear-gradient(135deg,#70110c,#2a0604); color: #f2ebd7; }
+#panel-volunteer .vol-btn-secondary { background: #f0e8e0; color: #70110c; border: 1px solid #e0d4c8; }
+#panel-volunteer .vol-btn:hover { filter: brightness(1.08); }
+#panel-volunteer .vol-table-wrap { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; overflow: hidden; }
+#panel-volunteer .vol-table-header { background: linear-gradient(135deg,#70110c,#2a0604); padding: .7rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+#panel-volunteer .vol-table-header h3 { font-family:'Cinzel',serif; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
+#panel-volunteer .vol-table-count { font-size:.7rem; color:rgba(242,235,215,.6); }
+#panel-volunteer .vol-data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+#panel-volunteer .vol-data-table th { background: #f0e8e0; padding: .5rem .75rem; text-align: left; font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #70110c; border-bottom: 2px solid #e0d4c8; white-space: nowrap; cursor: pointer; }
+#panel-volunteer .vol-data-table th:hover { background: #e8ddd0; }
+#panel-volunteer .vol-data-table td { padding: .5rem .75rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
+#panel-volunteer .vol-data-table tr:last-child td { border-bottom: none; }
+#panel-volunteer .vol-data-table tr:hover td { background: #faf8f5; }
+#panel-volunteer .vol-badge { display: inline-block; padding: .15rem .55rem; border-radius: 10px; font-size: .66rem; font-weight: 600; }
+#panel-volunteer .vol-badge-yes { background: #dcfce7; color: #166534; }
+#panel-volunteer .vol-badge-no { background: #fee2e2; color: #991b1b; }
+#panel-volunteer .vol-badge-expiring { background: #fef9c3; color: #854d0e; }
+#panel-volunteer .vol-loading { text-align: center; padding: 2.5rem; color: #9a8878; font-size: .88rem; }
+#panel-volunteer .vol-empty { text-align: center; padding: 2.5rem; color: #9a8878; font-size: .85rem; }
+@media(max-width:768px) { #panel-volunteer .vol-stats-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px) { #panel-volunteer .vol-stats-grid { grid-template-columns: 1fr; } }
         </style>
-<div class="page-head">
-  <span class="season-tag" id="seasonTag"></span>
+
+<!-- Panel header -->
+<div class="vol-panel-head">
+  <span class="vol-panel-title">DLGRF Volunteer Dashboard</span>
+  <span class="vol-season-tag" id="seasonTag"></span>
 </div>
 
 <!-- Stats -->
-<div class="stats-grid" id="statsGrid">
-  <div class="stat-card"><div class="stat-label">Total Registered</div><div class="stat-value" id="statTotal">—</div><div class="stat-sub">Volunteers this season</div></div>
-  <div class="stat-card"><div class="stat-label">TABC Certified</div><div class="stat-value" id="statTabc">—</div><div class="stat-sub">Current certifications</div></div>
-  <div class="stat-card alert"><div class="stat-label">Expiring Within 30 Days</div><div class="stat-value" id="statExpiring">—</div><div class="stat-sub">TABC certs needing renewal</div></div>
-  <div class="stat-card"><div class="stat-label">Total Volunteer Hours</div><div class="stat-value" id="statHours">—</div><div class="stat-sub">Cumulative hours logged</div></div>
-  <div class="stat-card"><div class="stat-label">Avg Events Worked</div><div class="stat-value" id="statAvgEvents">—</div><div class="stat-sub">Per volunteer</div></div>
-  <div class="stat-card"><div class="stat-label">Upcoming Dates</div><div class="stat-value" id="statUpcoming">—</div><div class="stat-sub">Volunteer dates selected</div></div>
+<div class="vol-stats-grid" id="statsGrid">
+  <div class="vol-stat-card"><div class="vol-stat-label">Total Registered</div><div class="vol-stat-value" id="statTotal">—</div><div class="vol-stat-sub">Volunteers this season</div></div>
+  <div class="vol-stat-card"><div class="vol-stat-label">TABC Certified</div><div class="vol-stat-value" id="statTabc">—</div><div class="vol-stat-sub">Current certifications</div></div>
+  <div class="vol-stat-card alert"><div class="vol-stat-label">Expiring Within 30 Days</div><div class="vol-stat-value" id="statExpiring">—</div><div class="vol-stat-sub">TABC certs needing renewal</div></div>
+  <div class="vol-stat-card"><div class="vol-stat-label">Total Volunteer Hours</div><div class="vol-stat-value" id="statHours">—</div><div class="vol-stat-sub">Cumulative hours logged</div></div>
+  <div class="vol-stat-card"><div class="vol-stat-label">Avg Events Worked</div><div class="vol-stat-value" id="statAvgEvents">—</div><div class="vol-stat-sub">Per volunteer</div></div>
+  <div class="vol-stat-card"><div class="vol-stat-label">Upcoming Dates</div><div class="vol-stat-value" id="statUpcoming">—</div><div class="vol-stat-sub">Volunteer dates selected</div></div>
 </div>
 
 <!-- Filters -->
-<div class="filters-bar">
-  <div class="filter-field" style="flex:2;min-width:200px;">
+<div class="vol-filters">
+  <div class="vol-filter-field" style="flex:2;min-width:200px;">
     <label>Search by Name or Email</label>
     <input type="text" id="filterName" placeholder="Type to search…">
   </div>
-  <div class="filter-field">
+  <div class="vol-filter-field">
     <label>TABC Status</label>
     <select id="filterTabc">
       <option value="">All</option>
@@ -1436,7 +1362,7 @@
       <option value="expiring">Expiring Soon</option>
     </select>
   </div>
-  <div class="filter-field">
+  <div class="vol-filter-field">
     <label>Assignment</label>
     <select id="filterAssignment">
       <option value="">All</option>
@@ -1446,25 +1372,25 @@
       <option>Anywhere Needed</option>
     </select>
   </div>
-  <div class="filter-field">
+  <div class="vol-filter-field">
     <label>Volunteer Date</label>
     <input type="date" id="filterDate">
   </div>
-  <div class="action-row">
-    <button class="btn-action btn-secondary" id="clearFilters-volunteer-btn">Clear</button>
-    <button class="btn-action btn-primary" id="exportCSV-volunteer-btn">Export CSV</button>
-    <button class="btn-action btn-secondary" id="printVolunteer-btn">Print</button>
+  <div class="vol-action-row">
+    <button class="vol-btn vol-btn-secondary" id="clearFilters-volunteer-btn">Clear</button>
+    <button class="vol-btn vol-btn-primary" id="exportCSV-volunteer-btn">Export CSV</button>
+    <button class="vol-btn vol-btn-secondary" id="printVolunteer-btn">Print</button>
   </div>
 </div>
 
 <!-- Data table -->
-<div class="table-wrap">
-  <div class="table-header">
+<div class="vol-table-wrap">
+  <div class="vol-table-header">
     <h3>Volunteer Registry</h3>
-    <span class="table-count" id="tableCount"></span>
+    <span class="vol-table-count" id="tableCount"></span>
   </div>
   <div style="overflow-x:auto;">
-    <table class="data-table" id="dataTable">
+    <table class="vol-data-table" id="dataTable">
       <thead>
         <tr>
           <th data-sort="full_name">Name &#8597;</th>
@@ -1480,7 +1406,7 @@
         </tr>
       </thead>
       <tbody id="tableBody">
-        <tr><td colspan="10" class="loading">Loading volunteer data&hellip;</td></tr>
+        <tr><td colspan="10" class="vol-loading">Loading volunteer data&hellip;</td></tr>
       </tbody>
     </table>
   </div>
