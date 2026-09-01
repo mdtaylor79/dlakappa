@@ -120,6 +120,24 @@
     }
     @media(max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
     @media print { .filters-bar, .action-row, .btn-action, .row-actions { display: none; } }
+
+    /* ── IMPORT MODAL ── */
+    .import-drop { border: 2px dashed #d8cfc5; border-radius: 8px; padding: 2rem; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; background: #faf8f5; }
+    .import-drop:hover, .import-drop.dragover { border-color: #70110c; background: #fdf5f5; }
+    .import-drop input[type=file] { display: none; }
+    .import-drop-icon { font-size: 2rem; margin-bottom: .5rem; }
+    .import-drop p { font-size: .88rem; color: #6a5a50; margin-bottom: .35rem; }
+    .import-drop small { font-size: .75rem; color: #9a8878; }
+    .import-drop .browse-link { color: #70110c; font-weight: 700; cursor: pointer; text-decoration: underline; }
+    .import-preview { margin-top: 1.25rem; }
+    .import-preview h4 { font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: #70110c; margin-bottom: .5rem; }
+    .import-preview-table { width: 100%; border-collapse: collapse; font-size: .75rem; max-height: 220px; overflow-y: auto; display: block; }
+    .import-preview-table th { background: #f0e8e0; padding: .4rem .6rem; text-align: left; font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: #70110c; border-bottom: 1px solid #e0d4c8; white-space: nowrap; }
+    .import-preview-table td { padding: .4rem .6rem; border-bottom: 1px solid #f0e8e0; }
+    .import-preview-table tr:last-child td { border-bottom: none; }
+    .import-error { color: #991b1b; font-size: .82rem; margin-top: .75rem; background: #fee2e2; border-radius: 4px; padding: .5rem .75rem; }
+    .import-success-count { color: #166534; font-size: .82rem; margin-top: .75rem; background: #dcfce7; border-radius: 4px; padding: .5rem .75rem; font-weight: 600; }
+    .btn-template { background: #f0e8e0; color: #70110c; border: 1px solid #d8cfc5; font-size: .68rem; padding: .35rem .75rem; }
   </style>
 </head>
 <body>
@@ -195,6 +213,8 @@
     <div class="action-row">
       <button class="btn-action btn-secondary" onclick="clearFilters()">Clear</button>
       <button class="btn-action btn-primary" onclick="exportCSV()">Export CSV</button>
+      <button class="btn-action btn-secondary" onclick="downloadTemplate()">Sample Template</button>
+      <button class="btn-action btn-secondary" onclick="openImportModal()">Import CSV</button>
       <button class="btn-action btn-secondary" onclick="window.print()">Print</button>
     </div>
   </div>
@@ -313,6 +333,40 @@
     <div class="modal-footer">
       <button class="btn-action btn-secondary" onclick="closeModal()">Cancel</button>
       <button class="btn-action btn-primary" id="saveBtn" onclick="saveVolunteer()">Save Volunteer</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT CSV MODAL -->
+<div class="modal-overlay hidden" id="importOverlay">
+  <div class="modal" style="max-width:720px;">
+    <div class="modal-head">
+      <h2>Import Volunteers from CSV</h2>
+      <button class="modal-close" onclick="closeImportModal()">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:.82rem;color:#5a4a40;margin-bottom:1rem;">
+        Upload a CSV file to bulk-import volunteers. Download the
+        <a href="#" onclick="downloadTemplate();return false;" style="color:#70110c;font-weight:600;">sample template</a>
+        to see the required column format. Rows with duplicate emails will be skipped.
+      </p>
+
+      <!-- Drop zone -->
+      <div class="import-drop" id="importDrop" onclick="document.getElementById('csvFileInput').click()"
+           ondragover="importDragOver(event)" ondragleave="importDragLeave(event)" ondrop="importDrop(event)">
+        <input type="file" id="csvFileInput" accept=".csv,text/csv" onchange="handleCsvFile(this.files[0])">
+        <div class="import-drop-icon">📂</div>
+        <p><span class="browse-link">Click to browse</span> or drag &amp; drop a CSV file here</p>
+        <small>Accepted: .csv — max 5 MB — uses the DLGRF import template format</small>
+      </div>
+
+      <!-- Preview / error / success -->
+      <div id="importFeedback"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-action btn-secondary" onclick="closeImportModal()">Cancel</button>
+      <button class="btn-action btn-secondary btn-template" onclick="downloadTemplate()">Download Template</button>
+      <button class="btn-action btn-primary" id="importConfirmBtn" onclick="confirmImport()" disabled>Import Volunteers</button>
     </div>
   </div>
 </div>
@@ -594,6 +648,188 @@ function showToast(msg, isError=false) {
   t.className = 'toast' + (isError?' error':'') + ' show';
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── CSV IMPORT ──
+const IMPORT_COLUMNS = [
+  'full_name','email','mobile_phone','ec_name','ec_phone',
+  'preferred_assignment','status','previous_events','total_hours',
+  'tabc_certified','tabc_expiry','volunteer_dates','additional_comments'
+];
+
+let importRows = [];
+
+function openImportModal() {
+  importRows = [];
+  document.getElementById('importFeedback').innerHTML = '';
+  document.getElementById('csvFileInput').value = '';
+  document.getElementById('importConfirmBtn').disabled = true;
+  document.getElementById('importOverlay').classList.remove('hidden');
+}
+function closeImportModal() { document.getElementById('importOverlay').classList.add('hidden'); }
+
+function importDragOver(e) { e.preventDefault(); document.getElementById('importDrop').classList.add('dragover'); }
+function importDragLeave()  { document.getElementById('importDrop').classList.remove('dragover'); }
+function importDrop(e)      { e.preventDefault(); importDragLeave(); handleCsvFile(e.dataTransfer.files[0]); }
+
+function handleCsvFile(file) {
+  if (!file) return;
+  if (!file.name.endsWith('.csv') && file.type !== 'text/csv') {
+    setImportFeedback('<div class="import-error">❌ Please upload a .csv file.</div>');
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    setImportFeedback('<div class="import-error">❌ File exceeds 5 MB limit.</div>');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => parseCsvImport(e.target.result);
+  reader.readAsText(file);
+}
+
+function parseCsvImport(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  if (lines.length < 2) {
+    setImportFeedback('<div class="import-error">❌ CSV must have a header row and at least one data row.</div>');
+    return;
+  }
+  const headers = parseCsvLine(lines[0]).map(h => h.trim().toLowerCase().replace(/\s+/g,'_').replace(/[^a-z_]/g,''));
+  const nameIdx  = headers.indexOf('full_name');
+  const emailIdx = headers.indexOf('email');
+  if (nameIdx === -1 || emailIdx === -1) {
+    setImportFeedback('<div class="import-error">❌ CSV must include "full_name" and "email" columns. <a href="#" onclick="downloadTemplate();return false;" style="color:#991b1b;">Download the template</a>.</div>');
+    return;
+  }
+
+  importRows = [];
+  const errors = [];
+  for (let i = 1; i < lines.length; i++) {
+    const cols = parseCsvLine(lines[i]);
+    const get  = col => (cols[headers.indexOf(col)] || '').trim();
+    const name  = get('full_name');
+    const email = get('email');
+    if (!name || !email) { errors.push(`Row ${i+1}: missing name or email — skipped.`); continue; }
+    const datesRaw = get('volunteer_dates');
+    const dates = datesRaw ? datesRaw.split(/[;|,]/).map(d=>d.trim()).filter(Boolean) : [];
+    importRows.push({
+      full_name:            name,
+      email:                email,
+      mobile_phone:         get('mobile_phone') || null,
+      ec_name:              get('ec_name') || null,
+      ec_phone:             get('ec_phone') || null,
+      preferred_assignment: get('preferred_assignment') || null,
+      status:               get('status') || 'Registered',
+      previous_events:      parseInt(get('previous_events')) || 0,
+      total_hours:          parseFloat(get('total_hours')) || 0,
+      tabc_certified:       get('tabc_certified').toLowerCase() === 'yes' || get('tabc_certified') === 'true',
+      tabc_expiry:          get('tabc_expiry') || null,
+      volunteer_dates:      dates,
+      additional_comments:  get('additional_comments') || null,
+      season:               '2026-2027',
+    });
+  }
+
+  if (!importRows.length) {
+    setImportFeedback('<div class="import-error">❌ No valid rows found. Check your CSV and try again.</div>');
+    return;
+  }
+
+  // Preview table
+  const preview = importRows.slice(0, 10);
+  let html = `<div class="import-preview">
+    <h4>Preview — ${importRows.length} row${importRows.length!==1?'s':''} ready to import${errors.length?' ('+errors.length+' skipped)':''}</h4>
+    <div style="overflow-x:auto;">
+    <table class="import-preview-table">
+      <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Assignment</th><th>TABC</th><th>Dates</th></tr></thead>
+      <tbody>`;
+  preview.forEach(r => {
+    html += `<tr>
+      <td>${esc(r.full_name)}</td>
+      <td>${esc(r.email)}</td>
+      <td>${esc(r.mobile_phone||'—')}</td>
+      <td>${esc(r.preferred_assignment||'—')}</td>
+      <td>${r.tabc_certified?'Yes':'No'}</td>
+      <td style="font-size:.7rem">${r.volunteer_dates.join('<br>')||'—'}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+  if (importRows.length > 10) html += `<p style="font-size:.75rem;color:#9a8878;margin-top:.4rem;">…and ${importRows.length-10} more row${importRows.length-10!==1?'s':''}.</p>`;
+  if (errors.length) html += `<div class="import-error" style="margin-top:.5rem;">⚠️ ${errors.join('<br>')}</div>`;
+  html += `</div>`;
+  setImportFeedback(html);
+  document.getElementById('importConfirmBtn').disabled = false;
+}
+
+function setImportFeedback(html) { document.getElementById('importFeedback').innerHTML = html; }
+
+function parseCsvLine(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; }
+    else if (ch === ',' && !inQ) { result.push(cur); cur=''; }
+    else cur += ch;
+  }
+  result.push(cur);
+  return result;
+}
+
+async function confirmImport() {
+  if (!importRows.length) return;
+  const btn = document.getElementById('importConfirmBtn');
+  btn.textContent = 'Importing…'; btn.disabled = true;
+
+  // Remove duplicates against existing emails
+  const existingEmails = new Set(allVolunteers.map(v => (v.email||'').toLowerCase()));
+  const toInsert = importRows.filter(r => !existingEmails.has(r.email.toLowerCase()));
+  const dupeCount = importRows.length - toInsert.length;
+
+  if (!toInsert.length) {
+    setImportFeedback(`<div class="import-error">⚠️ All ${importRows.length} row${importRows.length!==1?'s':''} already exist in the database (duplicate emails).</div>`);
+    btn.textContent = 'Import Volunteers'; btn.disabled = false;
+    return;
+  }
+
+  // Insert in batches of 50
+  const BATCH = 50; let inserted = 0; let errMsg = '';
+  for (let i = 0; i < toInsert.length; i += BATCH) {
+    const batch = toInsert.slice(i, i + BATCH);
+    const { error } = await sb.from('volunteers').insert(batch);
+    if (error) { errMsg = error.message; break; }
+    inserted += batch.length;
+  }
+
+  btn.textContent = 'Import Volunteers'; btn.disabled = false;
+  if (errMsg) {
+    setImportFeedback(`<div class="import-error">❌ Import failed after ${inserted} rows: ${errMsg}</div>`);
+    return;
+  }
+
+  let msg = `<div class="import-success-count">✅ ${inserted} volunteer${inserted!==1?'s':''} imported successfully.`;
+  if (dupeCount) msg += ` ${dupeCount} duplicate email${dupeCount!==1?'s':''} skipped.`;
+  msg += `</div>`;
+  setImportFeedback(msg);
+  document.getElementById('importConfirmBtn').disabled = true;
+  importRows = [];
+  await loadData();
+}
+
+// ── SAMPLE TEMPLATE ──
+function downloadTemplate() {
+  const headers = ['full_name','email','mobile_phone','ec_name','ec_phone','preferred_assignment','status','previous_events','total_hours','tabc_certified','tabc_expiry','volunteer_dates','additional_comments'];
+  const sampleRows = [
+    ['John Smith','jsmith@example.com','(214) 555-0101','Jane Smith','(214) 555-0102','Concessions','Registered','2','4.5','Yes','2027-06-30','2026-09-20;2026-10-08','First-time volunteer'],
+    ['Maria Garcia','mgarcia@example.com','(972) 555-0201','Carlos Garcia','(972) 555-0202','Parking/Traffic','Confirmed','5','12','No','','2026-11-01;2026-11-26','Prefer evenings'],
+    ['David Lee','dlee@example.com','','','','Anywhere Needed','Registered','0','0','No','','2026-09-20',''],
+  ];
+  const csv = [headers, ...sampleRows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  a.download = 'dlgrf-volunteer-import-template.csv';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 loadData();
