@@ -1709,20 +1709,26 @@
 
   var _ourWrite = false; // flag so tbody MutationObserver knows we wrote it
 
-  // Returns a ready Supabase client regardless of how the page loads it
-  function _getClient() {
-    if (window.dlaSupabase && typeof window.dlaSupabase.from === 'function') return window.dlaSupabase;
-    if (window.supabase) {
-      if (typeof window.supabase.from === 'function') return window.supabase; // already a client
-      if (typeof window.supabase.createClient === 'function') {
-        window.dlaSupabase = window.supabase.createClient(
-          'https://eithccduveikejdhvnmq.supabase.co',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ'
-        );
-        return window.dlaSupabase;
-      }
-    }
-    return null;
+  // Direct REST helpers — no JS client library needed
+  var _SB_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+  var _SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
+
+  async function _sbGet(table, params) {
+    var qs = Object.entries(params || {}).map(function(kv){ return kv[0]+'='+encodeURIComponent(kv[1]); }).join('&');
+    var url = _SB_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
+    var res = await fetch(url, { headers: { 'apikey': _SB_ANON, 'Authorization': 'Bearer ' + _SB_ANON, 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error(res.status + ' ' + await res.text());
+    return res.json();
+  }
+
+  async function _sbPatch(table, id, body) {
+    var url = _SB_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(id);
+    var res = await fetch(url, {
+      method: 'PATCH',
+      headers: { 'apikey': _SB_ANON, 'Authorization': 'Bearer ' + _SB_ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error(res.status + ' ' + await res.text());
   }
 
   function _render(rows) {
@@ -1759,13 +1765,10 @@
     if (!tbody) return;
     tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
     try {
-      var client = _getClient();
-      if (!client) { tbody.innerHTML = '<tr><td colspan="8" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
-      var { data, error } = await client
-        .from('members')
-        .select('id, first_name, last_name, email, membership_tier, join_date, dues_paid, chapter_dues, province_dues, ihq_dues, swp_life, ihq_life')
-        .order('last_name', { ascending: true });
-      if (error) throw error;
+      var data = await _sbGet('members', {
+        select: 'id,first_name,last_name,email,membership_tier,join_date,dues_paid,chapter_dues,province_dues,ihq_dues,swp_life,ihq_life',
+        order: 'last_name.asc'
+      });
       _membersData = data || [];
       _render(_applyFilter(_membersData));
       _updateSummary();
@@ -1778,7 +1781,6 @@
     var newVal = cb.checked;
     cb.disabled = true;
     try {
-      var client = _getClient();
       var rec = _membersData.find(function(m){ return m.id === memberId; });
       var update = {};
       update[field] = newVal;
@@ -1787,8 +1789,7 @@
         var allPaid = !!(rec.chapter_dues && rec.province_dues && rec.ihq_dues);
         if (allPaid !== !!rec.dues_paid) { update.dues_paid = allPaid; rec.dues_paid = allPaid; }
       }
-      var { error } = await client.from('members').update(update).eq('id', memberId);
-      if (error) throw error;
+      await _sbPatch('members', memberId, update);
       if (rec) {
         var row = document.querySelector('#members-table-body tr[data-id="' + memberId + '"]');
         if (row) {
