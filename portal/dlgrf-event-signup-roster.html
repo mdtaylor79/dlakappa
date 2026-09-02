@@ -1707,9 +1707,28 @@
     el('mem-life-val',   swpLife + ' / ' + ihqLife);
   }
 
+  var _ourWrite = false; // flag so tbody MutationObserver knows we wrote it
+
+  // Returns a ready Supabase client regardless of how the page loads it
+  function _getClient() {
+    if (window.dlaSupabase && typeof window.dlaSupabase.from === 'function') return window.dlaSupabase;
+    if (window.supabase) {
+      if (typeof window.supabase.from === 'function') return window.supabase; // already a client
+      if (typeof window.supabase.createClient === 'function') {
+        window.dlaSupabase = window.supabase.createClient(
+          'https://eithccduveikejdhvnmq.supabase.co',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ'
+        );
+        return window.dlaSupabase;
+      }
+    }
+    return null;
+  }
+
   function _render(rows) {
     var tbody = document.getElementById('members-table-body');
     if (!tbody) return;
+    _ourWrite = true;
     if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
     tbody.innerHTML = rows.map(function(m) {
       var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
@@ -1740,7 +1759,7 @@
     if (!tbody) return;
     tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
     try {
-      var client = window.dlaSupabase || window.supabase;
+      var client = _getClient();
       if (!client) { tbody.innerHTML = '<tr><td colspan="8" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
       var { data, error } = await client
         .from('members')
@@ -1759,7 +1778,7 @@
     var newVal = cb.checked;
     cb.disabled = true;
     try {
-      var client = window.dlaSupabase || window.supabase;
+      var client = _getClient();
       var rec = _membersData.find(function(m){ return m.id === memberId; });
       var update = {};
       update[field] = newVal;
@@ -1824,7 +1843,9 @@
   }
 
   // Expose under a namespace that admin-members.js will never touch
-  window._dlaMem = { load: _load, toggle: _toggle, filter: _filter, setFilter: _setFilter, exportCSV: _exportCSV };
+  // _ourWrite(): returns true (and resets) if WE just wrote the tbody
+  function _checkOurWrite() { if (_ourWrite) { _ourWrite = false; return true; } return false; }
+  window._dlaMem = { load: _load, toggle: _toggle, filter: _filter, setFilter: _setFilter, exportCSV: _exportCSV, _ourWrite: _checkOurWrite };
 
   // Also expose as window globals (for onclick attributes and legacy callers).
   // We re-assert on window.load so any DOMContentLoaded override in admin-members.js loses.
@@ -1879,13 +1900,14 @@
   });
 })();
 
-/* ── Members & Dues: auto-load when panel becomes active ── */
+/* ── Members & Dues: auto-load + guard against admin-members.js overwrite ── */
 (function() {
   var panel = document.getElementById('panel-members');
   if (!panel) return;
 
   function doLoad() { if (window._dlaMem) window._dlaMem.load(); }
 
+  // Panel active → load our version
   var obs = new MutationObserver(function() {
     if (panel.classList.contains('active')) doLoad();
   });
@@ -1896,6 +1918,20 @@
   });
 
   if (panel.classList.contains('active')) doLoad();
+
+  // Guard: watch tbody for admin-members.js writing rows with wrong column count
+  // When it writes old-format rows (>8 cells), immediately re-load with ours
+  var tbody = document.getElementById('members-table-body');
+  if (tbody) {
+    new MutationObserver(function() {
+      // If WE wrote this, reset flag and skip
+      if (window._dlaMem && window._dlaMem._ourWrite()) { return; }
+      var firstDataRow = tbody.querySelector('tr[data-id]');
+      if (firstDataRow && firstDataRow.cells.length > 8) {
+        doLoad();
+      }
+    }).observe(tbody, { childList: true });
+  }
 })();
 </script>
 </body>
