@@ -265,178 +265,6 @@
           </table>
         </div>
 
-        <script>
-        /* ── Members & Dues panel ── */
-        var _membersData = [];
-        var _duesFilter  = 'all';
-
-        async function loadMembersAdmin() {
-          var tbody = document.getElementById('members-table-body');
-          if (!tbody) return;
-          tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
-          try {
-            var client = window.dlaSupabase || window.supabase;
-            if (!client) { tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
-            var { data, error } = await client
-              .from('members')
-              .select('id, first_name, last_name, email, membership_tier, join_date, dues_paid, chapter_dues, province_dues, ihq_dues, swp_life, ihq_life')
-              .order('last_name', { ascending: true });
-            if (error) throw error;
-            _membersData = data || [];
-            renderMembersTable(applyDuesFilter(_membersData));
-            updateDuesSummary();
-          } catch(e) {
-            if (tbody) tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Error: ' + escHtml(e.message) + '</td></tr>';
-          }
-        }
-
-        function memberTotal(m) {
-          return (m.chapter_dues ? 310 : 0) + (m.province_dues ? 50 : 0) + (m.ihq_dues ? 150 : 0);
-        }
-
-        function updateDuesSummary() {
-          var chapPaid = _membersData.filter(function(m){ return m.chapter_dues; }).length;
-          var provPaid = _membersData.filter(function(m){ return m.province_dues; }).length;
-          var ihqPaid  = _membersData.filter(function(m){ return m.ihq_dues; }).length;
-          var swpLife  = _membersData.filter(function(m){ return m.swp_life; }).length;
-          var ihqLife  = _membersData.filter(function(m){ return m.ihq_life; }).length;
-          var totalRev = chapPaid * 310 + provPaid * 50 + ihqPaid * 150;
-          var el = function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
-          el('mem-chap-paid',  chapPaid + ' paid');
-          el('mem-chap-total', '$' + (chapPaid * 310).toLocaleString() + ' collected');
-          el('mem-prov-paid',  provPaid + ' paid');
-          el('mem-prov-total', '$' + (provPaid * 50).toLocaleString() + ' collected');
-          el('mem-ihq-paid',   ihqPaid + ' paid');
-          el('mem-ihq-total',  '$' + (ihqPaid * 150).toLocaleString() + ' collected');
-          el('mem-total-rev',  '$' + totalRev.toLocaleString());
-          el('mem-total-sub',  _membersData.length + ' total members');
-          el('mem-life-val',   swpLife + ' / ' + ihqLife);
-        }
-
-        function applyDuesFilter(rows) {
-          if (_duesFilter === 'paid')   return rows.filter(function(m){ return m.dues_paid; });
-          if (_duesFilter === 'unpaid') return rows.filter(function(m){ return !m.dues_paid; });
-          return rows;
-        }
-
-        function setDuesFilter(filter, btn) {
-          _duesFilter = filter;
-          document.querySelectorAll('#panel-members .mem-filter-btn').forEach(function(b){ b.classList.remove('active-filter'); });
-          if (btn) btn.classList.add('active-filter');
-          var q = (document.getElementById('member-search').value || '').toLowerCase().trim();
-          var rows = q ? _membersData.filter(function(m){
-            var name = [m.first_name, m.last_name].filter(Boolean).join(' ').toLowerCase();
-            return name.includes(q) || (m.email||'').toLowerCase().includes(q);
-          }) : _membersData;
-          renderMembersTable(applyDuesFilter(rows));
-        }
-
-        function renderMembersTable(rows) {
-          var tbody = document.getElementById('members-table-body');
-          if (!tbody) return;
-          if (!rows.length) { tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
-          tbody.innerHTML = rows.map(function(m) {
-            var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
-            var joined = m.join_date ? new Date(m.join_date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
-            var total  = memberTotal(m);
-            var totalCell = total > 0
-              ? '<span class="dues-total-cell">$' + total.toLocaleString() + '</span>'
-              : '<span class="dues-total-zero">—</span>';
-            function mkCb(field) {
-              var chk = m[field] ? 'checked' : '';
-              return '<div class="dues-cb-wrap"><input type="checkbox" class="dues-cb" ' + chk + ' onchange="toggleDuesType(this,\'' + m.id + '\',\'' + field + '\')" title="Click to toggle"></div>';
-            }
-            return '<tr data-id="' + m.id + '">' +
-              '<td style="font-weight:600;white-space:nowrap">' + escHtml(name) + '</td>' +
-              '<td style="color:#888;font-size:.78rem">' + escHtml(m.email||'—') + '</td>' +
-              '<td>' + mkCb('chapter_dues') + '</td>' +
-              '<td>' + mkCb('province_dues') + '</td>' +
-              '<td>' + mkCb('ihq_dues') + '</td>' +
-              '<td>' + mkCb('swp_life') + '</td>' +
-              '<td>' + mkCb('ihq_life') + '</td>' +
-              '<td>' + totalCell + '</td>' +
-              '<td style="font-size:.78rem">' + escHtml(m.membership_tier||'—') + '</td>' +
-              '<td style="font-size:.78rem;white-space:nowrap">' + joined + '</td>' +
-            '</tr>';
-          }).join('');
-        }
-
-        function escHtml(s) {
-          return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-        }
-
-        async function toggleDuesType(cb, memberId, field) {
-          var newVal = cb.checked;
-          cb.disabled = true;
-          try {
-            var client = window.dlaSupabase || window.supabase;
-            var rec = _membersData.find(function(m){ return m.id === memberId; });
-            var update = {};
-            update[field] = newVal;
-            if (rec) {
-              rec[field] = newVal;
-              // Auto-compute overall dues_paid when all three main dues are checked
-              var allPaid = !!(rec.chapter_dues && rec.province_dues && rec.ihq_dues);
-              if (allPaid !== !!rec.dues_paid) {
-                update.dues_paid = allPaid;
-                rec.dues_paid = allPaid;
-              }
-            }
-            var { error } = await client.from('members').update(update).eq('id', memberId);
-            if (error) throw error;
-            // Update the total cell in this row without full re-render
-            if (rec) {
-              var row = document.querySelector('#members-table-body tr[data-id="' + memberId + '"]');
-              if (row) {
-                var tc = row.querySelector('td:nth-child(8)');
-                var t  = memberTotal(rec);
-                if (tc) tc.innerHTML = t > 0
-                  ? '<span class="dues-total-cell">$' + t.toLocaleString() + '</span>'
-                  : '<span class="dues-total-zero">—</span>';
-              }
-            }
-            updateDuesSummary();
-          } catch(e) {
-            cb.checked = !newVal;
-            alert('Could not update dues: ' + e.message);
-          } finally {
-            cb.disabled = false;
-          }
-        }
-
-        // Legacy stubs (in case admin-members.js or other code calls these)
-        function clickToggleDues() {}
-        function toggleDues() {}
-
-        function filterMembersTable() {
-          var q = (document.getElementById('member-search').value || '').toLowerCase().trim();
-          var rows = q ? _membersData.filter(function(m) {
-            var name = [m.first_name, m.last_name].filter(Boolean).join(' ').toLowerCase();
-            return name.includes(q) || (m.email||'').toLowerCase().includes(q);
-          }) : _membersData;
-          renderMembersTable(applyDuesFilter(rows));
-        }
-
-        function exportMembersCSV() {
-          var hdr = ['Name','Email','Chapter Dues','Province Dues','IHQ Dues','SWP Life','IHQ Life','Total Paid','Tier','Joined'];
-          var rows = [hdr].concat(_membersData.map(function(m) {
-            var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '';
-            var joined = m.join_date ? new Date(m.join_date).toLocaleDateString() : '';
-            return [
-              name, m.email||'',
-              m.chapter_dues?'Yes':'No', m.province_dues?'Yes':'No', m.ihq_dues?'Yes':'No',
-              m.swp_life?'Yes':'No', m.ihq_life?'Yes':'No',
-              '$' + memberTotal(m).toLocaleString(),
-              m.membership_tier||'', joined
-            ];
-          }));
-          var csv = rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
-          var a = document.createElement('a');
-          a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-          a.download = 'dla-members-dues-' + new Date().toISOString().slice(0,10) + '.csv';
-          a.click();
-        }
-        </script>
       </div>
 
       <!-- ============ PORTAL ACCESS PANEL ============ -->
@@ -2326,6 +2154,175 @@
 <script src="../assets/js/admin-console.js"></script>
 
 <script>
+/* ── Members & Dues: defined here (after all external scripts) so we override admin-members.js ── */
+var _membersData = [];
+var _duesFilter  = 'all';
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function memberTotal(m) {
+  return (m.chapter_dues ? 310 : 0) + (m.province_dues ? 50 : 0) + (m.ihq_dues ? 150 : 0);
+}
+
+function updateDuesSummary() {
+  var chapPaid = _membersData.filter(function(m){ return m.chapter_dues; }).length;
+  var provPaid = _membersData.filter(function(m){ return m.province_dues; }).length;
+  var ihqPaid  = _membersData.filter(function(m){ return m.ihq_dues; }).length;
+  var swpLife  = _membersData.filter(function(m){ return m.swp_life; }).length;
+  var ihqLife  = _membersData.filter(function(m){ return m.ihq_life; }).length;
+  var totalRev = chapPaid * 310 + provPaid * 50 + ihqPaid * 150;
+  var el = function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+  el('mem-chap-paid',  chapPaid + ' paid');
+  el('mem-chap-total', '$' + (chapPaid * 310).toLocaleString() + ' collected');
+  el('mem-prov-paid',  provPaid + ' paid');
+  el('mem-prov-total', '$' + (provPaid * 50).toLocaleString() + ' collected');
+  el('mem-ihq-paid',   ihqPaid + ' paid');
+  el('mem-ihq-total',  '$' + (ihqPaid * 150).toLocaleString() + ' collected');
+  el('mem-total-rev',  '$' + totalRev.toLocaleString());
+  el('mem-total-sub',  _membersData.length + ' total members');
+  el('mem-life-val',   swpLife + ' / ' + ihqLife);
+}
+
+function applyDuesFilter(rows) {
+  if (_duesFilter === 'paid')   return rows.filter(function(m){ return m.dues_paid; });
+  if (_duesFilter === 'unpaid') return rows.filter(function(m){ return !m.dues_paid; });
+  return rows;
+}
+
+function setDuesFilter(filter, btn) {
+  _duesFilter = filter;
+  document.querySelectorAll('#panel-members .mem-filter-btn').forEach(function(b){ b.classList.remove('active-filter'); });
+  if (btn) btn.classList.add('active-filter');
+  var q = (document.getElementById('member-search').value || '').toLowerCase().trim();
+  var rows = q ? _membersData.filter(function(m){
+    var name = [m.first_name, m.last_name].filter(Boolean).join(' ').toLowerCase();
+    return name.includes(q) || (m.email||'').toLowerCase().includes(q);
+  }) : _membersData;
+  renderMembersTable(applyDuesFilter(rows));
+}
+
+function renderMembersTable(rows) {
+  var tbody = document.getElementById('members-table-body');
+  if (!tbody) return;
+  if (!rows.length) { tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
+  tbody.innerHTML = rows.map(function(m) {
+    var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
+    var joined = m.join_date ? new Date(m.join_date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
+    var total  = memberTotal(m);
+    var totalCell = total > 0
+      ? '<span class="dues-total-cell">$' + total.toLocaleString() + '</span>'
+      : '<span class="dues-total-zero">—</span>';
+    function mkCb(field) {
+      var chk = m[field] ? 'checked' : '';
+      return '<div class="dues-cb-wrap"><input type="checkbox" class="dues-cb" ' + chk + ' onchange="toggleDuesType(this,\'' + m.id + '\',\'' + field + '\')" title="Click to toggle"></div>';
+    }
+    return '<tr data-id="' + m.id + '">' +
+      '<td style="font-weight:600;white-space:nowrap">' + escHtml(name) + '</td>' +
+      '<td style="color:#888;font-size:.78rem">' + escHtml(m.email||'—') + '</td>' +
+      '<td>' + mkCb('chapter_dues') + '</td>' +
+      '<td>' + mkCb('province_dues') + '</td>' +
+      '<td>' + mkCb('ihq_dues') + '</td>' +
+      '<td>' + mkCb('swp_life') + '</td>' +
+      '<td>' + mkCb('ihq_life') + '</td>' +
+      '<td>' + totalCell + '</td>' +
+      '<td style="font-size:.78rem">' + escHtml(m.membership_tier||'—') + '</td>' +
+      '<td style="font-size:.78rem;white-space:nowrap">' + joined + '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+async function loadMembersAdmin() {
+  var tbody = document.getElementById('members-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
+  try {
+    var client = window.dlaSupabase || window.supabase;
+    if (!client) { tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
+    var { data, error } = await client
+      .from('members')
+      .select('id, first_name, last_name, email, membership_tier, join_date, dues_paid, chapter_dues, province_dues, ihq_dues, swp_life, ihq_life')
+      .order('last_name', { ascending: true });
+    if (error) throw error;
+    _membersData = data || [];
+    renderMembersTable(applyDuesFilter(_membersData));
+    updateDuesSummary();
+  } catch(e) {
+    if (tbody) tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Error: ' + escHtml(e.message) + '</td></tr>';
+  }
+}
+
+async function toggleDuesType(cb, memberId, field) {
+  var newVal = cb.checked;
+  cb.disabled = true;
+  try {
+    var client = window.dlaSupabase || window.supabase;
+    var rec = _membersData.find(function(m){ return m.id === memberId; });
+    var update = {};
+    update[field] = newVal;
+    if (rec) {
+      rec[field] = newVal;
+      var allPaid = !!(rec.chapter_dues && rec.province_dues && rec.ihq_dues);
+      if (allPaid !== !!rec.dues_paid) {
+        update.dues_paid = allPaid;
+        rec.dues_paid = allPaid;
+      }
+    }
+    var { error } = await client.from('members').update(update).eq('id', memberId);
+    if (error) throw error;
+    if (rec) {
+      var row = document.querySelector('#members-table-body tr[data-id="' + memberId + '"]');
+      if (row) {
+        var tc = row.querySelector('td:nth-child(8)');
+        var t  = memberTotal(rec);
+        if (tc) tc.innerHTML = t > 0
+          ? '<span class="dues-total-cell">$' + t.toLocaleString() + '</span>'
+          : '<span class="dues-total-zero">—</span>';
+      }
+    }
+    updateDuesSummary();
+  } catch(e) {
+    cb.checked = !newVal;
+    alert('Could not update dues: ' + e.message);
+  } finally {
+    cb.disabled = false;
+  }
+}
+
+function filterMembersTable() {
+  var q = (document.getElementById('member-search').value || '').toLowerCase().trim();
+  var rows = q ? _membersData.filter(function(m) {
+    var name = [m.first_name, m.last_name].filter(Boolean).join(' ').toLowerCase();
+    return name.includes(q) || (m.email||'').toLowerCase().includes(q);
+  }) : _membersData;
+  renderMembersTable(applyDuesFilter(rows));
+}
+
+function exportMembersCSV() {
+  var hdr = ['Name','Email','Chapter Dues','Province Dues','IHQ Dues','SWP Life','IHQ Life','Total Paid','Tier','Joined'];
+  var rows = [hdr].concat(_membersData.map(function(m) {
+    var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '';
+    var joined = m.join_date ? new Date(m.join_date).toLocaleDateString() : '';
+    return [
+      name, m.email||'',
+      m.chapter_dues?'Yes':'No', m.province_dues?'Yes':'No', m.ihq_dues?'Yes':'No',
+      m.swp_life?'Yes':'No', m.ihq_life?'Yes':'No',
+      '$' + memberTotal(m).toLocaleString(),
+      m.membership_tier||'', joined
+    ];
+  }));
+  var csv = rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download = 'dla-members-dues-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+// Legacy stubs so admin-members.js callers don't throw
+function clickToggleDues() {}
+function toggleDues() {}
+
 /* ── Event Signup Roster: panel switch + auto-load ── */
 (function() {
   function erShowPanel() {
