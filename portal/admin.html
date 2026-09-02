@@ -1699,6 +1699,10 @@
       <!-- ============ EVENT SIGNUP ROSTER PANEL ============ -->
       <div class="admin-panel" id="panel-event-roster">
 <style>
+/* Hard reset for the roster panel content — overrides admin page style.css */
+#er-roster-wrap { display: block !important; }
+#er-roster-wrap * { box-sizing: border-box !important; }
+#er-roster-wrap div, #er-roster-wrap span, #er-roster-wrap p, #er-roster-wrap h1, #er-roster-wrap h2, #er-roster-wrap h3, #er-roster-wrap label, #er-roster-wrap input, #er-roster-wrap select, #er-roster-wrap button, #er-roster-wrap table, #er-roster-wrap thead, #er-roster-wrap tbody, #er-roster-wrap tr, #er-roster-wrap td, #er-roster-wrap th, #er-roster-wrap form { all: revert; box-sizing: border-box !important; }
 
     #er-roster-wrap *,#er-roster-wrap *::before,#er-roster-wrap *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1863,7 +1867,7 @@
 
 
 <!-- ── Banner ── -->
-<header class="banner">
+<div class="banner">
   <div class="banner-inner">
     <div class="banner-left">
       <h1>DLGRF Event Sign Up Roster</h1>
@@ -1871,7 +1875,7 @@
     </div>
     <div class="banner-badge">2026–27 Season</div>
   </div>
-</header>
+</div>
 
 <!-- ── Top Action Bar ── -->
 <div class="topbar">
@@ -1906,9 +1910,9 @@
 </div>
 
 <!-- ── Main content ── -->
-<main class="main" id="mainContent">
+<div class="main" id="mainContent">
   <div class="empty-state"><p>Loading roster…</p><small>Connecting to Supabase</small></div>
-</main>
+</div>
 
 <footer class="page-footer">
   DLGRF Volunteer Roster · Denton-Lewisville Alumni Chapter · Kappa Alpha Psi Fraternity, Inc.
@@ -2365,353 +2369,8 @@
 </script>
 
 </div>
-<script>
-
-  // ── Supabase Config ──
-  const SB_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
-  const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
-
-  const EVENT_DATES = [
-    { label: 'Sept 4, 2026',  date: '2026-09-04', opp: 'vs Cleveland Browns' },
-    { label: 'Sept 20, 2026', date: '2026-09-20', opp: 'vs New York Giants' },
-    { label: 'Oct 2, 2026',   date: '2026-10-02', opp: 'vs Carolina Panthers' },
-    { label: 'Oct 18, 2026',  date: '2026-10-18', opp: 'vs Los Angeles Rams' },
-    { label: 'Nov 1, 2026',   date: '2026-11-01', opp: 'vs Philadelphia Eagles' },
-    { label: 'Nov 29, 2026',  date: '2026-11-29', opp: 'vs Kansas City Chiefs (Thanksgiving)' },
-    { label: 'Jan 3, 2027',   date: '2027-01-03', opp: 'vs Washington Commanders' },
-  ];
-
-  // ── State ──
-  let allVolunteers = [];
-  let filteredVolunteers = [];
-  let editId = null;
-  let pendingDeleteId = null;
-  let modalTargetDate = null; // pre-select a date when adding from a card
-
-  // ── Supabase helpers ──
-  async function sbFetch(path, opts = {}) {
-    const url = `${SB_URL}/rest/v1/${path}`;
-    const headers = {
-      'apikey': SB_ANON,
-      'Authorization': `Bearer ${SB_ANON}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation',
-      ...opts.headers
-    };
-    const res = await fetch(url, { ...opts, headers });
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error(`${res.status}: ${err}`);
-    }
-    const text = await res.text();
-    return text ? JSON.parse(text) : [];
-  }
-
-  // ── Load volunteers ──
-  async function loadVolunteers() {
-    try {
-      allVolunteers = await sbFetch('volunteers?select=*&order=created_at.desc');
-      filteredVolunteers = [...allVolunteers];
-      renderSummary();
-      renderRoster();
-    } catch (e) {
-      document.getElementById('mainContent').innerHTML = `
-        <div class="empty-state">
-          <p>⚠️ Could not load volunteers</p>
-          <small>${e.message}</small>
-        </div>`;
-    }
-  }
-
-  // ── Summary chips ──
-  function renderSummary() {
-    const unique = allVolunteers.length;
-    let signups = 0;
-    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) signups += v.volunteer_dates.length; });
-    const tabc = allVolunteers.filter(v => v.tabc_certified).length;
-    const covered = new Set();
-    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) v.volunteer_dates.forEach(d => covered.add(d)); });
-    document.getElementById('chipTotal').textContent = unique;
-    document.getElementById('chipSignups').textContent = signups;
-    document.getElementById('chipTabc').textContent = tabc;
-    document.getElementById('chipEvents').textContent = covered.size;
-  }
-
-  // ── Filters ──
-  function applyFilters() {
-    const q    = document.getElementById('searchInput').value.toLowerCase();
-    const role = document.getElementById('filterAssign').value;
-    const tabc = document.getElementById('filterTabc').value;
-    filteredVolunteers = allVolunteers.filter(v => {
-      const name   = (v.full_name || '').toLowerCase();
-      const email  = (v.email || '').toLowerCase();
-      const matchQ = !q || name.includes(q) || email.includes(q);
-      const matchR = !role || v.preferred_assignment === role;
-      const matchT = !tabc || (tabc === 'yes' ? v.tabc_certified : !v.tabc_certified);
-      return matchQ && matchR && matchT;
-    });
-    renderRoster();
-  }
-
-  // ── Render roster ──
-  function renderRoster() {
-    const main = document.getElementById('mainContent');
-
-    // Build date → volunteers map
-    const dateMap = {};
-    EVENT_DATES.forEach(ed => { dateMap[ed.date] = []; });
-
-    filteredVolunteers.forEach(vol => {
-      if (!Array.isArray(vol.volunteer_dates)) return;
-      vol.volunteer_dates.forEach(d => {
-        if (dateMap[d] !== undefined) dateMap[d].push(vol);
-      });
-    });
-
-    let html = '';
-    EVENT_DATES.forEach(ed => {
-      const volunteers = dateMap[ed.date] || [];
-      const [year, month, day] = ed.date.split('-');
-      const dtObj = new Date(Number(year), Number(month) - 1, Number(day));
-      const monthStr = dtObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
-      const dayNum   = dtObj.getDate();
-      const yearNum  = dtObj.getFullYear();
-      const today    = new Date(); today.setHours(0,0,0,0);
-      const isPast   = dtObj < today;
-
-      html += `
-      <div class="event-card" id="card-${ed.date}" ${isPast ? 'style="opacity:.72"' : ''}>
-        <div class="event-header">
-          <div class="event-header-left">
-            <div class="event-date-box">
-              <div class="date-month">${monthStr}</div>
-              <div class="date-day">${dayNum}</div>
-              <div class="date-year">${yearNum}</div>
-            </div>
-            <div class="event-info">
-              <h2>${ed.label}${isPast ? ' ✓' : ''}</h2>
-              <div class="event-sub">${ed.opp}</div>
-            </div>
-          </div>
-          <div class="event-header-right">
-            <div class="badge-count">${volunteers.length} Vol${volunteers.length !== 1 ? 's' : ''}</div>
-            <button class="btn-add-vol" onclick="openAddModal('${ed.date}')">+ Add</button>
-          </div>
-        </div>
-        <div class="table-wrap">`;
-
-      if (volunteers.length === 0) {
-        html += `<div class="no-vols">No volunteers signed up for this event yet.</div>`;
-      } else {
-        html += `
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Role</th>
-                <th>TABC</th>
-                <th>Prior Events</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>`;
-        volunteers.forEach((v, i) => {
-          const tabc = v.tabc_certified
-            ? `<span class="tabc-badge tabc-yes">✓ Certified</span>`
-            : `<span class="tabc-badge tabc-no">No</span>`;
-          const assign = v.preferred_assignment
-            ? `<span class="assign-badge">${esc(v.preferred_assignment)}</span>` : '—';
-          const statusStyle = v.status === 'confirmed' ? 'color:#15803d;font-weight:600'
-            : v.status === 'declined' ? 'color:#dc2626' : '';
-          html += `
-              <tr>
-                <td style="color:var(--text-muted);font-size:.78rem">${i+1}</td>
-                <td class="name-cell">${esc(v.full_name || '—')}</td>
-                <td class="email-cell">${esc(v.email || '—')}</td>
-                <td class="phone-cell">${esc(v.mobile_phone || '—')}</td>
-                <td>${assign}</td>
-                <td>${tabc}</td>
-                <td style="text-align:center">${v.previous_events ?? '—'}</td>
-                <td><span style="${statusStyle}">${capitalize(v.status || 'pending')}</span></td>
-                <td>
-                  <div class="action-cell">
-                    <button class="btn btn-icon btn-edit" title="Edit" onclick="openEditModal('${v.id}')">✏️</button>
-                    <button class="btn btn-icon btn-delete" title="Delete" onclick="confirmDelete('${v.id}','${esc(v.full_name || '')}')">🗑</button>
-                  </div>
-                </td>
-              </tr>`;
-        });
-        html += `</tbody></table>`;
-      }
-      html += `</div></div>`;
-    });
-
-    main.innerHTML = html || `<div class="empty-state"><p>No volunteers match your search.</p></div>`;
-  }
-
-  // ── Build date checkboxes ──
-  function buildDateCheckboxes(selectedDates = []) {
-    const grid = document.getElementById('datesGrid');
-    grid.innerHTML = EVENT_DATES.map(ed => {
-      const checked = selectedDates.includes(ed.date) ? 'checked' : '';
-      return `<label class="date-check">
-        <input type="checkbox" value="${ed.date}" ${checked} data-date-cb>
-        ${ed.label} <span style="font-size:.7rem;color:var(--text-muted)">${ed.opp}</span>
-      </label>`;
-    }).join('');
-  }
-
-  // ── Open add modal ──
-  function openAddModal(preDate) {
-    editId = null;
-    modalTargetDate = preDate;
-    document.getElementById('modalTitle').textContent = 'Add Volunteer';
-    document.getElementById('volForm').reset();
-    buildDateCheckboxes(preDate ? [preDate] : []);
-    document.getElementById('modalOverlay').classList.add('active');
-  }
-
-  // ── Open edit modal ──
-  function openEditModal(id) {
-    const vol = allVolunteers.find(v => String(v.id) === String(id));
-    if (!vol) return showToast('Volunteer not found.', 'error');
-    editId = id;
-    document.getElementById('modalTitle').textContent = 'Edit Volunteer';
-    document.getElementById('f_name').value    = vol.full_name || '';
-    document.getElementById('f_email').value   = vol.email || '';
-    document.getElementById('f_phone').value   = vol.mobile_phone || '';
-    document.getElementById('f_assign').value  = vol.preferred_assignment || '';
-    document.getElementById('f_ec_name').value = vol.ec_name || '';
-    document.getElementById('f_ec_phone').value = vol.ec_phone || '';
-    document.getElementById('f_tabc').value    = vol.tabc_certified ? 'true' : 'false';
-    document.getElementById('f_tabc_expiry').value = vol.tabc_expiry || '';
-    document.getElementById('f_tabc_url').value = vol.tabc_cert_url || '';
-    document.getElementById('f_prev').value    = vol.previous_events ?? '';
-    document.getElementById('f_status').value  = vol.status || 'pending';
-    document.getElementById('f_comments').value = vol.additional_comments || '';
-    buildDateCheckboxes(Array.isArray(vol.volunteer_dates) ? vol.volunteer_dates : []);
-    document.getElementById('modalOverlay').classList.add('active');
-  }
-
-  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
-  function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
-
-  // ── Save (insert or update) ──
-  async function saveVolunteer() {
-    const name  = document.getElementById('f_name').value.trim();
-    const email = document.getElementById('f_email').value.trim();
-    if (!name || !email) { showToast('Name and email are required.', 'error'); return; }
-
-    const selectedDates = [...document.querySelectorAll('[data-date-cb]:checked')].map(cb => cb.value);
-
-    const payload = {
-      full_name:             name,
-      email:                 email,
-      mobile_phone:          document.getElementById('f_phone').value.trim() || null,
-      preferred_assignment:  document.getElementById('f_assign').value || null,
-      ec_name:               document.getElementById('f_ec_name').value.trim() || null,
-      ec_phone:              document.getElementById('f_ec_phone').value.trim() || null,
-      tabc_certified:        document.getElementById('f_tabc').value === 'true',
-      tabc_expiry:           document.getElementById('f_tabc_expiry').value || null,
-      tabc_cert_url:         document.getElementById('f_tabc_url').value.trim() || null,
-      previous_events:       parseInt(document.getElementById('f_prev').value) || 0,
-      status:                document.getElementById('f_status').value || 'pending',
-      additional_comments:   document.getElementById('f_comments').value.trim() || null,
-      volunteer_dates:       selectedDates,
-      season:                '2026-2027',
-    };
-
-    try {
-      if (editId) {
-        await sbFetch(`volunteers?id=eq.${editId}`, {
-          method: 'PATCH',
-          body: JSON.stringify(payload)
-        });
-        showToast('Volunteer updated!', 'success');
-      } else {
-        await sbFetch('volunteers', {
-          method: 'POST',
-          body: JSON.stringify(payload)
-        });
-        showToast('Volunteer added!', 'success');
-      }
-      closeModal();
-      await loadVolunteers();
-    } catch (e) {
-      showToast('Save failed: ' + e.message, 'error');
-    }
-  }
-
-  // ── Delete ──
-  function confirmDelete(id, name) {
-    pendingDeleteId = id;
-    document.getElementById('confirmMsg').textContent =
-      `This will permanently remove "${name}" from all events. This cannot be undone.`;
-    document.getElementById('confirmOverlay').classList.add('active');
-  }
-  function closeConfirm() {
-    document.getElementById('confirmOverlay').classList.remove('active');
-    pendingDeleteId = null;
-  }
-  async function doDelete() {
-    if (!pendingDeleteId) return;
-    try {
-      await sbFetch(`volunteers?id=eq.${pendingDeleteId}`, { method: 'DELETE', headers: { Prefer: '' } });
-      closeConfirm();
-      showToast('Volunteer deleted.', 'success');
-      await loadVolunteers();
-    } catch (e) {
-      closeConfirm();
-      showToast('Delete failed: ' + e.message, 'error');
-    }
-  }
-
-  // ── CSV Export ──
-  function exportCSV() {
-    const headers = ['Name','Email','Phone','Assignment','TABC','Prior Events','Status','Event Dates','Comments'];
-    const rows = filteredVolunteers.map(v => [
-      v.full_name || '',
-      v.email || '',
-      v.mobile_phone || '',
-      v.preferred_assignment || '',
-      v.tabc_certified ? 'Yes' : 'No',
-      v.previous_events ?? 0,
-      v.status || '',
-      Array.isArray(v.volunteer_dates) ? v.volunteer_dates.join('; ') : '',
-      v.additional_comments || ''
-    ]);
-    const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href = url;
-    a.download = `dlgrf-event-roster-${new Date().toISOString().slice(0,10)}.csv`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
-  }
-
-  // ── Utils ──
-  function esc(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
-
-  let toastTimer;
-  function showToast(msg, type = 'success') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `toast ${type} show`;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { t.className = 'toast'; }, 3500);
-  }
-
-  // ── Init ──
-  loadVolunteers();
-
-</script>
 </div>
+<!-- END EVENT SIGNUP ROSTER PANEL -->
       <!-- END EVENT SIGNUP ROSTER PANEL -->
 
       </div>
@@ -3106,5 +2765,40 @@
   }
 })();
 </script>
+/* ── Event Signup Roster — lazy init ── */
+(function() {
+  // Inject the roster JS only once, when the panel first becomes active
+  var _rosterLoaded = false;
+
+  function _injectRoster() {
+    if (_rosterLoaded) return;
+    _rosterLoaded = true;
+    var s = document.createElement('script');
+    s.textContent = '\n  // ── Supabase Config ──\n  const SB_URL  = \'https://eithccduveikejdhvnmq.supabase.co\';\n  const SB_ANON = \'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ\';\n\n  const EVENT_DATES = [\n    { label: \'Sept 4, 2026\',  date: \'2026-09-04\', opp: \'vs Cleveland Browns\' },\n    { label: \'Sept 20, 2026\', date: \'2026-09-20\', opp: \'vs New York Giants\' },\n    { label: \'Oct 2, 2026\',   date: \'2026-10-02\', opp: \'vs Carolina Panthers\' },\n    { label: \'Oct 18, 2026\',  date: \'2026-10-18\', opp: \'vs Los Angeles Rams\' },\n    { label: \'Nov 1, 2026\',   date: \'2026-11-01\', opp: \'vs Philadelphia Eagles\' },\n    { label: \'Nov 29, 2026\',  date: \'2026-11-29\', opp: \'vs Kansas City Chiefs (Thanksgiving)\' },\n    { label: \'Jan 3, 2027\',   date: \'2027-01-03\', opp: \'vs Washington Commanders\' },\n  ];\n\n  // ── State ──\n  let allVolunteers = [];\n  let filteredVolunteers = [];\n  let editId = null;\n  let pendingDeleteId = null;\n  let modalTargetDate = null; // pre-select a date when adding from a card\n\n  // ── Supabase helpers ──\n  async function sbFetch(path, opts = {}) {\n    const url = `${SB_URL}/rest/v1/${path}`;\n    const headers = {\n      \'apikey\': SB_ANON,\n      \'Authorization\': `Bearer ${SB_ANON}`,\n      \'Content-Type\': \'application/json\',\n      \'Prefer\': \'return=representation\',\n      ...opts.headers\n    };\n    const res = await fetch(url, { ...opts, headers });\n    if (!res.ok) {\n      const err = await res.text();\n      throw new Error(`${res.status}: ${err}`);\n    }\n    const text = await res.text();\n    return text ? JSON.parse(text) : [];\n  }\n\n  // ── Load volunteers ──\n  async function loadVolunteers() {\n    try {\n      allVolunteers = await sbFetch(\'volunteers?select=*&order=created_at.desc\');\n      filteredVolunteers = [...allVolunteers];\n      renderSummary();\n      renderRoster();\n    } catch (e) {\n      document.getElementById(\'mainContent\').innerHTML = `\n        <div class="empty-state">\n          <p>⚠️ Could not load volunteers</p>\n          <small>${e.message}</small>\n        </div>`;\n    }\n  }\n\n  // ── Summary chips ──\n  function renderSummary() {\n    const unique = allVolunteers.length;\n    let signups = 0;\n    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) signups += v.volunteer_dates.length; });\n    const tabc = allVolunteers.filter(v => v.tabc_certified).length;\n    const covered = new Set();\n    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) v.volunteer_dates.forEach(d => covered.add(d)); });\n    document.getElementById(\'chipTotal\').textContent = unique;\n    document.getElementById(\'chipSignups\').textContent = signups;\n    document.getElementById(\'chipTabc\').textContent = tabc;\n    document.getElementById(\'chipEvents\').textContent = covered.size;\n  }\n\n  // ── Filters ──\n  function applyFilters() {\n    const q    = document.getElementById(\'searchInput\').value.toLowerCase();\n    const role = document.getElementById(\'filterAssign\').value;\n    const tabc = document.getElementById(\'filterTabc\').value;\n    filteredVolunteers = allVolunteers.filter(v => {\n      const name   = (v.full_name || \'\').toLowerCase();\n      const email  = (v.email || \'\').toLowerCase();\n      const matchQ = !q || name.includes(q) || email.includes(q);\n      const matchR = !role || v.preferred_assignment === role;\n      const matchT = !tabc || (tabc === \'yes\' ? v.tabc_certified : !v.tabc_certified);\n      return matchQ && matchR && matchT;\n    });\n    renderRoster();\n  }\n\n  // ── Render roster ──\n  function renderRoster() {\n    const main = document.getElementById(\'mainContent\');\n\n    // Build date → volunteers map\n    const dateMap = {};\n    EVENT_DATES.forEach(ed => { dateMap[ed.date] = []; });\n\n    filteredVolunteers.forEach(vol => {\n      if (!Array.isArray(vol.volunteer_dates)) return;\n      vol.volunteer_dates.forEach(d => {\n        if (dateMap[d] !== undefined) dateMap[d].push(vol);\n      });\n    });\n\n    let html = \'\';\n    EVENT_DATES.forEach(ed => {\n      const volunteers = dateMap[ed.date] || [];\n      const [year, month, day] = ed.date.split(\'-\');\n      const dtObj = new Date(Number(year), Number(month) - 1, Number(day));\n      const monthStr = dtObj.toLocaleString(\'en-US\', { month: \'short\' }).toUpperCase();\n      const dayNum   = dtObj.getDate();\n      const yearNum  = dtObj.getFullYear();\n      const today    = new Date(); today.setHours(0,0,0,0);\n      const isPast   = dtObj < today;\n\n      html += `\n      <div class="event-card" id="card-${ed.date}" ${isPast ? \'style="opacity:.72"\' : \'\'}>\n        <div class="event-header">\n          <div class="event-header-left">\n            <div class="event-date-box">\n              <div class="date-month">${monthStr}</div>\n              <div class="date-day">${dayNum}</div>\n              <div class="date-year">${yearNum}</div>\n            </div>\n            <div class="event-info">\n              <h2>${ed.label}${isPast ? \' ✓\' : \'\'}</h2>\n              <div class="event-sub">${ed.opp}</div>\n            </div>\n          </div>\n          <div class="event-header-right">\n            <div class="badge-count">${volunteers.length} Vol${volunteers.length !== 1 ? \'s\' : \'\'}</div>\n            <button class="btn-add-vol" onclick="openAddModal(\'${ed.date}\')">+ Add</button>\n          </div>\n        </div>\n        <div class="table-wrap">`;\n\n      if (volunteers.length === 0) {\n        html += `<div class="no-vols">No volunteers signed up for this event yet.</div>`;\n      } else {\n        html += `\n          <table>\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Name</th>\n                <th>Email</th>\n                <th>Phone</th>\n                <th>Role</th>\n                <th>TABC</th>\n                <th>Prior Events</th>\n                <th>Status</th>\n                <th>Actions</th>\n              </tr>\n            </thead>\n            <tbody>`;\n        volunteers.forEach((v, i) => {\n          const tabc = v.tabc_certified\n            ? `<span class="tabc-badge tabc-yes">✓ Certified</span>`\n            : `<span class="tabc-badge tabc-no">No</span>`;\n          const assign = v.preferred_assignment\n            ? `<span class="assign-badge">${esc(v.preferred_assignment)}</span>` : \'—\';\n          const statusStyle = v.status === \'confirmed\' ? \'color:#15803d;font-weight:600\'\n            : v.status === \'declined\' ? \'color:#dc2626\' : \'\';\n          html += `\n              <tr>\n                <td style="color:var(--text-muted);font-size:.78rem">${i+1}</td>\n                <td class="name-cell">${esc(v.full_name || \'—\')}</td>\n                <td class="email-cell">${esc(v.email || \'—\')}</td>\n                <td class="phone-cell">${esc(v.mobile_phone || \'—\')}</td>\n                <td>${assign}</td>\n                <td>${tabc}</td>\n                <td style="text-align:center">${v.previous_events ?? \'—\'}</td>\n                <td><span style="${statusStyle}">${capitalize(v.status || \'pending\')}</span></td>\n                <td>\n                  <div class="action-cell">\n                    <button class="btn btn-icon btn-edit" title="Edit" onclick="openEditModal(\'${v.id}\')">✏️</button>\n                    <button class="btn btn-icon btn-delete" title="Delete" onclick="confirmDelete(\'${v.id}\',\'${esc(v.full_name || \'\')}\')">🗑</button>\n                  </div>\n                </td>\n              </tr>`;\n        });\n        html += `</tbody></table>`;\n      }\n      html += `</div></div>`;\n    });\n\n    main.innerHTML = html || `<div class="empty-state"><p>No volunteers match your search.</p></div>`;\n  }\n\n  // ── Build date checkboxes ──\n  function buildDateCheckboxes(selectedDates = []) {\n    const grid = document.getElementById(\'datesGrid\');\n    grid.innerHTML = EVENT_DATES.map(ed => {\n      const checked = selectedDates.includes(ed.date) ? \'checked\' : \'\';\n      return `<label class="date-check">\n        <input type="checkbox" value="${ed.date}" ${checked} data-date-cb>\n        ${ed.label} <span style="font-size:.7rem;color:var(--text-muted)">${ed.opp}</span>\n      </label>`;\n    }).join(\'\');\n  }\n\n  // ── Open add modal ──\n  function openAddModal(preDate) {\n    editId = null;\n    modalTargetDate = preDate;\n    document.getElementById(\'modalTitle\').textContent = \'Add Volunteer\';\n    document.getElementById(\'volForm\').reset();\n    buildDateCheckboxes(preDate ? [preDate] : []);\n    document.getElementById(\'modalOverlay\').classList.add(\'active\');\n  }\n\n  // ── Open edit modal ──\n  function openEditModal(id) {\n    const vol = allVolunteers.find(v => String(v.id) === String(id));\n    if (!vol) return showToast(\'Volunteer not found.\', \'error\');\n    editId = id;\n    document.getElementById(\'modalTitle\').textContent = \'Edit Volunteer\';\n    document.getElementById(\'f_name\').value    = vol.full_name || \'\';\n    document.getElementById(\'f_email\').value   = vol.email || \'\';\n    document.getElementById(\'f_phone\').value   = vol.mobile_phone || \'\';\n    document.getElementById(\'f_assign\').value  = vol.preferred_assignment || \'\';\n    document.getElementById(\'f_ec_name\').value = vol.ec_name || \'\';\n    document.getElementById(\'f_ec_phone\').value = vol.ec_phone || \'\';\n    document.getElementById(\'f_tabc\').value    = vol.tabc_certified ? \'true\' : \'false\';\n    document.getElementById(\'f_tabc_expiry\').value = vol.tabc_expiry || \'\';\n    document.getElementById(\'f_tabc_url\').value = vol.tabc_cert_url || \'\';\n    document.getElementById(\'f_prev\').value    = vol.previous_events ?? \'\';\n    document.getElementById(\'f_status\').value  = vol.status || \'pending\';\n    document.getElementById(\'f_comments\').value = vol.additional_comments || \'\';\n    buildDateCheckboxes(Array.isArray(vol.volunteer_dates) ? vol.volunteer_dates : []);\n    document.getElementById(\'modalOverlay\').classList.add(\'active\');\n  }\n\n  function closeModal() { document.getElementById(\'modalOverlay\').classList.remove(\'active\'); }\n  function handleOverlayClick(e) { if (e.target === document.getElementById(\'modalOverlay\')) closeModal(); }\n\n  // ── Save (insert or update) ──\n  async function saveVolunteer() {\n    const name  = document.getElementById(\'f_name\').value.trim();\n    const email = document.getElementById(\'f_email\').value.trim();\n    if (!name || !email) { showToast(\'Name and email are required.\', \'error\'); return; }\n\n    const selectedDates = [...document.querySelectorAll(\'[data-date-cb]:checked\')].map(cb => cb.value);\n\n    const payload = {\n      full_name:             name,\n      email:                 email,\n      mobile_phone:          document.getElementById(\'f_phone\').value.trim() || null,\n      preferred_assignment:  document.getElementById(\'f_assign\').value || null,\n      ec_name:               document.getElementById(\'f_ec_name\').value.trim() || null,\n      ec_phone:              document.getElementById(\'f_ec_phone\').value.trim() || null,\n      tabc_certified:        document.getElementById(\'f_tabc\').value === \'true\',\n      tabc_expiry:           document.getElementById(\'f_tabc_expiry\').value || null,\n      tabc_cert_url:         document.getElementById(\'f_tabc_url\').value.trim() || null,\n      previous_events:       parseInt(document.getElementById(\'f_prev\').value) || 0,\n      status:                document.getElementById(\'f_status\').value || \'pending\',\n      additional_comments:   document.getElementById(\'f_comments\').value.trim() || null,\n      volunteer_dates:       selectedDates,\n      season:                \'2026-2027\',\n    };\n\n    try {\n      if (editId) {\n        await sbFetch(`volunteers?id=eq.${editId}`, {\n          method: \'PATCH\',\n          body: JSON.stringify(payload)\n        });\n        showToast(\'Volunteer updated!\', \'success\');\n      } else {\n        await sbFetch(\'volunteers\', {\n          method: \'POST\',\n          body: JSON.stringify(payload)\n        });\n        showToast(\'Volunteer added!\', \'success\');\n      }\n      closeModal();\n      await loadVolunteers();\n    } catch (e) {\n      showToast(\'Save failed: \' + e.message, \'error\');\n    }\n  }\n\n  // ── Delete ──\n  function confirmDelete(id, name) {\n    pendingDeleteId = id;\n    document.getElementById(\'confirmMsg\').textContent =\n      `This will permanently remove "${name}" from all events. This cannot be undone.`;\n    document.getElementById(\'confirmOverlay\').classList.add(\'active\');\n  }\n  function closeConfirm() {\n    document.getElementById(\'confirmOverlay\').classList.remove(\'active\');\n    pendingDeleteId = null;\n  }\n  async function doDelete() {\n    if (!pendingDeleteId) return;\n    try {\n      await sbFetch(`volunteers?id=eq.${pendingDeleteId}`, { method: \'DELETE\', headers: { Prefer: \'\' } });\n      closeConfirm();\n      showToast(\'Volunteer deleted.\', \'success\');\n      await loadVolunteers();\n    } catch (e) {\n      closeConfirm();\n      showToast(\'Delete failed: \' + e.message, \'error\');\n    }\n  }\n\n  // ── CSV Export ──\n  function exportCSV() {\n    const headers = [\'Name\',\'Email\',\'Phone\',\'Assignment\',\'TABC\',\'Prior Events\',\'Status\',\'Event Dates\',\'Comments\'];\n    const rows = filteredVolunteers.map(v => [\n      v.full_name || \'\',\n      v.email || \'\',\n      v.mobile_phone || \'\',\n      v.preferred_assignment || \'\',\n      v.tabc_certified ? \'Yes\' : \'No\',\n      v.previous_events ?? 0,\n      v.status || \'\',\n      Array.isArray(v.volunteer_dates) ? v.volunteer_dates.join(\'; \') : \'\',\n      v.additional_comments || \'\'\n    ]);\n    const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,\'""\')}"`).join(\',\')).join(\'\\n\');\n    const blob = new Blob([csv], { type: \'text/csv\' });\n    const url  = URL.createObjectURL(blob);\n    const a    = document.createElement(\'a\');\n    a.href = url;\n    a.download = `dlgrf-event-roster-${new Date().toISOString().slice(0,10)}.csv`;\n    a.click();\n    setTimeout(() => URL.revokeObjectURL(url), 2000);\n  }\n\n  // ── Utils ──\n  function esc(str) { return String(str).replace(/&/g,\'&amp;\').replace(/</g,\'&lt;\').replace(/>/g,\'&gt;\').replace(/"/g,\'&quot;\'); }\n  function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : \'\'; }\n\n  let toastTimer;\n  function showToast(msg, type = \'success\') {\n    const t = document.getElementById(\'toast\');\n    t.textContent = msg;\n    t.className = `toast ${type} show`;\n    clearTimeout(toastTimer);\n    toastTimer = setTimeout(() => { t.className = \'toast\'; }, 3500);\n  }\n\n  // ── Init deferred — called when panel activates ──\n  window._dlaRoster = { load: loadVolunteers };\n';
+    document.body.appendChild(s);
+    // After script runs, call load
+    setTimeout(function() {
+      if (window._dlaRoster && window._dlaRoster.load) window._dlaRoster.load();
+    }, 50);
+  }
+
+  var erPanel = document.getElementById('panel-event-roster');
+  if (erPanel) {
+    new MutationObserver(function() {
+      if (erPanel.classList.contains('active')) _injectRoster();
+    }).observe(erPanel, { attributes: true, attributeFilter: ['class'] });
+    if (erPanel.classList.contains('active')) _injectRoster();
+  }
+
+  document.addEventListener('click', function(e) {
+    var t = e.target;
+    while (t && t !== document) {
+      if (t.dataset && t.dataset.panel === 'panel-event-roster') {
+        setTimeout(_injectRoster, 100); break;
+      }
+      t = t.parentElement;
+    }
+  }, true);
+})();
 </body>
 </html>
