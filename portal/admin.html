@@ -163,15 +163,23 @@
           #panel-members .mem-search { padding:.45rem .75rem; border:1px solid #d8cfc5; border-radius:4px; font-size:.84rem; width:220px; }
           #panel-members .mem-csv-btn { font-family:'Cinzel',serif; font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.45rem 1rem; border-radius:4px; cursor:pointer; border:none; background:#f0e8e0; color:#70110c; border:1px solid #e0d4c8; transition:filter .2s; }
           #panel-members .mem-csv-btn:hover { filter:brightness(1.05); }
-          #panel-members .mem-badge-paid { display:inline-flex; align-items:center; gap:.25rem; padding:.18rem .55rem; border-radius:10px; font-size:.7rem; font-weight:600; background:#dcfce7; color:#166534; }
-          #panel-members .mem-badge-unpaid { display:inline-flex; align-items:center; gap:.25rem; padding:.18rem .55rem; border-radius:10px; font-size:.7rem; font-weight:600; background:#fee2e2; color:#991b1b; }
-          #panel-members .mem-badge-paid::before { content:'✓'; }
-          #panel-members .mem-badge-unpaid::before { content:'✗'; }
+          /* dues toggle switch */
+          #panel-members .dues-switch { position:relative; display:inline-flex; align-items:center; gap:.45rem; cursor:pointer; user-select:none; }
+          #panel-members .dues-switch input { opacity:0; width:0; height:0; position:absolute; }
+          #panel-members .dues-track { width:36px; height:20px; border-radius:10px; background:#e0d4c8; transition:background .2s; position:relative; flex-shrink:0; }
+          #panel-members .dues-track::after { content:''; position:absolute; top:3px; left:3px; width:14px; height:14px; border-radius:50%; background:#fff; transition:transform .2s, box-shadow .2s; box-shadow:0 1px 3px rgba(0,0,0,.25); }
+          #panel-members .dues-switch input:checked ~ .dues-track { background:#22c55e; }
+          #panel-members .dues-switch input:checked ~ .dues-track::after { transform:translateX(16px); }
+          #panel-members .dues-switch .dues-lbl { font-size:.72rem; font-weight:600; min-width:42px; }
+          #panel-members .dues-switch input:checked ~ .dues-lbl { color:#166534; }
+          #panel-members .dues-switch input:not(:checked) ~ .dues-lbl { color:#991b1b; }
+          #panel-members .dues-saving { font-size:.65rem; color:#c69a3f; margin-left:.3rem; display:none; }
+          #panel-members .dues-err { font-size:.65rem; color:#c0392b; margin-left:.3rem; }
         </style>
         <div class="mem-panel-head">
           <h3>Members &amp; Dues</h3>
           <div class="mem-actions">
-            <input type="text" class="mem-search" id="member-search" placeholder="Name or email…">
+            <input type="text" class="mem-search" id="member-search" placeholder="Name or email…" oninput="filterMembersTable()">
             <button class="mem-csv-btn" onclick="exportMembersCSV()">↓ Export CSV</button>
           </div>
         </div>
@@ -191,25 +199,109 @@
             </tbody>
           </table>
         </div>
+
         <script>
+        /* ── Members & Dues panel ── */
+        var _membersData = [];
+
+        async function loadMembersAdmin() {
+          var tbody = document.getElementById('members-table-body');
+          if (!tbody) return;
+          tbody.innerHTML = '<tr><td colspan="5" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
+          try {
+            var client = window.dlaSupabase || window.supabase;
+            if (!client) { tbody.innerHTML = '<tr><td colspan="5" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
+            var { data, error } = await client
+              .from('members')
+              .select('id, first_name, last_name, email, dues_paid, tier, created_at')
+              .order('last_name', { ascending: true });
+            if (error) throw error;
+            _membersData = data || [];
+            renderMembersTable(_membersData);
+          } catch(e) {
+            if (tbody) tbody.innerHTML = '<tr><td colspan="5" style="color:#c0392b;">Error loading members: ' + e.message + '</td></tr>';
+          }
+        }
+
+        function renderMembersTable(rows) {
+          var tbody = document.getElementById('members-table-body');
+          if (!tbody) return;
+          if (!rows.length) { tbody.innerHTML = '<tr><td colspan="5" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
+          tbody.innerHTML = rows.map(function(m) {
+            var name = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
+            var joined = m.created_at ? new Date(m.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
+            var checked = m.dues_paid ? 'checked' : '';
+            var lbl = m.dues_paid ? 'Paid' : 'Unpaid';
+            return '<tr data-name="' + escHtml(name).toLowerCase() + '" data-email="' + escHtml((m.email||'').toLowerCase()) + '">' +
+              '<td>' + escHtml(name) + '</td>' +
+              '<td>' + escHtml(m.email||'—') + '</td>' +
+              '<td>' +
+                '<label class="dues-switch" title="Toggle dues paid">' +
+                  '<input type="checkbox" ' + checked + ' onchange="toggleDues(this,\'' + m.id + '\')">' +
+                  '<span class="dues-track"></span>' +
+                  '<span class="dues-lbl">' + lbl + '</span>' +
+                  '<span class="dues-saving">Saving…</span>' +
+                '</label>' +
+              '</td>' +
+              '<td>' + escHtml(m.tier||'Member') + '</td>' +
+              '<td>' + joined + '</td>' +
+            '</tr>';
+          }).join('');
+        }
+
+        function escHtml(s) {
+          return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        async function toggleDues(checkbox, memberId) {
+          var paid = checkbox.checked;
+          var label = checkbox.parentElement.querySelector('.dues-lbl');
+          var saving = checkbox.parentElement.querySelector('.dues-saving');
+          if (label) label.textContent = paid ? 'Paid' : 'Unpaid';
+          if (saving) saving.style.display = 'inline';
+          checkbox.disabled = true;
+          try {
+            var client = window.dlaSupabase || window.supabase;
+            var { error } = await client
+              .from('members')
+              .update({ dues_paid: paid })
+              .eq('id', memberId);
+            if (error) throw error;
+            // update local cache
+            var rec = _membersData.find(function(m){ return m.id === memberId; });
+            if (rec) rec.dues_paid = paid;
+          } catch(e) {
+            // revert on error
+            checkbox.checked = !paid;
+            if (label) label.textContent = !paid ? 'Paid' : 'Unpaid';
+            alert('Could not update dues status: ' + e.message);
+          } finally {
+            checkbox.disabled = false;
+            if (saving) saving.style.display = 'none';
+          }
+        }
+
+        function filterMembersTable() {
+          var q = (document.getElementById('member-search').value || '').toLowerCase().trim();
+          if (!q) { renderMembersTable(_membersData); return; }
+          var filtered = _membersData.filter(function(m) {
+            var name = [m.first_name, m.last_name].filter(Boolean).join(' ').toLowerCase();
+            return name.includes(q) || (m.email||'').toLowerCase().includes(q);
+          });
+          renderMembersTable(filtered);
+        }
+
         function exportMembersCSV() {
           var rows = [['Name','Email','Dues Paid','Tier','Joined']];
           document.querySelectorAll('#members-table-body tr').forEach(function(tr) {
             var tds = tr.querySelectorAll('td');
             if (tds.length < 4) return;
-            rows.push([
-              tds[0].innerText.trim(),
-              tds[1].innerText.trim(),
-              tds[2].innerText.trim(),
-              tds[3].innerText.trim(),
-              tds[4] ? tds[4].innerText.trim() : ''
-            ]);
+            var duesChk = tds[2].querySelector('input[type=checkbox]');
+            var duesVal = duesChk ? (duesChk.checked ? 'Yes' : 'No') : tds[2].innerText.trim();
+            rows.push([tds[0].innerText.trim(), tds[1].innerText.trim(), duesVal, tds[3].innerText.trim(), tds[4] ? tds[4].innerText.trim() : '']);
           });
-          var csv = rows.map(function(r){ return r.map(function(c){ return '"'+c.replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
-          var a = document.createElement('a');
-          a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-          a.download = 'dla-members-' + new Date().toISOString().slice(0,10) + '.csv';
-          a.click();
+          var csv = rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
+          var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='dla-members-'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
         }
         </script>
       </div>
@@ -1478,5 +1570,36 @@
 
 <!-- Master controller — boots last, after all modules are defined -->
 <script src="../assets/js/admin-console.js"></script>
+
+<script>
+/* ── Members & Dues: auto-load when panel becomes active ── */
+(function() {
+  var loaded = false;
+  var panel = document.getElementById('panel-members');
+  if (!panel) return;
+
+  function maybeLoad() {
+    if (panel.classList.contains('active') && !loaded) {
+      loaded = true;
+      loadMembersAdmin();
+    }
+  }
+
+  // Watch for the .active class being added by admin-console.js
+  var obs = new MutationObserver(maybeLoad);
+  obs.observe(panel, { attributes: true, attributeFilter: ['class'] });
+
+  // Also hook tab button clicks directly as a fallback
+  document.querySelectorAll('.admin-tab-btn[data-panel="panel-members"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      // slight delay to let admin-console.js activate the panel first
+      setTimeout(function() { if (!loaded) { loaded = true; loadMembersAdmin(); } }, 60);
+    });
+  });
+
+  // If Members is the active panel on page load, load immediately
+  maybeLoad();
+})();
+</script>
 </body>
 </html>
