@@ -255,12 +255,10 @@
                 <th class="dues-col">SWP<small>Life</small></th>
                 <th class="dues-col">IHQ<small>Life</small></th>
                 <th>Total Paid</th>
-                <th>Tier</th>
-                <th>Joined</th>
               </tr>
             </thead>
             <tbody id="members-table-body">
-              <tr><td colspan="10">Loading…</td></tr>
+              <tr><td colspan="8">Loading…</td></tr>
             </tbody>
           </table>
         </div>
@@ -2193,7 +2191,7 @@
   function _render(rows) {
     var tbody = document.getElementById('members-table-body');
     if (!tbody) return;
-    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
+    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
     tbody.innerHTML = rows.map(function(m) {
       var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
       var joined = m.join_date ? new Date(m.join_date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
@@ -2214,8 +2212,6 @@
         '<td>' + mkCb('swp_life') + '</td>' +
         '<td>' + mkCb('ihq_life') + '</td>' +
         '<td>' + totalCell + '</td>' +
-        '<td style="font-size:.78rem">' + _esc(m.membership_tier||'—') + '</td>' +
-        '<td style="font-size:.78rem;white-space:nowrap">' + joined + '</td>' +
       '</tr>';
     }).join('');
   }
@@ -2223,10 +2219,10 @@
   async function _load() {
     var tbody = document.getElementById('members-table-body');
     if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
     try {
       var client = window.dlaSupabase || window.supabase;
-      if (!client) { tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
+      if (!client) { tbody.innerHTML = '<tr><td colspan="8" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
       var { data, error } = await client
         .from('members')
         .select('id, first_name, last_name, email, membership_tier, join_date, dues_paid, chapter_dues, province_dues, ihq_dues, swp_life, ihq_life')
@@ -2236,7 +2232,7 @@
       _render(_applyFilter(_membersData));
       _updateSummary();
     } catch(e) {
-      if (tbody) tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Error: ' + _esc(e.message) + '</td></tr>';
+      if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="color:#c0392b;">Error: ' + _esc(e.message) + '</td></tr>';
     }
   }
 
