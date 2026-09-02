@@ -113,6 +113,7 @@
         <button class="admin-tab-btn" data-panel="panel-blog">Blog</button>
         <button class="admin-tab-btn" data-panel="panel-community-service">Community Service</button>
         <button class="admin-tab-btn" data-panel="panel-volunteer">Volunteer (DLGRF)</button>
+        <button class="admin-tab-btn" data-panel="panel-event-roster">Event Signup Roster</button>
       </div>
       <!-- ============ EVENTS PANEL ============ -->
       <div class="admin-panel active" id="panel-events">
@@ -1541,10 +1542,578 @@
     </table>
   </div>
 </div>
+      <!-- ============ EVENT SIGNUP ROSTER PANEL ============ -->
+      <div class="admin-panel" id="panel-event-roster">
+        <style>
+          /* Scoped to #panel-event-roster to prevent conflicts */
+          #panel-event-roster { font-family: 'DM Sans', 'Archivo', sans-serif; }
+          #panel-event-roster *, #panel-event-roster *::before, #panel-event-roster *::after { box-sizing: border-box; }
+
+          #panel-event-roster .er-header { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+          #panel-event-roster .er-header-left h2 { font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: .06em; color: #f2ebd7; line-height: 1.1; margin: 0; }
+          #panel-event-roster .er-header-left p { font-size: .72rem; color: rgba(242,235,215,.65); margin: .2rem 0 0; }
+          #panel-event-roster .er-header-badge { background: #c69a3f; color: #2a0604; font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 20px; }
+
+          #panel-event-roster .er-topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; padding: .85rem 0; border-bottom: 1px solid #e4dbd0; margin-bottom: 1rem; }
+          #panel-event-roster .er-topbar-left { display: flex; gap: .6rem; flex-wrap: wrap; }
+          #panel-event-roster .er-topbar-right { display: flex; gap: .6rem; }
+
+          #panel-event-roster .er-btn { font-family: 'Archivo', sans-serif; font-size: .78rem; font-weight: 600; padding: .5rem 1rem; border-radius: 6px; border: none; cursor: pointer; transition: filter .2s; display: inline-flex; align-items: center; gap: .3rem; }
+          #panel-event-roster .er-btn:hover { filter: brightness(.92); }
+          #panel-event-roster .er-btn-primary { background: #70110c; color: #f2ebd7; }
+          #panel-event-roster .er-btn-outline { background: #fff; color: #70110c; border: 1px solid #70110c; }
+          #panel-event-roster .er-btn-ghost { background: transparent; color: #7a6a60; border: 1px solid #e4dbd0; font-size: .74rem; padding: .38rem .75rem; }
+          #panel-event-roster .er-btn-icon { padding: .32rem .55rem; font-size: .73rem; border-radius: 4px; }
+          #panel-event-roster .er-btn-edit { background: #eef4ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+          #panel-event-roster .er-btn-delete { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+          #panel-event-roster .er-btn-add-vol { background: rgba(242,235,215,.18); color: #f2ebd7; border: 1px solid rgba(242,235,215,.35); font-family: 'Archivo', sans-serif; font-size: .74rem; font-weight: 600; padding: .4rem .85rem; border-radius: 6px; cursor: pointer; transition: background .2s; }
+          #panel-event-roster .er-btn-add-vol:hover { background: rgba(242,235,215,.3); }
+          #panel-event-roster .er-btn-danger { background: #dc2626; color: #fff; border: none; }
+
+          #panel-event-roster .er-search-wrap { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+          #panel-event-roster .er-search-wrap input, #panel-event-roster .er-search-wrap select { font-family: 'Archivo', sans-serif; font-size: .81rem; padding: .48rem .85rem; border: 1px solid #e4dbd0; border-radius: 6px; background: #fff; }
+          #panel-event-roster .er-search-wrap input { min-width: 200px; }
+          #panel-event-roster .er-search-wrap input:focus, #panel-event-roster .er-search-wrap select:focus { outline: none; border-color: #70110c; }
+
+          #panel-event-roster .er-summary { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+          #panel-event-roster .er-chip { background: #f2ebd7; border: 1px solid #d8cfc5; border-radius: 6px; padding: .45rem .9rem; display: flex; flex-direction: column; gap: .15rem; min-width: 130px; }
+          #panel-event-roster .er-chip-label { font-size: .62rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #7a6a60; }
+          #panel-event-roster .er-chip-value { font-family: 'Cinzel', serif; font-size: 1.3rem; color: #70110c; letter-spacing: .04em; }
+
+          #panel-event-roster .er-event-card { background: #fff; border: 1px solid #e4dbd0; border-radius: 10px; margin-bottom: 1.75rem; overflow: hidden; box-shadow: 0 2px 8px rgba(112,17,12,.05); }
+          #panel-event-roster .er-event-header { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #f2ebd7; padding: .9rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+          #panel-event-roster .er-event-header-left { display: flex; align-items: center; gap: .9rem; }
+          #panel-event-roster .er-date-box { background: rgba(242,235,215,.15); border: 1px solid rgba(242,235,215,.25); border-radius: 8px; padding: .45rem .85rem; text-align: center; min-width: 58px; }
+          #panel-event-roster .er-date-box .er-date-month { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c69a3f; }
+          #panel-event-roster .er-date-box .er-date-day { font-family: 'Cinzel', serif; font-size: 1.5rem; line-height: 1; color: #f2ebd7; }
+          #panel-event-roster .er-date-box .er-date-year { font-size: .58rem; color: rgba(242,235,215,.6); }
+          #panel-event-roster .er-event-info h3 { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .06em; color: #f2ebd7; line-height: 1.1; margin: 0; }
+          #panel-event-roster .er-event-info .er-event-sub { font-size: .7rem; color: rgba(242,235,215,.65); margin-top: .15rem; }
+          #panel-event-roster .er-event-header-right { display: flex; align-items: center; gap: .65rem; }
+          #panel-event-roster .er-badge-count { background: #c69a3f; color: #2a0604; font-family: 'Cinzel', serif; font-size: .9rem; letter-spacing: .05em; padding: .22rem .8rem; border-radius: 20px; }
+
+          #panel-event-roster .er-table-wrap { overflow-x: auto; }
+          #panel-event-roster .er-table-wrap table { width: 100%; border-collapse: collapse; }
+          #panel-event-roster .er-table-wrap thead th { font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #7a6a60; padding: .65rem 1rem; background: #faf8f5; border-bottom: 1px solid #e4dbd0; text-align: left; white-space: nowrap; }
+          #panel-event-roster .er-table-wrap tbody tr { border-bottom: 1px solid #f0ece6; transition: background .15s; }
+          #panel-event-roster .er-table-wrap tbody tr:last-child { border-bottom: none; }
+          #panel-event-roster .er-table-wrap tbody tr:hover { background: #faf8f5; }
+          #panel-event-roster .er-table-wrap tbody td { font-size: .82rem; padding: .65rem 1rem; vertical-align: middle; }
+          #panel-event-roster .er-name-cell { font-weight: 600; }
+          #panel-event-roster .er-email-cell { color: #7a6a60; font-size: .77rem; }
+          #panel-event-roster .er-phone-cell { font-size: .77rem; white-space: nowrap; }
+          #panel-event-roster .er-tabc-badge { display: inline-block; font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .18rem .5rem; border-radius: 12px; }
+          #panel-event-roster .er-tabc-yes { background: #dcfce7; color: #15803d; }
+          #panel-event-roster .er-tabc-no { background: #f3f4f6; color: #9ca3af; }
+          #panel-event-roster .er-assign-badge { display: inline-block; font-size: .67rem; padding: .18rem .55rem; border-radius: 4px; background: #f2ebd7; color: #70110c; font-weight: 500; }
+          #panel-event-roster .er-action-cell { display: flex; gap: .3rem; align-items: center; }
+          #panel-event-roster .er-no-vols { text-align: center; padding: 1.25rem; color: #7a6a60; font-size: .83rem; font-style: italic; }
+
+          /* Modal */
+          #panel-event-roster .er-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem; }
+          #panel-event-roster .er-overlay.active { display: flex; }
+          #panel-event-roster .er-modal { background: #fff; border-radius: 12px; width: 100%; max-width: 680px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+          #panel-event-roster .er-modal-head { background: linear-gradient(135deg, #70110c, #2a0604); color: #f2ebd7; padding: 1.15rem 1.4rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+          #panel-event-roster .er-modal-head h3 { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .06em; margin: 0; }
+          #panel-event-roster .er-modal-close { background: none; border: none; color: #f2ebd7; font-size: 1.3rem; cursor: pointer; opacity: .75; line-height: 1; }
+          #panel-event-roster .er-modal-close:hover { opacity: 1; }
+          #panel-event-roster .er-modal-body { overflow-y: auto; padding: 1.4rem; }
+          #panel-event-roster .er-modal-footer { padding: .9rem 1.4rem; border-top: 1px solid #e4dbd0; display: flex; justify-content: flex-end; gap: .6rem; flex-shrink: 0; background: #faf8f5; }
+
+          #panel-event-roster .er-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+          #panel-event-roster .er-form-field { display: flex; flex-direction: column; gap: .32rem; }
+          #panel-event-roster .er-form-field.er-full { grid-column: 1 / -1; }
+          #panel-event-roster .er-form-field label { font-size: .67rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6a5a50; }
+          #panel-event-roster .er-form-field input, #panel-event-roster .er-form-field select, #panel-event-roster .er-form-field textarea { font-family: 'Archivo', sans-serif; font-size: .86rem; padding: .55rem .8rem; border: 1px solid #e4dbd0; border-radius: 6px; background: #faf8f5; color: #1a1a1a; }
+          #panel-event-roster .er-form-field input:focus, #panel-event-roster .er-form-field select:focus, #panel-event-roster .er-form-field textarea:focus { outline: none; border-color: #70110c; }
+          #panel-event-roster .er-form-field textarea { resize: vertical; min-height: 65px; }
+          #panel-event-roster .er-section-divider { font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #7a6a60; padding: .7rem 0 .35rem; border-top: 1px solid #e4dbd0; margin-top: .5rem; grid-column: 1 / -1; }
+          #panel-event-roster .er-dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; grid-column: 1 / -1; }
+          #panel-event-roster .er-date-check { display: flex; align-items: center; gap: .45rem; font-size: .81rem; cursor: pointer; padding: .32rem .45rem; border-radius: 4px; transition: background .15s; }
+          #panel-event-roster .er-date-check:hover { background: #f2ebd7; }
+          #panel-event-roster .er-date-check input[type="checkbox"] { accent-color: #70110c; width: 14px; height: 14px; cursor: pointer; }
+
+          /* Confirm overlay */
+          #panel-event-roster .er-confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+          #panel-event-roster .er-confirm-overlay.active { display: flex; }
+          #panel-event-roster .er-confirm-box { background: #fff; border-radius: 10px; padding: 1.75rem; max-width: 400px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+          #panel-event-roster .er-confirm-box h4 { font-size: 1rem; font-weight: 700; color: #dc2626; margin-bottom: .5rem; }
+          #panel-event-roster .er-confirm-box p { font-size: .86rem; color: #7a6a60; margin-bottom: 1.4rem; line-height: 1.5; }
+          #panel-event-roster .er-confirm-actions { display: flex; justify-content: flex-end; gap: .6rem; }
+
+          /* Toast */
+          #er-toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #1a1a1a; color: #fff; font-size: .84rem; padding: .7rem 1.2rem; border-radius: 8px; z-index: 2000; transform: translateY(120%); opacity: 0; transition: transform .3s, opacity .3s; max-width: 360px; pointer-events: none; }
+          #er-toast.show { transform: translateY(0); opacity: 1; }
+          #er-toast.success { border-left: 4px solid #22c55e; }
+          #er-toast.error { border-left: 4px solid #dc2626; }
+
+          @media (max-width: 600px) {
+            #panel-event-roster .er-form-grid { grid-template-columns: 1fr; }
+            #panel-event-roster .er-form-field.er-full { grid-column: 1; }
+            #panel-event-roster .er-section-divider { grid-column: 1; }
+            #panel-event-roster .er-dates-grid { grid-template-columns: 1fr; }
+          }
+        </style>
+
+        <!-- Header -->
+        <div class="er-header">
+          <div class="er-header-left">
+            <h2>DLGRF Event Sign Up Roster</h2>
+            <p>Denton-Lewisville Alumni Chapter · Guide Right Program</p>
+          </div>
+          <div class="er-header-badge">2026–27 Season</div>
+        </div>
+
+        <!-- Top bar -->
+        <div class="er-topbar">
+          <div class="er-search-wrap">
+            <input type="text" id="er-searchInput" placeholder="Search volunteers…" oninput="er_applyFilters()">
+            <select id="er-filterAssign" onchange="er_applyFilters()">
+              <option value="">All Roles</option>
+              <option>Concessions</option>
+              <option>Parking</option>
+              <option>Gate / Entry</option>
+              <option>Field Support</option>
+              <option>General</option>
+            </select>
+            <select id="er-filterTabc" onchange="er_applyFilters()">
+              <option value="">TABC: All</option>
+              <option value="yes">TABC Certified</option>
+              <option value="no">Not Certified</option>
+            </select>
+          </div>
+          <div class="er-topbar-right">
+            <button class="er-btn er-btn-outline" onclick="er_exportCSV()">⬇ Export CSV</button>
+            <button class="er-btn er-btn-primary" onclick="er_openAddModal(null)">+ Add Volunteer</button>
+          </div>
+        </div>
+
+        <!-- Summary chips -->
+        <div class="er-summary">
+          <div class="er-chip"><span class="er-chip-label">Total Volunteers</span><span class="er-chip-value" id="er-chipTotal">—</span></div>
+          <div class="er-chip"><span class="er-chip-label">Total Sign-Ups</span><span class="er-chip-value" id="er-chipSignups">—</span></div>
+          <div class="er-chip"><span class="er-chip-label">TABC Certified</span><span class="er-chip-value" id="er-chipTabc">—</span></div>
+          <div class="er-chip"><span class="er-chip-label">Events Covered</span><span class="er-chip-value" id="er-chipEvents">—</span></div>
+        </div>
+
+        <!-- Main content -->
+        <div id="er-mainContent">
+          <div style="text-align:center;padding:3rem 2rem;color:#aaa;">Loading roster…</div>
+        </div>
+
+        <!-- Add / Edit Modal -->
+        <div class="er-overlay" id="er-modalOverlay" onclick="er_handleOverlayClick(event)">
+          <div class="er-modal">
+            <div class="er-modal-head">
+              <h3 id="er-modalTitle">Add Volunteer</h3>
+              <button class="er-modal-close" onclick="er_closeModal()">✕</button>
+            </div>
+            <div class="er-modal-body">
+              <form class="er-form-grid" id="er-volForm" onsubmit="return false">
+                <div class="er-form-field">
+                  <label>Full Name *</label>
+                  <input type="text" id="er-f_name" required placeholder="First Last">
+                </div>
+                <div class="er-form-field">
+                  <label>Email *</label>
+                  <input type="email" id="er-f_email" required placeholder="email@example.com">
+                </div>
+                <div class="er-form-field">
+                  <label>Mobile Phone</label>
+                  <input type="tel" id="er-f_phone" placeholder="(214) 555-0000">
+                </div>
+                <div class="er-form-field">
+                  <label>Preferred Assignment</label>
+                  <select id="er-f_assign">
+                    <option value="">— Select —</option>
+                    <option>Concessions</option>
+                    <option>Parking</option>
+                    <option>Gate / Entry</option>
+                    <option>Field Support</option>
+                    <option>General</option>
+                  </select>
+                </div>
+                <div class="er-section-divider">Emergency Contact</div>
+                <div class="er-form-field">
+                  <label>EC Name</label>
+                  <input type="text" id="er-f_ec_name" placeholder="Contact name">
+                </div>
+                <div class="er-form-field">
+                  <label>EC Phone</label>
+                  <input type="tel" id="er-f_ec_phone" placeholder="(214) 555-0000">
+                </div>
+                <div class="er-section-divider">TABC Certification</div>
+                <div class="er-form-field">
+                  <label>TABC Certified?</label>
+                  <select id="er-f_tabc">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                  </select>
+                </div>
+                <div class="er-form-field">
+                  <label>TABC Expiry</label>
+                  <input type="date" id="er-f_tabc_expiry">
+                </div>
+                <div class="er-form-field er-full">
+                  <label>TABC Certificate URL</label>
+                  <input type="url" id="er-f_tabc_url" placeholder="https://…">
+                </div>
+                <div class="er-section-divider">Experience &amp; Notes</div>
+                <div class="er-form-field">
+                  <label>Previous Events</label>
+                  <input type="number" id="er-f_prev" min="0" placeholder="0">
+                </div>
+                <div class="er-form-field">
+                  <label>Status</label>
+                  <select id="er-f_status">
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="waitlisted">Waitlisted</option>
+                    <option value="declined">Declined</option>
+                  </select>
+                </div>
+                <div class="er-form-field er-full">
+                  <label>Additional Comments</label>
+                  <textarea id="er-f_comments" placeholder="Any notes…"></textarea>
+                </div>
+                <div class="er-section-divider">Event Dates (select all that apply)</div>
+                <div class="er-dates-grid" id="er-datesGrid"></div>
+              </form>
+            </div>
+            <div class="er-modal-footer">
+              <button class="er-btn er-btn-ghost" onclick="er_closeModal()">Cancel</button>
+              <button class="er-btn er-btn-primary" onclick="er_saveVolunteer()">Save Volunteer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirm Delete Modal -->
+        <div class="er-confirm-overlay" id="er-confirmOverlay">
+          <div class="er-confirm-box">
+            <h4>Delete Volunteer?</h4>
+            <p id="er-confirmMsg">This will permanently remove this volunteer from all events.</p>
+            <div class="er-confirm-actions">
+              <button class="er-btn er-btn-ghost" onclick="er_closeConfirm()">Cancel</button>
+              <button class="er-btn er-btn-danger" onclick="er_doDelete()">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <script>
+        /* ── DLGRF Event Signup Roster Panel ── */
+        (function() {
+          var ER_EVENT_DATES = [
+            { label: 'Sept 4, 2026',  date: '2026-09-04', opp: 'vs Cleveland Browns' },
+            { label: 'Sept 20, 2026', date: '2026-09-20', opp: 'vs New York Giants' },
+            { label: 'Oct 2, 2026',   date: '2026-10-02', opp: 'vs Carolina Panthers' },
+            { label: 'Oct 18, 2026',  date: '2026-10-18', opp: 'vs Los Angeles Rams' },
+            { label: 'Nov 1, 2026',   date: '2026-11-01', opp: 'vs Philadelphia Eagles' },
+            { label: 'Nov 29, 2026',  date: '2026-11-29', opp: 'vs Kansas City Chiefs (Thanksgiving)' },
+            { label: 'Jan 3, 2027',   date: '2027-01-03', opp: 'vs Washington Commanders' },
+          ];
+
+          // Expose functions to global scope for onclick handlers
+          window.er_applyFilters    = er_applyFilters;
+          window.er_exportCSV       = er_exportCSV;
+          window.er_openAddModal    = er_openAddModal;
+          window.er_openEditModal   = er_openEditModal;
+          window.er_closeModal      = er_closeModal;
+          window.er_handleOverlayClick = er_handleOverlayClick;
+          window.er_saveVolunteer   = er_saveVolunteer;
+          window.er_confirmDelete   = er_confirmDelete;
+          window.er_closeConfirm    = er_closeConfirm;
+          window.er_doDelete        = er_doDelete;
+
+          var _erAll = [];
+          var _erFiltered = [];
+          var _erEditId = null;
+          var _erDeleteId = null;
+          var _erToastTimer = null;
+
+          function er_sbClient() {
+            return window.dlaSupabase || window.supabase;
+          }
+
+          window.er_loadVolunteers = async function er_loadVolunteers() {
+            var main = document.getElementById('er-mainContent');
+            if (main) main.innerHTML = '<div style="text-align:center;padding:3rem;color:#aaa;">Loading roster…</div>';
+            try {
+              var client = er_sbClient();
+              if (!client) throw new Error('Supabase client not ready.');
+              var { data, error } = await client
+                .from('volunteers')
+                .select('*')
+                .order('created_at', { ascending: false });
+              if (error) throw error;
+              _erAll = data || [];
+              _erFiltered = _erAll.slice();
+              er_renderSummary();
+              er_renderRoster();
+            } catch(e) {
+              if (main) main.innerHTML = '<div style="text-align:center;padding:3rem;color:#c0392b;">⚠ Could not load volunteers: ' + erEsc(e.message) + '</div>';
+            }
+          };
+
+          function er_renderSummary() {
+            var unique = _erAll.length;
+            var signups = 0;
+            _erAll.forEach(function(v){ if (Array.isArray(v.volunteer_dates)) signups += v.volunteer_dates.length; });
+            var tabc = _erAll.filter(function(v){ return v.tabc_certified; }).length;
+            var covered = new Set();
+            _erAll.forEach(function(v){ if (Array.isArray(v.volunteer_dates)) v.volunteer_dates.forEach(function(d){ covered.add(d); }); });
+            var el = function(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; };
+            el('er-chipTotal', unique);
+            el('er-chipSignups', signups);
+            el('er-chipTabc', tabc);
+            el('er-chipEvents', covered.size);
+          }
+
+          function er_applyFilters() {
+            var q    = (document.getElementById('er-searchInput').value || '').toLowerCase();
+            var role = document.getElementById('er-filterAssign').value;
+            var tabc = document.getElementById('er-filterTabc').value;
+            _erFiltered = _erAll.filter(function(v) {
+              var matchQ = !q || (v.full_name||'').toLowerCase().includes(q) || (v.email||'').toLowerCase().includes(q);
+              var matchR = !role || v.preferred_assignment === role;
+              var matchT = !tabc || (tabc === 'yes' ? v.tabc_certified : !v.tabc_certified);
+              return matchQ && matchR && matchT;
+            });
+            er_renderRoster();
+          }
+
+          function er_renderRoster() {
+            var main = document.getElementById('er-mainContent');
+            if (!main) return;
+            var dateMap = {};
+            ER_EVENT_DATES.forEach(function(ed){ dateMap[ed.date] = []; });
+            _erFiltered.forEach(function(vol) {
+              if (!Array.isArray(vol.volunteer_dates)) return;
+              vol.volunteer_dates.forEach(function(d) {
+                if (dateMap[d] !== undefined) dateMap[d].push(vol);
+              });
+            });
+
+            var html = '';
+            ER_EVENT_DATES.forEach(function(ed) {
+              var volunteers = dateMap[ed.date] || [];
+              var parts = ed.date.split('-');
+              var dtObj = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+              var monthStr = dtObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+              var dayNum   = dtObj.getDate();
+              var yearNum  = dtObj.getFullYear();
+              var today    = new Date(); today.setHours(0,0,0,0);
+              var isPast   = dtObj < today;
+
+              html += '<div class="er-event-card"' + (isPast ? ' style="opacity:.72"' : '') + '>';
+              html += '<div class="er-event-header">';
+              html += '<div class="er-event-header-left">';
+              html += '<div class="er-date-box"><div class="er-date-month">' + monthStr + '</div><div class="er-date-day">' + dayNum + '</div><div class="er-date-year">' + yearNum + '</div></div>';
+              html += '<div class="er-event-info"><h3>' + erEsc(ed.label) + (isPast ? ' ✓' : '') + '</h3><div class="er-event-sub">' + erEsc(ed.opp) + '</div></div>';
+              html += '</div>';
+              html += '<div class="er-event-header-right">';
+              html += '<div class="er-badge-count">' + volunteers.length + ' Vol' + (volunteers.length !== 1 ? 's' : '') + '</div>';
+              html += '<button class="er-btn-add-vol" onclick="er_openAddModal(\'' + ed.date + '\')">+ Add</button>';
+              html += '</div></div>';
+
+              html += '<div class="er-table-wrap">';
+              if (volunteers.length === 0) {
+                html += '<div class="er-no-vols">No volunteers signed up for this event yet.</div>';
+              } else {
+                html += '<table><thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>TABC</th><th>Prior Events</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+                volunteers.forEach(function(v, i) {
+                  var tabcBadge = v.tabc_certified
+                    ? '<span class="er-tabc-badge er-tabc-yes">✓ Certified</span>'
+                    : '<span class="er-tabc-badge er-tabc-no">No</span>';
+                  var assign = v.preferred_assignment
+                    ? '<span class="er-assign-badge">' + erEsc(v.preferred_assignment) + '</span>' : '—';
+                  var statusStyle = v.status === 'confirmed' ? 'color:#15803d;font-weight:600'
+                    : v.status === 'declined' ? 'color:#dc2626' : '';
+                  html += '<tr>';
+                  html += '<td style="color:#7a6a60;font-size:.78rem">' + (i+1) + '</td>';
+                  html += '<td class="er-name-cell">' + erEsc(v.full_name || '—') + '</td>';
+                  html += '<td class="er-email-cell">' + erEsc(v.email || '—') + '</td>';
+                  html += '<td class="er-phone-cell">' + erEsc(v.mobile_phone || '—') + '</td>';
+                  html += '<td>' + assign + '</td>';
+                  html += '<td>' + tabcBadge + '</td>';
+                  html += '<td style="text-align:center">' + (v.previous_events != null ? v.previous_events : '—') + '</td>';
+                  html += '<td><span style="' + statusStyle + '">' + erCapitalize(v.status || 'pending') + '</span></td>';
+                  html += '<td><div class="er-action-cell"><button class="er-btn er-btn-icon er-btn-edit" title="Edit" onclick="er_openEditModal(\'' + v.id + '\')">✏️</button><button class="er-btn er-btn-icon er-btn-delete" title="Delete" onclick="er_confirmDelete(\'' + v.id + '\',\'' + erEsc(v.full_name || '') + '\')">🗑</button></div></td>';
+                  html += '</tr>';
+                });
+                html += '</tbody></table>';
+              }
+              html += '</div></div>';
+            });
+
+            main.innerHTML = html || '<div style="text-align:center;padding:3rem;color:#aaa;">No volunteers match your search.</div>';
+          }
+
+          function er_buildDateCheckboxes(selectedDates) {
+            selectedDates = selectedDates || [];
+            var grid = document.getElementById('er-datesGrid');
+            if (!grid) return;
+            grid.innerHTML = ER_EVENT_DATES.map(function(ed) {
+              var checked = selectedDates.includes(ed.date) ? 'checked' : '';
+              return '<label class="er-date-check"><input type="checkbox" value="' + ed.date + '" ' + checked + ' data-er-date-cb> ' + erEsc(ed.label) + ' <span style="font-size:.68rem;color:#7a6a60">' + erEsc(ed.opp) + '</span></label>';
+            }).join('');
+          }
+
+          function er_openAddModal(preDate) {
+            _erEditId = null;
+            var form = document.getElementById('er-volForm');
+            if (form) form.reset();
+            document.getElementById('er-modalTitle').textContent = 'Add Volunteer';
+            er_buildDateCheckboxes(preDate ? [preDate] : []);
+            document.getElementById('er-modalOverlay').classList.add('active');
+          }
+
+          function er_openEditModal(id) {
+            var vol = _erAll.find(function(v){ return String(v.id) === String(id); });
+            if (!vol) { er_showToast('Volunteer not found.', 'error'); return; }
+            _erEditId = id;
+            document.getElementById('er-modalTitle').textContent = 'Edit Volunteer';
+            document.getElementById('er-f_name').value    = vol.full_name || '';
+            document.getElementById('er-f_email').value   = vol.email || '';
+            document.getElementById('er-f_phone').value   = vol.mobile_phone || '';
+            document.getElementById('er-f_assign').value  = vol.preferred_assignment || '';
+            document.getElementById('er-f_ec_name').value = vol.ec_name || '';
+            document.getElementById('er-f_ec_phone').value = vol.ec_phone || '';
+            document.getElementById('er-f_tabc').value    = vol.tabc_certified ? 'true' : 'false';
+            document.getElementById('er-f_tabc_expiry').value = vol.tabc_expiry || '';
+            document.getElementById('er-f_tabc_url').value = vol.tabc_cert_url || '';
+            document.getElementById('er-f_prev').value    = vol.previous_events != null ? vol.previous_events : '';
+            document.getElementById('er-f_status').value  = vol.status || 'pending';
+            document.getElementById('er-f_comments').value = vol.additional_comments || '';
+            er_buildDateCheckboxes(Array.isArray(vol.volunteer_dates) ? vol.volunteer_dates : []);
+            document.getElementById('er-modalOverlay').classList.add('active');
+          }
+
+          function er_closeModal() {
+            var el = document.getElementById('er-modalOverlay');
+            if (el) el.classList.remove('active');
+          }
+          function er_handleOverlayClick(e) {
+            if (e.target === document.getElementById('er-modalOverlay')) er_closeModal();
+          }
+
+          async function er_saveVolunteer() {
+            var name  = (document.getElementById('er-f_name').value || '').trim();
+            var email = (document.getElementById('er-f_email').value || '').trim();
+            if (!name || !email) { er_showToast('Name and email are required.', 'error'); return; }
+
+            var selectedDates = Array.from(document.querySelectorAll('[data-er-date-cb]:checked')).map(function(cb){ return cb.value; });
+            var payload = {
+              full_name:             name,
+              email:                 email,
+              mobile_phone:          document.getElementById('er-f_phone').value.trim() || null,
+              preferred_assignment:  document.getElementById('er-f_assign').value || null,
+              ec_name:               document.getElementById('er-f_ec_name').value.trim() || null,
+              ec_phone:              document.getElementById('er-f_ec_phone').value.trim() || null,
+              tabc_certified:        document.getElementById('er-f_tabc').value === 'true',
+              tabc_expiry:           document.getElementById('er-f_tabc_expiry').value || null,
+              tabc_cert_url:         document.getElementById('er-f_tabc_url').value.trim() || null,
+              previous_events:       parseInt(document.getElementById('er-f_prev').value) || 0,
+              status:                document.getElementById('er-f_status').value || 'pending',
+              additional_comments:   document.getElementById('er-f_comments').value.trim() || null,
+              volunteer_dates:       selectedDates,
+              season:                '2026-2027',
+            };
+
+            try {
+              var client = er_sbClient();
+              if (!client) throw new Error('Supabase client not ready.');
+              if (_erEditId) {
+                var { error } = await client.from('volunteers').update(payload).eq('id', _erEditId);
+                if (error) throw error;
+                er_showToast('Volunteer updated!', 'success');
+              } else {
+                var { error } = await client.from('volunteers').insert(payload);
+                if (error) throw error;
+                er_showToast('Volunteer added!', 'success');
+              }
+              er_closeModal();
+              await window.er_loadVolunteers();
+            } catch(e) {
+              er_showToast('Save failed: ' + e.message, 'error');
+            }
+          }
+
+          function er_confirmDelete(id, name) {
+            _erDeleteId = id;
+            var msg = document.getElementById('er-confirmMsg');
+            if (msg) msg.textContent = 'This will permanently remove "' + name + '" from all events. This cannot be undone.';
+            document.getElementById('er-confirmOverlay').classList.add('active');
+          }
+          function er_closeConfirm() {
+            var el = document.getElementById('er-confirmOverlay');
+            if (el) el.classList.remove('active');
+            _erDeleteId = null;
+          }
+          async function er_doDelete() {
+            if (!_erDeleteId) return;
+            try {
+              var client = er_sbClient();
+              var { error } = await client.from('volunteers').delete().eq('id', _erDeleteId);
+              if (error) throw error;
+              er_closeConfirm();
+              er_showToast('Volunteer deleted.', 'success');
+              await window.er_loadVolunteers();
+            } catch(e) {
+              er_closeConfirm();
+              er_showToast('Delete failed: ' + e.message, 'error');
+            }
+          }
+
+          function er_exportCSV() {
+            var headers = ['Name','Email','Phone','Assignment','TABC','Prior Events','Status','Event Dates','Comments'];
+            var rows = _erFiltered.map(function(v) {
+              return [
+                v.full_name || '', v.email || '', v.mobile_phone || '',
+                v.preferred_assignment || '', v.tabc_certified ? 'Yes' : 'No',
+                v.previous_events != null ? v.previous_events : 0,
+                v.status || '',
+                Array.isArray(v.volunteer_dates) ? v.volunteer_dates.join('; ') : '',
+                v.additional_comments || ''
+              ];
+            });
+            var csv = [headers].concat(rows).map(function(r){
+              return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(',');
+            }).join('\n');
+            var blob = new Blob([csv], { type: 'text/csv' });
+            var url  = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url; a.download = 'dlgrf-event-roster-' + new Date().toISOString().slice(0,10) + '.csv'; a.click();
+            setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+          }
+
+          function erEsc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+          function erCapitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+          function er_showToast(msg, type) {
+            var t = document.getElementById('er-toast');
+            if (!t) return;
+            t.textContent = msg;
+            t.className = 'toast ' + (type||'success') + ' show';
+            clearTimeout(_erToastTimer);
+            _erToastTimer = setTimeout(function(){ t.className = 'toast'; }, 3500);
+          }
+        })();
+        </script>
+      </div>
+      <!-- END EVENT SIGNUP ROSTER PANEL -->
+
       </div>
     </div>
   </section>
 </div>
+
+<!-- Toast for Event Signup Roster -->
+<div id="er-toast" style="position:fixed;bottom:1.5rem;right:1.5rem;background:#1a1a1a;color:#fff;font-size:.84rem;padding:.7rem 1.2rem;border-radius:8px;z-index:2000;transform:translateY(120%);opacity:0;transition:transform .3s,opacity .3s;max-width:360px;pointer-events:none;"></div>
+<style>
+  #er-toast.show { transform: translateY(0) !important; opacity: 1 !important; }
+  #er-toast.success { border-left: 4px solid #22c55e; }
+  #er-toast.error { border-left: 4px solid #dc2626; }
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../assets/js/config.js"></script>
@@ -1572,6 +2141,31 @@
 <script src="../assets/js/admin-console.js"></script>
 
 <script>
+/* ── Event Signup Roster: auto-load when panel becomes active ── */
+(function() {
+  var erLoaded = false;
+  var erPanel = document.getElementById('panel-event-roster');
+  if (!erPanel) return;
+
+  function erMaybeLoad() {
+    if (erPanel.classList.contains('active') && !erLoaded) {
+      erLoaded = true;
+      window.er_loadVolunteers();
+    }
+  }
+
+  var erObs = new MutationObserver(erMaybeLoad);
+  erObs.observe(erPanel, { attributes: true, attributeFilter: ['class'] });
+
+  document.querySelectorAll('.admin-tab-btn[data-panel="panel-event-roster"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      setTimeout(function() { if (!erLoaded) { erLoaded = true; window.er_loadVolunteers(); } }, 60);
+    });
+  });
+
+  erMaybeLoad();
+})();
+
 /* ── Members & Dues: auto-load when panel becomes active ── */
 (function() {
   var loaded = false;
