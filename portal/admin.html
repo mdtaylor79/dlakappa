@@ -161,56 +161,86 @@
           #panel-members .mem-panel-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; margin-bottom:1rem; }
           #panel-members .mem-panel-head h3 { margin:0; font-family:'Cinzel',serif; font-size:.9rem; color:#70110c; letter-spacing:.04em; }
           #panel-members .mem-actions { display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
-          #panel-members .mem-search { padding:.45rem .75rem; border:1px solid #d8cfc5; border-radius:4px; font-size:.84rem; width:220px; }
+          #panel-members .mem-search { padding:.45rem .75rem; border:1px solid #d8cfc5; border-radius:4px; font-size:.84rem; width:200px; }
           #panel-members .mem-filter-btn { font-size:.72rem; font-weight:600; padding:.38rem .8rem; border-radius:4px; cursor:pointer; border:1px solid #d8cfc5; background:#fff; color:#555; transition:all .15s; }
           #panel-members .mem-filter-btn.active-filter { background:#70110c; color:#f2ebd7; border-color:#70110c; }
           #panel-members .mem-csv-btn { font-family:'Cinzel',serif; font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.45rem 1rem; border-radius:4px; cursor:pointer; border:1px solid #e0d4c8; background:#f0e8e0; color:#70110c; transition:filter .2s; }
           #panel-members .mem-csv-btn:hover { filter:brightness(1.05); }
 
-          /* ── Dues summary bar ── */
-          #panel-members .dues-summary { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:1.1rem; }
-          #panel-members .dues-chip { display:flex; flex-direction:column; gap:.15rem; padding:.5rem 1rem; border-radius:6px; min-width:110px; }
-          #panel-members .dues-chip-lbl { font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-          #panel-members .dues-chip-val { font-family:'Cinzel',serif; font-size:1.4rem; letter-spacing:.04em; }
-          #panel-members .dues-chip-paid { background:#dcfce7; border:1px solid #bbf7d0; }
-          #panel-members .dues-chip-paid .dues-chip-lbl { color:#166534; }
-          #panel-members .dues-chip-paid .dues-chip-val { color:#15803d; }
-          #panel-members .dues-chip-unpaid { background:#fee2e2; border:1px solid #fecaca; }
-          #panel-members .dues-chip-unpaid .dues-chip-lbl { color:#991b1b; }
-          #panel-members .dues-chip-unpaid .dues-chip-val { color:#dc2626; }
-          #panel-members .dues-chip-total { background:#f2ebd7; border:1px solid #e0d4c8; }
-          #panel-members .dues-chip-total .dues-chip-lbl { color:#7a6a60; }
-          #panel-members .dues-chip-total .dues-chip-val { color:#70110c; }
+          /* ── Dues summary chips ── */
+          #panel-members .dues-summary { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.1rem; }
+          #panel-members .dues-chip { display:flex; flex-direction:column; gap:.08rem; padding:.45rem .85rem; border-radius:6px; min-width:110px; }
+          #panel-members .dues-chip-lbl { font-size:.58rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+          #panel-members .dues-chip-val { font-family:'Cinzel',serif; font-size:1.1rem; letter-spacing:.04em; }
+          #panel-members .dues-chip-sub { font-size:.66rem; margin-top:.05rem; }
+          #panel-members .dues-chip-chap { background:#dbeafe; border:1px solid #bfdbfe; }
+          #panel-members .dues-chip-chap .dues-chip-lbl { color:#1e40af; }
+          #panel-members .dues-chip-chap .dues-chip-val { color:#1d4ed8; }
+          #panel-members .dues-chip-chap .dues-chip-sub { color:#3b82f6; }
+          #panel-members .dues-chip-prov { background:#ede9fe; border:1px solid #ddd6fe; }
+          #panel-members .dues-chip-prov .dues-chip-lbl { color:#5b21b6; }
+          #panel-members .dues-chip-prov .dues-chip-val { color:#6d28d9; }
+          #panel-members .dues-chip-prov .dues-chip-sub { color:#7c3aed; }
+          #panel-members .dues-chip-ihq { background:#fef3c7; border:1px solid #fde68a; }
+          #panel-members .dues-chip-ihq .dues-chip-lbl { color:#92400e; }
+          #panel-members .dues-chip-ihq .dues-chip-val { color:#b45309; }
+          #panel-members .dues-chip-ihq .dues-chip-sub { color:#d97706; }
+          #panel-members .dues-chip-total { background:#dcfce7; border:1px solid #bbf7d0; }
+          #panel-members .dues-chip-total .dues-chip-lbl { color:#166534; }
+          #panel-members .dues-chip-total .dues-chip-val { color:#15803d; }
+          #panel-members .dues-chip-total .dues-chip-sub { color:#16a34a; }
+          #panel-members .dues-chip-life { background:#f2ebd7; border:1px solid #e0d4c8; }
+          #panel-members .dues-chip-life .dues-chip-lbl { color:#7a6a60; }
+          #panel-members .dues-chip-life .dues-chip-val { color:#70110c; }
+          #panel-members .dues-chip-life .dues-chip-sub { color:#9a8a80; }
 
-          /* ── Click-to-toggle dues indicator ── */
-          #panel-members .dues-btn { display:inline-flex; align-items:center; gap:.45rem; padding:.3rem .7rem; border-radius:6px; border:none; cursor:pointer; font-size:.78rem; font-weight:600; transition:all .18s; user-select:none; min-width:85px; justify-content:center; }
-          #panel-members .dues-btn:disabled { opacity:.6; cursor:wait; }
-          #panel-members .dues-btn.paid { background:#dcfce7; color:#15803d; border:1.5px solid #86efac; }
-          #panel-members .dues-btn.paid:hover:not(:disabled) { background:#bbf7d0; }
-          #panel-members .dues-btn.unpaid { background:#fee2e2; color:#dc2626; border:1.5px solid #fca5a5; }
-          #panel-members .dues-btn.unpaid:hover:not(:disabled) { background:#fecaca; }
-          #panel-members .dues-btn .dues-icon { font-size:.95rem; line-height:1; }
-          #panel-members .dues-btn .dues-spin { display:none; }
-          #panel-members .dues-btn.saving .dues-icon { display:none; }
-          #panel-members .dues-btn.saving .dues-spin { display:inline; font-size:.75rem; color:#c69a3f; }
+          /* ── Dues checkboxes ── */
+          #panel-members .dues-cb-wrap { display:flex; justify-content:center; align-items:center; height:100%; }
+          #panel-members .dues-cb { width:17px; height:17px; cursor:pointer; accent-color:#70110c; }
+          #panel-members .dues-cb:disabled { opacity:.5; cursor:wait; }
+          #panel-members .dues-total-cell { font-family:'Cinzel',serif; font-size:.82rem; color:#15803d; font-weight:600; white-space:nowrap; }
+          #panel-members .dues-total-zero { color:#bbb; font-size:.8rem; }
+          #panel-members .admin-table th.dues-col { font-size:.6rem; text-align:center; line-height:1.3; }
+          #panel-members .admin-table th.dues-col small { display:block; font-size:.58rem; font-weight:400; opacity:.75; }
         </style>
 
-        <!-- Dues summary report -->
         <div class="mem-panel-head">
           <h3>Members &amp; Dues</h3>
           <div class="mem-actions">
-            <button class="mem-filter-btn" id="dues-filter-all" onclick="setDuesFilter('all',this)">All</button>
-            <button class="mem-filter-btn" id="dues-filter-paid" onclick="setDuesFilter('paid',this)">✓ Paid</button>
+            <button class="mem-filter-btn active-filter" id="dues-filter-all" onclick="setDuesFilter('all',this)">All</button>
+            <button class="mem-filter-btn" id="dues-filter-paid" onclick="setDuesFilter('paid',this)">✓ Fully Paid</button>
             <button class="mem-filter-btn" id="dues-filter-unpaid" onclick="setDuesFilter('unpaid',this)">✗ Unpaid</button>
             <input type="text" class="mem-search" id="member-search" placeholder="Name or email…" oninput="filterMembersTable()">
-            <button class="mem-csv-btn" onclick="exportMembersCSV()">↓ Export CSV</button>
+            <button class="mem-csv-btn" onclick="exportMembersCSV()">↓ CSV</button>
           </div>
         </div>
 
         <div class="dues-summary">
-          <div class="dues-chip dues-chip-paid"><span class="dues-chip-lbl">Dues Paid</span><span class="dues-chip-val" id="mem-count-paid">—</span></div>
-          <div class="dues-chip dues-chip-unpaid"><span class="dues-chip-lbl">Unpaid</span><span class="dues-chip-val" id="mem-count-unpaid">—</span></div>
-          <div class="dues-chip dues-chip-total"><span class="dues-chip-lbl">Total Members</span><span class="dues-chip-val" id="mem-count-total">—</span></div>
+          <div class="dues-chip dues-chip-chap">
+            <span class="dues-chip-lbl">Chapter Dues</span>
+            <span class="dues-chip-val" id="mem-chap-paid">—</span>
+            <span class="dues-chip-sub" id="mem-chap-total">$0 collected</span>
+          </div>
+          <div class="dues-chip dues-chip-prov">
+            <span class="dues-chip-lbl">Province Dues</span>
+            <span class="dues-chip-val" id="mem-prov-paid">—</span>
+            <span class="dues-chip-sub" id="mem-prov-total">$0 collected</span>
+          </div>
+          <div class="dues-chip dues-chip-ihq">
+            <span class="dues-chip-lbl">IHQ Dues</span>
+            <span class="dues-chip-val" id="mem-ihq-paid">—</span>
+            <span class="dues-chip-sub" id="mem-ihq-total">$0 collected</span>
+          </div>
+          <div class="dues-chip dues-chip-total">
+            <span class="dues-chip-lbl">Total Collected</span>
+            <span class="dues-chip-val" id="mem-total-rev">$0</span>
+            <span class="dues-chip-sub" id="mem-total-sub"> </span>
+          </div>
+          <div class="dues-chip dues-chip-life">
+            <span class="dues-chip-lbl">Life Members</span>
+            <span class="dues-chip-val" id="mem-life-val">—</span>
+            <span class="dues-chip-sub">SWP / IHQ</span>
+          </div>
         </div>
 
         <div class="table-wrap">
@@ -219,13 +249,18 @@
               <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Dues Status</th>
+                <th class="dues-col">Chapter<small>$310</small></th>
+                <th class="dues-col">Province<small>$50</small></th>
+                <th class="dues-col">IHQ<small>$150</small></th>
+                <th class="dues-col">SWP<small>Life</small></th>
+                <th class="dues-col">IHQ<small>Life</small></th>
+                <th>Total Paid</th>
                 <th>Tier</th>
                 <th>Joined</th>
               </tr>
             </thead>
             <tbody id="members-table-body">
-              <tr><td colspan="5">Loading…</td></tr>
+              <tr><td colspan="10">Loading…</td></tr>
             </tbody>
           </table>
         </div>
@@ -233,36 +268,49 @@
         <script>
         /* ── Members & Dues panel ── */
         var _membersData = [];
-        var _duesFilter = 'all';
+        var _duesFilter  = 'all';
 
         async function loadMembersAdmin() {
           var tbody = document.getElementById('members-table-body');
           if (!tbody) return;
-          tbody.innerHTML = '<tr><td colspan="5" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
           try {
             var client = window.dlaSupabase || window.supabase;
-            if (!client) { tbody.innerHTML = '<tr><td colspan="5" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
+            if (!client) { tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Supabase client not ready.</td></tr>'; return; }
             var { data, error } = await client
               .from('members')
-              .select('id, first_name, last_name, email, dues_paid, tier, created_at')
+              .select('id, first_name, last_name, email, membership_tier, join_date, dues_paid, chapter_dues, province_dues, ihq_dues, swp_life, ihq_life')
               .order('last_name', { ascending: true });
             if (error) throw error;
             _membersData = data || [];
             renderMembersTable(applyDuesFilter(_membersData));
             updateDuesSummary();
           } catch(e) {
-            if (tbody) tbody.innerHTML = '<tr><td colspan="5" style="color:#c0392b;">Error loading members: ' + e.message + '</td></tr>';
+            if (tbody) tbody.innerHTML = '<tr><td colspan="10" style="color:#c0392b;">Error: ' + escHtml(e.message) + '</td></tr>';
           }
         }
 
+        function memberTotal(m) {
+          return (m.chapter_dues ? 310 : 0) + (m.province_dues ? 50 : 0) + (m.ihq_dues ? 150 : 0);
+        }
+
         function updateDuesSummary() {
-          var paid   = _membersData.filter(function(m){ return m.dues_paid; }).length;
-          var unpaid = _membersData.length - paid;
-          var total  = _membersData.length;
+          var chapPaid = _membersData.filter(function(m){ return m.chapter_dues; }).length;
+          var provPaid = _membersData.filter(function(m){ return m.province_dues; }).length;
+          var ihqPaid  = _membersData.filter(function(m){ return m.ihq_dues; }).length;
+          var swpLife  = _membersData.filter(function(m){ return m.swp_life; }).length;
+          var ihqLife  = _membersData.filter(function(m){ return m.ihq_life; }).length;
+          var totalRev = chapPaid * 310 + provPaid * 50 + ihqPaid * 150;
           var el = function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
-          el('mem-count-paid', paid);
-          el('mem-count-unpaid', unpaid);
-          el('mem-count-total', total);
+          el('mem-chap-paid',  chapPaid + ' paid');
+          el('mem-chap-total', '$' + (chapPaid * 310).toLocaleString() + ' collected');
+          el('mem-prov-paid',  provPaid + ' paid');
+          el('mem-prov-total', '$' + (provPaid * 50).toLocaleString() + ' collected');
+          el('mem-ihq-paid',   ihqPaid + ' paid');
+          el('mem-ihq-total',  '$' + (ihqPaid * 150).toLocaleString() + ' collected');
+          el('mem-total-rev',  '$' + totalRev.toLocaleString());
+          el('mem-total-sub',  _membersData.length + ' total members');
+          el('mem-life-val',   swpLife + ' / ' + ihqLife);
         }
 
         function applyDuesFilter(rows) {
@@ -286,26 +334,29 @@
         function renderMembersTable(rows) {
           var tbody = document.getElementById('members-table-body');
           if (!tbody) return;
-          if (!rows.length) { tbody.innerHTML = '<tr><td colspan="5" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
+          if (!rows.length) { tbody.innerHTML = '<tr><td colspan="10" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
           tbody.innerHTML = rows.map(function(m) {
             var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
-            var joined = m.created_at ? new Date(m.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
-            var paidClass = m.dues_paid ? 'paid' : 'unpaid';
-            var icon      = m.dues_paid ? '✓' : '✗';
-            var label     = m.dues_paid ? 'Paid' : 'Unpaid';
-            var title     = m.dues_paid ? 'Click to mark Unpaid' : 'Click to mark Paid';
-            return '<tr data-id="' + m.id + '" data-name="' + escHtml(name).toLowerCase() + '" data-email="' + escHtml((m.email||'').toLowerCase()) + '">' +
-              '<td style="font-weight:600">' + escHtml(name) + '</td>' +
-              '<td style="color:#888;font-size:.8rem">' + escHtml(m.email||'—') + '</td>' +
-              '<td>' +
-                '<button class="dues-btn ' + paidClass + '" title="' + title + '" onclick="clickToggleDues(this,\'' + m.id + '\')" data-paid="' + (m.dues_paid ? '1' : '0') + '">' +
-                  '<span class="dues-icon">' + icon + '</span>' +
-                  '<span class="dues-spin">Saving…</span>' +
-                  ' ' + label +
-                '</button>' +
-              '</td>' +
-              '<td>' + escHtml(m.tier||'Member') + '</td>' +
-              '<td>' + joined + '</td>' +
+            var joined = m.join_date ? new Date(m.join_date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
+            var total  = memberTotal(m);
+            var totalCell = total > 0
+              ? '<span class="dues-total-cell">$' + total.toLocaleString() + '</span>'
+              : '<span class="dues-total-zero">—</span>';
+            function mkCb(field) {
+              var chk = m[field] ? 'checked' : '';
+              return '<div class="dues-cb-wrap"><input type="checkbox" class="dues-cb" ' + chk + ' onchange="toggleDuesType(this,\'' + m.id + '\',\'' + field + '\')" title="Click to toggle"></div>';
+            }
+            return '<tr data-id="' + m.id + '">' +
+              '<td style="font-weight:600;white-space:nowrap">' + escHtml(name) + '</td>' +
+              '<td style="color:#888;font-size:.78rem">' + escHtml(m.email||'—') + '</td>' +
+              '<td>' + mkCb('chapter_dues') + '</td>' +
+              '<td>' + mkCb('province_dues') + '</td>' +
+              '<td>' + mkCb('ihq_dues') + '</td>' +
+              '<td>' + mkCb('swp_life') + '</td>' +
+              '<td>' + mkCb('ihq_life') + '</td>' +
+              '<td>' + totalCell + '</td>' +
+              '<td style="font-size:.78rem">' + escHtml(m.membership_tier||'—') + '</td>' +
+              '<td style="font-size:.78rem;white-space:nowrap">' + joined + '</td>' +
             '</tr>';
           }).join('');
         }
@@ -314,37 +365,48 @@
           return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
         }
 
-        async function clickToggleDues(btn, memberId) {
-          var currentlyPaid = btn.dataset.paid === '1';
-          var newPaid = !currentlyPaid;
-          btn.disabled = true;
-          btn.classList.add('saving');
+        async function toggleDuesType(cb, memberId, field) {
+          var newVal = cb.checked;
+          cb.disabled = true;
           try {
             var client = window.dlaSupabase || window.supabase;
-            var { error } = await client
-              .from('members')
-              .update({ dues_paid: newPaid })
-              .eq('id', memberId);
-            if (error) throw error;
-            // Update local cache
             var rec = _membersData.find(function(m){ return m.id === memberId; });
-            if (rec) rec.dues_paid = newPaid;
-            // Update button appearance
-            btn.dataset.paid = newPaid ? '1' : '0';
-            btn.className    = 'dues-btn ' + (newPaid ? 'paid' : 'unpaid');
-            btn.title        = newPaid ? 'Click to mark Unpaid' : 'Click to mark Paid';
-            btn.innerHTML    = '<span class="dues-icon">' + (newPaid ? '✓' : '✗') + '</span><span class="dues-spin">Saving…</span> ' + (newPaid ? 'Paid' : 'Unpaid');
+            var update = {};
+            update[field] = newVal;
+            if (rec) {
+              rec[field] = newVal;
+              // Auto-compute overall dues_paid when all three main dues are checked
+              var allPaid = !!(rec.chapter_dues && rec.province_dues && rec.ihq_dues);
+              if (allPaid !== !!rec.dues_paid) {
+                update.dues_paid = allPaid;
+                rec.dues_paid = allPaid;
+              }
+            }
+            var { error } = await client.from('members').update(update).eq('id', memberId);
+            if (error) throw error;
+            // Update the total cell in this row without full re-render
+            if (rec) {
+              var row = document.querySelector('#members-table-body tr[data-id="' + memberId + '"]');
+              if (row) {
+                var tc = row.querySelector('td:nth-child(8)');
+                var t  = memberTotal(rec);
+                if (tc) tc.innerHTML = t > 0
+                  ? '<span class="dues-total-cell">$' + t.toLocaleString() + '</span>'
+                  : '<span class="dues-total-zero">—</span>';
+              }
+            }
             updateDuesSummary();
           } catch(e) {
-            alert('Could not update dues status: ' + e.message);
+            cb.checked = !newVal;
+            alert('Could not update dues: ' + e.message);
           } finally {
-            btn.disabled = false;
-            btn.classList.remove('saving');
+            cb.disabled = false;
           }
         }
 
-        // Keep old name for backward compat if anything calls it
-        function toggleDues(checkbox, memberId) { /* replaced by clickToggleDues */ }
+        // Legacy stubs (in case admin-members.js or other code calls these)
+        function clickToggleDues() {}
+        function toggleDues() {}
 
         function filterMembersTable() {
           var q = (document.getElementById('member-search').value || '').toLowerCase().trim();
@@ -356,16 +418,23 @@
         }
 
         function exportMembersCSV() {
-          var rows = [['Name','Email','Dues Paid','Tier','Joined']];
-          document.querySelectorAll('#members-table-body tr').forEach(function(tr) {
-            var tds = tr.querySelectorAll('td');
-            if (tds.length < 5) return;
-            var duesBtn = tds[2].querySelector('.dues-btn');
-            var duesVal = duesBtn ? (duesBtn.dataset.paid === '1' ? 'Yes' : 'No') : tds[2].innerText.trim();
-            rows.push([tds[0].innerText.trim(), tds[1].innerText.trim(), duesVal, tds[3].innerText.trim(), tds[4].innerText.trim()]);
-          });
+          var hdr = ['Name','Email','Chapter Dues','Province Dues','IHQ Dues','SWP Life','IHQ Life','Total Paid','Tier','Joined'];
+          var rows = [hdr].concat(_membersData.map(function(m) {
+            var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '';
+            var joined = m.join_date ? new Date(m.join_date).toLocaleDateString() : '';
+            return [
+              name, m.email||'',
+              m.chapter_dues?'Yes':'No', m.province_dues?'Yes':'No', m.ihq_dues?'Yes':'No',
+              m.swp_life?'Yes':'No', m.ihq_life?'Yes':'No',
+              '$' + memberTotal(m).toLocaleString(),
+              m.membership_tier||'', joined
+            ];
+          }));
           var csv = rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
-          var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='dla-members-dues-'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+          a.download = 'dla-members-dues-' + new Date().toISOString().slice(0,10) + '.csv';
+          a.click();
         }
         </script>
       </div>
@@ -391,6 +460,14 @@
           <button class="access-filter-btn" data-filter="admin" onclick="setAccessFilter('admin',this)">Admins</button>
           <button class="access-filter-btn" data-filter="never" onclick="setAccessFilter('never',this)">Never logged in</button>
         </div>
+        <style>
+#panel-access .admin-table thead th { cursor:pointer; user-select:none; white-space:nowrap; transition:background .15s; }
+#panel-access .admin-table thead th:hover { background: rgba(112,17,12,.07); }
+#panel-access .admin-table thead th .sort-ico { font-size:.6rem; margin-left:.3rem; opacity:.4; }
+#panel-access .admin-table thead th.sort-asc .sort-ico::after { content:'▲'; opacity:1; color:#70110c; }
+#panel-access .admin-table thead th.sort-desc .sort-ico::after { content:'▼'; opacity:1; color:#70110c; }
+#panel-access .admin-table thead th .sort-ico::after { content:'⇅'; }
+        </style>
         <div class="table-wrap">
           <table class="admin-table">
             <thead>
@@ -407,6 +484,51 @@
             </tbody>
           </table>
         </div>
+        <script>
+(function(){
+  var _aSort = {col:-1, dir:1};
+  function initAccessSortHeaders(){
+    var tr = document.querySelector('#panel-access .admin-table thead tr');
+    if (!tr || tr.dataset.sortInit) return;
+    tr.dataset.sortInit = '1';
+    tr.querySelectorAll('th').forEach(function(th,i){
+      var ico = document.createElement('span');
+      ico.className = 'sort-ico';
+      th.appendChild(ico);
+      th.addEventListener('click', function(){
+        if (_aSort.col === i) { _aSort.dir *= -1; } else { _aSort.col = i; _aSort.dir = 1; }
+        tr.querySelectorAll('th').forEach(function(t){ t.classList.remove('sort-asc','sort-desc'); });
+        th.classList.add(_aSort.dir === 1 ? 'sort-asc' : 'sort-desc');
+        sortAccessRows();
+      });
+    });
+  }
+  function sortAccessRows(){
+    var tbody = document.getElementById('access-table-body');
+    if (!tbody || _aSort.col < 0) return;
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    if (rows.length < 2) return;
+    rows.sort(function(a,b){
+      var ac = a.querySelector('td:nth-child('+(_aSort.col+1)+')');
+      var bc = b.querySelector('td:nth-child('+(_aSort.col+1)+')');
+      var av = ac ? ac.textContent.trim().toLowerCase() : '';
+      var bv = bc ? bc.textContent.trim().toLowerCase() : '';
+      var ad = Date.parse(av), bd = Date.parse(bv);
+      if (!isNaN(ad) && !isNaN(bd) && (ad||bd)) return _aSort.dir * (ad - bd);
+      return _aSort.dir * av.localeCompare(bv);
+    });
+    rows.forEach(function(r){ tbody.appendChild(r); });
+  }
+  initAccessSortHeaders();
+  var tbody = document.getElementById('access-table-body');
+  if (tbody) {
+    new MutationObserver(function(){
+      initAccessSortHeaders();
+      if (_aSort.col >= 0) sortAccessRows();
+    }).observe(tbody, {childList:true});
+  }
+})();
+        </script>
       </div>
       <!-- ============ TRAINING ADMIN PANEL ============ -->
       <div class="admin-panel" id="panel-training">
@@ -1240,7 +1362,7 @@
 #panel-community-service .table-scroll.scroll-y { max-height: 520px; overflow-y: auto; }
 #panel-community-service table.admin-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
 #panel-community-service table.admin-table th, #panel-community-service table.admin-table td { text-align: left; padding: .55rem .5rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
-#panel-community-service table.admin-table th { font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #70110c; position: sticky; top: 0; background: #fff; }
+#panel-community-service table.admin-table th { font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #fff; position: sticky; top: 0; background: #70110c; padding: .65rem .5rem; }
 #panel-community-service .pill { display: inline-block; padding: .15rem .6rem; border-radius: 20px; font-size: .66rem; font-weight: 700; }
 #panel-community-service .pill-internal { background: #e6f0e9; color: #2e7d32; }
 #panel-community-service .pill-external { background: #eef0fb; color: #3949ab; }
@@ -2206,36 +2328,34 @@
 <script>
 /* ── Event Signup Roster: panel switch + auto-load ── */
 (function() {
-  var erLoaded = false;
-
   function erShowPanel() {
-    // Explicitly handle panel switching in case admin-console.js doesn't cover new panels
     document.querySelectorAll('.admin-panel').forEach(function(p) { p.classList.remove('active'); });
     document.querySelectorAll('.admin-tab-btn').forEach(function(b) { b.classList.remove('active'); });
     var panel = document.getElementById('panel-event-roster');
     if (panel) panel.classList.add('active');
     document.querySelectorAll('.admin-tab-btn[data-panel="panel-event-roster"]').forEach(function(b) { b.classList.add('active'); });
-    if (!erLoaded) {
-      erLoaded = true;
-      if (typeof window.er_loadVolunteers === 'function') window.er_loadVolunteers();
-    }
+    // Re-assert after admin-console.js may override
+    setTimeout(function() {
+      document.querySelectorAll('.admin-panel').forEach(function(p) { p.classList.remove('active'); });
+      document.querySelectorAll('.admin-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      var panel = document.getElementById('panel-event-roster');
+      if (panel) panel.classList.add('active');
+      document.querySelectorAll('.admin-tab-btn[data-panel="panel-event-roster"]').forEach(function(b) { b.classList.add('active'); });
+    }, 80);
+    if (typeof window.er_loadVolunteers === 'function') window.er_loadVolunteers();
   }
 
-  // Hook the tab button directly with highest priority
   document.querySelectorAll('.admin-tab-btn[data-panel="panel-event-roster"]').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopImmediatePropagation(); // handle this ourselves
-      erShowPanel();
-    });
+    btn.addEventListener('click', function() { setTimeout(erShowPanel, 10); });
   });
 
   // Also watch via MutationObserver as belt-and-suspenders
   var erPanel = document.getElementById('panel-event-roster');
   if (erPanel) {
     var erObs = new MutationObserver(function() {
-      if (erPanel.classList.contains('active') && !erLoaded) {
-        erLoaded = true;
+      if (erPanel.classList.contains('active')) {
         if (typeof window.er_loadVolunteers === 'function') window.er_loadVolunteers();
+        erObs.disconnect();
       }
     });
     erObs.observe(erPanel, { attributes: true, attributeFilter: ['class'] });
