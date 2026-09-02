@@ -1,1949 +1,672 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/favicon.png" type="image/png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin | Denton-Lewisville Alumni Chapter</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
-<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
-<style>
-  /* ── Mobile nav (hamburger) — overrides style.css since !important always wins ── */
-  .nav-toggle {
-    display: none;
-    background: none; border: none; cursor: pointer;
-    font-size: 1.6rem; line-height: 1; padding: .25rem .5rem;
-    color: inherit;
-  }
-  @media (max-width: 768px) {
-    .site-header .nav { flex-wrap: wrap; position: relative; }
-    .nav-toggle { display: block !important; }
-    .nav-links {
-      display: none !important;
-      flex-direction: column !important;
-      width: 100% !important;
-      gap: .25rem !important;
-      background: #fff;
-      border-top: 1px solid #eee;
-      margin-top: .75rem;
-      padding-top: .75rem;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLGRF Event Sign Up Roster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #70110c;
+      --crimson-dark: #2a0604;
+      --cream: #f2ebd7;
+      --gold: #c69a3f;
+      --bg: #ffffff;
+      --surface: #faf8f5;
+      --surface2: #f2ebd7;
+      --border: #e4dbd0;
+      --text: #1a1a1a;
+      --text-muted: #7a6a60;
     }
-    .nav-links.open { display: flex !important; }
-    .nav-links li { width: 100%; }
-    .nav-links li a { display: block; padding: .6rem .25rem; }
-  }
 
-  /* ── Admin tabs — scroll instead of wrapping/cutting off ── */
-  .admin-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-  }
-  @media (max-width: 768px) {
-    .admin-tabs {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch;
-      white-space: nowrap;
-      gap: .5rem;
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── Header ── */
+    .banner {
+      background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+      color: #fff; padding: 1.25rem 2rem;
+      box-shadow: 0 3px 16px rgba(0,0,0,.4);
     }
-    .admin-tab-btn { flex: 0 0 auto; }
-  }
+    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .banner-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .08em; color: var(--cream); line-height: 1; }
+    .banner-left p { font-size: .75rem; color: rgba(242,235,215,.65); margin-top: .2rem; letter-spacing: .04em; }
+    .banner-badge { background: var(--gold); color: var(--crimson-dark); font-family: 'Bebas Neue', sans-serif; font-size: .85rem; letter-spacing: .1em; padding: .35rem 1rem; border-radius: 20px; }
 
-  /* ── Header text — don't clip long emails ── */
-  .dash-header h1, .dash-header p {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-  @media (max-width: 480px) {
-    .dash-header { padding: 1.5rem 1rem !important; }
-  }
+    /* ── Top bar ── */
+    .topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .topbar-left { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .topbar-right { display: flex; gap: .6rem; }
 
-  /* ── Consolidated admin panels: hidden unless .active ── */
-  /* !important beats ID-specificity on panels that set display:flex internally */
-  .admin-panel { display: none !important; }
-  .admin-panel.active { display: block !important; }
-</style>
+    .btn { font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 600; padding: .55rem 1.1rem; border-radius: 6px; border: none; cursor: pointer; transition: filter .2s, opacity .2s; display: inline-flex; align-items: center; gap: .35rem; }
+    .btn:hover { filter: brightness(.92); }
+    .btn-primary { background: var(--crimson); color: var(--cream); }
+    .btn-outline { background: #fff; color: var(--crimson); border: 1px solid var(--crimson); }
+    .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); font-size: .75rem; padding: .4rem .8rem; }
+    .btn-icon { padding: .35rem .6rem; font-size: .75rem; border-radius: 4px; }
+    .btn-edit { background: #eef4ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .btn-delete { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .btn-add-row { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; font-size: .75rem; padding: .35rem .8rem; }
+
+    /* ── Search ── */
+    .search-wrap { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .search-wrap input { font-family: 'DM Sans', sans-serif; font-size: .82rem; padding: .5rem .9rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; min-width: 220px; }
+    .search-wrap input:focus { outline: none; border-color: var(--crimson); }
+    .search-wrap select { font-family: 'DM Sans', sans-serif; font-size: .82rem; padding: .5rem .9rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem; }
+    .search-wrap select:focus { outline: none; border-color: var(--crimson); }
+
+    /* ── Summary chips ── */
+    .summary { max-width: 1100px; margin: 1.5rem auto 0; padding: 0 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+    .chip { background: var(--surface2); border: 1px solid #d8cfc5; border-radius: 6px; padding: .5rem 1rem; display: flex; flex-direction: column; gap: .2rem; min-width: 140px; }
+    .chip-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+    .chip-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--crimson); letter-spacing: .06em; }
+
+    /* ── Main ── */
+    .main { max-width: 1100px; margin: 1.5rem auto 4rem; padding: 0 1.5rem; }
+
+    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
+    .empty-state p { font-size: 1.1rem; margin-bottom: .5rem; }
+    .empty-state small { font-size: .82rem; opacity: .7; }
+
+    /* ── Event card ── */
+    .event-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 2rem; overflow: hidden; box-shadow: 0 2px 8px rgba(112,17,12,.05); }
+
+    .event-header { background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%); color: var(--cream); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .event-header-left { display: flex; align-items: center; gap: 1rem; }
+    .event-date-box { background: rgba(242,235,215,.15); border: 1px solid rgba(242,235,215,.25); border-radius: 8px; padding: .5rem .9rem; text-align: center; min-width: 64px; }
+    .event-date-box .date-month { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+    .event-date-box .date-day { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; color: var(--cream); }
+    .event-date-box .date-year { font-size: .6rem; color: rgba(242,235,215,.6); }
+    .event-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: .07em; color: var(--cream); line-height: 1.1; }
+    .event-info .event-sub { font-size: .72rem; color: rgba(242,235,215,.65); margin-top: .2rem; }
+    .event-header-right { display: flex; align-items: center; gap: .75rem; }
+    .badge-count { background: var(--gold); color: var(--crimson-dark); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .06em; padding: .25rem .9rem; border-radius: 20px; }
+    .btn-add-vol { background: rgba(242,235,215,.18); color: var(--cream); border: 1px solid rgba(242,235,215,.35); font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 600; padding: .45rem .9rem; border-radius: 6px; cursor: pointer; transition: background .2s; }
+    .btn-add-vol:hover { background: rgba(242,235,215,.3); }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); padding: .7rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid #f0ece6; transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface); }
+    tbody td { font-size: .83rem; padding: .7rem 1rem; vertical-align: middle; }
+    td.name-cell { font-weight: 600; }
+    td.email-cell { color: var(--text-muted); font-size: .78rem; }
+    td.phone-cell { font-size: .78rem; white-space: nowrap; }
+
+    .tabc-badge { display: inline-block; font-size: .62rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 12px; }
+    .tabc-yes { background: #dcfce7; color: #15803d; }
+    .tabc-no { background: #f3f4f6; color: #9ca3af; }
+
+    .assign-badge { display: inline-block; font-size: .68rem; padding: .2rem .6rem; border-radius: 4px; background: var(--surface2); color: var(--crimson); font-weight: 500; }
+
+    .action-cell { display: flex; gap: .35rem; align-items: center; }
+
+    .no-vols { text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: .85rem; font-style: italic; }
+
+    /* ── Modal ── */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .overlay.active { display: flex; }
+    .modal { background: #fff; border-radius: 12px; width: 100%; max-width: 680px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .modal-head { background: linear-gradient(135deg, var(--crimson), var(--crimson-dark)); color: var(--cream); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .modal-head h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .07em; }
+    .modal-close { background: none; border: none; color: var(--cream); font-size: 1.4rem; cursor: pointer; opacity: .75; line-height: 1; }
+    .modal-close:hover { opacity: 1; }
+    .modal-body { overflow-y: auto; padding: 1.5rem; }
+    .modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: .6rem; flex-shrink: 0; background: var(--surface); }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: .35rem; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
+    .form-field input, .form-field select, .form-field textarea {
+      font-family: 'DM Sans', sans-serif; font-size: .875rem;
+      padding: .6rem .85rem; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--surface); color: var(--text);
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--crimson); }
+    .form-field textarea { resize: vertical; min-height: 70px; }
+    .form-field select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem; }
+
+    .section-divider { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); padding: .75rem 0 .4rem; border-top: 1px solid var(--border); margin-top: .75rem; grid-column: 1 / -1; }
+
+    .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; grid-column: 1 / -1; }
+    .date-check { display: flex; align-items: center; gap: .5rem; font-size: .82rem; cursor: pointer; padding: .35rem .5rem; border-radius: 4px; transition: background .15s; }
+    .date-check:hover { background: var(--surface2); }
+    .date-check input[type="checkbox"] { accent-color: var(--crimson); width: 15px; height: 15px; cursor: pointer; }
+
+    /* ── Confirm delete overlay ── */
+    .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .confirm-overlay.active { display: flex; }
+    .confirm-box { background: #fff; border-radius: 10px; padding: 2rem; max-width: 400px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .confirm-box h4 { font-size: 1.05rem; font-weight: 700; color: #dc2626; margin-bottom: .6rem; }
+    .confirm-box p { font-size: .88rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; }
+    .confirm-actions { display: flex; justify-content: flex-end; gap: .6rem; }
+    .btn-danger { background: #dc2626; color: #fff; }
+
+    /* ── Toast ── */
+    .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #1a1a1a; color: #fff; font-size: .85rem; padding: .75rem 1.25rem; border-radius: 8px; z-index: 2000; transform: translateY(120%); opacity: 0; transition: transform .3s, opacity .3s; max-width: 360px; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-left: 4px solid #22c55e; }
+    .toast.error { border-left: 4px solid #dc2626; }
+
+    /* ── Footer ── */
+    .page-footer { text-align: center; padding: 1.5rem; font-size: .72rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 2rem; }
+
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .dates-grid { grid-template-columns: 1fr; }
+      .form-field.full { grid-column: 1; }
+      .section-divider { grid-column: 1; }
+      .banner-left h1 { font-size: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <nav class="nav">
-    <a class="brand" href="../index.html">
-      <span class="diamond"></span>
-      <span>Denton-Lewisville<br><small>Kappa Alpha Psi Fraternity, Inc.</small></span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">&#9776;</button>
-    <ul class="nav-links" id="nav-links" style="display:flex;">
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="../events.html">Events</a></li>
-      <li><a href="#" onclick="dlaLogout(); return false;">Sign out</a></li>
-    </ul>
-  </nav>
+<!-- ── Banner ── -->
+<header class="banner">
+  <div class="banner-inner">
+    <div class="banner-left">
+      <h1>DLGRF Event Sign Up Roster</h1>
+      <p>Denton-Lewisville Alumni Chapter · Kappa Alpha Psi Fraternity, Inc. · Guide Right Program</p>
+    </div>
+    <div class="banner-badge">2026–27 Season</div>
+  </div>
 </header>
 
-<div class="admin-guard" id="admin-guard">
-  <p class="section-label" style="justify-content:center;"><span class="diamond"></span> Restricted</p>
-  <h1>Admins only</h1>
-  <p class="section-intro">This page is for chapter officers with admin access. If that's you, ask another admin to enable it on your account.</p>
-  <a class="btn btn-dark" href="dashboard.html" style="margin-top: 20px; display:inline-block;">Back to my account</a>
-</div>
-
-<div id="admin-content" style="display:none;">
-  <div class="dash-header">
-    <div class="container">
-      <h1>Chapter Admin</h1>
-      <p>Signed in as <span id="admin-name"></span></p>
-    </div>
-  </div>
-
-  <section>
-    <div class="container">
-      <div class="admin-tabs">
-        <button class="admin-tab-btn active" data-panel="panel-events">Events</button>
-        <button class="admin-tab-btn" data-panel="panel-members">Members &amp; Dues</button>
-        <button class="admin-tab-btn" data-panel="panel-access">Portal Access</button>
-        <button class="admin-tab-btn" data-panel="panel-training">Training Admin</button>
-        <button class="admin-tab-btn" data-panel="panel-training-report">Training Report</button>
-        <button class="admin-tab-btn" data-panel="panel-budget">Budget</button>
-        <button class="admin-tab-btn" data-panel="panel-blog">Blog</button>
-        <button class="admin-tab-btn" data-panel="panel-community-service">Community Service</button>
-        <button class="admin-tab-btn" data-panel="panel-volunteer">Volunteer (DLGRF)</button>
-        <button class="admin-tab-btn" data-panel="panel-event-roster">Event Signup Roster</button>
-      </div>
-      <!-- ============ EVENTS PANEL ============ -->
-      <div class="admin-panel active" id="panel-events">
-        <div class="admin-layout">
-          <div class="card">
-            <h3 id="event-form-title">Add an event</h3>
-            <form id="event-form" style="margin-top:16px;">
-              <div class="form-field">
-                <label for="event-title">Title</label>
-                <input type="text" id="event-title" required>
-              </div>
-              <div class="form-field">
-                <label for="event-date">Date</label>
-                <input type="date" id="event-date" required>
-              </div>
-              <div class="form-field">
-                <label for="event-time">Time (optional)</label>
-                <input type="text" id="event-time" placeholder="e.g. 7:00 PM">
-              </div>
-              <div class="form-field">
-                <label for="event-location">Location</label>
-                <input type="text" id="event-location">
-              </div>
-              <div class="form-field">
-                <label for="event-description">Description</label>
-                <textarea id="event-description" rows="3"></textarea>
-              </div>
-              <div class="row-actions">
-                <button type="submit" class="btn btn-primary btn-sm" id="event-submit-btn">Add event</button>
-                <button type="button" class="btn btn-outline btn-sm" id="event-cancel-btn" style="display:none; color: var(--crimson); border-color: var(--crimson);">Cancel</button>
-              </div>
-            </form>
-          </div>
-
-          <div>
-            <h3 style="margin-bottom:16px;">All events</h3>
-            <div id="admin-events-list"><p class="empty-state">Loading…</p></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ============ MEMBERS PANEL ============ -->
-      <div class="admin-panel" id="panel-members">
-        <style>
-          #panel-members .mem-panel-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; margin-bottom:1rem; }
-          #panel-members .mem-panel-head h3 { margin:0; font-family:'Cinzel',serif; font-size:.9rem; color:#70110c; letter-spacing:.04em; }
-          #panel-members .mem-actions { display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
-          #panel-members .mem-search { padding:.45rem .75rem; border:1px solid #d8cfc5; border-radius:4px; font-size:.84rem; width:200px; }
-          #panel-members .mem-filter-btn { font-size:.72rem; font-weight:600; padding:.38rem .8rem; border-radius:4px; cursor:pointer; border:1px solid #d8cfc5; background:#fff; color:#555; transition:all .15s; }
-          #panel-members .mem-filter-btn.active-filter { background:#70110c; color:#f2ebd7; border-color:#70110c; }
-          #panel-members .mem-csv-btn { font-family:'Cinzel',serif; font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.45rem 1rem; border-radius:4px; cursor:pointer; border:1px solid #e0d4c8; background:#f0e8e0; color:#70110c; transition:filter .2s; }
-          #panel-members .mem-csv-btn:hover { filter:brightness(1.05); }
-
-          /* ── Dues summary chips ── */
-          #panel-members .dues-summary { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.1rem; }
-          #panel-members .dues-chip { display:flex; flex-direction:column; gap:.08rem; padding:.45rem .85rem; border-radius:6px; min-width:110px; }
-          #panel-members .dues-chip-lbl { font-size:.58rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
-          #panel-members .dues-chip-val { font-family:'Cinzel',serif; font-size:1.1rem; letter-spacing:.04em; }
-          #panel-members .dues-chip-sub { font-size:.66rem; margin-top:.05rem; }
-          #panel-members .dues-chip-chap { background:#dbeafe; border:1px solid #bfdbfe; }
-          #panel-members .dues-chip-chap .dues-chip-lbl { color:#1e40af; }
-          #panel-members .dues-chip-chap .dues-chip-val { color:#1d4ed8; }
-          #panel-members .dues-chip-chap .dues-chip-sub { color:#3b82f6; }
-          #panel-members .dues-chip-prov { background:#ede9fe; border:1px solid #ddd6fe; }
-          #panel-members .dues-chip-prov .dues-chip-lbl { color:#5b21b6; }
-          #panel-members .dues-chip-prov .dues-chip-val { color:#6d28d9; }
-          #panel-members .dues-chip-prov .dues-chip-sub { color:#7c3aed; }
-          #panel-members .dues-chip-ihq { background:#fef3c7; border:1px solid #fde68a; }
-          #panel-members .dues-chip-ihq .dues-chip-lbl { color:#92400e; }
-          #panel-members .dues-chip-ihq .dues-chip-val { color:#b45309; }
-          #panel-members .dues-chip-ihq .dues-chip-sub { color:#d97706; }
-          #panel-members .dues-chip-total { background:#dcfce7; border:1px solid #bbf7d0; }
-          #panel-members .dues-chip-total .dues-chip-lbl { color:#166534; }
-          #panel-members .dues-chip-total .dues-chip-val { color:#15803d; }
-          #panel-members .dues-chip-total .dues-chip-sub { color:#16a34a; }
-          #panel-members .dues-chip-life { background:#f2ebd7; border:1px solid #e0d4c8; }
-          #panel-members .dues-chip-life .dues-chip-lbl { color:#7a6a60; }
-          #panel-members .dues-chip-life .dues-chip-val { color:#70110c; }
-          #panel-members .dues-chip-life .dues-chip-sub { color:#9a8a80; }
-
-          /* ── Dues checkboxes ── */
-          #panel-members .dues-cb-wrap { display:flex; justify-content:center; align-items:center; height:100%; }
-          #panel-members .dues-cb { width:17px; height:17px; cursor:pointer; accent-color:#70110c; }
-          #panel-members .dues-cb:disabled { opacity:.5; cursor:wait; }
-          #panel-members .dues-total-cell { font-family:'Cinzel',serif; font-size:.82rem; color:#15803d; font-weight:600; white-space:nowrap; }
-          #panel-members .dues-total-zero { color:#bbb; font-size:.8rem; }
-          #panel-members .admin-table th.dues-col { font-size:.6rem; text-align:center; line-height:1.3; }
-          #panel-members .admin-table th.dues-col small { display:block; font-size:.58rem; font-weight:400; opacity:.75; }
-        </style>
-
-        <div class="mem-panel-head">
-          <h3>Members &amp; Dues</h3>
-          <div class="mem-actions">
-            <button class="mem-filter-btn active-filter" id="dues-filter-all" onclick="setDuesFilter('all',this)">All</button>
-            <button class="mem-filter-btn" id="dues-filter-paid" onclick="setDuesFilter('paid',this)">✓ Fully Paid</button>
-            <button class="mem-filter-btn" id="dues-filter-unpaid" onclick="setDuesFilter('unpaid',this)">✗ Unpaid</button>
-            <input type="text" class="mem-search" id="member-search" placeholder="Name or email…" oninput="filterMembersTable()">
-            <button class="mem-csv-btn" onclick="exportMembersCSV()">↓ CSV</button>
-          </div>
-        </div>
-
-        <div class="dues-summary">
-          <div class="dues-chip dues-chip-chap">
-            <span class="dues-chip-lbl">Chapter Dues</span>
-            <span class="dues-chip-val" id="mem-chap-paid">—</span>
-            <span class="dues-chip-sub" id="mem-chap-total">$0 collected</span>
-          </div>
-          <div class="dues-chip dues-chip-prov">
-            <span class="dues-chip-lbl">Province Dues</span>
-            <span class="dues-chip-val" id="mem-prov-paid">—</span>
-            <span class="dues-chip-sub" id="mem-prov-total">$0 collected</span>
-          </div>
-          <div class="dues-chip dues-chip-ihq">
-            <span class="dues-chip-lbl">IHQ Dues</span>
-            <span class="dues-chip-val" id="mem-ihq-paid">—</span>
-            <span class="dues-chip-sub" id="mem-ihq-total">$0 collected</span>
-          </div>
-          <div class="dues-chip dues-chip-total">
-            <span class="dues-chip-lbl">Total Collected</span>
-            <span class="dues-chip-val" id="mem-total-rev">$0</span>
-            <span class="dues-chip-sub" id="mem-total-sub"> </span>
-          </div>
-          <div class="dues-chip dues-chip-life">
-            <span class="dues-chip-lbl">Life Members</span>
-            <span class="dues-chip-val" id="mem-life-val">—</span>
-            <span class="dues-chip-sub">SWP / IHQ</span>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table class="admin-table" id="members-admin-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th class="dues-col">Chapter<small>$310</small></th>
-                <th class="dues-col">Province<small>$50</small></th>
-                <th class="dues-col">IHQ<small>$150</small></th>
-                <th class="dues-col">SWP<small>Life</small></th>
-                <th class="dues-col">IHQ<small>Life</small></th>
-                <th>Total Paid</th>
-              </tr>
-            </thead>
-            <tbody id="members-table-body">
-              <tr><td colspan="8">Loading…</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-
-      <!-- ============ PORTAL ACCESS PANEL ============ -->
-      <div class="admin-panel" id="panel-access">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem;">
-          <div>
-            <h3 style="margin:0 0 .25rem;">Portal Access</h3>
-            <p style="margin:0;font-size:.82rem;color:#888;">Shows all registered members and their last login activity.</p>
-          </div>
-          <div style="display:flex;gap:.5rem;align-items:center;">
-            <span id="access-active-count" style="font-size:.78rem;background:#eafaf1;color:#1a7a42;padding:.3rem .75rem;border-radius:20px;font-weight:600;"></span>
-            <span id="access-total-count" style="font-size:.78rem;background:#f4f4f4;color:#555;padding:.3rem .75rem;border-radius:20px;font-weight:600;"></span>
-          </div>
-        </div>
-        <div class="form-field search-field" style="margin-bottom:1rem;">
-          <input type="text" id="access-search" placeholder="Search by name or email…">
-        </div>
-        <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap;">
-          <button class="access-filter-btn active" data-filter="all" onclick="setAccessFilter('all',this)">All</button>
-          <button class="access-filter-btn" data-filter="active" onclick="setAccessFilter('active',this)">Active (30 days)</button>
-          <button class="access-filter-btn" data-filter="admin" onclick="setAccessFilter('admin',this)">Admins</button>
-          <button class="access-filter-btn" data-filter="never" onclick="setAccessFilter('never',this)">Never logged in</button>
-        </div>
-        <style>
-#panel-access .admin-table thead th { cursor:pointer; user-select:none; white-space:nowrap; transition:background .15s; }
-#panel-access .admin-table thead th:hover { background: rgba(112,17,12,.07); }
-#panel-access .admin-table thead th .sort-ico { font-size:.6rem; margin-left:.3rem; opacity:.4; }
-#panel-access .admin-table thead th.sort-asc .sort-ico::after { content:'▲'; opacity:1; color:#70110c; }
-#panel-access .admin-table thead th.sort-desc .sort-ico::after { content:'▼'; opacity:1; color:#70110c; }
-#panel-access .admin-table thead th .sort-ico::after { content:'⇅'; }
-        </style>
-        <div class="table-wrap">
-          <table class="admin-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Last Login</th>
-                <th>Status</th>
-                <th>Admin</th>
-              </tr>
-            </thead>
-            <tbody id="access-table-body">
-              <tr><td colspan="5">Loading…</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <script>
-(function(){
-  var _aSort = {col:-1, dir:1};
-  function initAccessSortHeaders(){
-    var tr = document.querySelector('#panel-access .admin-table thead tr');
-    if (!tr || tr.dataset.sortInit) return;
-    tr.dataset.sortInit = '1';
-    tr.querySelectorAll('th').forEach(function(th,i){
-      var ico = document.createElement('span');
-      ico.className = 'sort-ico';
-      th.appendChild(ico);
-      th.addEventListener('click', function(){
-        if (_aSort.col === i) { _aSort.dir *= -1; } else { _aSort.col = i; _aSort.dir = 1; }
-        tr.querySelectorAll('th').forEach(function(t){ t.classList.remove('sort-asc','sort-desc'); });
-        th.classList.add(_aSort.dir === 1 ? 'sort-asc' : 'sort-desc');
-        sortAccessRows();
-      });
-    });
-  }
-  function sortAccessRows(){
-    var tbody = document.getElementById('access-table-body');
-    if (!tbody || _aSort.col < 0) return;
-    var rows = Array.from(tbody.querySelectorAll('tr'));
-    if (rows.length < 2) return;
-    rows.sort(function(a,b){
-      var ac = a.querySelector('td:nth-child('+(_aSort.col+1)+')');
-      var bc = b.querySelector('td:nth-child('+(_aSort.col+1)+')');
-      var av = ac ? ac.textContent.trim().toLowerCase() : '';
-      var bv = bc ? bc.textContent.trim().toLowerCase() : '';
-      var ad = Date.parse(av), bd = Date.parse(bv);
-      if (!isNaN(ad) && !isNaN(bd) && (ad||bd)) return _aSort.dir * (ad - bd);
-      return _aSort.dir * av.localeCompare(bv);
-    });
-    rows.forEach(function(r){ tbody.appendChild(r); });
-  }
-  initAccessSortHeaders();
-  var tbody = document.getElementById('access-table-body');
-  if (tbody) {
-    new MutationObserver(function(){
-      initAccessSortHeaders();
-      if (_aSort.col >= 0) sortAccessRows();
-    }).observe(tbody, {childList:true});
-  }
-})();
-        </script>
-      </div>
-      <!-- ============ TRAINING ADMIN PANEL ============ -->
-      <div class="admin-panel" id="panel-training">
-        <style>
-#panel-training {
-    --crimson: #7D110C;
-    --cream: #F2EBD7;
-    --text: #2A2A2A;
-    --pending: #C9971C;
-    --complete: #1E7145;
-    --expired: #A31F1F;
-  }
-#panel-training * { box-sizing: border-box; }
-#panel-training  {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-  }
-#panel-training header {
-    background: var(--crimson);
-    color: #fff;
-    padding: 20px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-#panel-training header h1 { margin: 0; font-size: 1.4rem; font-weight: 700; }
-#panel-training header a { color: #fff; text-decoration: none; font-size: 0.85rem; opacity: 0.85; }
-#panel-training main { max-width: 1000px; margin: 0 auto; padding: 24px 16px 60px; }
-#panel-training .card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    padding: 20px;
-    margin-bottom: 24px;
-  }
-#panel-training .card h2 { margin-top: 0; font-size: 1.05rem; color: var(--crimson); }
-#panel-training form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-#panel-training form .full { grid-column: 1 / -1; }
-@media (max-width: 600px) {
-#panel-training form { grid-template-columns: 1fr; }
-#panel-training form .full { grid-column: 1; }
-#panel-training main { padding: 16px 12px 40px; }
-#panel-training header { padding: 16px; }
-#panel-training .card { padding: 14px; }
-
-}
-#panel-training .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-@media (max-width: 700px) {
-#panel-training table { min-width: 640px; }
-
-}
-#panel-training label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-#panel-training input, #panel-training select, #panel-training textarea {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.9rem;
-  }
-#panel-training button {
-    background: var(--crimson);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-  }
-#panel-training button.secondary {
-    background: #eee;
-    color: var(--text);
-  }
-#panel-training button.danger { background: var(--expired); }
-#panel-training table { width: 100%; border-collapse: collapse; }
-#panel-training th, #panel-training td { text-align: left; padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid #eee; }
-#panel-training th { background: var(--crimson); color: #fff; font-weight: 600; }
-#panel-training .badge {
-    display: inline-block; padding: 3px 9px; border-radius: 999px;
-    font-size: 0.72rem; font-weight: 700; color: #fff;
-  }
-#panel-training .badge.Complete { background: var(--complete); }
-#panel-training .badge.Pending { background: var(--pending); }
-#panel-training .badge.Expired { background: var(--expired); }
-#panel-training .actions button { padding: 5px 10px; font-size: 0.75rem; margin-right: 4px; }
-#panel-training .msg { padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 14px; }
-#panel-training .msg.ok { background: #e3f6ea; color: var(--complete); }
-#panel-training .msg.err { background: #fbe6e6; color: var(--expired); }
-#panel-training .loading, #panel-training .empty { text-align: center; padding: 24px; color: #666; }
-#panel-training #gate { padding: 40px; text-align: center; }
-
-        </style>
-<div id="msgBox"></div>
-
-<div class="card">
-  <h2 id="formTitle">Add Training Record</h2>
-  <form id="trainingForm">
-    <input type="hidden" id="recordId" />
-    <div>
-      <label for="memberSelect">Member</label>
-      <select id="memberSelect" required></select>
-    </div>
-    <div>
-      <label for="trainingName">Training Name</label>
-      <input type="text" id="trainingName" required placeholder="e.g. Guide Right Orientation" />
-    </div>
-    <div>
-      <label for="completedDate">Completed Date</label>
-      <input type="date" id="completedDate" />
-    </div>
-    <div>
-      <label for="status">Status</label>
-      <select id="status">
-        <option>Pending</option>
-        <option>Complete</option>
-        <option>Expired</option>
-      </select>
-    </div>
-    <div>
-      <label for="verifiedBy">Verified By</label>
-      <input type="text" id="verifiedBy" placeholder="Officer name" />
-    </div>
-    <div class="full">
-      <label for="notes">Notes</label>
-      <textarea id="notes" rows="2"></textarea>
-    </div>
-    <div class="full" style="display:flex; gap:10px;">
-      <button type="submit" id="submitBtn">Add Record</button>
-      <button type="button" class="secondary" id="cancelEditBtn" style="display:none;">Cancel</button>
-    </div>
-  </form>
-</div>
-
-<div class="card">
-  <h2>All Training Records</h2>
-  <div id="tableWrap" class="loading table-scroll">Loading&hellip;</div>
-</div>
-      </div>
-
-      <!-- ============ TRAINING REPORT PANEL ============ -->
-      <div class="admin-panel" id="panel-training-report">
-        <style>
-#panel-training-report {
-    --crimson: #7D110C;
-    --cream: #F2EBD7;
-    --text: #2A2A2A;
-    --pending: #C9971C;
-    --complete: #1E7145;
-    --expired: #A31F1F;
-  }
-#panel-training-report * { box-sizing: border-box; }
-#panel-training-report  {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-  }
-#panel-training-report header {
-    background: var(--crimson);
-    color: #fff;
-    padding: 20px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-#panel-training-report header h1 { margin: 0; font-size: 1.4rem; font-weight: 700; }
-#panel-training-report header a { color: #fff; text-decoration: none; font-size: 0.85rem; opacity: 0.85; }
-#panel-training-report main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
-#panel-training-report .card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    padding: 20px;
-    margin-bottom: 24px;
-  }
-#panel-training-report .card h2 { margin-top: 0; font-size: 1.05rem; color: var(--crimson); }
-#panel-training-report /* Summary stat cards */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-@media (max-width: 700px) {
-#panel-training-report .stat-grid { grid-template-columns: 1fr 1fr; }
-
-}
-@media (max-width: 420px) {
-#panel-training-report .stat-grid { grid-template-columns: 1fr; }
-
-}
-#panel-training-report .stat-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    padding: 16px;
-    text-align: center;
-  }
-#panel-training-report .stat-card .num { font-size: 1.8rem; font-weight: 700; color: var(--crimson); }
-#panel-training-report .stat-card .label { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: .04em; margin-top: 4px; }
-#panel-training-report /* By-training breakdown */
-  .training-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    flex-wrap: wrap;
-  }
-#panel-training-report .training-row:last-child { border-bottom: none; }
-#panel-training-report .training-row .name { font-weight: 600; font-size: 0.92rem; flex: 1; min-width: 160px; }
-#panel-training-report .bar-wrap { flex: 2; min-width: 140px; background: #eee; border-radius: 999px; height: 10px; overflow: hidden; }
-#panel-training-report .bar-fill { height: 100%; background: var(--complete); }
-#panel-training-report .training-row .pct { font-size: 0.82rem; color: #555; width: 110px; text-align: right; flex-shrink: 0; }
-#panel-training-report /* Filters */
-  .filters {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-#panel-training-report .filters input, #panel-training-report .filters select {
-    padding: 8px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.85rem;
-  }
-#panel-training-report .filters input { flex: 1; min-width: 160px; }
-#panel-training-report button {
-    background: var(--crimson);
-    color: #fff;
-    border: none;
-    padding: 9px 18px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-  }
-#panel-training-report button.secondary { background: #eee; color: var(--text); }
-#panel-training-report .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-#panel-training-report table { width: 100%; border-collapse: collapse; min-width: 640px; }
-#panel-training-report th, #panel-training-report td { text-align: left; padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid #eee; }
-#panel-training-report th { background: var(--crimson); color: #fff; font-weight: 600; position: sticky; top: 0; }
-#panel-training-report .badge {
-    display: inline-block; padding: 3px 9px; border-radius: 999px;
-    font-size: 0.72rem; font-weight: 700; color: #fff;
-  }
-#panel-training-report .badge.Complete { background: var(--complete); }
-#panel-training-report .badge.Pending { background: var(--pending); }
-#panel-training-report .badge.Expired { background: var(--expired); }
-#panel-training-report .loading, #panel-training-report .empty { text-align: center; padding: 24px; color: #666; }
-#panel-training-report #gate { padding: 40px; text-align: center; }
-#panel-training-report .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
-#panel-training-report .count-note { font-size: 0.8rem; color: #777; }
-
-        </style>
-<div class="stat-grid" id="statGrid">
-  <div class="stat-card"><div class="num" id="statTotalMembers">—</div><div class="label">Members</div></div>
-  <div class="stat-card"><div class="num" id="statTotalRecords">—</div><div class="label">Training Records</div></div>
-  <div class="stat-card"><div class="num" id="statComplete">—</div><div class="label">Complete</div></div>
-  <div class="stat-card"><div class="num" id="statOutstanding">—</div><div class="label">Pending / Expired</div></div>
-</div>
-
-<div class="card">
-  <h2>Completion by Training</h2>
-  <div id="byTrainingWrap-report" class="loading">Loading&hellip;</div>
-</div>
-
-<div class="card">
-  <h2>All Records</h2>
-  <div class="filters">
-    <input type="text" id="searchInput-report" placeholder="Search member name&hellip;">
-    <select id="trainingFilter"><option value="">All trainings</option></select>
-    <select id="statusFilter">
-      <option value="">All statuses</option>
-      <option value="Complete">Complete</option>
-      <option value="Pending">Pending</option>
-      <option value="Expired">Expired</option>
+<!-- ── Top Action Bar ── -->
+<div class="topbar">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search volunteers…" oninput="applyFilters()">
+    <select id="filterAssign" onchange="applyFilters()">
+      <option value="">All Roles</option>
+      <option>Concessions</option>
+      <option>Parking</option>
+      <option>Gate / Entry</option>
+      <option>Field Support</option>
+      <option>General</option>
+    </select>
+    <select id="filterTabc" onchange="applyFilters()">
+      <option value="">TABC: All</option>
+      <option value="yes">TABC Certified</option>
+      <option value="no">Not Certified</option>
     </select>
   </div>
-  <div class="toolbar">
-    <span class="count-note" id="resultCount"></span>
-    <button type="button" id="exportBtn" class="secondary">Export CSV</button>
-  </div>
-  <div class="table-scroll">
-    <div id="tableWrap-report" class="loading">Loading&hellip;</div>
-  </div>
-</div>
-      </div>
-      <!-- ============ BUDGET REQUESTS PANEL ============ -->
-      <div class="admin-panel" id="panel-budget">
-        <style>
-#panel-budget *, #panel-budget *::before, #panel-budget *::after { box-sizing: border-box; margin: 0; padding: 0; }
-#panel-budget  { font-family: 'Archivo', sans-serif; color: #1a1a1a; }
-#panel-budget /* ── Banner ── */
-    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
-#panel-budget .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
-#panel-budget .org-text { flex: 1; }
-#panel-budget .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
-#panel-budget .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
-#panel-budget .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
-#panel-budget .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
-#panel-budget .nav-strip a { color: #c69a3f; text-decoration: none; }
-#panel-budget .nav-strip a:hover { text-decoration: underline; }
-#panel-budget .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-#panel-budget .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
-#panel-budget .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
-#panel-budget /* ── NAV (legacy, #panel-budget hidden) ── */
-    .portal-nav { display: none; }
-#panel-budget .portal-nav-hidden {
-      position: sticky; top: 0; z-index: 100;
-      background: #fff; border-bottom: 1px solid #e4dbd0;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .75rem 2rem; gap: 1rem;
-    }
-#panel-budget .nav-brand { font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700; color: #70110c; letter-spacing: .06em; }
-#panel-budget .nav-links { display: flex; align-items: center; gap: 1.25rem; }
-#panel-budget .nav-links a { font-family: 'Cinzel', serif; font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #2a0604; text-decoration: none; }
-#panel-budget .nav-links a:hover { color: #c69a3f; }
-#panel-budget main { flex: 1; background: #f5f0eb; }
-#panel-budget /* ── HERO BAR (legacy, #panel-budget hidden) ── */
-    .page-hero { display: none; }
-#panel-budget .page-hero-hidden {
-      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
-      padding: 2rem 2.5rem;
-    }
-#panel-budget .page-hero-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-#panel-budget .page-hero .eyebrow { font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #c69a3f; margin-bottom: .4rem; }
-#panel-budget .page-hero h1 { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; color: #f2ebd7; }
-#panel-budget .export-btn {
-      background: #c69a3f; color: #2a0604;
-      font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      padding: .65rem 1.4rem; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap;
-      transition: filter .2s;
-    }
-#panel-budget .export-btn:hover { filter: brightness(1.1); }
-#panel-budget /* ── ANALYTICS CARDS ── */
-    .analytics-bar { max-width: 1200px; margin: 1.75rem auto 0; padding: 0 2rem; }
-#panel-budget .analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
-#panel-budget .stat-card {
-      background: #fff; border: 1px solid #e4dbd0; border-radius: 8px;
-      padding: 1.1rem 1.25rem;
-    }
-#panel-budget .stat-card .num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #70110c; line-height: 1; }
-#panel-budget .stat-card .lbl { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8a7060; margin-top: .3rem; }
-#panel-budget .stat-card .sub { font-size: .75rem; color: #aaa; margin-top: .2rem; }
-#panel-budget /* ── FILTERS ── */
-    .filters-bar { max-width: 1200px; margin: 1.5rem auto 0; padding: 0 2rem; display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
-#panel-budget .filter-select {
-      padding: .5rem .9rem; border: 1px solid #d8cfc5; border-radius: 4px;
-      font-family: 'Archivo', sans-serif; font-size: .82rem; color: #1a1a1a;
-      background: #fff; appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
-      background-repeat: no-repeat; background-position: right .65rem center; padding-right: 1.75rem;
-    }
-#panel-budget .search-input {
-      padding: .5rem .9rem; border: 1px solid #d8cfc5; border-radius: 4px;
-      font-family: 'Archivo', sans-serif; font-size: .82rem; background: #fff;
-      min-width: 220px;
-    }
-#panel-budget .search-input:focus, #panel-budget .filter-select:focus { outline: none; border-color: #70110c; }
-#panel-budget /* ── TABLE ── */
-    .table-wrap { max-width: 1200px; margin: 1.25rem auto 3rem; padding: 0 2rem; }
-#panel-budget .table-shell { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; overflow: hidden; }
-#panel-budget table { width: 100%; border-collapse: collapse; font-size: .82rem; }
-#panel-budget thead { background: #f0e8e0; }
-#panel-budget th {
-      padding: .65rem 1rem; text-align: left;
-      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase; color: #70110c;
-      border-bottom: 2px solid #e0d4c8; white-space: nowrap;
-    }
-#panel-budget td { padding: .65rem 1rem; border-bottom: 1px solid #f0e8e0; vertical-align: middle; }
-#panel-budget tr:last-child td { border-bottom: none; }
-#panel-budget tr:hover td { background: #faf6f2; }
-#panel-budget .badge {
-      display: inline-block; padding: .2rem .65rem; border-radius: 12px;
-      font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-    }
-#panel-budget .badge-pending { background: #fef3c7; color: #92400e; }
-#panel-budget .badge-approved { background: #d1fae5; color: #065f46; }
-#panel-budget .badge-denied { background: #fee2e2; color: #991b1b; }
-#panel-budget .badge-review { background: #e0e7ff; color: #3730a3; }
-#panel-budget .priority-dot {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: .35rem;
-    }
-#panel-budget .p-low { background: #86efac; }
-#panel-budget .p-medium { background: #fcd34d; }
-#panel-budget .p-high { background: #f97316; }
-#panel-budget .p-urgent { background: #ef4444; }
-#panel-budget .amount-cell { font-family: 'Cinzel', serif; font-weight: 700; color: #70110c; white-space: nowrap; }
-#panel-budget .action-btn {
-      font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase;
-      padding: .3rem .65rem; border-radius: 3px; border: 1px solid; cursor: pointer;
-      transition: background .2s;
-    }
-#panel-budget .action-approve { border-color: #86efac; color: #065f46; background: #f0fdf4; }
-#panel-budget .action-approve:hover { background: #86efac; }
-#panel-budget .action-deny { border-color: #fca5a5; color: #991b1b; background: #fef2f2; }
-#panel-budget .action-deny:hover { background: #fca5a5; }
-#panel-budget .empty-row td { text-align: center; padding: 3rem; color: #aaa; font-size: .88rem; }
-#panel-budget /* ── MODAL (detail view) ── */
-    .modal-bg {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200;
-      align-items: center; justify-content: center; padding: 1.5rem;
-    }
-#panel-budget .modal-bg.open { display: flex; }
-#panel-budget .modal {
-      background: #fff; border-radius: 10px; max-width: 640px; width: 100%;
-      max-height: 85vh; overflow-y: auto;
-    }
-#panel-budget .modal-head {
-      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
-      padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
-    }
-#panel-budget .modal-head h3 { font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700; color: #f2ebd7; }
-#panel-budget .modal-close { background: none; border: none; color: rgba(242,235,215,.6); font-size: 1.3rem; cursor: pointer; }
-#panel-budget .modal-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-#panel-budget .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 1.25rem; }
-#panel-budget .detail-item .lbl { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8a7060; margin-bottom: .2rem; }
-#panel-budget .detail-item .val { font-size: .88rem; color: #1a1a1a; }
-#panel-budget .detail-item.full { grid-column: 1 / -1; }
-#panel-budget .line-mini { background: #f5f0eb; border-radius: 6px; padding: .75rem 1rem; font-size: .8rem; }
-#panel-budget .line-mini table { width: 100%; }
-#panel-budget .line-mini th { font-size: .62rem; font-weight: 700; color: #8a7060; letter-spacing: .06em; text-transform: uppercase; padding: 0 0 .4rem; border: none; background: none; }
-#panel-budget .line-mini td { padding: .25rem 0; border: none; }
-#panel-budget .modal-actions { display: flex; gap: .75rem; justify-content: flex-end; padding: 1rem 1.5rem; border-top: 1px solid #f0e8e0; }
-#panel-budget .loading { text-align: center; padding: 3rem; color: #aaa; font-size: .88rem; }
-
-        </style>
-<div class="page-label">
-  <h1>Budget Request Submissions</h1>
-  <div style="display:flex;gap:.75rem;align-items:center;">
-    <button class="export-btn" id="exportCSV-budget-btn">&#8595; Export CSV</button>
-    <span class="fy-tag">FY 2026&ndash;2027</span>
+  <div class="topbar-right">
+    <button class="btn btn-outline" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-primary" onclick="openAddModal(null)">+ Add Volunteer</button>
   </div>
 </div>
 
-<!-- Analytics -->
-<div class="analytics-bar">
-  <div class="analytics-grid">
-    <div class="stat-card">
-      <div class="num" id="statTotal-budget">—</div>
-      <div class="lbl">Total Requests</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="statPending-budget">—</div>
-      <div class="lbl">Pending Review</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="statApproved-budget">—</div>
-      <div class="lbl">Approved</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="statAmount-budget">—</div>
-      <div class="lbl">Total Requested</div>
-      <div class="sub">FY 2025–2026</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" id="statApprovedAmt-budget">—</div>
-      <div class="lbl">Approved Amount</div>
-    </div>
-  </div>
+<!-- ── Summary chips ── -->
+<div class="summary" id="summaryRow">
+  <div class="chip"><span class="chip-label">Total Volunteers</span><span class="chip-value" id="chipTotal">—</span></div>
+  <div class="chip"><span class="chip-label">Total Sign-Ups</span><span class="chip-value" id="chipSignups">—</span></div>
+  <div class="chip"><span class="chip-label">TABC Certified</span><span class="chip-value" id="chipTabc">—</span></div>
+  <div class="chip"><span class="chip-label">Events Covered</span><span class="chip-value" id="chipEvents">—</span></div>
 </div>
 
-<!-- Filters -->
-<div class="filters-bar">
-  <input class="search-input" id="searchInput-budget" type="text" placeholder="Search by name, committee…">
-  <select class="filter-select" id="filterStatus-budget">
-    <option value="">All Statuses</option>
-    <option>Pending</option>
-    <option>Under Review</option>
-    <option>Approved</option>
-    <option>Denied</option>
-  </select>
-  <select class="filter-select" id="filterPriority-budget">
-    <option value="">All Priorities</option>
-    <option>Low</option>
-    <option>Medium</option>
-    <option>High</option>
-    <option>Urgent</option>
-  </select>
-  <select class="filter-select" id="filterCommittee-budget">
-    <option value="">All Committees</option>
-  </select>
-</div>
+<!-- ── Main content ── -->
+<main class="main" id="mainContent">
+  <div class="empty-state"><p>Loading roster…</p><small>Connecting to Supabase</small></div>
+</main>
 
-<!-- Table -->
-<div class="table-wrap">
-  <div class="table-shell">
-    <div class="loading" id="loadingMsg-budget">Loading submissions…</div>
-    <table id="mainTable-budget" style="display:none;">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Brother</th>
-          <th>Committee</th>
-          <th>Priority</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody-budget"></tbody>
-    </table>
-  </div>
-</div>
+<footer class="page-footer">
+  DLGRF Volunteer Roster · Denton-Lewisville Alumni Chapter · Kappa Alpha Psi Fraternity, Inc.
+</footer>
 
-<!-- Detail Modal -->
-<div class="modal-bg" id="modalBg-budget">
+<!-- ── Add / Edit Modal ── -->
+<div class="overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <div class="modal-head">
-      <h3 id="modalTitle-budget">Request Detail</h3>
-      <button class="modal-close" id="modalClose-budget-btn">✕</button>
+      <h3 id="modalTitle">Add Volunteer</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="modalBody-budget"></div>
-    <div class="modal-actions" id="modalActions-budget"></div>
-  </div>
-</div>
-      </div>
-      <!-- ============ BLOG ADMIN PANEL ============ -->
-      <div class="admin-panel" id="panel-blog">
-        <style>
-#panel-blog .admin-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 2rem 5rem; }
-#panel-blog .admin-wrap h1 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:700; color:#70110c; margin-bottom:.25rem; }
-#panel-blog .admin-wrap .subtitle { font-size:.85rem; color:#8a7a72; margin-bottom:2rem; }
-#panel-blog .form-section { margin-bottom:1.25rem; }
-#panel-blog .form-section label { display:block; font-size:.76rem; font-weight:600; color:#444; margin-bottom:.35rem; letter-spacing:.04em; text-transform:uppercase; }
-#panel-blog .form-section input[type="text"], #panel-blog .form-section input[type="url"], #panel-blog .form-section input[type="datetime-local"], #panel-blog .form-section select, #panel-blog .form-section textarea {
-  width:100%; padding:.68rem .85rem;
-  border:1.5px solid #ddd; border-radius:4px;
-  background:#fafafa; font-family:'Archivo',sans-serif;
-  font-size:.92rem; color:#222; outline:none; transition:border-color .2s;
-  box-sizing:border-box;
-}
-#panel-blog .form-section input:focus, #panel-blog .form-section select:focus, #panel-blog .form-section textarea:focus { border-color:#c69a3f; background:#fff; }
-#panel-blog .form-section textarea { resize:vertical; min-height:120px; font-family:monospace; font-size:.85rem; }
-#panel-blog .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-#panel-blog .form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
-#panel-blog .toggle-row { display:flex; align-items:center; gap:.75rem; padding:.85rem 1rem; background:#faf8f4; border:1px solid #e4ddd4; border-radius:4px; }
-#panel-blog .toggle-row input[type="checkbox"] { width:16px; height:16px; accent-color:#70110c; cursor:pointer; }
-#panel-blog .toggle-row label { font-size:.85rem; color:#3a2e28; cursor:pointer; margin:0; text-transform:none; letter-spacing:0; font-weight:500; }
-#panel-blog .hint { font-size:.73rem; color:#aaa; margin-top:.3rem; }
-#panel-blog .btn-row { display:flex; gap:1rem; margin-top:1.75rem; flex-wrap:wrap; }
-#panel-blog .btn-publish { padding:.85rem 2rem; background:#70110c; color:#f2ebd7; border:none; border-radius:4px; font-family:'Cinzel',serif; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
-#panel-blog .btn-publish:hover { background:#5a0e09; }
-#panel-blog .btn-publish:disabled { background:#a55; cursor:not-allowed; }
-#panel-blog .btn-draft { padding:.85rem 1.75rem; background:transparent; color:#70110c; border:2px solid #70110c; border-radius:4px; font-family:'Cinzel',serif; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
-#panel-blog .btn-draft:hover { background:#70110c; color:#f2ebd7; }
-#panel-blog .status-msg { padding:.75rem 1rem; border-radius:4px; font-size:.84rem; margin-top:1rem; display:none; }
-#panel-blog .status-msg.success { background:#f0fff4; border:1px solid #b2e6c8; color:#1a6e3a; }
-#panel-blog .status-msg.error { background:#fff0f0; border:1px solid #f0c0c0; color:#a00; }
-#panel-blog /* Posts list */
-.posts-section { margin-top:3rem; }
-#panel-blog .posts-section h2 { font-family:'Cinzel',serif; font-size:1.1rem; color:#70110c; font-weight:700; margin-bottom:1.25rem; padding-bottom:.75rem; border-bottom:1px solid #e4ddd4; }
-#panel-blog .post-row { display:flex; align-items:center; justify-content:space-between; padding:.9rem 0; border-bottom:1px solid #f0ece6; gap:1rem; }
-#panel-blog .post-row-info h3 { font-size:.9rem; font-weight:600; color:#1a1a1a; margin-bottom:.2rem; }
-#panel-blog .post-row-info .meta { font-size:.75rem; color:#aaa; }
-#panel-blog .post-row-actions { display:flex; gap:.5rem; flex-shrink:0; flex-wrap:wrap; justify-content:flex-end; }
-#panel-blog .btn-sm { font-family:'Cinzel',serif; font-size:.58rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.4rem .85rem; border:none; border-radius:3px; cursor:pointer; transition:all .2s; }
-#panel-blog .btn-view { background:#f0ece6; color:#3a2e28; }
-#panel-blog .btn-view:hover { background:#e0d8cc; }
-#panel-blog .btn-edit { background:#eef4ff; color:#1a4e99; }
-#panel-blog .btn-edit:hover { background:#d5e5ff; }
-#panel-blog .btn-unpublish { background:#fff0f0; color:#a00; }
-#panel-blog .btn-unpublish:hover { background:#f0c0c0; }
-#panel-blog .btn-publish-sm { background:#70110c; color:#f2ebd7; }
-#panel-blog .btn-publish-sm:hover { background:#5a0e09; }
-#panel-blog .btn-delete { background:#fff0f0; color:#cc0000; border:1px solid #f0c0c0; }
-#panel-blog .btn-delete:hover { background:#ffd5d5; }
-#panel-blog .badge { display:inline-block; font-size:.58rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.2rem .55rem; border-radius:3px; margin-left:.4rem; }
-#panel-blog .badge-live { background:#d4edda; color:#1a6e3a; }
-#panel-blog .badge-draft { background:#e0e0e0; color:#666; }
-#panel-blog .badge-members { background:#fdf3e0; color:#8a6020; }
-#panel-blog /* Editor toggle */
-.editor-toggle { display:flex; gap:0; border:1.5px solid #ddd; border-radius:4px; overflow:hidden; }
-#panel-blog .toggle-btn { padding:.3rem .85rem; font-family:'Cinzel',serif; font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:none; background:#f5f2ed; color:#8a7a72; cursor:pointer; transition:all .2s; }
-#panel-blog .toggle-btn.active { background:#70110c; color:#f2ebd7; }
-#panel-blog .toggle-btn:not(.active):hover { background:#e0d8cc; }
-#panel-blog /* Quill */
-#quill-editor { background:#fafafa; border:1.5px solid #ddd; border-top:none; transition:border-color .2s; }
-#panel-blog #quill-editor:focus-within { border-color:#c69a3f; background:#fff; }
-#panel-blog .ql-toolbar { border:1.5px solid #ddd !important; border-radius:4px 4px 0 0; background:#f5f2ed; flex-wrap:wrap !important; }
-#panel-blog .ql-container { border-radius:0 0 4px 4px; font-family:'Archivo',sans-serif !important; font-size:.92rem !important; }
-#panel-blog .ql-editor { height:420px; overflow-y:auto; }
-#panel-blog .ql-editor p, #panel-blog .ql-editor li { font-family:'Archivo',sans-serif; font-size:.92rem; line-height:1.75; }
-#panel-blog #postContentHtml { height:420px; overflow-y:auto; resize:none; }
-@media(max-width:560px) {
-#panel-blog .form-row, #panel-blog .form-row-3 { grid-template-columns:1fr; }
-#panel-blog .admin-wrap { padding:1.5rem 1rem 3rem; }
-
-}
-#panel-blog /* Portal nav */
-.portal-nav { background:#fff; border-bottom:1px solid #e0d8cc; padding:0 2rem; display:flex; align-items:center; height:64px; gap:1rem; position:sticky; top:0; z-index:100; }
-#panel-blog .portal-nav .brand { display:flex; align-items:center; gap:.9rem; flex:1; min-width:0; text-decoration:none; }
-#panel-blog .portal-nav .brand img { width:44px; flex-shrink:0; }
-#panel-blog .portal-nav .brand-text .chapter-name { font-family:'Cinzel',serif; font-size:.95rem; font-weight:700; color:#70110c; line-height:1.1; }
-#panel-blog .portal-nav .brand-text .frat-name { font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#888; }
-#panel-blog .portal-nav .nav-links { display:flex; align-items:center; gap:1.5rem; flex-shrink:0; }
-#panel-blog .portal-nav .nav-links a { font-size:.82rem; font-weight:600; color:#70110c; text-decoration:none; letter-spacing:.03em; white-space:nowrap; }
-#panel-blog .portal-nav .nav-links a:hover { text-decoration:underline; }
-#panel-blog .portal-nav .nav-links .signout { color:#888; }
-#panel-blog .portal-nav .nav-links .admin-link { color:#c69a3f; }
-@media(max-width:700px) {
-#panel-blog .portal-nav .nav-links { gap:1rem; }
-
-}
-
-        </style>
-<div style="background:#fff; padding:1.5rem 0 0;">
-  <div class="admin-wrap">
-    <h1 id="formHeading">Blog Admin</h1>
-    <p class="subtitle" id="formSubtitle">Create and manage chapter blog posts.</p>
-
-    <!-- Title -->
-    <div class="form-section">
-      <label for="postTitle">Post Title *</label>
-      <input type="text" id="postTitle" placeholder="e.g. Chapter Meeting Recap — June 2026">
-    </div>
-
-    <!-- Slug -->
-    <div class="form-section">
-      <label for="postSlug">URL Slug *</label>
-      <input type="text" id="postSlug" placeholder="e.g. chapter-meeting-recap-june-2026">
-      <div class="hint">Auto-generated from title. Lowercase letters, numbers, and hyphens only.</div>
-    </div>
-
-    <!-- Category / Author / Date -->
-    <div class="form-row-3">
-      <div class="form-section">
-        <label for="postCategory">Category *</label>
-        <select id="postCategory">
-          <option value="news">News &amp; Announcements</option>
-          <option value="chapter-news">Chapter News</option>
-          <option value="event-recap">Event Recap</option>
-          <option value="member-spotlight">Member Spotlight</option>
-          <option value="guide-right">Guide Right</option>
-          <option value="chapter-series">Chapter Series</option>
-          <option value="organizational-development">Organizational Development</option>
-        </select>
-      </div>
-      <div class="form-section">
-        <label for="postAuthor">Author</label>
-        <input type="text" id="postAuthor" placeholder="DLA Chapter Administration">
-      </div>
-      <div class="form-section">
-        <label for="postDate">Publish Date</label>
-        <input type="datetime-local" id="postDate">
-        <div class="hint">Set original date for migrated articles.</div>
-      </div>
-    </div>
-
-    <!-- Excerpt / SEO description -->
-    <div class="form-section">
-      <label for="postExcerpt">Excerpt <span style="color:#c69a3f;font-weight:400;text-transform:none;letter-spacing:0;">(also used as SEO meta description)</span></label>
-      <input type="text" id="postExcerpt" placeholder="Short summary shown on the blog listing page and in search results…">
-      <div class="hint">1–2 sentences, under 160 characters for best SEO results.</div>
-    </div>
-
-    <!-- Cover image -->
-    <div class="form-section">
-      <label>Cover Image</label>
-      <div style="display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;">
-        <input type="url" id="postCover" placeholder="https://dlakappa.org/img/your-image.jpg" style="flex:1;" >
-        <button type="button" id="browseCoverBtn"
-          style="flex-shrink:0;padding:.65rem 1.1rem;background:#f5f2ed;border:1.5px solid #ddd;border-radius:4px;font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3a2e28;cursor:pointer;white-space:nowrap;"
-          onmouseover="this.style.background='#e8e0d4'" onmouseout="this.style.background='#f5f2ed'">
-          Browse &amp; Upload
-        </button>
-      </div>
-      <input type="file" id="coverFileInput" accept="image/*" style="display:none;" >
-      <div id="coverUploadProgress" style="display:none;margin-bottom:.5rem;">
-        <div style="height:4px;background:#e8e0d4;border-radius:2px;overflow:hidden;">
-          <div id="coverProgressBar" style="height:100%;width:0%;background:#70110c;transition:width .3s;border-radius:2px;"></div>
+    <div class="modal-body">
+      <form class="form-grid" id="volForm" onsubmit="return false">
+        <div class="form-field">
+          <label>Full Name *</label>
+          <input type="text" id="f_name" required placeholder="First Last">
         </div>
-        <div id="coverUploadMsg" style="font-size:.72rem;color:#888;margin-top:.3rem;">Uploading…</div>
-      </div>
-      <div id="coverPreview" style="display:none;margin-bottom:.5rem;">
-        <img id="coverPreviewImg" src="" alt="" style="max-height:140px;max-width:100%;border:1px solid #e0d8cc;border-radius:4px;display:block;">
-      </div>
-    </div>
-
-    <!-- Cover alt text -->
-    <div class="form-section">
-      <label for="postCoverAlt">Cover Image Alt Text <span style="color:#c69a3f;font-weight:400;text-transform:none;letter-spacing:0;">(SEO &amp; accessibility)</span></label>
-      <input type="text" id="postCoverAlt" placeholder="e.g. Chapter brothers at the 2025 community service event">
-      <div class="hint">Describe the image for screen readers and search engines.</div>
-    </div>
-
-    <!-- SEO fields -->
-    <div class="form-section" style="background:#faf8f4;border:1px solid #e4ddd4;padding:1rem;border-radius:4px;">
-      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c69a3f;margin-bottom:.75rem;">SEO Settings</div>
-      <div class="form-row">
-        <div class="form-section" style="margin:0;">
-          <label for="postSeoTitle">SEO Title Override</label>
-          <input type="text" id="postSeoTitle" placeholder="Leave blank to use post title">
-          <div class="hint">Shown in browser tab and search results. ~60 chars max.</div>
+        <div class="form-field">
+          <label>Email *</label>
+          <input type="email" id="f_email" required placeholder="email@example.com">
         </div>
-        <div class="form-section" style="margin:0;">
-          <label for="postCanonical">Canonical URL</label>
-          <input type="url" id="postCanonical" placeholder="https://dlakappa.org/blog/post.html?slug=…">
-          <div class="hint">Set if this article was originally published elsewhere.</div>
+        <div class="form-field">
+          <label>Mobile Phone</label>
+          <input type="tel" id="f_phone" placeholder="(214) 555-0000">
         </div>
-      </div>
-    </div>
-
-    <!-- Content editor -->
-    <div class="form-section">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;">
-        <label style="margin:0;">Content *</label>
-        <div class="editor-toggle">
-          <button type="button" class="toggle-btn active" id="btnRichText" >Rich Text</button>
-          <button type="button" class="toggle-btn" id="btnHtml" >HTML</button>
-        </div>
-      </div>
-      <div id="quill-editor"></div>
-      <textarea id="postContentHtml" style="display:none;width:100%;padding:.68rem .85rem;border:1.5px solid #ddd;border-radius:4px;background:#fafafa;font-family:monospace;font-size:.85rem;color:#222;outline:none;box-sizing:border-box;" placeholder="<p>Write your HTML here...</p>"></textarea>
-      <div class="hint" id="editorHint">Write or paste content. Paste from Word or Google Docs and formatting will be preserved. Scroll within the content area.</div>
-    </div>
-
-    <!-- Members only -->
-    <div class="form-section">
-      <div class="toggle-row">
-        <input type="checkbox" id="membersOnly">
-        <label for="membersOnly">&#128274; Members Only — hide full content from non-members</label>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-publish" id="btnPublish" >Publish Now</button>
-      <button class="btn-draft" id="btnDraft" >Save as Draft</button>
-      <button class="btn-draft" id="btnCancel"  style="display:none;border-color:#aaa;color:#666;">Cancel Edit</button>
-    </div>
-    <div class="status-msg" id="statusMsg"></div>
-
-    <!-- Posts list -->
-    <div class="posts-section">
-      <h2>All Posts</h2>
-      <div id="postsList"><p style="font-size:.84rem;color:#aaa;">Loading posts…</p></div>
-    </div>
-  </div>
-</div>
-
-      </div>
-      <!-- ============ COMMUNITY SERVICE PANEL ============ -->
-      <div class="admin-panel" id="panel-community-service">
-        <style>
-#panel-community-service *, #panel-community-service *::before, #panel-community-service *::after { box-sizing: border-box; margin: 0; padding: 0; }
-#panel-community-service html, #panel-community-service  { overflow-x: hidden; }
-#panel-community-service  { font-family: 'Archivo', sans-serif; }
-#panel-community-service /* ── Banner / Nav (house template) ── */
-    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
-#panel-community-service .banner-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
-#panel-community-service .org-text { flex: 1; }
-#panel-community-service .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
-#panel-community-service .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
-#panel-community-service .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
-#panel-community-service .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
-#panel-community-service .nav-strip a { color: #c69a3f; text-decoration: none; }
-#panel-community-service .nav-strip a:hover { text-decoration: underline; }
-#panel-community-service .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-#panel-community-service .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
-#panel-community-service .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
-#panel-community-service main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
-#panel-community-service .admin-shell { max-width: 1280px; margin: 0 auto; }
-#panel-community-service /* ── Access denied ── */
-    .denied-screen { display:none; background:#fff; border:1px solid #e4dbd0; border-radius:8px; padding:3rem 2rem; text-align:center; max-width:600px; margin:3rem auto; }
-#panel-community-service .denied-screen h2 { font-family:'Cinzel', serif; color:#70110c; font-size:1.2rem; margin-bottom:.75rem; }
-#panel-community-service .denied-screen p { color:#6a5a50; font-size:.9rem; }
-#panel-community-service /* ── Stat cards ── */
-    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-#panel-community-service .stat-card { background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
-#panel-community-service .stat-card .num { display: block; font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #70110c; }
-#panel-community-service .stat-card .label { font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: #777; margin-top: 4px; display: block; }
-#panel-community-service /* ── Form sections (house template) ── */
-    .form-section { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }
-#panel-community-service .section-head { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 1.25rem; display: flex; align-items: center; gap: .6rem; justify-content: space-between; flex-wrap: wrap; }
-#panel-community-service .section-head-left { display: flex; align-items: center; gap: .6rem; }
-#panel-community-service .section-head-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
-#panel-community-service .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
-#panel-community-service .section-head h2 { font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; }
-#panel-community-service .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-#panel-community-service .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-#panel-community-service .field-row.full { grid-template-columns: 1fr; }
-#panel-community-service .field { display: flex; flex-direction: column; gap: .35rem; }
-#panel-community-service label { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #6a5a50; }
-#panel-community-service label .req { color: #70110c; margin-left: 2px; }
-#panel-community-service input[type="text"], #panel-community-service input[type="date"], #panel-community-service input[type="number"], #panel-community-service select, #panel-community-service textarea {
-      width: 100%; padding: .6rem .8rem; border: 1px solid #d8cfc5; border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .88rem; color: #1a1a1a; background: #faf8f5; transition: border-color .2s, box-shadow .2s; appearance: none;
-    }
-#panel-community-service textarea { resize: vertical; min-height: 60px; }
-#panel-community-service input:focus, #panel-community-service select:focus, #panel-community-service textarea:focus { outline: none; border-color: #70110c; box-shadow: 0 0 0 3px rgba(112,17,12,.08); }
-#panel-community-service select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a5a50' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem; }
-#panel-community-service .radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
-#panel-community-service .radio-item { display: flex; align-items: center; gap: .5rem; cursor: pointer; }
-#panel-community-service .radio-item input[type="radio"] { accent-color: #70110c; cursor: pointer; }
-#panel-community-service .radio-item span { font-size: .88rem; color: #1a1a1a; }
-#panel-community-service /* Filters grid (compact, #panel-community-service 6-across on desktop) */
-    .filters-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .8rem; align-items: end; }
-#panel-community-service /* ── Buttons ── */
-    .btn-submit { background: linear-gradient(135deg, #70110c, #2a0604); color: #f2ebd7; font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .85rem 2.5rem; border: none; border-radius: 4px; cursor: pointer; transition: opacity .2s; }
-#panel-community-service .btn-submit:hover { opacity: .88; }
-#panel-community-service .btn-outline { background: transparent !important; border: 1px solid #70110c; color: #70110c; }
-#panel-community-service .btn-pill { font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .5rem 1rem; border-radius: 4px; border: 1px solid rgba(198,154,63,.6); background: rgba(255,255,255,.08); color: #c69a3f; cursor: pointer; }
-#panel-community-service .btn-pill:hover { background: rgba(255,255,255,.16); }
-#panel-community-service .btn-pill.solid { background: #c69a3f; color: #2a0604; border-color: #c69a3f; }
-#panel-community-service .btn-edit-small { background: #f0e8e0; color: #2a0604; font-family: 'Archivo',sans-serif; font-weight: 600; font-size: .72rem; padding: .35rem .8rem; border: none; border-radius: 4px; cursor: pointer; }
-#panel-community-service .btn-danger-small { background: #991b1b; color: #fff; font-family: 'Archivo',sans-serif; font-weight: 600; font-size: .72rem; padding: .35rem .8rem; border: none; border-radius: 4px; cursor: pointer; margin-left:.35rem; }
-#panel-community-service .submit-row { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; flex-wrap: wrap; }
-#panel-community-service .status-msg { display: none; padding: .6rem .9rem; border-radius: 4px; font-size: .82rem; font-weight: 600; }
-#panel-community-service .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
-#panel-community-service .status-msg.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; display: block; }
-#panel-community-service .inline-msg { font-size: .8rem; font-weight: 600; }
-#panel-community-service /* ── Charts ── */
-    .charts-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1rem; }
-#panel-community-service .chart-box { background: #faf8f5; border: 1px solid #f0e8e0; border-radius: 6px; padding: 1rem; }
-#panel-community-service .chart-box h3 { font-family: 'Cinzel', serif; font-size: .78rem; letter-spacing: .04em; color: #70110c; margin-bottom: .75rem; text-transform: uppercase; }
-#panel-community-service canvas { max-height: 260px; }
-#panel-community-service /* ── Tables ── */
-    .table-scroll { overflow-x: auto; }
-#panel-community-service .table-scroll.scroll-y { max-height: 520px; overflow-y: auto; }
-#panel-community-service table.admin-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
-#panel-community-service table.admin-table th, #panel-community-service table.admin-table td { text-align: left; padding: .55rem .5rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
-#panel-community-service table.admin-table th { font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #fff; position: sticky; top: 0; background: #70110c; padding: .65rem .5rem; }
-#panel-community-service .pill { display: inline-block; padding: .15rem .6rem; border-radius: 20px; font-size: .66rem; font-weight: 700; }
-#panel-community-service .pill-internal { background: #e6f0e9; color: #2e7d32; }
-#panel-community-service .pill-external { background: #eef0fb; color: #3949ab; }
-#panel-community-service .pill-yes { background: #f5e9c9; color: #70110c; }
-#panel-community-service .pill-no { background: #f0f0f0; color: #888; }
-#panel-community-service /* ── Modal ── */
-    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
-#panel-community-service .modal-backdrop.open { display: flex; }
-#panel-community-service .modal-box { background: #fff; border-radius: 8px; max-width: 640px; width: 100%; max-height: 90vh; overflow-y: auto; }
-#panel-community-service footer { background: #2a0604; color: rgba(242,235,215,.45); text-align: center; font-size: .72rem; letter-spacing: .06em; padding: 1.25rem; }
-#panel-community-service footer span { color: #c69a3f; }
-@media (max-width: 1000px) {
-#panel-community-service .stat-row { grid-template-columns: repeat(2, 1fr); }
-#panel-community-service .filters-grid { grid-template-columns: repeat(3, 1fr); }
-#panel-community-service .charts-grid { grid-template-columns: 1fr; }
-
-/* ── Restyle to match Training Report (white cards, crimson accents) ── */
-#panel-community-service { background: #F2EBD7; }
-#panel-community-service main { background: #F2EBD7; }
-
-/* Stat cards: white bg, large crimson numbers, gray labels */
-#panel-community-service .stat-row {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 14px;
-  margin-bottom: 1.5rem;
-}
-#panel-community-service .stat-card {
-  background: #fff !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06) !important;
-  padding: 16px !important;
-  text-align: center;
-}
-#panel-community-service .stat-card .num {
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  color: #70110c !important;
-  font-family: 'Cinzel', serif;
-}
-#panel-community-service .stat-card .label {
-  font-size: .75rem !important;
-  color: #777 !important;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  margin-top: 4px;
-}
-
-/* Section cards: white bg, subtle shadow */
-#panel-community-service .form-section {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-}
-
-/* Section headers: white with crimson text, not dark gradient */
-#panel-community-service .section-head {
-  background: #fff !important;
-  border-bottom: 2px solid #f0e8e0;
-  padding: .85rem 1.25rem;
-}
-#panel-community-service .section-head h2 {
-  color: #70110c !important;
-  font-size: .88rem !important;
-}
-#panel-community-service .section-head svg { stroke: #70110c !important; }
-
-/* Button pill updates */
-#panel-community-service .btn-pill {
-  border-color: rgba(112,17,12,.5) !important;
-  color: #70110c !important;
-  background: transparent !important;
-}
-#panel-community-service .btn-pill:hover { background: rgba(112,17,12,.06) !important; }
-#panel-community-service .btn-pill.solid {
-  background: #70110c !important;
-  color: #fff !important;
-  border-color: #70110c !important;
-}
-#panel-community-service .btn-submit {
-  background: linear-gradient(135deg, #70110c 0%, #2a0604 100%) !important;
-}
-
-}
-@media (max-width: 600px) {
-#panel-community-service .field-row { grid-template-columns: 1fr; }
-#panel-community-service .filters-grid { grid-template-columns: 1fr 1fr; }
-#panel-community-service .stat-row { grid-template-columns: 1fr; }
-#panel-community-service .page-label { flex-direction: column; align-items: flex-start; }
-
-}
-
-        </style>
-
-  <div class="stat-row">
-    <div class="stat-card"><span class="num" id="a-stat-fy-hours">—</span><span class="label" id="a-stat-fy-label">Hours This Fraternity Year</span></div>
-    <div class="stat-card"><span class="num" id="a-stat-total-hours">—</span><span class="label">All-Time Hours</span></div>
-    <div class="stat-card"><span class="num" id="a-stat-participants">—</span><span class="label">Participants</span></div>
-    <div class="stat-card"><span class="num" id="a-stat-events">—</span><span class="label">Events</span></div>
-  </div>
-
-  <!-- Chapter Settings -->
-  <div class="form-section">
-    <div class="section-head">
-      <div class="section-head-left">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><circle cx="8" cy="8" r="2.3"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.5 3.5l1 1M11.5 11.5l1 1M12.5 3.5l-1 1M4.5 11.5l-1 1"/></svg>
-        <h2>Chapter Settings</h2>
-      </div>
-      <div class="section-head-actions">
-        <button class="btn-pill" id="settings-toggle-btn">Edit Settings</button>
-      </div>
-    </div>
-    <div class="section-body" id="settings-panel" style="display:none;">
-      <div class="field-row">
-        <div class="field">
-          <label for="settings-fy-month">Fraternity Year Start Month</label>
-          <select id="settings-fy-month">
-            <option value="1">January</option><option value="2">February</option><option value="3">March</option>
-            <option value="4">April</option><option value="5">May</option><option value="6">June</option>
-            <option value="7">July</option><option value="8">August</option><option value="9">September</option>
-            <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+        <div class="form-field">
+          <label>Preferred Assignment</label>
+          <select id="f_assign">
+            <option value="">— Select —</option>
+            <option>Concessions</option>
+            <option>Parking</option>
+            <option>Gate / Entry</option>
+            <option>Field Support</option>
+            <option>General</option>
           </select>
         </div>
-        <div class="field">
-          <label for="settings-goal">Annual Hours Goal (optional, per member)</label>
-          <input type="number" id="settings-goal" min="0" step="1" placeholder="Leave blank for no goal">
-        </div>
-      </div>
-      <div class="submit-row">
-        <span id="settings-msg" class="inline-msg"></span>
-        <button class="btn-submit" id="settings-save-btn">Save Settings</button>
-      </div>
-    </div>
-  </div>
 
-  <!-- Filters & Export -->
-  <div class="form-section">
-    <div class="section-head">
-      <div class="section-head-left">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M2 3h12l-4.5 5.5V13l-3 1.5V8.5z"/></svg>
-        <h2>Filters &amp; Export</h2>
-      </div>
-      <div class="section-head-actions">
-        <button class="btn-pill" id="export-csv-btn">Export CSV</button>
-        <button class="btn-pill" id="export-pdf-btn">Export PDF</button>
-        <button class="btn-pill solid" id="add-entry-btn">+ Add Entry</button>
-      </div>
-    </div>
-    <div class="section-body">
-      <div class="filters-grid">
-        <div class="field"><label>From</label><input type="date" id="f-from"></div>
-        <div class="field"><label>To</label><input type="date" id="f-to"></div>
-        <div class="field"><label>Type</label>
-          <select id="f-type"><option value="">All</option><option value="Internal">Internal</option><option value="External">External</option></select>
+        <div class="section-divider">Emergency Contact</div>
+        <div class="form-field">
+          <label>EC Name</label>
+          <input type="text" id="f_ec_name" placeholder="Contact name">
         </div>
-        <div class="field"><label>Partner</label>
-          <select id="f-partner"><option value="">All</option><option value="yes">Yes</option><option value="no">No</option></select>
+        <div class="form-field">
+          <label>EC Phone</label>
+          <input type="tel" id="f_ec_phone" placeholder="(214) 555-0000">
         </div>
-        <div class="field"><label>Recurring</label>
-          <select id="f-recurring"><option value="">All</option><option value="yes">Yes</option><option value="no">No</option></select>
-        </div>
-        <div class="field"><label>Member</label><input type="text" id="f-member" placeholder="Search name…"></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Analytics -->
-  <div class="form-section">
-    <div class="section-head">
-      <div class="section-head-left">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M2 14V2M2 14h12"/><path d="M4.5 11V8M8 11V5.5M11.5 11V7"/></svg>
-        <h2>Analytics</h2>
-      </div>
-    </div>
-    <div class="section-body">
-      <div class="charts-grid">
-        <div class="chart-box"><h3>Hours by Month (Current Fraternity Year)</h3><canvas id="chart-monthly"></canvas></div>
-        <div class="chart-box"><h3>Internal vs External Hours</h3><canvas id="chart-type"></canvas></div>
-        <div class="chart-box"><h3>Top 5 Locations by Hours</h3><canvas id="chart-locations"></canvas></div>
-        <div class="chart-box">
-          <h3>Top 10 Participants</h3>
-          <div class="table-scroll" style="max-height:240px; overflow-y:auto;">
-            <table class="admin-table" id="leaderboard-table">
-              <thead><tr><th>#</th><th>Member</th><th>Hours</th><th>Entries</th></tr></thead>
-              <tbody></tbody>
-            </table>
-          </div>
+        <div class="section-divider">TABC Certification</div>
+        <div class="form-field">
+          <label>TABC Certified?</label>
+          <select id="f_tabc">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="form-field">
+          <label>TABC Expiry</label>
+          <input type="date" id="f_tabc_expiry">
+        </div>
+        <div class="form-field full">
+          <label>TABC Certificate URL</label>
+          <input type="url" id="f_tabc_url" placeholder="https://…">
+        </div>
 
-  <!-- All Entries -->
-  <div class="form-section">
-    <div class="section-head">
-      <div class="section-head-left">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
-        <h2>All Service Entries</h2>
-      </div>
-    </div>
-    <div class="section-body">
-      <div class="table-scroll scroll-y">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Date</th><th>Member</th><th>Event</th><th>Type</th><th>Partner</th>
-              <th>Recurring</th><th>Location</th><th>Hours</th><th>Notes</th><th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="admin-log-body">
-            <tr><td colspan="10">Loading…</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+        <div class="section-divider">Experience &amp; Notes</div>
+        <div class="form-field">
+          <label>Previous Events</label>
+          <input type="number" id="f_prev" min="0" placeholder="0">
+        </div>
+        <div class="form-field">
+          <label>Status</label>
+          <select id="f_status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="waitlisted">Waitlisted</option>
+            <option value="declined">Declined</option>
+          </select>
+        </div>
+        <div class="form-field full">
+          <label>Additional Comments</label>
+          <textarea id="f_comments" placeholder="Any notes…"></textarea>
+        </div>
 
-
-<!-- Add/Edit entry modal -->
-<div class="modal-backdrop" id="admin-modal">
-  <div class="modal-box">
-    <div class="section-head">
-      <div class="section-head-left">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg>
-        <h2 id="admin-modal-title">Add Service Entry</h2>
-      </div>
-    </div>
-    <div class="section-body">
-      <form id="admin-form">
-        <input type="hidden" id="am-id">
-        <div class="field-row full">
-          <div class="field">
-            <label for="am-member">Member <span class="req">*</span></label>
-            <select id="am-member" required></select>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="am-date">Date <span class="req">*</span></label>
-            <input type="date" id="am-date" required>
-          </div>
-          <div class="field">
-            <label for="am-event">Event <span class="req">*</span></label>
-            <input type="text" id="am-event" required>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Type of Service <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="am-type" value="Internal" required><span>Internal</span></label>
-              <label class="radio-item"><input type="radio" name="am-type" value="External"><span>External</span></label>
-            </div>
-          </div>
-          <div class="field">
-            <label>Partner Service <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="am-partner" value="yes" required><span>Yes</span></label>
-              <label class="radio-item"><input type="radio" name="am-partner" value="no"><span>No</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Recurring Service <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="am-recurring" value="yes" required><span>Yes</span></label>
-              <label class="radio-item"><input type="radio" name="am-recurring" value="no"><span>No</span></label>
-            </div>
-          </div>
-          <div class="field">
-            <label for="am-location">Location <span class="req">*</span></label>
-            <select id="am-location" required></select>
-          </div>
-        </div>
-        <div class="field-row full" id="am-location-other-wrap" style="display:none;">
-          <div class="field">
-            <label for="am-location-other">Specify Location <span class="req">*</span></label>
-            <input type="text" id="am-location-other">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="am-hours">Hours <span class="req">*</span></label>
-            <input type="number" id="am-hours" min="0.25" max="24" step="0.25" required>
-          </div>
-        </div>
-        <div class="field-row full">
-          <div class="field">
-            <label for="am-notes">Notes</label>
-            <textarea id="am-notes" rows="2"></textarea>
-          </div>
-        </div>
-        <div class="submit-row">
-          <span id="admin-form-msg" class="inline-msg"></span>
-          <button type="button" class="btn-submit btn-outline" id="admin-modal-cancel">Cancel</button>
-          <button type="submit" class="btn-submit">Save</button>
-        </div>
+        <div class="section-divider">Event Dates (select all that apply)</div>
+        <div class="dates-grid" id="datesGrid"></div>
       </form>
     </div>
-  </div>
-</div>
-      </div>
-      <!-- ============ VOLUNTEER (DLGRF) PANEL ============ -->
-      <div class="admin-panel" id="panel-volunteer">
-        <style>
-/* ── Volunteer panel: scoped, no full-page overrides ── */
-#panel-volunteer { font-family: 'Archivo', sans-serif; color: #1a1a1a; background: #f5f0eb; padding: 1.5rem 0 2rem; }
-#panel-volunteer .vol-panel-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.25rem; padding: 0 .25rem; }
-#panel-volunteer .vol-panel-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #70110c; letter-spacing: .05em; }
-#panel-volunteer .vol-season-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px; }
-#panel-volunteer .vol-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-#panel-volunteer .vol-stat-card { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: .35rem; }
-#panel-volunteer .vol-stat-card.alert { border-left: 4px solid #dc2626; }
-#panel-volunteer .vol-stat-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #9a8878; }
-#panel-volunteer .vol-stat-value { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #70110c; line-height: 1; }
-#panel-volunteer .vol-stat-card.alert .vol-stat-value { color: #dc2626; }
-#panel-volunteer .vol-stat-sub { font-size: .72rem; color: #9a8878; }
-#panel-volunteer .vol-filters { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; }
-#panel-volunteer .vol-filter-field { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 150px; }
-#panel-volunteer .vol-filter-field label { font-size: .65rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #6a5a50; }
-#panel-volunteer .vol-filter-field input,
-#panel-volunteer .vol-filter-field select { padding: .5rem .75rem; border: 1px solid #d8cfc5; border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .84rem; background: #faf8f5; appearance: none; }
-#panel-volunteer .vol-filter-field select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right .6rem center; padding-right: 1.75rem; }
-#panel-volunteer .vol-filter-field input:focus,
-#panel-volunteer .vol-filter-field select:focus { outline: none; border-color: #70110c; }
-#panel-volunteer .vol-action-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
-#panel-volunteer .vol-btn { font-family: 'Cinzel', serif; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .5rem 1rem; border-radius: 4px; cursor: pointer; border: none; transition: filter .2s; }
-#panel-volunteer .vol-btn-primary { background: linear-gradient(135deg,#70110c,#2a0604); color: #f2ebd7; }
-#panel-volunteer .vol-btn-secondary { background: #f0e8e0; color: #70110c; border: 1px solid #e0d4c8; }
-#panel-volunteer .vol-btn:hover { filter: brightness(1.08); }
-#panel-volunteer .vol-table-wrap { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; overflow: hidden; }
-#panel-volunteer .vol-table-header { background: linear-gradient(135deg,#70110c,#2a0604); padding: .7rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-#panel-volunteer .vol-table-header h3 { font-family:'Cinzel',serif; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c69a3f; }
-#panel-volunteer .vol-table-count { font-size:.7rem; color:rgba(242,235,215,.6); }
-#panel-volunteer .vol-data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
-#panel-volunteer .vol-data-table th { background: #f0e8e0; padding: .5rem .75rem; text-align: left; font-family: 'Cinzel', serif; font-size: .58rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #70110c; border-bottom: 2px solid #e0d4c8; white-space: nowrap; cursor: pointer; }
-#panel-volunteer .vol-data-table th:hover { background: #e8ddd0; }
-#panel-volunteer .vol-data-table td { padding: .5rem .75rem; border-bottom: 1px solid #f0e8e0; vertical-align: top; }
-#panel-volunteer .vol-data-table tr:last-child td { border-bottom: none; }
-#panel-volunteer .vol-data-table tr:hover td { background: #faf8f5; }
-#panel-volunteer .vol-badge { display: inline-block; padding: .15rem .55rem; border-radius: 10px; font-size: .66rem; font-weight: 600; }
-#panel-volunteer .vol-badge-yes { background: #dcfce7; color: #166534; }
-#panel-volunteer .vol-badge-no { background: #fee2e2; color: #991b1b; }
-#panel-volunteer .vol-badge-expiring { background: #fef9c3; color: #854d0e; }
-#panel-volunteer .vol-loading { text-align: center; padding: 2.5rem; color: #9a8878; font-size: .88rem; }
-#panel-volunteer .vol-empty { text-align: center; padding: 2.5rem; color: #9a8878; font-size: .85rem; }
-@media(max-width:768px) { #panel-volunteer .vol-stats-grid { grid-template-columns: 1fr 1fr; } }
-@media(max-width:480px) { #panel-volunteer .vol-stats-grid { grid-template-columns: 1fr; } }
-        </style>
-
-<!-- Panel header -->
-<div class="vol-panel-head">
-  <span class="vol-panel-title">DLGRF Volunteer Dashboard</span>
-  <span class="vol-season-tag" id="seasonTag"></span>
-</div>
-
-<!-- Stats -->
-<div class="vol-stats-grid" id="statsGrid">
-  <div class="vol-stat-card"><div class="vol-stat-label">Total Registered</div><div class="vol-stat-value" id="statTotal">—</div><div class="vol-stat-sub">Volunteers this season</div></div>
-  <div class="vol-stat-card"><div class="vol-stat-label">TABC Certified</div><div class="vol-stat-value" id="statTabc">—</div><div class="vol-stat-sub">Current certifications</div></div>
-  <div class="vol-stat-card alert"><div class="vol-stat-label">Expiring Within 30 Days</div><div class="vol-stat-value" id="statExpiring">—</div><div class="vol-stat-sub">TABC certs needing renewal</div></div>
-  <div class="vol-stat-card"><div class="vol-stat-label">Total Volunteer Hours</div><div class="vol-stat-value" id="statHours">—</div><div class="vol-stat-sub">Cumulative hours logged</div></div>
-  <div class="vol-stat-card"><div class="vol-stat-label">Avg Events Worked</div><div class="vol-stat-value" id="statAvgEvents">—</div><div class="vol-stat-sub">Per volunteer</div></div>
-  <div class="vol-stat-card"><div class="vol-stat-label">Upcoming Dates</div><div class="vol-stat-value" id="statUpcoming">—</div><div class="vol-stat-sub">Volunteer dates selected</div></div>
-</div>
-
-<!-- Filters -->
-<div class="vol-filters">
-  <div class="vol-filter-field" style="flex:2;min-width:200px;">
-    <label>Search by Name or Email</label>
-    <input type="text" id="filterName" placeholder="Type to search…">
-  </div>
-  <div class="vol-filter-field">
-    <label>TABC Status</label>
-    <select id="filterTabc">
-      <option value="">All</option>
-      <option value="yes">Certified</option>
-      <option value="no">Not Certified</option>
-      <option value="expiring">Expiring Soon</option>
-    </select>
-  </div>
-  <div class="vol-filter-field">
-    <label>Assignment</label>
-    <select id="filterAssignment">
-      <option value="">All</option>
-      <option>Cashier</option>
-      <option>Concessions</option>
-      <option>Stand Lead</option>
-      <option>Anywhere Needed</option>
-    </select>
-  </div>
-  <div class="vol-filter-field">
-    <label>Volunteer Date</label>
-    <input type="date" id="filterDate">
-  </div>
-  <div class="vol-action-row">
-    <button class="vol-btn vol-btn-secondary" id="clearFilters-volunteer-btn">Clear</button>
-    <button class="vol-btn vol-btn-primary" id="exportCSV-volunteer-btn">Export CSV</button>
-    <button class="vol-btn vol-btn-secondary" id="printVolunteer-btn">Print</button>
-  </div>
-</div>
-
-<!-- Data table -->
-<div class="vol-table-wrap">
-  <div class="vol-table-header">
-    <h3>Volunteer Registry</h3>
-    <span class="vol-table-count" id="tableCount"></span>
-  </div>
-  <div style="overflow-x:auto;">
-    <table class="vol-data-table" id="dataTable">
-      <thead>
-        <tr>
-          <th data-sort="full_name">Name &#8597;</th>
-          <th data-sort="email">Email &#8597;</th>
-          <th>Phone</th>
-          <th data-sort="volunteer_dates">Dates Selected &#8597;</th>
-          <th data-sort="previous_events">Prev Events &#8597;</th>
-          <th data-sort="total_hours">Hours &#8597;</th>
-          <th>Assignment</th>
-          <th data-sort="tabc_certified">TABC &#8597;</th>
-          <th data-sort="tabc_expiry">TABC Expiry &#8597;</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <tr><td colspan="10" class="vol-loading">Loading volunteer data&hellip;</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-      <!-- ============ EVENT SIGNUP ROSTER PANEL ============ -->
-      <div class="admin-panel" id="panel-event-roster">
-        <iframe id="er-iframe"
-          style="width:100%;height:calc(100vh - 180px);min-height:640px;border:none;border-radius:8px;display:block;"
-          sandbox="allow-scripts allow-same-origin allow-forms allow-downloads allow-popups"
-          title="DLGRF Event Signup Roster"></iframe>
-        <div id="er-b64" data-h="PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBsYW5nPSJlbiI+DQo8aGVhZD4NCiAgPG1ldGEgY2hhcnNldD0iVVRGLTgiPg0KICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+DQogIDx0aXRsZT5ETEdSRiBFdmVudCBTaWduIFVwIFJvc3RlcjwvdGl0bGU+DQogIDxsaW5rIGhyZWY9Imh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9QmViYXMrTmV1ZSZmYW1pbHk9RE0rU2Fuczp3Z2h0QDQwMDs1MDA7NjAwJmRpc3BsYXk9c3dhcCIgcmVsPSJzdHlsZXNoZWV0Ij4NCiAgPHN0eWxlPg0KICAgICosICo6OmJlZm9yZSwgKjo6YWZ0ZXIgeyBib3gtc2l6aW5nOiBib3JkZXItYm94OyBtYXJnaW46IDA7IHBhZGRpbmc6IDA7IH0NCg0KICAgIDpyb290IHsNCiAgICAgIC0tY3JpbXNvbjogIzcwMTEwYzsNCiAgICAgIC0tY3JpbXNvbi1kYXJrOiAjMmEwNjA0Ow0KICAgICAgLS1jcmVhbTogI2YyZWJkNzsNCiAgICAgIC0tZ29sZDogI2M2OWEzZjsNCiAgICAgIC0tYmc6ICNmZmZmZmY7DQogICAgICAtLXN1cmZhY2U6ICNmYWY4ZjU7DQogICAgICAtLXN1cmZhY2UyOiAjZjJlYmQ3Ow0KICAgICAgLS1ib3JkZXI6ICNlNGRiZDA7DQogICAgICAtLXRleHQ6ICMxYTFhMWE7DQogICAgICAtLXRleHQtbXV0ZWQ6ICM3YTZhNjA7DQogICAgfQ0KDQogICAgYm9keSB7IGZvbnQtZmFtaWx5OiAnRE0gU2FucycsIHNhbnMtc2VyaWY7IGJhY2tncm91bmQ6IHZhcigtLWJnKTsgY29sb3I6IHZhcigtLXRleHQpOyBtaW4taGVpZ2h0OiAxMDB2aDsgfQ0KDQogICAgLyog4pSA4pSAIEhlYWRlciDilIDilIAgKi8NCiAgICAuYmFubmVyIHsNCiAgICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsIHZhcigtLWNyaW1zb24pIDAlLCB2YXIoLS1jcmltc29uLWRhcmspIDEwMCUpOw0KICAgICAgY29sb3I6ICNmZmY7IHBhZGRpbmc6IDEuMjVyZW0gMnJlbTsNCiAgICAgIGJveC1zaGFkb3c6IDAgM3B4IDE2cHggcmdiYSgwLDAsMCwuNCk7DQogICAgfQ0KICAgIC5iYW5uZXItaW5uZXIgeyBtYXgtd2lkdGg6IDExMDBweDsgbWFyZ2luOiAwIGF1dG87IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgZ2FwOiAxcmVtOyBmbGV4LXdyYXA6IHdyYXA7IH0NCiAgICAuYmFubmVyLWxlZnQgaDEgeyBmb250LWZhbWlseTogJ0JlYmFzIE5ldWUnLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDJyZW07IGxldHRlci1zcGFjaW5nOiAuMDhlbTsgY29sb3I6IHZhcigtLWNyZWFtKTsgbGluZS1oZWlnaHQ6IDE7IH0NCiAgICAuYmFubmVyLWxlZnQgcCB7IGZvbnQtc2l6ZTogLjc1cmVtOyBjb2xvcjogcmdiYSgyNDIsMjM1LDIxNSwuNjUpOyBtYXJnaW4tdG9wOiAuMnJlbTsgbGV0dGVyLXNwYWNpbmc6IC4wNGVtOyB9DQogICAgLmJhbm5lci1iYWRnZSB7IGJhY2tncm91bmQ6IHZhcigtLWdvbGQpOyBjb2xvcjogdmFyKC0tY3JpbXNvbi1kYXJrKTsgZm9udC1mYW1pbHk6ICdCZWJhcyBOZXVlJywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAuODVyZW07IGxldHRlci1zcGFjaW5nOiAuMWVtOyBwYWRkaW5nOiAuMzVyZW0gMXJlbTsgYm9yZGVyLXJhZGl1czogMjBweDsgfQ0KDQogICAgLyog4pSA4pSAIFRvcCBiYXIg4pSA4pSAICovDQogICAgLnRvcGJhciB7IGJhY2tncm91bmQ6IHZhcigtLXN1cmZhY2UpOyBib3JkZXItYm90dG9tOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgcGFkZGluZzogLjg1cmVtIDJyZW07IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgZmxleC13cmFwOiB3cmFwOyBnYXA6IC43NXJlbTsgfQ0KICAgIC50b3BiYXItbGVmdCB7IGRpc3BsYXk6IGZsZXg7IGdhcDogLjZyZW07IGZsZXgtd3JhcDogd3JhcDsgfQ0KICAgIC50b3BiYXItcmlnaHQgeyBkaXNwbGF5OiBmbGV4OyBnYXA6IC42cmVtOyB9DQoNCiAgICAuYnRuIHsgZm9udC1mYW1pbHk6ICdETSBTYW5zJywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAuOHJlbTsgZm9udC13ZWlnaHQ6IDYwMDsgcGFkZGluZzogLjU1cmVtIDEuMXJlbTsgYm9yZGVyLXJhZGl1czogNnB4OyBib3JkZXI6IG5vbmU7IGN1cnNvcjogcG9pbnRlcjsgdHJhbnNpdGlvbjogZmlsdGVyIC4ycywgb3BhY2l0eSAuMnM7IGRpc3BsYXk6IGlubGluZS1mbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IC4zNXJlbTsgfQ0KICAgIC5idG46aG92ZXIgeyBmaWx0ZXI6IGJyaWdodG5lc3MoLjkyKTsgfQ0KICAgIC5idG4tcHJpbWFyeSB7IGJhY2tncm91bmQ6IHZhcigtLWNyaW1zb24pOyBjb2xvcjogdmFyKC0tY3JlYW0pOyB9DQogICAgLmJ0bi1vdXRsaW5lIHsgYmFja2dyb3VuZDogI2ZmZjsgY29sb3I6IHZhcigtLWNyaW1zb24pOyBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1jcmltc29uKTsgfQ0KICAgIC5idG4tZ2hvc3QgeyBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBmb250LXNpemU6IC43NXJlbTsgcGFkZGluZzogLjRyZW0gLjhyZW07IH0NCiAgICAuYnRuLWljb24geyBwYWRkaW5nOiAuMzVyZW0gLjZyZW07IGZvbnQtc2l6ZTogLjc1cmVtOyBib3JkZXItcmFkaXVzOiA0cHg7IH0NCiAgICAuYnRuLWVkaXQgeyBiYWNrZ3JvdW5kOiAjZWVmNGZmOyBjb2xvcjogIzFkNGVkODsgYm9yZGVyOiAxcHggc29saWQgI2JmZGJmZTsgfQ0KICAgIC5idG4tZGVsZXRlIHsgYmFja2dyb3VuZDogI2ZlZjJmMjsgY29sb3I6ICNkYzI2MjY7IGJvcmRlcjogMXB4IHNvbGlkICNmZWNhY2E7IH0NCiAgICAuYnRuLWFkZC1yb3cgeyBiYWNrZ3JvdW5kOiAjZjBmZGY0OyBjb2xvcjogIzE1ODAzZDsgYm9yZGVyOiAxcHggc29saWQgI2JiZjdkMDsgZm9udC1zaXplOiAuNzVyZW07IHBhZGRpbmc6IC4zNXJlbSAuOHJlbTsgfQ0KDQogICAgLyog4pSA4pSAIFNlYXJjaCDilIDilIAgKi8NCiAgICAuc2VhcmNoLXdyYXAgeyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IC41cmVtOyBmbGV4LXdyYXA6IHdyYXA7IH0NCiAgICAuc2VhcmNoLXdyYXAgaW5wdXQgeyBmb250LWZhbWlseTogJ0RNIFNhbnMnLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IC44MnJlbTsgcGFkZGluZzogLjVyZW0gLjlyZW07IGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWJvcmRlcik7IGJvcmRlci1yYWRpdXM6IDZweDsgYmFja2dyb3VuZDogI2ZmZjsgbWluLXdpZHRoOiAyMjBweDsgfQ0KICAgIC5zZWFyY2gtd3JhcCBpbnB1dDpmb2N1cyB7IG91dGxpbmU6IG5vbmU7IGJvcmRlci1jb2xvcjogdmFyKC0tY3JpbXNvbik7IH0NCiAgICAuc2VhcmNoLXdyYXAgc2VsZWN0IHsgZm9udC1mYW1pbHk6ICdETSBTYW5zJywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAuODJyZW07IHBhZGRpbmc6IC41cmVtIC45cmVtOyBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBib3JkZXItcmFkaXVzOiA2cHg7IGJhY2tncm91bmQ6ICNmZmY7IGFwcGVhcmFuY2U6IG5vbmU7IGJhY2tncm91bmQtaW1hZ2U6IHVybCgiZGF0YTppbWFnZS9zdmcreG1sO3V0ZjgsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgdmlld0JveD0nMCAwIDI0IDI0JyBmaWxsPSdub25lJyBzdHJva2U9JyUyMzg4OCcgc3Ryb2tlLXdpZHRoPScyJz48cG9seWxpbmUgcG9pbnRzPSc2IDkgMTIgMTUgMTggOScvPjwvc3ZnPiIpOyBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0OyBiYWNrZ3JvdW5kLXBvc2l0aW9uOiByaWdodCAuNnJlbSBjZW50ZXI7IHBhZGRpbmctcmlnaHQ6IDEuNzVyZW07IH0NCiAgICAuc2VhcmNoLXdyYXAgc2VsZWN0OmZvY3VzIHsgb3V0bGluZTogbm9uZTsgYm9yZGVyLWNvbG9yOiB2YXIoLS1jcmltc29uKTsgfQ0KDQogICAgLyog4pSA4pSAIFN1bW1hcnkgY2hpcHMg4pSA4pSAICovDQogICAgLnN1bW1hcnkgeyBtYXgtd2lkdGg6IDExMDBweDsgbWFyZ2luOiAxLjVyZW0gYXV0byAwOyBwYWRkaW5nOiAwIDEuNXJlbTsgZGlzcGxheTogZmxleDsgZ2FwOiAuNzVyZW07IGZsZXgtd3JhcDogd3JhcDsgfQ0KICAgIC5jaGlwIHsgYmFja2dyb3VuZDogdmFyKC0tc3VyZmFjZTIpOyBib3JkZXI6IDFweCBzb2xpZCAjZDhjZmM1OyBib3JkZXItcmFkaXVzOiA2cHg7IHBhZGRpbmc6IC41cmVtIDFyZW07IGRpc3BsYXk6IGZsZXg7IGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IGdhcDogLjJyZW07IG1pbi13aWR0aDogMTQwcHg7IH0NCiAgICAuY2hpcC1sYWJlbCB7IGZvbnQtc2l6ZTogLjY1cmVtOyBmb250LXdlaWdodDogNjAwOyBsZXR0ZXItc3BhY2luZzogLjA4ZW07IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgfQ0KICAgIC5jaGlwLXZhbHVlIHsgZm9udC1mYW1pbHk6ICdCZWJhcyBOZXVlJywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxLjRyZW07IGNvbG9yOiB2YXIoLS1jcmltc29uKTsgbGV0dGVyLXNwYWNpbmc6IC4wNmVtOyB9DQoNCiAgICAvKiDilIDilIAgTWFpbiDilIDilIAgKi8NCiAgICAubWFpbiB7IG1heC13aWR0aDogMTEwMHB4OyBtYXJnaW46IDEuNXJlbSBhdXRvIDRyZW07IHBhZGRpbmc6IDAgMS41cmVtOyB9DQoNCiAgICAuZW1wdHktc3RhdGUgeyB0ZXh0LWFsaWduOiBjZW50ZXI7IHBhZGRpbmc6IDRyZW0gMnJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyB9DQogICAgLmVtcHR5LXN0YXRlIHAgeyBmb250LXNpemU6IDEuMXJlbTsgbWFyZ2luLWJvdHRvbTogLjVyZW07IH0NCiAgICAuZW1wdHktc3RhdGUgc21hbGwgeyBmb250LXNpemU6IC44MnJlbTsgb3BhY2l0eTogLjc7IH0NCg0KICAgIC8qIOKUgOKUgCBFdmVudCBjYXJkIOKUgOKUgCAqLw0KICAgIC5ldmVudC1jYXJkIHsgYmFja2dyb3VuZDogI2ZmZjsgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgYm9yZGVyLXJhZGl1czogMTBweDsgbWFyZ2luLWJvdHRvbTogMnJlbTsgb3ZlcmZsb3c6IGhpZGRlbjsgYm94LXNoYWRvdzogMCAycHggOHB4IHJnYmEoMTEyLDE3LDEyLC4wNSk7IH0NCg0KICAgIC5ldmVudC1oZWFkZXIgeyBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCB2YXIoLS1jcmltc29uKSAwJSwgdmFyKC0tY3JpbXNvbi1kYXJrKSAxMDAlKTsgY29sb3I6IHZhcigtLWNyZWFtKTsgcGFkZGluZzogMXJlbSAxLjVyZW07IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgZmxleC13cmFwOiB3cmFwOyBnYXA6IC43NXJlbTsgfQ0KICAgIC5ldmVudC1oZWFkZXItbGVmdCB7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGdhcDogMXJlbTsgfQ0KICAgIC5ldmVudC1kYXRlLWJveCB7IGJhY2tncm91bmQ6IHJnYmEoMjQyLDIzNSwyMTUsLjE1KTsgYm9yZGVyOiAxcHggc29saWQgcmdiYSgyNDIsMjM1LDIxNSwuMjUpOyBib3JkZXItcmFkaXVzOiA4cHg7IHBhZGRpbmc6IC41cmVtIC45cmVtOyB0ZXh0LWFsaWduOiBjZW50ZXI7IG1pbi13aWR0aDogNjRweDsgfQ0KICAgIC5ldmVudC1kYXRlLWJveCAuZGF0ZS1tb250aCB7IGZvbnQtc2l6ZTogLjY1cmVtOyBmb250LXdlaWdodDogNjAwOyBsZXR0ZXItc3BhY2luZzogLjFlbTsgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsgY29sb3I6IHZhcigtLWdvbGQpOyB9DQogICAgLmV2ZW50LWRhdGUtYm94IC5kYXRlLWRheSB7IGZvbnQtZmFtaWx5OiAnQmViYXMgTmV1ZScsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMS44cmVtOyBsaW5lLWhlaWdodDogMTsgY29sb3I6IHZhcigtLWNyZWFtKTsgfQ0KICAgIC5ldmVudC1kYXRlLWJveCAuZGF0ZS15ZWFyIHsgZm9udC1zaXplOiAuNnJlbTsgY29sb3I6IHJnYmEoMjQyLDIzNSwyMTUsLjYpOyB9DQogICAgLmV2ZW50LWluZm8gaDIgeyBmb250LWZhbWlseTogJ0JlYmFzIE5ldWUnLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEuMzVyZW07IGxldHRlci1zcGFjaW5nOiAuMDdlbTsgY29sb3I6IHZhcigtLWNyZWFtKTsgbGluZS1oZWlnaHQ6IDEuMTsgfQ0KICAgIC5ldmVudC1pbmZvIC5ldmVudC1zdWIgeyBmb250LXNpemU6IC43MnJlbTsgY29sb3I6IHJnYmEoMjQyLDIzNSwyMTUsLjY1KTsgbWFyZ2luLXRvcDogLjJyZW07IH0NCiAgICAuZXZlbnQtaGVhZGVyLXJpZ2h0IHsgZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiAuNzVyZW07IH0NCiAgICAuYmFkZ2UtY291bnQgeyBiYWNrZ3JvdW5kOiB2YXIoLS1nb2xkKTsgY29sb3I6IHZhcigtLWNyaW1zb24tZGFyayk7IGZvbnQtZmFtaWx5OiAnQmViYXMgTmV1ZScsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMXJlbTsgbGV0dGVyLXNwYWNpbmc6IC4wNmVtOyBwYWRkaW5nOiAuMjVyZW0gLjlyZW07IGJvcmRlci1yYWRpdXM6IDIwcHg7IH0NCiAgICAuYnRuLWFkZC12b2wgeyBiYWNrZ3JvdW5kOiByZ2JhKDI0MiwyMzUsMjE1LC4xOCk7IGNvbG9yOiB2YXIoLS1jcmVhbSk7IGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMjQyLDIzNSwyMTUsLjM1KTsgZm9udC1mYW1pbHk6ICdETSBTYW5zJywgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAuNzVyZW07IGZvbnQtd2VpZ2h0OiA2MDA7IHBhZGRpbmc6IC40NXJlbSAuOXJlbTsgYm9yZGVyLXJhZGl1czogNnB4OyBjdXJzb3I6IHBvaW50ZXI7IHRyYW5zaXRpb246IGJhY2tncm91bmQgLjJzOyB9DQogICAgLmJ0bi1hZGQtdm9sOmhvdmVyIHsgYmFja2dyb3VuZDogcmdiYSgyNDIsMjM1LDIxNSwuMyk7IH0NCg0KICAgIC8qIOKUgOKUgCBUYWJsZSDilIDilIAgKi8NCiAgICAudGFibGUtd3JhcCB7IG92ZXJmbG93LXg6IGF1dG87IH0NCiAgICB0YWJsZSB7IHdpZHRoOiAxMDAlOyBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlOyB9DQogICAgdGhlYWQgdGggeyBmb250LXNpemU6IC42NXJlbTsgZm9udC13ZWlnaHQ6IDYwMDsgbGV0dGVyLXNwYWNpbmc6IC4wOGVtOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IHBhZGRpbmc6IC43cmVtIDFyZW07IGJhY2tncm91bmQ6IHZhcigtLXN1cmZhY2UpOyBib3JkZXItYm90dG9tOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgdGV4dC1hbGlnbjogbGVmdDsgd2hpdGUtc3BhY2U6IG5vd3JhcDsgfQ0KICAgIHRib2R5IHRyIHsgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNmMGVjZTY7IHRyYW5zaXRpb246IGJhY2tncm91bmQgLjE1czsgfQ0KICAgIHRib2R5IHRyOmxhc3QtY2hpbGQgeyBib3JkZXItYm90dG9tOiBub25lOyB9DQogICAgdGJvZHkgdHI6aG92ZXIgeyBiYWNrZ3JvdW5kOiB2YXIoLS1zdXJmYWNlKTsgfQ0KICAgIHRib2R5IHRkIHsgZm9udC1zaXplOiAuODNyZW07IHBhZGRpbmc6IC43cmVtIDFyZW07IHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7IH0NCiAgICB0ZC5uYW1lLWNlbGwgeyBmb250LXdlaWdodDogNjAwOyB9DQogICAgdGQuZW1haWwtY2VsbCB7IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgZm9udC1zaXplOiAuNzhyZW07IH0NCiAgICB0ZC5waG9uZS1jZWxsIHsgZm9udC1zaXplOiAuNzhyZW07IHdoaXRlLXNwYWNlOiBub3dyYXA7IH0NCg0KICAgIC50YWJjLWJhZGdlIHsgZGlzcGxheTogaW5saW5lLWJsb2NrOyBmb250LXNpemU6IC42MnJlbTsgZm9udC13ZWlnaHQ6IDYwMDsgbGV0dGVyLXNwYWNpbmc6IC4wNmVtOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBwYWRkaW5nOiAuMnJlbSAuNTVyZW07IGJvcmRlci1yYWRpdXM6IDEycHg7IH0NCiAgICAudGFiYy15ZXMgeyBiYWNrZ3JvdW5kOiAjZGNmY2U3OyBjb2xvcjogIzE1ODAzZDsgfQ0KICAgIC50YWJjLW5vIHsgYmFja2dyb3VuZDogI2YzZjRmNjsgY29sb3I6ICM5Y2EzYWY7IH0NCg0KICAgIC5hc3NpZ24tYmFkZ2UgeyBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IGZvbnQtc2l6ZTogLjY4cmVtOyBwYWRkaW5nOiAuMnJlbSAuNnJlbTsgYm9yZGVyLXJhZGl1czogNHB4OyBiYWNrZ3JvdW5kOiB2YXIoLS1zdXJmYWNlMik7IGNvbG9yOiB2YXIoLS1jcmltc29uKTsgZm9udC13ZWlnaHQ6IDUwMDsgfQ0KDQogICAgLmFjdGlvbi1jZWxsIHsgZGlzcGxheTogZmxleDsgZ2FwOiAuMzVyZW07IGFsaWduLWl0ZW1zOiBjZW50ZXI7IH0NCg0KICAgIC5uby12b2xzIHsgdGV4dC1hbGlnbjogY2VudGVyOyBwYWRkaW5nOiAxLjVyZW07IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgZm9udC1zaXplOiAuODVyZW07IGZvbnQtc3R5bGU6IGl0YWxpYzsgfQ0KDQogICAgLyog4pSA4pSAIE1vZGFsIOKUgOKUgCAqLw0KICAgIC5vdmVybGF5IHsgcG9zaXRpb246IGZpeGVkOyBpbnNldDogMDsgYmFja2dyb3VuZDogcmdiYSgwLDAsMCwuNTUpOyB6LWluZGV4OiAxMDAwOyBkaXNwbGF5OiBub25lOyBhbGlnbi1pdGVtczogY2VudGVyOyBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgcGFkZGluZzogMXJlbTsgfQ0KICAgIC5vdmVybGF5LmFjdGl2ZSB7IGRpc3BsYXk6IGZsZXg7IH0NCiAgICAubW9kYWwgeyBiYWNrZ3JvdW5kOiAjZmZmOyBib3JkZXItcmFkaXVzOiAxMnB4OyB3aWR0aDogMTAwJTsgbWF4LXdpZHRoOiA2ODBweDsgbWF4LWhlaWdodDogOTB2aDsgb3ZlcmZsb3c6IGhpZGRlbjsgZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgYm94LXNoYWRvdzogMCAyMHB4IDYwcHggcmdiYSgwLDAsMCwuMyk7IH0NCiAgICAubW9kYWwtaGVhZCB7IGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsIHZhcigtLWNyaW1zb24pLCB2YXIoLS1jcmltc29uLWRhcmspKTsgY29sb3I6IHZhcigtLWNyZWFtKTsgcGFkZGluZzogMS4yNXJlbSAxLjVyZW07IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgZmxleC1zaHJpbms6IDA7IH0NCiAgICAubW9kYWwtaGVhZCBoMyB7IGZvbnQtZmFtaWx5OiAnQmViYXMgTmV1ZScsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMS4zcmVtOyBsZXR0ZXItc3BhY2luZzogLjA3ZW07IH0NCiAgICAubW9kYWwtY2xvc2UgeyBiYWNrZ3JvdW5kOiBub25lOyBib3JkZXI6IG5vbmU7IGNvbG9yOiB2YXIoLS1jcmVhbSk7IGZvbnQtc2l6ZTogMS40cmVtOyBjdXJzb3I6IHBvaW50ZXI7IG9wYWNpdHk6IC43NTsgbGluZS1oZWlnaHQ6IDE7IH0NCiAgICAubW9kYWwtY2xvc2U6aG92ZXIgeyBvcGFjaXR5OiAxOyB9DQogICAgLm1vZGFsLWJvZHkgeyBvdmVyZmxvdy15OiBhdXRvOyBwYWRkaW5nOiAxLjVyZW07IH0NCiAgICAubW9kYWwtZm9vdGVyIHsgcGFkZGluZzogMXJlbSAxLjVyZW07IGJvcmRlci10b3A6IDFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBkaXNwbGF5OiBmbGV4OyBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kOyBnYXA6IC42cmVtOyBmbGV4LXNocmluazogMDsgYmFja2dyb3VuZDogdmFyKC0tc3VyZmFjZSk7IH0NCg0KICAgIC5mb3JtLWdyaWQgeyBkaXNwbGF5OiBncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7IGdhcDogMXJlbTsgfQ0KICAgIC5mb3JtLWZpZWxkIHsgZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgZ2FwOiAuMzVyZW07IH0NCiAgICAuZm9ybS1maWVsZC5mdWxsIHsgZ3JpZC1jb2x1bW46IDEgLyAtMTsgfQ0KICAgIC5mb3JtLWZpZWxkIGxhYmVsIHsgZm9udC1zaXplOiAuN3JlbTsgZm9udC13ZWlnaHQ6IDYwMDsgbGV0dGVyLXNwYWNpbmc6IC4wNmVtOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBjb2xvcjogIzZhNWE1MDsgfQ0KICAgIC5mb3JtLWZpZWxkIGlucHV0LCAuZm9ybS1maWVsZCBzZWxlY3QsIC5mb3JtLWZpZWxkIHRleHRhcmVhIHsNCiAgICAgIGZvbnQtZmFtaWx5OiAnRE0gU2FucycsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogLjg3NXJlbTsNCiAgICAgIHBhZGRpbmc6IC42cmVtIC44NXJlbTsgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgYm9yZGVyLXJhZGl1czogNnB4Ow0KICAgICAgYmFja2dyb3VuZDogdmFyKC0tc3VyZmFjZSk7IGNvbG9yOiB2YXIoLS10ZXh0KTsNCiAgICB9DQogICAgLmZvcm0tZmllbGQgaW5wdXQ6Zm9jdXMsIC5mb3JtLWZpZWxkIHNlbGVjdDpmb2N1cywgLmZvcm0tZmllbGQgdGV4dGFyZWE6Zm9jdXMgeyBvdXRsaW5lOiBub25lOyBib3JkZXItY29sb3I6IHZhcigtLWNyaW1zb24pOyB9DQogICAgLmZvcm0tZmllbGQgdGV4dGFyZWEgeyByZXNpemU6IHZlcnRpY2FsOyBtaW4taGVpZ2h0OiA3MHB4OyB9DQogICAgLmZvcm0tZmllbGQgc2VsZWN0IHsgYXBwZWFyYW5jZTogbm9uZTsgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7dXRmOCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgd2lkdGg9JzEyJyBoZWlnaHQ9JzEyJyB2aWV3Qm94PScwIDAgMjQgMjQnIGZpbGw9J25vbmUnIHN0cm9rZT0nJTIzODg4JyBzdHJva2Utd2lkdGg9JzInPjxwb2x5bGluZSBwb2ludHM9JzYgOSAxMiAxNSAxOCA5Jy8+PC9zdmc+Iik7IGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7IGJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0IC43NXJlbSBjZW50ZXI7IHBhZGRpbmctcmlnaHQ6IDJyZW07IH0NCg0KICAgIC5zZWN0aW9uLWRpdmlkZXIgeyBmb250LXNpemU6IC42OHJlbTsgZm9udC13ZWlnaHQ6IDcwMDsgbGV0dGVyLXNwYWNpbmc6IC4xMmVtOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IHBhZGRpbmc6IC43NXJlbSAwIC40cmVtOyBib3JkZXItdG9wOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgbWFyZ2luLXRvcDogLjc1cmVtOyBncmlkLWNvbHVtbjogMSAvIC0xOyB9DQoNCiAgICAuZGF0ZXMtZ3JpZCB7IGRpc3BsYXk6IGdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDFmcjsgZ2FwOiAuNHJlbTsgZ3JpZC1jb2x1bW46IDEgLyAtMTsgfQ0KICAgIC5kYXRlLWNoZWNrIHsgZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiAuNXJlbTsgZm9udC1zaXplOiAuODJyZW07IGN1cnNvcjogcG9pbnRlcjsgcGFkZGluZzogLjM1cmVtIC41cmVtOyBib3JkZXItcmFkaXVzOiA0cHg7IHRyYW5zaXRpb246IGJhY2tncm91bmQgLjE1czsgfQ0KICAgIC5kYXRlLWNoZWNrOmhvdmVyIHsgYmFja2dyb3VuZDogdmFyKC0tc3VyZmFjZTIpOyB9DQogICAgLmRhdGUtY2hlY2sgaW5wdXRbdHlwZT0iY2hlY2tib3giXSB7IGFjY2VudC1jb2xvcjogdmFyKC0tY3JpbXNvbik7IHdpZHRoOiAxNXB4OyBoZWlnaHQ6IDE1cHg7IGN1cnNvcjogcG9pbnRlcjsgfQ0KDQogICAgLyog4pSA4pSAIENvbmZpcm0gZGVsZXRlIG92ZXJsYXkg4pSA4pSAICovDQogICAgLmNvbmZpcm0tb3ZlcmxheSB7IHBvc2l0aW9uOiBmaXhlZDsgaW5zZXQ6IDA7IGJhY2tncm91bmQ6IHJnYmEoMCwwLDAsLjYpOyB6LWluZGV4OiAxMTAwOyBkaXNwbGF5OiBub25lOyBhbGlnbi1pdGVtczogY2VudGVyOyBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgcGFkZGluZzogMXJlbTsgfQ0KICAgIC5jb25maXJtLW92ZXJsYXkuYWN0aXZlIHsgZGlzcGxheTogZmxleDsgfQ0KICAgIC5jb25maXJtLWJveCB7IGJhY2tncm91bmQ6ICNmZmY7IGJvcmRlci1yYWRpdXM6IDEwcHg7IHBhZGRpbmc6IDJyZW07IG1heC13aWR0aDogNDAwcHg7IHdpZHRoOiAxMDAlOyBib3gtc2hhZG93OiAwIDIwcHggNjBweCByZ2JhKDAsMCwwLC4zKTsgfQ0KICAgIC5jb25maXJtLWJveCBoNCB7IGZvbnQtc2l6ZTogMS4wNXJlbTsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6ICNkYzI2MjY7IG1hcmdpbi1ib3R0b206IC42cmVtOyB9DQogICAgLmNvbmZpcm0tYm94IHAgeyBmb250LXNpemU6IC44OHJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tYm90dG9tOiAxLjVyZW07IGxpbmUtaGVpZ2h0OiAxLjU7IH0NCiAgICAuY29uZmlybS1hY3Rpb25zIHsgZGlzcGxheTogZmxleDsganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDsgZ2FwOiAuNnJlbTsgfQ0KICAgIC5idG4tZGFuZ2VyIHsgYmFja2dyb3VuZDogI2RjMjYyNjsgY29sb3I6ICNmZmY7IH0NCg0KICAgIC8qIOKUgOKUgCBUb2FzdCDilIDilIAgKi8NCiAgICAudG9hc3QgeyBwb3NpdGlvbjogZml4ZWQ7IGJvdHRvbTogMS41cmVtOyByaWdodDogMS41cmVtOyBiYWNrZ3JvdW5kOiAjMWExYTFhOyBjb2xvcjogI2ZmZjsgZm9udC1zaXplOiAuODVyZW07IHBhZGRpbmc6IC43NXJlbSAxLjI1cmVtOyBib3JkZXItcmFkaXVzOiA4cHg7IHotaW5kZXg6IDIwMDA7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgxMjAlKTsgb3BhY2l0eTogMDsgdHJhbnNpdGlvbjogdHJhbnNmb3JtIC4zcywgb3BhY2l0eSAuM3M7IG1heC13aWR0aDogMzYwcHg7IH0NCiAgICAudG9hc3Quc2hvdyB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKTsgb3BhY2l0eTogMTsgfQ0KICAgIC50b2FzdC5zdWNjZXNzIHsgYm9yZGVyLWxlZnQ6IDRweCBzb2xpZCAjMjJjNTVlOyB9DQogICAgLnRvYXN0LmVycm9yIHsgYm9yZGVyLWxlZnQ6IDRweCBzb2xpZCAjZGMyNjI2OyB9DQoNCiAgICAvKiDilIDilIAgRm9vdGVyIOKUgOKUgCAqLw0KICAgIC5wYWdlLWZvb3RlciB7IHRleHQtYWxpZ246IGNlbnRlcjsgcGFkZGluZzogMS41cmVtOyBmb250LXNpemU6IC43MnJlbTsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBib3JkZXItdG9wOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgbWFyZ2luLXRvcDogMnJlbTsgfQ0KDQogICAgQG1lZGlhIChtYXgtd2lkdGg6IDYwMHB4KSB7DQogICAgICAuZm9ybS1ncmlkIHsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7IH0NCiAgICAgIC5kYXRlcy1ncmlkIHsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7IH0NCiAgICAgIC5mb3JtLWZpZWxkLmZ1bGwgeyBncmlkLWNvbHVtbjogMTsgfQ0KICAgICAgLnNlY3Rpb24tZGl2aWRlciB7IGdyaWQtY29sdW1uOiAxOyB9DQogICAgICAuYmFubmVyLWxlZnQgaDEgeyBmb250LXNpemU6IDEuNXJlbTsgfQ0KICAgIH0NCiAgPC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5Pg0KDQo8IS0tIOKUgOKUgCBCYW5uZXIg4pSA4pSAIC0tPg0KPGhlYWRlciBjbGFzcz0iYmFubmVyIj4NCiAgPGRpdiBjbGFzcz0iYmFubmVyLWlubmVyIj4NCiAgICA8ZGl2IGNsYXNzPSJiYW5uZXItbGVmdCI+DQogICAgICA8aDE+RExHUkYgRXZlbnQgU2lnbiBVcCBSb3N0ZXI8L2gxPg0KICAgICAgPHA+RGVudG9uLUxld2lzdmlsbGUgQWx1bW5pIENoYXB0ZXIgwrcgS2FwcGEgQWxwaGEgUHNpIEZyYXRlcm5pdHksIEluYy4gwrcgR3VpZGUgUmlnaHQgUHJvZ3JhbTwvcD4NCiAgICA8L2Rpdj4NCiAgICA8ZGl2IGNsYXNzPSJiYW5uZXItYmFkZ2UiPjIwMjbigJMyNyBTZWFzb248L2Rpdj4NCiAgPC9kaXY+DQo8L2hlYWRlcj4NCg0KPCEtLSDilIDilIAgVG9wIEFjdGlvbiBCYXIg4pSA4pSAIC0tPg0KPGRpdiBjbGFzcz0idG9wYmFyIj4NCiAgPGRpdiBjbGFzcz0ic2VhcmNoLXdyYXAiPg0KICAgIDxpbnB1dCB0eXBlPSJ0ZXh0IiBpZD0ic2VhcmNoSW5wdXQiIHBsYWNlaG9sZGVyPSJTZWFyY2ggdm9sdW50ZWVyc+KApiIgb25pbnB1dD0iYXBwbHlGaWx0ZXJzKCkiPg0KICAgIDxzZWxlY3QgaWQ9ImZpbHRlckFzc2lnbiIgb25jaGFuZ2U9ImFwcGx5RmlsdGVycygpIj4NCiAgICAgIDxvcHRpb24gdmFsdWU9IiI+QWxsIFJvbGVzPC9vcHRpb24+DQogICAgICA8b3B0aW9uPkNvbmNlc3Npb25zPC9vcHRpb24+DQogICAgICA8b3B0aW9uPlBhcmtpbmc8L29wdGlvbj4NCiAgICAgIDxvcHRpb24+R2F0ZSAvIEVudHJ5PC9vcHRpb24+DQogICAgICA8b3B0aW9uPkZpZWxkIFN1cHBvcnQ8L29wdGlvbj4NCiAgICAgIDxvcHRpb24+R2VuZXJhbDwvb3B0aW9uPg0KICAgIDwvc2VsZWN0Pg0KICAgIDxzZWxlY3QgaWQ9ImZpbHRlclRhYmMiIG9uY2hhbmdlPSJhcHBseUZpbHRlcnMoKSI+DQogICAgICA8b3B0aW9uIHZhbHVlPSIiPlRBQkM6IEFsbDwvb3B0aW9uPg0KICAgICAgPG9wdGlvbiB2YWx1ZT0ieWVzIj5UQUJDIENlcnRpZmllZDwvb3B0aW9uPg0KICAgICAgPG9wdGlvbiB2YWx1ZT0ibm8iPk5vdCBDZXJ0aWZpZWQ8L29wdGlvbj4NCiAgICA8L3NlbGVjdD4NCiAgPC9kaXY+DQogIDxkaXYgY2xhc3M9InRvcGJhci1yaWdodCI+DQogICAgPGJ1dHRvbiBjbGFzcz0iYnRuIGJ0bi1vdXRsaW5lIiBvbmNsaWNrPSJleHBvcnRDU1YoKSI+4qyHIEV4cG9ydCBDU1Y8L2J1dHRvbj4NCiAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLXByaW1hcnkiIG9uY2xpY2s9Im9wZW5BZGRNb2RhbChudWxsKSI+KyBBZGQgVm9sdW50ZWVyPC9idXR0b24+DQogIDwvZGl2Pg0KPC9kaXY+DQoNCjwhLS0g4pSA4pSAIFN1bW1hcnkgY2hpcHMg4pSA4pSAIC0tPg0KPGRpdiBjbGFzcz0ic3VtbWFyeSIgaWQ9InN1bW1hcnlSb3ciPg0KICA8ZGl2IGNsYXNzPSJjaGlwIj48c3BhbiBjbGFzcz0iY2hpcC1sYWJlbCI+VG90YWwgVm9sdW50ZWVyczwvc3Bhbj48c3BhbiBjbGFzcz0iY2hpcC12YWx1ZSIgaWQ9ImNoaXBUb3RhbCI+4oCUPC9zcGFuPjwvZGl2Pg0KICA8ZGl2IGNsYXNzPSJjaGlwIj48c3BhbiBjbGFzcz0iY2hpcC1sYWJlbCI+VG90YWwgU2lnbi1VcHM8L3NwYW4+PHNwYW4gY2xhc3M9ImNoaXAtdmFsdWUiIGlkPSJjaGlwU2lnbnVwcyI+4oCUPC9zcGFuPjwvZGl2Pg0KICA8ZGl2IGNsYXNzPSJjaGlwIj48c3BhbiBjbGFzcz0iY2hpcC1sYWJlbCI+VEFCQyBDZXJ0aWZpZWQ8L3NwYW4+PHNwYW4gY2xhc3M9ImNoaXAtdmFsdWUiIGlkPSJjaGlwVGFiYyI+4oCUPC9zcGFuPjwvZGl2Pg0KICA8ZGl2IGNsYXNzPSJjaGlwIj48c3BhbiBjbGFzcz0iY2hpcC1sYWJlbCI+RXZlbnRzIENvdmVyZWQ8L3NwYW4+PHNwYW4gY2xhc3M9ImNoaXAtdmFsdWUiIGlkPSJjaGlwRXZlbnRzIj7igJQ8L3NwYW4+PC9kaXY+DQo8L2Rpdj4NCg0KPCEtLSDilIDilIAgTWFpbiBjb250ZW50IOKUgOKUgCAtLT4NCjxtYWluIGNsYXNzPSJtYWluIiBpZD0ibWFpbkNvbnRlbnQiPg0KICA8ZGl2IGNsYXNzPSJlbXB0eS1zdGF0ZSI+PHA+TG9hZGluZyByb3N0ZXLigKY8L3A+PHNtYWxsPkNvbm5lY3RpbmcgdG8gU3VwYWJhc2U8L3NtYWxsPjwvZGl2Pg0KPC9tYWluPg0KDQo8Zm9vdGVyIGNsYXNzPSJwYWdlLWZvb3RlciI+DQogIERMR1JGIFZvbHVudGVlciBSb3N0ZXIgwrcgRGVudG9uLUxld2lzdmlsbGUgQWx1bW5pIENoYXB0ZXIgwrcgS2FwcGEgQWxwaGEgUHNpIEZyYXRlcm5pdHksIEluYy4NCjwvZm9vdGVyPg0KDQo8IS0tIOKUgOKUgCBBZGQgLyBFZGl0IE1vZGFsIOKUgOKUgCAtLT4NCjxkaXYgY2xhc3M9Im92ZXJsYXkiIGlkPSJtb2RhbE92ZXJsYXkiIG9uY2xpY2s9ImhhbmRsZU92ZXJsYXlDbGljayhldmVudCkiPg0KICA8ZGl2IGNsYXNzPSJtb2RhbCI+DQogICAgPGRpdiBjbGFzcz0ibW9kYWwtaGVhZCI+DQogICAgICA8aDMgaWQ9Im1vZGFsVGl0bGUiPkFkZCBWb2x1bnRlZXI8L2gzPg0KICAgICAgPGJ1dHRvbiBjbGFzcz0ibW9kYWwtY2xvc2UiIG9uY2xpY2s9ImNsb3NlTW9kYWwoKSI+4pyVPC9idXR0b24+DQogICAgPC9kaXY+DQogICAgPGRpdiBjbGFzcz0ibW9kYWwtYm9keSI+DQogICAgICA8Zm9ybSBjbGFzcz0iZm9ybS1ncmlkIiBpZD0idm9sRm9ybSIgb25zdWJtaXQ9InJldHVybiBmYWxzZSI+DQogICAgICAgIDxkaXYgY2xhc3M9ImZvcm0tZmllbGQiPg0KICAgICAgICAgIDxsYWJlbD5GdWxsIE5hbWUgKjwvbGFiZWw+DQogICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIGlkPSJmX25hbWUiIHJlcXVpcmVkIHBsYWNlaG9sZGVyPSJGaXJzdCBMYXN0Ij4NCiAgICAgICAgPC9kaXY+DQogICAgICAgIDxkaXYgY2xhc3M9ImZvcm0tZmllbGQiPg0KICAgICAgICAgIDxsYWJlbD5FbWFpbCAqPC9sYWJlbD4NCiAgICAgICAgICA8aW5wdXQgdHlwZT0iZW1haWwiIGlkPSJmX2VtYWlsIiByZXF1aXJlZCBwbGFjZWhvbGRlcj0iZW1haWxAZXhhbXBsZS5jb20iPg0KICAgICAgICA8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZm9ybS1maWVsZCI+DQogICAgICAgICAgPGxhYmVsPk1vYmlsZSBQaG9uZTwvbGFiZWw+DQogICAgICAgICAgPGlucHV0IHR5cGU9InRlbCIgaWQ9ImZfcGhvbmUiIHBsYWNlaG9sZGVyPSIoMjE0KSA1NTUtMDAwMCI+DQogICAgICAgIDwvZGl2Pg0KICAgICAgICA8ZGl2IGNsYXNzPSJmb3JtLWZpZWxkIj4NCiAgICAgICAgICA8bGFiZWw+UHJlZmVycmVkIEFzc2lnbm1lbnQ8L2xhYmVsPg0KICAgICAgICAgIDxzZWxlY3QgaWQ9ImZfYXNzaWduIj4NCiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9IiI+4oCUIFNlbGVjdCDigJQ8L29wdGlvbj4NCiAgICAgICAgICAgIDxvcHRpb24+Q29uY2Vzc2lvbnM8L29wdGlvbj4NCiAgICAgICAgICAgIDxvcHRpb24+UGFya2luZzwvb3B0aW9uPg0KICAgICAgICAgICAgPG9wdGlvbj5HYXRlIC8gRW50cnk8L29wdGlvbj4NCiAgICAgICAgICAgIDxvcHRpb24+RmllbGQgU3VwcG9ydDwvb3B0aW9uPg0KICAgICAgICAgICAgPG9wdGlvbj5HZW5lcmFsPC9vcHRpb24+DQogICAgICAgICAgPC9zZWxlY3Q+DQogICAgICAgIDwvZGl2Pg0KDQogICAgICAgIDxkaXYgY2xhc3M9InNlY3Rpb24tZGl2aWRlciI+RW1lcmdlbmN5IENvbnRhY3Q8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZm9ybS1maWVsZCI+DQogICAgICAgICAgPGxhYmVsPkVDIE5hbWU8L2xhYmVsPg0KICAgICAgICAgIDxpbnB1dCB0eXBlPSJ0ZXh0IiBpZD0iZl9lY19uYW1lIiBwbGFjZWhvbGRlcj0iQ29udGFjdCBuYW1lIj4NCiAgICAgICAgPC9kaXY+DQogICAgICAgIDxkaXYgY2xhc3M9ImZvcm0tZmllbGQiPg0KICAgICAgICAgIDxsYWJlbD5FQyBQaG9uZTwvbGFiZWw+DQogICAgICAgICAgPGlucHV0IHR5cGU9InRlbCIgaWQ9ImZfZWNfcGhvbmUiIHBsYWNlaG9sZGVyPSIoMjE0KSA1NTUtMDAwMCI+DQogICAgICAgIDwvZGl2Pg0KDQogICAgICAgIDxkaXYgY2xhc3M9InNlY3Rpb24tZGl2aWRlciI+VEFCQyBDZXJ0aWZpY2F0aW9uPC9kaXY+DQogICAgICAgIDxkaXYgY2xhc3M9ImZvcm0tZmllbGQiPg0KICAgICAgICAgIDxsYWJlbD5UQUJDIENlcnRpZmllZD88L2xhYmVsPg0KICAgICAgICAgIDxzZWxlY3QgaWQ9ImZfdGFiYyI+DQogICAgICAgICAgICA8b3B0aW9uIHZhbHVlPSJmYWxzZSI+Tm88L29wdGlvbj4NCiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9InRydWUiPlllczwvb3B0aW9uPg0KICAgICAgICAgIDwvc2VsZWN0Pg0KICAgICAgICA8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZm9ybS1maWVsZCI+DQogICAgICAgICAgPGxhYmVsPlRBQkMgRXhwaXJ5PC9sYWJlbD4NCiAgICAgICAgICA8aW5wdXQgdHlwZT0iZGF0ZSIgaWQ9ImZfdGFiY19leHBpcnkiPg0KICAgICAgICA8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZm9ybS1maWVsZCBmdWxsIj4NCiAgICAgICAgICA8bGFiZWw+VEFCQyBDZXJ0aWZpY2F0ZSBVUkw8L2xhYmVsPg0KICAgICAgICAgIDxpbnB1dCB0eXBlPSJ1cmwiIGlkPSJmX3RhYmNfdXJsIiBwbGFjZWhvbGRlcj0iaHR0cHM6Ly/igKYiPg0KICAgICAgICA8L2Rpdj4NCg0KICAgICAgICA8ZGl2IGNsYXNzPSJzZWN0aW9uLWRpdmlkZXIiPkV4cGVyaWVuY2UgJmFtcDsgTm90ZXM8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZm9ybS1maWVsZCI+DQogICAgICAgICAgPGxhYmVsPlByZXZpb3VzIEV2ZW50czwvbGFiZWw+DQogICAgICAgICAgPGlucHV0IHR5cGU9Im51bWJlciIgaWQ9ImZfcHJldiIgbWluPSIwIiBwbGFjZWhvbGRlcj0iMCI+DQogICAgICAgIDwvZGl2Pg0KICAgICAgICA8ZGl2IGNsYXNzPSJmb3JtLWZpZWxkIj4NCiAgICAgICAgICA8bGFiZWw+U3RhdHVzPC9sYWJlbD4NCiAgICAgICAgICA8c2VsZWN0IGlkPSJmX3N0YXR1cyI+DQogICAgICAgICAgICA8b3B0aW9uIHZhbHVlPSJwZW5kaW5nIj5QZW5kaW5nPC9vcHRpb24+DQogICAgICAgICAgICA8b3B0aW9uIHZhbHVlPSJjb25maXJtZWQiPkNvbmZpcm1lZDwvb3B0aW9uPg0KICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT0id2FpdGxpc3RlZCI+V2FpdGxpc3RlZDwvb3B0aW9uPg0KICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT0iZGVjbGluZWQiPkRlY2xpbmVkPC9vcHRpb24+DQogICAgICAgICAgPC9zZWxlY3Q+DQogICAgICAgIDwvZGl2Pg0KICAgICAgICA8ZGl2IGNsYXNzPSJmb3JtLWZpZWxkIGZ1bGwiPg0KICAgICAgICAgIDxsYWJlbD5BZGRpdGlvbmFsIENvbW1lbnRzPC9sYWJlbD4NCiAgICAgICAgICA8dGV4dGFyZWEgaWQ9ImZfY29tbWVudHMiIHBsYWNlaG9sZGVyPSJBbnkgbm90ZXPigKYiPjwvdGV4dGFyZWE+DQogICAgICAgIDwvZGl2Pg0KDQogICAgICAgIDxkaXYgY2xhc3M9InNlY3Rpb24tZGl2aWRlciI+RXZlbnQgRGF0ZXMgKHNlbGVjdCBhbGwgdGhhdCBhcHBseSk8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZGF0ZXMtZ3JpZCIgaWQ9ImRhdGVzR3JpZCI+PC9kaXY+DQogICAgICA8L2Zvcm0+DQogICAgPC9kaXY+DQogICAgPGRpdiBjbGFzcz0ibW9kYWwtZm9vdGVyIj4NCiAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBidG4tZ2hvc3QiIG9uY2xpY2s9ImNsb3NlTW9kYWwoKSI+Q2FuY2VsPC9idXR0b24+DQogICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLXByaW1hcnkiIG9uY2xpY2s9InNhdmVWb2x1bnRlZXIoKSI+U2F2ZSBWb2x1bnRlZXI8L2J1dHRvbj4NCiAgICA8L2Rpdj4NCiAgPC9kaXY+DQo8L2Rpdj4NCg0KPCEtLSDilIDilIAgQ29uZmlybSBEZWxldGUgTW9kYWwg4pSA4pSAIC0tPg0KPGRpdiBjbGFzcz0iY29uZmlybS1vdmVybGF5IiBpZD0iY29uZmlybU92ZXJsYXkiPg0KICA8ZGl2IGNsYXNzPSJjb25maXJtLWJveCI+DQogICAgPGg0PkRlbGV0ZSBWb2x1bnRlZXI/PC9oND4NCiAgICA8cCBpZD0iY29uZmlybU1zZyI+VGhpcyB3aWxsIHBlcm1hbmVudGx5IHJlbW92ZSB0aGlzIHZvbHVudGVlciBmcm9tIGFsbCBldmVudHMuIFRoaXMgY2Fubm90IGJlIHVuZG9uZS48L3A+DQogICAgPGRpdiBjbGFzcz0iY29uZmlybS1hY3Rpb25zIj4NCiAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBidG4tZ2hvc3QiIG9uY2xpY2s9ImNsb3NlQ29uZmlybSgpIj5DYW5jZWw8L2J1dHRvbj4NCiAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBidG4tZGFuZ2VyIiBvbmNsaWNrPSJkb0RlbGV0ZSgpIj5EZWxldGU8L2J1dHRvbj4NCiAgICA8L2Rpdj4NCiAgPC9kaXY+DQo8L2Rpdj4NCg0KPCEtLSDilIDilIAgVG9hc3Qg4pSA4pSAIC0tPg0KPGRpdiBjbGFzcz0idG9hc3QiIGlkPSJ0b2FzdCI+PC9kaXY+DQoNCjxzY3JpcHQ+DQogIC8vIOKUgOKUgCBTdXBhYmFzZSBDb25maWcg4pSA4pSADQogIGNvbnN0IFNCX1VSTCAgPSAnaHR0cHM6Ly9laXRoY2NkdXZlaWtlamRodm5tcS5zdXBhYmFzZS5jbyc7DQogIGNvbnN0IFNCX0FOT04gPSAnZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKemRYQmhZbUZ6WlNJc0luSmxaaUk2SW1WcGRHaGpZMlIxZG1WcGEyVnFaR2gyYm0xeElpd2ljbTlzWlNJNkltRnViMjRpTENKcFlYUWlPakUzT0RReU9EVTRNRFlzSW1WNGNDSTZNakE1T1RnMk1UZ3dObjAuZnVxRS1mNVRqeHZOMXh1eGZKcXN0bmx2VkYyMlZkS2t3Ukxkc0dNUWNvUSc7DQoNCiAgY29uc3QgRVZFTlRfREFURVMgPSBbDQogICAgeyBsYWJlbDogJ1NlcHQgNCwgMjAyNicsICBkYXRlOiAnMjAyNi0wOS0wNCcsIG9wcDogJ3ZzIENsZXZlbGFuZCBCcm93bnMnIH0sDQogICAgeyBsYWJlbDogJ1NlcHQgMjAsIDIwMjYnLCBkYXRlOiAnMjAyNi0wOS0yMCcsIG9wcDogJ3ZzIE5ldyBZb3JrIEdpYW50cycgfSwNCiAgICB7IGxhYmVsOiAnT2N0IDIsIDIwMjYnLCAgIGRhdGU6ICcyMDI2LTEwLTAyJywgb3BwOiAndnMgQ2Fyb2xpbmEgUGFudGhlcnMnIH0sDQogICAgeyBsYWJlbDogJ09jdCAxOCwgMjAyNicsICBkYXRlOiAnMjAyNi0xMC0xOCcsIG9wcDogJ3ZzIExvcyBBbmdlbGVzIFJhbXMnIH0sDQogICAgeyBsYWJlbDogJ05vdiAxLCAyMDI2JywgICBkYXRlOiAnMjAyNi0xMS0wMScsIG9wcDogJ3ZzIFBoaWxhZGVscGhpYSBFYWdsZXMnIH0sDQogICAgeyBsYWJlbDogJ05vdiAyOSwgMjAyNicsICBkYXRlOiAnMjAyNi0xMS0yOScsIG9wcDogJ3ZzIEthbnNhcyBDaXR5IENoaWVmcyAoVGhhbmtzZ2l2aW5nKScgfSwNCiAgICB7IGxhYmVsOiAnSmFuIDMsIDIwMjcnLCAgIGRhdGU6ICcyMDI3LTAxLTAzJywgb3BwOiAndnMgV2FzaGluZ3RvbiBDb21tYW5kZXJzJyB9LA0KICBdOw0KDQogIC8vIOKUgOKUgCBTdGF0ZSDilIDilIANCiAgbGV0IGFsbFZvbHVudGVlcnMgPSBbXTsNCiAgbGV0IGZpbHRlcmVkVm9sdW50ZWVycyA9IFtdOw0KICBsZXQgZWRpdElkID0gbnVsbDsNCiAgbGV0IHBlbmRpbmdEZWxldGVJZCA9IG51bGw7DQogIGxldCBtb2RhbFRhcmdldERhdGUgPSBudWxsOyAvLyBwcmUtc2VsZWN0IGEgZGF0ZSB3aGVuIGFkZGluZyBmcm9tIGEgY2FyZA0KDQogIC8vIOKUgOKUgCBTdXBhYmFzZSBoZWxwZXJzIOKUgOKUgA0KICBhc3luYyBmdW5jdGlvbiBzYkZldGNoKHBhdGgsIG9wdHMgPSB7fSkgew0KICAgIGNvbnN0IHVybCA9IGAke1NCX1VSTH0vcmVzdC92MS8ke3BhdGh9YDsNCiAgICBjb25zdCBoZWFkZXJzID0gew0KICAgICAgJ2FwaWtleSc6IFNCX0FOT04sDQogICAgICAnQXV0aG9yaXphdGlvbic6IGBCZWFyZXIgJHtTQl9BTk9OfWAsDQogICAgICAnQ29udGVudC1UeXBlJzogJ2FwcGxpY2F0aW9uL2pzb24nLA0KICAgICAgJ1ByZWZlcic6ICdyZXR1cm49cmVwcmVzZW50YXRpb24nLA0KICAgICAgLi4ub3B0cy5oZWFkZXJzDQogICAgfTsNCiAgICBjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmwsIHsgLi4ub3B0cywgaGVhZGVycyB9KTsNCiAgICBpZiAoIXJlcy5vaykgew0KICAgICAgY29uc3QgZXJyID0gYXdhaXQgcmVzLnRleHQoKTsNCiAgICAgIHRocm93IG5ldyBFcnJvcihgJHtyZXMuc3RhdHVzfTogJHtlcnJ9YCk7DQogICAgfQ0KICAgIGNvbnN0IHRleHQgPSBhd2FpdCByZXMudGV4dCgpOw0KICAgIHJldHVybiB0ZXh0ID8gSlNPTi5wYXJzZSh0ZXh0KSA6IFtdOw0KICB9DQoNCiAgLy8g4pSA4pSAIExvYWQgdm9sdW50ZWVycyDilIDilIANCiAgYXN5bmMgZnVuY3Rpb24gbG9hZFZvbHVudGVlcnMoKSB7DQogICAgdHJ5IHsNCiAgICAgIGFsbFZvbHVudGVlcnMgPSBhd2FpdCBzYkZldGNoKCd2b2x1bnRlZXJzP3NlbGVjdD0qJm9yZGVyPWNyZWF0ZWRfYXQuZGVzYycpOw0KICAgICAgZmlsdGVyZWRWb2x1bnRlZXJzID0gWy4uLmFsbFZvbHVudGVlcnNdOw0KICAgICAgcmVuZGVyU3VtbWFyeSgpOw0KICAgICAgcmVuZGVyUm9zdGVyKCk7DQogICAgfSBjYXRjaCAoZSkgew0KICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21haW5Db250ZW50JykuaW5uZXJIVE1MID0gYA0KICAgICAgICA8ZGl2IGNsYXNzPSJlbXB0eS1zdGF0ZSI+DQogICAgICAgICAgPHA+4pqg77iPIENvdWxkIG5vdCBsb2FkIHZvbHVudGVlcnM8L3A+DQogICAgICAgICAgPHNtYWxsPiR7ZS5tZXNzYWdlfTwvc21hbGw+DQogICAgICAgIDwvZGl2PmA7DQogICAgfQ0KICB9DQoNCiAgLy8g4pSA4pSAIFN1bW1hcnkgY2hpcHMg4pSA4pSADQogIGZ1bmN0aW9uIHJlbmRlclN1bW1hcnkoKSB7DQogICAgY29uc3QgdW5pcXVlID0gYWxsVm9sdW50ZWVycy5sZW5ndGg7DQogICAgbGV0IHNpZ251cHMgPSAwOw0KICAgIGFsbFZvbHVudGVlcnMuZm9yRWFjaCh2ID0+IHsgaWYgKEFycmF5LmlzQXJyYXkodi52b2x1bnRlZXJfZGF0ZXMpKSBzaWdudXBzICs9IHYudm9sdW50ZWVyX2RhdGVzLmxlbmd0aDsgfSk7DQogICAgY29uc3QgdGFiYyA9IGFsbFZvbHVudGVlcnMuZmlsdGVyKHYgPT4gdi50YWJjX2NlcnRpZmllZCkubGVuZ3RoOw0KICAgIGNvbnN0IGNvdmVyZWQgPSBuZXcgU2V0KCk7DQogICAgYWxsVm9sdW50ZWVycy5mb3JFYWNoKHYgPT4geyBpZiAoQXJyYXkuaXNBcnJheSh2LnZvbHVudGVlcl9kYXRlcykpIHYudm9sdW50ZWVyX2RhdGVzLmZvckVhY2goZCA9PiBjb3ZlcmVkLmFkZChkKSk7IH0pOw0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjaGlwVG90YWwnKS50ZXh0Q29udGVudCA9IHVuaXF1ZTsNCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2hpcFNpZ251cHMnKS50ZXh0Q29udGVudCA9IHNpZ251cHM7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NoaXBUYWJjJykudGV4dENvbnRlbnQgPSB0YWJjOw0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjaGlwRXZlbnRzJykudGV4dENvbnRlbnQgPSBjb3ZlcmVkLnNpemU7DQogIH0NCg0KICAvLyDilIDilIAgRmlsdGVycyDilIDilIANCiAgZnVuY3Rpb24gYXBwbHlGaWx0ZXJzKCkgew0KICAgIGNvbnN0IHEgICAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2VhcmNoSW5wdXQnKS52YWx1ZS50b0xvd2VyQ2FzZSgpOw0KICAgIGNvbnN0IHJvbGUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZmlsdGVyQXNzaWduJykudmFsdWU7DQogICAgY29uc3QgdGFiYyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmaWx0ZXJUYWJjJykudmFsdWU7DQogICAgZmlsdGVyZWRWb2x1bnRlZXJzID0gYWxsVm9sdW50ZWVycy5maWx0ZXIodiA9PiB7DQogICAgICBjb25zdCBuYW1lICAgPSAodi5mdWxsX25hbWUgfHwgJycpLnRvTG93ZXJDYXNlKCk7DQogICAgICBjb25zdCBlbWFpbCAgPSAodi5lbWFpbCB8fCAnJykudG9Mb3dlckNhc2UoKTsNCiAgICAgIGNvbnN0IG1hdGNoUSA9ICFxIHx8IG5hbWUuaW5jbHVkZXMocSkgfHwgZW1haWwuaW5jbHVkZXMocSk7DQogICAgICBjb25zdCBtYXRjaFIgPSAhcm9sZSB8fCB2LnByZWZlcnJlZF9hc3NpZ25tZW50ID09PSByb2xlOw0KICAgICAgY29uc3QgbWF0Y2hUID0gIXRhYmMgfHwgKHRhYmMgPT09ICd5ZXMnID8gdi50YWJjX2NlcnRpZmllZCA6ICF2LnRhYmNfY2VydGlmaWVkKTsNCiAgICAgIHJldHVybiBtYXRjaFEgJiYgbWF0Y2hSICYmIG1hdGNoVDsNCiAgICB9KTsNCiAgICByZW5kZXJSb3N0ZXIoKTsNCiAgfQ0KDQogIC8vIOKUgOKUgCBSZW5kZXIgcm9zdGVyIOKUgOKUgA0KICBmdW5jdGlvbiByZW5kZXJSb3N0ZXIoKSB7DQogICAgY29uc3QgbWFpbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtYWluQ29udGVudCcpOw0KDQogICAgLy8gQnVpbGQgZGF0ZSDihpIgdm9sdW50ZWVycyBtYXANCiAgICBjb25zdCBkYXRlTWFwID0ge307DQogICAgRVZFTlRfREFURVMuZm9yRWFjaChlZCA9PiB7IGRhdGVNYXBbZWQuZGF0ZV0gPSBbXTsgfSk7DQoNCiAgICBmaWx0ZXJlZFZvbHVudGVlcnMuZm9yRWFjaCh2b2wgPT4gew0KICAgICAgaWYgKCFBcnJheS5pc0FycmF5KHZvbC52b2x1bnRlZXJfZGF0ZXMpKSByZXR1cm47DQogICAgICB2b2wudm9sdW50ZWVyX2RhdGVzLmZvckVhY2goZCA9PiB7DQogICAgICAgIGlmIChkYXRlTWFwW2RdICE9PSB1bmRlZmluZWQpIGRhdGVNYXBbZF0ucHVzaCh2b2wpOw0KICAgICAgfSk7DQogICAgfSk7DQoNCiAgICBsZXQgaHRtbCA9ICcnOw0KICAgIEVWRU5UX0RBVEVTLmZvckVhY2goZWQgPT4gew0KICAgICAgY29uc3Qgdm9sdW50ZWVycyA9IGRhdGVNYXBbZWQuZGF0ZV0gfHwgW107DQogICAgICBjb25zdCBbeWVhciwgbW9udGgsIGRheV0gPSBlZC5kYXRlLnNwbGl0KCctJyk7DQogICAgICBjb25zdCBkdE9iaiA9IG5ldyBEYXRlKE51bWJlcih5ZWFyKSwgTnVtYmVyKG1vbnRoKSAtIDEsIE51bWJlcihkYXkpKTsNCiAgICAgIGNvbnN0IG1vbnRoU3RyID0gZHRPYmoudG9Mb2NhbGVTdHJpbmcoJ2VuLVVTJywgeyBtb250aDogJ3Nob3J0JyB9KS50b1VwcGVyQ2FzZSgpOw0KICAgICAgY29uc3QgZGF5TnVtICAgPSBkdE9iai5nZXREYXRlKCk7DQogICAgICBjb25zdCB5ZWFyTnVtICA9IGR0T2JqLmdldEZ1bGxZZWFyKCk7DQogICAgICBjb25zdCB0b2RheSAgICA9IG5ldyBEYXRlKCk7IHRvZGF5LnNldEhvdXJzKDAsMCwwLDApOw0KICAgICAgY29uc3QgaXNQYXN0ICAgPSBkdE9iaiA8IHRvZGF5Ow0KDQogICAgICBodG1sICs9IGANCiAgICAgIDxkaXYgY2xhc3M9ImV2ZW50LWNhcmQiIGlkPSJjYXJkLSR7ZWQuZGF0ZX0iICR7aXNQYXN0ID8gJ3N0eWxlPSJvcGFjaXR5Oi43MiInIDogJyd9Pg0KICAgICAgICA8ZGl2IGNsYXNzPSJldmVudC1oZWFkZXIiPg0KICAgICAgICAgIDxkaXYgY2xhc3M9ImV2ZW50LWhlYWRlci1sZWZ0Ij4NCiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImV2ZW50LWRhdGUtYm94Ij4NCiAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZGF0ZS1tb250aCI+JHttb250aFN0cn08L2Rpdj4NCiAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZGF0ZS1kYXkiPiR7ZGF5TnVtfTwvZGl2Pg0KICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJkYXRlLXllYXIiPiR7eWVhck51bX08L2Rpdj4NCiAgICAgICAgICAgIDwvZGl2Pg0KICAgICAgICAgICAgPGRpdiBjbGFzcz0iZXZlbnQtaW5mbyI+DQogICAgICAgICAgICAgIDxoMj4ke2VkLmxhYmVsfSR7aXNQYXN0ID8gJyDinJMnIDogJyd9PC9oMj4NCiAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iZXZlbnQtc3ViIj4ke2VkLm9wcH08L2Rpdj4NCiAgICAgICAgICAgIDwvZGl2Pg0KICAgICAgICAgIDwvZGl2Pg0KICAgICAgICAgIDxkaXYgY2xhc3M9ImV2ZW50LWhlYWRlci1yaWdodCI+DQogICAgICAgICAgICA8ZGl2IGNsYXNzPSJiYWRnZS1jb3VudCI+JHt2b2x1bnRlZXJzLmxlbmd0aH0gVm9sJHt2b2x1bnRlZXJzLmxlbmd0aCAhPT0gMSA/ICdzJyA6ICcnfTwvZGl2Pg0KICAgICAgICAgICAgPGJ1dHRvbiBjbGFzcz0iYnRuLWFkZC12b2wiIG9uY2xpY2s9Im9wZW5BZGRNb2RhbCgnJHtlZC5kYXRlfScpIj4rIEFkZDwvYnV0dG9uPg0KICAgICAgICAgIDwvZGl2Pg0KICAgICAgICA8L2Rpdj4NCiAgICAgICAgPGRpdiBjbGFzcz0idGFibGUtd3JhcCI+YDsNCg0KICAgICAgaWYgKHZvbHVudGVlcnMubGVuZ3RoID09PSAwKSB7DQogICAgICAgIGh0bWwgKz0gYDxkaXYgY2xhc3M9Im5vLXZvbHMiPk5vIHZvbHVudGVlcnMgc2lnbmVkIHVwIGZvciB0aGlzIGV2ZW50IHlldC48L2Rpdj5gOw0KICAgICAgfSBlbHNlIHsNCiAgICAgICAgaHRtbCArPSBgDQogICAgICAgICAgPHRhYmxlPg0KICAgICAgICAgICAgPHRoZWFkPg0KICAgICAgICAgICAgICA8dHI+DQogICAgICAgICAgICAgICAgPHRoPiM8L3RoPg0KICAgICAgICAgICAgICAgIDx0aD5OYW1lPC90aD4NCiAgICAgICAgICAgICAgICA8dGg+RW1haWw8L3RoPg0KICAgICAgICAgICAgICAgIDx0aD5QaG9uZTwvdGg+DQogICAgICAgICAgICAgICAgPHRoPlJvbGU8L3RoPg0KICAgICAgICAgICAgICAgIDx0aD5UQUJDPC90aD4NCiAgICAgICAgICAgICAgICA8dGg+UHJpb3IgRXZlbnRzPC90aD4NCiAgICAgICAgICAgICAgICA8dGg+U3RhdHVzPC90aD4NCiAgICAgICAgICAgICAgICA8dGg+QWN0aW9uczwvdGg+DQogICAgICAgICAgICAgIDwvdHI+DQogICAgICAgICAgICA8L3RoZWFkPg0KICAgICAgICAgICAgPHRib2R5PmA7DQogICAgICAgIHZvbHVudGVlcnMuZm9yRWFjaCgodiwgaSkgPT4gew0KICAgICAgICAgIGNvbnN0IHRhYmMgPSB2LnRhYmNfY2VydGlmaWVkDQogICAgICAgICAgICA/IGA8c3BhbiBjbGFzcz0idGFiYy1iYWRnZSB0YWJjLXllcyI+4pyTIENlcnRpZmllZDwvc3Bhbj5gDQogICAgICAgICAgICA6IGA8c3BhbiBjbGFzcz0idGFiYy1iYWRnZSB0YWJjLW5vIj5Obzwvc3Bhbj5gOw0KICAgICAgICAgIGNvbnN0IGFzc2lnbiA9IHYucHJlZmVycmVkX2Fzc2lnbm1lbnQNCiAgICAgICAgICAgID8gYDxzcGFuIGNsYXNzPSJhc3NpZ24tYmFkZ2UiPiR7ZXNjKHYucHJlZmVycmVkX2Fzc2lnbm1lbnQpfTwvc3Bhbj5gIDogJ+KAlCc7DQogICAgICAgICAgY29uc3Qgc3RhdHVzU3R5bGUgPSB2LnN0YXR1cyA9PT0gJ2NvbmZpcm1lZCcgPyAnY29sb3I6IzE1ODAzZDtmb250LXdlaWdodDo2MDAnDQogICAgICAgICAgICA6IHYuc3RhdHVzID09PSAnZGVjbGluZWQnID8gJ2NvbG9yOiNkYzI2MjYnIDogJyc7DQogICAgICAgICAgaHRtbCArPSBgDQogICAgICAgICAgICAgIDx0cj4NCiAgICAgICAgICAgICAgICA8dGQgc3R5bGU9ImNvbG9yOnZhcigtLXRleHQtbXV0ZWQpO2ZvbnQtc2l6ZTouNzhyZW0iPiR7aSsxfTwvdGQ+DQogICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJuYW1lLWNlbGwiPiR7ZXNjKHYuZnVsbF9uYW1lIHx8ICfigJQnKX08L3RkPg0KICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iZW1haWwtY2VsbCI+JHtlc2Modi5lbWFpbCB8fCAn4oCUJyl9PC90ZD4NCiAgICAgICAgICAgICAgICA8dGQgY2xhc3M9InBob25lLWNlbGwiPiR7ZXNjKHYubW9iaWxlX3Bob25lIHx8ICfigJQnKX08L3RkPg0KICAgICAgICAgICAgICAgIDx0ZD4ke2Fzc2lnbn08L3RkPg0KICAgICAgICAgICAgICAgIDx0ZD4ke3RhYmN9PC90ZD4NCiAgICAgICAgICAgICAgICA8dGQgc3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj4ke3YucHJldmlvdXNfZXZlbnRzID8/ICfigJQnfTwvdGQ+DQogICAgICAgICAgICAgICAgPHRkPjxzcGFuIHN0eWxlPSIke3N0YXR1c1N0eWxlfSI+JHtjYXBpdGFsaXplKHYuc3RhdHVzIHx8ICdwZW5kaW5nJyl9PC9zcGFuPjwvdGQ+DQogICAgICAgICAgICAgICAgPHRkPg0KICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYWN0aW9uLWNlbGwiPg0KICAgICAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLWljb24gYnRuLWVkaXQiIHRpdGxlPSJFZGl0IiBvbmNsaWNrPSJvcGVuRWRpdE1vZGFsKCcke3YuaWR9JykiPuKcj++4jzwvYnV0dG9uPg0KICAgICAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLWljb24gYnRuLWRlbGV0ZSIgdGl0bGU9IkRlbGV0ZSIgb25jbGljaz0iY29uZmlybURlbGV0ZSgnJHt2LmlkfScsJyR7ZXNjKHYuZnVsbF9uYW1lIHx8ICcnKX0nKSI+8J+XkTwvYnV0dG9uPg0KICAgICAgICAgICAgICAgICAgPC9kaXY+DQogICAgICAgICAgICAgICAgPC90ZD4NCiAgICAgICAgICAgICAgPC90cj5gOw0KICAgICAgICB9KTsNCiAgICAgICAgaHRtbCArPSBgPC90Ym9keT48L3RhYmxlPmA7DQogICAgICB9DQogICAgICBodG1sICs9IGA8L2Rpdj48L2Rpdj5gOw0KICAgIH0pOw0KDQogICAgbWFpbi5pbm5lckhUTUwgPSBodG1sIHx8IGA8ZGl2IGNsYXNzPSJlbXB0eS1zdGF0ZSI+PHA+Tm8gdm9sdW50ZWVycyBtYXRjaCB5b3VyIHNlYXJjaC48L3A+PC9kaXY+YDsNCiAgfQ0KDQogIC8vIOKUgOKUgCBCdWlsZCBkYXRlIGNoZWNrYm94ZXMg4pSA4pSADQogIGZ1bmN0aW9uIGJ1aWxkRGF0ZUNoZWNrYm94ZXMoc2VsZWN0ZWREYXRlcyA9IFtdKSB7DQogICAgY29uc3QgZ3JpZCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdkYXRlc0dyaWQnKTsNCiAgICBncmlkLmlubmVySFRNTCA9IEVWRU5UX0RBVEVTLm1hcChlZCA9PiB7DQogICAgICBjb25zdCBjaGVja2VkID0gc2VsZWN0ZWREYXRlcy5pbmNsdWRlcyhlZC5kYXRlKSA/ICdjaGVja2VkJyA6ICcnOw0KICAgICAgcmV0dXJuIGA8bGFiZWwgY2xhc3M9ImRhdGUtY2hlY2siPg0KICAgICAgICA8aW5wdXQgdHlwZT0iY2hlY2tib3giIHZhbHVlPSIke2VkLmRhdGV9IiAke2NoZWNrZWR9IGRhdGEtZGF0ZS1jYj4NCiAgICAgICAgJHtlZC5sYWJlbH0gPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTouN3JlbTtjb2xvcjp2YXIoLS10ZXh0LW11dGVkKSI+JHtlZC5vcHB9PC9zcGFuPg0KICAgICAgPC9sYWJlbD5gOw0KICAgIH0pLmpvaW4oJycpOw0KICB9DQoNCiAgLy8g4pSA4pSAIE9wZW4gYWRkIG1vZGFsIOKUgOKUgA0KICBmdW5jdGlvbiBvcGVuQWRkTW9kYWwocHJlRGF0ZSkgew0KICAgIGVkaXRJZCA9IG51bGw7DQogICAgbW9kYWxUYXJnZXREYXRlID0gcHJlRGF0ZTsNCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbW9kYWxUaXRsZScpLnRleHRDb250ZW50ID0gJ0FkZCBWb2x1bnRlZXInOw0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd2b2xGb3JtJykucmVzZXQoKTsNCiAgICBidWlsZERhdGVDaGVja2JveGVzKHByZURhdGUgPyBbcHJlRGF0ZV0gOiBbXSk7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsT3ZlcmxheScpLmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOw0KICB9DQoNCiAgLy8g4pSA4pSAIE9wZW4gZWRpdCBtb2RhbCDilIDilIANCiAgZnVuY3Rpb24gb3BlbkVkaXRNb2RhbChpZCkgew0KICAgIGNvbnN0IHZvbCA9IGFsbFZvbHVudGVlcnMuZmluZCh2ID0+IFN0cmluZyh2LmlkKSA9PT0gU3RyaW5nKGlkKSk7DQogICAgaWYgKCF2b2wpIHJldHVybiBzaG93VG9hc3QoJ1ZvbHVudGVlciBub3QgZm91bmQuJywgJ2Vycm9yJyk7DQogICAgZWRpdElkID0gaWQ7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsVGl0bGUnKS50ZXh0Q29udGVudCA9ICdFZGl0IFZvbHVudGVlcic7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfbmFtZScpLnZhbHVlICAgID0gdm9sLmZ1bGxfbmFtZSB8fCAnJzsNCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9lbWFpbCcpLnZhbHVlICAgPSB2b2wuZW1haWwgfHwgJyc7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfcGhvbmUnKS52YWx1ZSAgID0gdm9sLm1vYmlsZV9waG9uZSB8fCAnJzsNCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9hc3NpZ24nKS52YWx1ZSAgPSB2b2wucHJlZmVycmVkX2Fzc2lnbm1lbnQgfHwgJyc7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfZWNfbmFtZScpLnZhbHVlID0gdm9sLmVjX25hbWUgfHwgJyc7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfZWNfcGhvbmUnKS52YWx1ZSA9IHZvbC5lY19waG9uZSB8fCAnJzsNCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl90YWJjJykudmFsdWUgICAgPSB2b2wudGFiY19jZXJ0aWZpZWQgPyAndHJ1ZScgOiAnZmFsc2UnOw0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmX3RhYmNfZXhwaXJ5JykudmFsdWUgPSB2b2wudGFiY19leHBpcnkgfHwgJyc7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfdGFiY191cmwnKS52YWx1ZSA9IHZvbC50YWJjX2NlcnRfdXJsIHx8ICcnOw0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmX3ByZXYnKS52YWx1ZSAgICA9IHZvbC5wcmV2aW91c19ldmVudHMgPz8gJyc7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Zfc3RhdHVzJykudmFsdWUgID0gdm9sLnN0YXR1cyB8fCAncGVuZGluZyc7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfY29tbWVudHMnKS52YWx1ZSA9IHZvbC5hZGRpdGlvbmFsX2NvbW1lbnRzIHx8ICcnOw0KICAgIGJ1aWxkRGF0ZUNoZWNrYm94ZXMoQXJyYXkuaXNBcnJheSh2b2wudm9sdW50ZWVyX2RhdGVzKSA/IHZvbC52b2x1bnRlZXJfZGF0ZXMgOiBbXSk7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsT3ZlcmxheScpLmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOw0KICB9DQoNCiAgZnVuY3Rpb24gY2xvc2VNb2RhbCgpIHsgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsT3ZlcmxheScpLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpOyB9DQogIGZ1bmN0aW9uIGhhbmRsZU92ZXJsYXlDbGljayhlKSB7IGlmIChlLnRhcmdldCA9PT0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsT3ZlcmxheScpKSBjbG9zZU1vZGFsKCk7IH0NCg0KICAvLyDilIDilIAgU2F2ZSAoaW5zZXJ0IG9yIHVwZGF0ZSkg4pSA4pSADQogIGFzeW5jIGZ1bmN0aW9uIHNhdmVWb2x1bnRlZXIoKSB7DQogICAgY29uc3QgbmFtZSAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9uYW1lJykudmFsdWUudHJpbSgpOw0KICAgIGNvbnN0IGVtYWlsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZfZW1haWwnKS52YWx1ZS50cmltKCk7DQogICAgaWYgKCFuYW1lIHx8ICFlbWFpbCkgeyBzaG93VG9hc3QoJ05hbWUgYW5kIGVtYWlsIGFyZSByZXF1aXJlZC4nLCAnZXJyb3InKTsgcmV0dXJuOyB9DQoNCiAgICBjb25zdCBzZWxlY3RlZERhdGVzID0gWy4uLmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ1tkYXRhLWRhdGUtY2JdOmNoZWNrZWQnKV0ubWFwKGNiID0+IGNiLnZhbHVlKTsNCg0KICAgIGNvbnN0IHBheWxvYWQgPSB7DQogICAgICBmdWxsX25hbWU6ICAgICAgICAgICAgIG5hbWUsDQogICAgICBlbWFpbDogICAgICAgICAgICAgICAgIGVtYWlsLA0KICAgICAgbW9iaWxlX3Bob25lOiAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9waG9uZScpLnZhbHVlLnRyaW0oKSB8fCBudWxsLA0KICAgICAgcHJlZmVycmVkX2Fzc2lnbm1lbnQ6ICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9hc3NpZ24nKS52YWx1ZSB8fCBudWxsLA0KICAgICAgZWNfbmFtZTogICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9lY19uYW1lJykudmFsdWUudHJpbSgpIHx8IG51bGwsDQogICAgICBlY19waG9uZTogICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmX2VjX3Bob25lJykudmFsdWUudHJpbSgpIHx8IG51bGwsDQogICAgICB0YWJjX2NlcnRpZmllZDogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmX3RhYmMnKS52YWx1ZSA9PT0gJ3RydWUnLA0KICAgICAgdGFiY19leHBpcnk6ICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl90YWJjX2V4cGlyeScpLnZhbHVlIHx8IG51bGwsDQogICAgICB0YWJjX2NlcnRfdXJsOiAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmX3RhYmNfdXJsJykudmFsdWUudHJpbSgpIHx8IG51bGwsDQogICAgICBwcmV2aW91c19ldmVudHM6ICAgICAgIHBhcnNlSW50KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmX3ByZXYnKS52YWx1ZSkgfHwgMCwNCiAgICAgIHN0YXR1czogICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Zfc3RhdHVzJykudmFsdWUgfHwgJ3BlbmRpbmcnLA0KICAgICAgYWRkaXRpb25hbF9jb21tZW50czogICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZl9jb21tZW50cycpLnZhbHVlLnRyaW0oKSB8fCBudWxsLA0KICAgICAgdm9sdW50ZWVyX2RhdGVzOiAgICAgICBzZWxlY3RlZERhdGVzLA0KICAgICAgc2Vhc29uOiAgICAgICAgICAgICAgICAnMjAyNi0yMDI3JywNCiAgICB9Ow0KDQogICAgdHJ5IHsNCiAgICAgIGlmIChlZGl0SWQpIHsNCiAgICAgICAgYXdhaXQgc2JGZXRjaChgdm9sdW50ZWVycz9pZD1lcS4ke2VkaXRJZH1gLCB7DQogICAgICAgICAgbWV0aG9kOiAnUEFUQ0gnLA0KICAgICAgICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KHBheWxvYWQpDQogICAgICAgIH0pOw0KICAgICAgICBzaG93VG9hc3QoJ1ZvbHVudGVlciB1cGRhdGVkIScsICdzdWNjZXNzJyk7DQogICAgICB9IGVsc2Ugew0KICAgICAgICBhd2FpdCBzYkZldGNoKCd2b2x1bnRlZXJzJywgew0KICAgICAgICAgIG1ldGhvZDogJ1BPU1QnLA0KICAgICAgICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KHBheWxvYWQpDQogICAgICAgIH0pOw0KICAgICAgICBzaG93VG9hc3QoJ1ZvbHVudGVlciBhZGRlZCEnLCAnc3VjY2VzcycpOw0KICAgICAgfQ0KICAgICAgY2xvc2VNb2RhbCgpOw0KICAgICAgYXdhaXQgbG9hZFZvbHVudGVlcnMoKTsNCiAgICB9IGNhdGNoIChlKSB7DQogICAgICBzaG93VG9hc3QoJ1NhdmUgZmFpbGVkOiAnICsgZS5tZXNzYWdlLCAnZXJyb3InKTsNCiAgICB9DQogIH0NCg0KICAvLyDilIDilIAgRGVsZXRlIOKUgOKUgA0KICBmdW5jdGlvbiBjb25maXJtRGVsZXRlKGlkLCBuYW1lKSB7DQogICAgcGVuZGluZ0RlbGV0ZUlkID0gaWQ7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvbmZpcm1Nc2cnKS50ZXh0Q29udGVudCA9DQogICAgICBgVGhpcyB3aWxsIHBlcm1hbmVudGx5IHJlbW92ZSAiJHtuYW1lfSIgZnJvbSBhbGwgZXZlbnRzLiBUaGlzIGNhbm5vdCBiZSB1bmRvbmUuYDsNCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY29uZmlybU92ZXJsYXknKS5jbGFzc0xpc3QuYWRkKCdhY3RpdmUnKTsNCiAgfQ0KICBmdW5jdGlvbiBjbG9zZUNvbmZpcm0oKSB7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvbmZpcm1PdmVybGF5JykuY2xhc3NMaXN0LnJlbW92ZSgnYWN0aXZlJyk7DQogICAgcGVuZGluZ0RlbGV0ZUlkID0gbnVsbDsNCiAgfQ0KICBhc3luYyBmdW5jdGlvbiBkb0RlbGV0ZSgpIHsNCiAgICBpZiAoIXBlbmRpbmdEZWxldGVJZCkgcmV0dXJuOw0KICAgIHRyeSB7DQogICAgICBhd2FpdCBzYkZldGNoKGB2b2x1bnRlZXJzP2lkPWVxLiR7cGVuZGluZ0RlbGV0ZUlkfWAsIHsgbWV0aG9kOiAnREVMRVRFJywgaGVhZGVyczogeyBQcmVmZXI6ICcnIH0gfSk7DQogICAgICBjbG9zZUNvbmZpcm0oKTsNCiAgICAgIHNob3dUb2FzdCgnVm9sdW50ZWVyIGRlbGV0ZWQuJywgJ3N1Y2Nlc3MnKTsNCiAgICAgIGF3YWl0IGxvYWRWb2x1bnRlZXJzKCk7DQogICAgfSBjYXRjaCAoZSkgew0KICAgICAgY2xvc2VDb25maXJtKCk7DQogICAgICBzaG93VG9hc3QoJ0RlbGV0ZSBmYWlsZWQ6ICcgKyBlLm1lc3NhZ2UsICdlcnJvcicpOw0KICAgIH0NCiAgfQ0KDQogIC8vIOKUgOKUgCBDU1YgRXhwb3J0IOKUgOKUgA0KICBmdW5jdGlvbiBleHBvcnRDU1YoKSB7DQogICAgY29uc3QgaGVhZGVycyA9IFsnTmFtZScsJ0VtYWlsJywnUGhvbmUnLCdBc3NpZ25tZW50JywnVEFCQycsJ1ByaW9yIEV2ZW50cycsJ1N0YXR1cycsJ0V2ZW50IERhdGVzJywnQ29tbWVudHMnXTsNCiAgICBjb25zdCByb3dzID0gZmlsdGVyZWRWb2x1bnRlZXJzLm1hcCh2ID0+IFsNCiAgICAgIHYuZnVsbF9uYW1lIHx8ICcnLA0KICAgICAgdi5lbWFpbCB8fCAnJywNCiAgICAgIHYubW9iaWxlX3Bob25lIHx8ICcnLA0KICAgICAgdi5wcmVmZXJyZWRfYXNzaWdubWVudCB8fCAnJywNCiAgICAgIHYudGFiY19jZXJ0aWZpZWQgPyAnWWVzJyA6ICdObycsDQogICAgICB2LnByZXZpb3VzX2V2ZW50cyA/PyAwLA0KICAgICAgdi5zdGF0dXMgfHwgJycsDQogICAgICBBcnJheS5pc0FycmF5KHYudm9sdW50ZWVyX2RhdGVzKSA/IHYudm9sdW50ZWVyX2RhdGVzLmpvaW4oJzsgJykgOiAnJywNCiAgICAgIHYuYWRkaXRpb25hbF9jb21tZW50cyB8fCAnJw0KICAgIF0pOw0KICAgIGNvbnN0IGNzdiA9IFtoZWFkZXJzLCAuLi5yb3dzXS5tYXAociA9PiByLm1hcChjID0+IGAiJHtTdHJpbmcoYykucmVwbGFjZSgvIi9nLCciIicpfSJgKS5qb2luKCcsJykpLmpvaW4oJ1xuJyk7DQogICAgY29uc3QgYmxvYiA9IG5ldyBCbG9iKFtjc3ZdLCB7IHR5cGU6ICd0ZXh0L2NzdicgfSk7DQogICAgY29uc3QgdXJsICA9IFVSTC5jcmVhdGVPYmplY3RVUkwoYmxvYik7DQogICAgY29uc3QgYSAgICA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2EnKTsNCiAgICBhLmhyZWYgPSB1cmw7DQogICAgYS5kb3dubG9hZCA9IGBkbGdyZi1ldmVudC1yb3N0ZXItJHtuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCkuc2xpY2UoMCwxMCl9LmNzdmA7DQogICAgYS5jbGljaygpOw0KICAgIHNldFRpbWVvdXQoKCkgPT4gVVJMLnJldm9rZU9iamVjdFVSTCh1cmwpLCAyMDAwKTsNCiAgfQ0KDQogIC8vIOKUgOKUgCBVdGlscyDilIDilIANCiAgZnVuY3Rpb24gZXNjKHN0cikgeyByZXR1cm4gU3RyaW5nKHN0cikucmVwbGFjZSgvJi9nLCcmYW1wOycpLnJlcGxhY2UoLzwvZywnJmx0OycpLnJlcGxhY2UoLz4vZywnJmd0OycpLnJlcGxhY2UoLyIvZywnJnF1b3Q7Jyk7IH0NCiAgZnVuY3Rpb24gY2FwaXRhbGl6ZShzKSB7IHJldHVybiBzID8gcy5jaGFyQXQoMCkudG9VcHBlckNhc2UoKSArIHMuc2xpY2UoMSkgOiAnJzsgfQ0KDQogIGxldCB0b2FzdFRpbWVyOw0KICBmdW5jdGlvbiBzaG93VG9hc3QobXNnLCB0eXBlID0gJ3N1Y2Nlc3MnKSB7DQogICAgY29uc3QgdCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0b2FzdCcpOw0KICAgIHQudGV4dENvbnRlbnQgPSBtc2c7DQogICAgdC5jbGFzc05hbWUgPSBgdG9hc3QgJHt0eXBlfSBzaG93YDsNCiAgICBjbGVhclRpbWVvdXQodG9hc3RUaW1lcik7DQogICAgdG9hc3RUaW1lciA9IHNldFRpbWVvdXQoKCkgPT4geyB0LmNsYXNzTmFtZSA9ICd0b2FzdCc7IH0sIDM1MDApOw0KICB9DQoNCiAgLy8g4pSA4pSAIEluaXQg4pSA4pSADQogIGxvYWRWb2x1bnRlZXJzKCk7DQo8L3NjcmlwdD4NCjwvYm9keT4NCjwvaHRtbD4NCg==" hidden></div>
-      </div>
-      <!-- END EVENT SIGNUP ROSTER PANEL -->
-
-      </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveVolunteer()">Save Volunteer</button>
     </div>
-  </section>
+  </div>
 </div>
 
-<!-- Toast for Event Signup Roster -->
-<div id="er-toast" style="position:fixed;bottom:1.5rem;right:1.5rem;background:#1a1a1a;color:#fff;font-size:.84rem;padding:.7rem 1.2rem;border-radius:8px;z-index:2000;transform:translateY(120%);opacity:0;transition:transform .3s,opacity .3s;max-width:360px;pointer-events:none;"></div>
-<style>
-  #er-toast.show { transform: translateY(0) !important; opacity: 1 !important; }
-  #er-toast.success { border-left: 4px solid #22c55e; }
-  #er-toast.error { border-left: 4px solid #dc2626; }
-</style>
+<!-- ── Confirm Delete Modal ── -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h4>Delete Volunteer?</h4>
+    <p id="confirmMsg">This will permanently remove this volunteer from all events. This cannot be undone.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancel</button>
+      <button class="btn btn-danger" onclick="doDelete()">Delete</button>
+    </div>
+  </div>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../assets/js/config.js"></script>
-<script src="../assets/js/supabase-client.js"></script>
-<script src="../assets/js/auth.js"></script>
-
-<!-- Third-party libs used by specific tabs -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-
-<!-- Section modules (each namespaced; safe to load together) -->
-<script src="../assets/js/admin-events.js"></script>
-<script src="../assets/js/admin-members.js"></script>
-<script src="../assets/js/admin-access.js"></script>
-<script src="../assets/js/admin-training.js"></script>
-<script src="../assets/js/admin-training-report.js"></script>
-<script src="../assets/js/admin-budget.js"></script>
-<script src="../assets/js/admin-blog.js"></script>
-<script src="../assets/js/admin-community-service.js"></script>
-<script src="../assets/js/admin-volunteer.js"></script>
-
-<!-- Master controller — boots last, after all modules are defined -->
-<script src="../assets/js/admin-console.js"></script>
+<!-- ── Toast ── -->
+<div class="toast" id="toast"></div>
 
 <script>
-/* ── Members & Dues: private implementations — immune to admin-members.js overrides ── */
-(function() {
-  var _membersData = [];
-  var _duesFilter  = 'all';
+  // ── Supabase Config ──
+  const SB_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
+  const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 
-  function _esc(s) {
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-  function _memTotal(m) {
-    return (m.chapter_dues ? 310 : 0) + (m.province_dues ? 50 : 0) + (m.ihq_dues ? 150 : 0);
-  }
-  function _applyFilter(rows) {
-    if (_duesFilter === 'paid')   return rows.filter(function(m){ return m.dues_paid; });
-    if (_duesFilter === 'unpaid') return rows.filter(function(m){ return !m.dues_paid; });
-    return rows;
-  }
+  const EVENT_DATES = [
+    { label: 'Sept 4, 2026',  date: '2026-09-04', opp: 'vs Cleveland Browns' },
+    { label: 'Sept 20, 2026', date: '2026-09-20', opp: 'vs New York Giants' },
+    { label: 'Oct 2, 2026',   date: '2026-10-02', opp: 'vs Carolina Panthers' },
+    { label: 'Oct 18, 2026',  date: '2026-10-18', opp: 'vs Los Angeles Rams' },
+    { label: 'Nov 1, 2026',   date: '2026-11-01', opp: 'vs Philadelphia Eagles' },
+    { label: 'Nov 29, 2026',  date: '2026-11-29', opp: 'vs Kansas City Chiefs (Thanksgiving)' },
+    { label: 'Jan 3, 2027',   date: '2027-01-03', opp: 'vs Washington Commanders' },
+  ];
 
-  function _updateSummary() {
-    var chapPaid = _membersData.filter(function(m){ return m.chapter_dues; }).length;
-    var provPaid = _membersData.filter(function(m){ return m.province_dues; }).length;
-    var ihqPaid  = _membersData.filter(function(m){ return m.ihq_dues; }).length;
-    var swpLife  = _membersData.filter(function(m){ return m.swp_life; }).length;
-    var ihqLife  = _membersData.filter(function(m){ return m.ihq_life; }).length;
-    var totalRev = chapPaid * 310 + provPaid * 50 + ihqPaid * 150;
-    var el = function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
-    el('mem-chap-paid',  chapPaid + ' paid');
-    el('mem-chap-total', '$' + (chapPaid * 310).toLocaleString() + ' collected');
-    el('mem-prov-paid',  provPaid + ' paid');
-    el('mem-prov-total', '$' + (provPaid * 50).toLocaleString() + ' collected');
-    el('mem-ihq-paid',   ihqPaid + ' paid');
-    el('mem-ihq-total',  '$' + (ihqPaid * 150).toLocaleString() + ' collected');
-    el('mem-total-rev',  '$' + totalRev.toLocaleString());
-    el('mem-total-sub',  _membersData.length + ' total members');
-    el('mem-life-val',   swpLife + ' / ' + ihqLife);
-  }
+  // ── State ──
+  let allVolunteers = [];
+  let filteredVolunteers = [];
+  let editId = null;
+  let pendingDeleteId = null;
+  let modalTargetDate = null; // pre-select a date when adding from a card
 
-  var _ourWrite = false; // flag so tbody MutationObserver knows we wrote it
-
-  // Direct REST helpers — no JS client library needed
-  var _SB_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
-  var _SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
-
-  async function _sbGet(table, params) {
-    var qs = Object.entries(params || {}).map(function(kv){ return kv[0]+'='+encodeURIComponent(kv[1]); }).join('&');
-    var url = _SB_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
-    var res = await fetch(url, { headers: { 'apikey': _SB_ANON, 'Authorization': 'Bearer ' + _SB_ANON, 'Accept': 'application/json' } });
-    if (!res.ok) throw new Error(res.status + ' ' + await res.text());
-    return res.json();
+  // ── Supabase helpers ──
+  async function sbFetch(path, opts = {}) {
+    const url = `${SB_URL}/rest/v1/${path}`;
+    const headers = {
+      'apikey': SB_ANON,
+      'Authorization': `Bearer ${SB_ANON}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
+      ...opts.headers
+    };
+    const res = await fetch(url, { ...opts, headers });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`${res.status}: ${err}`);
+    }
+    const text = await res.text();
+    return text ? JSON.parse(text) : [];
   }
 
-  async function _sbPatch(table, id, body) {
-    var url = _SB_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(id);
-    var res = await fetch(url, {
-      method: 'PATCH',
-      headers: { 'apikey': _SB_ANON, 'Authorization': 'Bearer ' + _SB_ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-      body: JSON.stringify(body)
+  // ── Load volunteers ──
+  async function loadVolunteers() {
+    try {
+      allVolunteers = await sbFetch('volunteers?select=*&order=created_at.desc');
+      filteredVolunteers = [...allVolunteers];
+      renderSummary();
+      renderRoster();
+    } catch (e) {
+      document.getElementById('mainContent').innerHTML = `
+        <div class="empty-state">
+          <p>⚠️ Could not load volunteers</p>
+          <small>${e.message}</small>
+        </div>`;
+    }
+  }
+
+  // ── Summary chips ──
+  function renderSummary() {
+    const unique = allVolunteers.length;
+    let signups = 0;
+    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) signups += v.volunteer_dates.length; });
+    const tabc = allVolunteers.filter(v => v.tabc_certified).length;
+    const covered = new Set();
+    allVolunteers.forEach(v => { if (Array.isArray(v.volunteer_dates)) v.volunteer_dates.forEach(d => covered.add(d)); });
+    document.getElementById('chipTotal').textContent = unique;
+    document.getElementById('chipSignups').textContent = signups;
+    document.getElementById('chipTabc').textContent = tabc;
+    document.getElementById('chipEvents').textContent = covered.size;
+  }
+
+  // ── Filters ──
+  function applyFilters() {
+    const q    = document.getElementById('searchInput').value.toLowerCase();
+    const role = document.getElementById('filterAssign').value;
+    const tabc = document.getElementById('filterTabc').value;
+    filteredVolunteers = allVolunteers.filter(v => {
+      const name   = (v.full_name || '').toLowerCase();
+      const email  = (v.email || '').toLowerCase();
+      const matchQ = !q || name.includes(q) || email.includes(q);
+      const matchR = !role || v.preferred_assignment === role;
+      const matchT = !tabc || (tabc === 'yes' ? v.tabc_certified : !v.tabc_certified);
+      return matchQ && matchR && matchT;
     });
-    if (!res.ok) throw new Error(res.status + ' ' + await res.text());
+    renderRoster();
   }
 
-  function _render(rows) {
-    var tbody = document.getElementById('members-table-body');
-    if (!tbody) return;
-    _ourWrite = true;
-    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
-    tbody.innerHTML = rows.map(function(m) {
-      var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
-      var joined = m.join_date ? new Date(m.join_date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
-      var total  = _memTotal(m);
-      var totalCell = total > 0
-        ? '<span class="dues-total-cell">$' + total.toLocaleString() + '</span>'
-        : '<span class="dues-total-zero">—</span>';
-      function mkCb(field) {
-        var chk = m[field] ? 'checked' : '';
-        return '<div class="dues-cb-wrap"><input type="checkbox" class="dues-cb" ' + chk + ' onchange="window._dlaMem.toggle(this,\'' + m.id + '\',\'' + field + '\')" title="Click to toggle"></div>';
+  // ── Render roster ──
+  function renderRoster() {
+    const main = document.getElementById('mainContent');
+
+    // Build date → volunteers map
+    const dateMap = {};
+    EVENT_DATES.forEach(ed => { dateMap[ed.date] = []; });
+
+    filteredVolunteers.forEach(vol => {
+      if (!Array.isArray(vol.volunteer_dates)) return;
+      vol.volunteer_dates.forEach(d => {
+        if (dateMap[d] !== undefined) dateMap[d].push(vol);
+      });
+    });
+
+    let html = '';
+    EVENT_DATES.forEach(ed => {
+      const volunteers = dateMap[ed.date] || [];
+      const [year, month, day] = ed.date.split('-');
+      const dtObj = new Date(Number(year), Number(month) - 1, Number(day));
+      const monthStr = dtObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+      const dayNum   = dtObj.getDate();
+      const yearNum  = dtObj.getFullYear();
+      const today    = new Date(); today.setHours(0,0,0,0);
+      const isPast   = dtObj < today;
+
+      html += `
+      <div class="event-card" id="card-${ed.date}" ${isPast ? 'style="opacity:.72"' : ''}>
+        <div class="event-header">
+          <div class="event-header-left">
+            <div class="event-date-box">
+              <div class="date-month">${monthStr}</div>
+              <div class="date-day">${dayNum}</div>
+              <div class="date-year">${yearNum}</div>
+            </div>
+            <div class="event-info">
+              <h2>${ed.label}${isPast ? ' ✓' : ''}</h2>
+              <div class="event-sub">${ed.opp}</div>
+            </div>
+          </div>
+          <div class="event-header-right">
+            <div class="badge-count">${volunteers.length} Vol${volunteers.length !== 1 ? 's' : ''}</div>
+            <button class="btn-add-vol" onclick="openAddModal('${ed.date}')">+ Add</button>
+          </div>
+        </div>
+        <div class="table-wrap">`;
+
+      if (volunteers.length === 0) {
+        html += `<div class="no-vols">No volunteers signed up for this event yet.</div>`;
+      } else {
+        html += `
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>TABC</th>
+                <th>Prior Events</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>`;
+        volunteers.forEach((v, i) => {
+          const tabc = v.tabc_certified
+            ? `<span class="tabc-badge tabc-yes">✓ Certified</span>`
+            : `<span class="tabc-badge tabc-no">No</span>`;
+          const assign = v.preferred_assignment
+            ? `<span class="assign-badge">${esc(v.preferred_assignment)}</span>` : '—';
+          const statusStyle = v.status === 'confirmed' ? 'color:#15803d;font-weight:600'
+            : v.status === 'declined' ? 'color:#dc2626' : '';
+          html += `
+              <tr>
+                <td style="color:var(--text-muted);font-size:.78rem">${i+1}</td>
+                <td class="name-cell">${esc(v.full_name || '—')}</td>
+                <td class="email-cell">${esc(v.email || '—')}</td>
+                <td class="phone-cell">${esc(v.mobile_phone || '—')}</td>
+                <td>${assign}</td>
+                <td>${tabc}</td>
+                <td style="text-align:center">${v.previous_events ?? '—'}</td>
+                <td><span style="${statusStyle}">${capitalize(v.status || 'pending')}</span></td>
+                <td>
+                  <div class="action-cell">
+                    <button class="btn btn-icon btn-edit" title="Edit" onclick="openEditModal('${v.id}')">✏️</button>
+                    <button class="btn btn-icon btn-delete" title="Delete" onclick="confirmDelete('${v.id}','${esc(v.full_name || '')}')">🗑</button>
+                  </div>
+                </td>
+              </tr>`;
+        });
+        html += `</tbody></table>`;
       }
-      return '<tr data-id="' + m.id + '">' +
-        '<td style="font-weight:600;white-space:nowrap">' + _esc(name) + '</td>' +
-        '<td style="color:#888;font-size:.78rem">' + _esc(m.email||'—') + '</td>' +
-        '<td>' + mkCb('chapter_dues') + '</td>' +
-        '<td>' + mkCb('province_dues') + '</td>' +
-        '<td>' + mkCb('ihq_dues') + '</td>' +
-        '<td>' + mkCb('swp_life') + '</td>' +
-        '<td>' + mkCb('ihq_life') + '</td>' +
-        '<td>' + totalCell + '</td>' +
-      '</tr>';
+      html += `</div></div>`;
+    });
+
+    main.innerHTML = html || `<div class="empty-state"><p>No volunteers match your search.</p></div>`;
+  }
+
+  // ── Build date checkboxes ──
+  function buildDateCheckboxes(selectedDates = []) {
+    const grid = document.getElementById('datesGrid');
+    grid.innerHTML = EVENT_DATES.map(ed => {
+      const checked = selectedDates.includes(ed.date) ? 'checked' : '';
+      return `<label class="date-check">
+        <input type="checkbox" value="${ed.date}" ${checked} data-date-cb>
+        ${ed.label} <span style="font-size:.7rem;color:var(--text-muted)">${ed.opp}</span>
+      </label>`;
     }).join('');
   }
 
-  async function _load() {
-    var tbody = document.getElementById('members-table-body');
-    if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
+  // ── Open add modal ──
+  function openAddModal(preDate) {
+    editId = null;
+    modalTargetDate = preDate;
+    document.getElementById('modalTitle').textContent = 'Add Volunteer';
+    document.getElementById('volForm').reset();
+    buildDateCheckboxes(preDate ? [preDate] : []);
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  // ── Open edit modal ──
+  function openEditModal(id) {
+    const vol = allVolunteers.find(v => String(v.id) === String(id));
+    if (!vol) return showToast('Volunteer not found.', 'error');
+    editId = id;
+    document.getElementById('modalTitle').textContent = 'Edit Volunteer';
+    document.getElementById('f_name').value    = vol.full_name || '';
+    document.getElementById('f_email').value   = vol.email || '';
+    document.getElementById('f_phone').value   = vol.mobile_phone || '';
+    document.getElementById('f_assign').value  = vol.preferred_assignment || '';
+    document.getElementById('f_ec_name').value = vol.ec_name || '';
+    document.getElementById('f_ec_phone').value = vol.ec_phone || '';
+    document.getElementById('f_tabc').value    = vol.tabc_certified ? 'true' : 'false';
+    document.getElementById('f_tabc_expiry').value = vol.tabc_expiry || '';
+    document.getElementById('f_tabc_url').value = vol.tabc_cert_url || '';
+    document.getElementById('f_prev').value    = vol.previous_events ?? '';
+    document.getElementById('f_status').value  = vol.status || 'pending';
+    document.getElementById('f_comments').value = vol.additional_comments || '';
+    buildDateCheckboxes(Array.isArray(vol.volunteer_dates) ? vol.volunteer_dates : []);
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+  function handleOverlayClick(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+
+  // ── Save (insert or update) ──
+  async function saveVolunteer() {
+    const name  = document.getElementById('f_name').value.trim();
+    const email = document.getElementById('f_email').value.trim();
+    if (!name || !email) { showToast('Name and email are required.', 'error'); return; }
+
+    const selectedDates = [...document.querySelectorAll('[data-date-cb]:checked')].map(cb => cb.value);
+
+    const payload = {
+      full_name:             name,
+      email:                 email,
+      mobile_phone:          document.getElementById('f_phone').value.trim() || null,
+      preferred_assignment:  document.getElementById('f_assign').value || null,
+      ec_name:               document.getElementById('f_ec_name').value.trim() || null,
+      ec_phone:              document.getElementById('f_ec_phone').value.trim() || null,
+      tabc_certified:        document.getElementById('f_tabc').value === 'true',
+      tabc_expiry:           document.getElementById('f_tabc_expiry').value || null,
+      tabc_cert_url:         document.getElementById('f_tabc_url').value.trim() || null,
+      previous_events:       parseInt(document.getElementById('f_prev').value) || 0,
+      status:                document.getElementById('f_status').value || 'pending',
+      additional_comments:   document.getElementById('f_comments').value.trim() || null,
+      volunteer_dates:       selectedDates,
+      season:                '2026-2027',
+    };
+
     try {
-      var data = await _sbGet('members', {
-        select: 'id,first_name,last_name,email,membership_tier,join_date,dues_paid,chapter_dues,province_dues,ihq_dues,swp_life,ihq_life',
-        order: 'last_name.asc'
-      });
-      _membersData = data || [];
-      _render(_applyFilter(_membersData));
-      _updateSummary();
-    } catch(e) {
-      if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="color:#c0392b;">Error: ' + _esc(e.message) + '</td></tr>';
+      if (editId) {
+        await sbFetch(`volunteers?id=eq.${editId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(payload)
+        });
+        showToast('Volunteer updated!', 'success');
+      } else {
+        await sbFetch('volunteers', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        showToast('Volunteer added!', 'success');
+      }
+      closeModal();
+      await loadVolunteers();
+    } catch (e) {
+      showToast('Save failed: ' + e.message, 'error');
     }
   }
 
-  async function _toggle(cb, memberId, field) {
-    var newVal = cb.checked;
-    cb.disabled = true;
+  // ── Delete ──
+  function confirmDelete(id, name) {
+    pendingDeleteId = id;
+    document.getElementById('confirmMsg').textContent =
+      `This will permanently remove "${name}" from all events. This cannot be undone.`;
+    document.getElementById('confirmOverlay').classList.add('active');
+  }
+  function closeConfirm() {
+    document.getElementById('confirmOverlay').classList.remove('active');
+    pendingDeleteId = null;
+  }
+  async function doDelete() {
+    if (!pendingDeleteId) return;
     try {
-      var rec = _membersData.find(function(m){ return m.id === memberId; });
-      var update = {};
-      update[field] = newVal;
-      if (rec) {
-        rec[field] = newVal;
-        var allPaid = !!(rec.chapter_dues && rec.province_dues && rec.ihq_dues);
-        if (allPaid !== !!rec.dues_paid) { update.dues_paid = allPaid; rec.dues_paid = allPaid; }
-      }
-      await _sbPatch('members', memberId, update);
-      if (rec) {
-        var row = document.querySelector('#members-table-body tr[data-id="' + memberId + '"]');
-        if (row) {
-          var tc = row.querySelector('td:nth-child(8)');
-          var t  = _memTotal(rec);
-          if (tc) tc.innerHTML = t > 0
-            ? '<span class="dues-total-cell">$' + t.toLocaleString() + '</span>'
-            : '<span class="dues-total-zero">—</span>';
-        }
-      }
-      _updateSummary();
-    } catch(e) {
-      cb.checked = !newVal;
-      alert('Could not update dues: ' + e.message);
-    } finally {
-      cb.disabled = false;
+      await sbFetch(`volunteers?id=eq.${pendingDeleteId}`, { method: 'DELETE', headers: { Prefer: '' } });
+      closeConfirm();
+      showToast('Volunteer deleted.', 'success');
+      await loadVolunteers();
+    } catch (e) {
+      closeConfirm();
+      showToast('Delete failed: ' + e.message, 'error');
     }
   }
 
-  function _filter() {
-    var q = (document.getElementById('member-search') || {}).value || '';
-    q = q.toLowerCase().trim();
-    var rows = q ? _membersData.filter(function(m) {
-      var name = [m.first_name, m.last_name].filter(Boolean).join(' ').toLowerCase();
-      return name.includes(q) || (m.email||'').toLowerCase().includes(q);
-    }) : _membersData;
-    _render(_applyFilter(rows));
-  }
-
-  function _setFilter(filter, btn) {
-    _duesFilter = filter;
-    document.querySelectorAll('#panel-members .mem-filter-btn').forEach(function(b){ b.classList.remove('active-filter'); });
-    if (btn) btn.classList.add('active-filter');
-    _filter();
-  }
-
-  function _exportCSV() {
-    var hdr = ['Name','Email','Chapter Dues','Province Dues','IHQ Dues','SWP Life','IHQ Life','Total Paid','Tier','Joined'];
-    var rows = [hdr].concat(_membersData.map(function(m) {
-      var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '';
-      var joined = m.join_date ? new Date(m.join_date).toLocaleDateString() : '';
-      return [name, m.email||'',
-        m.chapter_dues?'Yes':'No', m.province_dues?'Yes':'No', m.ihq_dues?'Yes':'No',
-        m.swp_life?'Yes':'No', m.ihq_life?'Yes':'No',
-        '$' + _memTotal(m).toLocaleString(), m.membership_tier||'', joined];
-    }));
-    var csv = rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-    a.download = 'dla-members-dues-' + new Date().toISOString().slice(0,10) + '.csv';
+  // ── CSV Export ──
+  function exportCSV() {
+    const headers = ['Name','Email','Phone','Assignment','TABC','Prior Events','Status','Event Dates','Comments'];
+    const rows = filteredVolunteers.map(v => [
+      v.full_name || '',
+      v.email || '',
+      v.mobile_phone || '',
+      v.preferred_assignment || '',
+      v.tabc_certified ? 'Yes' : 'No',
+      v.previous_events ?? 0,
+      v.status || '',
+      Array.isArray(v.volunteer_dates) ? v.volunteer_dates.join('; ') : '',
+      v.additional_comments || ''
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `dlgrf-event-roster-${new Date().toISOString().slice(0,10)}.csv`;
     a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
   }
 
-  // Expose under a namespace that admin-members.js will never touch
-  // _ourWrite(): returns true (and resets) if WE just wrote the tbody
-  function _checkOurWrite() { if (_ourWrite) { _ourWrite = false; return true; } return false; }
-  window._dlaMem = { load: _load, toggle: _toggle, filter: _filter, setFilter: _setFilter, exportCSV: _exportCSV, _ourWrite: _checkOurWrite };
+  // ── Utils ──
+  function esc(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
 
-  // Also expose as window globals (for onclick attributes and legacy callers).
-  // We re-assert on window.load so any DOMContentLoaded override in admin-members.js loses.
-  function _assertGlobals() {
-    window.loadMembersAdmin   = _load;
-    window.renderMembersTable = _render;
-    window.toggleDuesType     = _toggle;
-    window.filterMembersTable = _filter;
-    window.setDuesFilter      = _setFilter;
-    window.exportMembersCSV   = _exportCSV;
-    window.clickToggleDues    = function(){};
-    window.toggleDues         = function(){};
-    window.escHtml = window.escHtml || function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
-  }
-  _assertGlobals();
-  window.addEventListener('load', _assertGlobals); // fires after all DOMContentLoaded handlers
-})();
-
-/* ── Event Signup Roster: load standalone page into iframe via srcdoc ── */
-(function() {
-  var _erLoaded = false;
-
-  function erLoad() {
-    if (_erLoaded) return;
-    var b64El  = document.getElementById('er-b64');
-    var iframe = document.getElementById('er-iframe');
-    if (!b64El || !iframe) { return; }
-    var raw = (b64El.dataset.h || '').trim();
-    if (!raw) { return; }
-    try {
-      var html = atob(raw);
-      _erLoaded = true;
-      iframe.srcdoc = html;          // srcdoc is simpler & more reliable than blob URL
-    } catch(e) {
-      _erLoaded = true;              // don't retry broken base64
-      var panel = document.getElementById('panel-event-roster');
-      if (panel) panel.innerHTML =
-        '<div style="padding:3rem;text-align:center;color:#c0392b;">⚠ Could not load Event Roster: ' + e.message + '</div>';
-    }
+  let toastTimer;
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.className = 'toast'; }, 3500);
   }
 
-  // 1) MutationObserver: fires when admin-console.js adds the active class
-  var erPanel = document.getElementById('panel-event-roster');
-  if (erPanel) {
-    new MutationObserver(function() {
-      if (erPanel.classList.contains('active')) erLoad();
-    }).observe(erPanel, { attributes: true, attributeFilter: ['class'] });
-    // Load immediately if panel is already active
-    if (erPanel.classList.contains('active')) erLoad();
-  }
-
-  // 2) Click listener on ANY element that targets this panel
-  document.addEventListener('click', function(e) {
-    var t = e.target;
-    while (t && t !== document) {
-      if (t.dataset && t.dataset.panel === 'panel-event-roster') {
-        setTimeout(erLoad, 200);
-        break;
-      }
-      t = t.parentElement;
-    }
-  }, true);   // capture phase so it fires before admin-console.js
-})();
-
-/* ── Members & Dues: auto-load + guard against admin-members.js overwrite ── */
-(function() {
-  var panel = document.getElementById('panel-members');
-  if (!panel) return;
-
-  function doLoad() { if (window._dlaMem) window._dlaMem.load(); }
-
-  // Panel active → load our version
-  var obs = new MutationObserver(function() {
-    if (panel.classList.contains('active')) doLoad();
-  });
-  obs.observe(panel, { attributes: true, attributeFilter: ['class'] });
-
-  document.querySelectorAll('.admin-tab-btn[data-panel="panel-members"]').forEach(function(btn) {
-    btn.addEventListener('click', function() { setTimeout(doLoad, 60); });
-  });
-
-  if (panel.classList.contains('active')) doLoad();
-
-  // Guard: watch tbody for admin-members.js writing rows with wrong column count
-  // When it writes old-format rows (>8 cells), immediately re-load with ours
-  var tbody = document.getElementById('members-table-body');
-  if (tbody) {
-    new MutationObserver(function() {
-      // If WE wrote this, reset flag and skip
-      if (window._dlaMem && window._dlaMem._ourWrite()) { return; }
-      var firstDataRow = tbody.querySelector('tr[data-id]');
-      if (firstDataRow && firstDataRow.cells.length > 8) {
-        doLoad();
-      }
-    }).observe(tbody, { childList: true });
-  }
-})();
+  // ── Init ──
+  loadVolunteers();
 </script>
 </body>
 </html>
