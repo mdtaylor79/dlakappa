@@ -166,6 +166,33 @@
           #panel-members .mem-filter-btn.active-filter { background:#70110c; color:#f2ebd7; border-color:#70110c; }
           #panel-members .mem-csv-btn { font-family:'Cinzel',serif; font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.45rem 1rem; border-radius:4px; cursor:pointer; border:1px solid #e0d4c8; background:#f0e8e0; color:#70110c; transition:filter .2s; }
           #panel-members .mem-csv-btn:hover { filter:brightness(1.05); }
+          #panel-members .mem-add-btn { font-family:'Cinzel',serif; font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.45rem 1rem; border-radius:4px; cursor:pointer; border:none; background:#70110c; color:#f2ebd7; transition:filter .2s; }
+          #panel-members .mem-add-btn:hover { filter:brightness(1.12); }
+          #panel-members .mem-edit-btn { background:none; border:none; cursor:pointer; font-size:.85rem; padding:.2rem .4rem; border-radius:4px; color:#70110c; opacity:.7; transition:opacity .15s; }
+          #panel-members .mem-edit-btn:hover { opacity:1; background:#f0e8e0; }
+          /* Member modal */
+          #mem-modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:3000;display:none;align-items:center;justify-content:center;padding:1rem; }
+          #mem-modal-overlay.active { display:flex; }
+          #mem-modal { background:#fff;border-radius:12px;width:100%;max-width:540px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3); }
+          #mem-modal .mm-head { background:linear-gradient(135deg,#70110c,#2a0604);color:#f2ebd7;padding:1.1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0; }
+          #mem-modal .mm-head h3 { font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.06em;margin:0; }
+          #mem-modal .mm-close { background:none;border:none;color:#f2ebd7;font-size:1.3rem;cursor:pointer;opacity:.75;line-height:1; }
+          #mem-modal .mm-close:hover { opacity:1; }
+          #mem-modal .mm-body { overflow-y:auto;padding:1.25rem 1.4rem; }
+          #mem-modal .mm-grid { display:grid;grid-template-columns:1fr 1fr;gap:.85rem; }
+          #mem-modal .mm-field { display:flex;flex-direction:column;gap:.3rem; }
+          #mem-modal .mm-field.full { grid-column:1/-1; }
+          #mem-modal .mm-field label { font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#6a5a50; }
+          #mem-modal .mm-field input,#mem-modal .mm-field select { font-family:inherit;font-size:.85rem;padding:.5rem .75rem;border:1px solid #d8cfc5;border-radius:5px;background:#faf8f5; }
+          #mem-modal .mm-field input:focus,#mem-modal .mm-field select:focus { outline:none;border-color:#70110c; }
+          #mem-modal .mm-dues { display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.15rem; }
+          #mem-modal .mm-dues label { display:flex;align-items:center;gap:.4rem;font-size:.8rem;cursor:pointer;padding:.3rem .6rem;border:1px solid #e0d4c8;border-radius:5px;background:#faf8f5; }
+          #mem-modal .mm-dues input[type=checkbox] { accent-color:#70110c;width:15px;height:15px; }
+          #mem-modal .mm-foot { padding:.9rem 1.4rem;border-top:1px solid #e8e0d8;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;background:#faf8f5; }
+          #mem-modal .mm-foot .mm-del { background:none;border:none;color:#dc2626;font-size:.78rem;cursor:pointer;font-weight:600;opacity:.7; }
+          #mem-modal .mm-foot .mm-del:hover { opacity:1; }
+          #mem-modal .mm-save { font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.4rem;border-radius:4px;cursor:pointer;border:none;background:#70110c;color:#f2ebd7; }
+          #mem-modal .mm-cancel { font-size:.78rem;cursor:pointer;border:1px solid #d8cfc5;background:#fff;padding:.45rem .9rem;border-radius:4px; }
 
           /* ── Dues summary chips ── */
           #panel-members .dues-summary { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.1rem; }
@@ -212,6 +239,7 @@
             <button class="mem-filter-btn" id="dues-filter-unpaid" onclick="setDuesFilter('unpaid',this)">✗ Unpaid</button>
             <input type="text" class="mem-search" id="member-search" placeholder="Name or email…" oninput="filterMembersTable()">
             <button class="mem-csv-btn" onclick="exportMembersCSV()">↓ CSV</button>
+            <button class="mem-add-btn" onclick="window._dlaMem.openAdd()">+ Add Member</button>
           </div>
         </div>
 
@@ -255,12 +283,58 @@
                 <th class="dues-col">SWP<small>Life</small></th>
                 <th class="dues-col">IHQ<small>Life</small></th>
                 <th>Total Paid</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="members-table-body">
-              <tr><td colspan="8">Loading…</td></tr>
+              <tr><td colspan="9">Loading…</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- Add / Edit Member Modal -->
+        <div id="mem-modal-overlay" onclick="if(event.target===this)window._dlaMem.closeAdd()">
+          <div id="mem-modal">
+            <div class="mm-head">
+              <h3 id="mm-title">Add Member</h3>
+              <button class="mm-close" onclick="window._dlaMem.closeAdd()">✕</button>
+            </div>
+            <div class="mm-body">
+              <div class="mm-grid">
+                <div class="mm-field"><label>First Name *</label><input id="mm-first" type="text" placeholder="First"></div>
+                <div class="mm-field"><label>Last Name *</label><input id="mm-last" type="text" placeholder="Last"></div>
+                <div class="mm-field full"><label>Email</label><input id="mm-email" type="email" placeholder="email@example.com"></div>
+                <div class="mm-field full"><label>Phone</label><input id="mm-phone" type="tel" placeholder="(214) 555-0000"></div>
+                <div class="mm-field full"><label>Membership Tier</label>
+                  <select id="mm-tier">
+                    <option value="">— Select —</option>
+                    <option>Undergraduate</option>
+                    <option>Alumni</option>
+                    <option>Life Member</option>
+                    <option>Honorary</option>
+                  </select>
+                </div>
+                <div class="mm-field full"><label>Dues Status</label>
+                  <div class="mm-dues">
+                    <label><input type="checkbox" id="mm-chap"> Chapter ($310)</label>
+                    <label><input type="checkbox" id="mm-prov"> Province ($50)</label>
+                    <label><input type="checkbox" id="mm-ihq"> IHQ ($150)</label>
+                    <label><input type="checkbox" id="mm-swp"> SWP Life</label>
+                    <label><input type="checkbox" id="mm-ihql"> IHQ Life</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mm-foot">
+              <button class="mm-del" id="mm-del-btn" onclick="window._dlaMem.deleteMember()" style="display:none">🗑 Delete Member</button>
+              <span></span>
+              <span>
+                <button class="mm-cancel" onclick="window._dlaMem.closeAdd()">Cancel</button>
+                &nbsp;
+                <button class="mm-save" onclick="window._dlaMem.saveMember()">Save Member</button>
+              </span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1731,14 +1805,33 @@
     if (!res.ok) throw new Error(res.status + ' ' + await res.text());
   }
 
+  async function _sbPost(table, body) {
+    var url = _SB_URL + '/rest/v1/' + table;
+    var res = await fetch(url, {
+      method: 'POST',
+      headers: { 'apikey': _SB_ANON, 'Authorization': 'Bearer ' + _SB_ANON, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error(res.status + ' ' + await res.text());
+    return res.json();
+  }
+
+  async function _sbDelete(table, id) {
+    var url = _SB_URL + '/rest/v1/' + table + '?id=eq.' + encodeURIComponent(id);
+    var res = await fetch(url, {
+      method: 'DELETE',
+      headers: { 'apikey': _SB_ANON, 'Authorization': 'Bearer ' + _SB_ANON, 'Prefer': 'return=minimal' }
+    });
+    if (!res.ok) throw new Error(res.status + ' ' + await res.text());
+  }
+
   function _render(rows) {
     var tbody = document.getElementById('members-table-body');
     if (!tbody) return;
     _ourWrite = true;
-    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
+    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="9" style="color:#aaa;font-size:.83rem;">No members found.</td></tr>'; return; }
     tbody.innerHTML = rows.map(function(m) {
       var name   = [m.first_name, m.last_name].filter(Boolean).join(' ') || '—';
-      var joined = m.join_date ? new Date(m.join_date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
       var total  = _memTotal(m);
       var totalCell = total > 0
         ? '<span class="dues-total-cell">$' + total.toLocaleString() + '</span>'
@@ -1756,6 +1849,7 @@
         '<td>' + mkCb('swp_life') + '</td>' +
         '<td>' + mkCb('ihq_life') + '</td>' +
         '<td>' + totalCell + '</td>' +
+        '<td><button class="mem-edit-btn" onclick="window._dlaMem.openAdd(\'' + m.id + '\')" title="Edit member">✏</button></td>' +
       '</tr>';
     }).join('');
   }
@@ -1763,7 +1857,7 @@
   async function _load() {
     var tbody = document.getElementById('members-table-body');
     if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9" style="color:#aaa;font-size:.83rem;">Loading…</td></tr>';
     try {
       var data = await _sbGet('members', {
         select: 'id,first_name,last_name,email,membership_tier,join_date,dues_paid,chapter_dues,province_dues,ihq_dues,swp_life,ihq_life',
@@ -1773,7 +1867,7 @@
       _render(_applyFilter(_membersData));
       _updateSummary();
     } catch(e) {
-      if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="color:#c0392b;">Error: ' + _esc(e.message) + '</td></tr>';
+      if (tbody) tbody.innerHTML = '<tr><td colspan="9" style="color:#c0392b;">Error: ' + _esc(e.message) + '</td></tr>';
     }
   }
 
@@ -1843,10 +1937,113 @@
     a.click();
   }
 
+  // ── Add / Edit Member modal ──────────────────────────────────────────────
+  var _editId = null; // null = adding new, string = editing existing
+
+  function _mmVal(id) { return (document.getElementById(id)||{}).value || ''; }
+  function _mmChk(id) { return !!(document.getElementById(id)||{}).checked; }
+  function _mmSet(id, val) { var el = document.getElementById(id); if (el) el.value = val || ''; }
+  function _mmSetChk(id, val) { var el = document.getElementById(id); if (el) el.checked = !!val; }
+
+  function openAdd(memberId) {
+    _editId = memberId || null;
+    var overlay = document.getElementById('mem-modal-overlay');
+    var title   = document.getElementById('mm-title');
+    var delBtn  = document.getElementById('mm-del-btn');
+    if (!overlay) return;
+
+    if (_editId) {
+      // Edit existing — populate from _membersData
+      var rec = _membersData.find(function(m){ return String(m.id) === String(_editId); });
+      if (rec) {
+        _mmSet('mm-first', rec.first_name);
+        _mmSet('mm-last',  rec.last_name);
+        _mmSet('mm-email', rec.email);
+        _mmSet('mm-phone', rec.phone||'');
+        _mmSet('mm-tier',  rec.membership_tier);
+        _mmSetChk('mm-chap',  rec.chapter_dues);
+        _mmSetChk('mm-prov',  rec.province_dues);
+        _mmSetChk('mm-ihq',   rec.ihq_dues);
+        _mmSetChk('mm-swp',   rec.swp_life);
+        _mmSetChk('mm-ihql',  rec.ihq_life);
+      }
+      if (title) title.textContent = 'Edit Member';
+      if (delBtn) delBtn.style.display = 'inline-flex';
+    } else {
+      // New member — clear all fields
+      ['mm-first','mm-last','mm-email','mm-phone'].forEach(function(id){ _mmSet(id,''); });
+      _mmSet('mm-tier','');
+      ['mm-chap','mm-prov','mm-ihq','mm-swp','mm-ihql'].forEach(function(id){ _mmSetChk(id,false); });
+      if (title) title.textContent = 'Add Member';
+      if (delBtn) delBtn.style.display = 'none';
+    }
+    overlay.style.display = 'flex';
+  }
+
+  function closeAdd() {
+    var overlay = document.getElementById('mem-modal-overlay');
+    if (overlay) overlay.style.display = 'none';
+    _editId = null;
+  }
+
+  async function saveMember() {
+    var saveBtn = document.querySelector('#mem-modal .mm-save');
+    var first = _mmVal('mm-first').trim();
+    var last  = _mmVal('mm-last').trim();
+    if (!first || !last) { alert('First name and last name are required.'); return; }
+
+    var body = {
+      first_name:      first,
+      last_name:       last,
+      email:           _mmVal('mm-email').trim() || null,
+      phone:           _mmVal('mm-phone').trim() || null,
+      membership_tier: _mmVal('mm-tier') || null,
+      chapter_dues:    _mmChk('mm-chap'),
+      province_dues:   _mmChk('mm-prov'),
+      ihq_dues:        _mmChk('mm-ihq'),
+      swp_life:        _mmChk('mm-swp'),
+      ihq_life:        _mmChk('mm-ihql')
+    };
+    // Auto-set dues_paid based on the three main dues fields
+    body.dues_paid = !!(body.chapter_dues && body.province_dues && body.ihq_dues);
+
+    if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Saving…'; }
+    try {
+      if (_editId) {
+        await _sbPatch('members', _editId, body);
+      } else {
+        await _sbPost('members', body);
+      }
+      closeAdd();
+      await _load();
+    } catch(e) {
+      alert('Save failed: ' + e.message);
+    } finally {
+      if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Save Member'; }
+    }
+  }
+
+  async function deleteMember() {
+    if (!_editId) return;
+    var rec = _membersData.find(function(m){ return String(m.id) === String(_editId); });
+    var name = rec ? [rec.first_name, rec.last_name].filter(Boolean).join(' ') : 'this member';
+    if (!confirm('Delete ' + name + '? This cannot be undone.')) return;
+    var delBtn = document.getElementById('mm-del-btn');
+    if (delBtn) { delBtn.disabled = true; delBtn.textContent = 'Deleting…'; }
+    try {
+      await _sbDelete('members', _editId);
+      closeAdd();
+      await _load();
+    } catch(e) {
+      alert('Delete failed: ' + e.message);
+      if (delBtn) { delBtn.disabled = false; delBtn.textContent = '🗑 Delete Member'; }
+    }
+  }
+
   // Expose under a namespace that admin-members.js will never touch
   // _ourWrite(): returns true (and resets) if WE just wrote the tbody
   function _checkOurWrite() { if (_ourWrite) { _ourWrite = false; return true; } return false; }
-  window._dlaMem = { load: _load, toggle: _toggle, filter: _filter, setFilter: _setFilter, exportCSV: _exportCSV, _ourWrite: _checkOurWrite };
+  window._dlaMem = { load: _load, toggle: _toggle, filter: _filter, setFilter: _setFilter, exportCSV: _exportCSV, _ourWrite: _checkOurWrite, openAdd: openAdd, closeAdd: closeAdd, saveMember: saveMember, deleteMember: deleteMember };
 
   // Also expose as window globals (for onclick attributes and legacy callers).
   // We re-assert on window.load so any DOMContentLoaded override in admin-members.js loses.
@@ -1938,7 +2135,7 @@
       // If WE wrote this, reset flag and skip
       if (window._dlaMem && window._dlaMem._ourWrite()) { return; }
       var firstDataRow = tbody.querySelector('tr[data-id]');
-      if (firstDataRow && firstDataRow.cells.length > 8) {
+      if (firstDataRow && firstDataRow.cells.length > 9) {
         doLoad();
       }
     }).observe(tbody, { childList: true });
