@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.png" type="image/png">
+<title>Event Insurance Checklist — DLA Kappa Alpha Psi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Archivo', sans-serif; background: #f4f2ef; color: #222; min-height: 100vh; }
+
+/* ── Nav (matches dashboard exactly) ── */
+.portal-nav {
+  background: #fff;
+  border-bottom: 1px solid #e0d8cc;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.portal-nav .brand { display: flex; align-items: center; gap: .9rem; flex: 1; }
+.portal-nav .brand-text .chapter-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #70110c;
+  line-height: 1.1;
+}
+.portal-nav .brand-text .frat-name {
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #999;
+}
+.portal-nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.portal-nav .nav-links a {
+  font-size: .82rem;
+  font-weight: 600;
+  color: #70110c;
+  text-decoration: none;
+  letter-spacing: .03em;
+  transition: opacity .15s;
+}
+.portal-nav .nav-links a:hover { opacity: .75; }
+.portal-nav .nav-links .signout { color: #888; font-weight: 500; }
+.portal-nav .nav-links .signout:hover { color: #70110c; opacity: 1; }
+
+/* ── Page layout ── */
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+.page-header {
+  background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
+  border-radius: 10px;
+  padding: 2rem 2.25rem;
+  color: #f2ebd7;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><path d='M40 4L76 40L40 76L4 40Z' fill='none' stroke='%23f2ebd7' stroke-width='1'/></svg>");
+  background-size: 80px 80px;
+}
+.page-header .eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #c69a3f;
+  margin-bottom: .5rem;
+}
+.page-header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #f2ebd7;
+  line-height: 1.15;
+  margin-bottom: .5rem;
+  position: relative;
+}
+.page-header p {
+  font-size: .88rem;
+  color: #e8dcc8;
+  line-height: 1.6;
+  max-width: 540px;
+  position: relative;
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .75rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+}
+.breadcrumb a { color: #70110c; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { color: #bbb; }
+
+/* ── Section block (matches dashboard) ── */
+.section-block {
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.section-block-header {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f0ece6;
+  background: #faf8f5;
+}
+.section-block-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #70110c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.section-block-title {
+  font-family: 'Cinzel', serif;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+.section-block-body { padding: 1.5rem; }
+
+/* ── Form fields (matches dashboard modal style) ── */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-bottom: .85rem; }
+.field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+.field-row.full { grid-template-columns: 1fr; }
+@media(max-width: 600px) { .field-row, .field-row.three { grid-template-columns: 1fr; } }
+
+.field { display: flex; flex-direction: column; gap: .3rem; }
+.field label {
+  font-size: .72rem;
+  font-weight: 600;
+  color: #555;
+  letter-spacing: .01em;
+}
+.field label .req { color: #70110c; margin-left: 2px; }
+.field input,
+.field select,
+.field textarea {
+  padding: .55rem .75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: .84rem;
+  font-family: 'Archivo', sans-serif;
+  color: #222;
+  background: #faf9f7;
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #70110c;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(112,17,12,.07);
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+/* ── Checkbox grid ── */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .55rem;
+  margin-top: .15rem;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  cursor: pointer;
+  padding: .5rem .65rem;
+  border: 1px solid #ede9e3;
+  border-radius: 5px;
+  background: #faf9f7;
+  transition: border-color .15s, background .15s;
+  user-select: none;
+}
+.check-item:hover { border-color: #c69a3f; background: #fffdf8; }
+.check-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1.5px solid #bbb;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  margin-top: 1px;
+  position: relative;
+  transition: border-color .15s, background .15s;
+}
+.check-item input[type="checkbox"]:checked {
+  background: #70110c;
+  border-color: #70110c;
+}
+.check-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+.check-item .check-label {
+  font-size: .8rem;
+  color: #333;
+  line-height: 1.35;
+  padding: 0;
+}
+.check-item input[type="checkbox"]:checked ~ .check-label { color: #1a1a1a; font-weight: 500; }
+
+/* ── File upload ── */
+.upload-zone {
+  border: 2px dashed #d4ccc2;
+  border-radius: 7px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  background: #faf9f7;
+  position: relative;
+}
+.upload-zone:hover, .upload-zone.drag-over { border-color: #70110c; background: #fff; }
+.upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-zone .upload-icon { color: #c69a3f; margin-bottom: .4rem; }
+.upload-zone .upload-text { font-size: .8rem; color: #888; }
+.upload-zone .upload-text strong { color: #70110c; }
+.upload-filename { margin-top: .5rem; font-size: .76rem; color: #555; font-style: italic; }
+
+/* ── Section note ── */
+.section-note {
+  font-size: .75rem;
+  color: #888;
+  background: #fdf8f0;
+  border-left: 3px solid #c69a3f;
+  padding: .6rem .85rem;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 1.1rem;
+  line-height: 1.5;
+}
+
+/* ── Inline sub-label ── */
+.sub-section-label {
+  font-size: .63rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #70110c;
+  margin: 1.1rem 0 .6rem;
+  border-bottom: 1px solid #f0ece6;
+  padding-bottom: .35rem;
+}
+.sub-section-label:first-child { margin-top: 0; }
+
+/* ── Submit area ── */
+.form-actions {
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.form-actions .action-note {
+  font-size: .78rem;
+  color: #888;
+  flex: 1;
+  min-width: 200px;
+}
+.form-actions .action-note strong { color: #70110c; }
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: #70110c;
+  color: #f2ebd7;
+  border: none;
+  border-radius: 5px;
+  padding: .75rem 2rem;
+  font-family: 'Cinzel', serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+.btn-submit:hover { background: #5a0e09; transform: translateY(-1px); }
+.btn-clear {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: 1px solid #ddd;
+  color: #888;
+  border-radius: 5px;
+  padding: .75rem 1.25rem;
+  font-family: 'Archivo', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.btn-clear:hover { border-color: #70110c; color: #70110c; }
+
+/* ── Toast ── */
+#toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #1a1a1a;
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: 6px;
+  font-size: .82rem;
+  font-weight: 500;
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+#toast.success { background: #1e5c35; }
+#toast.error { background: #8e1510; }
+
+/* ── Mobile nav ── */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+}
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: #70110c; border-radius: 2px; }
+@media(max-width: 700px) {
+  .portal-nav { height: auto; min-height: 56px; padding: .5rem 1rem; flex-wrap: wrap; }
+  .portal-nav .brand-text .frat-name { display: none; }
+  .portal-nav .brand-text .chapter-name { font-size: .82rem; }
+  .nav-hamburger { display: flex; }
+  .portal-nav .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 0; padding: .4rem 0 .5rem; border-top: 1px solid #e8e0d5; margin-top: .25rem; }
+  .portal-nav .nav-links.mob-open { display: flex; }
+  .portal-nav .nav-links a { padding: .6rem .25rem; font-size: .84rem; width: 100%; border-bottom: 1px solid #f5f0ea; }
+  .portal-nav .nav-links a:last-child { border-bottom: none; }
+  .page-wrap { padding: 1.25rem 1rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="portal-nav">
+  <div class="brand">
+    <div class="brand-text">
+      <div class="chapter-name">DLA Member Portal</div>
+      <div class="frat-name">Kappa Alpha Psi Fraternity, Inc.</div>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="portalBurger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="portalNavLinks">
+    <a href="/portal/dashboard.html" style="display:flex;align-items:center;gap:.35rem;color:#888;font-weight:500;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg>
+      Dashboard
+    </a>
+    <a href="/portal/news.html">News</a>
+    <a href="/portal/training-hub.html">Training</a>
+    <a href="/portal/community-service.html">Community Service</a>
+    <a href="/portal/login.html" class="signout">Sign Out</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/portal/dashboard.html">Dashboard</a>
+    <span>›</span>
+    <a href="/portal/dashboard.html#assessments">Forms &amp; Assessments</a>
+    <span>›</span>
+    Event Insurance Checklist
+  </div>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="eyebrow">Denton-Lewisville Alumni Chapter</div>
+    <h1>Event Insurance Checklist</h1>
+    <p>Complete this checklist for all chapter events requiring venue coordination, vendor contracts, or third-party insurance coverage. Submit at least 21 days before the event date.</p>
+  </div>
+
+  <form id="insuranceForm" novalidate>
+
+    <!-- ① Event Information -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="section-block-title">Event Information</div>
+      </div>
+      <div class="section-block-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Event Name <span class="req">*</span></label>
+            <input type="text" name="event_name" placeholder="e.g. Spring Gala 2026" required>
+          </div>
+          <div class="field">
+            <label>Event Date <span class="req">*</span></label>
+            <input type="date" name="event_date" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Event Start Time</label>
+            <input type="time" name="event_start">
+          </div>
+          <div class="field">
+            <label>Event End Time</label>
+            <input type="time" name="event_end">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Committee / Chapter <span class="req">*</span></label>
+            <input type="text" name="committee" placeholder="e.g. Social Action Committee" required>
+          </div>
+          <div class="field">
+            <label>Event Chair / Contact <span class="req">*</span></label>
+            <input type="text" name="event_chair" placeholder="Full name" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Chair Phone</label>
+            <input type="tel" name="chair_phone" placeholder="(214) 555-0100">
+          </div>
+          <div class="field">
+            <label>Chair Email</label>
+            <input type="email" name="chair_email" placeholder="brother@example.com">
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Expected Attendance</label>
+            <input type="number" name="attendance" min="1" placeholder="Number of guests">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Venue Information -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="section-block-title">Venue Information</div>
+      </div>
+      <div class="section-block-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Venue Name <span class="req">*</span></label>
+            <input type="text" name="venue_name" required>
+          </div>
+          <div class="field">
+            <label>Venue Address <span class="req">*</span></label>
+            <input type="text" name="venue_address" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Venue Contact Name</label>
+            <input type="text" name="venue_contact">
+          </div>
+          <div class="field">
+            <label>Venue Contact Phone</label>
+            <input type="tel" name="venue_phone">
+          </div>
+        </div>
+        <div class="check-grid" style="margin-top:.75rem;">
+          <label class="check-item">
+            <input type="checkbox" name="venue_rented" checked>
+            <span class="check-label">Rented Facility</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="venue_owned">
+            <span class="check-label">Chapter-Owned Facility</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="venue_public">
+            <span class="check-label">Public Space / Park</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="venue_hotel">
+            <span class="check-label">Hotel / Ballroom</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Insurance & Liability -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="section-block-title">Insurance &amp; Liability</div>
+      </div>
+      <div class="section-block-body">
+        <div class="section-note">Kappa Alpha Psi Fraternity, Inc. requires certificate of insurance (COI) for all third-party venues. Confirm coverage details below.</div>
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="promoter_insured" checked>
+            <span class="check-label">Promoter is insured</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="kappa_added" checked>
+            <span class="check-label">Event Company/Promoter has added Kappa</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="chapter_coi">
+            <span class="check-label">Chapter COI on file</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="national_notified">
+            <span class="check-label">National Office Notified</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="liability_waiver">
+            <span class="check-label">Liability Waiver Required</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="ihq_approved">
+            <span class="check-label">IHQ Event Approval Submitted</span>
+          </label>
+        </div>
+        <div class="field-row" style="margin-top:1rem;">
+          <div class="field">
+            <label>Insurance Policy / Ref #</label>
+            <input type="text" name="insurance_policy_no" placeholder="Policy number">
+          </div>
+          <div class="field">
+            <label>Coverage Amount</label>
+            <input type="text" name="coverage_amount" placeholder="e.g. $1,000,000">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Security & Crowd Control -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="section-block-title">Security &amp; Crowd Control</div>
+      </div>
+      <div class="section-block-body">
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="security_venue" checked>
+            <span class="check-label">Security Provided by venue</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="security_hired">
+            <span class="check-label">Security Hired by chapter</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="guest_list" checked>
+            <span class="check-label">Guest list at the door</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="wristbands">
+            <span class="check-label">Wristbands / Ticket Scan</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="bag_check">
+            <span class="check-label">Bag Check at Entry</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="metal_detector">
+            <span class="check-label">Metal Detector / Wand</span>
+          </label>
+        </div>
+        <div class="field-row" style="margin-top:1rem;">
+          <div class="field">
+            <label>Describ Id method</label>
+            <input type="text" name="id_method" placeholder="e.g. State ID required for 21+ areas">
+          </div>
+          <div class="field">
+            <label>Security Vendor / Company</label>
+            <input type="text" name="security_vendor" placeholder="Company name">
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>prevent plans_L1</label>
+            <textarea name="prevent_plans_l1" placeholder="Describe first-level incident prevention and escalation plans…"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ Alcohol & Beverage Service -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M8 2l1 10M16 2l-1 10M4 12h16M6 22h12l1-10H5l1 10z"/></svg>
+        </div>
+        <div class="section-block-title">Alcohol &amp; Beverage Service</div>
+      </div>
+      <div class="section-block-body">
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="alcohol_served">
+            <span class="check-label">Alcohol Will Be Served</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="licensed_bartender">
+            <span class="check-label">Licensed Bartender / TABC</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="cash_bar">
+            <span class="check-label">Cash Bar</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="open_bar">
+            <span class="check-label">Open Bar / Tickets</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="no_alcohol">
+            <span class="check-label">No Alcohol — Dry Event</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="alcohol_insurance">
+            <span class="check-label">Liquor Liability Insurance</span>
+          </label>
+        </div>
+        <div class="field-row" style="margin-top:1rem;">
+          <div class="field">
+            <label>Beverage Vendor</label>
+            <input type="text" name="beverage_vendor" placeholder="Company / individual name">
+          </div>
+          <div class="field">
+            <label>TABC License #</label>
+            <input type="text" name="tabc_license" placeholder="If applicable">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ Vendors & Contractors -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="section-block-title">Vendors &amp; Contractors</div>
+      </div>
+      <div class="section-block-body">
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="vendor_catering">
+            <span class="check-label">Catering Vendor</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="vendor_av">
+            <span class="check-label">A/V &amp; Sound</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="vendor_dj">
+            <span class="check-label">DJ / Entertainment</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="vendor_photo">
+            <span class="check-label">Photography / Videography</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="vendor_decor">
+            <span class="check-label">Décor / Rentals</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="vendor_transport">
+            <span class="check-label">Transportation</span>
+          </label>
+        </div>
+
+        <div class="sub-section-label" style="margin-top:1.2rem;">Vendor Contract Details</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Companies Promoter</label>
+            <input type="text" name="companies_promoter" placeholder="Promoter / event company name">
+          </div>
+          <div class="field">
+            <label>Vendor Contract Long</label>
+            <input type="text" name="vendor_contract_long" placeholder="Contract reference or term">
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Vendor Notes / Contract Summary</label>
+            <textarea name="vendor_notes" placeholder="Summarize key contract terms, payment schedule, cancellation policy…"></textarea>
+          </div>
+        </div>
+
+        <div class="sub-section-label">Upload Vendor Contract / Flyer</div>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="contractUpload" name="contract_file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+          <div class="upload-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>PDF, DOC, PNG, JPG — max 10 MB</div>
+        </div>
+        <div class="upload-filename" id="uploadFilename" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- ⑦ Alcohol Policy Acknowledgment -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="section-block-title">Alcohol Policy Acknowledgment</div>
+      </div>
+      <div class="section-block-body">
+        <div class="section-note">Per Kappa Alpha Psi risk management policy, chapters may not fund or provide alcohol. All alcohol must be handled by a licensed third party.</div>
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="no_chapter_alcohol">
+            <span class="check-label">Chapter Funds Not Used for Alcohol</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="third_party_alcohol">
+            <span class="check-label">Third-Party Handles All Alcohol</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="ihq_alcohol_policy">
+            <span class="check-label">IHQ Alcohol Policy Reviewed</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="sw_province_policy">
+            <span class="check-label">SW Province Policy Reviewed</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑧ Medical & Emergency Preparedness -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="section-block-title">Medical &amp; Emergency Preparedness</div>
+      </div>
+      <div class="section-block-body">
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="first_aid_kit">
+            <span class="check-label">First Aid Kit On-Site</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="aed_available">
+            <span class="check-label">AED Available / Located</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="emergency_exits">
+            <span class="check-label">Emergency Exits Identified</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="evacuation_plan">
+            <span class="check-label">Evacuation Plan Reviewed</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="medical_contact">
+            <span class="check-label">Medical Contact On-Call</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="ems_notified">
+            <span class="check-label">Local EMS / Fire Notified</span>
+          </label>
+        </div>
+        <div class="field-row" style="margin-top:1rem;">
+          <div class="field">
+            <label>Emergency Contact Name</label>
+            <input type="text" name="emergency_contact_name">
+          </div>
+          <div class="field">
+            <label>Emergency Contact Phone</label>
+            <input type="tel" name="emergency_contact_phone">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑨ Risk Assessment -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="section-block-title">Risk Assessment</div>
+      </div>
+      <div class="section-block-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Overall Risk Level</label>
+            <select name="risk_level">
+              <option value="">— Select —</option>
+              <option>Low</option>
+              <option>Moderate</option>
+              <option>High</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Anticipated Crowd Type</label>
+            <select name="crowd_type">
+              <option value="">— Select —</option>
+              <option>Members Only</option>
+              <option>Members + Guests (invite only)</option>
+              <option>Open to Public</option>
+              <option>Mixed / Ticketed</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Known Risk Factors / Special Circumstances</label>
+            <textarea name="risk_factors" placeholder="Describe any known risk factors — large crowd, outdoor weather exposure, VIP guests, high-profile performers, etc."></textarea>
+          </div>
+        </div>
+        <div class="field-row full">
+          <div class="field">
+            <label>Mitigation Strategies</label>
+            <textarea name="mitigation" placeholder="Describe steps taken to mitigate identified risks…"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑩ Financial & Budget -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="section-block-title">Financial &amp; Budget</div>
+      </div>
+      <div class="section-block-body">
+        <div class="field-row three">
+          <div class="field">
+            <label>Total Event Budget</label>
+            <input type="text" name="budget_total" placeholder="$0.00">
+          </div>
+          <div class="field">
+            <label>Projected Revenue</label>
+            <input type="text" name="budget_revenue" placeholder="$0.00">
+          </div>
+          <div class="field">
+            <label>Budget Approved By</label>
+            <input type="text" name="budget_approved_by">
+          </div>
+        </div>
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" name="budget_approved">
+            <span class="check-label">Budget Committee Approved</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="treasurer_reviewed">
+            <span class="check-label">Treasurer Reviewed</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="polemarch_approved">
+            <span class="check-label">Polemarch Approved</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="advance_needed">
+            <span class="check-label">Advance Payment Requested</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑪ Certification & Submission -->
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="section-block-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f2ebd7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="section-block-title">Certification &amp; Submission</div>
+      </div>
+      <div class="section-block-body">
+        <div class="field-row">
+          <div class="field">
+            <label>Submitter Name <span class="req">*</span></label>
+            <input type="text" name="submitter_name" required>
+          </div>
+          <div class="field">
+            <label>Submitter Role / Title</label>
+            <input type="text" name="submitter_role" placeholder="e.g. Committee Chair">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Date Submitted</label>
+            <input type="date" name="date_submitted" id="dateSubmitted">
+          </div>
+          <div class="field">
+            <label>Keeper of Records (KOR)</label>
+            <input type="text" name="kor_name" placeholder="Brother name">
+          </div>
+        </div>
+        <div class="field-row full" style="margin-top:.5rem;">
+          <label class="check-item" style="border-color:#c69a3f;">
+            <input type="checkbox" name="certify" required>
+            <span class="check-label">I certify that the information provided is accurate and that this event has been coordinated in accordance with chapter bylaws, province guidelines, and Kappa Alpha Psi Fraternity, Inc. risk management policies.</span>
+          </label>
+        </div>
+        <div class="field-row full" style="margin-top:.85rem;">
+          <div class="field">
+            <label>Additional Notes / Comments</label>
+            <textarea name="additional_notes" placeholder="Any additional context for the Polemarch or KOR…"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="form-actions">
+      <div class="action-note">
+        Submit at least <strong>21 days before your event date</strong>. The KOR will confirm receipt within 48 hours.
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+        <button type="button" class="btn-clear" onclick="clearForm()">Clear Form</button>
+        <button type="submit" class="btn-submit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+          Submit Checklist
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function() {
+  // Set today's date as default submission date
+  var ds = document.getElementById('dateSubmitted');
+  if (ds) ds.value = new Date().toISOString().slice(0,10);
+
+  // Mobile nav toggle
+  var burger = document.getElementById('portalBurger');
+  var navLinks = document.getElementById('portalNavLinks');
+  if (burger && navLinks) {
+    burger.addEventListener('click', function() {
+      navLinks.classList.toggle('mob-open');
+    });
+  }
+
+  // File upload display
+  var uploadInput = document.getElementById('contractUpload');
+  var uploadFilename = document.getElementById('uploadFilename');
+  var uploadZone = document.getElementById('uploadZone');
+  if (uploadInput) {
+    uploadInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        uploadFilename.textContent = '📎 ' + this.files[0].name;
+        uploadFilename.style.display = 'block';
+      }
+    });
+  }
+  if (uploadZone) {
+    uploadZone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
+    uploadZone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
+    uploadZone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      this.classList.remove('drag-over');
+      var files = e.dataTransfer.files;
+      if (files && files[0]) {
+        uploadInput.files = files;
+        uploadFilename.textContent = '📎 ' + files[0].name;
+        uploadFilename.style.display = 'block';
+      }
+    });
+  }
+
+  // Toast
+  var toastEl = document.getElementById('toast');
+  function showToast(msg, type) {
+    toastEl.textContent = msg;
+    toastEl.className = 'show ' + (type || '');
+    setTimeout(function() { toastEl.className = ''; }, 3500);
+  }
+
+  // Label map for readable email body
+  var LABELS = {
+    event_name:'Event Name', event_date:'Event Date', event_start:'Start Time', event_end:'End Time',
+    committee:'Committee / Chapter', event_chair:'Event Chair', chair_phone:'Chair Phone', chair_email:'Chair Email',
+    attendance:'Expected Attendance', venue_name:'Venue Name', venue_address:'Venue Address',
+    venue_contact:'Venue Contact', venue_phone:'Venue Phone',
+    venue_rented:'Rented Facility', venue_owned:'Chapter-Owned Facility', venue_public:'Public Space / Park', venue_hotel:'Hotel / Ballroom',
+    promoter_insured:'Promoter is Insured', kappa_added:'Promoter Added Kappa as Additional Insured',
+    chapter_coi:'Chapter COI on File', national_notified:'National Office Notified',
+    liability_waiver:'Liability Waiver Required', ihq_approved:'IHQ Event Approval Submitted',
+    insurance_policy_no:'Insurance Policy #', coverage_amount:'Coverage Amount',
+    security_venue:'Security Provided by Venue', security_hired:'Security Hired by Chapter',
+    guest_list:'Guest List at Door', wristbands:'Wristbands / Ticket Scan',
+    bag_check:'Bag Check at Entry', metal_detector:'Metal Detector / Wand',
+    id_method:'ID Method', security_vendor:'Security Vendor',
+    prevent_plans_l1:'Prevention Plans (Level 1)',
+    alcohol_served:'Alcohol Will Be Served', licensed_bartender:'Licensed Bartender / TABC',
+    cash_bar:'Cash Bar', open_bar:'Open Bar / Tickets', no_alcohol:'Dry Event',
+    alcohol_insurance:'Liquor Liability Insurance', beverage_vendor:'Beverage Vendor', tabc_license:'TABC License #',
+    vendor_catering:'Catering Vendor', vendor_av:'A/V & Sound', vendor_dj:'DJ / Entertainment',
+    vendor_photo:'Photography / Videography', vendor_decor:'Décor / Rentals', vendor_transport:'Transportation',
+    companies_promoter:'Companies / Promoter', vendor_contract_long:'Vendor Contract', vendor_notes:'Vendor Notes',
+    no_chapter_alcohol:'Chapter Funds Not Used for Alcohol', third_party_alcohol:'Third-Party Handles All Alcohol',
+    ihq_alcohol_policy:'IHQ Alcohol Policy Reviewed', sw_province_policy:'SW Province Policy Reviewed',
+    first_aid_kit:'First Aid Kit On-Site', aed_available:'AED Available', emergency_exits:'Emergency Exits Identified',
+    evacuation_plan:'Evacuation Plan Reviewed', medical_contact:'Medical Contact On-Call', ems_notified:'EMS / Fire Notified',
+    emergency_contact_name:'Emergency Contact Name', emergency_contact_phone:'Emergency Contact Phone',
+    risk_level:'Risk Level', crowd_type:'Crowd Type', risk_factors:'Risk Factors', mitigation:'Mitigation Strategies',
+    budget_total:'Total Budget', budget_revenue:'Projected Revenue', budget_approved_by:'Budget Approved By',
+    budget_approved:'Budget Committee Approved', treasurer_reviewed:'Treasurer Reviewed',
+    polemarch_approved:'Polemarch Approved', advance_needed:'Advance Payment Requested',
+    submitter_name:'Submitter Name', submitter_role:'Submitter Role', date_submitted:'Date Submitted',
+    kor_name:'Keeper of Records', certify:'Certification', additional_notes:'Additional Notes'
+  };
+
+  function buildEmailBody(data) {
+    var sections = [
+      ['EVENT INFORMATION', ['event_name','event_date','event_start','event_end','committee','event_chair','chair_phone','chair_email','attendance']],
+      ['VENUE', ['venue_name','venue_address','venue_contact','venue_phone','venue_rented','venue_owned','venue_public','venue_hotel']],
+      ['INSURANCE & LIABILITY', ['promoter_insured','kappa_added','chapter_coi','national_notified','liability_waiver','ihq_approved','insurance_policy_no','coverage_amount']],
+      ['SECURITY & CROWD CONTROL', ['security_venue','security_hired','guest_list','wristbands','bag_check','metal_detector','id_method','security_vendor','prevent_plans_l1']],
+      ['ALCOHOL & BEVERAGE', ['alcohol_served','licensed_bartender','cash_bar','open_bar','no_alcohol','alcohol_insurance','beverage_vendor','tabc_license']],
+      ['VENDORS & CONTRACTORS', ['vendor_catering','vendor_av','vendor_dj','vendor_photo','vendor_decor','vendor_transport','companies_promoter','vendor_contract_long','vendor_notes']],
+      ['ALCOHOL POLICY ACKNOWLEDGMENT', ['no_chapter_alcohol','third_party_alcohol','ihq_alcohol_policy','sw_province_policy']],
+      ['MEDICAL & EMERGENCY', ['first_aid_kit','aed_available','emergency_exits','evacuation_plan','medical_contact','ems_notified','emergency_contact_name','emergency_contact_phone']],
+      ['RISK ASSESSMENT', ['risk_level','crowd_type','risk_factors','mitigation']],
+      ['FINANCIAL & BUDGET', ['budget_total','budget_revenue','budget_approved_by','budget_approved','treasurer_reviewed','polemarch_approved','advance_needed']],
+      ['CERTIFICATION', ['submitter_name','submitter_role','date_submitted','kor_name','certify','additional_notes']]
+    ];
+    var lines = ['EVENT INSURANCE CHECKLIST SUBMISSION', '='.repeat(44), ''];
+    sections.forEach(function(sec) {
+      lines.push('── ' + sec[0] + ' ──');
+      sec[1].forEach(function(key) {
+        var val = data[key];
+        if (val === undefined || val === '') return;
+        var label = LABELS[key] || key;
+        lines.push('  ' + label + ': ' + val);
+      });
+      lines.push('');
+    });
+    lines.push('='.repeat(44));
+    lines.push('Submitted via DLA Member Portal');
+    return lines.join('\n');
+  }
+
+  // Form submit
+  var form = document.getElementById('insuranceForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Validate required fields
+      var required = form.querySelectorAll('[required]');
+      var valid = true;
+      required.forEach(function(el) {
+        if (el.type === 'checkbox') {
+          if (!el.checked) { valid = false; el.parentElement.style.borderColor = '#8e1510'; }
+          else el.parentElement.style.borderColor = '';
+        } else {
+          if (!el.value.trim()) { valid = false; el.style.borderColor = '#8e1510'; }
+          else el.style.borderColor = '';
+        }
+      });
+      if (!valid) { showToast('Please complete all required fields.', 'error'); return; }
+
+      // Collect all field values
+      var data = {};
+      var elements = form.elements;
+      for (var i = 0; i < elements.length; i++) {
+        var el = elements[i];
+        if (!el.name) continue;
+        if (el.type === 'checkbox') {
+          if (el.checked) data[el.name] = 'Yes';
+        } else if (el.type !== 'file' && el.type !== 'submit' && el.type !== 'button') {
+          if (el.value.trim()) data[el.name] = el.value.trim();
+        }
+      }
+
+      // Note attached file name if present
+      var fileInput = document.getElementById('contractUpload');
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        data['_attachment'] = fileInput.files[0].name + ' (attach manually)';
+      }
+
+      // Build subject and body
+      var eventName = data['event_name'] || 'Event';
+      var eventDate = data['event_date'] || '';
+      var subject = 'Event Insurance Checklist: ' + eventName + (eventDate ? ' (' + eventDate + ')' : '');
+      var body = buildEmailBody(data);
+
+      // Open mailto
+      var TO = 'polemarch@dlakappa.org,vicepolemarch@dlakappa.org,kor@dlakappa.org';
+      var mailto = 'mailto:' + TO
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+      window.location.href = mailto;
+
+      showToast('Opening email client — send the pre-filled message to complete submission.', 'success');
+    });
+  }
+
+  // Clear form
+  window.clearForm = function() {
+    if (confirm('Clear all fields and start over?')) {
+      form.reset();
+      if (uploadFilename) uploadFilename.style.display = 'none';
+      document.getElementById('dateSubmitted').value = new Date().toISOString().slice(0,10);
+    }
+  };
+})();
+</script>
+</body>
+</html>
