@@ -302,7 +302,7 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num">8</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num">9</span><span class="lbl">Available</span></div>
       <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
       <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
     </div>
@@ -366,6 +366,21 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <div class="course-title">Parliamentary Procedure: Robert&#8217;s Rules of Order</div>
         <div class="course-meta">6 modules &nbsp;&middot;&nbsp; ~45 min</div>
         <a class="btn-course btn-start" id="btn-roberts" href="/portal/roberts_rules_training.html" target="_blank">Start Course</a>
+      </div>
+    </div>
+
+    <!-- Code of Conduct Certification — thumbnail: save Higgsfield image to /img/code_of_conduct_thumbnail.png to use local path -->
+    <div class="course-card" data-filter="required all">
+      <div class="course-thumb">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Dr6mmzMFHdr9X5I1egsnEsOMwn/hf_20260904_030114_2557fc76-d3bd-47c0-afc4-e7009e416089.png" alt="Code of Conduct Certification" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="course-badge badge-required">Required</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-coc" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Chapter Governance</div>
+        <div class="course-title">Code of Conduct Certification</div>
+        <div class="course-meta">10 modules &nbsp;&middot;&nbsp; ~90 min &nbsp;&middot;&nbsp; Certificate</div>
+        <a class="btn-course btn-start" id="btn-coc" href="/portal/code_of_conduct_training.html" target="_blank">Start Course</a>
       </div>
     </div>
 
@@ -571,11 +586,12 @@ function applyProgress(id) {
   return p;
 }
 (function refreshUI() {
-  var rp = applyProgress('roberts');
-  var cp = applyProgress('compliance');
-  var mp = applyProgress('membership');
-  var inProg = [rp, cp, mp].filter(function(p){ return p > 0 && p < 100; }).length;
-  var done   = [rp, cp, mp].filter(function(p){ return p >= 100; }).length;
+  var rp  = applyProgress('roberts');
+  var cp  = applyProgress('compliance');
+  var mp  = applyProgress('membership');
+  var coc = applyProgress('coc');
+  var inProg = [rp, cp, mp, coc].filter(function(p){ return p > 0 && p < 100; }).length;
+  var done   = [rp, cp, mp, coc].filter(function(p){ return p >= 100; }).length;
   document.getElementById('statInProg').textContent = inProg || '—';
   document.getElementById('statDone').textContent   = done   || '—';
 })();
@@ -587,15 +603,16 @@ document.getElementById('courseCount').textContent = allCards.length + ' courses
 function filterCourses(btn, tag) {
   document.querySelectorAll('.tile').forEach(function(t) { t.classList.remove('active'); });
   btn.classList.add('active');
-  var rp = getProgress('roberts');
+  var rp  = getProgress('roberts');
+  var cocp = getProgress('coc');
   var visible = 0;
   allCards.forEach(function(c) {
     var f = c.getAttribute('data-filter') || '';
     var show = false;
     if (tag === 'all')        show = true;
     else if (tag === 'required')   show = f.includes('required');
-    else if (tag === 'inprogress') show = f.includes('required') && rp > 0 && rp < 100;
-    else if (tag === 'completed')  show = f.includes('required') && rp >= 100;
+    else if (tag === 'inprogress') show = f.includes('required') && ((rp > 0 && rp < 100) || (cocp > 0 && cocp < 100));
+    else if (tag === 'completed')  show = f.includes('required') && (rp >= 100 || cocp >= 100);
     c.style.display = show ? '' : 'none';
     if (show) visible++;
   });
