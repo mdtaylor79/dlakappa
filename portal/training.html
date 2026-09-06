@@ -10,7 +10,6 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; min-height: 100vh; }
-
 .portal-nav {
   background: #fff; border-bottom: 1px solid #e0d8cc;
   padding: 0 2rem; display: flex; align-items: center;
@@ -35,7 +34,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .portal-nav .nav-links a:hover { text-decoration: underline; }
 .portal-nav .nav-links .active { border-bottom: 2px solid #70110c; padding-bottom: 2px; }
 .portal-nav .nav-links .signout { color: #888; }
-
 .training-hero {
   background: linear-gradient(110deg, #1a0303 0%, #70110c 60%, #8a1a13 100%);
   padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
@@ -69,7 +67,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
   color: rgba(242,235,215,.5); margin-top: .2rem; display: block;
 }
-
 .tiles-strip { background: #5a0e09; }
 .tiles-inner {
   max-width: 1100px; margin: 0 auto;
@@ -90,9 +87,7 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .tile.active { color: #c69a3f; border-bottom-color: #c69a3f; }
 .tile svg { width: 20px; height: 20px; }
 .tile span { font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
-
 .training-body { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-
 .section-label {
   display: flex; align-items: center; justify-content: space-between;
   margin: 2rem 0 1rem;
@@ -107,7 +102,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   transform: rotate(45deg); display: inline-block; flex-shrink: 0;
 }
 .section-label .count { font-size: .78rem; color: #999; }
-
 .featured-banner {
   background: #70110c; border-radius: 6px;
   padding: 2rem 2.25rem;
@@ -145,7 +139,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   text-decoration: none; transition: background .2s;
 }
 .feat-cta:hover { background: #daa70f; }
-
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -210,8 +203,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .btn-continue:hover { background: #b38932; }
 .btn-done { background: #e8f0e8; color: #2d6a2d; cursor: default; }
 .btn-soon { background: #f0ece6; color: #aaa; cursor: not-allowed; }
-
-
 .section-sub {
   font-family: 'Cinzel', serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase; color: #70110c;
@@ -226,13 +217,11 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 .section-sub.soon::before { background: #999; }
 .section-sub.draft::before { background: #b85c00; }
 .badge-draft { background: #b85c00; color: #fff8f0; }
-
 .empty-state {
   background: #fff; border: 1px dashed #d0c8bc; border-radius: 6px;
   padding: 2.5rem; text-align: center; color: #999;
   font-size: .88rem; line-height: 1.7; display: none;
 }
-
 /* ── MOBILE HAMBURGER ── */
 .nav-hamburger {
   display: none;
@@ -246,7 +235,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
   margin-left: auto;
 }
 .nav-hamburger span { display:block; width:22px; height:2px; background:#70110c; border-radius:2px; }
-
 @media(max-width:700px){
   .portal-nav { height:auto; min-height:56px; padding:.5rem 1rem; flex-wrap:wrap; align-items:center; gap:.25rem; }
   .portal-nav .brand img { width:36px; }
@@ -276,7 +264,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
 </style>
 </head>
 <body>
-
 <nav class="portal-nav">
   <div class="brand">
     <img src="/img/kappa-crest.png" alt="DLA Crest">
@@ -293,7 +280,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
     <a href="#" class="signout" id="signOutBtn">Sign out</a>
   </div>
 </nav>
-
 <div class="training-hero">
   <div class="inner">
     <div>
@@ -302,13 +288,12 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num">10</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num">11</span><span class="lbl">Available</span></div>
       <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
       <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
     </div>
   </div>
 </div>
-
 <div class="tiles-strip">
   <div class="tiles-inner">
     <button class="tile active" onclick="filterCourses(this,'all')">
@@ -333,7 +318,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
     </a>
   </div>
 </div>
-
 <div class="training-body">
   <div class="section-label" style="margin-top:1.5rem;"><h2>Featured Training</h2></div>
   <div class="featured-banner">
@@ -347,14 +331,31 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <a class="feat-cta" href="/portal/roberts_rules_training.html" target="_blank">Start Training &rarr;</a>
     </div>
   </div>
-
 <div class="section-label">
     <h2>Available Courses</h2>
     <span class="count" id="courseCount"></span>
   </div>
-
   <div class="course-grid" id="courseGrid">
-
+    <!-- ══ Event Insurance Checklist ══
+         Thumbnail: drop a 16:9 image at /img/event_insurance_checklist_thumbnail.png,
+         then replace the <div class="thumb-icon"> block below with:
+         <img src="/img/event_insurance_checklist_thumbnail.png" alt="Event Insurance Checklist" style="width:100%;height:100%;object-fit:cover;display:block;">
+    -->
+    <div class="course-card" data-filter="required all">
+      <div class="course-thumb">
+        <div class="thumb-icon" style="background:#2a0604;display:flex;align-items:center;justify-content:center;width:100%;height:100%;border:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11.5 11.2 13.7 15.4 9.5"/></svg>
+        </div>
+        <span class="course-badge badge-required">Required</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-eic" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Risk Management</div>
+        <div class="course-title">Event Insurance Checklist</div>
+        <div class="course-meta">13 modules &nbsp;&middot;&nbsp; ~2.5&ndash;3 hrs &nbsp;&middot;&nbsp; Certificate</div>
+        <a class="btn-course btn-start" id="btn-eic" href="/portal/event_insurance_checklist_training.html" target="_blank">Start Course</a>
+      </div>
+    </div>
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <img src="/img/roberts_rules_thumbnail.png" alt="Parliamentary Procedure">
@@ -368,7 +369,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-roberts" href="/portal/roberts_rules_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <!-- Code of Conduct Certification — thumbnail: save Higgsfield image to /img/code_of_conduct_thumbnail.png to use local path -->
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
@@ -383,7 +383,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-coc" href="/portal/code_of_conduct_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/501_training_thumbnail.png" alt="501c Compliance Training">
@@ -397,7 +396,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-compliance" href="/portal/kappa_compliance_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <img src="/img/member_training_thumbnail.png" alt="Membership Education">
@@ -411,7 +409,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-membership" href="/portal/kapsi-training-membership_course.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/guide_right_thumbnail.jpg" alt="Guide Right Mentor Training">
@@ -425,7 +422,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-guidright" href="/portal/guide_right_mentor_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/thumbnail_constitution_statutes.png" alt="Understanding the Constitutions and Statutes">
@@ -439,7 +435,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" href="/portal/kapsi-governing-docs-course.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/chapter_property_accountabiity.png" alt="Chapter Property Accountability" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -453,7 +448,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" href="https://dlawebmaster.github.io/chapter_property_training/" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/website_member_portal_training.png" alt="Website, Member Portal &amp; Training System Orientation" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -467,7 +461,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" href="/portal/website_member_portal_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/from_silos_to_synergy_thumbnail.png" alt="From Silos to Synergy: Committee Operating Model" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -481,7 +474,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-silos" href="/portal/from_silos_to_synergy_training.html" target="_blank">Start Course</a>
       </div>
     </div>
-
     <div class="course-card" data-filter="required all">
       <div class="course-thumb">
         <div class="thumb-icon" style="background:#2a0604;display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
@@ -497,13 +489,10 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" id="btn-mta" href="/portal/DLA_MTA_Training_2026.html" target="_blank">Start Course</a>
       </div>
     </div>
-
   </div>
-
   <!-- COMING SOON -->
   <div class="section-sub soon">Coming Soon</div>
   <div class="course-grid">
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/chapter_financial_management_thumbnail.png" alt="Financial Literacy">
@@ -517,7 +506,6 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <button class="btn-course btn-soon" disabled>Coming Soon</button>
       </div>
     </div>
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/thumbnail_committee_directorates.png" alt="Understanding Chapter Committees and Directorates">
@@ -531,13 +519,10 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <button class="btn-course btn-soon" disabled>Coming Soon</button>
       </div>
     </div>
-
   </div>
-
   <!-- UNDER REVIEW / DRAFT -->
   <div class="section-sub draft">Under Review &amp; Draft</div>
   <div class="course-grid">
-
     <div class="course-card" data-filter="all">
       <div class="course-thumb">
         <img src="/img/16-9 bylaws thumnail.png" alt="Bylaw Amendment SOP" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -551,22 +536,17 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
         <a class="btn-course btn-start" href="/portal/dla-bylaw-amendment-sop-training.html" target="_blank">Preview Draft</a>
       </div>
     </div>
-
   </div>
-
   <div class="empty-state" id="emptyState">No courses match this filter yet.</div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL  = 'https://eithccduveikejdhvnmq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpdGhjY2R1dmVpa2VqZGh2bm1xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyODU4MDYsImV4cCI6MjA5OTg2MTgwNn0.fuqE-f5TjxvN1xuxfJqstnlvVF22VdKkwRLdsGMQcoQ';
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-
 (async () => {
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { window.location.href = '/portal/login.html'; return; }
-
   // Inject admin links if is_admin
   const { data: member } = await sb.from('members').select('is_admin').eq('id', session.user.id).single();
   if (member && member.is_admin) {
@@ -581,13 +561,11 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
     signout.before(mkLink('/portal/blog-admin.html', 'Blog Admin'));
   }
 })();
-
 document.getElementById('signOutBtn').addEventListener('click', async (e) => {
   e.preventDefault();
   await sb.auth.signOut();
   window.location.href = '/portal/login.html';
 });
-
 // Progress tracking via localStorage
 function getProgress(id) { return parseInt(localStorage.getItem('dla_prog_' + id) || '0', 10); }
 function applyProgress(id) {
@@ -607,36 +585,35 @@ function applyProgress(id) {
   var mp  = applyProgress('membership');
   var coc = applyProgress('coc');
   var mta = applyProgress('mta');
-  var inProg = [rp, cp, mp, coc, mta].filter(function(p){ return p > 0 && p < 100; }).length;
-  var done   = [rp, cp, mp, coc, mta].filter(function(p){ return p >= 100; }).length;
+  var eic = applyProgress('eic');
+  var inProg = [rp, cp, mp, coc, mta, eic].filter(function(p){ return p > 0 && p < 100; }).length;
+  var done   = [rp, cp, mp, coc, mta, eic].filter(function(p){ return p >= 100; }).length;
   document.getElementById('statInProg').textContent = inProg || '—';
   document.getElementById('statDone').textContent   = done   || '—';
 })();
-
 // Filter
 var allCards = Array.from(document.querySelectorAll('.course-card'));
 document.getElementById('courseCount').textContent = allCards.length + ' courses';
-
 function filterCourses(btn, tag) {
   document.querySelectorAll('.tile').forEach(function(t) { t.classList.remove('active'); });
   btn.classList.add('active');
-  var rp  = getProgress('roberts');
+  var rp   = getProgress('roberts');
   var cocp = getProgress('coc');
+  var eicp = getProgress('eic');
   var visible = 0;
   allCards.forEach(function(c) {
     var f = c.getAttribute('data-filter') || '';
     var show = false;
     if (tag === 'all')        show = true;
     else if (tag === 'required')   show = f.includes('required');
-    else if (tag === 'inprogress') show = f.includes('required') && ((rp > 0 && rp < 100) || (cocp > 0 && cocp < 100));
-    else if (tag === 'completed')  show = f.includes('required') && (rp >= 100 || cocp >= 100);
+    else if (tag === 'inprogress') show = f.includes('required') && ((rp > 0 && rp < 100) || (cocp > 0 && cocp < 100) || (eicp > 0 && eicp < 100));
+    else if (tag === 'completed')  show = f.includes('required') && (rp >= 100 || cocp >= 100 || eicp >= 100);
     c.style.display = show ? '' : 'none';
     if (show) visible++;
   });
   document.getElementById('courseCount').textContent = visible + ' course' + (visible !== 1 ? 's' : '');
   document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
 }
-
 // Mobile hamburger
 (function() {
   var burger = document.getElementById('trainBurger');
