@@ -302,7 +302,7 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       <p>Chapter training modules, parliamentary procedure, and professional development — all in one place.</p>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num">9</span><span class="lbl">Available</span></div>
+      <div class="hero-stat"><span class="num">10</span><span class="lbl">Available</span></div>
       <div class="hero-stat"><span class="num" id="statInProg">—</span><span class="lbl">In Progress</span></div>
       <div class="hero-stat"><span class="num" id="statDone">—</span><span class="lbl">Completed</span></div>
     </div>
@@ -482,6 +482,22 @@ body { font-family: 'Archivo', sans-serif; background: #f0ece6; color: #1a1a1a; 
       </div>
     </div>
 
+    <div class="course-card" data-filter="required all">
+      <div class="course-thumb">
+        <div class="thumb-icon" style="background:#2a0604;display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c69a3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <span class="course-badge badge-required">Required</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-mta" style="width:0%"></div></div>
+      <div class="course-body">
+        <div class="course-type">Membership Intake</div>
+        <div class="course-title">DLA MTA Training 2026</div>
+        <div class="course-meta">17 modules &nbsp;&middot;&nbsp; ~2 hrs &nbsp;&middot;&nbsp; Certificate</div>
+        <a class="btn-course btn-start" id="btn-mta" href="/portal/DLA_MTA_Training_2026.html" target="_blank">Start Course</a>
+      </div>
+    </div>
+
   </div>
 
   <!-- COMING SOON -->
@@ -590,8 +606,9 @@ function applyProgress(id) {
   var cp  = applyProgress('compliance');
   var mp  = applyProgress('membership');
   var coc = applyProgress('coc');
-  var inProg = [rp, cp, mp, coc].filter(function(p){ return p > 0 && p < 100; }).length;
-  var done   = [rp, cp, mp, coc].filter(function(p){ return p >= 100; }).length;
+  var mta = applyProgress('mta');
+  var inProg = [rp, cp, mp, coc, mta].filter(function(p){ return p > 0 && p < 100; }).length;
+  var done   = [rp, cp, mp, coc, mta].filter(function(p){ return p >= 100; }).length;
   document.getElementById('statInProg').textContent = inProg || '—';
   document.getElementById('statDone').textContent   = done   || '—';
 })();
