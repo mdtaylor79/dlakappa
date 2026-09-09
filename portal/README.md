@@ -20,9 +20,9 @@ dlakappa.org repo → /committee-report/index.html
 ```
 
 It works the same opened straight off a laptop by double-clicking, if you would rather email
-the file than host it. Two scripts load from cdnjs at runtime (PowerPoint writing and image
-capture), so the page needs an internet connection the first time a browser sees it — the
-same page is also published privately on claude.ai if you prefer a link to a host.
+the file than host it. The PowerPoint writer and the image capture are built into the file, so
+nothing loads from a CDN and every export works with no internet connection at all — the same
+page is also published privately on claude.ai if you prefer a link to a host.
 
 A chair opens it, types into the four boxes, watches the slide build itself, and downloads
 what they need:
@@ -115,4 +115,5 @@ assets/favicon.png                   browser tab icon for the hosted page
 sample/EXAMPLE-committee-report.json illustrative report file — not a real report
 ```
 
-`assets/` is only needed by `build_deck.py`. The HTML file carries its own copies.
+`assets/` is only needed by `build_deck.py`. The HTML file carries its own copies of the seal,
+the icon strip, and both JavaScript libraries — it has no external dependencies of any kind.
