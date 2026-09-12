@@ -3,157 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <meta name="robots" content="noindex,nofollow">
   <title>Committee Budget Request — Denton-Lewisville Alumni Chapter</title>
-  <link rel="icon" href="/img/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Poppins:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+
   <style>
+    :root {
+      --crimson: #70110C; --crimson-lift: #8E1912; --gold: #D4AA35;
+      --ground: #F4F0E8; --surface: #FFFFFF; --surface-2: #FBF8F2;
+      --ink: #1E1613; --ink-2: #5D4F49; --rule: #DFD5C6; --rule-soft: #EDE6DA;
+      --focus: #8E1912;
+      --shadow: 0 1px 2px rgba(30,22,19,.06), 0 12px 30px -18px rgba(30,22,19,.35);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --crimson: #D1584E; --crimson-lift: #E8776C; --gold: #E0BA55;
+        --ground: #15100E; --surface: #1F1815; --surface-2: #261E1A;
+        --ink: #F4EDE3; --ink-2: #B4A296; --rule: #3B2E28; --rule-soft: #2E2320;
+        --focus: #E8776C;
+        --shadow: 0 1px 2px rgba(0,0,0,.5), 0 14px 34px -18px rgba(0,0,0,.8);
+      }
+    }
+    :root[data-theme="dark"] {
+      --crimson: #D1584E; --crimson-lift: #E8776C; --gold: #E0BA55;
+      --ground: #15100E; --surface: #1F1815; --surface-2: #261E1A;
+      --ink: #F4EDE3; --ink-2: #B4A296; --rule: #3B2E28; --rule-soft: #2E2320;
+      --focus: #E8776C;
+      --shadow: 0 1px 2px rgba(0,0,0,.5), 0 14px 34px -18px rgba(0,0,0,.8);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+
     body {
-      font-family: 'Archivo', sans-serif;
-      background: #1a0302;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px; line-height: 1.5;
+      background: var(--ground); color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh; display: flex; flex-direction: column;
     }
 
-    /* ── Banner ── */
-    .banner {
-      background: linear-gradient(135deg, #70110c 0%, #2a0604 100%);
-      color: #fff;
-      padding: 0 2rem;
-      box-shadow: 0 3px 16px rgba(0,0,0,.5);
+    .topbar {
+      border-bottom: 1px solid var(--rule);
+      background: var(--surface);
+      padding: 16px 24px 14px;
+      display: flex; flex-wrap: wrap; gap: 16px 28px;
+      align-items: flex-end; justify-content: space-between;
     }
-    .banner-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.1rem 0;
+    .brandline { display: flex; align-items: center; gap: 14px; }
+    .topbar h1 {
+      font-family: Poppins, "Segoe UI", Arial, sans-serif;
+      font-weight: 700; font-size: 18px; letter-spacing: -.01em; line-height: 1.2;
     }
-    .shield { width: 60px; height: 68px; flex-shrink: 0; }
-    .org-text { flex: 1; }
-    .org-chapter {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: #c69a3f;
-      line-height: 1.2;
+    .topbar .sub { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+    .motto {
+      font-family: Oswald, Arial, sans-serif; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .18em; font-size: 11px;
+      color: var(--crimson); border-left: 2px solid var(--crimson); padding-left: 10px;
+      margin-top: 4px;
     }
-    .org-fraternity {
-      font-size: .75rem;
-      color: rgba(242,235,215,.7);
-      margin-top: .25rem;
-      letter-spacing: .04em;
+    .portal-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px 5px 10px;
+      background: var(--crimson); border: 1px solid transparent;
+      color: var(--gold);
+      font-family: Oswald, Arial, sans-serif; font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .18em;
+      text-decoration: none; border-radius: 2px;
+      transition: background .15s, color .15s;
+      flex-shrink: 0;
     }
-    .org-motto {
-      font-style: italic;
-      font-size: .68rem;
-      color: #c69a3f;
-      margin-top: .4rem;
-      opacity: .85;
-    }
+    .portal-link:hover { background: var(--crimson-lift); color: #f0d060; }
 
-    /* ── Breadcrumb ── */
-    .nav-strip {
-      background: rgba(0,0,0,.35);
-      padding: .5rem 2rem;
-      font-size: .72rem;
-      color: rgba(242,235,215,.55);
+    .breadcrumb {
+      padding: 8px 24px;
+      border-bottom: 1px solid var(--rule-soft);
+      background: var(--surface-2);
+      font-size: 12px; color: var(--ink-2);
+      display: flex; align-items: center; gap: 6px;
     }
-    .nav-strip a { color: #c69a3f; text-decoration: none; }
-    .nav-strip a:hover { text-decoration: underline; }
+    .breadcrumb a { color: var(--crimson); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { opacity: .5; }
 
-    /* ── Page label ── */
-    .page-label {
-      background: #fff;
-      border-bottom: 2px solid #f0e8e0;
-      padding: .85rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: .5rem;
+    .page-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     }
-    .page-label h1 {
-      font-family: 'Cinzel', serif;
-      font-size: .95rem;
-      font-weight: 700;
-      color: #70110c;
-      letter-spacing: .04em;
+    .page-bar h2 {
+      font-family: Poppins, Arial, sans-serif; font-weight: 700; font-size: 15px;
+      color: var(--ink);
     }
-    .fy-tag {
-      background: #70110c;
-      color: #c69a3f;
-      font-family: 'Cinzel', serif;
-      font-size: .6rem;
-      font-weight: 700;
-      padding: .3rem .9rem;
-      border-radius: 20px;
-      letter-spacing: .08em;
+    .fy-badge {
+      background: var(--crimson); color: var(--gold);
+      font-family: Oswald, Arial, sans-serif; font-size: 10px; font-weight: 500;
+      padding: 3px 12px; border-radius: 20px; letter-spacing: .1em;
       text-transform: uppercase;
     }
 
-    /* ── iframe ── */
     .iframe-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background: #f5f0eb;
+      flex: 1; display: flex; flex-direction: column;
+      background: var(--ground);
     }
     iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      min-height: calc(100vh - 180px);
-      display: block;
+      flex: 1; width: 100%; border: none;
+      min-height: calc(100vh - 160px); display: block;
     }
 
-    /* ── Footer ── */
     footer {
-      background: #2a0604;
-      color: rgba(242,235,215,.45);
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      color: var(--ink-2);
       text-align: center;
-      font-size: .7rem;
-      padding: .85rem 1rem;
-      letter-spacing: .03em;
+      font-family: Oswald, Arial, sans-serif; font-size: 10.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 14px 24px;
     }
-    footer span { color: #c69a3f; }
+    footer span { color: var(--crimson); }
   </style>
 </head>
 <body>
 
-<!-- Banner -->
-<header class="banner">
-  <div class="banner-inner">
-    <div class="org-text">
-      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
-      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
-      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
-    </div>
-    <div style="text-align:right;flex-shrink:0;">
-      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">← Portal</a>
+<header class="topbar">
+  <div class="brandline">
+    <div>
+      <h1>Denton-Lewisville (TX) Alumni Chapter</h1>
+      <p class="sub">Kappa Alpha Psi Fraternity, Inc.</p>
+      <p class="motto">Achievement in Every Field of Human Endeavor</p>
     </div>
   </div>
+  <a href="/portal/dashboard.html" class="portal-link">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="#D4AA35" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Portal
+  </a>
 </header>
 
-<!-- Breadcrumb -->
-<nav class="nav-strip">
-  <a href="/portal/dashboard.html">Home</a> &rsaquo;
-  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+<nav class="breadcrumb">
+  <a href="/portal/dashboard.html">Home</a>
+  <span class="sep">›</span>
+  <a href="/portal/dashboard.html">Portal</a>
+  <span class="sep">›</span>
   Committee Budget Request
 </nav>
 
-<!-- Page label -->
-<div class="page-label">
-  <h1>2026–2027 Committee Budget Request Form</h1>
-  <span class="fy-tag">FY 2026–2027</span>
+<div class="page-bar">
+  <h2>2026–2027 Committee Budget Request Form</h2>
+  <span class="fy-badge">FY 2026–2027</span>
 </div>
 
-<!-- Form iframe -->
 <div class="iframe-wrap">
   <iframe
     src="/portal/budget-request-form.html"
