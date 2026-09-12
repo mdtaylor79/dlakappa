@@ -3,273 +3,508 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <meta name="robots" content="noindex,nofollow">
   <title>Committee Sign-Up — Denton-Lewisville Alumni Chapter</title>
-  <link rel="icon" href="/img/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Poppins:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+
   <style>
+    /* ── Design tokens ── */
+    :root {
+      --crimson: #70110C;
+      --crimson-lift: #8E1912;
+      --gold: #D4AA35;
+      --ground: #F4F0E8;
+      --surface: #FFFFFF;
+      --surface-2: #FBF8F2;
+      --ink: #1E1613;
+      --ink-2: #5D4F49;
+      --rule: #DFD5C6;
+      --rule-soft: #EDE6DA;
+      --focus: #8E1912;
+      --shadow: 0 1px 2px rgba(30,22,19,.06), 0 12px 30px -18px rgba(30,22,19,.35);
+    }
+    :root:not([data-theme="light"]) {}
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --crimson: #D1584E;
+        --crimson-lift: #E8776C;
+        --gold: #E0BA55;
+        --ground: #15100E;
+        --surface: #1F1815;
+        --surface-2: #261E1A;
+        --ink: #F4EDE3;
+        --ink-2: #B4A296;
+        --rule: #3B2E28;
+        --rule-soft: #2E2320;
+        --focus: #E8776C;
+        --shadow: 0 1px 2px rgba(0,0,0,.5), 0 14px 34px -18px rgba(0,0,0,.8);
+      }
+    }
+    :root[data-theme="dark"] {
+      --crimson: #D1584E;
+      --crimson-lift: #E8776C;
+      --gold: #E0BA55;
+      --ground: #15100E;
+      --surface: #1F1815;
+      --surface-2: #261E1A;
+      --ink: #F4EDE3;
+      --ink-2: #B4A296;
+      --rule: #3B2E28;
+      --rule-soft: #2E2320;
+      --focus: #E8776C;
+      --shadow: 0 1px 2px rgba(0,0,0,.5), 0 14px 34px -18px rgba(0,0,0,.8);
+    }
+
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Archivo', sans-serif; background: #1a0302; min-height: 100vh; display: flex; flex-direction: column; }
-    /* ── Banner ── */
-    .banner { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); color: #fff; padding: 0 2rem; box-shadow: 0 3px 16px rgba(0,0,0,.5); }
-    .banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.25rem; padding: 1.1rem 0; }
-    .org-text { flex: 1; }
-    .org-chapter { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c69a3f; line-height: 1.2; }
-    .org-fraternity { font-size: .75rem; color: rgba(242,235,215,.7); margin-top: .25rem; letter-spacing: .04em; }
-    .org-motto { font-style: italic; font-size: .68rem; color: #c69a3f; margin-top: .4rem; opacity: .85; }
-    .nav-strip { background: rgba(0,0,0,.35); padding: .5rem 2rem; font-size: .72rem; color: rgba(242,235,215,.55); }
-    .nav-strip a { color: #c69a3f; text-decoration: none; }
-    .nav-strip a:hover { text-decoration: underline; }
-    .page-label { background: #fff; border-bottom: 2px solid #f0e8e0; padding: .85rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-    .page-label h1 { font-family: 'Cinzel', serif; font-size: .95rem; font-weight: 700; color: #70110c; letter-spacing: .04em; }
-    .fy-tag { background: #70110c; color: #c69a3f; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; padding: .3rem .9rem; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; }
-    main { flex: 1; background: #f5f0eb; padding: 2rem 1.5rem 4rem; }
-    .form-shell { max-width: 860px; margin: 0 auto; }
-    .form-section { background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }
-    .section-head { background: linear-gradient(135deg, #70110c 0%, #2a0604 100%); padding: .75rem 1.25rem; display: flex; align-items: center; gap: .6rem; }
-    .section-head svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .section-head h2 { font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #c69a3f; }
-    .section-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .field-row.full { grid-template-columns: 1fr; }
-    .field { display: flex; flex-direction: column; gap: .35rem; }
-    label { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #6a5a50; }
-    label .req { color: #70110c; margin-left: 2px; }
-    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
-      width: 100%; padding: .6rem .8rem; border: 1px solid #d8cfc5; border-radius: 4px; font-family: 'Archivo', sans-serif; font-size: .88rem; color: #1a1a1a; background: #faf8f5; transition: border-color .2s, box-shadow .2s; appearance: none;
+    h1, h2, h3 { margin: 0; }
+    button, input, select { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+
+    /* ── Body ── */
+    body {
+      font-family: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px; line-height: 1.5;
+      background: var(--ground); color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh; display: flex; flex-direction: column;
     }
-    input:focus, select:focus { outline: none; border-color: #70110c; box-shadow: 0 0 0 3px rgba(112,17,12,.08); }
-    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a5a50' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2rem; }
 
-    .radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .radio-item { display: flex; align-items: center; gap: .5rem; cursor: pointer; }
-    .radio-item input[type="radio"] { accent-color: #70110c; cursor: pointer; }
-    .radio-item span { font-size: .88rem; color: #1a1a1a; }
+    /* ── Topbar ── */
+    .topbar {
+      border-bottom: 1px solid var(--rule);
+      background: var(--surface);
+      padding: 16px 24px 14px;
+      display: flex; flex-wrap: wrap; gap: 16px 28px;
+      align-items: flex-end; justify-content: space-between;
+    }
+    .brandline { display: flex; align-items: center; gap: 14px; }
+    .topbar h1 {
+      font-family: Poppins, "Segoe UI", Arial, sans-serif;
+      font-weight: 700; font-size: 18px; letter-spacing: -.01em; line-height: 1.2;
+    }
+    .topbar .sub { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+    .motto {
+      font-family: Oswald, Arial, sans-serif; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .18em; font-size: 11px;
+      color: var(--crimson); border-left: 2px solid var(--crimson); padding-left: 10px;
+      margin-top: 4px;
+    }
+    .portal-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px 5px 10px;
+      background: var(--crimson); border: 1px solid transparent;
+      color: var(--gold);
+      font-family: Oswald, Arial, sans-serif; font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .18em;
+      text-decoration: none; border-radius: 2px;
+      transition: background .15s, color .15s;
+      flex-shrink: 0;
+    }
+    .portal-link:hover { background: var(--crimson-lift); color: #f0d060; }
+    .portal-link svg { flex-shrink: 0; }
 
-    .checkbox-group { display: flex; flex-direction: column; gap: .6rem; }
-    .checkbox-item { display: flex; align-items: flex-start; gap: .65rem; cursor: pointer; font-weight: normal; text-transform: none; letter-spacing: 0; font-size: .88rem; color: #1a1a1a; }
-    .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; min-width: 16px; margin-top: 2px; accent-color: #70110c; cursor: pointer; }
-    .checkbox-item .sub { font-size: .78rem; color: #888; margin-top: .1rem; }
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      padding: 8px 24px;
+      border-bottom: 1px solid var(--rule-soft);
+      background: var(--surface-2);
+      font-size: 12px; color: var(--ink-2);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .breadcrumb a { color: var(--crimson); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb .sep { opacity: .5; }
 
-    .committee-category {
-      font-family: 'Cinzel', serif;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
+    /* ── Page label bar ── */
+    .page-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .page-bar h2 {
+      font-family: Poppins, Arial, sans-serif; font-weight: 700; font-size: 15px;
+      color: var(--ink);
+    }
+    .fy-badge {
+      background: var(--crimson); color: var(--gold);
+      font-family: Oswald, Arial, sans-serif; font-size: 10px; font-weight: 500;
+      padding: 3px 12px; border-radius: 20px; letter-spacing: .1em;
       text-transform: uppercase;
-      color: #70110c;
-      border-bottom: 1px solid #f0e8e0;
-      padding-bottom: .4rem;
-      margin-bottom: .5rem;
-      margin-top: .25rem;
     }
 
-    .opt-out-box {
-      background: #fff8ec;
-      border: 1px solid #e4d5a0;
-      border-left: 4px solid #c69a3f;
+    /* ── Main layout ── */
+    main {
+      flex: 1; padding: 24px 16px 48px;
+    }
+    .form-shell {
+      max-width: 860px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* ── Panels (cards) ── */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      box-shadow: var(--shadow);
       border-radius: 4px;
-      padding: .9rem 1.2rem;
+      overflow: hidden;
     }
-    .opt-out-box .checkbox-item { font-size: .9rem; font-weight: 600; color: #2a0604; }
+    .panel-head {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--rule-soft);
+      background: var(--crimson);
+    }
+    .panel-head svg { flex-shrink: 0; }
+    .panel-head h2 {
+      font-family: Oswald, Arial, sans-serif; font-weight: 500;
+      font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .panel-body {
+      padding: 18px 20px 22px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
 
-    .submit-row { display: flex; justify-content: flex-end; }
-    .btn-submit { background: linear-gradient(135deg, #70110c, #2a0604); color: #f2ebd7; font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .85rem 2.5rem; border: none; border-radius: 4px; cursor: pointer; transition: opacity .2s; }
-    .btn-submit:hover { opacity: .88; }
-    .btn-submit:disabled { opacity: .5; cursor: not-allowed; }
-    .status-msg { display: none; padding: .75rem 1rem; border-radius: 4px; font-size: .85rem; font-weight: 600; }
-    .status-msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; display: block; }
+    /* ── Form fields ── */
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field > label {
+      font-family: Oswald, Arial, sans-serif; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .12em; font-size: 10.5px;
+      color: var(--ink-2);
+    }
+    .field > label .req { color: var(--crimson); margin-left: 2px; }
+    .row { display: grid; gap: 14px; grid-template-columns: 1fr; }
+    @media (min-width: 560px) { .row.two { grid-template-columns: 1fr 1fr; } }
+    .row.single { grid-template-columns: 1fr; max-width: 50%; }
 
-    .success-screen { display: none; background: #fff; border: 1px solid #e4dbd0; border-radius: 8px; padding: 3rem 2rem; text-align: center; max-width: 860px; margin: 0 auto; }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+      width: 100%;
+      background: var(--surface-2); color: var(--ink);
+      border: 1px solid var(--rule); border-radius: 3px;
+      padding: 8px 10px;
+      font-family: "Source Sans 3", sans-serif; font-size: 14px;
+      appearance: none;
+      transition: border-color .2s, background .2s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--crimson);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(112,17,12,.08);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235D4F49' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right .75rem center;
+      padding-right: 2.25rem;
+    }
+
+    /* ── Radio & checkbox groups ── */
+    .radio-group { display: flex; gap: 20px; flex-wrap: wrap; }
+    .radio-item { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+    .radio-item input[type="radio"] { accent-color: var(--crimson); cursor: pointer; }
+    .radio-item span { font-size: 14px; color: var(--ink); }
+
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 9px; cursor: pointer;
+      font-size: 14px; color: var(--ink); font-weight: normal;
+      text-transform: none; letter-spacing: 0;
+    }
+    .check-item input[type="checkbox"] {
+      width: 16px; height: 16px; min-width: 16px;
+      margin-top: 2px; accent-color: var(--crimson); cursor: pointer;
+    }
+    .check-item .sub { font-size: 12px; color: var(--ink-2); margin-top: 1px; }
+
+    /* ── Committee category headings ── */
+    .committee-category {
+      font-family: Oswald, Arial, sans-serif; font-weight: 500;
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--crimson);
+      border-bottom: 1px solid var(--rule-soft);
+      padding-bottom: 5px; margin-bottom: 4px; margin-top: 6px;
+    }
+
+    /* ── Opt-out callout ── */
+    .opt-out-box {
+      background: var(--surface-2);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--gold);
+      border-radius: 3px;
+      padding: 12px 16px;
+    }
+    .opt-out-box .check-item { font-size: 14px; font-weight: 600; color: var(--ink); }
+
+    /* ── Hint text ── */
+    .hint { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+    .subcommittee-note { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+
+    /* ── Buttons ── */
+    .btns { display: flex; justify-content: flex-end; }
+    button.primary {
+      cursor: pointer;
+      background: var(--crimson); border: 1px solid var(--crimson); color: #FFF8EE;
+      font-family: Oswald, Arial, sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: .16em; text-transform: uppercase;
+      padding: 10px 32px; border-radius: 3px;
+      transition: background .15s, border-color .15s, transform .12s;
+    }
+    button.primary:hover { background: var(--crimson-lift); border-color: var(--crimson-lift); }
+    button.primary:active { transform: translateY(1px); }
+    button.primary:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    /* ── Status / error message ── */
+    .status-msg {
+      display: none; padding: 10px 14px; border-radius: 3px;
+      font-size: 13.5px; font-weight: 600;
+    }
+    .status-msg.error {
+      display: block;
+      background: color-mix(in srgb, var(--crimson) 10%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--crimson) 40%, var(--rule));
+      color: var(--crimson);
+    }
+
+    /* ── Success screen ── */
+    .success-screen {
+      display: none; background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 4px; box-shadow: var(--shadow);
+      padding: 48px 32px; text-align: center;
+      max-width: 860px; margin: 0 auto;
+    }
     .success-screen.show { display: block; }
-    .success-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .success-screen h2 { font-family: 'Cinzel', serif; color: #2a0604; font-size: 1.3rem; margin-bottom: .75rem; }
-    .success-screen p { color: #6a5a50; margin-bottom: .5rem; font-size: .92rem; }
-    .success-ref { display: inline-block; background: #f8f4f0; border: 1px solid #e4dbd0; border-radius: 4px; padding: .5rem 1.25rem; font-family: 'Cinzel', serif; font-size: .85rem; color: #70110c; font-weight: 700; letter-spacing: .05em; margin: .75rem 0 1.5rem; }
+    .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-screen h2 {
+      font-family: Poppins, Arial, sans-serif; font-weight: 700; font-size: 22px;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .success-screen p { color: var(--ink-2); font-size: 14px; margin-bottom: 6px; }
+    .success-ref {
+      display: inline-block;
+      background: var(--surface-2); border: 1px solid var(--rule);
+      border-radius: 3px; padding: 7px 20px; margin: 14px 0 24px;
+      font-family: Oswald, Arial, sans-serif; font-size: 14px;
+      color: var(--crimson); font-weight: 600; letter-spacing: .08em;
+    }
 
-    footer { background: #2a0604; color: rgba(242,235,215,.45); text-align: center; font-size: .72rem; letter-spacing: .06em; padding: 1.25rem; }
-    footer span { color: #c69a3f; }
-    @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } .page-label { flex-direction: column; align-items: flex-start; } }
+    /* ── Footer ── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--rule);
+      color: var(--ink-2); text-align: center;
+      font-family: Oswald, Arial, sans-serif; font-size: 10.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 16px 24px;
+    }
+    footer span { color: var(--crimson); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .row.single { max-width: 100%; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .page-bar { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
 
-<header class="banner">
-  <div class="banner-inner">
-    <div class="org-text">
-      <div class="org-chapter">Denton-Lewisville (TX) Alumni Chapter</div>
-      <div class="org-fraternity">Kappa Alpha Psi Fraternity, Inc.</div>
-      <div class="org-motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
-    </div>
-    <div style="text-align:right;flex-shrink:0;">
-      <a href="/portal/dashboard.html" style="font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c69a3f;text-decoration:none;border:1px solid rgba(198,154,63,.4);padding:.45rem .9rem;border-radius:4px;">&#8592; Portal</a>
+<!-- ── Header ── -->
+<header class="topbar">
+  <div class="brandline">
+    <div>
+      <h1>Denton-Lewisville (TX) Alumni Chapter</h1>
+      <div class="sub">Kappa Alpha Psi Fraternity, Inc.</div>
+      <div class="motto">&ldquo;Achievement in Every Field of Human Endeavor&rdquo;</div>
     </div>
   </div>
+  <a href="/portal/dashboard.html" class="portal-link">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+    Portal
+  </a>
 </header>
-<nav class="nav-strip">
-  <a href="/portal/dashboard.html">Home</a> &rsaquo;
-  <a href="/portal/dashboard.html">Portal</a> &rsaquo;
+
+<!-- ── Breadcrumb ── -->
+<nav class="breadcrumb">
+  <a href="/portal/dashboard.html">Home</a>
+  <span class="sep">›</span>
+  <a href="/portal/dashboard.html">Portal</a>
+  <span class="sep">›</span>
   Committee Sign-Up
 </nav>
-<div class="page-label">
-  <h1>Chapter Committee Sign-Up</h1>
-  <span class="fy-tag">FY 2026–2027</span>
+
+<!-- ── Page label ── -->
+<div class="page-bar">
+  <h2>Chapter Committee Sign-Up</h2>
+  <span class="fy-badge">FY 2026–2027</span>
 </div>
 
 <main>
 
-<div class="success-screen" id="successScreen">
-  <div class="success-icon">✅</div>
-  <h2>Sign-Up Submitted Successfully</h2>
-  <p>Thank you for your interest in serving the Denton-Lewisville Chapter. Your committee preferences have been recorded.</p>
-  <div class="success-ref" id="successRef"></div>
-</div>
+  <!-- Success screen -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✅</div>
+    <h2>Sign-Up Submitted Successfully</h2>
+    <p>Thank you for your interest in serving the Denton-Lewisville Chapter.</p>
+    <p>Your committee preferences have been recorded.</p>
+    <div class="success-ref" id="successRef"></div>
+  </div>
 
-<form class="form-shell" id="signupForm">
+  <form class="form-shell" id="signupForm">
 
-  <!-- Member Information -->
-  <div class="form-section">
-    <div class="section-head">
-      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
-      <h2>Member Information</h2>
-    </div>
-    <div class="section-body">
-      <div class="field-row">
-        <div class="field">
-          <label for="signupDate">Date <span class="req">*</span></label>
-          <input type="date" id="signupDate" required>
-        </div>
+    <!-- ── Member Information ── -->
+    <div class="panel">
+      <div class="panel-head">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#D4AA35" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+        <h2>Member Information</h2>
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="firstName">First Name <span class="req">*</span></label>
-          <input type="text" id="firstName" required>
-        </div>
-        <div class="field">
-          <label for="lastName">Last Name <span class="req">*</span></label>
-          <input type="text" id="lastName" required>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="email">Email <span class="req">*</span></label>
-          <input type="email" id="email" required>
-        </div>
-        <div class="field">
-          <label for="phone">Phone Number <span class="req">*</span></label>
-          <input type="tel" id="phone" placeholder="(000) 000-0000" required>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Active at all three levels (Chapter, Province, National)? <span class="req">*</span></label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="activeAllLevels" value="Yes" required><span>Yes</span></label>
-            <label class="radio-item"><input type="radio" name="activeAllLevels" value="No"><span>No</span></label>
+      <div class="panel-body">
+        <div class="row single">
+          <div class="field">
+            <label for="signupDate">Date <span class="req">*</span></label>
+            <input type="date" id="signupDate" required>
           </div>
         </div>
-        <div class="field">
-          <label>Member of the DLA Chapter? <span class="req">*</span></label>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="dlaMember" value="Yes" required><span>Yes</span></label>
-            <label class="radio-item"><input type="radio" name="dlaMember" value="No"><span>No</span></label>
+        <div class="row two">
+          <div class="field">
+            <label for="firstName">First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" required>
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name <span class="req">*</span></label>
+            <input type="text" id="lastName" required>
+          </div>
+        </div>
+        <div class="row two">
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" placeholder="(000) 000-0000" required>
+          </div>
+        </div>
+        <div class="row two">
+          <div class="field">
+            <label>Active at all three levels (Chapter, Province, National)? <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="activeAllLevels" value="Yes" required><span>Yes</span></label>
+              <label class="radio-item"><input type="radio" name="activeAllLevels" value="No"><span>No</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Member of the DLA Chapter? <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="dlaMember" value="Yes" required><span>Yes</span></label>
+              <label class="radio-item"><input type="radio" name="dlaMember" value="No"><span>No</span></label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Opt-Out -->
-  <div class="form-section">
-    <div class="section-body">
-      <div class="opt-out-box">
-        <label class="checkbox-item">
-          <input type="checkbox" id="optOut">
-          <span>I am currently unable to serve directly at this time (opt out of committee service)</span>
-        </label>
+    <!-- ── Opt-Out ── -->
+    <div class="panel">
+      <div class="panel-body">
+        <div class="opt-out-box">
+          <label class="check-item">
+            <input type="checkbox" id="optOut">
+            <span>I am currently unable to serve directly at this time (opt out of committee service)</span>
+          </label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Standing Committees -->
-  <div class="form-section">
-    <div class="section-head">
-      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
-      <h2>Standing Committees</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:.82rem;color:#6a5a50;line-height:1.6;">Select your interest in serving on one or more of the following standing committees in accordance with <strong>Article VII, Section 2</strong> of the Chapter By-Laws.</p>
-      <div class="checkbox-group">
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Budget & Finance Committee"><span>Budget &amp; Finance Committee <span class="sub">(3 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Civic Action Committee"><span>Civic Action Committee <span class="sub">(3 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="National Panhellenic Council Committee"><span>*National Panhellenic Council Committee <span class="sub">(2 People — under Civic Committee)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="By-Laws Committee"><span>By-Laws Committee <span class="sub">(3 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Guide Right Committee"><span>Guide Right Committee <span class="sub">(8–10 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Long Range Planning Committee"><span>Long Range Planning Committee <span class="sub">(2 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Membership Training Academy Committee"><span>Membership Training Academy Committee <span class="sub">(4 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Nomination/Elections Committee"><span>Nomination/Elections Committee <span class="sub">(3 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Programs/Fundraising Committee"><span>Programs/Fundraising Committee <span class="sub">(4 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Marketing & Advertising"><span>*Marketing &amp; Advertising <span class="sub">(2 People — under Programs/Fundraising)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="standingCommittees" value="Reclamation Committee"><span>Reclamation Committee <span class="sub">(2 People)</span></span></label>
+    <!-- ── Standing Committees ── -->
+    <div class="panel">
+      <div class="panel-head">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#D4AA35" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+        <h2>Standing Committees</h2>
+      </div>
+      <div class="panel-body">
+        <p class="hint">Select your interest in serving on one or more of the following standing committees in accordance with <strong>Article VII, Section 2</strong> of the Chapter By-Laws.</p>
+        <div class="checkbox-group">
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Budget & Finance Committee"><span>Budget &amp; Finance Committee <span class="sub">(3 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Civic Action Committee"><span>Civic Action Committee <span class="sub">(3 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="National Panhellenic Council Committee"><span>*National Panhellenic Council Committee <span class="sub">(2 People — under Civic Committee)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="By-Laws Committee"><span>By-Laws Committee <span class="sub">(3 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Guide Right Committee"><span>Guide Right Committee <span class="sub">(8–10 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Long Range Planning Committee"><span>Long Range Planning Committee <span class="sub">(2 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Membership Training Academy Committee"><span>Membership Training Academy Committee <span class="sub">(4 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Nomination/Elections Committee"><span>Nomination/Elections Committee <span class="sub">(3 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Programs/Fundraising Committee"><span>Programs/Fundraising Committee <span class="sub">(4 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Marketing & Advertising"><span>*Marketing &amp; Advertising <span class="sub">(2 People — under Programs/Fundraising)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="standingCommittees" value="Reclamation Committee"><span>Reclamation Committee <span class="sub">(2 People)</span></span></label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Additional Committees -->
-  <div class="form-section">
-    <div class="section-head">
-      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg>
-      <h2>Additional DLA Committees</h2>
-    </div>
-    <div class="section-body">
-      <div class="checkbox-group">
-        <div class="committee-category">Communications</div>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Communications Committee"><span>Communications Committee <span class="sub">(2 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Social Media Subcommittee"><span>*Social Media Subcommittee <span class="sub">(2 People — under Communications)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Web & Technology Subcommittee"><span>*Web &amp; Technology Subcommittee <span class="sub">(2 People — under Communications)</span></span></label>
-
-        <div class="committee-category" style="margin-top:.75rem;">Member Engagement</div>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Member Engagement/Social Committee"><span>Member Engagement/Social Committee <span class="sub">(2 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Re-engagement Sub-Committee"><span>*Re-engagement Sub-Committee <span class="sub">(2 People — under Member Engagement)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Senior Kappa Affairs Subcommittee"><span>*Senior Kappa Affairs Subcommittee <span class="sub">(2 People — under Member Engagement)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Awards & Recommendation Subcommittee"><span>*Awards &amp; Recommendation Subcommittee <span class="sub">(2 People — under Member Engagement)</span></span></label>
-
-        <div class="committee-category" style="margin-top:.75rem;">Community Service</div>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Community Service Committee"><span>Community Service Committee <span class="sub">(4 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Community Health & Welfare Subcommittee"><span>*Community Health &amp; Welfare Subcommittee <span class="sub">(2 People — under Community Service)</span></span></label>
-
-        <div class="committee-category" style="margin-top:.75rem;">Veterans Affairs</div>
-        <label class="checkbox-item"><input type="checkbox" name="additionalCommittees" value="Military Veteran Affairs Commission Committee - MVAC"><span>Military Veteran Affairs Commission Committee — MVAC <span class="sub">(3 People)</span></span></label>
+    <!-- ── Additional DLA Committees ── -->
+    <div class="panel">
+      <div class="panel-head">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#D4AA35" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg>
+        <h2>Additional DLA Committees</h2>
       </div>
-      <p style="font-size:.78rem;color:#888;margin-top:.25rem;">* Indicates a subcommittee</p>
-    </div>
-  </div>
+      <div class="panel-body">
+        <div class="checkbox-group">
+          <div class="committee-category">Communications</div>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Communications Committee"><span>Communications Committee <span class="sub">(2 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Social Media Subcommittee"><span>*Social Media Subcommittee <span class="sub">(2 People — under Communications)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Web & Technology Subcommittee"><span>*Web &amp; Technology Subcommittee <span class="sub">(2 People — under Communications)</span></span></label>
 
-  <!-- Ad Hoc Committees -->
-  <div class="form-section">
-    <div class="section-head">
-      <svg viewBox="0 0 16 16" fill="none" stroke="#c69a3f" stroke-width="1.5"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M5 8h6M8 5v6"/></svg>
-      <h2>Ad Hoc / Special Committees</h2>
-    </div>
-    <div class="section-body">
-      <div class="checkbox-group">
-        <label class="checkbox-item"><input type="checkbox" name="adhocCommittees" value="Planning & Events Committee"><span>Planning &amp; Events Committee <span class="sub">(3 People)</span></span></label>
-        <label class="checkbox-item"><input type="checkbox" name="adhocCommittees" value="Annual Retreat Committee"><span>*Annual Retreat Committee <span class="sub">(3 People — under Planning &amp; Events)</span></span></label>
+          <div class="committee-category" style="margin-top: 10px;">Member Engagement</div>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Member Engagement/Social Committee"><span>Member Engagement/Social Committee <span class="sub">(2 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Re-engagement Sub-Committee"><span>*Re-engagement Sub-Committee <span class="sub">(2 People — under Member Engagement)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Senior Kappa Affairs Subcommittee"><span>*Senior Kappa Affairs Subcommittee <span class="sub">(2 People — under Member Engagement)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Awards & Recommendation Subcommittee"><span>*Awards &amp; Recommendation Subcommittee <span class="sub">(2 People — under Member Engagement)</span></span></label>
+
+          <div class="committee-category" style="margin-top: 10px;">Community Service</div>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Community Service Committee"><span>Community Service Committee <span class="sub">(4 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Community Health & Welfare Subcommittee"><span>*Community Health &amp; Welfare Subcommittee <span class="sub">(2 People — under Community Service)</span></span></label>
+
+          <div class="committee-category" style="margin-top: 10px;">Veterans Affairs</div>
+          <label class="check-item"><input type="checkbox" name="additionalCommittees" value="Military Veteran Affairs Commission Committee - MVAC"><span>Military Veteran Affairs Commission Committee — MVAC <span class="sub">(3 People)</span></span></label>
+        </div>
+        <p class="subcommittee-note">* Indicates a subcommittee</p>
       </div>
     </div>
-  </div>
 
-  <!-- Submit -->
-  <div class="form-section">
-    <div class="section-body">
-      <div id="statusMsg" class="status-msg"></div>
-      <div class="submit-row">
-        <button type="submit" class="btn-submit" id="submitBtn">Submit Sign-Up →</button>
+    <!-- ── Ad Hoc / Special Committees ── -->
+    <div class="panel">
+      <div class="panel-head">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#D4AA35" stroke-width="1.5"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M5 8h6M8 5v6"/></svg>
+        <h2>Ad Hoc / Special Committees</h2>
+      </div>
+      <div class="panel-body">
+        <div class="checkbox-group">
+          <label class="check-item"><input type="checkbox" name="adhocCommittees" value="Planning & Events Committee"><span>Planning &amp; Events Committee <span class="sub">(3 People)</span></span></label>
+          <label class="check-item"><input type="checkbox" name="adhocCommittees" value="Annual Retreat Committee"><span>*Annual Retreat Committee <span class="sub">(3 People — under Planning &amp; Events)</span></span></label>
+        </div>
       </div>
     </div>
-  </div>
 
-</form>
+    <!-- ── Submit ── -->
+    <div class="panel">
+      <div class="panel-body">
+        <div id="statusMsg" class="status-msg"></div>
+        <div class="btns">
+          <button type="submit" class="primary" id="submitBtn">Submit Sign-Up →</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
 </main>
 
 <footer>
@@ -303,9 +538,9 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
   msg.className = 'status-msg';
   msg.style.display = 'none';
 
-  const standingCommittees  = [...document.querySelectorAll('input[name="standingCommittees"]:checked')].map(c => c.value);
+  const standingCommittees   = [...document.querySelectorAll('input[name="standingCommittees"]:checked')].map(c => c.value);
   const additionalCommittees = [...document.querySelectorAll('input[name="additionalCommittees"]:checked')].map(c => c.value);
-  const adhocCommittees     = [...document.querySelectorAll('input[name="adhocCommittees"]:checked')].map(c => c.value);
+  const adhocCommittees      = [...document.querySelectorAll('input[name="adhocCommittees"]:checked')].map(c => c.value);
 
   const payload = {
     signup_date:           document.getElementById('signupDate').value || null,
